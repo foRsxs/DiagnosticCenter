@@ -4,6 +4,8 @@ import {Text, Button} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import CustomBtn from '../../components/CustomBtn'
+
 class AuthorizationScreen extends Component {
 
   constructor(props) {
@@ -30,7 +32,8 @@ class AuthorizationScreen extends Component {
                     navigate('home'); 
                 }}>
                 <Text>go home</Text>
-              </Button>
+                </Button>
+                <CustomBtn label='Hello'/>
             </View>
         </View>
       )
