@@ -1,7 +1,7 @@
 add plugins: 
 
-1) react-native-languages
-2) react-native-snap-carousel
+1) react-native-languages <-- https://github.com/react-community/react-native-languages
+2) react-native-snap-carousel <-- https://github.com/archriss/react-native-snap-carousel
 
 cleane cache rm -rf ~/.rncache
 

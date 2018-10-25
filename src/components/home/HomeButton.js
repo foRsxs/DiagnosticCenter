@@ -41,7 +41,7 @@ class HomeButton extends Component {
       borderColor: 'rgba(112, 172, 245, 0.5)',
       borderRadius: 10,
       marginBottom: 20
-    }
+    },
     txtButton: {
       color: '#fff', 
       backgroundColor: colors.green, 
