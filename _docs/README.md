@@ -1,5 +1,8 @@
 add plugins: 
 
+1) react-native-languages
+2) react-native-snap-carousel
+
 cleane cache rm -rf ~/.rncache
 
 Создание билда для android

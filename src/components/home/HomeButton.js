@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native';
 import { Text } from 'native-base';
+import colors from '../../styles/variables'
 
 let Dheight = Dimensions.get('window').height;
 let Dwidth = Dimensions.get('window').width;
@@ -17,12 +18,14 @@ class HomeButton extends Component {
     render(){
       return (
         <View style={styles.wrapButton}>
-          <TouchableOpacity style={{width: '100%', alignItems: 'center'}}>
+          <TouchableOpacity 
+            onPress={() => this.props.onClick()}
+            style={{width: '100%', alignItems: 'center'}}>
             <Image
-              style={{marginVertical: '13%'}}
-              source={require('../assets/img/btn-doc-ic.png')}
+              style={{marginVertical: 20}}
+              source={require('../../../assets/img/btn-doc-ic.png')}
             />
-            <Text style={{color: '#fff', backgroundColor: '#13CE67', width: '100%', textAlign: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, paddingVertical: '7%', fontSize: 2*Dheight/70}}>{this.state.nameBtn}</Text>
+            <Text style={styles.txtButton}>{this.state.nameBtn}</Text>
           </TouchableOpacity>
         </View>
       );
@@ -37,7 +40,17 @@ class HomeButton extends Component {
       borderWidth: 1,
       borderColor: 'rgba(112, 172, 245, 0.5)',
       borderRadius: 10,
-      marginBottom: '10%'
+      marginBottom: 20
+    }
+    txtButton: {
+      color: '#fff', 
+      backgroundColor: colors.green, 
+      width: '100%', 
+      textAlign: 'center', 
+      borderBottomLeftRadius: 10, 
+      borderBottomRightRadius: 10, 
+      paddingVertical: 10, 
+      fontSize: 16
     }
   });
   

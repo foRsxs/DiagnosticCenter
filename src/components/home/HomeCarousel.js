@@ -35,7 +35,7 @@ class HomeCarousel extends Component {
         <View style={styles.wrapSlide}>
               <Image
                 style={styles.iconList}
-                source={require('../assets/img/slide1.png')}
+                source={require('../../../assets/img/slide1.png')}
               />
         </View>
       );

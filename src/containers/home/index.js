@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { View, Alert } from 'react-native';
 import {Text, Button} from 'native-base';
 import styles from './styles';
-import HomeCarousel from '../../components/HomeCarousel';
-import HomeButton from '../../components/HomeButton';
+import HomeCarousel from '../../components/home/HomeCarousel';
+import HomeButton from '../../components/home/HomeButton';
 import i18n from '../../i18n';
 
 class HomeScreen extends Component {
