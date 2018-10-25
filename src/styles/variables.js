@@ -15,7 +15,7 @@ const variables = {
         wiolet: '#82B6FF'
     },
     fonts: {
-        mainFont: 'HelveticaNeue'
+        mainFont: 'HelveticaNeueCyr'
     },
     fSize: {
         main: 20,
