@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native';
 import { Text } from 'native-base';
-import colors from '../../styles/variables'
-
-let Dheight = Dimensions.get('window').height;
-let Dwidth = Dimensions.get('window').width;
+import variables from '../../styles/variables'
 
 class HomeButton extends Component {
 
@@ -16,17 +13,19 @@ class HomeButton extends Component {
     }
   
     render(){
+      let {nameBtn} = this.state;
+      let {imageUri} = this.props;
       return (
         <View style={styles.wrapButton}>
           <TouchableOpacity 
             onPress={() => this.props.onClick()}
             style={styles.button}>
             <Image
-              style={{marginVertical: 15}}
-              source={require('../../../assets/img/btn-doc-ic.png')}
+              style={{marginVertical: '8%'}}
+              source={imageUri}
             />
             <View style={styles.txtButtonWrap}>
-              <Text style={styles.txtButton}>{this.state.nameBtn}</Text>
+              <Text style={styles.txtButton}>{nameBtn}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -36,29 +35,29 @@ class HomeButton extends Component {
 
   const styles = StyleSheet.create({
     wrapButton: {
-      width: '45%',
+      width: '50%',
       justifyContent: 'space-between',
-      backgroundColor: 'rgba(78, 158, 255, 0.1)',
-      borderWidth: 1,
-      borderColor: 'rgba(112, 172, 245, 0.5)',
-      borderRadius: 10,
-      marginBottom: 20
+      padding: 10,
     },
     button: {
       width: '100%',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: variables.colors.lightGray,
+      borderWidth: 1,
+      borderColor: variables.colors.activeGray,
+      borderRadius: 10,
     },
     txtButtonWrap: {
-      backgroundColor: colors.green, 
+      backgroundColor: variables.colors.green, 
       width: '100%', 
       borderBottomLeftRadius: 10, 
       borderBottomRightRadius: 10, 
     },
     txtButton: {
-      color: '#fff', 
+      color: 'white', 
       width: '100%', 
       textAlign: 'center',  
-      paddingVertical: 8, 
+      paddingVertical: '5%', 
       fontSize: 16,
     }
   });

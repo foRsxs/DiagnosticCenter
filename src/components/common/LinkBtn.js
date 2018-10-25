@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
-import {
-  Alert,
-  StyleSheet,
-  View,
-  TouchableOpacity
-} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
-import colors from '../../styles/variables'
+import variables from '../../styles/variables'
 
 export default class LinkBtn extends Component {
   render() {
     return (
-      <TouchableOpacity onPress={() => this.props.onClick()} style={{ alignSelf: 'center', justifyContent: 'center', width: '100%', marginBottom: 40}}>
-        <Text uppercase={false} style={{color: colors.darkBlue, fontSize: 18, textAlign: 'center'}}>{this.props.label}</Text>
+      <TouchableOpacity onPress={() => this.props.onClick()} style={styles.button}>
+        <Text uppercase={false} style={styles.buttonTxt}>{this.props.label}</Text>
       </TouchableOpacity>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    alignSelf: 'center',
+    justifyContent: 'center', 
+    width: '100%', 
+    marginBottom: 40
+  },
+  buttonTxt: {
+    color: variables.colors.darkBlue, 
+    fontSize: 18, 
+    textAlign: 'center'
+  }
+});

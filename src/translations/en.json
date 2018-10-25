@@ -11,5 +11,6 @@
     "MenuCont": "Контакты",
     "MenuFuq": "Обратная связь",
     "MenuSet": "Настройки",
-    "MenuExit": "Выйти"
+    "MenuExit": "Выйти",
+    "BtnLinkCallCenter": "звонок в call-центр"
 }

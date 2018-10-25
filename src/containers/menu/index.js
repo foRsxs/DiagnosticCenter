@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import {
-  BackHandler,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  ScrollView
-} from "react-native";
+import {BackHandler, Text, View, Image,} from "react-native";
+import styles from './styles'
 import i18n from '../../i18n';
 import MenuItem from '../../components/menu/MenuItem';
 
@@ -30,46 +23,29 @@ class DrawerMenu extends React.Component {
     return (
     <View style={styles.container}>
         <View>
-            <View style={styles.header}>
-                <Image
-                style={{width: 30, height: 30}}
-                resizeMode='contain'
-                source={require('../../../assets/img/menu-user-ic.png')}
-                />
-                <Text style={styles.headerTxt}>Best Man Ever</Text>
-            </View>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuMain')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuDoc')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuServ')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuPost')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuAnalize')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuCont')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuFuq')}/>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuSet')}/>
+          <View style={styles.header}>
+            <Image
+              style={{width: 20, height: 20, marginRight: 15}}
+              resizeMode='contain'
+              source={require('../../../assets/img/menu-user-ic.png')}
+            />
+            <Text style={styles.headerTxt}>Best Man Ever</Text>
+          </View>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuMain')} imageUri={require('../../../assets/img/menu-main-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuDoc')} imageUri={require('../../../assets/img/menu-doc-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuServ')} imageUri={require('../../../assets/img/menu-serv-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuPost')} imageUri={require('../../../assets/img/menu-post-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuAnalize')} imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuCont')} imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuFuq')} imageUri={require('../../../assets/img/menu-fuq-ic.png')}/>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuSet')} imageUri={require('../../../assets/img/menu-set-ic.png')}/>
         </View>
-        <View>
-            <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuExit')}/>
+        <View style={{paddingVertical: 15}}>
+          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuExit')} imageUri={require('../../../assets/img/menu-exit-ic.png')}/>
         </View>
     </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-between',
-    height: '100%',
-    backgroundColor: 'white',
-  },
-  header: {
-    backgroundColor: 'blue',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15
-  },
-  headerTxt: {
-    paddingVertical: 20,
-  },
-});
 
 export default DrawerMenu
