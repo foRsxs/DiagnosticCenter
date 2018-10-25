@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import variables from '../../styles/variables'
 
+import Header from '../../components/common/Header'
 import CustomBtn from '../../components/common/CustomBtn'
 
 class AuthorizationScreen extends Component {
@@ -24,6 +25,7 @@ class AuthorizationScreen extends Component {
 
     return (
         <View style={ styles.mainContainer }>
+         <Header text='Hello'/>
             <View style={{flex: 1}}>
                 <Text>
                 Auth 
