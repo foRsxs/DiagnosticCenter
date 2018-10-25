@@ -2,5 +2,14 @@
     "BtnMainDoctor": "Врачи",
     "BtnMainService": "Услуги",
     "BtnMainPost": "Записи",
-    "BtnMainAnalize": "Анализы"
+    "BtnMainAnalize": "Анализы",
+    "MenuMain": "Главная",
+    "MenuDoc": "Врачи",
+    "MenuServ": "Категории услуг",
+    "MenuPost": "Мои записи",
+    "MenuAnalize": "Мои анализы",
+    "MenuCont": "Контакты",
+    "MenuFuq": "Обратная связь",
+    "MenuSet": "Настройки",
+    "MenuExit": "Выйти"
 }

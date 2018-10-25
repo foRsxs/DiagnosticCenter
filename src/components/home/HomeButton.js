@@ -20,12 +20,14 @@ class HomeButton extends Component {
         <View style={styles.wrapButton}>
           <TouchableOpacity 
             onPress={() => this.props.onClick()}
-            style={{width: '100%', alignItems: 'center'}}>
+            style={styles.button}>
             <Image
-              style={{marginVertical: 20}}
+              style={{marginVertical: 15}}
               source={require('../../../assets/img/btn-doc-ic.png')}
             />
-            <Text style={styles.txtButton}>{this.state.nameBtn}</Text>
+            <View style={styles.txtButtonWrap}>
+              <Text style={styles.txtButton}>{this.state.nameBtn}</Text>
+            </View>
           </TouchableOpacity>
         </View>
       );
@@ -42,15 +44,22 @@ class HomeButton extends Component {
       borderRadius: 10,
       marginBottom: 20
     },
-    txtButton: {
-      color: '#fff', 
+    button: {
+      width: '100%',
+      alignItems: 'center'
+    },
+    txtButtonWrap: {
       backgroundColor: colors.green, 
       width: '100%', 
-      textAlign: 'center', 
       borderBottomLeftRadius: 10, 
       borderBottomRightRadius: 10, 
-      paddingVertical: 10, 
-      fontSize: 16
+    },
+    txtButton: {
+      color: '#fff', 
+      width: '100%', 
+      textAlign: 'center',  
+      paddingVertical: 8, 
+      fontSize: 16,
     }
   });
   

@@ -49,7 +49,7 @@ class HomeCarousel extends Component {
             renderItem={this._renderItem.bind(this)}
             onSnapToItem={(index) => this.setState({ activeSlide: index }) }
             sliderWidth={Dwidth}
-            itemWidth={Dwidth-60}
+            itemWidth={Dwidth-80}
             layout={'default'}
             firstItem={0}
           />
@@ -62,11 +62,14 @@ class HomeCarousel extends Component {
     wrapSlide: {
       elevation: 5,
       width: '100%',
-      height: Dheight/4,
+      height: Dheight/3.2,
+      marginBottom: 20,
+      marginTop: 20
     },
     iconList: {
       width: '100%',
       height: '100%',
+      borderRadius: 10
     },
   });
   

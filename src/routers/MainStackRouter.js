@@ -1,7 +1,8 @@
-import { StackNavigator, createSwitchNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
 import AthorizationScreen from '../containers/authorization';
+import DrawerMenu from '../containers/menu';
 
 const Athorization = StackNavigator({
     authorization: { 
@@ -21,9 +22,19 @@ const MainScreenNavigator = StackNavigator({
     },
 });
 
+const Drawer = DrawerNavigator(
+    {
+      Main: { screen: MainScreenNavigator }
+    },
+    {
+      contentComponent: DrawerMenu,
+      drawerWidth: 250
+    }
+  );
+
 const AppNavigator = createSwitchNavigator({
     Auth: Athorization,
-    Home: MainScreenNavigator,
+    Home: Drawer,
 });
 
 export default AppNavigator;
