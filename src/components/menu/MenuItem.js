@@ -1,37 +1,74 @@
 import React, {Component} from 'react';
-import {
-  Alert,
-  StyleSheet,
-  Image,
-  TouchableOpacity
-} from 'react-native';
+import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
-import colors from '../../styles/variables'
+import variables from '../../styles/variables'
 
 export default class LinkBtn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { pressStatus: false };
+  }
+  _onHideUnderlay() {
+    this.setState({ pressStatus: true });
+  }
+  _onShowUnderlay() {
+      this.setState({ pressStatus: false });
+  }
   render() {
+    let {pressStatus} = this.state;
+    let {imageUri, label} = this.props;
     return (
-        <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => this.props.onClick()}>
-            <Image
-                style={{width: 30, height: 30}}
-                resizeMode='contain'
-                source={require('../../../assets/img/menu-main-ic.png')}
-            />
-            <Text style={styles.menuItemText}>{this.props.label}</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => this.props.onClick()}
+        style={
+          pressStatus
+            ? styles.menuItemActive
+            : styles.menuItem
+          }
+          onPressIn={this._onHideUnderlay.bind(this)}
+          onPressOut={this._onShowUnderlay.bind(this)}
+        >
+        <Image
+          style={styles.menuIcon}
+          resizeMode='contain'
+          source={imageUri}
+        />
+        <Text style={
+          pressStatus
+            ? styles.menuItemTextActive
+            : styles.menuItemText
+          }>
+          {label}
+        </Text>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    menuItem: {
-      padding: 10,
-      alignItems: "center",
-      flexDirection: 'row'
-    },
-    menuItemText: {
-      fontSize: 16
-    }
-  });
+  menuItem: {
+    padding: 10,
+    alignItems: "center",
+    flexDirection: 'row'
+  },
+  menuItemActive: {
+    backgroundColor: variables.colors.blue,
+    padding: 10,
+    alignItems: "center",
+    flexDirection: 'row',
+  },
+  menuItemText: {
+    fontSize: 16,
+    color: variables.colors.mediumBlack,
+  },
+  menuItemTextActive: {
+    fontSize: 16,
+    color: 'white',
+  },
+  menuIcon: {
+    width: 20, 
+    height: 20, 
+    marginRight: 15
+  }
+});

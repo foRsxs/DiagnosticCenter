@@ -12,6 +12,7 @@
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-languages": "^3.0.1",
+    "react-native-responsive-dimensions": "^2.0.1",
     "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^2.18.0",
     "react-redux": "^5.0.7",
