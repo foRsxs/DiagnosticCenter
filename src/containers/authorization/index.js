@@ -22,7 +22,7 @@ class AuthorizationScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-
+    console.log(this.props.navigation)
     return (
         <View style={ styles.mainContainer }>
             <Header text='Hello'/>
@@ -35,6 +35,7 @@ class AuthorizationScreen extends Component {
                 </Text>
                 <Button rounded
                 onPress={()=>{ 
+                    console.log(1);
                     navigate('home'); 
                 }}>
                 <Text>go home</Text>
