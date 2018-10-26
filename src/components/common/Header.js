@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
   container:{
     width: '100%',
     height: 50,
-    backgroundColor: variables.colors.blue
+    backgroundColor: variables.colors.blue,
+    zIndex: 2
   },
   btnMenu: {
     position: 'absolute', 

@@ -34,6 +34,7 @@ class HomeCarousel extends Component {
       return (
         <View style={styles.wrapSlide}>
               <Image
+                resizeMode='contain'
                 style={styles.iconList}
                 source={require('../../../assets/img/slide1.png')}
               />
@@ -51,7 +52,7 @@ class HomeCarousel extends Component {
             sliderWidth={Dwidth}
             itemWidth={Dwidth-80}
             layout={'default'}
-            firstItem={0}
+            firstItem={1}
           />
         </View>
       );
@@ -69,7 +70,7 @@ class HomeCarousel extends Component {
     iconList: {
       width: '100%',
       height: '100%',
-      borderRadius: 10
+      borderRadius: 8
     },
   });
   

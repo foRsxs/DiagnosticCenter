@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View, Item, Textarea, Input} from 'native-base';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import i18n from '../../i18n';
 import CustomBtn from '../../components/common/CustomBtn'
 import variables from '../../styles/variables';
@@ -17,6 +18,7 @@ class QuestionFormScreen extends Component {
 
   render() {
     return (
+      <KeyboardAwareScrollView>
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Content padder>
             <Item style={styles.inputWrap} regular>
@@ -28,6 +30,7 @@ class QuestionFormScreen extends Component {
             <CustomBtn label='ОТПРАВИТЬ' onClick={() => Alert.alert('ok')}/>
           </View>
       </Container>
+      </KeyboardAwareScrollView>
     )
   }
 }

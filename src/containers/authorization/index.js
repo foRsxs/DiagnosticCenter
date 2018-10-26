@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Dimensions } from 'react-native';
 import {Text, Button} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -25,7 +25,10 @@ class AuthorizationScreen extends Component {
 
     return (
         <View style={ styles.mainContainer }>
-         <Header text='Hello'/>
+            <Header text='Hello'/>
+            <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1}}>
+                <View style={styles.oval} />
+            </View>
             <View style={{flex: 1}}>
                 <Text>
                 Auth 
@@ -43,8 +46,19 @@ class AuthorizationScreen extends Component {
   }
 }
 
+let {width, height} = Dimensions.get('window')
+
+
 const styles = StyleSheet.create({
-  
+  oval: {
+    width: width,
+    height: width,
+    borderRadius: width,
+    backgroundColor: variables.colors.blue,
+    transform: [
+      {scaleX: 3}
+    ]
+  },
 });
 
 export default AuthorizationScreen;

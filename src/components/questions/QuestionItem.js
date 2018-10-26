@@ -29,7 +29,7 @@ export default class QuestionItem extends Component {
             style={{width: '100%'}}
             onPress={()=> {this.setState({showAnswer: false})}} >
             <Text style={styles.buttonTextClose}>
-              <Icon ios='ios-arrow-up' android="md-arrow-up" style={{fontSize: variables.fSize.main, color:variables.colors.blue}} />
+              <Icon ios='ios-arrow-up' android="md-arrow-up" style={styles.icon} />
             </Text>
           </TouchableOpacity>
         ): (
@@ -37,8 +37,8 @@ export default class QuestionItem extends Component {
             style={{width: '100%'}}
             onPress={()=> {this.setState({showAnswer: true})}} >
             <Text style={styles.buttonTextShow}>
-              посмотреть ответ 
-              <Icon ios='ios-arrow-down' android="md-arrow-down" style={{fontSize: variables.fSize.main, color:variables.colors.blue}} />
+              посмотреть ответ {" "}
+              <Icon ios='ios-arrow-down' android="md-arrow-down" style={styles.icon} />
             </Text>
           </TouchableOpacity>
         )}
@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
   buttonTextClose: {
     textAlign:'right', 
     alignItems: 'center'
+  },
+  icon: {
+    color:variables.colors.blue,  
+    fontSize: variables.fSize.main,
+    paddingLeft: 10
   },
   buttonTextShow: {
     textAlign:'right', 
