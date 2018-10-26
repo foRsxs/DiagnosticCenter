@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center', 
     width: '100%', 
-    marginBottom: 40
+    marginBottom: 20,
+    marginTop: 20
   },
   buttonTxt: {
     color: variables.colors.darkBlue, 

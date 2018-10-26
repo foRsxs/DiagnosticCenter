@@ -32,13 +32,13 @@ class DrawerMenu extends React.Component {
           <Text style={styles.headerTxt}>Best Man Ever</Text>
         </Header>
         <Content>
-          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuMain')} imageUri={require('../../../assets/img/menu-main-ic.png')}/>
-          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuDoc')} imageUri={require('../../../assets/img/menu-doc-ic.png')}/>
-          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuServ')} imageUri={require('../../../assets/img/menu-serv-ic.png')}/>
+          <MenuItem onClick={() => navigate("home")} label={i18n.t('MenuMain')} imageUri={require('../../../assets/img/menu-main-ic.png')}/>
+          <MenuItem onClick={() => navigate("specilization")} label={i18n.t('MenuDoc')} imageUri={require('../../../assets/img/menu-doc-ic.png')}/>
+          <MenuItem onClick={() => navigate("services")} label={i18n.t('MenuServ')} imageUri={require('../../../assets/img/menu-serv-ic.png')}/>
           <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuPost')} imageUri={require('../../../assets/img/menu-post-ic.png')}/>
           <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuAnalize')} imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
           <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuCont')} imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
-          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuFuq')} imageUri={require('../../../assets/img/menu-fuq-ic.png')}/>
+          <MenuItem onClick={() => navigate("questions")} label={i18n.t('MenuFuq')} imageUri={require('../../../assets/img/menu-fuq-ic.png')}/>
           <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuSet')} imageUri={require('../../../assets/img/menu-set-ic.png')}/>
         </Content>
         <Footer style={styles.footer}>

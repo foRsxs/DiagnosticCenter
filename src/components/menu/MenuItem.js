@@ -3,7 +3,7 @@ import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
 import variables from '../../styles/variables'
 
-export default class LinkBtn extends Component {
+export default class MenuItem extends Component {
   constructor(props) {
     super(props);
     this.state = { pressStatus: false };
@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   menuItemText: {
-    fontSize: 16,
+    fontSize: variables.fSize.normal,
     color: variables.colors.mediumBlack,
   },
   menuItemTextActive: {
-    fontSize: 16,
+    fontSize: variables.fSize.normal,
     color: 'white',
   },
   menuIcon: {
