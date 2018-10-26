@@ -25,7 +25,7 @@ class HomeScreen extends Component {
               <HomeCarousel />
             </View>  
             <View style={styles.buttonContainer}>
-              <HomeButton nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("specilization")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
+              <HomeButton nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("catalog")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
               <HomeButton nameBtn= {i18n.t('BtnMainService')} onClick={() => navigate("services")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
               <HomeButton nameBtn= {i18n.t('BtnMainPost')} onClick={()=>{Alert.alert('ok')}} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
               <HomeButton nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=>{Alert.alert('ok')}} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>

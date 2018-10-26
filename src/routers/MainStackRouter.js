@@ -8,6 +8,7 @@ import ServicesScreen from '../containers/services';
 import SubServicesScreen from '../containers/subservices';
 import QuestionsScreen from '../containers/questions';
 import QuestionFormScreen from '../containers/questionForm';
+import CatalogScreen from '../containers/catalog';
 
 
 const Athorization = StackNavigator({
@@ -52,6 +53,12 @@ const MainScreenNavigator = StackNavigator({
     },
     questionForm: { 
         screen: QuestionFormScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    catalog: { 
+        screen: CatalogScreen,
         navigationOptions: {
             header: null
         }
