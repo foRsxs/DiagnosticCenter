@@ -12,5 +12,20 @@
     "MenuFuq": "Обратная связь",
     "MenuSet": "Настройки",
     "MenuExit": "Выйти",
-    "BtnLinkCallCenter": "звонок в call-центр"
+    "BtnLinkCallCenter": "звонок в call-центр",
+    "BtnLinkDontKnowDoc": "? Не знаю какой врач нужен",
+    "SpecHeadTerapevt": "Терапевт",
+    "SpecSubTerapevt": "специалист общего профиля",
+    "SpecHeadPediatr": "Педиатр",
+    "SpecSubPediatr": "лечение детей и подростков",
+    "SpecHeadDentist": "Стоматолог",
+    "SpecSubDentist": "здоровье зубов и дёсен",
+    "SpecHeadDermatolog": "Дерматолог",
+    "SpecSubDermatolog": "кожные заболевания",
+    "SpecHeadKardiolog": "Кардиолог",
+    "SpecSubKardiolog": "сердечно-сосудистая система",
+    "SpecHeadUrolog": "Уролог",
+    "SpecSubUrolog": "мочеполовая система",
+    "SpecHeadGynekolog": "Гинеколог",
+    "SpecSubGynekolog": "женские заболевания"
 }
