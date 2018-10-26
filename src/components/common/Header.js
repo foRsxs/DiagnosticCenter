@@ -17,7 +17,7 @@ export default class Header extends Component {
           <Icon ios='md-arrow-back' android="md-arrow-back" style={{color:'white',  padding: 10}} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.textContainer} >
-          <Text style={styles.text}>{(this.props.label).toUpperCase()}</Text>
+          <Text uppercase={true} style={styles.text}>{this.props.label}</Text>
         </TouchableOpacity>
       </View>
     )
