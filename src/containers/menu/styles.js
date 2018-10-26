@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import variables from '../../styles/variables'
 
 const styles = StyleSheet.create({
   container: {
@@ -7,16 +8,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    backgroundColor: '#D8E8FC',
+    backgroundColor: variables.colors.backgroundBlue,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 15,
-    paddingHorizontal: 10
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingHorizontal: 10,
+    justifyContent: 'flex-start'
   },
   headerTxt: {
     paddingVertical: 20,
-    fontSize: 16
+    fontSize: variables.fSize.normal
   },
+  footer: {
+    paddingVertical: 15, 
+    backgroundColor: 'transparent', 
+    justifyContent: 'flex-start'
+  }
 });
 
 export default styles;

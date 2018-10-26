@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   buttonTxt: {
     color: variables.colors.darkBlue, 
-    fontSize: 18, 
+    fontSize: variables.fSize.main, 
     textAlign: 'center'
   }
 });

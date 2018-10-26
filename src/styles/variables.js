@@ -12,19 +12,18 @@ const variables = {
         darkGray: 'rgba(42, 66, 95, 0.75)',
         green: '#13CE67',
         lightWiolet: 'rgba(130, 182, 255, 0.75)',
-        wiolet: '#82B6FF'
+        wiolet: '#82B6FF',
+        backgroundBlue: '#D8E8FC'
     },
     fonts: {
         mainFont: 'HelveticaNeueCyr'
     },
     fSize: {
-        main: 20,
-        medium: 25,
-        little: 15,
-        small: 18,
-        normal: 19,
-        big: 40,
-        large: 50
+        large: 25,
+        medium: 20,
+        main: 18,
+        normal: 15,
+        small: 13,
     } 
 }
 export default variables
