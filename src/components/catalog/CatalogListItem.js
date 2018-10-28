@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Text, View, Icon } from 'native-base';
-import variables from '../../styles/variables'
+import variables from '../../styles/variables';
+import Rating from '../common/Rating';
 
-export default class SpecilizationItem extends Component {
+const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
+const { small, medium, normal} = variables.fSize
+
+export default class CatalogListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,6 +33,12 @@ export default class SpecilizationItem extends Component {
             <Text style={styles.specItemSubText}>
               {position}
             </Text>
+            <View style={styles.bottomBlock}>
+              <Text style={styles.addInfoText}>
+                {category} | стаж: {experience} лет 
+              </Text>
+              <Rating rating={3.5} ratingMinimal={true}/>
+            </View>
           </View>
         </View>
         <View style={styles.arrowWrap}>
@@ -40,41 +50,61 @@ export default class SpecilizationItem extends Component {
 }
 
 const styles = StyleSheet.create({
+  bottomBlock: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  addInfoText: {
+    width: '70%',
+    color: darkGray,
+    fontSize: small
+  },
   specItem: {
-    
+    flex: 1,
+    height: 70,
     borderRadius: 10,
     overflow: 'hidden',
     alignItems: "center",
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    backgroundColor: variables.colors.backgroundBlue,
+    backgroundColor: backgroundBlue,
     marginBottom: 10
   },
   itemWrap: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    width: '80%'
+    width: '100%'
   },
   wrapTxt: {
-    padding: 10,
+    position: 'relative',
+    paddingVertical: 10,
+    paddingLeft: 70,
+    paddingRight: 20,
+    alignItems: 'stretch',
     flexDirection: 'column',
+    width: '100%'
   },
   specItemText: {
-    fontSize: variables.fSize.medium,
-    color: variables.colors.lightBlack,
+    fontSize: medium,
+    color: lightBlack,
   },
   specItemSubText: {
-    fontSize: variables.fSize.normal,
-    color: variables.colors.blue,
+    fontSize: normal,
+    color: blue,
   },
   specIcon: {
-    width: 70,
+    position: 'absolute',
+    left: 0,
+    width: 60,
     height: 70,
   },
   arrowWrap: {
-    backgroundColor: variables.colors.green,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: green,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     width: 20,
@@ -84,6 +114,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: 'white',
-    fontSize: variables.fSize.medium
+    fontSize: medium
   }
 });

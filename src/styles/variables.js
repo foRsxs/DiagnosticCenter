@@ -1,6 +1,7 @@
 const variables = {
     colors: {
         blue: '#4e9eff',
+        lightBlue: 'rgba(78, 158, 255, 0.25)',
         darkBlue: '#1C6693',
         white: '#ffffff',
         black: '#000000',
@@ -19,11 +20,11 @@ const variables = {
         mainFont: 'Helvetica Light'
     },
     fSize: {
-        large: 25,
-        medium: 20,
-        main: 18,
-        normal: 15,
-        small: 13,
+        large: 22,
+        medium: 17,
+        main: 15,
+        normal: 12,
+        small: 10,
     } 
 }
 export default variables
