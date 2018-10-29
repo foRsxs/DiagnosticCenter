@@ -54,7 +54,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', 
     alignItems: 'center', 
     flexDirection: 'row', 
-    padding: 10
+    width: '100%',
+    position: 'relative',
+    paddingRight: 20,
+    paddingLeft: 50,
   },
   wrapTxt: {
     flexDirection: 'column',
@@ -68,15 +71,20 @@ const styles = StyleSheet.create({
     color: variables.colors.darkGray,
   },
   specIcon: {
+    position: 'absolute',
+    top: 5,
+    left: 10,
     width: 30, 
-    height: 30, 
-    marginRight: 15
+    height: 30,
   },
   arrowWrap: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
     backgroundColor: variables.colors.green,
     borderTopRightRadius: 10, 
     borderBottomRightRadius: 10, 
-    width: 30,
+    width: 20,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center'
