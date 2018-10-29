@@ -21,7 +21,7 @@ const variables = {
         light: 'HelveticaNeue'
     },
     fSize: {
-        large: 22,
+        large: 20,
         medium: 17,
         main: 15,
         normal: 12,

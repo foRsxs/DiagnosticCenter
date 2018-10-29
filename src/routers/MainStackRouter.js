@@ -9,7 +9,10 @@ import SubServicesScreen from '../containers/subservices';
 import QuestionsScreen from '../containers/questions';
 import QuestionFormScreen from '../containers/questionForm';
 import CatalogScreen from '../containers/catalog';
-
+import OftenQuestionsScreen from '../containers/oftenquestions';
+import ReceptionInfoScreen from '../containers/receptionInfo';
+import ReceptionListScreen from '../containers/receptionList';
+import AnalizesScreen from '../containers/analizes';
 
 const Athorization = StackNavigator({
     authorization: { 
@@ -59,6 +62,30 @@ const MainScreenNavigator = StackNavigator({
     },
     catalog: { 
         screen: CatalogScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    oftenquestions: { 
+        screen: OftenQuestionsScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    receptionInfo: { 
+        screen: ReceptionInfoScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    receptionList: { 
+        screen: ReceptionListScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    analizes: { 
+        screen: AnalizesScreen,
         navigationOptions: {
             header: null
         }
