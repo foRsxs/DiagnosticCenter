@@ -16,7 +16,7 @@ import AnalizesScreen from '../containers/analizes';
 
 const Athorization = StackNavigator({
     authorization: { 
-        screen: AthorizationScreen,
+        screen: CatalogScreen,//AthorizationScreen,
         navigationOptions: {
             header: null
         }

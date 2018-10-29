@@ -1,53 +1,9 @@
-import React, { Component } from 'react';
-import { StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Text, View, Icon } from 'native-base';
+import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 import Rating from '../common/Rating';
 
 const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
 const { small, medium, normal} = variables.fSize
-
-export default class CatalogListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    let { imageUri, name, position, category, experience} = this.props;
-    return (
-      <TouchableOpacity
-        onPress={() => this.props.onClick()}
-        style={styles.specItem}
-      >
-        <View style={styles.itemWrap}>
-          <Image
-            style={styles.specIcon}
-            resizeMode='cover'
-            source={imageUri}
-          />
-          <View style={styles.wrapTxt}>
-            <Text style={styles.specItemText}>
-              {name}
-            </Text>
-            <Text style={styles.specItemSubText}>
-              {position}
-            </Text>
-            <View style={styles.bottomBlock}>
-              <Text style={styles.addInfoText}>
-                {category} | стаж: {experience} лет 
-              </Text>
-              <Rating rating={3.5} ratingMinimal={true}/>
-            </View>
-          </View>
-        </View>
-        <View style={styles.arrowWrap}>
-          <Icon ios='ios-arrow-forward' android="md-arrow-forward" style={styles.icon} />
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   bottomBlock: {
@@ -115,5 +71,7 @@ const styles = StyleSheet.create({
   icon: {
     color: 'white',
     fontSize: medium
-  }
+    }
 });
+
+export default styles;
