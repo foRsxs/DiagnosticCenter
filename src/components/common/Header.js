@@ -8,6 +8,7 @@ import variables from '../../styles/variables'
 export default class Header extends Component {
   render(){
 
+    console.log('nav', this.props.navigation)
     return(
       <View style={styles.container}>
         <TouchableOpacity onPress={()=> this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     backgroundColor: variables.colors.blue,
-    zIndex: 2
+    zIndex: 3
   },
   btnMenu: {
     top: 5, 

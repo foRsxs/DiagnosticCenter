@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions, FlatList} from 'react-native';
 import {H3, Content, Icon} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
@@ -9,12 +9,15 @@ export default class HeaderBottom extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listActive: false
+            listActive: false,
+            sortList: false
         }
       }
+      
   render(){
     const { katalogDoctor = false, search = false } = this.props
     return(
+      <View style={styles.container}>
       <View style={styles.container}>
       {
         (this.props.katalogDoctor)?
@@ -36,22 +39,27 @@ export default class HeaderBottom extends Component {
         </View>: <View style={styles.btnContainer}></View>
       }
         
-        <TouchableOpacity style={styles.textContainer} >
+        <View style={styles.textContainer} >
         {
 						(this.props.search)?
 						<View style={styles.inputContainer}>
               <TextInput style={styles.input} placeholder='' />
-						  <TouchableOpacity onPress={()=> this.setState({listActive: false})} activeOpacity={0.6} style={styles.btn_sort} >
+                <TouchableOpacity onPress={()=> this.props.funk()} activeOpacity={0.6} style={styles.btn_sort} >
 							  <Image source={require('../../../assets/img/btn_sort.png')} />
 						  </TouchableOpacity>
-						</View>
-            :<Text style={styles.text}>{this.props.text}</Text>
+					</View>
+          :<Text style={styles.text}>{this.props.text}</Text>
         } 
-        </TouchableOpacity>
+        </View>
+      </View>
+        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1}}>
+          <View style={styles.oval} />
+        </View>
       </View>
     )
   }
 }
+let {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -66,7 +74,7 @@ const styles = StyleSheet.create({
 	btnContainer: {
 		flexWrap:'wrap', 
 		flexDirection: 'row', 
-		width: 100
+		width: '25%'
 	},
 	btn_list: {
 		top: 15,
@@ -86,9 +94,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1
 	},
 	inputContainer: {
-		flexWrap:'wrap', 
+		// flexWrap:'wrap', 
 		flexDirection: 'row', 
-		width: 300
+		width: '75%'
 	},
 	input: {
 		width: 225,
@@ -102,5 +110,14 @@ const styles = StyleSheet.create({
 	btn_sort: {
 		top: 15,
 		left: 30
-	}
+  },
+  oval: {
+    width: width,
+    height: width,
+    borderRadius: width,
+    backgroundColor: variables.colors.blue,
+    transform: [
+      {scaleX: 3}
+    ]
+  },
 });
