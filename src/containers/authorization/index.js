@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import variables from '../../styles/variables'
 
 import Header from '../../components/common/Header'
+import HeaderBottom from '../../components/common/HeaderBottom'
 import CustomBtn from '../../components/common/CustomBtn'
 
 class AuthorizationScreen extends Component {
@@ -22,10 +23,11 @@ class AuthorizationScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log(this.props.navigation)
+    console.log(1)
     return (
         <View style={ styles.mainContainer }>
             <Header text='Hello'/>
+            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true}/>
             <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1}}>
                 <View style={styles.oval} />
             </View>

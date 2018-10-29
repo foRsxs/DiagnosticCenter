@@ -17,7 +17,6 @@ class HomeScreen extends Component {
   componentDidMount() {}
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Content>

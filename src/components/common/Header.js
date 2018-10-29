@@ -17,7 +17,7 @@ export default class Header extends Component {
           <Icon ios='md-arrow-back' android="md-arrow-back" style={{color:'white',  padding: 10}} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.textContainer} >
-          <Text uppercase={true} style={styles.text}>{this.props.label}</Text>
+          <Text uppercase={true} style={styles.text}>{this.props.text}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
-    height: 50,
+    height: 40,
     backgroundColor: variables.colors.blue,
     zIndex: 2
   },
@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: variables.colors.white,
-    top: 10,
+    top: 5,
     fontFamily: variables.fonts.mainFont,
-    fontSize: variables.fSize.large,
-    lineHeight: 25,
+    fontSize: 25,
+    lineHeight: 29,
     letterSpacing: 1
   }
 });
