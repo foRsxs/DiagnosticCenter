@@ -3,6 +3,8 @@ import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import i18n from '../../i18n';
 import LinkBtn from '../../components/common/LinkBtn';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 import SpecilizationItem from '../../components/specilization/SpecilizationItem';
 
 
@@ -18,6 +20,8 @@ class SpecilizationScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text='СПЕЦИАЛИЗАЦИЯ'/>
+          <HeaderBottom search={true}/>
           <Content padder>
             <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
             <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>

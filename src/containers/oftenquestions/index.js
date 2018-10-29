@@ -1,0 +1,48 @@
+import React, {Component} from 'react';
+import {Alert, StyleSheet} from 'react-native';
+import {Container, Content, View} from 'native-base';
+import i18n from '../../i18n';
+import OftenQuestionItem from '../../components/oftenquestions/OftenQuestionItem';
+import LinkBtn from '../../components/common/LinkBtn'
+
+
+class OftenQuestionsScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {}
+
+  render() {
+    return (
+      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Content padder>
+            <OftenQuestionItem 
+              text='Здравствуйте я инвалид 3группы.'
+              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+            />
+            <OftenQuestionItem 
+              text='Здравствуйте я инвалид 3группы.'
+              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+            />
+            <OftenQuestionItem 
+              text='Здравствуйте я инвалид 3группы.'
+              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+            />
+            <OftenQuestionItem 
+              text='Здравствуйте я инвалид 3группы.'
+              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+            />
+          </Content >
+          <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')}/>
+      </Container>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+});
+
+export default OftenQuestionsScreen;
