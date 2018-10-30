@@ -28,6 +28,8 @@ class SpecilizationScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="СПЕЦИАЛИЗАЦИЯ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
             <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>

@@ -6,12 +6,16 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import variables from '../../styles/variables'
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render(){
 
     console.log('nav', this.props.navigation)
     return(
       <View style={styles.container}>
-        <TouchableOpacity onPress={()=> this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
+        <TouchableOpacity onPress={ () => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
           <Icon ios='ios-menu' android="md-menu" style={{color:'white',  padding: 10}} />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >

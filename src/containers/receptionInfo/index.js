@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
-import CustomBtn from '../../components/common/CustomBtn'
-import variables from '../../styles/variables'
+import CustomBtn from '../../components/common/CustomBtn';
+import variables from '../../styles/variables';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class ReceptionInfoScreen extends Component {
@@ -18,6 +20,8 @@ class ReceptionInfoScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <View style={styles.itemWrap}>
               <Text style={styles.txtHead}>вы записываетесь на прием:</Text>

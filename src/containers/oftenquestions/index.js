@@ -3,7 +3,9 @@ import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import i18n from '../../i18n';
 import OftenQuestionItem from '../../components/oftenquestions/OftenQuestionItem';
-import LinkBtn from '../../components/common/LinkBtn'
+import LinkBtn from '../../components/common/LinkBtn';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class OftenQuestionsScreen extends Component {
@@ -18,6 +20,8 @@ class OftenQuestionsScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="ЧАСТЫЕ ВОПРОСЫ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <OftenQuestionItem 
               text='Здравствуйте я инвалид 3группы.'

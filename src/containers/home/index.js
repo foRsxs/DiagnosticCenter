@@ -5,6 +5,8 @@ import i18n from '../../i18n';
 import HomeCarousel from '../../components/home/HomeCarousel';
 import HomeButton from '../../components/home/HomeButton';
 import LinkBtn from '../../components/common/LinkBtn';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class HomeScreen extends Component {
@@ -20,6 +22,8 @@ class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content>
             <View>
               <HomeCarousel />

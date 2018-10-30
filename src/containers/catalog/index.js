@@ -3,6 +3,8 @@ import { Alert, StyleSheet } from 'react-native';
 import { Container, Content, View } from 'native-base';
 import i18n from '../../i18n';
 import CatalogItem from '../../components/catalog/CatalogItem';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class ServicesScreen extends Component {
@@ -19,9 +21,11 @@ class ServicesScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
+        <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
+        <HeaderBottom search={true} />
         {
           horizontalView? (
-            <Content>
+            <Content padder>
               <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
               <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
             </Content>

@@ -3,7 +3,9 @@ import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import i18n from '../../i18n';
 import SubServiceItem from '../../components/subservices/SubServiceItem';
-import CustomBtn from '../../components/common/CustomBtn'
+import CustomBtn from '../../components/common/CustomBtn';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class SubServicesScreen extends Component {
@@ -18,6 +20,8 @@ class SubServicesScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <SubServiceItem headTxt='Вакцинация'/>
             <SubServiceItem headTxt='Вакцинация'/>

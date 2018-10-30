@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View, Text, Icon, Picker, Form, Switch} from 'native-base';
 import i18n from '../../i18n';
-import CustomBtn from '../../components/common/CustomBtn'
-import variables from '../../styles/variables'
+import CustomBtn from '../../components/common/CustomBtn';
+import variables from '../../styles/variables';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 
 class SettingsScreen extends Component {
@@ -37,6 +39,8 @@ class SettingsScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="НАСТРОЙКИ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <View style={styles.settingItem}>
               <Text style={styles.headTxt}>Язык интерфейса</Text>

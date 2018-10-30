@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, TouchableOpacity, Image, Linking} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
-import variables from '../../styles/variables'
+import variables from '../../styles/variables';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 class ContactsScreen extends Component {
 
@@ -16,6 +18,8 @@ class ContactsScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+          <Header text="КОНТАКТЫ" navigation = {this.props.navigation}/>
+          <HeaderBottom search={true} />
           <Content padder>
             <View style={styles.contactItem}>
               <Text style={styles.headTxt}>Адрес:</Text>

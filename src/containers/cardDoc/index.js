@@ -5,6 +5,8 @@ import i18n from '../../i18n';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
 import Rating from '../../components/common/Rating';
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 class DoctorScreen extends Component {
 
@@ -18,6 +20,8 @@ class DoctorScreen extends Component {
   render() {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+        <Header text="КАРТОЧКА ВРАЧА" navigation = {this.props.navigation}/>
+        <HeaderBottom />
         <Content>
           <View style={styles.docInfoWrap}>
             <Image
