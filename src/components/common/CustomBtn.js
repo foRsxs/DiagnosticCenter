@@ -10,7 +10,7 @@ import variables from '../../styles/variables'
 export default class CustomBtn extends Component {
   render() {
     return (
-      <Button onPress={() => this.props.onClick()} style={styles.btn}>
+      <Button onPress={() => this.props.onClick('teest')} style={styles.btn}>
         <Text style={styles.textBtn}>{this.props.label}</Text>
       </Button>
     );

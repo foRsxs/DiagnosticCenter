@@ -13,11 +13,14 @@ export default class HeaderBottom extends Component {
             sortList: false
         }
       }
-      
+    
+  handleClick =()=> {
+    this.props.click()
+  }
   render(){
     const { katalogDoctor = false, search = false } = this.props
     return(
-      <View style={styles.container}>
+      <View style={styles.bigContainer}>
       <View style={styles.container}>
       {
         (this.props.katalogDoctor)?
@@ -39,12 +42,12 @@ export default class HeaderBottom extends Component {
         </View>: <View style={styles.btnContainer}></View>
       }
         
-        <View style={styles.textContainer} >
+        <View>
         {
 						(this.props.search)?
 						<View style={styles.inputContainer}>
               <TextInput style={styles.input} placeholder='' />
-                <TouchableOpacity onPress={()=> this.props.funk()} activeOpacity={0.6} style={styles.btn_sort} >
+                <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
 							  <Image source={require('../../../assets/img/btn_sort.png')} />
 						  </TouchableOpacity>
 					</View>
@@ -62,6 +65,9 @@ export default class HeaderBottom extends Component {
 let {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
+  bigContainer: {
+    width: '100%',
+  },
   container: {
     flexWrap:'wrap', 
     flexDirection: 'row', 
@@ -94,7 +100,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1
 	},
 	inputContainer: {
-		// flexWrap:'wrap', 
 		flexDirection: 'row', 
 		width: '75%'
 	},

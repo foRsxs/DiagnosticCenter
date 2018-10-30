@@ -8,7 +8,7 @@ import variables from '../../styles/variables'
 import Header from '../../components/common/Header'
 import HeaderBottom from '../../components/common/HeaderBottom'
 import CustomBtn from '../../components/common/CustomBtn'
-import SortList from '../../components/common/SortList'
+import SortList from '../../components/common/sortList/SortList'
 
 class AuthorizationScreen extends Component {
 
@@ -23,22 +23,19 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {}
 
-  togleSortList () {
-      console.log(this)
-    //   this.setState({showSortList: true})
+  change = (value) => {
+      console.log('text', value)
+      this.setState(state => ({showSortList: !state.showSortList}))
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log(1)
+    console.log(this.props)
     return (
-        <View style={ styles.mainContainer }>
+        <View>
+        <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
             <Header text='Hello' navigation = {this.props.navigation}/>
-            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} funk={this.togleSortList}/>
-            {
-                (this.state.showSortList)?
-                <SortList />: null
-            }
+            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} onClick={this.change}/>
             <View style={{flex: 1, top: 200}}>
             
                 <Text>
@@ -51,8 +48,13 @@ class AuthorizationScreen extends Component {
                 }}>
                 <Text>go home</Text>
                 </Button>
-                <CustomBtn  label='Запросить код' />
+                <CustomBtn  onClick={(value) => {console.log(this,value)}} label='Запросить код' />
             </View>
+        </View>
+            {
+                (this.state.showSortList)?
+                <SortList onClick={this.change}/>: null
+            }
         </View>
       )
    }
@@ -60,7 +62,12 @@ class AuthorizationScreen extends Component {
 
 
 const styles = StyleSheet.create({
-  
+  mainContainer: {
+      opacity: 1
+  },
+  opacityContainer: {
+      opacity: 0.1
+  }
 });
 
 export default AuthorizationScreen;
