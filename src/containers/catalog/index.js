@@ -27,7 +27,7 @@ class ServicesScreen extends Component {
           horizontalView? (
             <Content padder>
               <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
-              <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
+              <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
             </Content>
           ) : (
             <View style={styles.wrap}>
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   horizontalWrap: {
-    paddingHorizontal: 10,
+    //paddingHorizontal: 10,
     paddingVertical: 20,
   },
   verticalWrap: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
     paddingVertical: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',

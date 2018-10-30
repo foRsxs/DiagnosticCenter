@@ -21,41 +21,41 @@ export default class HeaderBottom extends Component {
     const { katalogDoctor = false, search = false } = this.props
     return(
       <View style={styles.bigContainer}>
-      <View style={styles.container}>
-      {
-        (this.props.katalogDoctor)?
-        <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={()=> this.setState({listActive: true})} activeOpacity={0.6} style={styles.btn_list} >
-          {
-            (this.state.listActive)?
-            <Image source={require('../../../assets/img/btn_list_w.png')} />:            
-            <Image source={require('../../../assets/img/btn_list_b.png')} />
-          }
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=> this.setState({listActive: false})} activeOpacity={0.6} style={styles.btn_block} >
-          {
-            (this.state.listActive)?
-            <Image source={require('../../../assets/img/btn_block_b.png')} />:
-            <Image source={require('../../../assets/img/btn_block_w.png')} />
-          }
-          </TouchableOpacity>
-        </View>: <View style={styles.btnContainer}></View>
-      }
-        
-        <View>
+        <View style={styles.container}>
         {
-						(this.props.search)?
-						<View style={styles.inputContainer}>
-              <TextInput style={styles.input} placeholder='' />
-                <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-							  <Image source={require('../../../assets/img/btn_sort.png')} />
-						  </TouchableOpacity>
-					</View>
-          :<Text style={styles.text}>{this.props.text}</Text>
-        } 
+          (this.props.katalogDoctor)?
+          <View style={styles.btnContainer}>
+            <TouchableOpacity onPress={()=> this.setState({listActive: true})} activeOpacity={0.6} style={styles.btn_list} >
+            {
+              (this.state.listActive)?
+              <Image source={require('../../../assets/img/btn_list_w.png')} />:            
+              <Image source={require('../../../assets/img/btn_list_b.png')} />
+            }
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.setState({listActive: false})} activeOpacity={0.6} style={styles.btn_block} >
+            {
+              (this.state.listActive)?
+              <Image source={require('../../../assets/img/btn_block_b.png')} />:
+              <Image source={require('../../../assets/img/btn_block_w.png')} />
+            }
+            </TouchableOpacity>
+          </View>: <View style={styles.btnContainer}></View>
+        }
+          
+          <View>
+          {
+              (this.props.search)?
+              <View style={styles.inputContainer}>
+                <TextInput style={styles.input} placeholder='' />
+                  <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
+                  <Image source={require('../../../assets/img/btn_sort.png')} />
+                </TouchableOpacity>
+            </View>
+            :<Text style={styles.text}>{this.props.text}</Text>
+          } 
+          </View>
         </View>
-      </View>
-        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1}}>
+        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
           <View style={styles.oval} />
         </View>
       </View>
@@ -67,6 +67,8 @@ let {width, height} = Dimensions.get('window')
 const styles = StyleSheet.create({
   bigContainer: {
     width: '100%',
+    zIndex: 2,
+    backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   container: {
     flexWrap:'wrap', 

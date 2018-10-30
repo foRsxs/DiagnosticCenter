@@ -22,20 +22,20 @@ class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-          <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content>
-            <View>
-              <HomeCarousel />
-            </View>  
-            <View style={styles.buttonContainer}>
-              <HomeButton nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("catalog")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
-              <HomeButton nameBtn= {i18n.t('BtnMainService')} onClick={() => navigate("services")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
-              <HomeButton nameBtn= {i18n.t('BtnMainPost')} onClick={()=>{Alert.alert('ok')}} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
-              <HomeButton nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
-            </View>
-          </Content >
-          <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>{Alert.alert('ok')}}/>
+        <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation}/>
+        <HeaderBottom search={true} />
+        <Content style={{marginTop: -10, zIndex: 1}}>
+          <View>
+            <HomeCarousel />
+          </View>  
+          <View style={styles.buttonContainer}>
+            <HomeButton nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("catalog")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
+            <HomeButton nameBtn= {i18n.t('BtnMainService')} onClick={() => navigate("services")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
+            <HomeButton nameBtn= {i18n.t('BtnMainPost')} onClick={()=>{Alert.alert('ok')}} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
+            <HomeButton nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
+          </View>
+        </Content >
+        <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>{Alert.alert('ok')}}/>
       </Container>
     )
   }

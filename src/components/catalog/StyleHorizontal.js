@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
-import Rating from '../common/Rating';
 
 const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
 const { small, medium, normal} = variables.fSize
@@ -40,7 +39,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     alignItems: 'stretch',
     flexDirection: 'column',
-    width: '100%'
+    width: '100%',
+    flexWrap: 'nowrap'
   },
   specItemText: {
     fontSize: medium,

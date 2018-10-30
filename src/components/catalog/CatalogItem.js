@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { Text, View, Icon } from 'native-base';
-import variables from '../../styles/variables';
 import Rating from '../common/Rating';
 import horizontalStyles from './StyleHorizontal';
+import verticalStyles from './StyleVertical';
 
-const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
-const { small, medium, normal} = variables.fSize
 
 export default class CatalogListItem extends Component {
   constructor(props) {
@@ -51,22 +49,22 @@ export default class CatalogListItem extends Component {
         <TouchableOpacity
           onPress={() => this.props.onClick()}
           >
-          <View style={styles.itemWrap}>
+          <View style={verticalStyles.itemWrap}>
             <Image
-              style={styles.specIcon}
+              style={verticalStyles.specIcon}
               resizeMode='cover'
               source={imageUri}
             />
-            <View style={styles.wrapTxt}>
-              <Text style={styles.specItemText}>
+            <View style={verticalStyles.wrapTxt}>
+              <Text style={verticalStyles.specItemText}>
                 {name}
               </Text>
-              <Text style={styles.specItemSubText}>
+              <Text style={verticalStyles.specItemSubText}>
                 {position}
               </Text>
             </View>
-            <View style={styles.arrowWrap}>
-              <Icon ios='ios-arrow-down' android="ios-arrow-down" style={styles.icon} />
+            <View style={verticalStyles.arrowWrap}>
+              <Icon ios='ios-arrow-down' android="ios-arrow-down" style={verticalStyles.icon} />
             </View>
           </View>
         </TouchableOpacity>
@@ -75,43 +73,3 @@ export default class CatalogListItem extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  itemWrap: {
-    backgroundColor: backgroundBlue,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-    width: '100%'
-  },
-  wrapTxt: {
-    alignItems: 'center',
-    width: '100%',
-    padding: 5,
-  },
-  specItemText: {
-    textAlign: 'center',
-    lineHeight: 18,
-    fontSize: medium,
-    color: lightBlack,
-  },
-  specItemSubText: {
-    fontSize: normal,
-    color: blue,
-  },
-  specIcon: {
-    width: '100%',
-    height: 100,
-  },
-  arrowWrap: {
-    backgroundColor: green,
-    width: '100%',
-    height: 20,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  icon: {
-    color: 'white',
-    fontSize: medium
-  }
-});
