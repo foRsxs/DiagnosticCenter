@@ -16,13 +16,13 @@ class ServicesScreen extends Component {
 
   render() {
     let horizontalView = true;
-
+    const { navigate } = this.props.navigation;
     return (
       <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
         {
           horizontalView? (
             <Content>
-              <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
+              <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
               <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
             </Content>
           ) : (

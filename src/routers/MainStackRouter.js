@@ -13,10 +13,14 @@ import OftenQuestionsScreen from '../containers/oftenquestions';
 import ReceptionInfoScreen from '../containers/receptionInfo';
 import ReceptionListScreen from '../containers/receptionList';
 import AnalizesScreen from '../containers/analizes';
+import ContactsScreen from '../containers/contacts';
+import SettingsScreen from '../containers/settings';
+import TextScreen from '../containers/textScreen';
+import DoctorScreen from '../containers/cardDoc';
 
 const Athorization = StackNavigator({
     authorization: { 
-        screen: CatalogScreen,//AthorizationScreen,
+        screen: AthorizationScreen,
         navigationOptions: {
             header: null
         }
@@ -86,6 +90,30 @@ const MainScreenNavigator = StackNavigator({
     },
     analizes: { 
         screen: AnalizesScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    contacts: { 
+        screen: ContactsScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    settings: { 
+        screen: SettingsScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    textScreen: { 
+        screen: TextScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    cardDoc: { 
+        screen: DoctorScreen,
         navigationOptions: {
             header: null
         }
