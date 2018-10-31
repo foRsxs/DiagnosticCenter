@@ -21,7 +21,7 @@ import CalendarDateScreen from '../containers/calendar/date';
 
 const Athorization = StackNavigator({
     authorization: { 
-        screen: CalendarDateScreen,//AthorizationScreen,
+        screen: AthorizationScreen,
         navigationOptions: {
             header: null
         }

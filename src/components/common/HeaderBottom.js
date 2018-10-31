@@ -42,20 +42,20 @@ export default class HeaderBottom extends Component {
           </View>: <View style={styles.btnContainer}></View>
         }
           
-          <View>
+          
           {
               (this.props.search)?
               <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder='' />
-                  <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
+                <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
                   <Image source={require('../../../assets/img/btn_sort.png')} />
                 </TouchableOpacity>
             </View>
             :<Text style={styles.text}>{this.props.text}</Text>
           } 
-          </View>
+          
         </View>
-        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
           <View style={styles.oval} />
         </View>
       </View>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   container: {
-    flexWrap:'wrap', 
+    // flexWrap:'wrap', 
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
@@ -81,28 +81,28 @@ const styles = StyleSheet.create({
 	},
 	btnContainer: {
 		flexWrap:'wrap', 
-		flexDirection: 'row', 
-		width: '25%'
+    flexDirection: 'row',
+    justifyContent: 'center', 
+		width: '23%'
 	},
 	btn_list: {
 		top: 15,
-		left: 18,
 	},
 	btn_block: {
 		top: 15,
-		left: 20,
 	},
 	text: {
     color: variables.colors.white,
-		top: 14,
-		left: 12,
+    top: 14,
+    left: 12,
     fontFamily: variables.fonts.light,
     fontSize: 20,
     lineHeight: 23,
     letterSpacing: 1
 	},
 	inputContainer: {
-		flexDirection: 'row', 
+    flexDirection: 'row', 
+    justifyContent: 'space-around',
 		width: '75%'
 	},
 	input: {
@@ -110,13 +110,11 @@ const styles = StyleSheet.create({
 		height: 25, 
 		padding: 0,
 		top: 15,
-		left: 5,
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},
 	btn_sort: {
-		top: 15,
-		left: 30
+    top: 15,
   },
   oval: {
     width: width,
