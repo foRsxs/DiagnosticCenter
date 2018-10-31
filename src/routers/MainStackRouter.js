@@ -18,10 +18,12 @@ import SettingsScreen from '../containers/settings';
 import TextScreen from '../containers/textScreen';
 import DoctorScreen from '../containers/cardDoc';
 import CalendarDateScreen from '../containers/calendar/date';
+import ReceptionsScreen from '../containers/receprions';
+import TimeScreen from '../containers/time';
 
 const Athorization = StackNavigator({
     authorization: { 
-        screen: AthorizationScreen,
+        screen: TimeScreen,
         navigationOptions: {
             header: null
         }
@@ -121,6 +123,18 @@ const MainScreenNavigator = StackNavigator({
     },
     calendarDate: { 
         screen: CalendarDateScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    receptions: { 
+        screen: ReceptionsScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    time: { 
+        screen: TimeScreen,
         navigationOptions: {
             header: null
         }

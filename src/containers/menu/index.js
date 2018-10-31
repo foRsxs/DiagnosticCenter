@@ -35,7 +35,7 @@ class DrawerMenu extends React.Component {
           <MenuItem onClick={() => navigate("home")} label={i18n.t('MenuMain')} imageUri={require('../../../assets/img/menu-main-ic.png')}/>
           <MenuItem onClick={() => navigate("catalog")} label={i18n.t('MenuDoc')} imageUri={require('../../../assets/img/menu-doc-ic.png')}/>
           <MenuItem onClick={() => navigate("services")} label={i18n.t('MenuServ')} imageUri={require('../../../assets/img/menu-serv-ic.png')}/>
-          <MenuItem onClick={() => navigate("receptionList")} label={i18n.t('MenuPost')} imageUri={require('../../../assets/img/menu-post-ic.png')}/>
+          <MenuItem onClick={() => navigate("receptions")} label={i18n.t('MenuPost')} imageUri={require('../../../assets/img/menu-post-ic.png')}/>
           <MenuItem onClick={() => navigate("analizes")} label={i18n.t('MenuAnalize')} imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
           <MenuItem onClick={() => navigate("specilization")} label={i18n.t('MenuCont')} imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
           <MenuItem onClick={() => navigate("questions")} label={i18n.t('MenuFuq')} imageUri={require('../../../assets/img/menu-fuq-ic.png')}/>

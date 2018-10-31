@@ -32,7 +32,7 @@ export default class SpecilizationItem extends Component {
           </View>
         </View>
         <View style={styles.arrowWrap}>
-          <Icon ios='ios-arrow-forward' android="md-arrow-forward" style={styles.icon} />
+          <Icon ios='ios-arrow-forward' android="ios-arrow-forward" style={styles.icon} />
         </View>
       </TouchableOpacity>
     );

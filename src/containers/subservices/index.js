@@ -21,8 +21,8 @@ class SubServicesScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom text="выберите нужную услугу" />
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <SubServiceItem headTxt='Вакцинация'/>
             <SubServiceItem headTxt='Вакцинация'/>
           </Content >

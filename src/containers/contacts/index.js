@@ -19,8 +19,8 @@ class ContactsScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="КОНТАКТЫ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom />
+          <Content padder style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
             <View style={styles.contactItem}>
               <Text style={styles.headTxt}>Адрес:</Text>
               <Text style={styles.subHeadTxt}>Казахстан, 160021, г. Шымкент, ул. Байтурсынова 68а</Text>

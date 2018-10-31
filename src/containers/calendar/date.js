@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet } from 'react-native';
-import { Container, Content, View } from 'native-base';
+import { Container, Content, View, Text } from 'native-base';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import {LocaleConfig, Calendar} from 'react-native-calendars';
-import variables from '../../styles/variables'
+import variables from '../../styles/variables';
+import CustomBtn from '../../components/common/CustomBtn';
 
 LocaleConfig.locales['ru'] = {
   monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
@@ -86,16 +87,32 @@ class ServicesScreen extends Component {
     console.log(markedDates)
     return (
       <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
-        <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
-        <HeaderBottom search={true} />
-        <Content padder>
+        <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
+        <HeaderBottom text="выберите дату визита" />
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10, backgroundColor: '#eaf3fd'}}>
           <Calendar
+            style={{paddingTop: 10, backgroundColor: '#eaf3fd'}}
+            theme={{
+              calendarBackground: '#eaf3fd',
+            }}
             onDayPress={(day) => this._selectDate(day.dateString)}
             markedDates={markedDates}
             markingType={'custom'}
           />
+          <View style={{paddingVertical: 10, backgroundColor: 'white'}}>
+            <View style={styles.itemsWrap}>
+              <View style={styles.unSelectedItem}></View>
+              <Text style={styles.itemsTxt}>запись доступна</Text>
+            </View>
+            <View style={styles.itemsWrap}>
+              <View style={styles.selectedItem}></View>
+              <Text style={styles.itemsTxt}>выбранная дата</Text>
+            </View>
+          </View>
         </Content>
-
+        <View style={{paddingHorizontal: 15, paddingTop: 20}}>
+          <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
+        </View>
       </Container>
     )
   }
@@ -116,6 +133,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%'
+  },
+  unSelectedItem: {
+    marginRight: 10, 
+    backgroundColor: variables.colors.backgroundBlue, 
+    borderColor: variables.colors.wiolet, 
+    width: 10, 
+    height: 10, 
+    borderRadius: 15, 
+    borderWidth: 1
+  },
+  selectedItem: {
+    marginRight: 10, 
+    backgroundColor: variables.colors.wiolet, 
+    width: 10, 
+    height: 10, 
+    borderRadius: 15
+  },
+  itemsWrap: {
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  itemsTxt: {
+    color: variables.colors.lightBlack,
+    fontSize: variables.fSize.medium
   }
 });
 

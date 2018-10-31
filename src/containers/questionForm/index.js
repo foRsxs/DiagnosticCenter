@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet} from 'react-native';
-import {Container, Button, Text} from 'native-base';
+import {Container, Button, Text, Content} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import i18n from '../../i18n';
 import FormSend from '../../components/common/Form';
@@ -26,13 +26,15 @@ class QuestionFormScreen extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView>
       <Container>
         <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
-        <HeaderBottom search={true} />
-        <FormSend sendData={this.getData}/>
+        <HeaderBottom text="напишите свой вопрос" />
+        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
+          <Content padder>
+            <FormSend sendData={this.getData}/>
+          </Content>
+        </KeyboardAwareScrollView>
       </Container>
-      </KeyboardAwareScrollView>
     )
   }
 }

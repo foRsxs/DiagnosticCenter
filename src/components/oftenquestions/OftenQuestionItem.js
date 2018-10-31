@@ -28,13 +28,13 @@ export default class QuestionItem extends Component {
           <TouchableOpacity
             style={styles.iconWrap}
             onPress={()=> {this.setState({showAnswer: false})}} >
-              <Icon ios='ios-arrow-up' android="md-arrow-up" style={styles.icon} />
+              <Icon ios='ios-arrow-up' android="ios-arrow-up" style={styles.icon} />
           </TouchableOpacity>
         ): (
           <TouchableOpacity
             style={styles.iconWrap}
             onPress={()=> {this.setState({showAnswer: true})}} >
-              <Icon ios='ios-arrow-down' android="md-arrow-down" style={styles.icon} />
+              <Icon ios='ios-arrow-down' android="ios-arrow-down" style={styles.icon} />
           </TouchableOpacity>
         )}
         

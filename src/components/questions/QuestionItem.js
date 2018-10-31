@@ -29,7 +29,7 @@ export default class QuestionItem extends Component {
             style={{width: '100%'}}
             onPress={()=> {this.setState({showAnswer: false})}} >
             <Text style={styles.buttonTextClose}>
-              <Icon ios='ios-arrow-up' android="md-arrow-up" style={styles.icon} />
+              <Icon ios='ios-arrow-up' android="ios-arrow-up" style={styles.icon} />
             </Text>
           </TouchableOpacity>
         ): (
@@ -38,7 +38,7 @@ export default class QuestionItem extends Component {
             onPress={()=> {this.setState({showAnswer: true})}} >
             <Text style={styles.buttonTextShow}>
               посмотреть ответ {" "}
-              <Icon ios='ios-arrow-down' android="md-arrow-down" style={styles.icon} />
+              <Icon ios='ios-arrow-down' android="ios-arrow-down" style={styles.icon} />
             </Text>
           </TouchableOpacity>
         )}

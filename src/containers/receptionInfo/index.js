@@ -21,8 +21,8 @@ class ReceptionInfoScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom text="проверьте информацию" />
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <View style={styles.itemWrap}>
               <Text style={styles.txtHead}>вы записываетесь на прием:</Text>
               <View style={styles.wrapName}>

@@ -20,7 +20,7 @@ export default class ServiceItem extends Component {
           <Text style={styles.servItemText}>{headTxt}</Text>
         </View>
         <View style={styles.arrowWrap}>
-          <Icon ios='ios-arrow-forward' android="md-arrow-forward" style={styles.icon} />
+          <Icon ios='ios-arrow-forward' android="ios-arrow-forward" style={styles.icon} />
         </View>
       </TouchableOpacity>
     );
