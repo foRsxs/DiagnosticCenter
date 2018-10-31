@@ -20,7 +20,7 @@ class AnalizesScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="МОИ АНАЛИЗЫ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
+          <HeaderBottom text="у вас 2 новых отчета" />
           <Content padder>
             <Text style={styles.analizeTitle}>новые результаты анализов</Text>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
