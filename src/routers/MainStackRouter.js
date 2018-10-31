@@ -1,7 +1,7 @@
 import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
-import AthorizationScreen from '../containers/authorization';
+// import AthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
 import SpecilizationScreen from '../containers/specilization';
 import ServicesScreen from '../containers/services';
@@ -20,15 +20,16 @@ import DoctorScreen from '../containers/cardDoc';
 import CalendarDateScreen from '../containers/calendar/date';
 import ReceptionsScreen from '../containers/receprions';
 import TimeScreen from '../containers/time';
+import FuqScreen from '../containers/fuq';
 
-const Athorization = StackNavigator({
-    authorization: { 
-        screen: TimeScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-});
+// const Athorization = StackNavigator({
+//     authorization: { 
+//         screen: AthorizationScreen,
+//         navigationOptions: {
+//             header: null
+//         }
+//     },
+// });
 
 const MainScreenNavigator = StackNavigator({
     home: { 
@@ -139,6 +140,12 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
+    fuq: { 
+        screen: FuqScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
 });
 
 const Drawer = DrawerNavigator(
@@ -151,7 +158,7 @@ const Drawer = DrawerNavigator(
   );
 
 const AppNavigator = createSwitchNavigator({
-    Auth: Athorization,
+    //Auth: Athorization,
     Home: Drawer,
 });
 

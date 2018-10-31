@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Image, Dimensions} from 'react-native';
+import {Alert, StyleSheet, Image, Dimensions, TouchableOpacity} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
 import variables from '../../styles/variables';
@@ -20,6 +20,7 @@ class DoctorScreen extends Component {
   componentDidMount() {}
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text="КАРТОЧКА ВРАЧА" navigation = {this.props.navigation}/>
@@ -40,10 +41,20 @@ class DoctorScreen extends Component {
                   <Rating rating={3.5} ratingMinimal={false} ratingDetail={true} like={140} unlike={3}/>
                 </View>
             </View>
-            <Text style={{fontSize: variables.fSize.main}}>Высшая категория | Общий стаж: 7 лет</Text>
+            <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+              <Text style={{fontSize: variables.fSize.main}}>Высшая категория {"\n"}Общий стаж: 7 лет</Text>
+              <TouchableOpacity onPress={() => navigate('questions')} style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text uppercase={false} style={{fontSize: 12, color: variables.colors.wiolet, width:50, lineHeight: 10}}>задать вопрос врачу</Text>
+                <Image
+                  style={{width: 25, height: 25}}
+                  resizeMode='cover'
+                  source={require('../../../assets/img/fuq.png')}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-        <Content style={{marginTop: height/3.3+80}}>
+        <Content style={{marginTop: height/3.3+100}}>
           <View style={{paddingHorizontal: 30, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
@@ -58,10 +69,10 @@ class DoctorScreen extends Component {
               <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
           </View>
+          <View style={{paddingHorizontal: 15, paddingVertical: 10}}>
+            <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={()=>navigate('receptions')}/>
+          </View>
         </Content >
-        <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-          <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={()=>{Alert.alert('ok')}}/>
-        </View>
       </Container>
     )
   }
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
     top: height/9,
     left: 0,
     width: width,
-    height: height/3.3+120,
+    height: height/3.3+140,
     paddingTop: height/4,
     paddingHorizontal: 30,
     backgroundColor: variables.colors.backgroundBlue,

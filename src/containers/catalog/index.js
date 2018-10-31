@@ -13,26 +13,37 @@ class ServicesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSortList: false
+      showSortList: false,
+      horizontalView: true
     };
   }
 
   componentDidMount() { }
+
+  togle = (value) => {
+    console.log('togle', value)
+    this.setState({horizontalView: value})
+  }
 
   change = (value) => {
     console.log('text', value)
     this.setState(state => ({showSortList: !state.showSortList}))
   }
 
+  handleChange = (value) => {
+    console.log('event', value)
+    this.setState({inputValue: value})
+}
+
   render() {
-    let horizontalView = true;
+    let {horizontalView} = this.state;
     const { navigate } = this.props.navigation;
     return (
       <View>
         <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
           <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
             <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
-            <HeaderBottom katalogDoctor={true} search={true} onClick={this.change}/>
+            <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
             {
               horizontalView? (
                 <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
@@ -47,7 +58,7 @@ class ServicesScreen extends Component {
                 </Content>
               ) : (
                 <View style={styles.wrap}>
-                  <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
                 </View>
               )
             }
@@ -66,6 +77,7 @@ const styles = StyleSheet.create({
   wrap: {
     width: '50%', 
     paddingHorizontal: 5,
+    paddingTop: 10,
   },
   horizontalWrap: {
     //paddingHorizontal: 10,

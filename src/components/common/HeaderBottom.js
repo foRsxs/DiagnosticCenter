@@ -9,13 +9,13 @@ export default class HeaderBottom extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listActive: false,
+            listActive: true,
             sortList: false
         }
       }
     
   render(){
-    const { katalogDoctor = false, search = false } = this.props
+    const { katalogDoctor = false, search = false, sortBtn = false } = this.props
     return(
       <View style={styles.bigContainer}>
         <View style={styles.container}>
@@ -45,7 +45,7 @@ export default class HeaderBottom extends Component {
               <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>
                 {
-                  (this.props.katalogDoctor)?
+                  (this.props.katalogDoctor || this.props.sortBtn)?
                   <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
                     <Image source={require('../../../assets/img/btn_sort.png')} />
                   </TouchableOpacity>: null
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     top: 14,
     left: 12,
     fontFamily: variables.fonts.light,
-    fontSize: 20,
+    fontSize: variables.fSize.medium,
     lineHeight: 23,
     letterSpacing: 1
 	},

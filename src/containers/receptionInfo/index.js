@@ -18,6 +18,7 @@ class ReceptionInfoScreen extends Component {
   componentDidMount() {}
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
@@ -54,7 +55,7 @@ class ReceptionInfoScreen extends Component {
             <Text style={styles.nameCab}>кабинет № 307</Text>
           </Content >
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label='ПОДТВЕРДИТЬ' onClick={()=>{Alert.alert('ok')}}/>
+            <CustomBtn label='ПОДТВЕРДИТЬ' onClick={()=>navigate('receptionList')}/>
           </View>
       </Container>
     )

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: variables.fSize.main
   },
   textarea: {
-    height: 300, 
+    height: 200, 
     fontSize: variables.fSize.main, 
     borderColor: variables.colors.blue, 
     borderRadius: 10, 

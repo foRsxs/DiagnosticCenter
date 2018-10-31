@@ -81,12 +81,11 @@ class ServicesScreen extends Component {
   }
 
   render() {
-    let horizontalView = true;
     const { navigate } = this.props.navigation;
     let {markedDates} = this.state;
     console.log(markedDates)
     return (
-      <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
+      <Container>
         <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
         <HeaderBottom text="выберите дату визита" />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10, backgroundColor: '#eaf3fd'}}>
@@ -109,31 +108,16 @@ class ServicesScreen extends Component {
               <Text style={styles.itemsTxt}>выбранная дата</Text>
             </View>
           </View>
+          <View style={{paddingHorizontal: 15, paddingTop: 20, backgroundColor: 'white'}}>
+            <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
+          </View>
         </Content>
-        <View style={{paddingHorizontal: 15, paddingTop: 20}}>
-          <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
-        </View>
       </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  wrap: {
-    width: '50%', 
-    paddingHorizontal: 5,
-  },
-  horizontalWrap: {
-    //paddingHorizontal: 10,
-    paddingVertical: 20,
-  },
-  verticalWrap: {
-    paddingHorizontal: 5,
-    paddingVertical: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    height: '100%'
-  },
   unSelectedItem: {
     marginRight: 10, 
     backgroundColor: variables.colors.backgroundBlue, 

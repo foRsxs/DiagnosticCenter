@@ -24,6 +24,11 @@ class ServicesScreen extends Component {
     this.setState(state => ({showSortList: !state.showSortList}))
   }
 
+  handleChange = (value) => {
+    console.log('event', value)
+    this.setState({inputValue: value})
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -31,7 +36,7 @@ class ServicesScreen extends Component {
         <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
               <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
-              <HeaderBottom search={true} onClick={this.change}/>
+              <HeaderBottom search={true} sortBtn={true} onClick={this.change} onChange={this.handleChange}/>
               <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
                 <ServiceItem onClick={() => navigate("subservices")} headTxt='Вакцинация'/>
               </Content >

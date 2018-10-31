@@ -18,6 +18,7 @@ class SubServicesScreen extends Component {
   componentDidMount() {}
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
@@ -27,7 +28,7 @@ class SubServicesScreen extends Component {
             <SubServiceItem headTxt='Вакцинация'/>
           </Content >
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label='ВЫБРАТЬ ВРАЧА' onClick={()=>{Alert.alert('ok')}}/>
+            <CustomBtn label='ВЫБРАТЬ ВРАЧА' onClick={()=>navigate('catalog')}/>
           </View>
       </Container>
     )

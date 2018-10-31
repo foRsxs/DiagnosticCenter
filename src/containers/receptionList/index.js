@@ -18,6 +18,7 @@ class ReceptionListScreen extends Component {
   componentDidMount() {}
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ЖУРНАЛ ЗАПИСЕЙ" navigation = {this.props.navigation}/>
@@ -28,7 +29,7 @@ class ReceptionListScreen extends Component {
             <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24'/>
           </Content >
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label='ДОБАВИТЬ ЗАПИСЬ' onClick={()=>{Alert.alert('ok')}}/>
+            <CustomBtn label='ДОБАВИТЬ ЗАПИСЬ' onClick={()=> navigate('receptions')}/>
           </View>
       </Container>
     )

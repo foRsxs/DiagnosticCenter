@@ -22,7 +22,7 @@ class OftenQuestionsScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ЧАСТЫЕ ВОПРОСЫ" navigation = {this.props.navigation}/>
           <HeaderBottom search={true} />
-          <Content padder>
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <OftenQuestionItem 
               text='Здравствуйте я инвалид 3группы.'
               textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'

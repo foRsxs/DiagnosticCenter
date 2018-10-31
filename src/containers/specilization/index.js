@@ -30,6 +30,11 @@ class SpecilizationScreen extends Component {
     this.setState(state => ({showSortList: !state.showSortList, modalVisible: false}))
   }
 
+  handleChange = (value) => {
+    console.log('event', value)
+    this.setState({inputValue: value})
+  }
+
   componentDidMount() {}
 
   render() {
@@ -38,7 +43,7 @@ class SpecilizationScreen extends Component {
         <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
               <Header text="СПЕЦИАЛИЗАЦИЯ" navigation = {this.props.navigation}/>
-              <HeaderBottom search={true} onClick={this.change}/>
+              <HeaderBottom search={true} sortBtn={true} onClick={this.change} onChange={this.handleChange}/>
               <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
                 <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
                 <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>
