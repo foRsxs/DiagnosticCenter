@@ -21,8 +21,8 @@ class ReceptionListScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ЖУРНАЛ ЗАПИСЕЙ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom text="у вас 3 записи" />
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24'/>
             <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24'/>
             <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24'/>

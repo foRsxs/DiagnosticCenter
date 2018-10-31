@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Image} from 'react-native';
+import {Alert, StyleSheet, Image, Dimensions} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
 import variables from '../../styles/variables';
@@ -7,6 +7,8 @@ import CustomBtn from '../../components/common/CustomBtn';
 import Rating from '../../components/common/Rating';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
+
+let {width, height} = Dimensions.get('window')
 
 class DoctorScreen extends Component {
 
@@ -22,26 +24,36 @@ class DoctorScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text="КАРТОЧКА ВРАЧА" navigation = {this.props.navigation}/>
         <HeaderBottom />
-        <Content>
-          <View style={styles.docInfoWrap}>
-            <Image
-              style={styles.docIcon}
-              resizeMode='cover'
-              source={require('../../../assets/img/man-icon.png')}
-            />
-            <View style={styles.docInfo}>
-              <View style={styles.docInfoBlock}>
-                  <Text style={styles.headTxt}>Пародонтозов Иван</Text>
-                  <Text style={styles.subHeadTxt}>стоматолог</Text>
-                  <View style={styles.ratingWrap}>
-                    <Rating rating={3.5} ratingMinimal={false} ratingDetail={true} like={140} unlike={3}/>
-                  </View>
-              </View>
-              <Text style={{fontSize: variables.fSize.main}}>Высшая категория | Общий стаж: 7 лет</Text>
+        <View style={styles.imageWrap}>
+          <Image
+            style={styles.docIcon}
+            resizeMode='cover'
+            source={require('../../../assets/img/man-icon.png')}
+          />
+        </View>
+        <View style={styles.docInfoWrap}>
+          <View style={styles.docInfo}>
+            <View style={styles.docInfoBlock}>
+                <Text style={styles.headTxt}>Пародонтозов Иван</Text>
+                <Text style={styles.subHeadTxt}>стоматолог</Text>
+                <View style={styles.ratingWrap}>
+                  <Rating rating={3.5} ratingMinimal={false} ratingDetail={true} like={140} unlike={3}/>
+                </View>
             </View>
+            <Text style={{fontSize: variables.fSize.main}}>Высшая категория | Общий стаж: 7 лет</Text>
           </View>
-          <View style={{paddingHorizontal: 30}}>
-            <View style={{position: 'relative'}}>
+        </View>
+        <Content style={{marginTop: height/3.3+80}}>
+          <View style={{paddingHorizontal: 30, backgroundColor: 'white'}}>
+            <View style={{position: 'relative', marginBottom: 10}}>
+              <View style={styles.listIcon}></View>
+              <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+            </View>
+            <View style={{position: 'relative', marginBottom: 10}}>
+              <View style={styles.listIcon}></View>
+              <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+            </View>
+            <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
               <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
@@ -56,14 +68,31 @@ class DoctorScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  imageWrap: {
+    width: width,
+    height: height/3.3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: height/9,
+    left: 0,
+    zIndex: 10
+  },
   docIcon: {
-    width: '100%',
-    height: 180
+    width: width/1.2,
+    height: height/3.5,
   },
   docInfoWrap: {
+    position: 'absolute',
+    top: height/9,
+    left: 0,
+    width: width,
+    height: height/3.3+120,
+    paddingTop: height/4,
     paddingHorizontal: 30,
     backgroundColor: variables.colors.backgroundBlue,
-    paddingBottom: 10
+    paddingBottom: 10,
+    justifyContent: 'flex-end'
   },
   docInfo: {
     flexDirection: 'column'

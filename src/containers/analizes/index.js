@@ -21,11 +21,13 @@ class AnalizesScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="МОИ АНАЛИЗЫ" navigation = {this.props.navigation}/>
           <HeaderBottom text="у вас 2 новых отчета" />
-          <Content padder>
+          <Content padder style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
             <Text style={styles.analizeTitle}>новые результаты анализов</Text>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
             <Text style={styles.analizeTitle}>архивные результаты анализов</Text>
+            <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
+            <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>
             <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018'/>

@@ -9,11 +9,6 @@ export default class SubServiceItem extends Component {
     this.state = {pressStatus: false};
   }
 
-  onPressActive() {
-    
-    Alert.alert('asasd')
-  }
-
   render() {
     let {pressStatus} = this.state;
     let {headTxt} = this.props;

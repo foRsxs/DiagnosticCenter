@@ -22,8 +22,8 @@ class QuestionsScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom text="Пародонтозов Иван" />
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <QuestionItem 
               text='Здравствуйте я инвалид 3группы. У меня сильно болит голова! Мой врач невропатолог сказал что бы я принесла снимок УЗДТ БЦА, МРТ ШОП, ВБА! И мне ведь положено пройти все эти обследовании у вас в клинике бесплатно! Для этого какие документы нужны? Заранее спасибо!'
               textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова! Мой врач невропатолог сказал что бы я принесла снимок УЗДТ БЦА, МРТ ШОП, ВБА! И мне ведь положено пройти все эти обследовании у вас в клинике бесплатно! Для этого какие документы нужны? Заранее спасибо!'

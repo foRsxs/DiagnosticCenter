@@ -5,7 +5,7 @@ import i18n from '../../i18n';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import SortList from '../../components/common/sortList/SortList'
+import SortList from '../../components/common/sortList/SortList';
 
 
 class ServicesScreen extends Component {
@@ -35,7 +35,13 @@ class ServicesScreen extends Component {
             <HeaderBottom katalogDoctor={true} search={true} onClick={this.change}/>
             {
               horizontalView? (
-                <Content padder>
+                <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
+                  <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
                   <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
                   <CatalogItem horizontalView={horizontalView} onClick={() => Alert.alert('click')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='1'/>
                 </Content>
@@ -63,11 +69,11 @@ const styles = StyleSheet.create({
   },
   horizontalWrap: {
     //paddingHorizontal: 10,
-    paddingVertical: 20,
+    //paddingVertical: 20,
   },
   verticalWrap: {
     paddingHorizontal: 5,
-    paddingVertical: 20,
+    //paddingVertical: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%'

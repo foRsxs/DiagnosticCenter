@@ -23,7 +23,7 @@ class HomeScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation}/>
-        <HeaderBottom search={true} />
+        <HeaderBottom />
         <Content style={{marginTop: -10, zIndex: 1}}>
           <View>
             <HomeCarousel />

@@ -42,7 +42,7 @@ export default class CatalogListItem extends Component {
             </View>
           </View>
           <View style={horizontalStyles.arrowWrap}>
-            <Icon ios='ios-arrow-forward' android="md-arrow-forward" style={horizontalStyles.icon} />
+            <Icon ios='ios-arrow-forward' android="ios-arrow-forward" style={horizontalStyles.icon} />
           </View>
         </TouchableOpacity>
       ) : (

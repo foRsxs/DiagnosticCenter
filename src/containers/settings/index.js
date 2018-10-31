@@ -40,8 +40,8 @@ class SettingsScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="НАСТРОЙКИ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content padder>
+          <HeaderBottom />
+          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <View style={styles.settingItem}>
               <Text style={styles.headTxt}>Язык интерфейса</Text>
               <Form style={{ width: '40%' }}>

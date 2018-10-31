@@ -87,11 +87,11 @@ class ServicesScreen extends Component {
     console.log(markedDates)
     return (
       <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
-        <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
+        <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
         <HeaderBottom text="выберите дату визита" />
-        <Content style={{marginTop: -10, zIndex: 1}}>
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10, backgroundColor: '#eaf3fd'}}>
           <Calendar
-            style={{paddingTop: 15, backgroundColor: '#eaf3fd',}}
+            style={{paddingTop: 10, backgroundColor: '#eaf3fd'}}
             theme={{
               calendarBackground: '#eaf3fd',
             }}
@@ -99,7 +99,7 @@ class ServicesScreen extends Component {
             markedDates={markedDates}
             markingType={'custom'}
           />
-          <View style={{paddingVertical: 10}}>
+          <View style={{paddingVertical: 10, backgroundColor: 'white'}}>
             <View style={styles.itemsWrap}>
               <View style={styles.unSelectedItem}></View>
               <Text style={styles.itemsTxt}>запись доступна</Text>
@@ -111,7 +111,7 @@ class ServicesScreen extends Component {
           </View>
         </Content>
         <View style={{paddingHorizontal: 15, paddingTop: 20}}>
-          <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=>{Alert.alert('ok')}}/>
+          <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
         </View>
       </Container>
     )
