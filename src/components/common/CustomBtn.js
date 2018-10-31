@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: variables.colors.green
   },
   textBtn:{
-    fontFamily: variables.fonts.mainFont, 
+    // fontFamily: variables.fonts.mainFont, 
     fontSize: variables.fSize.main, 
     lineHeight: 23, 
     textAlign: 'center',

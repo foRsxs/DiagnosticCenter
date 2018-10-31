@@ -14,9 +14,6 @@ export default class HeaderBottom extends Component {
         }
       }
     
-  handleClick =()=> {
-    this.props.click()
-  }
   render(){
     const { katalogDoctor = false, search = false } = this.props
     return(
@@ -25,14 +22,14 @@ export default class HeaderBottom extends Component {
         {
           (this.props.katalogDoctor)?
           <View style={styles.btnContainer}>
-            <TouchableOpacity onPress={()=> this.setState({listActive: true})} activeOpacity={0.6} style={styles.btn_list} >
+            <TouchableOpacity onPress={()=> {this.setState({listActive: true}); this.props.togleClick(true)}} activeOpacity={0.6} style={styles.btn_list} >
             {
               (this.state.listActive)?
               <Image source={require('../../../assets/img/btn_list_w.png')} />:            
               <Image source={require('../../../assets/img/btn_list_b.png')} />
             }
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.setState({listActive: false})} activeOpacity={0.6} style={styles.btn_block} >
+            <TouchableOpacity onPress={()=> {this.setState({listActive: false}); this.props.togleClick(false)}} activeOpacity={0.6} style={styles.btn_block} >
             {
               (this.state.listActive)?
               <Image source={require('../../../assets/img/btn_block_b.png')} />:
@@ -46,10 +43,14 @@ export default class HeaderBottom extends Component {
           {
               (this.props.search)?
               <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder='' />
-                <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-                  <Image source={require('../../../assets/img/btn_sort.png')} />
-                </TouchableOpacity>
+                <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>
+                {
+                  (this.props.katalogDoctor)?
+                  <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
+                    <Image source={require('../../../assets/img/btn_sort.png')} />
+                  </TouchableOpacity>: null
+                }
+                
             </View>
             :<Text style={styles.text}>{this.props.text}</Text>
           } 

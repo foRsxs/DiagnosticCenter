@@ -15,7 +15,9 @@ class AuthorizationScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        showSortList: false
+        showSortList: false,
+        togleList: false,
+        inputValue: ''
     };
   }
 
@@ -23,19 +25,30 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {}
 
+  togle = (value) => {
+    console.log('togle', value)
+    this.setState({togleList: value})
+  }
+
   change = (value) => {
       console.log('text', value)
       this.setState(state => ({showSortList: !state.showSortList}))
   }
+
+  handleChange = (value) => {
+    console.log('event', value)
+    this.setState({inputValue: value})
+}
+
 
   render() {
     const { navigate } = this.props.navigation;
     console.log(this.props)
     return (
         <View>
-        <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
-            <Header text='Hello' navigation = {this.props.navigation}/>
-            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} onClick={this.change}/>
+        <View style={styles.mainContainer }>
+            <Header  inversion={true} text='Привет' navigation = {this.props.navigation}/>
+            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
             <View style={{flex: 1, top: 200}}>
             
                 <Text>
