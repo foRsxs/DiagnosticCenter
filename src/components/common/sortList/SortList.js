@@ -10,6 +10,9 @@ export default class SortList extends Component {
   render(){
       
         return(
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.backGround} onPress={() => this.props.onClick()}>
+            </TouchableOpacity>
             <View style={styles.sortList}>
               <View style={styles.hContainer}>
                 <View style={{width: '80%'}}>
@@ -31,11 +34,28 @@ export default class SortList extends Component {
               }
               />
             </View>
+          </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+      width: '100%',
+      height: 2000,
+      top: 0,
+      zIndex: 5,
+      position: 'absolute',
+    }, 
+    backGround: {
+      width: '100%',
+      height: '100%',
+      top: 0,
+      opacity: 0.5,
+      backgroundColor: 'white',
+      position: 'relative',
+      zIndex: 3
+    },
     sortList: {
       zIndex: 100,
       top: 40,
@@ -45,7 +65,8 @@ const styles = StyleSheet.create({
       borderTopLeftRadius: 10,
       width: 220,
       height: 275,
-      backgroundColor: variables.colors.white
+      backgroundColor: variables.colors.white,
+      opacity: 1,
     },
     hContainer: {
       width: '100%',

@@ -46,8 +46,8 @@ class AuthorizationScreen extends Component {
     console.log(this.props)
     return (
         <View>
-        <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
-            <Header text='Hello' navigation = {this.props.navigation}/>
+        <View style={styles.mainContainer }>
+            <Header  inversion={true} text='Привет' navigation = {this.props.navigation}/>
             <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
             <View style={{flex: 1, top: 200}}>
             

@@ -8,22 +8,37 @@ import variables from '../../styles/variables'
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
   render(){
-
+    const { inversion = false, backDisabled = false} = this.props
     console.log('nav', this.props.navigation)
     return(
-      <View style={styles.container}>
+      <View style={!inversion ? styles.container : styles.inContainer}>
+      <View style={styles.btnContainer}>
         <TouchableOpacity onPress={ () => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
-          <Icon ios='ios-menu' android="md-menu" style={{color:'white',  padding: 10}} />
+        {
+          (!inversion) ?
+          <Icon ios='ios-menu' android="md-menu" style={{color:'white'}} /> : 
+          <Icon ios='ios-menu' android="md-menu" style={{color: variables.colors.blue}} />
+        }
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=> this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >
-          <Icon ios='md-arrow-back' android="md-arrow-back" style={{color:'white',  padding: 10}} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.textContainer} >
-          <Text uppercase={true} style={styles.text}>{this.props.text}</Text>
-        </TouchableOpacity>
+        {
+          (!backDisabled) ?
+          <TouchableOpacity onPress={()=> this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >
+          {
+            (!inversion) ?
+            <Icon ios='md-arrow-back' android="md-arrow-back" style={{color:'white'}} /> :
+            <Icon ios='md-arrow-back' android="md-arrow-back" style={{color: variables.colors.blue}} />
+          }
+            
+          </TouchableOpacity> : null
+        }  
+        </View>
+        <View style={styles.textContainer} >
+          <Text style={!inversion? styles.text : styles.inText}>{this.props.text.toUpperCase()}</Text>
+        </View>
       </View>
     )
   }
@@ -33,30 +48,55 @@ const styles = StyleSheet.create({
   container:{
     flexWrap:'wrap', 
     flexDirection: 'row', 
-    justifyContent: 'flex-start', 
+    justifyContent: 'space-around', 
     width: '100%',
     height: 40,
     backgroundColor: variables.colors.blue,
     zIndex: 3
   },
+  inContainer:{
+    flexWrap:'wrap', 
+    flexDirection: 'row', 
+    justifyContent: 'flex-start', 
+    width: '100%',
+    height: 40,
+    backgroundColor: variables.colors.white,
+    zIndex: 3
+  },
+  btnContainer: {
+		flexWrap:'wrap', 
+    flexDirection: 'row',
+    justifyContent: 'flex-start', 
+		width: '23%'
+	},
   btnMenu: {
-    top: 5, 
-    left: 10
+    margin: 10,
+    left: 5
   },
   btnBack: { 
-    top: 5, 
-    left: 20
+    margin: 10,
+    left: 8
   },
   textContainer: {
-    top: 10,
-    left: 30
+    width: '70%',
   },
   text: {
     color: variables.colors.white,
-    top: 5,
+    top: 10,
+    left: 10,
     fontFamily: variables.fonts.mainFont,
-    fontSize: 25,
+    fontSize: 22,
     lineHeight: 29,
-    letterSpacing: 1
+    // letterSpacing: 1
+  },
+  inText: {
+    color: variables.colors.darkBlue,
+    top: 10,
+    left: 10,
+    fontFamily: 'HelveticaNeueCyr-Thin',
+    // fontWeight: '100',
+    fontSize: 22,
+    lineHeight: 29,
+    // letterSpacing: 1
   }
 });

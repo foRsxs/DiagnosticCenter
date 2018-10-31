@@ -5,7 +5,6 @@
 	};
 	objectVersion = 51;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -38,6 +37,8 @@
 		E8B4809943F241F2A1584DC3 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BEF732FF6484E12B346591A /* HelveticaNeue.ttf */; };
 		EAF023D9C2544518A3A6D0AA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */; };
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
+		A31EE74BB2B74D6B91162EAE /* Helvetica-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC2342EE9B45499980DD546D /* Helvetica-Light.ttf */; };
+		53113EA2BBCC4542B2638778 /* HelveticaNeueCyr.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15A26D55140742A395B8A8E4 /* HelveticaNeueCyr.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +354,8 @@
 		CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLanguages.xcodeproj; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; };
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		AC2342EE9B45499980DD546D /* Helvetica-Light.ttf */ = {isa = PBXFileReference; name = "Helvetica-Light.ttf"; path = "../assets/fonts/Helvetica-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		15A26D55140742A395B8A8E4 /* HelveticaNeueCyr.ttf */ = {isa = PBXFileReference; name = "HelveticaNeueCyr.ttf"; path = "../assets/fonts/HelveticaNeueCyr.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -590,6 +593,8 @@
 				92B3EDE8AF184582AEA67667 /* SimpleLineIcons.ttf */,
 				6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */,
 				0BEF732FF6484E12B346591A /* HelveticaNeue.ttf */,
+				AC2342EE9B45499980DD546D /* Helvetica-Light.ttf */,
+				15A26D55140742A395B8A8E4 /* HelveticaNeueCyr.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -993,6 +998,8 @@
 				93BE82A7CE004B2D8AE00488 /* SimpleLineIcons.ttf in Resources */,
 				D52D65D47FF34970B4FD6923 /* Zocial.ttf in Resources */,
 				E8B4809943F241F2A1584DC3 /* HelveticaNeue.ttf in Resources */,
+				A31EE74BB2B74D6B91162EAE /* Helvetica-Light.ttf in Resources */,
+				53113EA2BBCC4542B2638778 /* HelveticaNeueCyr.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

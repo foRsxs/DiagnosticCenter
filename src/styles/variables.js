@@ -18,7 +18,7 @@ const variables = {
     },
     fonts: {
         mainFont: 'Helvetica Light',
-        light: 'HelveticaNeue'
+        light: 'HelveticaNeueCyr'
     },
     fSize: {
         extralarge: 25,
