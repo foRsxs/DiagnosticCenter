@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Alert} from 'react-native';
-import {Text, Button} from 'native-base';
+import { StyleSheet, View, Alert, Dimensions, Image, TextInput} from 'react-native';
+import {Text, Button, Container} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import variables from '../../styles/variables'
@@ -17,7 +17,8 @@ class AuthorizationScreen extends Component {
     this.state = {
         showSortList: false,
         togleList: false,
-        inputValue: ''
+				inputValue: '',
+				rusOn: true
     };
   }
 
@@ -30,9 +31,8 @@ class AuthorizationScreen extends Component {
     this.setState({togleList: value})
   }
 
-  change = (value) => {
-      console.log('text', value)
-      this.setState(state => ({showSortList: !state.showSortList}))
+  changeLang = () => {
+      this.setState(state => ({rusOn: !state.rusOn}))
   }
 
   handleChange = (value) => {
@@ -42,45 +42,77 @@ class AuthorizationScreen extends Component {
 
 
   render() {
-    const { navigate } = this.props.navigation;
+		const { navigate } = this.props.navigation;
+		
     console.log(this.props)
     return (
-        <View>
-        <View style={styles.mainContainer }>
-            <Header  inversion={true} text='Привет' navigation = {this.props.navigation}/>
-            <HeaderBottom katalogDoctor = {true} text="Hello World" search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
-            <View style={{flex: 1, top: 200}}>
-            
-                <Text>
-                Auth 
-                </Text>
-                <Button rounded 
-                onPress={()=>{ 
-                    console.log(1);
-                    navigate('home'); 
-                }}>
-                <Text>go home</Text>
-                </Button>
-                <CustomBtn  onClick={(value) => {console.log(this,value)}} label='Запросить код' />
-            </View>
+      <Container style={styles.container}>
+				<View style={styles.header}>
+				</View>
+				<View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+          <View style={styles.oval} />
         </View>
-            {
-                (this.state.showSortList)?
-                <SortList onClick={this.change}/>: null
-            }
-        </View>
+				<View style={{ flexDirection: 'row', left: width/2-43, top: 35, zIndex: 1, position: 'absolute'}}>
+					<Text style={this.state.rusOn?styles.langOn:styles.langOf} onPress={this.changeLang}>РУС</Text>
+					<Text style={styles.langOf}>|</Text>
+					<Text style={this.state.rusOn?styles.langOf:styles.langOn} onPress={this.changeLang}>KAZ</Text>
+				</View>
+				<Image style={{ alignItems: 'center', left: width/2-55, top: 70, zIndex: 1, position: 'absolute'}} source={require('../../../assets/img/logo.png')} />
+				<View style={styles.textBlock}>
+					<Text style={{textAlign: 'center', color: variables.colors.darkBlue}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+				</View>
+				<View>
+				  <TextInput style={styles.input} placeholder=''/>
+				  <TextInput style={styles.input} placeholder=''/>
+				</View>
+      </Container>
       )
    }
 }
-
+let {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
-  mainContainer: {
-      opacity: 1
-  },
-  opacityContainer: {
-      opacity: 0.1
-  }
+	container: {
+		width: '100%',
+		height: '100%',
+		backgroundColor: variables.colors.white,
+	},
+	header: {
+		width: '100%',
+		height: 100,
+		backgroundColor: variables.colors.blue
+	},
+	oval: {
+    width: width,
+    height: width,
+    borderRadius: width,
+    backgroundColor: variables.colors.blue,
+    transform: [
+      {scaleX: 3}
+    ]
+	},
+	langOn: {
+		color: variables.colors.white,
+		margin: 3
+	},
+	langOf: {
+		color: variables.colors.darkBlue,
+		margin: 3
+	},
+	logo: {
+		position: 'absolute',
+		zIndex: 10
+	},
+	textBlock: {
+		top: 60,
+		width: '100%'
+	},
+	input: {
+		top: 60,
+		width: 325,
+		height: 50,
+		backgroundColor: 'rgba(78, 158, 255, 0.15)'
+	}
 });
 
 export default AuthorizationScreen;
