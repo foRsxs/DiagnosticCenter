@@ -1,7 +1,7 @@
 import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
-import AthorizationScreen from '../containers/authorization';
+// import AthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
 import SpecilizationScreen from '../containers/specilization';
 import ServicesScreen from '../containers/services';
