@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import variables from '../../styles/variables';
+
+let {width, height} = Dimensions.get('window')
 
 const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
 const { small, medium, normal} = variables.fSize
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     },
     specIcon: {
       width: '100%',
-      height: 100,
+      height: height/5,
     },
     arrowWrap: {
       backgroundColor: green,

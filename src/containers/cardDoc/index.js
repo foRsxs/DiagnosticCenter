@@ -66,7 +66,7 @@ class DoctorScreen extends Component {
           </View>
         </View>
         <Content style={{marginTop: height/3.3+100}}>
-          <View style={{paddingLeft: 30, paddingRight: 10, paddingTop: 10, backgroundColor: 'white'}}>
+          <View style={{paddingLeft: 30, paddingRight: 20, paddingTop: 10, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
               <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
@@ -80,7 +80,7 @@ class DoctorScreen extends Component {
               <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15, paddingVertical: 10}}>
+          <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
             <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={()=>navigate('receptions')}/>
           </View>
         </Content >
@@ -91,7 +91,8 @@ class DoctorScreen extends Component {
 
 const styles = StyleSheet.create({
   imageWrap: {
-    width: width,
+    width: '100%',
+    paddingHorizontal: 20,
     height: height/3.3,
     justifyContent: 'center',
     alignItems: 'center',
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     zIndex: 10
   },
   docIcon: {
-    width: width/1.2,
+    width: '100%',
     height: height/3.5,
   },
   docInfoWrap: {
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     top: height/9,
     left: 0,
     width: width,
-    height: height/3.3+140,
+    height: height/3.3+130,
     paddingTop: height/4,
     paddingHorizontal: 20,
     backgroundColor: variables.colors.backgroundBlue,
@@ -127,7 +128,8 @@ const styles = StyleSheet.create({
   },
   headTxt: {
     fontSize: variables.fSize.extralarge,
-    color: variables.colors.mediumBlack
+    color: variables.colors.mediumBlack,
+    lineHeight: 24
   },
   subHeadTxt: {
     fontSize: variables.fSize.medium,

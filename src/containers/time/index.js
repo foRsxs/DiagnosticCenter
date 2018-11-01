@@ -73,10 +73,10 @@ class TimeScreen extends Component {
               <Text style={styles.itemsTxt}>выбранное время</Text>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white'}}>
-            <CustomBtn label='ПРОВЕРИТЬ ДАННЫЕ' onClick={()=> navigate('receptionInfo')}/>
-          </View>
         </Content>
+        <View style={{paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white'}}>
+          <CustomBtn label='ПРОВЕРИТЬ ДАННЫЕ' onClick={()=> navigate('receptionInfo')}/>
+        </View>
       </Container>
     )
   }

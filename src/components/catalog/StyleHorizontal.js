@@ -7,7 +7,8 @@ const { small, medium, normal} = variables.fSize
 const styles = StyleSheet.create({
   bottomBlock: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    paddingRight: 10
   },
   addInfoText: {
     width: '70%',
@@ -66,8 +67,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
-  },
+    justifyContent: 'center' },
   icon: {
     color: 'white',
     fontSize: medium

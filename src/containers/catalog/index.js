@@ -68,7 +68,7 @@ class ServicesScreen extends Component {
                 </Content>
               ) : (
                 <ScrollView>
-                  <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', paddingHorizontal: 5, paddingBottom: 10}}>
+                  <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', paddingVertical: 10}}>
                     <View style={styles.wrap}>
                       <CatalogItem horizontalView={horizontalView} onClick={() => navigate('cardDoc')} imageUri={require('../../../assets/img/man-icon.png')} name="Пародонтозов Иван" position='Стоматолог' category='Высшая категория' experience='10'/>
                     </View>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   wrap: {
     width: '50%', 
     paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingVertical: 10,
   },
   horizontalWrap: {
     //paddingHorizontal: 10,
