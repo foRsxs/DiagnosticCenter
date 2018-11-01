@@ -53,7 +53,7 @@ class DoctorScreen extends Component {
                 </View>
             </View>
             <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-              <Text style={{fontSize: variables.fSize.main}}>Высшая категория {"\n"}Общий стаж: 7 лет</Text>
+              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>Высшая категория {"\n"}Общий стаж: 7 лет</Text>
               <TouchableOpacity onPress={() => navigate('questions')} style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text uppercase={false} style={{fontSize: 12, color: variables.colors.wiolet, width:50, lineHeight: 10}}>задать вопрос врачу</Text>
                 <Image
@@ -66,18 +66,18 @@ class DoctorScreen extends Component {
           </View>
         </View>
         <Content style={{marginTop: height/3.3+100}}>
-          <View style={{paddingHorizontal: 30, backgroundColor: 'white'}}>
+          <View style={{paddingLeft: 30, paddingRight: 10, paddingTop: 10, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
           </View>
           <View style={{paddingHorizontal: 15, paddingVertical: 10}}>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     width: width,
     height: height/3.3+140,
     paddingTop: height/4,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     backgroundColor: variables.colors.backgroundBlue,
     paddingBottom: 10,
     justifyContent: 'flex-end'

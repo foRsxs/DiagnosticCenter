@@ -122,7 +122,7 @@ class ServicesScreen extends Component {
               <Text style={styles.itemsTxt}>выбранная дата</Text>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15, paddingTop: 20}}>
+          <View style={{paddingHorizontal: 15, paddingTop: 20, paddingBottom: 20}}>
             <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
           </View>
         </Content>

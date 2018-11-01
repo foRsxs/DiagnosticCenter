@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   txtHead: {
     color: variables.colors.mediumBlack,
-    fontSize: variables.fSize.large
+    fontSize: variables.fSize.medium
   },
   txtHeadServ: {
     color: variables.colors.mediumBlack,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   txtTime: {
     color: variables.colors.blue,
-    fontSize: variables.fSize.medium
+    fontSize: variables.fSize.main
   },
   txtName: {
     color: variables.colors.lightBlack,

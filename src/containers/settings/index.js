@@ -104,10 +104,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     alignItems: 'center',
-    paddingLeft: 10
   },
   headTxt: {
-    fontSize: variables.fSize.large,
+    fontSize: variables.fSize.medium,
     color: variables.colors.mediumBlack,
     width: '60%'
   }

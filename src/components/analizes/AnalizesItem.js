@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   txtHead: {
     color: variables.colors.mediumBlack,
-    fontSize: variables.fSize.large
+    fontSize: variables.fSize.medium
   },
   txtDate: {
     color: variables.colors.lightBlack,

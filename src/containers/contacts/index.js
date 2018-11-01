@@ -53,12 +53,12 @@ class ContactsScreen extends Component {
             </View>
             <View style={styles.contactItem}>
               <Text style={styles.headTxt}>Социальные сети:</Text>
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity style={{marginRight: 20}} onPress={()=> Linking.openURL('https://www.facebook.com/')}>
-                  <Image source={require('../../../assets/img/instagram.png')} style={{width: 50, height: 50}} resizeMode='contain'></Image>
+              <View style={{flexDirection: 'row', marginTop: 5}}>
+                <TouchableOpacity style={{marginRight: 15}} onPress={()=> Linking.openURL('https://www.facebook.com/')}>
+                  <Image source={require('../../../assets/img/instagram.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=> Linking.openURL('https://www.facebook.com/')}>
-                  <Image source={require('../../../assets/img/facebook.png')} style={{width: 50, height: 50}} resizeMode='contain'></Image>
+                  <Image source={require('../../../assets/img/facebook.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
                 </TouchableOpacity>
               </View>
             </View>
@@ -70,30 +70,29 @@ class ContactsScreen extends Component {
 
 const styles = StyleSheet.create({
   contactItem: {
-    marginBottom: 10,
-    paddingLeft: 30
+    marginBottom: 15,
   },
   headTxt: {
     fontSize: variables.fSize.large, 
     color: variables.colors.mediumBlack, 
     width: '100%', 
     textAlign: 'left',
-    marginBottom: 5
   },
   subHeadTxt: {
-    fontSize: variables.fSize.medium, 
+    fontSize: variables.fSize.main, 
     color: variables.colors.lightBlack, 
     width: '100%', 
-    textAlign: 'left'
+    textAlign: 'left',
+    marginTop: 4
   },
   linkTxt: {
-    fontSize: variables.fSize.large, 
-    color: variables.colors.blue, 
+    fontSize: variables.fSize.main, 
+    color: variables.colors.wiolet, 
     width: '100%', 
     textAlign: 'left',
     textDecorationLine: "underline",
     textDecorationStyle: "solid",
-    textDecorationColor: variables.colors.blue,
+    textDecorationColor: variables.colors.wiolet,
   }
 });
 

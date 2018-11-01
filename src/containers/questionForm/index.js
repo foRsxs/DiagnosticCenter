@@ -41,9 +41,7 @@ class QuestionFormScreen extends Component {
         <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
         <HeaderBottom text="напишите свой вопрос" />
         <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
-          <Content padder>
-            <FormSend sendData={this.getData}/>
-          </Content>
+          <FormSend sendData={this.getData}/>
         </KeyboardAwareScrollView>
       </Container>
     )
