@@ -44,7 +44,13 @@ class SpecilizationScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    if(this.state.showSortList){
+      this.setState({showSortList: false})
+    } else if(this.state.modalVisible){
+      this.setState({modalVisible: false})
+    } else {
+      this.props.navigation.goBack();
+    }
     return true;
   }
 
@@ -56,15 +62,15 @@ class SpecilizationScreen extends Component {
               <Header text="СПЕЦИАЛИЗАЦИЯ" navigation = {this.props.navigation}/>
               <HeaderBottom search={true} sortBtn={true} onClick={this.change} onChange={this.handleChange}/>
               <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadDentist')} subTxt={i18n.t('SpecSubDentist')} imageUri={require('../../../assets/img/spec-dentist.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadDermatolog')} subTxt={i18n.t('SpecSubDermatolog')} imageUri={require('../../../assets/img/spec-derm.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadKardiolog')} subTxt={i18n.t('SpecSubKardiolog')} imageUri={require('../../../assets/img/spec-kardi.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
-                <SpecilizationItem onClick={() => navigate("authorization")} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadDentist')} subTxt={i18n.t('SpecSubDentist')} imageUri={require('../../../assets/img/spec-dentist.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadDermatolog')} subTxt={i18n.t('SpecSubDermatolog')} imageUri={require('../../../assets/img/spec-derm.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadKardiolog')} subTxt={i18n.t('SpecSubKardiolog')} imageUri={require('../../../assets/img/spec-kardi.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
+                <SpecilizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
               </Content >
               <LinkBtn label={i18n.t('BtnLinkDontKnowDoc')} onClick={()=> {this.setModalVisible(true)}}/>
               <Popup show={this.state.modalVisible}/>

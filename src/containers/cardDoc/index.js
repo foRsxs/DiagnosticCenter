@@ -65,7 +65,7 @@ class DoctorScreen extends Component {
             </View>
           </View>
         </View>
-        <Content style={{marginTop: height/3.3+100}}>
+        <Content style={{}}>
           <View style={{paddingLeft: 30, paddingRight: 20, paddingTop: 10, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
@@ -93,29 +93,28 @@ const styles = StyleSheet.create({
   imageWrap: {
     width: '100%',
     paddingHorizontal: 20,
-    height: height/3.3,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: height/9,
+    top: 50,
     left: 0,
     zIndex: 10
   },
   docIcon: {
     width: '100%',
-    height: height/3.5,
+    height: 200,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
   },
   docInfoWrap: {
-    position: 'absolute',
-    top: height/9,
-    left: 0,
-    width: width,
-    height: height/3.3+130,
-    paddingTop: height/4,
+    width: '100%',
+    paddingTop: 160,
     paddingHorizontal: 20,
     backgroundColor: variables.colors.backgroundBlue,
     paddingBottom: 10,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    marginTop: -10
   },
   docInfo: {
     flexDirection: 'column'

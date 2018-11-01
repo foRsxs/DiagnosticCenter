@@ -34,7 +34,7 @@ class HomeScreen extends Component {
             <HomeButton nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View>
         </Content >
-        <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>navigate('specilization')}/>
+        <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>Alert.alert('click')}/>
       </Container>
     )
   }

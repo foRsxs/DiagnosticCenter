@@ -11,17 +11,16 @@ const styles = StyleSheet.create({
     backgroundColor: variables.colors.backgroundBlue,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 15,
-    paddingBottom: 15,
+    height: 80,
     paddingHorizontal: 10,
     justifyContent: 'flex-start'
   },
   headerTxt: {
-    paddingVertical: 20,
+    paddingVertical: 30,
     fontSize: variables.fSize.main
   },
   footer: {
-    paddingVertical: 15, 
+    height: 80, 
     backgroundColor: 'transparent', 
     justifyContent: 'flex-start'
   }
