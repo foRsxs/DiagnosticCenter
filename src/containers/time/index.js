@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, StyleSheet, BackHandler } from 'react-native';
 import { Container, Content, View, Text } from 'native-base';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -34,7 +34,18 @@ class TimeScreen extends Component {
     };
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   render() {
     let {times} = this.state;
@@ -43,7 +54,7 @@ class TimeScreen extends Component {
       <Container>
         <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
         <HeaderBottom text="выберите время визита" />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10, backgroundColor: '#eaf3fd'}}>
+        <Content style={{marginTop: -10, zIndex: 1}}>
           <View style={styles.timeContainer}>
         
           { times.map((item, key)=>(
@@ -75,7 +86,9 @@ const styles = StyleSheet.create({
   timeContainer: {
     paddingHorizontal: 30,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    backgroundColor: '#eaf3fd',
+    paddingTop: 10
   },
   timeItemWrap: {
     width: '33%',

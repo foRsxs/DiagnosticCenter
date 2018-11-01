@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet} from 'react-native';
+import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import i18n from '../../i18n';
 import ServiceItem from '../../components/services/ServiceItem';
@@ -17,7 +17,18 @@ class ServicesScreen extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   change = (value) => {
     console.log('text', value)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, StyleSheet, BackHandler } from 'react-native';
 import { Container, Content, View, Text } from 'native-base';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -52,7 +52,18 @@ class ServicesScreen extends Component {
     };
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   _selectDate = (date) => {
     let {markedDates} = this.state;
@@ -73,7 +84,10 @@ class ServicesScreen extends Component {
           this.setState({selectedDate: date})
         }
       } else {
-        obj[i] = markedDates[i];
+        obj[i] = {
+          selected : false,
+          customStyles : openStyle
+        }
         this.setState({selectedDate: null})
       }
     }
@@ -88,9 +102,9 @@ class ServicesScreen extends Component {
       <Container>
         <Header text="ЗАПИСЬ НА ПРИЁМ" navigation = {this.props.navigation}/>
         <HeaderBottom text="выберите дату визита" />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10, backgroundColor: '#eaf3fd'}}>
+        <Content style={{marginTop: -10, zIndex: 1}}>
           <Calendar
-            style={{paddingTop: 10, backgroundColor: '#eaf3fd'}}
+            style={{paddingTop: 20, backgroundColor: '#eaf3fd'}}
             theme={{
               calendarBackground: '#eaf3fd',
             }}
@@ -98,7 +112,7 @@ class ServicesScreen extends Component {
             markedDates={markedDates}
             markingType={'custom'}
           />
-          <View style={{paddingVertical: 10, backgroundColor: 'white'}}>
+          <View style={{paddingVertical: 10}}>
             <View style={styles.itemsWrap}>
               <View style={styles.unSelectedItem}></View>
               <Text style={styles.itemsTxt}>запись доступна</Text>
@@ -108,7 +122,7 @@ class ServicesScreen extends Component {
               <Text style={styles.itemsTxt}>выбранная дата</Text>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15, paddingTop: 20, backgroundColor: 'white'}}>
+          <View style={{paddingHorizontal: 15, paddingTop: 20}}>
             <CustomBtn label='ВЫБРАТЬ ВРЕМЯ' onClick={()=> navigate('time')}/>
           </View>
         </Content>

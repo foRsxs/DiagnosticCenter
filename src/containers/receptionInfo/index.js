@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet} from 'react-native';
+import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -15,7 +15,18 @@ class ReceptionInfoScreen extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   render() {
     const { navigate } = this.props.navigation;

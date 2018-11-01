@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet} from 'react-native';
+import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Button, Text, Content} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import i18n from '../../i18n';
@@ -22,7 +22,18 @@ class QuestionFormScreen extends Component {
     this.setState({formData: info});     
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   render() {
     return (

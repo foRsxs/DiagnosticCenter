@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Modal, TouchableOpacity, Dimensions} from 'react-native';
+import {Alert, StyleSheet, Dimensions, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
 import LinkBtn from '../../components/common/LinkBtn';
@@ -35,7 +35,18 @@ class SpecilizationScreen extends Component {
     this.setState({inputValue: value})
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   render() {
     return (

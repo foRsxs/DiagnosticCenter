@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet} from 'react-native';
+import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Content, View, Text, Icon, Picker, Form, Switch} from 'native-base';
 import i18n from '../../i18n';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -34,7 +34,18 @@ class SettingsScreen extends Component {
     });
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  }
 
   render() {
     return (
