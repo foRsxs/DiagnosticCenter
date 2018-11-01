@@ -25,15 +25,15 @@ export default class HeaderBottom extends Component {
             <TouchableOpacity onPress={()=> {this.setState({listActive: true}); this.props.togleClick(true)}} activeOpacity={0.6} style={styles.btn_list} >
             {
               (this.state.listActive)?
-              <Image source={require('../../../assets/img/btn_list_w.png')} />:            
-              <Image source={require('../../../assets/img/btn_list_b.png')} />
+              <Image source={require('../../../assets/img/listBtn_w.png')} />:            
+              <Image source={require('../../../assets/img/listBtn_b.png')} />
             }
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> {this.setState({listActive: false}); this.props.togleClick(false)}} activeOpacity={0.6} style={styles.btn_block} >
             {
               (this.state.listActive)?
-              <Image source={require('../../../assets/img/btn_block_b.png')} />:
-              <Image source={require('../../../assets/img/btn_block_w.png')} />
+              <Image source={require('../../../assets/img/blockBtn_b.png')} />:
+              <Image source={require('../../../assets/img/blockBtn_w.png')} />
             }
             </TouchableOpacity>
           </View>: <View style={styles.btnContainer}></View>
@@ -47,7 +47,7 @@ export default class HeaderBottom extends Component {
                 {
                   (this.props.katalogDoctor || this.props.sortBtn)?
                   <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-                    <Image source={require('../../../assets/img/btn_sort.png')} />
+                    <Image source={require('../../../assets/img/sortBtn.png')} />
                   </TouchableOpacity>: null
                 }
                 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
-    height: 40,
+    height: 35,
     backgroundColor: variables.colors.blue,
     zIndex: 2
 	},
@@ -84,17 +84,18 @@ const styles = StyleSheet.create({
 		flexWrap:'wrap', 
     flexDirection: 'row',
     justifyContent: 'center', 
-		width: '23%'
+		width: '20%'
 	},
 	btn_list: {
-		top: 15,
+		top: 10,
 	},
 	btn_block: {
-		top: 15,
+    top: 10,
+    left: 2
 	},
 	text: {
     color: variables.colors.white,
-    top: 14,
+    top: 10,
     left: 12,
     fontFamily: variables.fonts.light,
     fontSize: variables.fSize.medium,
@@ -104,18 +105,20 @@ const styles = StyleSheet.create({
 	inputContainer: {
     flexDirection: 'row', 
     justifyContent: 'space-around',
-		width: '75%'
+		width: '80%'
 	},
 	input: {
 		width: 225,
-		height: 25, 
-		padding: 0,
-		top: 15,
+    height: 25, 
+    padding: 0,
+    paddingLeft: 10,
+    paddingRight: 10,
+		top: 10,
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},
 	btn_sort: {
-    top: 15,
+    top: 10,
   },
   oval: {
     width: width,

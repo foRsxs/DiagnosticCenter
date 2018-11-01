@@ -95,7 +95,7 @@ class ServicesScreen extends Component {
 const styles = StyleSheet.create({
   wrap: {
     width: '50%', 
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     paddingTop: 10,
   },
   horizontalWrap: {
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     //paddingVertical: 20,
   },
   verticalWrap: {
-    paddingHorizontal: 5,
-    //paddingVertical: 20,
+    // paddingHorizontal: 5,
+    // paddingVertical: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%'

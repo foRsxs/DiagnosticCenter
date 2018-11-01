@@ -67,18 +67,18 @@ const styles = StyleSheet.create({
 		flexWrap:'wrap', 
     flexDirection: 'row',
     justifyContent: 'flex-start', 
-		width: '23%'
+		width: '20%'
 	},
   btnMenu: {
-    margin: 10,
-    left: 5
+    padding: 10,
+    left: 2
   },
   btnBack: { 
-    margin: 10,
-    left: 8
+    padding: 10,
+    left: 4
   },
   textContainer: {
-    width: '70%',
+    width: '80%',
   },
   text: {
     color: variables.colors.white,
