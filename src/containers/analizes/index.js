@@ -50,7 +50,7 @@ class AnalizesScreen extends Component {
 
 const styles = StyleSheet.create({
   analizeTitle: {
-    color: variables.colors.blue, 
+    color: variables.colors.wiolet, 
     fontSize: variables.fSize.medium, 
     width: '100%', 
     textAlign: 'center', 

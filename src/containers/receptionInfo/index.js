@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   txtHead: {
-    color: variables.colors.blue, 
+    color: variables.colors.wiolet, 
     fontSize: variables.fSize.medium, 
     width: '100%', 
     textAlign: 'center'
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   txtSubname: {
     color: variables.colors.lightBlack, 
-    fontSize: variables.fSize.normal, 
+    fontSize: variables.fSize.main, 
     width: '100%', 
     textAlign: 'center'
   },

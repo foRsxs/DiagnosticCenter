@@ -58,14 +58,15 @@ const styles = StyleSheet.create({
     padding: 10
   },
   questionItemText: {
-    fontSize: variables.fSize.normal,
+    fontSize: variables.fSize.main,
     color: variables.colors.mediumBlack,
     textAlign: 'justify'
   },
   answerItemText: {
-    fontSize: variables.fSize.normal,
+    fontSize: variables.fSize.main,
     color: variables.colors.blue,
-    textAlign: 'justify'
+    textAlign: 'justify',
+    paddingTop: 5
   },
   buttonTextClose: {
     textAlign:'right', 
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
   },
   buttonTextShow: {
     textAlign:'right', 
+    fontSize: variables.fSize.main,
     color: variables.colors.blue, 
     alignItems: 'center'
   }

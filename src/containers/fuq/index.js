@@ -41,9 +41,7 @@ class FuqScreen extends Component {
         <Header text="ОБРАТНАЯ СВЯЗЬ" navigation = {this.props.navigation}/>
         <HeaderBottom text="напишите нам" />
         <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
-          <Content padder>
-            <FormSend sendData={this.getData}/>
-          </Content>
+          <FormSend sendData={this.getData}/>
         </KeyboardAwareScrollView>
       </Container>
     )

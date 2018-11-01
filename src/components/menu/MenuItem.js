@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   menuItemText: {
-    fontSize: variables.fSize.normal,
+    fontSize: variables.fSize.main,
     color: variables.colors.mediumBlack,
   },
   menuItemTextActive: {
-    fontSize: variables.fSize.normal,
+    fontSize: variables.fSize.main,
     color: 'white',
   },
   menuIcon: {

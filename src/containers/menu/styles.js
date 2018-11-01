@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     paddingVertical: 20,
-    fontSize: variables.fSize.normal
+    fontSize: variables.fSize.main
   },
   footer: {
     paddingVertical: 15, 
