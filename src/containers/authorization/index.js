@@ -58,13 +58,13 @@ class AuthorizationScreen extends Component {
 					<Text style={this.state.rusOn?styles.langOf:styles.langOn} onPress={this.changeLang}>KAZ</Text>
 				</View>
 				<Image style={{ alignItems: 'center', left: width/2-55, top: 70, zIndex: 1, position: 'absolute'}} source={require('../../../assets/img/logo.png')} />
-				<View style={styles.textBlock}>
-					<Text style={{textAlign: 'center', color: variables.colors.darkBlue}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+				<View style={styles.content}>
+					<Text style={{textAlign: 'center', color: variables.colors.darkBlue, width: '100%'}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+				  <TextInput style={styles.input} />
+				  <TextInput style={styles.input} />
+					<CustomBtn label='Запросить код'/>
 				</View>
-				<View>
-				  <TextInput style={styles.input} placeholder=''/>
-				  <TextInput style={styles.input} placeholder=''/>
-				</View>
+				
       </Container>
       )
    }
@@ -103,15 +103,24 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		zIndex: 10
 	},
-	textBlock: {
-		top: 60,
-		width: '100%'
+	content: {
+		top: 30,
+		padding: 15,
+		height: '70%',
+		flexDirection: 'column',
+		justifyContent: 'space-around',
+		width: '100%',
+		alignItems: 'center'
 	},
 	input: {
-		top: 60,
+		// margin: 15,
 		width: 325,
 		height: 50,
-		backgroundColor: 'rgba(78, 158, 255, 0.15)'
+		backgroundColor: 'rgba(78, 158, 255, 0.15)',
+		borderRadius: 10,
+		borderWidth: 1,
+		borderColor: 'rgba(112, 172, 245, 0.5)',
+		
 	}
 });
 

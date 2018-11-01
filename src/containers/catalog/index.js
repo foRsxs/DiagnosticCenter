@@ -108,7 +108,7 @@ class ServicesScreen extends Component {
 const styles = StyleSheet.create({
   wrap: {
     width: '50%', 
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     paddingTop: 10,
   },
   horizontalWrap: {
