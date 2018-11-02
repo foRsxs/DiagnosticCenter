@@ -117,12 +117,14 @@ const styles = StyleSheet.create({
     marginTop: -10
   },
   docInfo: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: 130,
+    justifyContent: 'space-between'
   },
   docInfoBlock: { 
     width: '100%', 
     position: 'relative',
-    paddingRight: 100, 
+    paddingRight: 140, 
     marginTop: 10
   },
   headTxt: {
