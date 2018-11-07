@@ -74,7 +74,6 @@ export default class HeaderBottom extends Component {
   }
 }
 let {width, height} = Dimensions.get('window')
-
 const styles = StyleSheet.create({
   bigContainer: {
     width: '100%',
@@ -88,20 +87,22 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 35,
     backgroundColor: variables.colors.blue,
-    zIndex: 2
+    zIndex: 2,
+    // flex: 1
 	},
 	btnContainer: {
-		flexWrap:'wrap', 
+		// flexWrap:'wrap', 
     flexDirection: 'row',
-    justifyContent: 'center', 
-		width: '20%'
+    // justifyContent: 'center', 
+		width: 80
 	},
 	btn_list: {
-		top: 10,
+    top: 10,
+    left: 8
 	},
 	btn_block: {
     top: 10,
-    left: 2
+    left: 10
 	},
 	text: {
     color: variables.colors.white,
@@ -114,21 +115,19 @@ const styles = StyleSheet.create({
 	},
 	inputContainer: {
     flexDirection: 'row', 
-    justifyContent: 'space-around',
-		width: '80%'
+    justifyContent: 'space-between',
+		width: width - 80
 	},
 	input: {
-		width: '80%',
+		width: width - 80 - 50,
     height: 25, 
-    padding: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
 		top: 10,
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},
 	btn_sort: {
     top: 10,
+    right: 8
   },
   oval: {
     width: width,

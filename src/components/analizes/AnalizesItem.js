@@ -19,6 +19,7 @@ export default class AnalizesItem extends Component {
           onPress={() => Alert.alert('ok')}
           style={styles.sendIcon}>
           <Image
+              style={{width: 18, height: 25}}
               resizeMode='contain'
               source={require('../../../assets/img/send.png')}
           />

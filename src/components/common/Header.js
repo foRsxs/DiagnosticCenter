@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, ImageBackground} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
 import {H3, Content, Icon} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
@@ -20,8 +20,8 @@ export default class Header extends Component {
         <TouchableOpacity onPress={ () => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
         {
           (!inversion) ?
-          <Icon ios='ios-menu' android="md-menu" style={{color:'white'}} /> : 
-          <Icon ios='ios-menu' android="md-menu" style={{color: variables.colors.blue}} />
+          <Icon ios='ios-menu' android="md-menu" style={{color:'white', width: 30, height: 30}} /> : 
+          <Icon ios='ios-menu' android="md-menu" style={{color: variables.colors.blue, width: 30, height: 30}} />
         }
         </TouchableOpacity>
         {
@@ -29,8 +29,8 @@ export default class Header extends Component {
           <TouchableOpacity onPress={()=> this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >
           {
             (!inversion) ?
-            <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{color:'white'}} /> :
-            <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{color: variables.colors.blue}} />
+            <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{color:'white', width: 30, height: 30}} /> :
+            <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{color: variables.colors.blue, width: 30, height: 30}} />
           }
             
           </TouchableOpacity> : null
@@ -43,19 +43,18 @@ export default class Header extends Component {
     )
   }
 }
+let {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container:{
-    flexWrap:'wrap', 
     flexDirection: 'row', 
-    justifyContent: 'space-around', 
+    justifyContent: 'flex-start', 
     width: '100%',
     height: 40,
     backgroundColor: variables.colors.blue,
     zIndex: 3
   },
   inContainer:{
-    flexWrap:'wrap', 
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
@@ -67,36 +66,34 @@ const styles = StyleSheet.create({
 		flexWrap:'wrap', 
     flexDirection: 'row',
     justifyContent: 'flex-start', 
-		width: '20%'
+		width: 80
 	},
   btnMenu: {
-    padding: 10,
-    left: 2
+    paddingTop: 10,
+    paddingRight: 0,
+    paddingLeft: 10,
   },
   btnBack: { 
-    padding: 10,
-    left: 4
+    paddingTop: 10,
+    paddingRight: 0,
+    paddingLeft: 10,
   },
   textContainer: {
-    width: '80%',
+    width: width - 80,
   },
   text: {
     color: variables.colors.white,
     top: 10,
-    left: 10,
     fontFamily: variables.fonts.mainFont,
     fontSize: 22,
     lineHeight: 29,
-    // letterSpacing: 1
   },
   inText: {
     color: variables.colors.darkBlue,
     top: 10,
-    left: 10,
     fontFamily: 'HelveticaNeueCyr-Thin',
-    // fontWeight: '100',
     fontSize: 22,
     lineHeight: 29,
-    // letterSpacing: 1
+   
   }
 });

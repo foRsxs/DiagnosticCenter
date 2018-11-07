@@ -39,6 +39,7 @@ export default class ReceptionListItem extends Component {
           onPress={() => this.setState({disable: true})}
           style={styles.deleteIcon}>
           <Image
+              style={{width: 20, height: 20}}
               resizeMode='contain'
               source={require('../../../assets/img/delete.png')}
           />
