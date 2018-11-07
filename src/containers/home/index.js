@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet} from 'react-native';
 import {Container, Content, View} from 'native-base';
+import SplashScreen from 'react-native-splash-screen';
 import i18n from '../../i18n';
 import HomeCarousel from '../../components/home/HomeCarousel';
 import HomeButton from '../../components/home/HomeButton';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import SplashScreen from 'react-native-splash-screen'
 
 class HomeScreen extends Component {
 
