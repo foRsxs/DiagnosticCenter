@@ -1,4 +1,4 @@
-package com.medicina;
+package com.izzisoftware.medicina;
 
 import android.app.Application;
 
@@ -12,6 +12,8 @@ import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import java.util.Arrays;
 import java.util.List;
 
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -24,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNLanguagesPackage()
+          new RNLanguagesPackage(),
+          new SplashScreenReactPackage()
       );
     }
 

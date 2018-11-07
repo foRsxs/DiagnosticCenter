@@ -53,6 +53,10 @@ class HomeCarousel extends Component {
             itemWidth={Dwidth-80}
             layout={'default'}
             firstItem={1}
+            loop={true}
+            autoplay={true}
+            autoplayDelay={0}
+            autoplayInterval={5000}
           />
         </View>
       );

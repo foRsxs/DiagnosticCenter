@@ -25,23 +25,25 @@ export default class HeaderBottom extends Component {
             <TouchableOpacity onPress={()=> {this.setState({listActive: true}); this.props.togleClick(true)}} activeOpacity={0.6} style={styles.btn_list} >
             {
               (this.state.listActive)?
-              <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
-                <Image source={require('../../../assets/img/listBtnL_b.png')} />
-              </View>:
-              <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>            
-                <Image source={require('../../../assets/img/listBtnL_w.png')} />
-              </View>
+              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
+                <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBW.png')} />
+              // </View>
+              :
+              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>            
+                <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBB.png')} />
+              // </View>
             }
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> {this.setState({listActive: false}); this.props.togleClick(false)}} activeOpacity={0.6} style={styles.btn_block} >
             {
               (this.state.listActive)?
-              <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>
-                <Image source={require('../../../assets/img/blockBtnL_w.png')} />
-              </View>:
-              <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
-                <Image source={require('../../../assets/img/blockBtnL_b.png')} />
-              </View>  
+              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>
+                <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBB.png')} />
+              // </View>
+              :
+              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
+                <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBW.png')} />
+              // </View>  
             }
             </TouchableOpacity>
           </View>: <View style={styles.btnContainer}></View>
@@ -55,9 +57,7 @@ export default class HeaderBottom extends Component {
                 {
                   (this.props.katalogDoctor || this.props.sortBtn)?
                   <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-                    <View style={{borderRadius: 5, width: 29, height: 25, padding: 7, backgroundColor: 'white'}}>
-                      <Image source={require('../../../assets/img/sort.png')} />
-                    </View>
+                    <Image style={{width: 29, height: 25, padding: 7}} source={require('../../../assets/img/sortList_btn.png')} />
                   </TouchableOpacity>: null
                 }
                 

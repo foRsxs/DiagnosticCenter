@@ -19,7 +19,7 @@ export default class SortList extends Component {
                   <Text style={styles.hText} onPress={() => this.props.onClick()}>сортировать</Text>
                 </View>
                 <View>
-                  <Image  style={{top:25}} source={require('../../../../assets/img/sortList_btn.png')} />
+                  <Image  style={{top:25}} source={require('../../../../assets/img/sortList.png')} />
                 </View>
               </View>
               <FlatList

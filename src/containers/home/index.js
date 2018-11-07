@@ -7,7 +7,7 @@ import HomeButton from '../../components/home/HomeButton';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-
+import SplashScreen from 'react-native-splash-screen'
 
 class HomeScreen extends Component {
 
@@ -16,7 +16,9 @@ class HomeScreen extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    SplashScreen.hide();
+  }
 
   render() {
     const { navigate } = this.props.navigation;
