@@ -5,10 +5,26 @@ import variables from '../../styles/variables'
 import NumberItem from '../common/NumberItem'
 
 class InputNumber extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+       codeNumber: '',
+    };
+  }
+  click = (value) =>{
+    console.log(value)
+    if(value !== 'x' && value !== '<'){
+      this.setState({codeNumber: this.state.codeNumber + value})
+    } else if (value === 'x'){
+      this.setState({codeNumber: ''})
+    } else if (value === '<'){
+      this.setState({codeNumber: this.state.codeNumber.slice(0, -1)})
+    }
+  }
   render(){
     return(
       <View style={styles.container}>
-			  <TextInput style={styles.input} onChangeText={(text)=> this.onChangeNumber(text)}/>
+			  <TextInput style={styles.input} value={this.state.codeNumber} onChangeText={(text)=> this.onChangeNumber(text)} editable = {false}/>
         <FlatList 
           data={[
             {key: '1', value: '1'},
@@ -22,13 +38,13 @@ class InputNumber extends Component {
             {key: '9', value: '9'},
             {key: 'x', value: 'x'},
             {key: '0', value: '0'},
-						{key: '<', value: '4'},]}
+						{key: '<', value: '<'},]}
 					scrollEnabled={false}
           horizontal={false}
           vertical={true}
 					numColumns={3}
 					style={{width: 270, height: 360}}
-          renderItem={({item}) => <NumberItem onClick={this.props.onClick} value={item.value} text={item.key}/>
+          renderItem={({item}) => <NumberItem onClick={this.click} value={item.value} text={item.key}/>
           }
         />
 				<Text style={styles.text}>не пришёл код?</Text>
@@ -47,7 +63,11 @@ const styles = StyleSheet.create({
 		fontSize: 45,
 		lineHeight: 47,
 		padding: 0,
-		margin: 20
+    margin: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    letterSpacing: 10,
+    color: variables.colors.darkBlue
 	},
 	text: {
 		fontSize: 18,

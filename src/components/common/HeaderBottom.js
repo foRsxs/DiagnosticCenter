@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
 	text: {
     color: variables.colors.white,
     top: 10,
-    left: 12,
     fontFamily: variables.fonts.light,
     fontSize: variables.fSize.medium,
     lineHeight: 23,

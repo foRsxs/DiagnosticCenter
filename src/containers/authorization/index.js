@@ -65,45 +65,54 @@ requestCode = () =>{
   render() {
 		const { navigate } = this.props.navigation;
 		
-    console.log(this.props)
+		console.log(this.props)
+		const firstStep =
+		  <Container style={styles.container}>
+		    <View style={styles.header}>
+		    </View>
+		    <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+			    <View style={styles.oval} />
+		    </View>
+		    <View style={{ flexDirection: 'row', left: width/2-43, top: 35, zIndex: 1, position: 'absolute'}}>
+			    <Text style={this.state.rusOn?styles.langOn:styles.langOf} onPress={this.changeLang}>РУС</Text>
+			    <Text style={styles.langOf}>|</Text>
+			    <Text style={this.state.rusOn?styles.langOf:styles.langOn} onPress={this.changeLang}>KAZ</Text>
+		    </View>
+		    <Image style={{ alignItems: 'center', left: width/2-55, top: 70, zIndex: 1, position: 'absolute'}} source={require('../../../assets/img/logo.png')} />
+		    <KeyboardAwareScrollView style={{width: '100%', height: height-100,top: 30, paddingBotton: 30}}>
+			  <View style={styles.content}>
+				  <Text style={{textAlign: 'center', color: variables.colors.darkBlue, width: '100%'}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+				  <View style={{width:'100%'}}>
+					  <View style={{width:'100%', alignItems: 'center'}}>
+						  <TextInput style={styles.input} onChangeText={(text)=> this.onChangeNumber(text)} placeholder=''/>
+					  </View>
+					  <Text style={styles.textInp}>тел</Text>
+				  </View>
+				  <View style={{width:'100%'}}>
+					  <View style={{width:'100%', alignItems: 'center'}}>
+						  <TextInput style={styles.input} onChangeText={(text)=> this.onChangeId(text)} placeholder=''/>
+					  </View>
+					  <Text style={styles.textInp}>иин</Text>
+				  </View>
+				  <CustomBtn label='Запросить код' onClick={this.requestCode}/>
+			  </View> 
+		    </KeyboardAwareScrollView>
+    	</Container>
+		const secondStep =
+		  <Container style={styles.container}>
+		    <View style={styles.header}>
+		    </View>
+		    <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+			    <View style={styles.oval} />
+		   </View>
+		   <Text style={{left: width/2-90, top: 70, zIndex: 1, position: 'absolute', color: 'white', fontSize: variables.fSize.large}}>введите код из sms</Text>
+		   <InputNumber />
+    	</Container>
+		
     return (
 			<Container style={styles.container}>
 			{
-				(!this.state.requestCode)?
-				<Container style={styles.container}>
-				  <View style={styles.header}>
-				  </View>
-				  <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
-            <View style={styles.oval} />
-          </View>
-				
-					<View style={{ flexDirection: 'row', left: width/2-43, top: 35, zIndex: 1, position: 'absolute'}}>
-					  <Text style={this.state.rusOn?styles.langOn:styles.langOf} onPress={this.changeLang}>РУС</Text>
-					  <Text style={styles.langOf}>|</Text>
-					  <Text style={this.state.rusOn?styles.langOf:styles.langOn} onPress={this.changeLang}>KAZ</Text>
-				  </View>
-			
-					<Image style={{ alignItems: 'center', left: width/2-55, top: 70, zIndex: 1, position: 'absolute'}} source={require('../../../assets/img/logo.png')} />
-					<KeyboardAwareScrollView style={{width: '100%', height: height-100,top: 30, paddingBotton: 30}}>
-					  <View style={styles.content}>
-					    <Text style={{textAlign: 'center', color: variables.colors.darkBlue, width: '100%'}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
-				      <TextInput style={styles.input} onChangeText={(text)=> this.onChangeNumber(text)}/>
-				      <TextInput style={styles.input} onChangeText={(text)=> this.onChangeId(text)}/>
-					    <CustomBtn label='Запросить код' onClick={this.requestCode}/>
-				    </View> 
-					</KeyboardAwareScrollView>
-			  </Container> 
-			:
-			  <Container style={styles.container}>
-			    <View style={styles.header}>
-			    </View>
-			    <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
-				    <View style={styles.oval} />
-			    </View>
-			    <Text style={{left: width/2-90, top: 70, zIndex: 1, position: 'absolute', color: 'white', fontSize: variables.fSize.large}}>введите код из sms</Text>
-			    <InputNumber />
-		    </Container>
-				
+				(!this.state.requestCode) ? firstStep : secondStep
 			}
       </Container>
       )
@@ -116,6 +125,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: '100%',
 		backgroundColor: variables.colors.white,
+		paddingBottom: 5
 	},
 	header: {
 		width: '100%',
@@ -155,9 +165,9 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		// margin: 15,
-		width: '97%',
+		width: width-40,
 		height: 50,
-		paddingLeft: 10,
+		paddingLeft: 60,
 		paddingRight: 10,
 		// margin:10,
 		fontSize: variables.fSize.large,
@@ -166,7 +176,13 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderWidth: 1,
 		borderColor: 'rgba(112, 172, 245, 0.5)',
-		
+	},
+	textInp: {
+		position: 'absolute', 
+		marginLeft: 25, 
+		marginTop: 12, 
+		fontSize: variables.fSize.main,
+		color: variables.colors.lightBlack
 	}
 });
 

@@ -16,11 +16,11 @@ export default class NumberItem extends Component {
       }
     render(){
         let {pressStatus} = this.state;
-        const {value} = this.props
+        const {value, text} = this.props
         return(
           <View style={{width: 60, height: 60, margin: 5, marginLeft: 15, marginRight: 15}}>
           {
-            (this.props.text !== 'x' && this.props.text !== '<' )?
+            (text !== 'x' && text !== '<' )?
             <TouchableOpacity
             activeOpacity={1}
             onPress={() => this.props.onClick(value)}
@@ -37,11 +37,12 @@ export default class NumberItem extends Component {
               ? styles.TextActive
               : styles.Text
             }>
-            {this.props.text}
+            {text}
             </Text>
           </TouchableOpacity>: 
           <TouchableOpacity
             activeOpacity={1}
+            style={{width: 60, height: 60}}
             onPress={() => this.props.onClick(value)}
             onPressOut={this._onHideUnderlay.bind(this)}
             onPressIn={this._onShowUnderlay.bind(this)}
@@ -51,7 +52,7 @@ export default class NumberItem extends Component {
             ? styles.TextActive
             : styles.Text
             }>
-          {this.props.text}
+          {text}
           </Text>
           </TouchableOpacity>
           }
@@ -78,8 +79,6 @@ const styles = StyleSheet.create({
     Text: {
       top: 7,
       textAlign: 'center',
-    //   top: 12,
-    //   right: 50,
       fontSize: 38,
       lineHeight: 47,
       fontFamily: 'HelveticaNeue',
@@ -88,9 +87,7 @@ const styles = StyleSheet.create({
     TextActive: {
       top: 7,
       textAlign: 'center',
-    //   top: 12,
-    //   right: 50,
-      fontSize: 48,
+      fontSize: 38,
       lineHeight: 47,
       fontFamily: 'HelveticaNeue',
       color: variables.colors.white,

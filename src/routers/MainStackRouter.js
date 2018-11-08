@@ -33,7 +33,7 @@ import FuqScreen from '../containers/fuq';
 
 const MainScreenNavigator = StackNavigator({
     home: { 
-        screen: AthorizationScreen,
+        screen: HomeScreen,
         navigationOptions: {
             header: null
         }
@@ -158,7 +158,7 @@ const Drawer = DrawerNavigator(
   );
 
 const AppNavigator = createSwitchNavigator({
-    //Auth: Athorization,
+    // Auth: Athorization,
     Home: Drawer,
 });
 

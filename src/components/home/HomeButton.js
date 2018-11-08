@@ -21,7 +21,7 @@ class HomeButton extends Component {
             onPress={() => this.props.onClick()}
             style={styles.button}>
             <Image
-              style={{marginVertical: '8%'}}
+              style={{marginVertical: '8%', width: 58, height: 50}}
               source={imageUri}
             />
             <View style={styles.txtButtonWrap}>

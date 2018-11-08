@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {BackHandler, Image} from "react-native";
-import {Text, View, Header, Container, Footer, Content} from "native-base";
+import {Text, View, Header, Container, Content} from "native-base";
 import styles from './styles'
 import i18n from '../../i18n';
 import MenuItem from '../../components/menu/MenuItem';
@@ -41,9 +41,7 @@ class DrawerMenu extends React.Component {
           <MenuItem onClick={() => navigate("fuq")} label={i18n.t('MenuFuq')} imageUri={require('../../../assets/img/menu-fuq-ic.png')}/>
           <MenuItem onClick={() => navigate("settings")} label={i18n.t('MenuSet')} imageUri={require('../../../assets/img/menu-set-ic.png')}/>
         </Content>
-        <Footer style={styles.footer}>
-          <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuExit')} imageUri={require('../../../assets/img/menu-exit-ic.png')}/>
-        </Footer>
+        <MenuItem onClick={() => navigate("authorization")} label={i18n.t('MenuExit')} imageUri={require('../../../assets/img/menu-exit-ic.png')}/>
     </Container>
     );
   }

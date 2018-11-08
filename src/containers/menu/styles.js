@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: '100%',
     backgroundColor: 'white',
+    paddingBottom: 20
   },
   header: {
     backgroundColor: variables.colors.backgroundBlue,

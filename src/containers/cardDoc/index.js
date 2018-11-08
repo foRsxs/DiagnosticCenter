@@ -43,6 +43,7 @@ class DoctorScreen extends Component {
             source={require('../../../assets/img/man-icon.png')}
           />
         </View>
+        <Content style={{}}>
         <View style={styles.docInfoWrap}>
           <View style={styles.docInfo}>
             <View style={styles.docInfoBlock}>
@@ -65,7 +66,7 @@ class DoctorScreen extends Component {
             </View>
           </View>
         </View>
-        <Content style={{}}>
+        
           <View style={{paddingLeft: 30, paddingRight: 20, paddingTop: 10, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
@@ -80,10 +81,11 @@ class DoctorScreen extends Component {
               <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
+          <View style={{paddingHorizontal: 15, paddingTop: 50, paddingBottom: 20}}>
             <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={()=>navigate('receptions')}/>
           </View>
         </Content >
+        
       </Container>
     )
   }
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 160,
     paddingHorizontal: 20,
-    backgroundColor: variables.colors.backgroundBlue,
+    // backgroundColor: variables.colors.backgroundBlue,
     paddingBottom: 10,
     justifyContent: 'flex-end',
     marginTop: -10
