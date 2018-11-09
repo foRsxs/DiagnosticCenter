@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
       right: 50,
       fontSize: 18,
       lineHeight: 30,
+      fontFamily: variables.fonts.mainFont,
       color: variables.colors.mediumBlack,
     },
     TextActive: {
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
       right: 50,
       fontSize: 18,
       lineHeight: 30,
+      fontFamily: variables.fonts.mainFont,
       color: variables.colors.white,
     },
 });

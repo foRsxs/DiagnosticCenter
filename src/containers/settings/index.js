@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   headTxt: {
     fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack,
     width: '60%'
   }

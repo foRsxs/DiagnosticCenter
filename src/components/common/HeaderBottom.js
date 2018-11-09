@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
 	text: {
     color: variables.colors.white,
     top: 10,
-    fontFamily: variables.fonts.light,
-    fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.large,
     lineHeight: 23,
     letterSpacing: 1
 	},
@@ -120,7 +120,9 @@ const styles = StyleSheet.create({
 	input: {
 		width: width - 80 - 50,
     height: 25, 
-		top: 10,
+    top: 10,
+    padding: 0,
+    paddingHorizontal: 10,
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   addInfoText: {
     width: '70%',
     color: darkGray,
+    fontFamily: variables.fonts.mainFont,
     fontSize: small
   },
   specItem: {
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap'
   },
   specItemText: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: medium,
     color: lightBlack,
   },
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center' },
   icon: {
     color: 'white',
+    fontFamily: variables.fonts.mainFont,
     fontSize: medium
     }
 });

@@ -51,7 +51,7 @@ class ServicesScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
+        <View style={ styles.mainContainer }>
           <Container style={horizontalView?styles.horizontalWrap:styles.verticalWrap}>
             <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
             <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
@@ -126,10 +126,10 @@ const styles = StyleSheet.create({
     opacity: 1,
     height: '100%'
   },
-  opacityContainer: {
-    opacity: 0.1,
-    height: '100%'
-  }
+  // opacityContainer: {
+  //   opacity: 0.1,
+  //   height: '100%'
+  // }
 });
 
 export default ServicesScreen;

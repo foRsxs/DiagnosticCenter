@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
   },
   itemsTxt: {
     color: variables.colors.lightBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }
 });

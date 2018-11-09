@@ -51,8 +51,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       top: 0,
-      opacity: 0.5,
-      backgroundColor: 'white',
+      opacity: 0,
       position: 'relative',
       zIndex: 3
     },
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
       right: 10,
       textAlign: 'right',
       color: variables.colors.blue,
+      fontFamily: variables.fonts.mainFont,
       fontSize: 18,
       height: 60,
       lineHeight: 21,
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
       right: 50,
       fontSize: 18,
       lineHeight: 21,
+      fontFamily: variables.fonts.mainFont,
       color: variables.colors.mediumBlack,
     },
     TextActive: {
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
       right: 50,
       fontSize: 18,
       lineHeight: 21,
+      fontFamily: variables.fonts.mainFont,
       color: variables.colors.white,
     },
 });

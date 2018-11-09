@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     fontSize: variables.fSize.large,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack
   },
   timeItemAvaliable: {
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     fontSize: variables.fSize.large,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack
   },
   timeItemSelected: {
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     fontSize: variables.fSize.large,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack
   },
   unSelectedItem: {
@@ -152,6 +155,7 @@ const styles = StyleSheet.create({
   },
   itemsTxt: {
     color: variables.colors.lightBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }
 });

@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
     specItemText: {
       textAlign: 'center',
       lineHeight: 18,
+      fontFamily: variables.fonts.mainFont,
       fontSize: medium,
       color: lightBlack,
     },
     specItemSubText: {
+      fontFamily: variables.fonts.mainFont,
       fontSize: normal,
       color: blue,
     },
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
     },
     icon: {
       color: 'white',
+      fontFamily: variables.fonts.mainFont,
       fontSize: medium
     }
   });

@@ -17,8 +17,8 @@ const variables = {
         backgroundBlue: '#D8E8FC'
     },
     fonts: {
-        mainFont: 'Helvetica Light',
-        light: 'HelveticaNeueCyr'
+        mainFont: 'HelveticaNeueCyr',
+        // light: 'HelveticaNeueCyr'
     },
     fSize: {
         extralarge: 25,

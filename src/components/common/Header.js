@@ -85,14 +85,14 @@ const styles = StyleSheet.create({
     color: variables.colors.white,
     top: 10,
     fontFamily: variables.fonts.mainFont,
-    fontSize: 22,
+    fontSize: 25,
     lineHeight: 29,
   },
   inText: {
     color: variables.colors.darkBlue,
     top: 10,
-    fontFamily: 'HelveticaNeueCyr-Thin',
-    fontSize: 22,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: 25,
     lineHeight: 29,
    
   }

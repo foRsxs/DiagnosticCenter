@@ -55,12 +55,14 @@ const styles = StyleSheet.create({
   },
   questionItemText: {
     fontSize: variables.fSize.normal,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack,
     textAlign: 'left',
     width: '100%'
   },
   answerItemText: {
     fontSize: variables.fSize.normal,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue,
     textAlign: 'left',
     width: '100%'
@@ -76,5 +78,6 @@ const styles = StyleSheet.create({
   icon: {
     color:variables.colors.blue,  
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
   },
 });

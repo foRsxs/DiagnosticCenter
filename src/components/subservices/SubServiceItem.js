@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
   servItemText: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium,
     color: variables.colors.lightBlack,
     paddingLeft: 5
   },
   servItemTextActive: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium,
     color: 'white',
     paddingLeft: 5

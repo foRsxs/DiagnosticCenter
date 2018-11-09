@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: variables.colors.green
   },
   textBtn:{
-    // fontFamily: variables.fonts.mainFont, 
-    fontSize: variables.fSize.main, 
+    fontFamily: variables.fonts.mainFont, 
+    fontSize: variables.fSize.large, 
     lineHeight: 23, 
     textAlign: 'center',
     letterSpacing: 2

@@ -74,12 +74,14 @@ const styles = StyleSheet.create({
   },
   headTxt: {
     fontSize: variables.fSize.large, 
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack, 
     width: '100%', 
     textAlign: 'left',
   },
   subHeadTxt: {
     fontSize: variables.fSize.main, 
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.lightBlack, 
     width: '100%', 
     textAlign: 'left',
@@ -87,6 +89,7 @@ const styles = StyleSheet.create({
   },
   linkTxt: {
     fontSize: variables.fSize.main, 
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.wiolet, 
     width: '100%', 
     textAlign: 'left',

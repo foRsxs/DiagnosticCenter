@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   txtHead: {
     color: variables.colors.wiolet, 
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium, 
     width: '100%', 
     textAlign: 'center'
@@ -94,18 +95,21 @@ const styles = StyleSheet.create({
   },
   txtName: {
     color: variables.colors.mediumBlack, 
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large, 
     width: '100%', 
     textAlign: 'center'
   },
   txtSubname: {
     color: variables.colors.lightBlack, 
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.main, 
     width: '100%', 
     textAlign: 'center'
   },
   nameCab: {
     color: variables.colors.mediumBlack, 
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large, 
     width: '100%', 
     textAlign: 'center'

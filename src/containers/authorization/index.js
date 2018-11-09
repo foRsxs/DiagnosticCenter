@@ -105,7 +105,7 @@ requestCode = () =>{
 		    <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
 			    <View style={styles.oval} />
 		   </View>
-		   <Text style={{left: width/2-90, top: 70, zIndex: 1, position: 'absolute', color: 'white', fontSize: variables.fSize.large}}>введите код из sms</Text>
+		   <Text style={{left: width/2-90, top: 70, zIndex: 1, position: 'absolute', color: 'white', fontSize: variables.fSize.large, fontFamily: variables.fonts.mainFont}}>введите код из sms</Text>
 		   <InputNumber />
     	</Container>
 		
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
 		paddingRight: 10,
 		// margin:10,
 		fontSize: variables.fSize.large,
+		fontFamily: variables.fonts.mainFont,
 		color: variables.colors.lightBlack,
 		backgroundColor: 'rgba(78, 158, 255, 0.15)',
 		borderRadius: 10,
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
 		marginLeft: 25, 
 		marginTop: 12, 
 		fontSize: variables.fSize.main,
+		fontFamily: variables.fonts.mainFont,
 		color: variables.colors.lightBlack
 	}
 });

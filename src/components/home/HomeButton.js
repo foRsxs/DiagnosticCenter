@@ -59,6 +59,7 @@ class HomeButton extends Component {
       textAlign: 'center',  
       paddingVertical: '5%', 
       fontSize: variables.fSize.main,
+      fontFamily: variables.fonts.mainFont,
     }
   });
   

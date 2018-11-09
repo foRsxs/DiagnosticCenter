@@ -76,14 +76,17 @@ const styles = StyleSheet.create({
   },
   txtHeadServ: {
     color: variables.colors.mediumBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.normal
   },
   txtTime: {
     color: variables.colors.blue,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.main
   },
   txtName: {
     color: variables.colors.lightBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.small
   },
   deleteIcon: {
@@ -97,6 +100,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30,
     fontSize: variables.fSize.small,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue,
     position: 'absolute',
     bottom: 10,

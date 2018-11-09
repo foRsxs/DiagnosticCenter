@@ -62,18 +62,22 @@ const styles = StyleSheet.create({
   },
   txtHead: {
     color: variables.colors.mediumBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large
   },
   txtDate: {
     color: variables.colors.lightBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.normal
   },
   txtHeadActive: {
     color: 'white',
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large
   },
   txtDateActive: {
     color: 'white',
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.normal
   },
   priceBlock: {
@@ -86,18 +90,22 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue
   },
   priceUnit: {
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue
   },
   priceActive: {
     fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
     color: 'white'
   },
   priceUnitActive: {
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     color: 'white'
   }
 });

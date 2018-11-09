@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   servItemText: {
     fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.lightBlack,
     paddingLeft: 5
   },
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color:'white',  
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }
 });

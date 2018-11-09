@@ -39,11 +39,13 @@ const styles = StyleSheet.create({
     backgroundColor: variables.colors.backgroundBlue
   },
   input: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.main
   },
   textarea: {
     height: 200, 
     fontSize: variables.fSize.main, 
+    fontFamily: variables.fonts.mainFont,
     borderColor: variables.colors.blue, 
     borderRadius: 10, 
     backgroundColor: variables.colors.backgroundBlue

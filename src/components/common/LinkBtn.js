@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   buttonTxt: {
     color: variables.colors.darkBlue, 
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.main, 
     textAlign: 'center'
   }

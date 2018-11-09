@@ -59,11 +59,13 @@ const styles = StyleSheet.create({
   },
   questionItemText: {
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack,
     textAlign: 'justify'
   },
   answerItemText: {
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue,
     textAlign: 'justify',
     paddingTop: 5
@@ -75,11 +77,13 @@ const styles = StyleSheet.create({
   icon: {
     color:variables.colors.blue,  
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     paddingLeft: 10
   },
   buttonTextShow: {
     textAlign:'right', 
     fontSize: variables.fSize.main,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.blue, 
     alignItems: 'center'
   }

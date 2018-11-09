@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
   },
   specItemText: {
     fontSize: variables.fSize.medium,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.lightBlack,
   },
   specItemSubText: {
     fontSize: variables.fSize.normal,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.darkGray,
   },
   specIcon: {
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color:'white',  
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }
 });

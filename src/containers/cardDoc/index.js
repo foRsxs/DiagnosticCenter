@@ -53,10 +53,10 @@ class DoctorScreen extends Component {
                   <Rating rating={3.5} ratingMinimal={false} ratingDetail={true} like={140} unlike={3}/>
                 </View>
             </View>
-            <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>Высшая категория {"\n"}Общий стаж: 7 лет</Text>
+            <View style={{justifyContent: 'space-between', flexDirection: 'row', marginTop: 15}}>
+              <Text style={{fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack}}>Высшая категория {"\n"}Общий стаж: 7 лет</Text>
               <TouchableOpacity onPress={() => navigate('questions')} style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text uppercase={false} style={{fontSize: 12, color: variables.colors.wiolet, width:50, lineHeight: 10}}>задать вопрос врачу</Text>
+                <Text uppercase={false} style={{fontSize: 12, fontFamily: variables.fonts.mainFont, color: variables.colors.wiolet, width:50, lineHeight: 10}}>задать вопрос врачу</Text>
                 <Image
                   style={{width: 25, height: 25}}
                   resizeMode='cover'
@@ -70,15 +70,15 @@ class DoctorScreen extends Component {
           <View style={{paddingLeft: 30, paddingRight: 20, paddingTop: 10, backgroundColor: 'white'}}>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
             <View style={{position: 'relative', marginBottom: 10}}>
               <View style={styles.listIcon}></View>
-              <Text style={{fontSize: variables.fSize.main, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+              <Text style={{fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack}}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
             </View>
           </View>
           <View style={{paddingHorizontal: 15, paddingTop: 50, paddingBottom: 20}}>
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
   },
   docInfo: {
     flexDirection: 'column',
-    height: 130,
     justifyContent: 'space-between'
   },
   docInfoBlock: { 
@@ -130,11 +129,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   headTxt: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.extralarge,
     color: variables.colors.mediumBlack,
     lineHeight: 24
   },
   subHeadTxt: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium,
     color: variables.colors.blue
   },

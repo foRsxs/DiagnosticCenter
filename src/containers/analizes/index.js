@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   analizeTitle: {
     color: variables.colors.wiolet, 
     fontSize: variables.fSize.medium, 
+    fontFamily: variables.fonts.mainFont,
     width: '100%', 
     textAlign: 'center', 
     marginBottom: 10

@@ -13,12 +13,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 80,
-    paddingHorizontal: 10,
+    paddingLeft: 20,
     justifyContent: 'flex-start'
   },
   headerTxt: {
     paddingVertical: 30,
-    fontSize: variables.fSize.main
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.large
   },
   footer: {
     height: 80, 

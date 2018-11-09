@@ -41,10 +41,12 @@ const styles = StyleSheet.create({
   },
   txtHead: {
     color: variables.colors.mediumBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   },
   txtDate: {
     color: variables.colors.lightBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.normal
   },
   sendIcon: {

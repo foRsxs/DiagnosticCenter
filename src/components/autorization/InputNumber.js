@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		height: 50,
-		fontSize: 45,
+    fontSize: 45,
+    fontFamily: variables.fonts.mainFont,
 		lineHeight: 47,
 		padding: 0,
     margin: 15,
@@ -70,7 +71,8 @@ const styles = StyleSheet.create({
     color: variables.colors.darkBlue
 	},
 	text: {
-		fontSize: 18,
+    fontSize: 18,
+    fontFamily: variables.fonts.mainFont,
 		color: variables.colors.darkBlue
 	}
 })
