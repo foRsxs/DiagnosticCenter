@@ -80,22 +80,26 @@ requestCode = () =>{
 		    </View>
 		    <Image style={{ alignItems: 'center', left: width/2-55, top: 70, zIndex: 1, position: 'absolute'}} source={require('../../../assets/img/logo.png')} />
 		    <KeyboardAwareScrollView style={{width: '100%', height: height-100,top: 30, paddingBotton: 30}}>
-			  <View style={styles.content}>
-				  <Text style={{textAlign: 'center', color: variables.colors.darkBlue, width: '100%'}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
-				  <View style={{width:'100%'}}>
-					  <View style={{width:'100%', alignItems: 'center'}}>
-						  <TextInput style={styles.input} onChangeText={(text)=> this.onChangeNumber(text)} placeholder=''/>
-					  </View>
-					  <Text style={styles.textInp}>тел</Text>
-				  </View>
-				  <View style={{width:'100%'}}>
-					  <View style={{width:'100%', alignItems: 'center'}}>
-						  <TextInput style={styles.input} onChangeText={(text)=> this.onChangeId(text)} placeholder=''/>
-					  </View>
-					  <Text style={styles.textInp}>иин</Text>
-				  </View>
-				  <CustomBtn label='Запросить код' onClick={this.requestCode}/>
-			  </View> 
+			    <View style={styles.content}>
+				    <Text style={{textAlign: 'center', color: variables.colors.darkBlue, width: '100%'}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+				    <View style={{width:'100%'}}>
+					    <View style={{width:'100%', alignItems: 'center'}}>
+						    <TextInput keyboardType='number-pad' style={styles.input} onChangeText={(text)=> this.onChangeNumber(text)} placeholder=''/>
+					    </View>
+					    <View style={styles.blockInp}>
+					        <Text style={styles.textInp}>тел</Text>
+					    </View>
+				    </View>
+				    <View style={{width:'100%'}}>
+					    <View style={{width:'100%', alignItems: 'center'}}>
+						    <TextInput style={styles.input} onChangeText={(text)=> this.onChangeId(text)} placeholder=''/>
+					    </View>
+					    <View style={styles.blockInp}>
+					        <Text style={styles.textInp}>иин</Text>
+					    </View>
+				    </View>
+				    <CustomBtn label='Запросить код' onClick={this.requestCode}/>
+			    </View> 
 		    </KeyboardAwareScrollView>
     	</Container>
 		const secondStep =
@@ -178,14 +182,18 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'rgba(112, 172, 245, 0.5)',
 	},
-	textInp: {
+	blockInp: {
 		position: 'absolute', 
+		height: 50,
 		marginLeft: 25, 
-		marginTop: 12, 
+		justifyContent: 'center', 
+	},
+	textInp: {
 		fontSize: variables.fSize.main,
 		fontFamily: variables.fonts.mainFont,
 		color: variables.colors.lightBlack
 	}
+
 });
 
 export default AuthorizationScreen;
