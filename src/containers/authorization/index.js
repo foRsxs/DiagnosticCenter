@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Alert, Dimensions, Image, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Alert, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import TouchID from 'react-native-touch-id';
 
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -25,16 +26,20 @@ class AuthorizationScreen extends Component {
       personalId: '',
       methods_auth_local: 'code',
       message: '',
-      loading: false
+      loading: false,
+      isTouchId: false,
+      isFaceId: false
     };
   }
 
   componentDidMount() {
     SplashScreen.hide();
+    this._checkTouchSupport();
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.confirmed_auth) this.props.navigation.navigate('home')
+    if (newProps.confirmed_auth) this.props.navigation.navigate('home');
+    
   }
 
   changeLang = () => {
@@ -70,13 +75,46 @@ class AuthorizationScreen extends Component {
     }
   }
 
+  _checkTouchSupport = () => {
+    TouchID.isSupported()
+      .then(biometryType => {
+        if (biometryType === 'FaceID') {
+          // Face ID is supported on IOS
+          this.setState({isFaceId: true});
+        } else if (biometryType === 'TouchID'){
+          // Touch ID is supported on IOS
+          this.setState({isTouchId: true}) ;         
+        } else if (biometryType === true) {
+          // Touch ID is supported on Android
+          this.setState({isTouchId: true}) ;    
+	      }
+      })
+      .catch(() => {
+        this.setState({isTouchId: false, isFaceId: false})
+      });
+    if (this.props.methods_auth == 'touch' || this.props.methods_auth == 'false') this._openScan();
+  }
+
+  _openScan = () => {
+    const optionalConfigObject = {
+      title: "Требуется авторизация", // Android
+      color: "#000", // Android
+      sensorDescription: (this.state.isTouchId) ? "Отпечаток пальца": "Скан лица", // Android
+      cancelText: "Отмена", // Android
+    }
+    TouchID.authenticate('',optionalConfigObject)
+    .then(() => {
+      this.props.setAuthorized();
+    })
+  }
+
   renderConfirmCodeChoose() {
-    let {methods_auth_local} = this.state;
+    let {methods_auth_local, isFaceId, isTouchId} = this.state;
     let {changeMethodsAuth} = this.props;
 
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1, justifyContent: 'space-between', padding: 15}}>
-        <Text style={styles.title}>Выберите метод входа:</Text>
+        <Text style={styles.title}>Выберите метод входа</Text>
         <Content>
           <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'code'})}>
             <Left>
@@ -86,22 +124,30 @@ class AuthorizationScreen extends Component {
               <CheckBox onPress={()=>this.setState({methods_auth_local:'code'})} checked={(methods_auth_local==='code')} color={blue}/>
             </Right>
           </ListItem>
-          <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'touch'})}>
-            <Left>
-              <Text >Touch Id</Text>
-            </Left>
-            <Right>
-              <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={blue}/>
-            </Right>
-          </ListItem>
-          <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'face'})}>
-            <Left>
-              <Text >Face Id</Text>
-            </Left>
-            <Right>
-              <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={blue}/>
-            </Right>
-          </ListItem>
+          {
+            (isTouchId) && (
+              <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'touch'})}>
+                <Left>
+                  <Text >Touch Id</Text>
+                </Left>
+                <Right>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={blue}/>
+                </Right>
+              </ListItem>
+            )
+          }
+          {
+            (isFaceId) && (
+              <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'face'})}>
+                <Left>
+                  <Text >Face Id</Text>
+                </Left>
+                <Right>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={blue}/>
+                </Right>
+              </ListItem>
+            )
+          }
         </Content>
         <CustomBtn label='Сохранить' onClick={()=> changeMethodsAuth(methods_auth_local)} />
       </View>
@@ -126,7 +172,7 @@ class AuthorizationScreen extends Component {
               <View style={{ alignItems: 'center' }}>
                 <TextInput style={styles.input} onChangeText={(text) => this.onChangeNumber(text)} placeholder='' />
               </View>
-              <Text style={styles.textInp}>тел</Text>
+              <Text style={styles.textInp} keyboardType='number-pad'>тел</Text>
             </View>
             <View>
               <View style={{ alignItems: 'center' }}>
@@ -142,6 +188,20 @@ class AuthorizationScreen extends Component {
       </View>
     )
   }
+
+  renderTouchFaceId() {
+    const {isTouchId} = this.state;
+
+    return (
+      <View style={{position: 'relative', zIndex: 2, flex: 1}} >
+        <Text style={styles.title}>{(isTouchId)?'Авторизация через Touch id': 'Авторизация через Face id'}</Text> 
+        <TouchableOpacity onPress={()=>this._openScan()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} activeOpacity={1}>
+          <Text style={{color: 'transparent'}}>122</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  
 
   renderPinCode(type) {
     const {message} = this.state;
@@ -177,6 +237,7 @@ class AuthorizationScreen extends Component {
         {(token && !methods_auth) && this.renderConfirmCodeChoose()}
         {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
         {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
+        {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
       </Container>
     )
   }

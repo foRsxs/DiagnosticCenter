@@ -30,6 +30,7 @@
 		93BE82A7CE004B2D8AE00488 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92B3EDE8AF184582AEA67667 /* SimpleLineIcons.ttf */; };
 		93F3F9D30C1E4362BF98B1E2 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F58402E3B4DA381B15290 /* Ionicons.ttf */; };
 		A31EE74BB2B74D6B91162EAE /* Helvetica-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC2342EE9B45499980DD546D /* Helvetica-Light.ttf */; };
+		A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB58051720F48DE952F62AB /* libTouchID.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF26A66CA45741B3821C37D3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */; };
 		CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B1D112181AAC300CD5FF7 /* libRNLanguages.a */; };
@@ -324,6 +325,13 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		CE852CDC219C673900D11EFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 680AAE1473184A748480CF1C /* TouchID.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = TouchID;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -351,6 +359,7 @@
 		42305AA44C404BA890FAF2AA /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		48B347E2567B40B1A065BD6C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		680AAE1473184A748480CF1C /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -365,6 +374,7 @@
 		CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLanguages.xcodeproj; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; };
 		CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -387,6 +397,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +545,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				680AAE1473184A748480CF1C /* TouchID.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -555,6 +567,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CFC9F43904D34EB496813B66 /* Resources */,
+				CE852CB0219C672C00D11EFA /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -591,6 +604,22 @@
 			isa = PBXGroup;
 			children = (
 				CE4B3F39219AE445002E92AA /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE852CB0219C672C00D11EFA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				EFB58051720F48DE952F62AB /* libTouchID.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		CE852CD9219C673700D11EFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE852CDD219C673900D11EFA /* libTouchID.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -716,6 +745,10 @@
 				{
 					ProductGroup = CE4B3F0E219AE445002E92AA /* Products */;
 					ProjectRef = CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */;
+				},
+				{
+					ProductGroup = CE852CD9219C673700D11EFA /* Products */;
+					ProjectRef = 680AAE1473184A748480CF1C /* TouchID.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1006,6 +1039,13 @@
 			remoteRef = CE4B3F38219AE445002E92AA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CE852CDD219C673900D11EFA /* libTouchID.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchID.a;
+			remoteRef = CE852CDC219C673900D11EFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1074,11 +1114,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6SMF8XRHEF;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-splash-screen/ios";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+				);
 				INFOPLIST_FILE = medicina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/medicina\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1099,11 +1146,18 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6SMF8XRHEF;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-splash-screen/ios";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
+				);
 				INFOPLIST_FILE = medicina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/medicina\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

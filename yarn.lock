@@ -2204,6 +2204,13 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+follow-redirects@0.0.7:
+  version "0.0.7"
+  resolved "http://registry.npmjs.org/follow-redirects/-/follow-redirects-0.0.7.tgz#34b90bab2a911aa347571da90f22bd36ecd8a919"
+  dependencies:
+    debug "^2.2.0"
+    stream-consume "^0.1.0"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -4583,6 +4590,12 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-axios@^0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/react-native-axios/-/react-native-axios-0.17.1.tgz#44292950aa07ceee2e4bd349106ff773bef81f8f"
+  dependencies:
+    follow-redirects "0.0.7"
+
 react-native-button@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-2.3.0.tgz#7d0a90095d415b0edf98a904556a7c4439646568"
@@ -4694,6 +4707,10 @@ react-native-tab-view@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.2.0.tgz#0cc26a1c8e49b6c0d58a30363dbbe43954907c31"
   dependencies:
     prop-types "^15.6.1"
+
+react-native-touch-id@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-touch-id/-/react-native-touch-id-4.3.0.tgz#c25abd1d03d1ce5075f73ca87b18b47e7d60fa71"
 
 react-native-vector-icons@4.6.0, react-native-vector-icons@^4.5.0:
   version "4.6.0"
@@ -5452,6 +5469,10 @@ stealthy-require@^1.1.0:
 stream-buffers@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/stream-buffers/-/stream-buffers-2.2.0.tgz#91d5f5130d1cef96dcfa7f726945188741d09ee4"
+
+stream-consume@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/stream-consume/-/stream-consume-0.1.1.tgz#d3bdb598c2bd0ae82b8cac7ac50b1107a7996c48"
 
 strict-uri-encode@^2.0.0:
   version "2.0.0"
