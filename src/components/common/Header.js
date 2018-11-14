@@ -13,7 +13,6 @@ export default class Header extends Component {
   }
   render(){
     const { inversion = false, backDisabled = false} = this.props
-    console.log('nav', this.props.navigation)
     return(
       <View style={!inversion ? styles.container : styles.inContainer}>
       <View style={styles.btnContainer}>

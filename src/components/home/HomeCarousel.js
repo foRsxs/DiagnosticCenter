@@ -30,7 +30,6 @@ class HomeCarousel extends Component {
     }
   
     _renderItem = ( {item, index} ) => {
-      console.log("rendering,", index, item)
       return (
         <View style={styles.wrapSlide}>
               <Image

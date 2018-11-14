@@ -7,7 +7,6 @@ import HomeCarousel from '../../components/home/HomeCarousel';
 import HomeButton from '../../components/home/HomeButton';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 class HomeScreen extends Component {
 

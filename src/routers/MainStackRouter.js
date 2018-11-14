@@ -22,14 +22,14 @@ import ReceptionsScreen from '../containers/receprions';
 import TimeScreen from '../containers/time';
 import FuqScreen from '../containers/fuq';
 
-// const Athorization = StackNavigator({
-//     authorization: { 
-//         screen: AthorizationScreen,
-//         navigationOptions: {
-//             header: null
-//         }
-//     },
-// });
+const Athorization = StackNavigator({
+    authorization: { 
+        screen: AthorizationScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+});
 
 const MainScreenNavigator = StackNavigator({
     home: { 
@@ -158,7 +158,7 @@ const Drawer = DrawerNavigator(
   );
 
 const AppNavigator = createSwitchNavigator({
-    // Auth: Athorization,
+    Auth: Athorization,
     Home: Drawer,
 });
 

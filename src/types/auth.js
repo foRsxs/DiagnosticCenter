@@ -1,0 +1,4 @@
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const SET_METHODS_AUTH = 'SET_METHODS_AUTH';
+export const SET_PIN_CODE = 'SET_PIN_CODE';
+export const SET_AUTHORIZED = 'SET_AUTHORIZED';

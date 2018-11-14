@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, TextInput, FlatList} from 'react-native';
 
-import variables from '../../styles/variables'
-import NumberItem from '../common/NumberItem'
+import variables from '../../styles/variables';
+import NumberItem from '../common/NumberItem';
+import CustomBtn from '../common/CustomBtn';
 
 class InputNumber extends Component {
   constructor(props) {
@@ -11,10 +12,10 @@ class InputNumber extends Component {
        codeNumber: '',
     };
   }
-  click = (value) =>{
-    console.log(value)
-    if(value !== 'x' && value !== '<'){
-      this.setState({codeNumber: this.state.codeNumber + value})
+  click = (value) => {
+    const {codeNumber} = this.state; 
+    if(value !== 'x' && value !== '<' && codeNumber.length <= 3){
+      this.setState({codeNumber: codeNumber + value})
     } else if (value === 'x'){
       this.setState({codeNumber: ''})
     } else if (value === '<'){
@@ -22,6 +23,9 @@ class InputNumber extends Component {
     }
   }
   render(){
+    const {codeNumber} = this.state;
+    const {onPress, message} = this.props;
+  
     return(
       <View style={styles.container}>
 			  <TextInput style={styles.input} value={this.state.codeNumber} onChangeText={(text)=> this.onChangeNumber(text)} editable = {false}/>
@@ -43,20 +47,23 @@ class InputNumber extends Component {
           horizontal={false}
           vertical={true}
 					numColumns={3}
-					style={{width: 270, height: 360}}
+					style={{width: 270, height: 290}}
           renderItem={({item}) => <NumberItem onClick={this.click} value={item.value} text={item.key}/>
           }
         />
-				<Text style={styles.text}>не пришёл код?</Text>
+        {(message.length) ?<Text style={styles.message}>{message}</Text>: false}
+        {/* <Text style={styles.text}>не пришёл код?</Text> */}
+        {(codeNumber.length === 4) && <CustomBtn label='Сохранить' onClick={()=> onPress(codeNumber)} />}
       </View>
     )
   }
 }
 const styles = StyleSheet.create({
 	container: {
+    //flex: 1,
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		height: '75%'
+		// height: '100%'
 	},
 	input: {
 		height: 50,
@@ -71,9 +78,16 @@ const styles = StyleSheet.create({
     color: variables.colors.darkBlue
 	},
 	text: {
+    marginVertical: 10,
     fontSize: 18,
     fontFamily: variables.fonts.mainFont,
 		color: variables.colors.darkBlue
-	}
+  },
+  message: {
+    marginVertical: 10,
+    fontSize: 18,
+    fontFamily: variables.fonts.mainFont,
+		color: 'red'
+  }
 })
 export default InputNumber
