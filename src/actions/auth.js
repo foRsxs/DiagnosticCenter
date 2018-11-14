@@ -23,7 +23,7 @@ export function authUser(data) {
 }
 
 export function saveUser(data) {
-  //_storeData('methods_auth', data);
+  _storeData('api_token', data.api_token);
   return {
     type: types.SET_USER_DATA,
     user: data
@@ -31,15 +31,15 @@ export function saveUser(data) {
 }
 
 export function changeMethodsAuth(data) {
-  //_storeData('methods_auth', data);
+  _storeData('methods_auth', data.methods_auth);
   return {
     type: types.SET_METHODS_AUTH,
-    methods_auth: data
+    data: data
   }
 }
 
 export function savePinCode(data) {
-  //_storeData('methods_auth', data);
+  _storeData('pinCode', data.code);
   return {
     type: types.SET_PIN_CODE,
     code: data
@@ -56,7 +56,7 @@ export function setAuthorized() {
 //Storage
 _storeData = async (name, params) => {
   try {
-    await AsyncStorage.setItem(name, JSON.stringify(params));
+    await AsyncStorage.setItem(name, params);
   } catch (error) {
     Alert.alert(JSON.stringify(error));
   }

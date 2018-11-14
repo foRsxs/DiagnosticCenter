@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Alert, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
@@ -33,8 +33,18 @@ class AuthorizationScreen extends Component {
   }
 
   componentDidMount() {
-    SplashScreen.hide();
     this._checkTouchSupport();
+    //AsyncStorage.clear()
+    AsyncStorage.getItem('api_token').then((resp)=>{
+      this.props.saveUser({api_token: resp});
+    })
+    AsyncStorage.getItem('methods_auth').then((resp)=>{
+      this.props.changeMethodsAuth({methods_auth: resp, confirmed: false});
+    })
+    AsyncStorage.getItem('pinCode').then((resp)=>{
+      this.props.savePinCode({code:resp, confirmed: false});
+      SplashScreen.hide()
+    }) 
   }
 
   componentWillReceiveProps(newProps) {
@@ -92,10 +102,10 @@ class AuthorizationScreen extends Component {
       .catch(() => {
         this.setState({isTouchId: false, isFaceId: false})
       });
-    if (this.props.methods_auth == 'touch' || this.props.methods_auth == 'false') this._openScan();
   }
 
   _openScan = () => {
+    console.log(1)
     const optionalConfigObject = {
       title: "Требуется авторизация", // Android
       color: "#000", // Android
@@ -149,7 +159,7 @@ class AuthorizationScreen extends Component {
             )
           }
         </Content>
-        <CustomBtn label='Сохранить' onClick={()=> changeMethodsAuth(methods_auth_local)} />
+        <CustomBtn label='Сохранить' onClick={()=> changeMethodsAuth({methods_auth: methods_auth_local, confirmed: true})} />
       </View>
     )
   }
@@ -191,7 +201,7 @@ class AuthorizationScreen extends Component {
 
   renderTouchFaceId() {
     const {isTouchId} = this.state;
-
+    this._openScan()
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}} >
         <Text style={styles.title}>{(isTouchId)?'Авторизация через Touch id': 'Авторизация через Face id'}</Text> 
@@ -213,7 +223,7 @@ class AuthorizationScreen extends Component {
           <ConfirmationCode message={message} onPress={
             (code)=> {
               if (type == 'new') {
-                this.props.savePinCode(code)
+                this.props.savePinCode({code: code, confirmed: true})
               } else {
                 this._confirmCode(code);
               }

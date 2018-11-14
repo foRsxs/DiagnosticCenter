@@ -1,7 +1,7 @@
 import * as types from '../types/auth';
 
 const initialState = {
-  token: 123,
+  token: null,
   confirmed_auth: false,
   methods_auth: null,
   pinCode: null,
@@ -19,14 +19,14 @@ export default function authReducer(state = initialState, action) {
     case types.SET_METHODS_AUTH:
       return {
         ...state,
-        methods_auth: action.methods_auth,
-        confirmed_auth: (action.methods_auth !== 'code')? true : state.confirmed_auth,
+        methods_auth: action.data.methods_auth,
+        confirmed_auth: action.data.confirmed,
       }
     case types.SET_PIN_CODE:
       return {
         ...state,
-        code: action.code,
-        confirmed_auth: true
+        pinCode: action.code.code,
+        confirmed_auth: action.code.confirmed,
       }
     case types.SET_AUTHORIZED:
       return {
