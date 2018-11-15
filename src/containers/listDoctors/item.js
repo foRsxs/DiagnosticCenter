@@ -2,23 +2,27 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, Image, Dimensions, TouchableOpacity, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
+import * as ContentActions from '../../actions/content';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
 import Rating from '../../components/common/Rating';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-let {width, height} = Dimensions.get('window')
 
 class DoctorScreen extends Component {
-
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      keyid: (props.navigation.state.params)? props.navigation.state.params.keyid: null,
+    };
   }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    this.props.getDoctor(this.state.keyid)
   }
 
   componentWillUnmount() {
@@ -157,4 +161,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DoctorScreen;
+function mapStateToProps(state) {
+  return {
+    doctor: state.content.doctorData,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DoctorScreen)

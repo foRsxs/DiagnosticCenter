@@ -13,6 +13,7 @@ class ServicesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
       showSortList: false
     };
   }
@@ -46,8 +47,8 @@ class ServicesScreen extends Component {
       <View>
         <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-              <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
-              <HeaderBottom search={true} sortBtn={true} onClick={this.change} onChange={this.handleChange}/>
+              <Header text="УСЛУГИ" navigation = {this.props.navigation}/>
+              <HeaderBottom search={true} sortBtn={false} onChange={this.handleChange}/>
               <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
                 <ServiceItem onClick={() => navigate("subservices")} headTxt='Вакцинация'/>
               </Content >

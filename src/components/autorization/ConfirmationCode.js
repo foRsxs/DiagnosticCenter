@@ -60,7 +60,7 @@ class InputNumber extends Component {
 }
 const styles = StyleSheet.create({
 	container: {
-    //flex: 1,
+    flex: 1,
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		// height: '100%'

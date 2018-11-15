@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   headerTxt: {
-    paddingVertical: 30,
+    paddingTop: 8,
     fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large
   },

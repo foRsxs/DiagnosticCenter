@@ -4,7 +4,7 @@ const variables = {
         lightBlue: 'rgba(78, 158, 255, 0.25)',
         darkBlue: '#1C6693',
         white: '#ffffff',
-        black: '#000000',
+        black: '#383838',
         lightBlack: '#2A425F',
         mediumBlack: '#24253D',
         lightGray: 'rgba(78, 158, 255, 0.1)',

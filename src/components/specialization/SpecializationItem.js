@@ -3,7 +3,7 @@ import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Text, View, Icon} from 'native-base';
 import variables from '../../styles/variables'
 
-export default class SpecilizationItem extends Component {
+export default class SpecializationItem extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -21,14 +21,15 @@ export default class SpecilizationItem extends Component {
             style={styles.specIcon}
             resizeMode='contain'
             source={imageUri}
+            fadeDuration={0}
           />
           <View style={styles.wrapTxt}>
-              <Text style={styles.specItemText}>
-                  {headTxt}
-              </Text>
-              <Text style={styles.specItemSubText}>
-                  {subTxt}
-              </Text>
+            <Text style={styles.specItemText}>
+                {headTxt}
+            </Text>
+            <Text style={styles.specItemSubText}>
+                {subTxt}
+            </Text>
           </View>
         </View>
         <View style={styles.arrowWrap}>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   },
   specIcon: {
     position: 'absolute',
-    top: 5,
+    top: '50%'-15,
     left: 10,
     width: 30, 
     height: 30,

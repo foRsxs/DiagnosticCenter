@@ -3,12 +3,13 @@ import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-na
 import HomeScreen from '../containers/home';
 import AthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
-import SpecilizationScreen from '../containers/specilization';
+import SpecializationScreen from '../containers/specialization';
 import ServicesScreen from '../containers/services';
 import SubServicesScreen from '../containers/subservices';
 import QuestionsScreen from '../containers/questions';
 import QuestionFormScreen from '../containers/questionForm';
-import CatalogScreen from '../containers/catalog';
+import CatalogScreen from '../containers/listDoctors';
+import DoctorScreen from '../containers/listDoctors/item';
 import OftenQuestionsScreen from '../containers/oftenquestions';
 import ReceptionInfoScreen from '../containers/receptionInfo';
 import ReceptionListScreen from '../containers/receptionList';
@@ -16,7 +17,6 @@ import AnalizesScreen from '../containers/analizes';
 import ContactsScreen from '../containers/contacts';
 import SettingsScreen from '../containers/settings';
 import TextScreen from '../containers/textScreen';
-import DoctorScreen from '../containers/cardDoc';
 import CalendarDateScreen from '../containers/calendar/date';
 import ReceptionsScreen from '../containers/receprions';
 import TimeScreen from '../containers/time';
@@ -38,8 +38,8 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    specilization: { 
-        screen: SpecilizationScreen,
+    specialization: { 
+        screen: SpecializationScreen,
         navigationOptions: {
             header: null
         }
@@ -64,12 +64,6 @@ const MainScreenNavigator = StackNavigator({
     },
     questionForm: { 
         screen: QuestionFormScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    catalog: { 
-        screen: CatalogScreen,
         navigationOptions: {
             header: null
         }
@@ -116,8 +110,14 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    cardDoc: { 
+    doctor: { 
         screen: DoctorScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    listDoctors: { 
+        screen: CatalogScreen,
         navigationOptions: {
             header: null
         }

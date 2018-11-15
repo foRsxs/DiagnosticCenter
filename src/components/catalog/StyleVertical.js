@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
       overflow: 'hidden',
-      width: '100%'
+      width: '100%',
+      flex: 1,
+      height: 210
     },
     wrapTxt: {
       alignItems: 'center',

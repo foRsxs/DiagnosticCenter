@@ -43,8 +43,9 @@ class AuthorizationScreen extends Component {
     })
     AsyncStorage.getItem('pinCode').then((resp)=>{
       this.props.savePinCode({code:resp, confirmed: false});
-      SplashScreen.hide()
+      SplashScreen.hide();
     }) 
+    //this.props.navigation.navigate('specialization')
   }
 
   componentWillReceiveProps(newProps) {
@@ -76,7 +77,6 @@ class AuthorizationScreen extends Component {
   }
 
   _confirmCode = (code) => {
-
     if (+code === +this.props.pinCode) {
       this.setState({message: ''});
       this.props.setAuthorized();
@@ -105,7 +105,6 @@ class AuthorizationScreen extends Component {
   }
 
   _openScan = () => {
-    console.log(1)
     const optionalConfigObject = {
       title: "Требуется авторизация", // Android
       color: "#000", // Android
@@ -123,7 +122,7 @@ class AuthorizationScreen extends Component {
     let {changeMethodsAuth} = this.props;
 
     return (
-      <View style={{position: 'relative', zIndex: 2, flex: 1, justifyContent: 'space-between', padding: 15}}>
+      <View style={{position: 'relative', zIndex: 2, flex: 1}}>
         <Text style={styles.title}>Выберите метод входа</Text>
         <Content>
           <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'code'})}>
@@ -138,7 +137,7 @@ class AuthorizationScreen extends Component {
             (isTouchId) && (
               <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'touch'})}>
                 <Left>
-                  <Text >Touch Id</Text>
+                  <Text >Touch ID</Text>
                 </Left>
                 <Right>
                   <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={blue}/>
@@ -150,7 +149,7 @@ class AuthorizationScreen extends Component {
             (isFaceId) && (
               <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'face'})}>
                 <Left>
-                  <Text >Face Id</Text>
+                  <Text >Face ID</Text>
                 </Left>
                 <Right>
                   <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={blue}/>
@@ -159,7 +158,7 @@ class AuthorizationScreen extends Component {
             )
           }
         </Content>
-        <CustomBtn label='Сохранить' onClick={()=> changeMethodsAuth({methods_auth: methods_auth_local, confirmed: true})} />
+        <CustomBtn label='Сохранить' onClick={()=> changeMethodsAuth({methods_auth: methods_auth_local, confirmed: (methods_auth_local === 'code')? false: true})} />
       </View>
     )
   }
@@ -168,14 +167,14 @@ class AuthorizationScreen extends Component {
     const {message, loading} = this.state;
 
     return (
-      <View style={{position: 'relative', zIndex: 2, alignItems: 'center', flex: 1}}>
+      <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150}}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', width: width, top: -95, position: 'absolute' }}>
           <Text style={this.state.rusOn ? styles.langOn : styles.langOf} onPress={this.changeLang}>РУС</Text>
           <Text style={styles.langOf}>|</Text>
           <Text style={this.state.rusOn ? styles.langOf : styles.langOn} onPress={this.changeLang}>KAZ</Text>
         </View>
-        <Image style={{top: -60, position: 'absolute', zIndex: 1 }} fadeDuration={0} source={require('../../../assets/img/logo.png')} />
-        <KeyboardAwareScrollView contentContainerStyle={{flex: 1, paddingHorizontal: 15, paddingBottom: 20, justifyContent: 'space-around',}}>
+ 
+          <Image style={{top: -60, position: 'absolute', zIndex: 1 }} fadeDuration={0} source={require('../../../assets/img/logo.png')} />
           <View style={styles.content}>
             <Text style={{ textAlign: 'center', color: variables.colors.darkBlue, marginTop: 55, marginBottom: 40}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
             <View style={{marginBottom: 20}}>
@@ -191,10 +190,9 @@ class AuthorizationScreen extends Component {
               <Text style={styles.textInp}>иин</Text>
             </View>
             {(message.length)?<Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>:false}
+           
           </View>
-          {(loading)? (<ActivityIndicator size="small" color={blue} />): (<CustomBtn label='Запросить код' onClick={()=>this.authUser()} />)}
-          
-        </KeyboardAwareScrollView>
+          {(loading)? (<ActivityIndicator size="small" color={blue} />): (<CustomBtn label='Запросить код' onClick={()=>this.authUser()} />)}    
       </View>
     )
   }
@@ -219,7 +217,7 @@ class AuthorizationScreen extends Component {
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}}>
         <Text style={styles.title}>{(type == 'new')?'Создайте пин код': 'Введите пин код'}</Text> 
-        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15}} >      
+        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, height: '100%'}} >      
           <ConfirmationCode message={message} onPress={
             (code)=> {
               if (type == 'new') {
@@ -239,15 +237,17 @@ class AuthorizationScreen extends Component {
 
     return (
       <Container style={styles.container}>
-        <View style={styles.header} />
-        <View style={{ alignItems: 'center', marginTop: -width + height / 25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
-          <View style={styles.oval} />
-        </View>
-        {(!token) && this.renderAuthView()}
-        {(token && !methods_auth) && this.renderConfirmCodeChoose()}
-        {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
-        {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
-        {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
+        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' style={{flex:1}} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 15, paddingBottom: 20, justifyContent: 'space-around'}} >
+          <View style={styles.header} />
+          <View style={{ alignItems: 'center', marginTop: -width + height / 25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+            <View style={styles.oval} />
+          </View>
+          {(!token) && this.renderAuthView()}
+          {(token && !methods_auth) && this.renderConfirmCodeChoose()}
+          {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
+          {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
+          {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
+        </KeyboardAwareScrollView>
       </Container>
     )
   }
@@ -255,6 +255,7 @@ class AuthorizationScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: '100%',
     height: '100%',
     backgroundColor: variables.colors.white,
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
     color: variables.colors.lightBlack
   },
   title: {
-    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, textAlign: 'center', width: width, left: 0
+    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: '100%', 
   }
 });
 
@@ -332,5 +333,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorizationScreen)
-
-{/* <Text style={{ left: width / 2 - 90, top: 70, zIndex: 1, position: 'absolute', color: 'white', fontSize: variables.fSize.large, fontFamily: variables.fonts.mainFont }}>введите код из sms</Text> */}

@@ -23,7 +23,7 @@ export function authUser(data) {
 }
 
 export function saveUser(data) {
-  _storeData('api_token', data.api_token);
+  if (data.api_token) _storeData('api_token', data.api_token);
   return {
     type: types.SET_USER_DATA,
     user: data
@@ -31,7 +31,7 @@ export function saveUser(data) {
 }
 
 export function changeMethodsAuth(data) {
-  _storeData('methods_auth', data.methods_auth);
+  if (data.methods_auth) _storeData('methods_auth', data.methods_auth);
   return {
     type: types.SET_METHODS_AUTH,
     data: data
@@ -39,7 +39,7 @@ export function changeMethodsAuth(data) {
 }
 
 export function savePinCode(data) {
-  _storeData('pinCode', data.code);
+  if (data.code) _storeData('pinCode', data.code);
   return {
     type: types.SET_PIN_CODE,
     code: data
@@ -58,7 +58,7 @@ _storeData = async (name, params) => {
   try {
     await AsyncStorage.setItem(name, params);
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error)
   }
 }
 
