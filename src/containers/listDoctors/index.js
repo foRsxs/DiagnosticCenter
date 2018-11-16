@@ -51,7 +51,6 @@ class ServicesScreen extends Component {
 }
 
   render() {
-    console.log(this.state.showSortList)
     let {listview} = this.state;
     const {list_Doctors} = this.props;
     const { navigate } = this.props.navigation;

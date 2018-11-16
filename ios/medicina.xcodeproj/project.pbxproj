@@ -35,6 +35,8 @@
 		AF26A66CA45741B3821C37D3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */; };
 		CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B1D112181AAC300CD5FF7 /* libRNLanguages.a */; };
 		CE4B3F3A219AE46A002E92AA /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B3F39219AE445002E92AA /* libSplashScreen.a */; };
+		CE72B9A4219F0EBB009D0A91 /* InputMask.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE72B9A2219F0EBB009D0A91 /* InputMask.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE72B9E9219F1A9A009D0A91 /* libRNTextInputMask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */; };
 		D4F1385090E74D4BA18C1379 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1F21064206949A5B8D92CCA /* Entypo.ttf */; };
 		D52D65D47FF34970B4FD6923 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */; };
 		DEF38DFEE969406D80599138 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCD5DACC814CFAB54DA79C /* Roboto_medium.ttf */; };
@@ -325,6 +327,13 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		CE72B9A0219F0EA3009D0A91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00278A001F2F25CE0023E794;
+			remoteInfo = RNTextInputMask;
+		};
 		CE852CDC219C673900D11EFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 680AAE1473184A748480CF1C /* TouchID.xcodeproj */;
@@ -333,6 +342,20 @@
 			remoteInfo = TouchID;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE72B9A5219F0EBC009D0A91 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE72B9A4219F0EBB009D0A91 /* InputMask.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -358,6 +381,7 @@
 		3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		42305AA44C404BA890FAF2AA /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		48B347E2567B40B1A065BD6C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		552939714F4547C7B72C2FCD /* libRNTextInputMask.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNTextInputMask.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		680AAE1473184A748480CF1C /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -373,6 +397,8 @@
 		B1F21064206949A5B8D92CCA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLanguages.xcodeproj; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; };
 		CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTextInputMask.xcodeproj; path = "../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask.xcodeproj"; sourceTree = "<group>"; };
+		CE72B9A2219F0EBB009D0A91 /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InputMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -383,6 +409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE72B9E9219F1A9A009D0A91 /* libRNTextInputMask.a in Frameworks */,
 				CE4B3F3A219AE46A002E92AA /* libSplashScreen.a in Frameworks */,
 				CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -531,6 +558,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */,
 				CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */,
 				CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -562,6 +590,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CE72B9A2219F0EBB009D0A91 /* InputMask.framework */,
 				13B07FAE1A68108700A75B9A /* medicina */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -608,10 +637,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE72B99C219F0EA3009D0A91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CE852CB0219C672C00D11EFA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				EFB58051720F48DE952F62AB /* libTouchID.a */,
+				552939714F4547C7B72C2FCD /* libRNTextInputMask.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -659,6 +697,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				CE72B9A5219F0EBC009D0A91 /* Embed Frameworks */,
+				CE72B9DA219F0F62009D0A91 /* InputMask shell */,
 			);
 			buildRules = (
 			);
@@ -741,6 +781,10 @@
 				{
 					ProductGroup = CE2B1CE72181AAC300CD5FF7 /* Products */;
 					ProjectRef = CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */;
+				},
+				{
+					ProductGroup = CE72B99C219F0EA3009D0A91 /* Products */;
+					ProjectRef = CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */;
 				},
 				{
 					ProductGroup = CE4B3F0E219AE445002E92AA /* Products */;
@@ -1039,6 +1083,13 @@
 			remoteRef = CE4B3F38219AE445002E92AA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNTextInputMask.a;
+			remoteRef = CE72B9A0219F0EA3009D0A91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CE852CDD219C673900D11EFA /* libTouchID.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1091,6 +1142,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		CE72B9DA219F0F62009D0A91 /* InputMask shell */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "InputMask shell";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "EXTRA_DIR=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Frameworks/InputMask.framework/Frameworks\"\n\nif [[ -d \"${EXTRA_DIR}\" ]]; then\nrm -rf \"${EXTRA_DIR}\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1109,6 +1178,7 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1117,6 +1187,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 				);
 				INFOPLIST_FILE = medicina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1125,6 +1196,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1142,6 +1214,7 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1149,6 +1222,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
+					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 				);
 				INFOPLIST_FILE = medicina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1157,6 +1231,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 				);
 				OTHER_LDFLAGS = (

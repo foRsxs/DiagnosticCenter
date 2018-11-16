@@ -5,7 +5,7 @@ add plugins:
 3) react-native-responsive-dimensions <-- https://www.npmjs.com/package/react-native-responsive-dimensions
 4) i18n-js <-- https://www.npmjs.com/package/i18n-js
 5) react-native-star-rating <-- https://github.com/djchie/react-native-star-rating
-6) react-native-text-input-mask --> https://github.com/react-native-community/react-native-text-input-mask
+6) react-native-text-input-mask <-- https://github.com/react-native-community/react-native-text-input-mask
 
 cleane cache rm -rf ~/.rncache
 

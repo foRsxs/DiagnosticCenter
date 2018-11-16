@@ -5,7 +5,9 @@ const initialState = {
   confirmed_auth: false,
   methods_auth: null,
   pinCode: null,
-  user: {}
+  user: {},
+  device_touch: false,
+  device_face: false,
 }
   
 export default function authReducer(state = initialState, action) {
@@ -32,6 +34,13 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         confirmed_auth: action.value,
+      }
+    case types.SET_METHODS_AUTH_DEVICE:
+    console.log(action.data)
+      return {
+        ...state,
+        device_touch: action.data.touch,
+        device_face: action.data.face,
       }
     default:
       return state

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TouchID from 'react-native-touch-id';
+import TextInputMask from 'react-native-text-input-mask';
 
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -34,7 +35,7 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {
     this._checkTouchSupport();
-    AsyncStorage.clear()
+    //AsyncStorage.clear()
     AsyncStorage.getItem('api_token').then((resp)=>{
       this.props.saveUser({api_token: resp});
     })
@@ -64,15 +65,30 @@ class AuthorizationScreen extends Component {
     this.setState({ personalId: value });
   }
 
+  checkValid = (number, personalId) => {
+    let result = true;
+    if (number.length < 10) {
+       this.setState({message: 'Некорректный номер телефона'});
+       result = false;
+    } else if (personalId.length < 12) {
+      this.setState({message: 'Некорректный номер иин'});
+      result = false;
+    } else {
+      this.setState({message: ''})
+    }
+    return result
+  }
   authUser = () => {
     let {number, personalId} = this.state;
-    this.setState({loading: true})
-    this.props.authUser({phone: ' ', iin: '180705501683'})
-      .then((resp)=>{
-        this.setState({message: ''});
-      })
-      .catch((e)=> this.setState({message: e.error}))
-    this.setState({loading: false})  
+    if (this.checkValid(number, personalId)) {
+      this.setState({loading: true})
+      this.props.authUser({phone: 7059809008, iin: 180705501683})//this.props.authUser({phone: number, iin: personalId})
+        .then((resp)=>{
+          this.setState({message: ''});
+        })
+        .catch((e)=> this.setState({message: e.error}))
+      this.setState({loading: false}) 
+    }
   }
 
   _confirmCode = (code) => {
@@ -90,16 +106,20 @@ class AuthorizationScreen extends Component {
         if (biometryType === 'FaceID') {
           // Face ID is supported on IOS
           this.setState({isFaceId: true});
+          this.props.setMethodsAuthDevice({face: true, touch: false});
         } else if (biometryType === 'TouchID'){
           // Touch ID is supported on IOS
-          this.setState({isTouchId: true}) ;         
+          this.setState({isTouchId: true});  
+          this.props.setMethodsAuthDevice({face: false, touch: true}); 
         } else if (biometryType === true) {
           // Touch ID is supported on Android
-          this.setState({isTouchId: true}) ;    
+          this.setState({isTouchId: true});
+          this.props.setMethodsAuthDevice({face: false, touch: true});    
 	      }
       })
       .catch(() => {
-        this.setState({isTouchId: false, isFaceId: false})
+        this.setState({isTouchId: false, isFaceId: false});
+        this.props.setMethodsAuthDevice({face: false, touch: false});
       });
   }
 
@@ -178,18 +198,24 @@ class AuthorizationScreen extends Component {
             <Text style={{ textAlign: 'center', color: variables.colors.darkBlue, marginTop: 55, marginBottom: 40}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
             <View style={{marginBottom: 20}}>
               <View style={{ alignItems: 'center' }}>
-                <TextInput style={styles.input} onChangeText={(text) => this.onChangeNumber(text)} placeholder='' />
+                <TextInputMask
+                  onChangeText={(formatted, extracted) => {
+                    this.onChangeNumber(`7${extracted}`)
+                  }}
+                  keyboardType='number-pad'
+                  style={styles.input}
+                  mask={"+7 ([000]) [000] [00] [00]"}
+                />
               </View>
-              <Text style={styles.textInp} keyboardType='number-pad'>тел</Text>
+              <Text style={styles.textInp} >тел</Text>
             </View>
             <View>
               <View style={{ alignItems: 'center' }}>
-                <TextInput style={styles.input} onChangeText={(text) => this.onChangeId(text)} placeholder='' />
+                <TextInput style={styles.input} onChangeText={(text) => this.onChangeId(text)} placeholder='' keyboardType='number-pad' maxLength={12}/>
               </View>
               <Text style={styles.textInp}>иин</Text>
             </View>
             {(message.length)?<Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>:false}
-           
           </View>
           {(loading)? (<ActivityIndicator size="small" color={blue} />): (<CustomBtn label='Запросить код' onClick={()=>this.authUser()} />)}    
       </View>
@@ -212,10 +238,10 @@ class AuthorizationScreen extends Component {
 
   renderPinCode(type) {
     const {message} = this.state;
-
+    const {pinCode} = this.props;
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}}>
-        <Text style={styles.title}>{(type == 'new')?'Создайте пин код': 'Введите пин код'}</Text> 
+        <Text style={styles.title}>{(!pinCode)?'Создайте пин код':'Введите пин код'}</Text> 
         <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, paddingBottom: 20, height: '100%'}} >      
           <ConfirmationCode message={message} onPress={
             (code)=> {

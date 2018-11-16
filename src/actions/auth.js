@@ -53,6 +53,13 @@ export function setAuthorized() {
   }
 }
 
+export function setMethodsAuthDevice(data) {
+  return {
+    type: types.SET_METHODS_AUTH_DEVICE,
+    data: data
+  }
+}
+
 //Storage
 _storeData = async (name, params) => {
   try {
