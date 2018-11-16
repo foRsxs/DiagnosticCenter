@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		// height: '100%'
 	},
 	input: {
 		height: 50,

@@ -34,7 +34,7 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {
     this._checkTouchSupport();
-    //AsyncStorage.clear()
+    AsyncStorage.clear()
     AsyncStorage.getItem('api_token').then((resp)=>{
       this.props.saveUser({api_token: resp});
     })
@@ -44,8 +44,7 @@ class AuthorizationScreen extends Component {
     AsyncStorage.getItem('pinCode').then((resp)=>{
       this.props.savePinCode({code:resp, confirmed: false});
       SplashScreen.hide();
-    }) 
-    //this.props.navigation.navigate('specialization')
+    })
   }
 
   componentWillReceiveProps(newProps) {
@@ -122,7 +121,7 @@ class AuthorizationScreen extends Component {
     let {changeMethodsAuth} = this.props;
 
     return (
-      <View style={{position: 'relative', zIndex: 2, flex: 1}}>
+      <View style={{position: 'relative', zIndex: 2, flex: 1, padding:15, paddingBottom:20}}>
         <Text style={styles.title}>Выберите метод входа</Text>
         <Content>
           <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'code'})}>
@@ -167,7 +166,7 @@ class AuthorizationScreen extends Component {
     const {message, loading} = this.state;
 
     return (
-      <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150}}>
+      <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150, padding: 15, paddingBottom: 16}}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', width: width, top: -95, position: 'absolute' }}>
           <Text style={this.state.rusOn ? styles.langOn : styles.langOf} onPress={this.changeLang}>РУС</Text>
           <Text style={styles.langOf}>|</Text>
@@ -217,7 +216,7 @@ class AuthorizationScreen extends Component {
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}}>
         <Text style={styles.title}>{(type == 'new')?'Создайте пин код': 'Введите пин код'}</Text> 
-        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, height: '100%'}} >      
+        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, paddingBottom: 20, height: '100%'}} >      
           <ConfirmationCode message={message} onPress={
             (code)=> {
               if (type == 'new') {
@@ -237,7 +236,7 @@ class AuthorizationScreen extends Component {
 
     return (
       <Container style={styles.container}>
-        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' style={{flex:1}} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 15, paddingBottom: 20, justifyContent: 'space-around'}} >
+        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' style={{flex:1}} contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}} >
           <View style={styles.header} />
           <View style={{ alignItems: 'center', marginTop: -width + height / 25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
             <View style={styles.oval} />
@@ -293,7 +292,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input: {
-    width: width - 40,
+    width: width-30,
     height: 50,
     paddingLeft: 60,
     paddingRight: 10,

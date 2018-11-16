@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
     height: 40,
+    alignItems: 'flex-end',
     backgroundColor: variables.colors.blue,
     zIndex: 3
   },
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   btnMenu: {
     paddingTop: 10,
     paddingRight: 0,
-    paddingLeft: 10,
+    paddingLeft: 15,
   },
   btnBack: {
     paddingTop: 10,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
     width: width - 80,
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
+    paddingBottom: 3
   },
   text: {
     color: variables.colors.white,

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler} from 'react-native';
-import {Container, Button, Text, Content} from 'native-base';
+import {BackHandler} from 'react-native';
+import {Container} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import i18n from '../../i18n';
 import FormSend from '../../components/common/Form';
@@ -38,18 +38,14 @@ class QuestionFormScreen extends Component {
   render() {
     return (
       <Container>
-        <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
-        <HeaderBottom text="напишите свой вопрос" />
-        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
+        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingHorizontal: 15, paddingBottom: 5}}>
+          <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
+          <HeaderBottom text="напишите свой вопрос" />
           <FormSend sendData={this.getData}/>
         </KeyboardAwareScrollView>
       </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  
-});
 
 export default QuestionFormScreen;

@@ -24,7 +24,7 @@ export function getListSpecialization(type) {
 export function getListDoctors(spec_id) {
   return (dispatch, getState) => {
     const { authorization } = getState();
-
+    console.log(authorization.token)
     if (true) { 
       const params = {api_token: authorization.token}
       if (spec_id) params.spec_id = spec_id;

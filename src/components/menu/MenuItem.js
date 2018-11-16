@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
     color: 'white',
-    
+    paddingTop: 5
   },
   menuIcon: {
     width: 20, 

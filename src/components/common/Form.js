@@ -16,13 +16,13 @@ export default class FormSend extends Component {
 
   render() {
     return (
-      <Form style={{justifyContent: 'space-between', flexDirection: 'column', height: height - 120}}>
-        <Content padder>
+      <Form style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, paddingTop: 15}}>
+        <View style={{flex: 1}}>
           <Item style={styles.inputWrap} regular>
             <Input style={styles.input} placeholder='ваш e-mail' onChangeText={(text) => this.setState({form:{...this.state.form, text: text}})}/>
           </Item>
           <Textarea style={styles.textarea} bordered placeholder="ваш вопрос" onChangeText={(message) => this.setState({form:{...this.state.form, message: message}})}/>
-        </Content >
+        </View >
         <View style={styles.buttonWrap}>
           <CustomBtn label='ОТПРАВИТЬ' onClick={() => this.props.sendData(this.state.form)}/>
         </View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     fontSize: variables.fSize.main
   },
   textarea: {
-    height: 200, 
+    height: 150, 
     fontSize: variables.fSize.main, 
     fontFamily: variables.fonts.mainFont,
     borderColor: variables.colors.blue, 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: variables.colors.backgroundBlue
   },
   buttonWrap: {
-    paddingHorizontal: 15, 
-    paddingVertical: 20
+    paddingTop: 20,
+    paddingBottom: 15,
   }
 });

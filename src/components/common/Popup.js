@@ -16,7 +16,6 @@ export default class Popup extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
     this.setState({modalVisible: nextProps.show})
   }
 
