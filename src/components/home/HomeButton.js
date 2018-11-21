@@ -17,7 +17,8 @@ class HomeButton extends Component {
       let {imageUri} = this.props;
       return (
         <View style={styles.wrapButton}>
-          <TouchableOpacity 
+          <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => this.props.onClick()}
             style={styles.button}>
             <Image

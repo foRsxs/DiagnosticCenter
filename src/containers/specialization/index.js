@@ -22,7 +22,153 @@ class SpecializationScreen extends Component {
     this.state = {
       modalVisible: false,
       showSortList: false,
-      showSpecType: true
+      showSpecType: true,
+      arrayIcons: [
+        {
+          uri: require('../../../assets/img/specialization/allergist-icon.png'),
+          key: 1
+        },
+        {
+          uri: require('../../../assets/img/specialization/anesthetist-icon.png'),
+          key: 2
+        },
+        {
+          uri: require('../../../assets/img/specialization/angiograph_surgeon-icon.png'),
+          key: 3
+        },
+        {
+          uri: require('../../../assets/img/specialization/cardiologist-icon.png'),
+          key: 4
+        },
+        {
+          uri: require('../../../assets/img/specialization/child_cardiorheumatologist-icon.png'),
+          key: 5
+        },
+        {
+          uri: require('../../../assets/img/specialization/child_neurologist-icon.png'),
+          key: 6
+        },
+        {
+          uri: require('../../../assets/img/specialization/dentist-icon.png'),
+          key: 6
+        },
+        {
+          uri: require('../../../assets/img/specialization/dermatologist-icon.png'),
+          ky: 7
+        },
+        {
+          uri: require('../../../assets/img/specialization/dermatovenereologist-icon.png'),
+          key: 8
+        },
+        {
+          uri: require('../../../assets/img/specialization/doctor_of_ultrasound_diagnostics-icon.png'),
+          key: 9
+        },
+        {
+          uri: require('../../../assets/img/specialization/endocrinologist-icon.png'),
+          key: 10
+        },
+        {
+          uri: require('../../../assets/img/specialization/endoscopist-icon.png'),
+          key: 11
+        },
+        {
+          uri: require('../../../assets/img/specialization/gastroenterologist-icon.png'),
+          key: 12
+        },
+        {
+          uri: require('../../../assets/img/specialization/gynecologist-icon.png'),
+          key: 13
+        },
+        {
+          uri: require('../../../assets/img/specialization/hematologist-icon.png'),
+          key: 14
+        },
+        {
+          uri: require('../../../assets/img/specialization/kt-icon.png'),
+          key: 15
+        },
+        {
+          uri: require('../../../assets/img/specialization/laboratory_doctor-icon.png'),
+          key: 16
+        },
+        {
+          uri: require('../../../assets/img/specialization/mammalian-icon.png'),
+          key: 17
+        },
+        {
+          uri: require('../../../assets/img/specialization/manager_oed-icon.png'),
+          key: 18
+        },
+        {
+          uri: require('../../../assets/img/specialization/mrt-icon.png'),
+          key: 19
+        },
+        {
+          uri: require('../../../assets/img/specialization/neurologist-icon.png'),
+          key: 20
+        },
+        {
+          uri: require('../../../assets/img/specialization/neuropathist-icon.png'),
+          key: 21
+        },
+        {
+          uri: require('../../../assets/img/specialization/ophthalmologist-icon.png'),
+          key: 22
+        },
+        {
+          uri: require('../../../assets/img/specialization/otolaryngologist-icon.png'),
+          key: 23
+        },
+        {
+          uri: require('../../../assets/img/specialization/pediatrician-icon.png'),
+          key: 24
+        },
+        {
+          uri: require('../../../assets/img/specialization/physician_of_functional_diagnostics-icon.png'),
+          key: 25
+        },
+        {
+          uri: require('../../../assets/img/specialization/physiotherapist-icon.png'),
+          key: 26
+        },
+        {
+          uri: require('../../../assets/img/specialization/proctologist-icon.png'),
+          key: 27
+        },
+        {
+          uri: require('../../../assets/img/specialization/pulmonologist-icon.png'),
+          key: 28
+        },
+        {
+          uri: require('../../../assets/img/specialization/radiologist-icon.png'),
+          key: 29
+        },
+        {
+          uri: require('../../../assets/img/specialization/rheumatologist-icon.png'),
+          key: 30
+        },
+        {
+          uri: require('../../../assets/img/specialization/surgeon-icon.png'),
+          key: 31
+        },
+        {
+          uri: require('../../../assets/img/specialization/therapist-icon.png'),
+          key: 32
+        },
+        {
+          uri: require('../../../assets/img/specialization/traumatologist-icon.png'),
+          key: 33
+        },
+        {
+          uri: require('../../../assets/img/specialization/traumatologist-orthopedist-icon.png'),
+          key: 34
+        },
+        {
+          uri: require('../../../assets/img/specialization/urologist-icon.png'),
+          key: 35
+        }
+      ]
     };
   }
 
@@ -143,22 +289,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpecializationScreen)
-
-// <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadTerapevt')} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadPediatr')} subTxt={i18n.t('SpecSubPediatr')} imageUri={require('../../../assets/img/spec-pediatr.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadDentist')} subTxt={i18n.t('SpecSubDentist')} imageUri={require('../../../assets/img/spec-dentist.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadDermatolog')} subTxt={i18n.t('SpecSubDermatolog')} imageUri={require('../../../assets/img/spec-derm.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadKardiolog')} subTxt={i18n.t('SpecSubKardiolog')} imageUri={require('../../../assets/img/spec-kardi.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadUrolog')} subTxt={i18n.t('SpecSubUrolog')} imageUri={require('../../../assets/img/spec-urolog.png')}/>
-//               <SpecializationItem
-//               lizationItem onClick={() => Alert.alert('go')} headTxt={i18n.t('SpecHeadGynekolog')} subTxt={i18n.t('SpecSubGynekolog')} imageUri={require('../../../assets/img/spec-ginec.png')}/>
