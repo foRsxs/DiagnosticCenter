@@ -29,8 +29,8 @@ export default class Header extends Component {
               <TouchableOpacity onPress={() => this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >
                 {
                   (!inversion) ?
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', width: 30, height: 30 }} /> :
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, width: 30, height: 30 }} />
+                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
+                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
                 }
 
               </TouchableOpacity> : null
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     alignItems: 'flex-end',
-    backgroundColor: variables.colors.blue,
+    backgroundColor: variables.colors.accentBlue,
     zIndex: 3
   },
   inContainer: {
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   },
   btnBack: {
     paddingTop: 10,
-    paddingRight: 0,
-    paddingLeft: 10,
+    // paddingRight: 0,
+    //paddingLeft: 10,
   },
   textContainer: {
     width: width - 80,

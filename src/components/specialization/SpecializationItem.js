@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: variables.colors.green,
+    backgroundColor: variables.colors.red,
     borderTopRightRadius: 10, 
     borderBottomRightRadius: 10, 
     width: 20,

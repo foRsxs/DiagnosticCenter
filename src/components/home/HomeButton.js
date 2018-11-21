@@ -21,11 +21,11 @@ class HomeButton extends Component {
             onPress={() => this.props.onClick()}
             style={styles.button}>
             <Image
-              style={{marginVertical: '8%', width: 58, height: 50}}
+              style={{marginTop: '8%', marginBottom: '5%', width: 58, height: 50}}
               source={imageUri}
             />
             <View style={styles.txtButtonWrap}>
-              <Text style={styles.txtButton}>{nameBtn}</Text>
+              <Text style={styles.txtButton}>{nameBtn.toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -42,13 +42,10 @@ class HomeButton extends Component {
     button: {
       width: '100%',
       alignItems: 'center',
-      backgroundColor: variables.colors.lightGray,
-      borderWidth: 1,
-      borderColor: variables.colors.activeGray,
+      backgroundColor: variables.colors.accentBlue,
       borderRadius: 10,
     },
     txtButtonWrap: {
-      backgroundColor: variables.colors.green, 
       width: '100%', 
       borderBottomLeftRadius: 10, 
       borderBottomRightRadius: 10, 
@@ -56,8 +53,10 @@ class HomeButton extends Component {
     txtButton: {
       color: 'white', 
       width: '100%', 
+      lineHeight: 16,
       textAlign: 'center',  
-      paddingVertical: '5%', 
+      paddingVertical: '5%',
+      paddingHorizontal: '5%', 
       fontSize: variables.fSize.main,
       fontFamily: variables.fonts.mainFont,
     }

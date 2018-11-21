@@ -14,7 +14,7 @@ import CustomBtn from '../../components/common/CustomBtn';
 import ConfirmationCode from '../../components/autorization/ConfirmationCode';
 
 let { width, height } = Dimensions.get('window');
-const {blue} = variables.colors;
+const {accentBlue} = variables.colors;
 const {mainFont} = variables.fonts;
 const {large, normal} = variables.fSize;
 
@@ -149,7 +149,7 @@ class AuthorizationScreen extends Component {
               <Text >Пин код</Text>
             </Left>
             <Right>
-              <CheckBox onPress={()=>this.setState({methods_auth_local:'code'})} checked={(methods_auth_local==='code')} color={blue}/>
+              <CheckBox onPress={()=>this.setState({methods_auth_local:'code'})} checked={(methods_auth_local==='code')} color={accentBlue}/>
             </Right>
           </ListItem>
           {
@@ -159,7 +159,7 @@ class AuthorizationScreen extends Component {
                   <Text >Touch ID</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={blue}/>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={accentBlue}/>
                 </Right>
               </ListItem>
             )
@@ -171,7 +171,7 @@ class AuthorizationScreen extends Component {
                   <Text >Face ID</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={blue}/>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={accentBlue}/>
                 </Right>
               </ListItem>
             )
@@ -187,15 +187,14 @@ class AuthorizationScreen extends Component {
 
     return (
       <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150, padding: 15, paddingBottom: 16}}>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', width: width, top: -95, position: 'absolute' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', width: width, top: -60, position: 'absolute' }}>
           <Text style={this.state.rusOn ? styles.langOn : styles.langOf} onPress={this.changeLang}>РУС</Text>
           <Text style={styles.langOf}>|</Text>
           <Text style={this.state.rusOn ? styles.langOf : styles.langOn} onPress={this.changeLang}>KAZ</Text>
         </View>
- 
-          <Image style={{top: -60, position: 'absolute', zIndex: 1 }} fadeDuration={0} source={require('../../../assets/img/logo.png')} />
+          <Image style={{ zIndex: 1, marginTop: -20, height: 130, marginBottom: 10 }} resizeMode='contain' fadeDuration={0} source={require('../../../assets/img/logo.png')} />
           <View style={styles.content}>
-            <Text style={{ textAlign: 'center', color: variables.colors.darkBlue, marginTop: 55, marginBottom: 40}}>областной {"\n"} консультативно диагностический {"\n"} медицинский центр</Text>
+          
             <View style={{marginBottom: 20}}>
               <View style={{ alignItems: 'center' }}>
                 <TextInputMask
@@ -217,7 +216,7 @@ class AuthorizationScreen extends Component {
             </View>
             {(message.length)?<Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>:false}
           </View>
-          {(loading)? (<ActivityIndicator size="small" color={blue} />): (<CustomBtn label='Запросить код' onClick={()=>this.authUser()} />)}    
+          {(loading)? (<ActivityIndicator size="small" color={accentBlue} />): (<CustomBtn label='Авторизоваться' onClick={()=>this.authUser()} />)}    
       </View>
     )
   }
@@ -288,13 +287,13 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: 100,
-    backgroundColor: variables.colors.blue
+    backgroundColor: variables.colors.accentBlue
   },
   oval: {
     width: width,
     height: width,
     borderRadius: width,
-    backgroundColor: variables.colors.blue,
+    backgroundColor: variables.colors.accentBlue,
     transform: [
       { scaleX: 3 }
     ]
@@ -339,7 +338,7 @@ const styles = StyleSheet.create({
     color: variables.colors.lightBlack
   },
   title: {
-    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: '100%', 
+    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: width, 
   }
 });
 

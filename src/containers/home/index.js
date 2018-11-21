@@ -7,6 +7,7 @@ import HomeCarousel from '../../components/home/HomeCarousel';
 import HomeButton from '../../components/home/HomeButton';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 
 class HomeScreen extends Component {
 
@@ -23,8 +24,9 @@ class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation} backDisabled={true} inversion={true}/>
-        <Content style={{marginTop: -10, zIndex: 1}}>
+        <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation} backDisabled={true} />
+        <HeaderBottom/>
+        <Content style={{marginTop: -50, zIndex: 2}}>
           <View>
             <HomeCarousel />
           </View>  

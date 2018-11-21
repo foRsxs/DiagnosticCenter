@@ -22,14 +22,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
     justifyContent: 'center', 
     width: '100%', 
-    height: 50, 
+    paddingTop: 14,
+    paddingBottom: 10, 
     borderRadius: 25, 
-    backgroundColor: variables.colors.green
+    backgroundColor: variables.colors.red
   },
   textBtn:{
     fontFamily: variables.fonts.mainFont, 
     fontSize: variables.fSize.large, 
-    lineHeight: 23, 
+    textAlignVertical: 'center',
     textAlign: 'center',
     letterSpacing: 2
   }

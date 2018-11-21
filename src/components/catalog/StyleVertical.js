@@ -3,7 +3,7 @@ import variables from '../../styles/variables';
 
 let {width, height} = Dimensions.get('window')
 
-const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
+const { darkGray, backgroundBlue, lightBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       height: height/5,
     },
     arrowWrap: {
-      backgroundColor: green,
+      backgroundColor: red,
       width: '100%',
       height: 20,
       alignItems: 'center',

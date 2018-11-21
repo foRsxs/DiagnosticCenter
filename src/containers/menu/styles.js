@@ -14,10 +14,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 80,
     paddingLeft: 20,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    paddingTop: 0,
+    borderBottomWidth: 0
   },
   headerTxt: {
     paddingTop: 8,
+    color: variables.colors.accentBlue,
     fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large
   },

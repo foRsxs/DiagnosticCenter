@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 
-const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
+const { darkGray, backgroundBlue, lightBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: green,
+    backgroundColor: red,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     width: 20,

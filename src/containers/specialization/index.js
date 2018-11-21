@@ -92,7 +92,7 @@ class SpecializationScreen extends Component {
       <View>
         <View style={ showSortList? styles.opacityContainer :styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-            <Header text="УСЛУГИ" navigation = {this.props.navigation}/>
+            <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
             <HeaderBottom search={true} onChange={this.handleChange}/>
             <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
               {(list_specialization.length)? (

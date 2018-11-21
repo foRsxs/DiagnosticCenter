@@ -15,56 +15,38 @@ export default class HeaderBottom extends Component {
       }
     
   render(){
-    const { katalogDoctor = false, search = false, sortBtn = false } = this.props
+    const { katalogDoctor = false, search = false } = this.props
     return(
       <View style={styles.bigContainer}>
         <View style={styles.container}>
         {
-          (this.props.katalogDoctor)?
+          (katalogDoctor)?
           <View style={styles.btnContainer}>
             <TouchableOpacity onPress={()=> {this.setState({listActive: true}); this.props.togleClick(true)}} activeOpacity={0.6} style={styles.btn_list} >
             {
               (this.state.listActive)?
-              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBW.png')} />
-              // </View>
-              :
-              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>            
+              :     
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBB.png')} />
-              // </View>
             }
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> {this.setState({listActive: false}); this.props.togleClick(false)}} activeOpacity={0.6} style={styles.btn_block} >
             {
               (this.state.listActive)?
-              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBB.png')} />
-              // </View>
               :
-              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBW.png')} />
-              // </View>  
             }
             </TouchableOpacity>
           </View>: <View style={styles.btnContainer}></View>
         }
-          
-          
           {
-              (this.props.search)?
+            (search)?
               <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>
-                {
-                  (this.props.katalogDoctor || this.props.sortBtn)?
-                  <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-                    <Image style={{width: 29, height: 25, padding: 7}} source={require('../../../assets/img/sortList_btn.png')} />
-                  </TouchableOpacity>: null
-                }
-                
+                <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>  
             </View>
             :<Text style={styles.text}>{this.props.text}</Text>
           } 
-          
         </View>
         <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
           <View style={styles.oval} />
@@ -81,20 +63,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   container: {
-    // flexWrap:'wrap', 
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
     height: 35,
-    backgroundColor: variables.colors.blue,
+    backgroundColor: variables.colors.accentBlue,
     zIndex: 2,
-    // flex: 1
 	},
 	btnContainer: {
-		// flexWrap:'wrap', 
     flexDirection: 'row',
-    // justifyContent: 'center', 
-		width: 80
+    width: 80,
+    paddingLeft: 3
 	},
 	btn_list: {
     top: 10,
@@ -118,7 +97,7 @@ const styles = StyleSheet.create({
 		width: width - 80
 	},
 	input: {
-		width: width - 80 - 50,
+		width: width - 150,
     height: 25, 
     top: 10,
     padding: 0,
@@ -126,15 +105,11 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},
-	btn_sort: {
-    top: 10,
-    right: 8
-  },
   oval: {
     width: width,
     height: width,
     borderRadius: width,
-    backgroundColor: variables.colors.blue,
+    backgroundColor: variables.colors.accentBlue,
     transform: [
       {scaleX: 3}
     ]

@@ -2,7 +2,7 @@ import * as types from '../types/auth';
 
 const initialState = {
   token: null,
-  confirmed_auth: false,
+  confirmed_auth: true, //<
   methods_auth: null,
   pinCode: null,
   user: {},
@@ -36,7 +36,6 @@ export default function authReducer(state = initialState, action) {
         confirmed_auth: action.value,
       }
     case types.SET_METHODS_AUTH_DEVICE:
-    console.log(action.data)
       return {
         ...state,
         device_touch: action.data.touch,

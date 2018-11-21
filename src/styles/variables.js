@@ -2,7 +2,7 @@ const variables = {
     colors: {
         blue: '#4e9eff',
         lightBlue: 'rgba(78, 158, 255, 0.25)',
-        darkBlue: '#1C6693',
+        darkBlue: '#4074A0',
         white: '#ffffff',
         black: '#383838',
         lightBlack: '#2A425F',
@@ -14,7 +14,9 @@ const variables = {
         green: '#13CE67',
         lightWiolet: 'rgba(130, 182, 255, 0.75)',
         wiolet: '#82B6FF',
-        backgroundBlue: '#D8E8FC'
+        backgroundBlue: '#D8E8FC',
+        red: '#FF3237',
+        accentBlue: '#5E96C5'
     },
     fonts: {
         mainFont: 'HelveticaNeueCyr',
