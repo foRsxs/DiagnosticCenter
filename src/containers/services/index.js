@@ -5,7 +5,6 @@ import i18n from '../../i18n';
 import ServiceItem from '../../components/services/ServiceItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import SortList from '../../components/common/sortList/SortList';
 
 
 class ServicesScreen extends Component {
@@ -14,7 +13,6 @@ class ServicesScreen extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
-      showSortList: false
     };
   }
 
@@ -31,13 +29,7 @@ class ServicesScreen extends Component {
     return true;
   }
 
-  change = (value) => {
-    console.log('text', value)
-    this.setState(state => ({showSortList: !state.showSortList}))
-  }
-
   handleChange = (value) => {
-    console.log('event', value)
     this.setState({inputValue: value})
   }
 
@@ -45,7 +37,7 @@ class ServicesScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <View style={ this.state.showSortList? styles.opacityContainer :styles.mainContainer }>
+        <View style={ styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
               <Header text="УСЛУГИ" navigation = {this.props.navigation}/>
               <HeaderBottom search={true} sortBtn={false} onChange={this.handleChange}/>
@@ -54,10 +46,7 @@ class ServicesScreen extends Component {
               </Content >
           </Container>
         </View>
-          {
-              (this.state.showSortList)?
-              <SortList onClick={this.change}/>: null
-          }
+
       </View>
     )
   }
@@ -68,10 +57,6 @@ const styles = StyleSheet.create({
     opacity: 1,
     height: '100%'
   },
-  opacityContainer: {
-    opacity: 0.1,
-    height: '100%'
-  }
 });
 
 export default ServicesScreen;

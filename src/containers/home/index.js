@@ -31,10 +31,10 @@ class HomeScreen extends Component {
             <HomeCarousel />
           </View>  
           <View style={styles.buttonContainer}>
-            <HomeButton nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("listDoctors")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
-            <HomeButton nameBtn= {i18n.t('BtnMainService')} onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
-            <HomeButton nameBtn= {i18n.t('BtnMainPost')} onClick={()=> navigate("receptionList")} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
-            <HomeButton nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
+            <HomeButton keyNumber={0} nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("listDoctors")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
+            <HomeButton keyNumber={1} nameBtn= {i18n.t('BtnMainService')} onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
+            <HomeButton keyNumber={2} nameBtn= {i18n.t('BtnMainPost')} onClick={()=> navigate("recordingItem")} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
+            <HomeButton keyNumber={3} nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View>
         </Content >
         <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>Alert.alert('click')}/>

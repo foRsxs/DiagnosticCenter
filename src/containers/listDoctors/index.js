@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import SortList from '../../components/common/sortList/SortList';
 import variebles from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
@@ -19,7 +18,6 @@ class ServicesScreen extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
-      showSortList: false,
       listview: true
     };
   }
@@ -40,10 +38,6 @@ class ServicesScreen extends Component {
 
   togle = (value) => {
     this.setState({listview: value});
-  }
-
-  change = (value) => {
-    this.setState(state => ({showSortList: !state.showSortList}));
   }
 
   handleChange = (value) => {
@@ -67,7 +61,6 @@ class ServicesScreen extends Component {
             ): <ActivityIndicator size="small" color={blue} /> 
           }
         </Content>
-        {(this.state.showSortList) ? <View style={styles.wrapPopup}><SortList onClick={this.change}/></View>: null}
       </Container>
     )
   }

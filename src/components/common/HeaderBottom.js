@@ -10,7 +10,6 @@ export default class HeaderBottom extends Component {
         super(props)
         this.state = {
             listActive: true,
-            sortList: false
         }
       }
     

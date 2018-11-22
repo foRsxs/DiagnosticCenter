@@ -11,14 +11,13 @@ import QuestionFormScreen from '../containers/questionForm';
 import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import OftenQuestionsScreen from '../containers/oftenquestions';
-import ReceptionInfoScreen from '../containers/receptionInfo';
-import ReceptionListScreen from '../containers/receptionList';
+import RecordingItemScreen from '../containers/recording/item';
+import RecordingListScreen from '../containers/recording/list';
 import AnalizesScreen from '../containers/analizes';
 import ContactsScreen from '../containers/contacts';
 import SettingsScreen from '../containers/settings';
 import TextScreen from '../containers/textScreen';
 import CalendarDateScreen from '../containers/calendar/date';
-import ReceptionsScreen from '../containers/receprions';
 import TimeScreen from '../containers/time';
 import FuqScreen from '../containers/fuq';
 
@@ -74,14 +73,14 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    receptionInfo: { 
-        screen: ReceptionInfoScreen,
+    recordingItem: { 
+        screen: RecordingItemScreen,
         navigationOptions: {
             header: null
         }
     },
-    receptionList: { 
-        screen: ReceptionListScreen,
+    recordingList: { 
+        screen: RecordingListScreen,
         navigationOptions: {
             header: null
         }
@@ -124,12 +123,6 @@ const MainScreenNavigator = StackNavigator({
     },
     calendarDate: { 
         screen: CalendarDateScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    receptions: { 
-        screen: ReceptionsScreen,
         navigationOptions: {
             header: null
         }

@@ -14,13 +14,13 @@ class HomeButton extends Component {
   
     render(){
       let {nameBtn} = this.state;
-      let {imageUri} = this.props;
+      let {imageUri, keyNumber} = this.props;
       return (
         <View style={styles.wrapButton}>
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => this.props.onClick()}
-            style={styles.button}>
+            style={[styles.button, (keyNumber === 0)? {borderTopLeftRadius: 10}: (keyNumber === 1)? {borderTopRightRadius: 10}: (keyNumber === 2)? {borderBottomLeftRadius: 10}: {borderBottomRightRadius: 10}]}>
             <Image
               style={{marginTop: '8%', marginBottom: '5%', width: 58, height: 50}}
               source={imageUri}
@@ -44,12 +44,10 @@ class HomeButton extends Component {
       width: '100%',
       alignItems: 'center',
       backgroundColor: variables.colors.accentBlue,
-      borderRadius: 10,
+      
     },
     txtButtonWrap: {
       width: '100%', 
-      borderBottomLeftRadius: 10, 
-      borderBottomRightRadius: 10, 
     },
     txtButton: {
       color: 'white', 

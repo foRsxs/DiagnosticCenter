@@ -10,7 +10,6 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import SpecializationItem from '../../components/specialization/SpecializationItem';
 import Popup from '../../components/common/Popup';
-import SortList from '../../components/common/sortList/SortList';
 import variebles from '../../styles/variables';
 
 const {black, blue} = variebles.colors;
@@ -21,7 +20,6 @@ class SpecializationScreen extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      showSortList: false,
       showSpecType: true,
       arrayIcons: [
         {
@@ -172,12 +170,8 @@ class SpecializationScreen extends Component {
     };
   }
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible, showSortList: false});
-  }
-
   change = (value) => {
-    this.setState(state => ({showSortList: !state.showSortList, modalVisible: false}))
+    this.setState(state => ({modalVisible: false}))
   }
 
   handleChange = (value) => {
@@ -193,9 +187,7 @@ class SpecializationScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    if(this.state.showSortList){
-      this.setState({showSortList: false})
-    } else if(this.state.modalVisible){
+    if(this.state.modalVisible){
       this.setState({modalVisible: false})
     } else {
       this.props.navigation.goBack();
@@ -209,8 +201,11 @@ class SpecializationScreen extends Component {
     } else {
       this.props.getListSpecialization(type);
       this.setState({showSpecType: false})
-    }
-    
+    }    
+  }
+
+  call = () => {
+    this.setState({modalVisible: false});
   }
 
   renderChooseBlock() {
@@ -231,27 +226,34 @@ class SpecializationScreen extends Component {
   }
 
   render() {
-    const {showSpecType, showSortList, modalVisible} = this.state;
+    const {showSpecType, modalVisible} = this.state;
     const {list_specialization} = this.props;
 
     return (
       <View>
-        <View style={ showSortList? styles.opacityContainer :styles.mainContainer }>
+        <View style={ styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
             <Header text="КАТЕГОРИИ УСЛУГ" navigation = {this.props.navigation}/>
             <HeaderBottom search={true} onChange={this.handleChange}/>
             <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
               {(list_specialization.length)? (
                 list_specialization.map((item) => (
-                  <SpecializationItem key={item.res_id} onClick={() => this.props.navigation.navigate('services',{spec_id: item.res_id})} headTxt={item.res_text} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/spec-terapevt.png')}/>
+                  <SpecializationItem key={item.res_id} onClick={() => this.props.navigation.navigate('services',{spec_id: item.res_id})} headTxt={item.res_text} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/specialization/urologist-icon.png')}/>
                 ))
               ): <ActivityIndicator size="small" color={blue} /> } 
             </Content >
-            <LinkBtn label={i18n.t('BtnLinkDontKnowDoc')} onClick={()=> {this.setModalVisible(true)}}/>
-            <Popup show={modalVisible}/>
+            <LinkBtn label={i18n.t('BtnLinkDontKnowDoc')} onClick={()=> this.setState({modalVisible: true})}/>
+            <Popup 
+              show={modalVisible}
+              firstText={'Вы не знаете к какому врачу обратиться?'}
+              secondText={'Позвоните в call center вас обязательно проконсультируют'}
+              laberButton={'Позвонить'}
+              actionButton={this.call}
+              labelLink={'закрыть'}
+              actionLink={()=> this.setState({modalVisible: false})}
+              />
           </Container>
         </View>
-          {(showSortList) && <SortList onClick={this.change}/>}
           {(showSpecType) && this.renderChooseBlock()}
       </View>
     )
