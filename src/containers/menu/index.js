@@ -38,7 +38,7 @@ class DrawerMenu extends React.Component {
           <MenuItem onClick={() => navigate("recordingList")} label={i18n.t('MenuPost')} imageUri={require('../../../assets/img/menu-post-ic.png')}/>
           <MenuItem onClick={() => navigate("analizes")} label={i18n.t('MenuAnalize')} imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
           <MenuItem onClick={() => navigate("history")} label={i18n.t('MenuHistory')} imageUri={require('../../../assets/img/menu-history-ic.png')}/>
-          <MenuItem onClick={() => navigate("info")} label={i18n.t('MenuInfo')} imageUri={require('../../../assets/img/menu-info-ic.png')}/>
+          <MenuItem onClick={() => navigate("information")} label={i18n.t('MenuInfo')} imageUri={require('../../../assets/img/menu-info-ic.png')}/>
           <MenuItem onClick={() => navigate("settings")} label={i18n.t('MenuSet')} imageUri={require('../../../assets/img/menu-set-ic.png')}/>
           <MenuItem onClick={() => navigate("contacts")} label={i18n.t('MenuCont')} imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
         </Content>

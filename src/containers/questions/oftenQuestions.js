@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler} from 'react-native';
-import {Container, Content, View} from 'native-base';
+import React, { Component } from 'react';
+import { Alert, StyleSheet, BackHandler } from 'react-native';
+import { Container, Content, View } from 'native-base';
 import i18n from '../../i18n';
 import OftenQuestionItem from '../../components/questions/OftenQuestionItem';
 import LinkBtn from '../../components/common/LinkBtn';
@@ -30,28 +30,28 @@ class OftenQuestionsScreen extends Component {
 
   render() {
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-          <Header text="ЧАСТЫЕ ВОПРОСЫ" navigation = {this.props.navigation}/>
-          <HeaderBottom search={true} />
-          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-            <OftenQuestionItem 
-              text='Здравствуйте я инвалид 3группы.'
-              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-            />
-            <OftenQuestionItem 
-              text='Здравствуйте я инвалид 3группы.'
-              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-            />
-            <OftenQuestionItem 
-              text='Здравствуйте я инвалид 3группы.'
-              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-            />
-            <OftenQuestionItem 
-              text='Здравствуйте я инвалид 3группы.'
-              textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-            />
-          </Content >
-          <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')}/>
+      <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+        <Header text="FAQ" navigation={this.props.navigation} />
+        <HeaderBottom search={true} />
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
+          <OftenQuestionItem
+            text='Здравствуйте я инвалид 3группы.'
+            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+          />
+          <OftenQuestionItem
+            text='Здравствуйте я инвалид 3группы.'
+            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+          />
+          <OftenQuestionItem
+            text='Здравствуйте я инвалид 3группы.'
+            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+          />
+          <OftenQuestionItem
+            text='Здравствуйте я инвалид 3группы.'
+            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
+          />
+        </Content >
+        <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')} />
       </Container>
     )
   }

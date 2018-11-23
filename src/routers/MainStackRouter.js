@@ -20,7 +20,8 @@ import SettingsScreen from '../containers/settings';
 import TextScreen from '../containers/textScreen';
 import CalendarDateScreen from '../containers/calendar/date';
 import TimeScreen from '../containers/time';
-
+import InfoScreen from '../containers/information';
+import InfoItemScreen from '../containers/information/item';
 
 const Athorization = StackNavigator({
     authorization: { 
@@ -56,7 +57,7 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    oftenquestions: { 
+    oftenQuestions: { 
         screen: OftenQuestionsScreen,
         navigationOptions: {
             header: null
@@ -136,6 +137,18 @@ const MainScreenNavigator = StackNavigator({
     },
     fuq: { 
         screen: FuqScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    information: { 
+        screen: InfoScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    informationItem: { 
+        screen: InfoItemScreen,
         navigationOptions: {
             header: null
         }

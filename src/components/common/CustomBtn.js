@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   textBtn:{
     fontFamily: variables.fonts.mainFont, 
-    fontSize: variables.fSize.large, 
+    fontSize: variables.fSize.medium, 
     textAlignVertical: 'center',
     textAlign: 'center',
     letterSpacing: 2

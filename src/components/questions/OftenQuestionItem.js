@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Text, View, Icon} from 'native-base';
-import variables from '../../styles/variables'
+import variables from '../../styles/variables';
+
+const {backgroundBlue, accentBlue, black} = variables.colors;
+const {main} = variables.fSize;
+const {mainFont} = variables.fonts;
 
 export default class QuestionItem extends Component {
   constructor(props) {
@@ -48,24 +52,25 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     width: '100%',
-    backgroundColor: variables.colors.backgroundBlue,
+    backgroundColor: backgroundBlue,
     marginBottom: 10,
     padding: 10,
     position: 'relative'
   },
   questionItemText: {
-    fontSize: variables.fSize.normal,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack,
+    fontSize: main,
+    fontFamily: mainFont,
+    color: black,
     textAlign: 'left',
     width: '100%'
   },
   answerItemText: {
-    fontSize: variables.fSize.normal,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.blue,
+    fontSize: main,
+    fontFamily: mainFont,
+    color: accentBlue,
     textAlign: 'left',
-    width: '100%'
+    width: '100%',
+    paddingTop: 5
   },
   iconWrap: {
     position: 'absolute',
@@ -76,8 +81,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   icon: {
-    color:variables.colors.blue,  
-    fontSize: variables.fSize.main,
-    fontFamily: variables.fonts.mainFont,
+    color: accentBlue,  
+    fontSize: main,
+    fontFamily: mainFont,
   },
 });

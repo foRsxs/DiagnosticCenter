@@ -73,7 +73,7 @@ class DoctorScreen extends Component {
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}> Общий стаж: 7 лет</Text>
               </View>
             </View>
-            <View style={{ paddingTop: 10, backgroundColor: 'white'  }}>
+            <View style={{ paddingTop: 10, backgroundColor: 'white', paddingLeft: 10  }}>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
@@ -82,18 +82,7 @@ class DoctorScreen extends Component {
                 <View style={styles.listIcon}></View>
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
-              <View style={{ position: 'relative', marginBottom: 10 }}>
-                <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
-              </View>
-              <View style={{ position: 'relative', marginBottom: 10 }}>
-                <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
-              </View>
-              <View style={{ position: 'relative', marginBottom: 10 }}>
-                <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
-              </View>
+              
             </View>
           </View>
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>

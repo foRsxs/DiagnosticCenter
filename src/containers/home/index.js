@@ -26,9 +26,9 @@ class HomeScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text="НАШИ АКЦИИ" navigation = {this.props.navigation} backDisabled={true} />
         <HeaderBottom/>
-        <Content style={{marginTop: -50, zIndex: 2}}>
+        <Content style={{marginTop: -60, zIndex: 2}}>
           <View>
-            <HomeCarousel />
+            <HomeCarousel navigate={navigate}/>
           </View>  
           <View style={styles.buttonContainer}>
             <HomeButton keyNumber={0} nameBtn= {i18n.t('BtnMainDoctor')} onClick={() => navigate("listDoctors")} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
@@ -37,7 +37,7 @@ class HomeScreen extends Component {
             <HomeButton keyNumber={3} nameBtn= {i18n.t('BtnMainAnalize')} onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View>
         </Content >
-        <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>Alert.alert('click')}/>
+        <LinkBtn label={i18n.t('BtnLinkCallCenter')} onClick={()=>navigate('oftenQuestions')}/>
       </Container>
     )
   }

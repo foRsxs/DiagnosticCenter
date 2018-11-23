@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import {View, Dimensions, StyleSheet, Image} from 'react-native';
-import Carousel from 'react-native-snap-carousel'
+import {View, Dimensions, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 let Dheight = Dimensions.get('window').height;
 let Dwidth = Dimensions.get('window').width;
 
 class HomeCarousel extends Component {
-
     constructor(props){
-      super();
-      this.state = {
-      }
+      super(props);
       this.init();
     }
   
@@ -30,13 +27,19 @@ class HomeCarousel extends Component {
     }
   
     _renderItem = ( {item, index} ) => {
+      const {navigate} = this.props;
       return (
         <View style={styles.wrapSlide}>
-              <Image
-                resizeMode='contain'
-                style={styles.iconList}
-                source={require('../../../assets/img/slide1.png')}
-              />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={()=>navigate('informationItem', {image: require('../../../assets/img/slide1.png'), call: true, header_title: 'АКЦИЯ'})}
+          >
+            <Image
+              resizeMode='contain'
+              style={styles.iconList}
+              source={require('../../../assets/img/slide1.png')}
+            />
+          </TouchableOpacity>
         </View>
       );
     }

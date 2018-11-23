@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     color: variables.colors.white,
     top: 10,
     fontFamily: variables.fonts.mainFont,
-    fontSize: variables.fSize.large,
+    fontSize: variables.fSize.medium,
     lineHeight: 23,
     letterSpacing: 1
 	},
