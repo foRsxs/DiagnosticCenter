@@ -38,7 +38,7 @@ class FuqScreen extends Component {
   render() {
     return (
       <Container>
-        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingHorizontal: 15, paddingBottom: 5}}>
+        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
           <Header text="ОБРАТНАЯ СВЯЗЬ" navigation = {this.props.navigation}/>
           <HeaderBottom text="напишите нам" />
           <FormSend sendData={this.getData}/>

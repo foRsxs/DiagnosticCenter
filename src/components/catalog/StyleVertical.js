@@ -3,7 +3,7 @@ import variables from '../../styles/variables';
 
 let {width, height} = Dimensions.get('window')
 
-const { darkGray, backgroundBlue, lightBlack, blue, red } = variables.colors;
+const { darkGray, backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       lineHeight: 18,
       fontFamily: variables.fonts.mainFont,
       fontSize: medium,
-      color: lightBlack,
+      color: mediumBlack,
     },
     specItemSubText: {
       fontFamily: variables.fonts.mainFont,

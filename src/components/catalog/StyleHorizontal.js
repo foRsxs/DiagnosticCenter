@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 
-const { darkGray, backgroundBlue, lightBlack, blue, red } = variables.colors;
+const { darkGray, backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   specItemText: {
     fontFamily: variables.fonts.mainFont,
     fontSize: medium,
-    color: lightBlack,
+    color: mediumBlack,
   },
   specItemSubText: {
     fontSize: normal,

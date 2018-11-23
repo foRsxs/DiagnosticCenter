@@ -76,23 +76,23 @@ class DoctorScreen extends Component {
             <View style={{ paddingTop: 10, backgroundColor: 'white'  }}>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
               <View style={{ position: 'relative', marginBottom: 10 }}>
                 <View style={styles.listIcon}></View>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.lightBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
             </View>
           </View>

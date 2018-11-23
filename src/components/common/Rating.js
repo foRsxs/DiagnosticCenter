@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import {Text, Button, Content} from 'native-base';
 import variables from '../../styles/variables';
 import StarRating from 'react-native-star-rating';
-const { blue, lightBlue, lightBlack } = variables.colors;
+const { blue, lightBlue, mediumBlack } = variables.colors;
 
 export default class Rating extends Component {
 
@@ -34,7 +34,7 @@ export default class Rating extends Component {
                   resizeMode='contain'
                   source={require('../../../assets/img/goodsmile.png')}
                 />
-                <Text style={{fontSize: 15, color: lightBlack}}>{like} |</Text>
+                <Text style={{fontSize: 15, color: mediumBlack}}>{like} |</Text>
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Image
@@ -42,10 +42,10 @@ export default class Rating extends Component {
                   resizeMode='contain'
                   source={require('../../../assets/img/badsmile.png')}
                 />
-                <Text style={{fontSize: 15, color: lightBlack}}>{unlike}</Text>
+                <Text style={{fontSize: 15, color: mediumBlack}}>{unlike}</Text>
               </View>
             </View>
-            <Text style={{fontSize: 15, color: lightBlack, marginBottom: 5}}>
+            <Text style={{fontSize: 15, color: mediumBlack, marginBottom: 5}}>
               рейтинг {this.state.generalStarCount}
             </Text>
           </View>

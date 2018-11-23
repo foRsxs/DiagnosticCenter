@@ -8,7 +8,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import Popup from '../../components/common/Popup';
 
-const { accentBlue, lightGray, mediumBlack, lightBlack, black } = variables.colors;
+const { accentBlue, lightGray, mediumBlack, black } = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium, large, main }  = variables.fSize;
 
@@ -16,8 +16,9 @@ class ReceptionInfoScreen extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
-      reserved: false, //<------------ from props params
+      reserved: (props.navigation.state.params) ? props.navigation.state.params.reserved: false,
       modalVisible: false,
       hideButton: false,
     };
@@ -50,31 +51,31 @@ class ReceptionInfoScreen extends Component {
 
   renderShare() {
     return (
-      <View>
+      <View style={{paddingLeft: '15%'}}>
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
         >
-          <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+          <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
             <Image
               style={{width: 20, height: 15, marginRight: 10}}
               resizeMode='cover'
               source={require('../../../assets/img/mail-icon.png')}
             />
-            <Text style={{color: black, fontFamily: mainFont, paddingTop: 2}}>Отправить на e-mail</Text>
+            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>Отправить на e-mail</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.8}
-          style={{paddingVertical: 5, marginTop: 10}}
+          style={{paddingVertical: 5, marginTop: 5}}
         >
-          <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+          <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
             <Image
               style={{width: 20, height: 15, marginRight: 10}}
               resizeMode='cover'
               source={require('../../../assets/img/picture-icon.png')}
             />
-            <Text style={{color: black, fontFamily: mainFont, paddingTop: 2}}>Сохранить в галерею</Text>
+            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>Сохранить в галерею</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -161,26 +162,20 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   txtName: {
-    color: mediumBlack, 
+    color: black, 
     fontFamily: mainFont,
     fontSize: large, 
     width: '100%', 
     textAlign: 'center'
   },
   txtSubname: {
-    color: lightBlack, 
+    color: mediumBlack, 
     fontFamily: mainFont,
     fontSize: main, 
+    marginTop: 5,
     width: '100%', 
     textAlign: 'center'
   },
-  nameCab: {
-    color: mediumBlack, 
-    fontFamily: mainFont,
-    fontSize: large, 
-    width: '100%', 
-    textAlign: 'center'
-  }
 });
 
 export default ReceptionInfoScreen;

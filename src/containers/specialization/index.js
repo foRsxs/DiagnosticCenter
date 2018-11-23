@@ -238,7 +238,7 @@ class SpecializationScreen extends Component {
             <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
               {(list_specialization.length)? (
                 list_specialization.map((item) => (
-                  <SpecializationItem key={item.res_id} onClick={() => this.props.navigation.navigate('services',{spec_id: item.res_id})} headTxt={item.res_text} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/specialization/urologist-icon.png')}/>
+                  <SpecializationItem key={item.res_id} onClick={() => this.props.navigation.navigate('home',{spec_id: item.res_id})} headTxt={item.res_text} subTxt={i18n.t('SpecSubTerapevt')} imageUri={require('../../../assets/img/specialization/urologist-icon.png')}/>
                 ))
               ): <ActivityIndicator size="small" color={blue} /> } 
             </Content >

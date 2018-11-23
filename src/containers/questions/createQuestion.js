@@ -38,7 +38,7 @@ class QuestionFormScreen extends Component {
   render() {
     return (
       <Container>
-        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingHorizontal: 15, paddingBottom: 5}}>
+        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
           <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
           <HeaderBottom text="напишите свой вопрос" />
           <FormSend sendData={this.getData}/>

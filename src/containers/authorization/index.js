@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
-    color: variables.colors.lightBlack,
+    color: variables.colors.mediumBlack,
     backgroundColor: 'rgba(78, 158, 255, 0.15)',
     borderRadius: 10,
     borderWidth: 1,
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     left: 15,
     fontSize: variables.fSize.main,
     fontFamily: variables.fonts.mainFont,
-    color: variables.colors.lightBlack
+    color: variables.colors.mediumBlack
   },
   title: {
     color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: width, 

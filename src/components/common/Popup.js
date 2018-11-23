@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   text: {
-    color: variables.colors.lightBlack, 
+    color: variables.colors.mediumBlack, 
     fontSize: variables.fSize.large, 
     width: '100%', 
     textAlign: 'center'

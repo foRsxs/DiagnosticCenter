@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   specItemText: {
     fontSize: variables.fSize.medium,
     fontFamily: variables.fonts.mainFont,
-    color: variables.colors.lightBlack,
+    color: variables.colors.mediumBlack,
   },
   specItemSubText: {
     fontSize: variables.fSize.normal,

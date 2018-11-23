@@ -4,22 +4,23 @@ import HomeScreen from '../containers/home';
 import AthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
 import SpecializationScreen from '../containers/specialization';
-import ServicesScreen from '../containers/services';
-import SubServicesScreen from '../containers/subservices';
-import QuestionsScreen from '../containers/questions';
-import QuestionFormScreen from '../containers/questionForm';
+import QuestionsScreen from '../containers/questions/allQuestions';
+import QuestionFormScreen from '../containers/questions/createQuestion';
+import OftenQuestionsScreen from '../containers/questions/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
-import OftenQuestionsScreen from '../containers/oftenquestions';
 import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
-import AnalizesScreen from '../containers/analizes';
+import AnalizesScreen from '../containers/analizes_history/analizes';
+import HistoryScreen from '../containers/analizes_history/history';
+import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
+import FuqScreen from '../containers/contacts/fuq';
 import SettingsScreen from '../containers/settings';
 import TextScreen from '../containers/textScreen';
 import CalendarDateScreen from '../containers/calendar/date';
 import TimeScreen from '../containers/time';
-import FuqScreen from '../containers/fuq';
+
 
 const Athorization = StackNavigator({
     authorization: { 
@@ -39,18 +40,6 @@ const MainScreenNavigator = StackNavigator({
     },
     specialization: { 
         screen: SpecializationScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    services: { 
-        screen: ServicesScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    subservices: { 
-        screen: SubServicesScreen,
         navigationOptions: {
             header: null
         }
@@ -87,6 +76,18 @@ const MainScreenNavigator = StackNavigator({
     },
     analizes: { 
         screen: AnalizesScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    history: { 
+        screen: HistoryScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    historyItem: { 
+        screen: HistoryItemScreen,
         navigationOptions: {
             header: null
         }

@@ -40,7 +40,7 @@ class TextScreen extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    color: variables.colors.lightBlack, 
+    color: variables.colors.mediumBlack, 
     fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }

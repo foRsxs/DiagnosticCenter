@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: variables.fSize.large
   },
   txtDate: {
-    color: variables.colors.lightBlack,
+    color: variables.colors.mediumBlack,
     fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.normal
   },

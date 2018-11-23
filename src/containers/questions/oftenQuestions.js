@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import i18n from '../../i18n';
-import OftenQuestionItem from '../../components/oftenquestions/OftenQuestionItem';
+import OftenQuestionItem from '../../components/questions/OftenQuestionItem';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
