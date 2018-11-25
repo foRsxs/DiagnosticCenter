@@ -11,6 +11,7 @@ import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
+import RecordingCreateScreen from '../containers/recording/createRecording';
 import AnalizesScreen from '../containers/analizes_history/analizes';
 import HistoryScreen from '../containers/analizes_history/history';
 import HistoryItemScreen from '../containers/analizes_history/historyItem';
@@ -59,6 +60,12 @@ const MainScreenNavigator = StackNavigator({
     },
     oftenQuestions: { 
         screen: OftenQuestionsScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    recordingCreate: { 
+        screen: RecordingCreateScreen,
         navigationOptions: {
             header: null
         }

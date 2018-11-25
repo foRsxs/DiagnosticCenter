@@ -45,8 +45,8 @@ class ServicesScreen extends Component {
 }
 
   render() {
-    let {listview} = this.state;
-    const {list_Doctors} = this.props;
+    let { listview } = this.state;
+    const { list_Doctors } = this.props;
     const { navigate } = this.props.navigation;
     return (
       <Container>

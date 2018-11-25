@@ -61,7 +61,7 @@ class DoctorScreen extends Component {
                   <TouchableOpacity onPress={() => navigate('questions')} style={styles.blockQuestion}>
                     <Text uppercase={false} style={{ fontSize: 13, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>ЗАДАТЬ ВОПРОС</Text>
                     <Image
-                      style={{ width: 25, height: 25 }}
+                      style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
                       resizeMode='cover'
                       source={require('../../../assets/img/conversation.png')}
                     />
@@ -82,7 +82,6 @@ class DoctorScreen extends Component {
                 <View style={styles.listIcon}></View>
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
               </View>
-              
             </View>
           </View>
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
@@ -166,6 +165,7 @@ const styles = StyleSheet.create({
     left: -10
   },
   blockQuestion: {
+    position: 'relative',
     flexDirection: 'row',
     padding: 7,
     paddingBottom: 5,
