@@ -5,7 +5,6 @@ import {APP_API_URL} from '../config';
 
 export function authUser(data) {
   return (dispatch, getState) => {
-    //const { home } = getState();
     if (true) { 
       return axios.post(`${APP_API_URL}/get_patient`, data)
       .then((response) => {
@@ -22,10 +21,33 @@ export function authUser(data) {
   }
 }
 
+export function getUserData() {
+  return (dispatch, getState) => {
+    if (true) { 
+      const { authorization } = getState();
+      axios.post(`${APP_API_URL}/get_patient_by_token`,{
+        api_token: authorization.token
+      })
+      .then((response) => {
+        dispatch(setUserdata(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
 export function saveUser(data) {
   if (data.api_token) _storeData('api_token', data.api_token);
   return {
     type: types.SET_USER_DATA,
+    user: data
+  }
+}
+
+export function setUserdata(data) {
+  return {
+    type: types.SET_USER,
     user: data
   }
 }
@@ -57,6 +79,12 @@ export function setMethodsAuthDevice(data) {
   return {
     type: types.SET_METHODS_AUTH_DEVICE,
     data: data
+  }
+}
+
+export function setGuest() {
+  return {
+    type: types.SET_USER_GUEST,
   }
 }
 

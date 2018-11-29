@@ -6,6 +6,7 @@ add plugins:
 4) i18n-js <-- https://www.npmjs.com/package/i18n-js
 5) react-native-star-rating <-- https://github.com/djchie/react-native-star-rating
 6) react-native-text-input-mask <-- https://github.com/react-native-community/react-native-text-input-mask
+7) react-native-htmlview <-- https://github.com/jsdf/react-native-htmlview
 
 cleane cache rm -rf ~/.rncache
 

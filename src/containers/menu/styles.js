@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     justifyContent: 'flex-start',
     paddingTop: 0,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    elevation: 0
   },
   headerTxt: {
     paddingTop: 8,

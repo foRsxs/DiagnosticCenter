@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Dimensions, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import {APP_IMG_URL} from '../../config';
 
 let Dheight = Dimensions.get('window').height;
 let Dwidth = Dimensions.get('window').width;
@@ -8,22 +9,6 @@ let Dwidth = Dimensions.get('window').width;
 class HomeCarousel extends Component {
     constructor(props){
       super(props);
-      this.init();
-    }
-  
-    init(){
-      this.state = {
-        items: [
-          {
-            id: "1",
-          }, {
-            id: "2",
-          }, {
-            id: "3",
-          }
-        ]
-      };
-  
     }
   
     _renderItem = ( {item, index} ) => {
@@ -32,23 +17,25 @@ class HomeCarousel extends Component {
         <View style={styles.wrapSlide}>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={()=>navigate('informationItem', {image: require('../../../assets/img/slide1.png'), call: true, header_title: 'АКЦИЯ'})}
+            onPress={()=>navigate('informationItem', {image: {uri: `${APP_IMG_URL}storage/${item.image}`}, call: true, header_title: item.title, content: item.body })}
           >
             <Image
               resizeMode='contain'
               style={styles.iconList}
-              source={require('../../../assets/img/slide1.png')}
+              source={{uri: `${APP_IMG_URL}storage/${item.image}`}}
             />
           </TouchableOpacity>
         </View>
       );
     }
     render = () => {
+      const {data} = this.props;
+
       return (
         <View>
           <Carousel
             ref={ (c) => { this._carousel = c; } }
-            data={this.state.items}
+            data={data}
             renderItem={this._renderItem.bind(this)}
             onSnapToItem={(index) => this.setState({ activeSlide: index }) }
             sliderWidth={Dwidth}
@@ -69,7 +56,7 @@ class HomeCarousel extends Component {
     wrapSlide: {
       elevation: 5,
       width: '100%',
-      height: Dheight/3.2,
+      height: Dheight/3.1,
       marginBottom: 20,
       marginTop: 20
     },

@@ -20,16 +20,16 @@ export default class SpecializationItem extends Component {
           <Image
             style={styles.specIcon}
             resizeMode='contain'
-            source={imageUri}
+            source={{uri:imageUri}}
             fadeDuration={0}
           />
           <View style={styles.wrapTxt}>
             <Text style={styles.specItemText}>
                 {headTxt}
             </Text>
-            <Text style={styles.specItemSubText}>
+            {/* <Text style={styles.specItemSubText}>
                 {subTxt}
-            </Text>
+            </Text> */}
           </View>
         </View>
         <View style={styles.arrowWrap}>
@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
   },
   wrapTxt: {
     flexDirection: 'column',
+    justifyContent: 'center'
   },
   specItemText: {
     fontSize: variables.fSize.medium,
     fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack,
+    textAlignVertical: 'center',
   },
   specItemSubText: {
     fontSize: variables.fSize.normal,

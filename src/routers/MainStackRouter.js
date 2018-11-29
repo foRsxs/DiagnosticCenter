@@ -18,7 +18,6 @@ import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
 import FuqScreen from '../containers/contacts/fuq';
 import SettingsScreen from '../containers/settings';
-import TextScreen from '../containers/textScreen';
 import CalendarDateScreen from '../containers/calendar/date';
 import TimeScreen from '../containers/time';
 import InfoScreen from '../containers/information';
@@ -108,12 +107,6 @@ const MainScreenNavigator = StackNavigator({
     },
     settings: { 
         screen: SettingsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    textScreen: { 
-        screen: TextScreen,
         navigationOptions: {
             header: null
         }

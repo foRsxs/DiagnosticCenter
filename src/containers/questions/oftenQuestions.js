@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, BackHandler } from 'react-native';
-import { Container, Content, View } from 'native-base';
+import { Alert, StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
+import { Container, Content } from 'native-base';
 import i18n from '../../i18n';
+import * as ContentActions from '../../actions/content';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import OftenQuestionItem from '../../components/questions/OftenQuestionItem';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
+import variables from '../../styles/variables';
 
+const { blue } = variables.colors;
 
 class OftenQuestionsScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   componentDidMount() {
+    this.props.getOftenQuestions();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -29,27 +34,24 @@ class OftenQuestionsScreen extends Component {
   }
 
   render() {
+    const {questions} = this.props;
+    
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text="FAQ" navigation={this.props.navigation} />
         <HeaderBottom search={true} />
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
-          <OftenQuestionItem
-            text='Здравствуйте я инвалид 3группы.'
-            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-          />
-          <OftenQuestionItem
-            text='Здравствуйте я инвалид 3группы.'
-            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-          />
-          <OftenQuestionItem
-            text='Здравствуйте я инвалид 3группы.'
-            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-          />
-          <OftenQuestionItem
-            text='Здравствуйте я инвалид 3группы.'
-            textAnswer='Здравствуйте я инвалид 3группы. У меня сильно болит голова!'
-          />
+          {
+            (questions) ? (
+              questions.map((item, index)=>(
+                <OftenQuestionItem
+                  key={index}
+                  text={item.question}
+                  textAnswer={item.answer}
+                />
+              ))
+            ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
+          }
         </Content >
         <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')} />
       </Container>
@@ -60,4 +62,14 @@ class OftenQuestionsScreen extends Component {
 const styles = StyleSheet.create({
 });
 
-export default OftenQuestionsScreen;
+function mapStateToProps(state) {
+  return {
+    questions: state.content.questions.often,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OftenQuestionsScreen)

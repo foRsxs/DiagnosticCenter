@@ -1,12 +1,28 @@
 import * as types from '../types/content';
 
 const initialState = {
-  ListSpecialization: [],
-  listDoctors: []
+  authMessage: null,
+  ListSpecialization: null,
+  listDoctors: [],
+  doctorData: null,
+  sales: null,
+  listInformation: {
+    list: null,
+    post: null
+  },
+  questions: {
+    often: null,
+    doctors: null
+  }
 }
   
 export default function contentReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_AUTH_MESSAGE: 
+      return {
+        ...state,
+        authMessage: action.data,
+      }
     case types.SET_LIST_SPECIALIZATION:
       return {
         ...state,
@@ -16,6 +32,48 @@ export default function contentReducer(state = initialState, action) {
       return {
         ...state,
         listDoctors: action.data,
+      }
+    case types.SET_DOCTOR_DATA:
+      return {
+        ...state,
+        doctorData: action.data
+      }
+    case types.SET_SALES:
+      return {
+        ...state,
+        sales: action.data
+      }
+    case types.SET_LIST_INFORMATION:
+      return {
+        ...state,
+        listInformation: {
+          list: action.data,
+          post: state.listInformation.post
+        }
+      }
+    case types.SET_POST:
+      return {
+        ...state,
+        listInformation: {
+          list: state.listInformation.list,
+          post: action.data
+        }
+      }
+    case types.SET_QUESTION:
+      return {
+        ...state,
+        questions: {
+          often: state.questions.often,
+          doctors: action.data
+        }
+      }
+    case types.SET_OFTEN_QUESTION:
+      return {
+        ...state,
+        questions: {
+          often: action.data,
+          doctors: state.questions.doctors
+        }
       }
     default:
       return state

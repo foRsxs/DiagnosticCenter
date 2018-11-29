@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import * as AuthActions from '../../actions/auth';
+import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
@@ -14,9 +15,9 @@ import CustomBtn from '../../components/common/CustomBtn';
 import ConfirmationCode from '../../components/autorization/ConfirmationCode';
 
 let { width, height } = Dimensions.get('window');
-const {accentBlue} = variables.colors;
+const {accentBlue, white, darkBlue, mediumBlack} = variables.colors;
 const {mainFont} = variables.fonts;
-const {large, normal} = variables.fSize;
+const {large, normal, main, medium} = variables.fSize;
 
 class AuthorizationScreen extends Component {
   constructor(props) {
@@ -136,6 +137,12 @@ class AuthorizationScreen extends Component {
     })
   }
 
+  _setGuest = () => {
+    this.props.setGuest();
+    this.props.setAuthMessage(null);
+    this.props.navigation.navigate('home');
+  }
+
   renderConfirmCodeChoose() {
     let {methods_auth_local, isFaceId, isTouchId} = this.state;
     let {changeMethodsAuth} = this.props;
@@ -184,6 +191,7 @@ class AuthorizationScreen extends Component {
 
   renderAuthView() {
     const {message, loading} = this.state;
+    const {authMessage} = this.props;
 
     return (
       <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150, padding: 15, paddingBottom: 16}}>
@@ -214,7 +222,16 @@ class AuthorizationScreen extends Component {
               </View>
               <Text style={styles.textInp}>иин</Text>
             </View>
-            {(message.length)?<Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>:false}
+            <View style={{marginVertical: 20}}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={()=>this._setGuest()}
+              >
+                <Text style={{color: accentBlue, fontFamily: mainFont, fontSize: medium}}>Вход без авторизации</Text>
+              </TouchableOpacity>
+            </View>
+            {(authMessage) && <Text style={{color: accentBlue, fontFamily: mainFont, textAlign: 'center', marginTop: 10, fontSize: medium}}>{authMessage}</Text>}
+            {(message.length) ? <Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>: false}
           </View>
           {(loading)? (<ActivityIndicator size="small" color={accentBlue} />): (<CustomBtn label='Авторизоваться' onClick={()=>this.authUser()} />)}    
       </View>
@@ -282,28 +299,28 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: variables.colors.white,
+    backgroundColor: white,
   },
   header: {
     width: '100%',
     height: 100,
-    backgroundColor: variables.colors.accentBlue
+    backgroundColor: accentBlue
   },
   oval: {
     width: width,
     height: width,
     borderRadius: width,
-    backgroundColor: variables.colors.accentBlue,
+    backgroundColor: accentBlue,
     transform: [
       { scaleX: 3 }
     ]
   },
   langOn: {
-    color: variables.colors.white,
+    color: white,
     margin: 3
   },
   langOf: {
-    color: variables.colors.darkBlue,
+    color: darkBlue,
     margin: 3
   },
   logo: {
@@ -321,9 +338,9 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 60,
     paddingRight: 10,
-    fontSize: variables.fSize.large,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack,
+    fontSize: large,
+    fontFamily: mainFont,
+    color: mediumBlack,
     backgroundColor: 'rgba(78, 158, 255, 0.15)',
     borderRadius: 10,
     borderWidth: 1,
@@ -333,9 +350,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 18,
     left: 15,
-    fontSize: variables.fSize.main,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack
+    fontSize: main,
+    fontFamily: mainFont,
+    color: mediumBlack
   },
   title: {
     color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: width, 
@@ -349,11 +366,12 @@ function mapStateToProps(state) {
     methods_auth: state.authorization.methods_auth,
     pinCode: state.authorization.pinCode,
     confirmed_auth: state.authorization.confirmed_auth,
+    authMessage: state.content.authMessage
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AuthActions, dispatch)
+  return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorizationScreen)

@@ -4,15 +4,12 @@ import * as types from '../types/content';
 import {APP_API_URL} from '../config';
 
 export function getListSpecialization(type) {
-  return (dispatch, getState) => {
-    const { authorization } = getState();
+  return (dispatch) => {
     if (true) { 
       axios.post(`${APP_API_URL}/specs`, {
-        api_token: authorization.token,
         type: type
       })
       .then((response) => {
-        console.log(response.data)
         dispatch(setListSpecialization(response.data))
       })
     } else {
@@ -22,14 +19,12 @@ export function getListSpecialization(type) {
 }
 
 export function getListDoctors(spec_id) {
-  return (dispatch, getState) => {
-    const { authorization } = getState();
+  return (dispatch) => {
     if (true) { 
-      const params = {api_token: authorization.token}
+      const params = {}
       if (spec_id) params.spec_id = spec_id;
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
-        console.log(response.data)
         dispatch(setListDoctors(response.data))
       })
     } else {
@@ -40,11 +35,8 @@ export function getListDoctors(spec_id) {
 
 export function getListServices(type) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-
     if (true) { 
       axios.post(`${APP_API_URL}/services`, {
-        api_token: authorization.token,
         type: type
       })
       .then((response) => {
@@ -57,19 +49,86 @@ export function getListServices(type) {
   }
 }
 
-export function getDoctor(keyid) {
-  
-  return (dispatch, getState) => {
-    const { authorization } = getState();
-    console.log(keyid, authorization.token)
+export function getDoctor(doc_id) {
+  return (dispatch) => {
     if (true) { 
       axios.post(`${APP_API_URL}/doctor`, {
-        api_token: authorization.token,
-        keyid: keyid
+        doc_id
       })
       .then((response) => {
         console.log(response.data)
-        //dispatch(setListSpecialization(response.data))
+        dispatch(setDoctorData(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getSales() {
+  return (dispatch) => {
+    if (true) { 
+      axios.get(`${APP_API_URL}/sales`)
+      .then((response) => {
+        dispatch(setSales(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getListInformation() {
+  return (dispatch) => {
+    if (true) { 
+      axios.post(`${APP_API_URL}/articles`)
+      .then((response) => {
+        dispatch(setListInformation(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getPost(post_id) {
+  return (dispatch) => {
+    if (true) { 
+      axios.post(`${APP_API_URL}/articles`,{post_id})
+      .then((response) => {
+        dispatch(setPost(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getQuestions(doc_id) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+    if (true) { 
+      axios.post(`${APP_API_URL}/questions`,{
+        doc_id,
+        api_token: authorization.token
+      })
+      .then((response) => {
+        console.log(response.data)
+        dispatch(setQuestion(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getOftenQuestions() {
+  return (dispatch, getState) => {
+    if (true) { 
+      axios.post(`${APP_API_URL}/faq`)
+      .then((response) => {
+        console.log(response.data)
+        dispatch(setOftenQuestion(response.data))
       })
     } else {
       Alert.alert('Интернет соединение отсутствует');
@@ -88,5 +147,54 @@ export function setListDoctors(data) {
   return {
     type: types.SET_LIST_DOCTORS,
     data: data
+  }
+}
+
+export function setDoctorData(data) {
+  return {
+    type: types.SET_DOCTOR_DATA,
+    data: data
+  }
+}
+
+export function setSales(data) {
+  return {
+    type: types.SET_SALES,
+    data: data
+  }
+}
+
+export function setListInformation(data) {
+  return {
+    type: types.SET_LIST_INFORMATION,
+    data: data
+  }
+}
+
+export function setPost(data) {
+  return {
+    type: types.SET_POST,
+    data: data
+  }
+}
+
+export function setQuestion(data) {
+  return {
+    type: types.SET_QUESTION,
+    data: data
+  }
+}
+
+export function setOftenQuestion(data) {
+  return {
+    type: types.SET_OFTEN_QUESTION,
+    data: data
+  }
+}
+
+export function setAuthMessage(mess) {
+  return {
+    type: types.SET_AUTH_MESSAGE,
+    data: mess
   }
 }

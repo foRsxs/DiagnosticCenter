@@ -18,7 +18,8 @@ class ServicesScreen extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
-      listview: true
+      listview: true,
+      loading: true,
     };
   }
 
@@ -31,8 +32,12 @@ class ServicesScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.list_Doctors !== nextProps.list_Doctors) this.setState({loading: false})
+  }
+
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -42,10 +47,10 @@ class ServicesScreen extends Component {
 
   handleChange = (value) => {
     this.setState({inputValue: value});
-}
+  }
 
   render() {
-    let { listview } = this.state;
+    let { listview, loading } = this.state;
     const { list_Doctors } = this.props;
     const { navigate } = this.props.navigation;
     return (
@@ -53,12 +58,15 @@ class ServicesScreen extends Component {
         <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
         <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ (listview)? {} : styles.containerStyle } padder>
+          {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {
-            (list_Doctors.length)? (
-              list_Doctors.map((item)=>(
-                <CatalogItem key={item.keyid} listview={listview} onClick={() => navigate('doctor',{keyid: item.keyid})} imageUri={{uri: `${APP_IMG_URL}${item.keyid}.jpg`}} name={`${item.lastname} ${item.firstname}`} position='Стоматолог' category='Высшая категория' experience='10'/>
-              ))
-            ): <ActivityIndicator size="small" color={blue} /> 
+            (!loading) && (
+              (list_Doctors.length)? (
+                list_Doctors.map((item)=>(
+                  <CatalogItem key={item.docid} listview={listview} onClick={() => navigate('doctor',{docid: +item.docid})} imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} name={`${item.lastname} ${item.firstname} ${item.secondname}`}/>
+                ))
+              ) : <Text>Нет подходящих врачей</Text>
+            )
           }
         </Content>
       </Container>

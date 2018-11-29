@@ -2,16 +2,27 @@ import * as types from '../types/auth';
 
 const initialState = {
   token: null,
-  confirmed_auth: true, //<
+  confirmed_auth: false, //<--
   methods_auth: null,
   pinCode: null,
   user: {},
   device_touch: false,
   device_face: false,
+  isGuest: false //<--
 }
   
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_USER_GUEST:
+      return {
+        ...state,
+        isGuest: true
+      }
+    case types.SET_USER: 
+      return {
+        ...state,
+        user: action.user
+      }
     case types.SET_USER_DATA:
       return {
         ...state,

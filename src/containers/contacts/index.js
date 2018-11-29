@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, TouchableOpacity, Image, Linking, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
+import * as ContentActions from '../../actions/content';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -24,6 +27,14 @@ class ContactsScreen extends Component {
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
+  }
+
+  _sendQuestion = () => {
+    const {isGuest, navigation, doctor} = this.props;
+    if (isGuest) {
+      this.props.setAuthMessage('Для того чтобы задавать вопросы, Вам необходимо авторизоваться');
+      navigation.navigate('authorization');
+    } else navigation.navigate('fuq');
   }
 
   render() {
@@ -70,7 +81,7 @@ class ContactsScreen extends Component {
                 style={{flexDirection: 'row', justifyContent: 'flex-start'}}
               >
                 <Image source={require('../../../assets/img/mark-icon.png')} style={{width: 20, height: 20}} resizeMode='contain'></Image>
-                <Text style={[styles.linkTxt, {paddingTop: 5, marginLeft: 5}]} onPress={()=> this.props.navigation.navigate('fuq')}>Отправить сообщение</Text>
+                <Text style={[styles.linkTxt, {paddingTop: 5, marginLeft: 5}]} onPress={()=> this._sendQuestion()}>Отправить сообщение</Text>
               </TouchableOpacity>
             </View>
           </Content >
@@ -110,4 +121,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ContactsScreen;
+function mapStateToProps(state) {
+  return {
+    isGuest: state.authorization.isGuest
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsScreen)

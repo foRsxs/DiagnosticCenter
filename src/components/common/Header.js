@@ -26,7 +26,7 @@ export default class Header extends Component {
           </TouchableOpacity>
           {
             (!backDisabled) ?
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()} activeOpacity={0.6} style={styles.btnBack} >
+              <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
                 {
                   (!inversion) ?
                     <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
