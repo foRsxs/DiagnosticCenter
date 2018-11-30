@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet,} from 'react-native';
+import {StyleSheet, ActivityIndicator} from 'react-native';
 import {View, Item, Textarea, Input, Form} from 'native-base';
 import CustomBtn from './CustomBtn';
 import variables from '../../styles/variables';
 
-const { black, accentBlue, red } = variables.colors;
+const { black, accentBlue, red, blue } = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium } = variables.fSize;
 
@@ -13,17 +13,17 @@ export default class FormSend extends Component {
     super(props);
     this.state = {
       email: props.email,
-      message: '',
+      question: '',
       emailValid: true,
-      messageValid: true
+      questionValid: true
     };
   }
 
   _confirm = () => {
-    const { message, email, emailValid, messageValid } = this.state;
+    const { question, email, emailValid, questionValid } = this.state;
     this.validate(email);
-    this.validateMess(message);
-    if (emailValid && messageValid) this.props.sendData({email, message})
+    this.validateMess(question);
+    if (emailValid && questionValid) this.props.sendData({email, question})
   }
 
   validate = (value) => {
@@ -34,12 +34,12 @@ export default class FormSend extends Component {
   }
 
   validateMess = (value) => {
-    this.setState({message: value});
-    (!value.length || value.length < 10) ? this.setState({messageValid: false}) : this.setState({messageValid: true});
+    this.setState({question: value});
+    (!value.length || value.length < 10) ? this.setState({questionValid: false}) : this.setState({questionValid: true});
   }
 
   render() {
-    const { message, email, emailValid, messageValid } = this.state;
+    const { question, email, emailValid, questionValid } = this.state;
 
     return (
       <Form style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, paddingTop: 15, paddingHorizontal: 15}}>
@@ -47,10 +47,10 @@ export default class FormSend extends Component {
           <Item style={[styles.inputWrap, (!emailValid)? {borderColor: red}: {}]} regular>
             <Input style={styles.input} placeholder='Ваш e-mail' onChangeText={(email) => this.validate(email)} value={email}/>
           </Item>
-          <Textarea style={[styles.textarea, (!messageValid)? {borderColor: red}: {}]} bordered placeholder="Ваш вопрос" onChangeText={(message) => this.validateMess(message)} value={message}/>
+          <Textarea style={[styles.textarea, (!questionValid)? {borderColor: red}: {}]} bordered placeholder="Ваш вопрос" onChangeText={(question) => this.validateMess(question)} value={question}/>
         </View >
         <View style={styles.buttonWrap}>
-          <CustomBtn label='ОТПРАВИТЬ' onClick={() => this._confirm()}/>
+          { (!this.props.loading) ? <CustomBtn label='ОТПРАВИТЬ' onClick={() => this._confirm()}/> : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>}
         </View>
       </Form>
     );

@@ -14,10 +14,10 @@ export default class HeaderBottom extends Component {
       }
     
   render(){
-    const { katalogDoctor = false, search = false } = this.props
+    const { katalogDoctor = false, search = false, islanguages = false, language } = this.props
     return(
       <View style={styles.bigContainer}>
-        <View style={styles.container}>
+        <View style={[styles.container, (islanguages)? {justifyContent: 'center'}: {}] }>
         {
           (katalogDoctor)?
           <View style={styles.btnContainer}>
@@ -37,15 +37,37 @@ export default class HeaderBottom extends Component {
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBW.png')} />
             }
             </TouchableOpacity>
-          </View>: <View style={styles.btnContainer}></View>
+          </View>: <View style={[styles.btnContainer, (islanguages) ? {width: 0}: {}]}></View>
         }
-          {
-            (search)?
-              <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>  
+        {
+          (search)?
+            <View style={styles.inputContainer}>
+              <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>  
+          </View>
+          :<Text style={styles.text}>{this.props.text}</Text>
+        }
+        {
+          (islanguages) ? (
+            <View style={{ flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('kz')}
+                style={{zIndex: 2}}
+              >
+                <Text style={(language === 'kz') ? styles.lang : styles.langActive}>KAZ</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('ru')}
+              >
+                <Text style={(language == 'ru') ? styles.lang : styles.langActive}>РУС</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('en')}
+              >
+                <Text style={(language == 'en') ? styles.lang : styles.langActive}>ENG</Text>
+              </TouchableOpacity>
             </View>
-            :<Text style={styles.text}>{this.props.text}</Text>
-          } 
+          ): null
+        }
         </View>
         <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
           <View style={styles.oval} />
@@ -112,5 +134,19 @@ const styles = StyleSheet.create({
     transform: [
       {scaleX: 3}
     ]
+  },
+  langActive: {
+    color: variables.colors.black,
+    margin: 5,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.medium,
+    zIndex: 10
+  },
+  lang: {
+    color: variables.colors.white,
+    margin: 5,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.medium,
+    zIndex: 10
   },
 });

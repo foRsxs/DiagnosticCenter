@@ -2,16 +2,20 @@ import axios from 'react-native-axios'
 import {Alert, AsyncStorage} from 'react-native';
 import * as types from '../types/auth';
 import {APP_API_URL} from '../config';
+import RNLanguages from 'react-native-languages';
+import i18n from '../i18n';
 
 export function authUser(data) {
   return (dispatch, getState) => {
     if (true) { 
       return axios.post(`${APP_API_URL}/get_patient`, data)
       .then((response) => {
-        dispatch(saveUser(response.data))
+        console.log(response.data)
+        dispatch(saveUser(response.data));
         return Promise.resolve(response.data);
       })
       .catch((error) => {
+        console.log(error.response.data)
         return Promise.reject({error: error.response.data.message});
       });
     } else {
@@ -34,6 +38,23 @@ export function getUserData() {
     } else {
       Alert.alert('Интернет соединение отсутствует');
     }
+  }
+}
+
+export function setLanguage(lang_key) {
+  return (dispatch, getState) => {
+    //const { authorization } = getState();
+    i18n.locale = 'en-GB'//lang_key;
+    console.log(i18n.currentLocale())
+    dispatch(setCurrentLang(lang_key));
+  }
+}
+
+export function setCurrentLang(key) {
+  _storeData('lang_key', key)
+  return {
+    type: types.SET_CURRENT_LANG,
+    data: key
   }
 }
 

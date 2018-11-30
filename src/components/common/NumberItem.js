@@ -67,14 +67,13 @@ const styles = StyleSheet.create({
       width: 60,
       height: 60,
       borderRadius: 30,
-      backgroundColor: 'rgba(78, 158, 255, 0.1)',
+      backgroundColor: 'rgba(94, 150, 197, 0.1)',
     },
     ItemActive: {
-      backgroundColor: variables.colors.blue,
+      backgroundColor: variables.colors.backgroundBlue,
       width: 60,
       height: 60,
       borderRadius: 30
-      
     },
     Text: {
       top: 7,

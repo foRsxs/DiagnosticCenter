@@ -1,4 +1,5 @@
 import * as types from '../types/auth';
+import { language } from 'react-native-languages';
 
 const initialState = {
   token: null,
@@ -8,11 +9,20 @@ const initialState = {
   user: {},
   device_touch: false,
   device_face: false,
-  isGuest: false //<--
+  isGuest: false, //<--,
+  language: {
+    current_key: null,
+    current_array: null
+  }
 }
   
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_CURRENT_LANG: 
+      return {
+        ...state,
+        language: {...language, current_key:action.data}
+      }
     case types.SET_USER_GUEST:
       return {
         ...state,

@@ -136,6 +136,38 @@ export function getOftenQuestions() {
   }
 }
 
+export function sendQuestion({type, question, email, doc_id}) {
+  return (dispatch, getState) => {
+    dispatch(sendQuestionSuccess({loading: true, status: false}))
+    const { authorization } = getState();
+    const params = {
+      api_token: authorization.token,
+      question, 
+      email
+    }
+    if (doc_id) params.doc_id = doc_id
+    if (true) { 
+      axios.post(`${APP_API_URL}/${type}`, params)
+      .then((response) => {
+        console.log(response.data)
+        if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+    setTimeout(()=> {
+      dispatch(sendQuestionSuccess({loading: false, status: false}))
+    }, 3000)
+  }
+}
+
+export function sendQuestionSuccess(data) {
+  return {
+    type: types.SENDED_MESSAGE_SUCCESS,
+    data: data
+  }
+}
+
 export function setListSpecialization(data) {
   return {
     type: types.SET_LIST_SPECIALIZATION,

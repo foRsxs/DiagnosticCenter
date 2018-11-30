@@ -9,7 +9,8 @@ import SplashScreen from 'react-native-splash-screen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TouchID from 'react-native-touch-id';
 import TextInputMask from 'react-native-text-input-mask';
-
+import Header from '../../components/common/Header';
+import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
 import ConfirmationCode from '../../components/autorization/ConfirmationCode';
@@ -23,7 +24,6 @@ class AuthorizationScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rusOn: true,
       number: '',
       personalId: '',
       methods_auth_local: 'code',
@@ -37,6 +37,10 @@ class AuthorizationScreen extends Component {
   componentDidMount() {
     this._checkTouchSupport();
     //AsyncStorage.clear()
+    //<----------------------------------------need to rewrite--------------------------------------------//
+    AsyncStorage.getItem('lang_key').then((resp)=>{
+      (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
+    })
     AsyncStorage.getItem('api_token').then((resp)=>{
       this.props.saveUser({api_token: resp});
     })
@@ -54,8 +58,9 @@ class AuthorizationScreen extends Component {
     
   }
 
-  changeLang = () => {
-    this.setState(state => ({ rusOn: !state.rusOn }))
+  changeLang = (key) => {
+    if (key === this.state.language) return;
+    this.props.setLanguage(key);
   }
 
   onChangeNumber = (value) => {
@@ -79,6 +84,7 @@ class AuthorizationScreen extends Component {
     }
     return result
   }
+
   authUser = () => {
     let {number, personalId} = this.state;
     if (this.checkValid(number, personalId)) {
@@ -189,21 +195,16 @@ class AuthorizationScreen extends Component {
     )
   }
 
-  renderAuthView() {
-    const {message, loading} = this.state;
+  renderAuthView() { 
+    const {message, loading, } = this.state;
     const {authMessage} = this.props;
 
     return (
-      <View style={{position: 'relative',  alignItems: 'center', zIndex: 2, height: height-150, padding: 15, paddingBottom: 16}}>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', width: width, top: -60, position: 'absolute' }}>
-          <Text style={this.state.rusOn ? styles.langOn : styles.langOf} onPress={this.changeLang}>РУС</Text>
-          <Text style={styles.langOf}>|</Text>
-          <Text style={this.state.rusOn ? styles.langOf : styles.langOn} onPress={this.changeLang}>KAZ</Text>
-        </View>
-          <Image style={{ zIndex: 1, marginTop: -20, height: 130, marginBottom: 10 }} resizeMode='contain' fadeDuration={0} source={require('../../../assets/img/logo.png')} />
+      <View style={{position: 'relative',  alignItems: 'center', zIndex: 3, height: height-150, padding: 15, paddingBottom: 16}}>
+       
+          <Image style={{ zIndex: 1, height: 130, marginBottom: 10 }} resizeMode='contain' fadeDuration={0} source={require('../../../assets/img/logo.png')} />
           <View style={styles.content}>
-          
-            <View style={{marginBottom: 20}}>
+            <View style={{marginBottom: 20, position: 'relative'}}>
               <View style={{ alignItems: 'center' }}>
                 <TextInputMask
                   onChangeText={(formatted, extracted) => {
@@ -214,13 +215,17 @@ class AuthorizationScreen extends Component {
                   mask={"+7 ([000]) [000] [00] [00]"}
                 />
               </View>
-              <Text style={styles.textInp} >тел</Text>
+              <View style={styles.textInpWrap}>
+                <Text style={styles.textInp} >ТЕЛ</Text>
+              </View> 
             </View>
-            <View>
+            <View style={{position: 'relative'}}>
               <View style={{ alignItems: 'center' }}>
                 <TextInput style={styles.input} onChangeText={(text) => this.onChangeId(text)} placeholder='' keyboardType='number-pad' maxLength={12}/>
               </View>
-              <Text style={styles.textInp}>иин</Text>
+              <View style={styles.textInpWrap}>
+                <Text style={styles.textInp}>ИИН</Text>
+              </View>
             </View>
             <View style={{marginVertical: 20}}>
               <TouchableOpacity
@@ -274,15 +279,13 @@ class AuthorizationScreen extends Component {
   }
 
   render() {
-    let {token, methods_auth, confirmed_auth, pinCode} = this.props;
+    const {token, methods_auth, confirmed_auth, pinCode, languages_key} = this.props;
 
     return (
       <Container style={styles.container}>
         <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' style={{flex:1}} contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}} >
-          <View style={styles.header} />
-          <View style={{ alignItems: 'center', marginTop: -width + height / 25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
-            <View style={styles.oval} />
-          </View>
+          <Header disabledButtons={true} text="" navigation = {this.props.navigation} />
+          <HeaderBottom language={languages_key} islanguages={!token} changeLang={(value)=>this.changeLang(value)}  />
           {(!token) && this.renderAuthView()}
           {(token && !methods_auth) && this.renderConfirmCodeChoose()}
           {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
@@ -301,28 +304,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: white,
   },
-  header: {
-    width: '100%',
-    height: 100,
-    backgroundColor: accentBlue
-  },
-  oval: {
-    width: width,
-    height: width,
-    borderRadius: width,
-    backgroundColor: accentBlue,
-    transform: [
-      { scaleX: 3 }
-    ]
-  },
-  langOn: {
-    color: white,
-    margin: 3
-  },
-  langOf: {
-    color: darkBlue,
-    margin: 3
-  },
   logo: {
     position: 'absolute',
     zIndex: 10
@@ -334,28 +315,38 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input: {
-    width: width-30,
+    width: width-50,
     height: 50,
     paddingLeft: 60,
     paddingRight: 10,
     fontSize: large,
     fontFamily: mainFont,
     color: mediumBlack,
-    backgroundColor: 'rgba(78, 158, 255, 0.15)',
+    backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'rgba(112, 172, 245, 0.5)',
+    borderColor: accentBlue,
+  },
+  textInpWrap: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: 50,
+    backgroundColor: accentBlue,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textInp: {
-    position: 'absolute',
-    top: 18,
-    left: 15,
+    
     fontSize: main,
     fontFamily: mainFont,
-    color: mediumBlack
+    color: 'white'
   },
   title: {
-    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -50, zIndex: 1, left: 0, textAlign: 'center', width: width, 
+    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -60, zIndex: 1, left: 0, textAlign: 'center', width: width, 
   }
 });
 
@@ -366,7 +357,8 @@ function mapStateToProps(state) {
     methods_auth: state.authorization.methods_auth,
     pinCode: state.authorization.pinCode,
     confirmed_auth: state.authorization.confirmed_auth,
-    authMessage: state.content.authMessage
+    authMessage: state.content.authMessage,
+    languages_key: state.authorization.language.current_key
   }
 }
 

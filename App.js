@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
+import { Root } from "native-base";
 import { Provider } from 'react-redux';
 import MainStackRouter from './src/routers/MainStackRouter';
 import configureStore from './src/store/configureStore';
@@ -25,9 +26,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <MainStackRouter />
-      </Provider>
+      <Root>
+        <Provider store={store}>
+          <MainStackRouter />
+        </Provider>
+      </Root>
     );
   }
 }

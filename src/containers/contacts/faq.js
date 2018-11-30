@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler} from 'react-native';
-import {Container} from 'native-base';
+import {Container, Toast} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import i18n from '../../i18n';
-import * as AuthActions from '../../actions/auth';
+import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FormSend from '../../components/common/Form';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-class FuqScreen extends Component {
+class FaqScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
   }
   
-  getData = (info) => {
-    console.log(info)
+  getData = (data) => {
+    this.props.sendQuestion({type: 'faq', ...data});
   }
 
   componentDidMount() {
@@ -29,20 +27,32 @@ class FuqScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.status !== prevProps.status) {
+      if (this.props.status) {
+        Toast.show({
+          text: 'Ваш вопрос успешно отправлен'
+        })
+      } else {
+        Toast.hide();
+      }
+    }
+  }
+
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
   }
 
   render() {
-    const {profile} = this.props;
+    const {profile, loading} = this.props;
 
     return (
       <Container>
         <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
           <Header text="ОБРАТНАЯ СВЯЗЬ" navigation = {this.props.navigation}/>
           <HeaderBottom text="напишите нам" />
-          <FormSend sendData={this.getData} email={profile.email}/>
+          <FormSend sendData={this.getData} email={profile.email} loading={loading}/>
         </KeyboardAwareScrollView>
       </Container>
     )
@@ -51,12 +61,14 @@ class FuqScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    profile: state.authorization.user
+    profile: state.authorization.user,
+    status: state.content.newQuestion.status,
+    loading: state.content.newQuestion.loading,
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AuthActions, dispatch)
+  return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FuqScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(FaqScreen)

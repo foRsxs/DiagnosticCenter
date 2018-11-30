@@ -13,11 +13,20 @@ const initialState = {
   questions: {
     often: null,
     doctors: null
+  },
+  newQuestion: {
+    loading: false,
+    status: false,  
   }
 }
   
 export default function contentReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SENDED_MESSAGE_SUCCESS: 
+      return {
+        ...state,
+        newQuestion: action.data,
+      }
     case types.SET_AUTH_MESSAGE: 
       return {
         ...state,

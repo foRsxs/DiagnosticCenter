@@ -16,8 +16,8 @@ class SettingsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: "key1",
       local_auth_methods: props.methods_auth,
+      local_languages_key: props.languages_key,
       switchone: false,
       showButton: false
     };
@@ -36,12 +36,6 @@ class SettingsScreen extends Component {
     this.setState({ switchone: value });
   }
 
-  onLanguageChange(value) {
-    this.setState({
-      language: value
-    });
-  } 
-
   onAuthChange(value) {
     this.setState({local_auth_methods: value});
     
@@ -49,9 +43,12 @@ class SettingsScreen extends Component {
 
 
   _saveChanges = () => {
-    const {local_auth_methods} = this.state;
-    const {methods_auth, savePinCode, changeMethodsAuth, navigation} = this.props;
+    const {local_auth_methods, local_languages_key} = this.state;
+    const {methods_auth, savePinCode, changeMethodsAuth, navigation, languages_key} = this.props;
 
+    if (languages_key !== local_languages_key) {
+      this.props.setLanguage(local_languages_key);
+    }
     if (methods_auth !== local_auth_methods) {
       savePinCode({code: null, confirmed: false});
       AsyncStorage.removeItem('pinCode');
@@ -69,9 +66,14 @@ class SettingsScreen extends Component {
     return true;
   }
 
+  changeLang = (key) => {
+    if (key === this.state.local_languages_key) return;
+    this.setState({local_languages_key: key})
+  }
+
   render() {
-    const {methods_auth, device_touch} = this.props;
-    const {local_auth_methods} = this.state;
+    const {methods_auth, device_touch, languages_key} = this.props;
+    const {local_auth_methods, local_languages_key} = this.state;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
           <Header text="НАСТРОЙКИ" navigation = {this.props.navigation}/>
@@ -83,14 +85,15 @@ class SettingsScreen extends Component {
                 <Picker
                   mode="dropdown"
                   style={{width: '100%', position: 'relative'}}
-                  selectedValue={this.state.language}
-                  onValueChange={this.onLanguageChange.bind(this)}
+                  selectedValue={local_languages_key}
+                  onValueChange={this.changeLang.bind(this)}
                   headerBackButtonText="Назад"
                   iosHeader="Выберите язык интерфейса"
                   iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
                 >
-                  <Picker.Item label="Рус" value="key0" />
-                  <Picker.Item label="Русский" value="key1" />
+                  <Picker.Item label="Рус" value="ru" />
+                  <Picker.Item label="Kaз" value="kz" />
+                  <Picker.Item label="Eng" value="en" />
                 </Picker>
               </Form>
             </View>
@@ -120,7 +123,7 @@ class SettingsScreen extends Component {
             </View>
           </Content>
           {
-            (local_auth_methods !== methods_auth) ? (
+            (local_auth_methods !== methods_auth || local_languages_key !== languages_key) ? (
               <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
                 <CustomBtn label='СОХРАНИТЬ' onClick={() => this._saveChanges()}/>
               </View>
@@ -163,6 +166,7 @@ function mapStateToProps(state) {
     methods_auth: state.authorization.methods_auth,
     device_touch: state.authorization.device_touch,
     device_face: state.authorization.device_face,
+    languages_key: state.authorization.language.current_key
   }
 }
 

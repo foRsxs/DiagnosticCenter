@@ -5,6 +5,8 @@ import { Icon } from 'native-base';
 
 import variables from '../../styles/variables';
 const { large } = variables.fSize;
+const {darkBlue, white, accentBlue} = variables.colors;
+const {mainFont} = variables.fonts;
 
 export default class Header extends Component {
   constructor(props) {
@@ -13,32 +15,35 @@ export default class Header extends Component {
     };
   }
   render() {
-    const { inversion = false, backDisabled = false } = this.props
+    const { inversion = false, backDisabled = false, disabledButtons = false } = this.props
     return (
       <View style={!inversion ? styles.container : styles.inContainer}>
-        <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
+        {(!disabledButtons) && (
+          <View style={styles.btnContainer}>
+            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
+              {
+                (!inversion) ?
+                  <Icon ios='ios-menu' android="md-menu" style={{ color: 'white', width: 30, height: 30 }} /> :
+                  <Icon ios='ios-menu' android="md-menu" style={{ color: variables.colors.blue, width: 30, height: 30 }} />
+              }
+            </TouchableOpacity>
             {
-              (!inversion) ?
-                <Icon ios='ios-menu' android="md-menu" style={{ color: 'white', width: 30, height: 30 }} /> :
-                <Icon ios='ios-menu' android="md-menu" style={{ color: variables.colors.blue, width: 30, height: 30 }} />
-            }
-          </TouchableOpacity>
-          {
-            (!backDisabled) ?
-              <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
-                {
-                  (!inversion) ?
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
-                }
+              (!backDisabled) ?
+                <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
+                  {
+                    (!inversion) ?
+                      <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
+                      <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
+                  }
 
-              </TouchableOpacity> : null
-          }
-        </View>
+                </TouchableOpacity> : null
+            }
+          </View>
+        )}
         <View style={styles.textContainer} >
           <Text style={!inversion ? styles.text : styles.inText}>{this.props.text.toUpperCase()}</Text>
         </View>
+        
       </View>
     )
   }
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     alignItems: 'flex-end',
-    backgroundColor: variables.colors.accentBlue,
+    backgroundColor: accentBlue,
     zIndex: 3
   },
   inContainer: {
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
     height: 40,
-    backgroundColor: variables.colors.white,
+    backgroundColor: white,
     zIndex: 3
   },
   btnContainer: {
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
   btnBack: {
     paddingTop: 10,
     // paddingRight: 0,
-    //paddingLeft: 10,
+    // paddingLeft: 10,
   },
   textContainer: {
     width: width - 80,
@@ -86,13 +91,13 @@ const styles = StyleSheet.create({
     paddingBottom: 3
   },
   text: {
-    color: variables.colors.white,
-    fontFamily: variables.fonts.mainFont,
+    color: white,
+    fontFamily: mainFont,
     fontSize: large,
   },
   inText: {
-    color: variables.colors.darkBlue,
-    fontFamily: variables.fonts.mainFont,
+    color: darkBlue,
+    fontFamily: mainFont,
     fontSize: large,
-  }
+  },
 });

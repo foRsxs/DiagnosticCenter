@@ -34,7 +34,7 @@ class ContactsScreen extends Component {
     if (isGuest) {
       this.props.setAuthMessage('Для того чтобы задавать вопросы, Вам необходимо авторизоваться');
       navigation.navigate('authorization');
-    } else navigation.navigate('fuq');
+    } else navigation.navigate('faq');
   }
 
   render() {
@@ -57,7 +57,6 @@ class ContactsScreen extends Component {
               <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367192')}>8 (7252) 36-71-92</Text>
               <Text style={styles.subHeadTxt}>Телефон доверия</Text>
               <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+8725395456')}>8 (7252) 39-54-56</Text>
-              
             </View>
             <View style={styles.contactItem}>
               <Text style={styles.headTxt}>Электронная почта:</Text>
