@@ -89,14 +89,11 @@ class ReceptionInfoScreen extends Component {
   componentDidMount() {
     const {type, spec_id, docdep_id} = this.state.props_data;
     this.props.cleareOrderSuccess();
-    console.log(type, spec_id, docdep_id)
+
     if (type) this.props.setOrder({type}, 'type', 'spec');
-    if (spec_id) {
-      //this.props.setOrder({spec_id}, 'spec_id', 'serv');
-      if (type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
-    }
+    if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
     if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id');
-    //console.log(this.state.props_data)
+
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -228,8 +225,12 @@ class ReceptionInfoScreen extends Component {
     const { navigate } = this.props.navigation;
     const { t, order, orderDatas } = this.props;
     const { shortOrder, typeExperiments} = this.state;
+    let doctor = '';
+    let spec = '';
 
-    console.log(order)
+    orderDatas.doctors.forEach((item) => {if (+item.docdep === +order.docdep_id) doctor = `${item.lastname} ${item.firstname} ${item.secondname}`});
+    orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
+
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
@@ -302,7 +303,7 @@ class ReceptionInfoScreen extends Component {
         </KeyboardAwareScrollView > 
         {(shortOrder) && (
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid})}/>
+            <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec})}/>
           </View>
         )}
       </Container>
@@ -347,14 +348,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     textAlign: 'center',
-    marginVertical: 10,
+    margin: 10,
     justifyContent: 'center',
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
     color: mediumBlack
   },
   timeContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     backgroundColor: 'white',
@@ -366,7 +367,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     order: state.content.order,
-    orderDatas: state.content.orderDatas
+    orderDatas: state.content.orderDatas,
   }
 }
 

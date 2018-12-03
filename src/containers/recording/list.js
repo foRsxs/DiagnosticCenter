@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler} from 'react-native';
+import {Alert, StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -15,15 +15,22 @@ class ReceptionListScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true
+    };
   }
 
   componentDidMount() {
+    this.props.getListTalons();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.listTalons !== this.props.listTalons) this.setState({loading: false});
   }
 
   handleBackButtonClick = () => {
@@ -33,17 +40,40 @@ class ReceptionListScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { t } = this.props;
-    const total = '5';
+    const {loading} = this.state;
+    const { t, listTalons } = this.props;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={ t('recordings:total_text') + `- ${total}` } />
+        <HeaderBottom text={ t('recordings:total_text') + `- ${listTalons.length}` } />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
+          {(loading) && <ActivityIndicator size="small" color={blue} /> }
+          {
+            (!loading) && (
+              (listTalons.length)? (
+                listTalons.map((item, index)=> (
+                  <ReceptionListItem 
+                    key={index} 
+                    headTxt={item.spec} 
+                    servTxt='' 
+                    timeTxt= {`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
+                    nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`} 
+                    onPress={()=> navigate('recordingItem', {
+                      rnumb_id: item.rnumb_id,
+                      dd: item.dd,
+                      room: item.room,
+                      time: item.time,
+                      doctor: item.doc,
+                      spec: item.spec,
+                      reserved: true
+                    })
+                  }/>
+                ))
+              ) :
+              ( <Text>{ t('recordings:no_recordings_text') }</Text> )
+            )
+          }
         </Content >
         <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
           <CustomBtn label={ t('common:actions.add_recording') } onClick={()=> navigate('receptions')}/>
@@ -53,16 +83,14 @@ class ReceptionListScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-
-});
-
 function mapStateToProps(state) {
-  return {}
+  return {
+    listTalons: state.content.listTalons,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch);
+  return bindActionCreators(ContentActions, dispatch)
 }
 
 export default withNamespaces(['recordings', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionListScreen));

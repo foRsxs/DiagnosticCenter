@@ -28,6 +28,8 @@ class ReceptionInfoItemScreen extends Component {
       serv_id: (props.navigation.state.params) ? props.navigation.state.params.serv_id: null,
       time: (props.navigation.state.params) ? props.navigation.state.params.time: null,
       reserved: (props.navigation.state.params) ? props.navigation.state.params.reserved: false,
+      doctor: (props.navigation.state.params) ? props.navigation.state.params.doctor: false,
+      spec: (props.navigation.state.params) ? props.navigation.state.params.spec: false,
       modalVisible: false,
       hideButton: false,
     };
@@ -41,6 +43,12 @@ class ReceptionInfoItemScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({modalVisible: true});
+    if (prevProps.orderCreated !== this.props.orderCreated && !this.props.orderCreated) this.setState({modalVisible: false});
+    if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
+  }
+
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
@@ -49,8 +57,9 @@ class ReceptionInfoItemScreen extends Component {
   _onClick = () => {
     const {reserved, rnumb_id, date, serv_id} = this.state;
     if (!reserved) {
-      this.props.saveOrder({rnumb_id, date, serv_id})
-      this.setState({modalVisible: true})
+      this.props.saveOrder({rnumb_id, date, serv_id});
+    } else {
+      this.props.deleteOrder({rnumb_id});
     }
   }
 
@@ -70,7 +79,7 @@ class ReceptionInfoItemScreen extends Component {
         >
           <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
             <Image
-              style={{width: 20, height: 15, marginRight: 10}}
+              style={{width: 20, height: 15, marginRight: 10, marginVertical: 3}}
               resizeMode='cover'
               source={require('../../../assets/img/mail-icon.png')}
             />
@@ -83,7 +92,7 @@ class ReceptionInfoItemScreen extends Component {
         >
           <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
             <Image
-              style={{width: 20, height: 15, marginRight: 10}}
+              style={{width: 20, height: 15, marginRight: 10, marginVertical: 3}}
               resizeMode='cover'
               source={require('../../../assets/img/picture-icon.png')}
             />
@@ -97,7 +106,7 @@ class ReceptionInfoItemScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { t } = this.props;
-    const { reserved, modalVisible, hideButton, date, time, room  } = this.state;
+    const { reserved, modalVisible, hideButton, date, time, room, doctor, spec  } = this.state;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
@@ -107,26 +116,26 @@ class ReceptionInfoItemScreen extends Component {
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.make_appointment')}:</Text>
             <View style={styles.wrapName}>
-              <Text style={styles.txtName}>Пародонтозов Иван</Text>
-              <Text style={styles.txtSubname}>стоматолог</Text>
+              <Text style={styles.txtName}>{doctor}</Text>
+              <Text style={styles.txtSubname}>{spec}</Text>
             </View>
           </View>
-          <View style={styles.itemWrap}>
+          {/* <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>Пародонтозов Иван</Text>
               <Text style={styles.txtSubname}>стоматолог</Text>
             </View>
-          </View>
+          </View> */}
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.date_time')}:</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.date_time') }:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>{date}</Text>
               <Text style={styles.txtSubname}>{time}</Text>
             </View>
           </View>
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.room')}:</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.room') }:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>№ {room}</Text>
             </View>
@@ -193,8 +202,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    order: state.content.order,
-    orderDatas: state.content.orderDatas
+    orderCreated: state.content.orderCreated,
+    orderDeleted: state.content.orderDeleted
   }
 }
 

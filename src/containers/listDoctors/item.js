@@ -121,7 +121,7 @@ class DoctorScreen extends Component {
           }
           {(!loading) && (
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
-            <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={() => navigate('receptions')} />
+            <CustomBtn label={ t('common:actions.appointment') } onClick={() => navigate('recordingCreate', {spec_id, docdep_id}) } />
           </View>
           )}
         </ScrollView>

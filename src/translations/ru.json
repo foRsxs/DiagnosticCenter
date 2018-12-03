@@ -56,6 +56,9 @@
     "recordings": {
         "title": "Журнал записей",
         "total_text": "Всего записей",
+        "no_recordings_text": "У вас еще нет записей",
+        "in_text": "в",
+        "short_room_text": "каб.",
         "item": {
             "title": "Запись на приём",
             "check_info": "проверьте информацию",
