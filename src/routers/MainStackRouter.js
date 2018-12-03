@@ -1,35 +1,36 @@
 import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
-// import AthorizationScreen from '../containers/authorization';
+import AthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
-import SpecilizationScreen from '../containers/specilization';
-import ServicesScreen from '../containers/services';
-import SubServicesScreen from '../containers/subservices';
-import QuestionsScreen from '../containers/questions';
-import QuestionFormScreen from '../containers/questionForm';
-import CatalogScreen from '../containers/catalog';
-import OftenQuestionsScreen from '../containers/oftenquestions';
-import ReceptionInfoScreen from '../containers/receptionInfo';
-import ReceptionListScreen from '../containers/receptionList';
-import AnalizesScreen from '../containers/analizes';
+import SpecializationScreen from '../containers/specialization';
+import QuestionsScreen from '../containers/questions/allQuestions';
+import QuestionFormScreen from '../containers/questions/createQuestion';
+import OftenQuestionsScreen from '../containers/questions/oftenQuestions';
+import CatalogScreen from '../containers/listDoctors';
+import DoctorScreen from '../containers/listDoctors/item';
+import RecordingItemScreen from '../containers/recording/item';
+import RecordingListScreen from '../containers/recording/list';
+import RecordingCreateScreen from '../containers/recording/createRecording';
+import AnalizesScreen from '../containers/analizes_history/analizes';
+import HistoryScreen from '../containers/analizes_history/history';
+import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
+import FaqScreen from '../containers/contacts/faq';
 import SettingsScreen from '../containers/settings';
-import TextScreen from '../containers/textScreen';
-import DoctorScreen from '../containers/cardDoc';
 import CalendarDateScreen from '../containers/calendar/date';
-import ReceptionsScreen from '../containers/receprions';
 import TimeScreen from '../containers/time';
-import FuqScreen from '../containers/fuq';
+import InfoScreen from '../containers/information';
+import InfoItemScreen from '../containers/information/item';
 
-// const Athorization = StackNavigator({
-//     authorization: { 
-//         screen: AthorizationScreen,
-//         navigationOptions: {
-//             header: null
-//         }
-//     },
-// });
+const Athorization = StackNavigator({
+    authorization: { 
+        screen: AthorizationScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+});
 
 const MainScreenNavigator = StackNavigator({
     home: { 
@@ -38,20 +39,8 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    specilization: { 
-        screen: SpecilizationScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    services: { 
-        screen: ServicesScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    subservices: { 
-        screen: SubServicesScreen,
+    specialization: { 
+        screen: SpecializationScreen,
         navigationOptions: {
             header: null
         }
@@ -68,32 +57,44 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    catalog: { 
-        screen: CatalogScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    oftenquestions: { 
+    oftenQuestions: { 
         screen: OftenQuestionsScreen,
         navigationOptions: {
             header: null
         }
     },
-    receptionInfo: { 
-        screen: ReceptionInfoScreen,
+    recordingCreate: { 
+        screen: RecordingCreateScreen,
         navigationOptions: {
             header: null
         }
     },
-    receptionList: { 
-        screen: ReceptionListScreen,
+    recordingItem: { 
+        screen: RecordingItemScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    recordingList: { 
+        screen: RecordingListScreen,
         navigationOptions: {
             header: null
         }
     },
     analizes: { 
         screen: AnalizesScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    history: { 
+        screen: HistoryScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    historyItem: { 
+        screen: HistoryItemScreen,
         navigationOptions: {
             header: null
         }
@@ -110,14 +111,14 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    textScreen: { 
-        screen: TextScreen,
+    doctor: { 
+        screen: DoctorScreen,
         navigationOptions: {
             header: null
         }
     },
-    cardDoc: { 
-        screen: DoctorScreen,
+    listDoctors: { 
+        screen: CatalogScreen,
         navigationOptions: {
             header: null
         }
@@ -128,20 +129,26 @@ const MainScreenNavigator = StackNavigator({
             header: null
         }
     },
-    receptions: { 
-        screen: ReceptionsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
     time: { 
         screen: TimeScreen,
         navigationOptions: {
             header: null
         }
     },
-    fuq: { 
-        screen: FuqScreen,
+    faq: { 
+        screen: FaqScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    information: { 
+        screen: InfoScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    informationItem: { 
+        screen: InfoItemScreen,
         navigationOptions: {
             header: null
         }
@@ -158,7 +165,7 @@ const Drawer = DrawerNavigator(
   );
 
 const AppNavigator = createSwitchNavigator({
-    //Auth: Athorization,
+    Auth: Athorization,
     Home: Drawer,
 });
 

@@ -5,37 +5,26 @@ import variables from '../../styles/variables'
 import LinkBtn from './LinkBtn';
 import CustomBtn from './CustomBtn';
 
-let {width, height} = Dimensions.get('window')
+let {width, height} = Dimensions.get('window');
 
 export default class Popup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalVisible: false,
-    };
-  }
-
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-    this.setState({modalVisible: nextProps.show})
-  }
-
   render() {
+    const {show, firstText, secondText, laberButton, actionButton, labelLink, actionLink} = this.props;
     return (
       <Modal
         animationType="fade"
         transparent={true}
-        visible={this.state.modalVisible}
+        visible={show}
         onRequestClose={() => {}}>
         <View style={styles.popupWrap}>
           <View style={styles.popup}>
             <View>
-              <Text style={[styles.text,{ marginBottom: 10}]}>Вы не знаете к какому врачу обратиться?</Text>
-              <Text style={styles.text}>Запишитесь на приём к терпевту — он вас выслушает и подскажет, что делать дальше</Text>
+              <Text style={[styles.text,{ marginBottom: 10}]}>{firstText}</Text>
+              {(secondText)? <Text style={[styles.text, {marginBottom: 20}]}>{secondText}</Text>: null}
             </View>
-            <View>
-              <CustomBtn label='ЗАПИСЬ' onClick={()=>{Alert.alert('ok')}}/>
-              <LinkBtn label='закрыть' onClick={() => this.setState({modalVisible: false})}/>
+            <View style={{marginTop: 10}}>
+              <CustomBtn label={laberButton} contentContainerStyle={{width: 180}} onClick={()=>actionButton()}/>
+              {(labelLink)? <LinkBtn label={labelLink} onClick={() => actionLink()}/>: null}
             </View>
           </View>
         </View>
@@ -50,11 +39,10 @@ const styles = StyleSheet.create({
     height: height, 
     justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)'
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   popup: {
-    width: width-100, 
-    height: height-200, 
+    width: '80%', 
     backgroundColor: 'white', 
     alignSelf: 'center', 
     borderRadius: 10, 
@@ -62,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   text: {
-    color: variables.colors.lightBlack, 
+    color: variables.colors.mediumBlack, 
     fontSize: variables.fSize.large, 
     width: '100%', 
     textAlign: 'center'

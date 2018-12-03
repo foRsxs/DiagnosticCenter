@@ -49,22 +49,28 @@ export default class MenuItem extends Component {
 const styles = StyleSheet.create({
   menuItem: {
     padding: 10,
+    paddingLeft: 20,
     alignItems: "center",
     flexDirection: 'row'
   },
   menuItemActive: {
     backgroundColor: variables.colors.blue,
     padding: 10,
+    paddingLeft: 20,
     alignItems: "center",
     flexDirection: 'row',
   },
   menuItemText: {
-    fontSize: variables.fSize.main,
+    fontSize: variables.fSize.large,
+    fontFamily: variables.fonts.mainFont,
     color: variables.colors.mediumBlack,
+    paddingTop: 5
   },
   menuItemTextActive: {
-    fontSize: variables.fSize.main,
+    fontSize: variables.fSize.large,
+    fontFamily: variables.fonts.mainFont,
     color: 'white',
+    paddingTop: 5
   },
   menuIcon: {
     width: 20, 

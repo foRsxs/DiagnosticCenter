@@ -3,9 +3,10 @@ import i18n from 'i18n-js';
 
 import en from './translations/en.json';
 import de from './translations/de.json';
+import ru from './translations/ru.json';
 
 i18n.locale = RNLanguages.language;
 i18n.fallbacks = true;
-i18n.translations = { en, de };
+i18n.translations = { en, de, ru };
 
 export default i18n;

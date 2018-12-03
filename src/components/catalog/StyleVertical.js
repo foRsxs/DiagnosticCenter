@@ -3,7 +3,7 @@ import variables from '../../styles/variables';
 
 let {width, height} = Dimensions.get('window')
 
-const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
+const { darkGray, backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
       overflow: 'hidden',
-      width: '100%'
+      width: '100%',
+      flex: 1,
+      height: 210
     },
     wrapTxt: {
       alignItems: 'center',
@@ -23,10 +25,12 @@ const styles = StyleSheet.create({
     specItemText: {
       textAlign: 'center',
       lineHeight: 18,
+      fontFamily: variables.fonts.mainFont,
       fontSize: medium,
-      color: lightBlack,
+      color: mediumBlack,
     },
     specItemSubText: {
+      fontFamily: variables.fonts.mainFont,
       fontSize: normal,
       color: blue,
     },
@@ -35,7 +39,7 @@ const styles = StyleSheet.create({
       height: height/5,
     },
     arrowWrap: {
-      backgroundColor: green,
+      backgroundColor: red,
       width: '100%',
       height: 20,
       alignItems: 'center',
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
     },
     icon: {
       color: 'white',
+      fontFamily: variables.fonts.mainFont,
       fontSize: medium
     }
   });

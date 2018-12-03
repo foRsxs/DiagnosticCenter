@@ -14,18 +14,19 @@ class HomeButton extends Component {
   
     render(){
       let {nameBtn} = this.state;
-      let {imageUri} = this.props;
+      let {imageUri, keyNumber} = this.props;
       return (
         <View style={styles.wrapButton}>
-          <TouchableOpacity 
+          <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => this.props.onClick()}
-            style={styles.button}>
+            style={[styles.button, (keyNumber === 0)? {borderTopLeftRadius: 10}: (keyNumber === 1)? {borderTopRightRadius: 10}: (keyNumber === 2)? {borderBottomLeftRadius: 10}: {borderBottomRightRadius: 10}]}>
             <Image
-              style={{marginVertical: '8%'}}
+              style={{marginTop: '8%', marginBottom: '5%', width: 58, height: 50}}
               source={imageUri}
             />
             <View style={styles.txtButtonWrap}>
-              <Text style={styles.txtButton}>{nameBtn}</Text>
+              <Text style={styles.txtButton}>{nameBtn.toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -42,23 +43,21 @@ class HomeButton extends Component {
     button: {
       width: '100%',
       alignItems: 'center',
-      backgroundColor: variables.colors.lightGray,
-      borderWidth: 1,
-      borderColor: variables.colors.activeGray,
-      borderRadius: 10,
+      backgroundColor: variables.colors.accentBlue,
+      
     },
     txtButtonWrap: {
-      backgroundColor: variables.colors.green, 
       width: '100%', 
-      borderBottomLeftRadius: 10, 
-      borderBottomRightRadius: 10, 
     },
     txtButton: {
       color: 'white', 
       width: '100%', 
+      lineHeight: 16,
       textAlign: 'center',  
-      paddingVertical: '5%', 
+      paddingVertical: '5%',
+      paddingHorizontal: '20%', 
       fontSize: variables.fSize.main,
+      fontFamily: variables.fonts.mainFont,
     }
   });
   

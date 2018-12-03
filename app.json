@@ -1,4 +1,6 @@
 {
   "name": "medicina",
-  "displayName": "medicina"
+  "displayName": "medicina",
+  "api_url": "http://89.218.154.86:8081/api",
+  "api_img_url": "http://89.218.154.86:8081/"
 }

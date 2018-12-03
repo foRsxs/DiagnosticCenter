@@ -10,61 +10,64 @@ export default class HeaderBottom extends Component {
         super(props)
         this.state = {
             listActive: true,
-            sortList: false
         }
       }
     
   render(){
-    const { katalogDoctor = false, search = false, sortBtn = false } = this.props
+    const { katalogDoctor = false, search = false, islanguages = false, language } = this.props
     return(
       <View style={styles.bigContainer}>
-        <View style={styles.container}>
+        <View style={[styles.container, (islanguages)? {justifyContent: 'center'}: {}] }>
         {
-          (this.props.katalogDoctor)?
+          (katalogDoctor)?
           <View style={styles.btnContainer}>
             <TouchableOpacity onPress={()=> {this.setState({listActive: true}); this.props.togleClick(true)}} activeOpacity={0.6} style={styles.btn_list} >
             {
               (this.state.listActive)?
-              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBW.png')} />
-              // </View>
-              :
-              // <View style={{borderTopLeftRadius: 5, borderBottomLeftRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>            
+              :     
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/listBB.png')} />
-              // </View>
             }
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> {this.setState({listActive: false}); this.props.togleClick(false)}} activeOpacity={0.6} style={styles.btn_block} >
             {
               (this.state.listActive)?
-              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: '#3A80D4'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBB.png')} />
-              // </View>
               :
-              // <View style={{borderTopRightRadius: 5, borderBottomRightRadius: 5, width: 29, height: 25, padding: 4, paddingLeft: 6, backgroundColor: 'white'}}>
                 <Image style={{width: 29, height: 25, padding: 4, paddingLeft: 6}} source={require('../../../assets/img/blockBW.png')} />
-              // </View>  
             }
             </TouchableOpacity>
-          </View>: <View style={styles.btnContainer}></View>
+          </View>: <View style={[styles.btnContainer, (islanguages) ? {width: 0}: {}]}></View>
         }
-          
-          
-          {
-              (this.props.search)?
-              <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>
-                {
-                  (this.props.katalogDoctor || this.props.sortBtn)?
-                  <TouchableOpacity onPress={() => this.props.onClick()} activeOpacity={0.6} style={styles.btn_sort} >
-                    <Image style={{width: 29, height: 25, padding: 7}} source={require('../../../assets/img/sortList_btn.png')} />
-                  </TouchableOpacity>: null
-                }
-                
+        {
+          (search)?
+            <View style={styles.inputContainer}>
+              <TextInput style={styles.input} placeholder='' onChangeText={(text) => this.props.onChange(text)}/>  
+          </View>
+          :<Text style={styles.text}>{this.props.text}</Text>
+        }
+        {
+          (islanguages) ? (
+            <View style={{ flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('kz')}
+                style={{zIndex: 2}}
+              >
+                <Text style={(language === 'kz') ? styles.lang : styles.langActive}>KAZ</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('ru')}
+              >
+                <Text style={(language == 'ru') ? styles.lang : styles.langActive}>РУС</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={()=>this.props.changeLang('en')}
+              >
+                <Text style={(language == 'en') ? styles.lang : styles.langActive}>ENG</Text>
+              </TouchableOpacity>
             </View>
-            :<Text style={styles.text}>{this.props.text}</Text>
-          } 
-          
+          ): null
+        }
         </View>
         <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
           <View style={styles.oval} />
@@ -74,7 +77,6 @@ export default class HeaderBottom extends Component {
   }
 }
 let {width, height} = Dimensions.get('window')
-
 const styles = StyleSheet.create({
   bigContainer: {
     width: '100%',
@@ -82,61 +84,69 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   container: {
-    // flexWrap:'wrap', 
     flexDirection: 'row', 
     justifyContent: 'flex-start', 
     width: '100%',
     height: 35,
-    backgroundColor: variables.colors.blue,
-    zIndex: 2
+    backgroundColor: variables.colors.accentBlue,
+    zIndex: 2,
 	},
 	btnContainer: {
-		flexWrap:'wrap', 
     flexDirection: 'row',
-    justifyContent: 'center', 
-		width: '20%'
+    width: 80,
+    paddingLeft: 3
 	},
 	btn_list: {
-		top: 10,
+    top: 10,
+    left: 8
 	},
 	btn_block: {
     top: 10,
-    left: 2
+    left: 10
 	},
 	text: {
     color: variables.colors.white,
     top: 10,
-    left: 12,
-    fontFamily: variables.fonts.light,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium,
     lineHeight: 23,
     letterSpacing: 1
 	},
 	inputContainer: {
     flexDirection: 'row', 
-    justifyContent: 'space-around',
-		width: '80%'
+    justifyContent: 'space-between',
+		width: width - 80
 	},
 	input: {
-		width: '80%',
+		width: width - 150,
     height: 25, 
+    top: 10,
     padding: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
-		top: 10,
+    paddingHorizontal: 10,
 		borderRadius: 5,
 		backgroundColor: variables.colors.white
 	},
-	btn_sort: {
-    top: 10,
-  },
   oval: {
     width: width,
     height: width,
     borderRadius: width,
-    backgroundColor: variables.colors.blue,
+    backgroundColor: variables.colors.accentBlue,
     transform: [
       {scaleX: 3}
     ]
+  },
+  langActive: {
+    color: variables.colors.black,
+    margin: 5,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.medium,
+    zIndex: 10
+  },
+  lang: {
+    color: variables.colors.white,
+    margin: 5,
+    fontFamily: variables.fonts.mainFont,
+    fontSize: variables.fSize.medium,
+    zIndex: 10
   },
 });

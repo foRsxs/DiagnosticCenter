@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 
-const { darkGray, backgroundBlue, lightBlack, blue, green } = variables.colors;
+const { darkGray, backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
 
 const styles = StyleSheet.create({
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   addInfoText: {
     width: '70%',
     color: darkGray,
+    fontFamily: variables.fonts.mainFont,
     fontSize: small
   },
   specItem: {
@@ -44,8 +45,9 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap'
   },
   specItemText: {
+    fontFamily: variables.fonts.mainFont,
     fontSize: medium,
-    color: lightBlack,
+    color: mediumBlack,
   },
   specItemSubText: {
     fontSize: normal,
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: green,
+    backgroundColor: red,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     width: 20,
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center' },
   icon: {
     color: 'white',
+    fontFamily: variables.fonts.mainFont,
     fontSize: medium
     }
 });

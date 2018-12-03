@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   itemsTxt: {
-    color: variables.colors.lightBlack,
+    color: variables.colors.mediumBlack,
+    fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.medium
   }
 });

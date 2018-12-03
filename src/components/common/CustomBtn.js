@@ -10,8 +10,8 @@ import variables from '../../styles/variables'
 export default class CustomBtn extends Component {
   render() {
     return (
-      <Button onPress={() => this.props.onClick('teest')} style={styles.btn}>
-        <Text style={styles.textBtn}>{this.props.label}</Text>
+      <Button onPress={() => this.props.onClick('teest')} style={[styles.btn, this.props.contentContainerStyle]}>
+        <Text style={styles.textBtn}>{this.props.label.toUpperCase()}</Text>
       </Button>
     );
   }
@@ -22,14 +22,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
     justifyContent: 'center', 
     width: '100%', 
-    height: 50, 
+    paddingTop: 12,
+    paddingBottom: 12, 
     borderRadius: 25, 
-    backgroundColor: variables.colors.green
+    backgroundColor: variables.colors.red
   },
   textBtn:{
-    // fontFamily: variables.fonts.mainFont, 
-    fontSize: variables.fSize.main, 
-    lineHeight: 23, 
+    fontFamily: variables.fonts.mainFont, 
+    fontSize: variables.fSize.medium, 
+    textAlignVertical: 'center',
     textAlign: 'center',
     letterSpacing: 2
   }
