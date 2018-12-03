@@ -180,7 +180,6 @@ export function setOrder(data, type, nameDispatch) {
       if (!order[type] || order[type] !== data[type]) dispatch(getListSpecialization(data[type], true));
     } else if (type === 'spec_id') {
       if (order.servid) dispatch(cleareOrderSuccess('spec_id'));
-      console.log(data, type, nameDispatch)
       if (!order[type] || order[type] !== data[type]) {
         if (nameDispatch === 'doc') {
           dispatch(getListServices(data[type], true));
@@ -246,12 +245,6 @@ export function saveOrder({rnumb_id, date, serv_id}) {
   return (dispatch, getState) => {
     const { authorization } = getState();
     if (true) { 
-      console.log({
-        api_token: authorization.token,
-        rnumb_id, 
-        date,
-        serv_id
-      })
       axios.post(`${APP_API_URL}/get_talon`, {
         api_token: authorization.token,
         rnumb_id, 
@@ -260,11 +253,78 @@ export function saveOrder({rnumb_id, date, serv_id}) {
       })
       .then((response) => {
         console.log(response.data)
+        if (response.data) dispatch(setCreatingOrderSuccess(true));
         //if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}))
       })
     } else {
       Alert.alert('Интернет соединение отсутствует');
     }
+    setTimeout(()=> {
+      dispatch(setCreatingOrderSuccess(false))
+    }, 3000)
+  }
+}
+
+export function getListTalons(status) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+    if (true) { 
+      axios.post(`${APP_API_URL}/talon_history`, {
+        api_token: authorization.token,
+      })
+      .then((response) => {
+        console.log(response.data)
+        dispatch(setListTalons(response.data));
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function deleteOrder({rnumb_id}) {
+  return (dispatch, getState) => {
+    const { authorization, content: {listTalons} } = getState();
+    if (true) { 
+      axios.post(`${APP_API_URL}/del_talon`, {
+        api_token: authorization.token,
+        rnumb_id
+      })
+      .then((response) => {
+        let array=[];
+        if (response.data[0].err_code == 0) {
+          listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
+          dispatch(setDeletedOrder(true));
+          dispatch(setListTalons(array))
+        }
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+    setTimeout(()=> {
+      dispatch(setDeletedOrder(false))
+    }, 3000)
+  }
+}
+
+export function setCreatingOrderSuccess(status) {
+  return {
+    type: types.CREATE_ORDER_SUCCESS,
+    data: status
+  }
+}
+
+export function setDeletedOrder(status) {
+  return {
+    type: types.DELETED_ORDER_SUCCESS,
+    data: status
+  }
+}
+
+export function setListTalons(data) {
+  return {
+    type: types.SET_LIST_TALONS,
+    data: data
   }
 }
 

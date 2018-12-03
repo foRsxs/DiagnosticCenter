@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler} from 'react-native';
+import {Alert, StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn'
 import variables from '../../styles/variables';
 import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
+const {blue} = variables.colors;
+
 class ReceptionListScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true
+    };
   }
 
   componentDidMount() {
+    this.props.getListTalons();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -26,24 +32,53 @@ class ReceptionListScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.listTalons !== this.props.listTalons) this.setState({loading: false});
+  }
+
+
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
   }
 
   render() {
+    const {loading} = this.state;
     const { navigate } = this.props.navigation;
+    const {listTalons} = this.props;
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text="ЖУРНАЛ ЗАПИСЕЙ" navigation = {this.props.navigation}/>
-        <HeaderBottom text="у вас 3 записи" />
+        <HeaderBottom text={`у вас ${listTalons.length} записи`} />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
-          <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
+          {(loading) && <ActivityIndicator size="small" color={blue} /> }
+          {
+            (!loading) && (
+              (listTalons.length)? (
+                listTalons.map((item, index)=> (
+                  <ReceptionListItem 
+                    key={index} 
+                    headTxt={item.spec} 
+                    servTxt='' 
+                    timeTxt= {`${item.dd}, в ${item.time}`} 
+                    nameTxt={`${item.doc}, каб. ${item.room}`} 
+                    onPress={()=> navigate('recordingItem', {
+                      rnumb_id: item.rnumb_id,
+                      dd: item.dd,
+                      room: item.room,
+                      time: item.time,
+                      doctor: item.doc,
+                      spec: item.spec,
+                      reserved: true
+                    })
+                  }/>
+                ))
+              ): <Text>У вас еще нет записей</Text>
+            )
+          }
         </Content >
         <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-          <CustomBtn label='ДОБАВИТЬ ЗАПИСЬ' onClick={()=> navigate('receptions')}/>
+          <CustomBtn label='ДОБАВИТЬ ЗАПИСЬ' onClick={()=> navigate('recordingCreate')}/>
         </View>
       </Container>
     )
@@ -54,4 +89,15 @@ const styles = StyleSheet.create({
 
 });
 
-export default ReceptionListScreen;
+function mapStateToProps(state) {
+  console.log(state.content.listTalons)
+  return {
+    listTalons: state.content.listTalons,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionListScreen));
