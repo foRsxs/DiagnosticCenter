@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
-import { Container, Content, Text } from 'native-base';
+import { Container, Content } from 'native-base';
 import i18n from '../../i18n';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
@@ -52,7 +52,6 @@ class OftenQuestionsScreen extends Component {
               ))
             ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
           }
-          <Text>{i18n.t('BtnMainDoctor')}</Text>
         </Content >
         <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')} />
       </Container>

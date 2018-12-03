@@ -10,21 +10,51 @@ import {
 import {Text, Input, List, ListItem} from 'native-base';
 import variables from '../../styles/variables';
 
-const {accentBlue} = variables.colors;
+const {accentBlue, activeGray} = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium, large, main }  = variables.fSize;
 
 export default class CustomBtn extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       opened: false,
+      sortedData: props.data,
       animationValues: ['0deg', '90deg'],
-      value: ''
+      value: this.setValue(props.selected),
+      id: null
     }
     this.rotateValue = new Animated.Value(0)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) this.setState({sortedData: this.props.data, value: this.setValue(this.props.selected)});
+  }
+
+  setValue = (id) => {
+    const {data} = this.props;
+    let value = '';
+    data.forEach((item) => {
+      if (+item.id === +id) value = item.value;
+    })
+    return value;
+  }
+
+  onPress = (id,value) => {
+    this.setState({value: value, id: id, opened: false});
+    this.rotate();
+    this.props.onSelect(id);
+  }
+  
+  onChange = (value) => {
+    const {data} = this.props;
+    let array = []
+    data.forEach((item) => {
+      const text = (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null;
+      if (text.toLowerCase().indexOf(value.toLowerCase()) !== -1) array.push(item);
+    })
+    this.setState({sortedData: array, value: value})
+  }
 
   rotate () {
     const {opened} = this.state;
@@ -40,29 +70,29 @@ export default class CustomBtn extends Component {
   }
 
   renderDroppedBlock() {
+    const {sortedData} = this.state;
+    let height = (sortedData.length > 5) ? 150: sortedData.length * 30 + 7;
     return (
-      <ScrollView style={{height: 100, backgroundColor: 'white', zIndex: 2}}>
-        <List style={{padding: 10, paddingTop: 0}}>           
-          <ListItem style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={()=> {this.setState({value: 'Aaron Bennet', opened: false})}}
-            >
-              <Text style={{fontFamily: mainFont, fontSize: main}}>Aaron Bennet</Text>
-            </TouchableOpacity>
-          </ListItem>
-          <ListItem style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}>
-            <Text style={{fontFamily: mainFont, fontSize: main}}>Aaron Bennet</Text>
-          </ListItem> 
-          <ListItem style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}>
-            <Text style={{fontFamily: mainFont, fontSize: main}}>Aaron Bennet</Text>
-          </ListItem>
-          <ListItem style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}>
-            <Text style={{fontFamily: mainFont, fontSize: main}}>Aaron Bennet</Text>
-          </ListItem> 
-          <ListItem style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}>
-            <Text style={{fontFamily: mainFont, fontSize: main}}>Aaron Bennet</Text>
-          </ListItem>
+      <ScrollView style={{height: height, backgroundColor: 'white', zIndex: 2, borderBottomLeftRadius: 5, borderBottomRightRadius: 5}}>
+        <List style={{padding: 10, paddingTop: 0}}>
+          {
+            sortedData.map((item) => (
+              <ListItem 
+                key={(item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null} 
+                style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}
+              >
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={()=> this.onPress(
+                    (item.docdep) ? item.docdep: (item.servid) ? item.servid: (item.id) ? item.id: (item.res_id) ? item.res_id : (item.spec_id) ? item.spec_id : null, 
+                    (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
+                  )}
+                >
+                  <Text style={{fontFamily: mainFont, fontSize: main, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
+                </TouchableOpacity>
+              </ListItem>
+            ))
+          } 
         </List>
       </ScrollView>
     )
@@ -70,16 +100,19 @@ export default class CustomBtn extends Component {
 
   render() {
     const {opened, value} = this.state;
-    const {contentContainerStyle} = this.props;
+    const {contentContainerStyle, label, disabled} = this.props;
     const rotate = this.rotateValue.interpolate({
       inputRange:  [0, 1],
       outputRange: ['0deg', '90deg']
     })
+
     return (
-      <View style={[{borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'white'}, contentContainerStyle]}>
+      <View style={[(!disabled) ? styles.content: styles.contentDisabled, contentContainerStyle]}>
         <TouchableOpacity 
           style={{position: 'relative'}}
+          activeOpacity={(disabled)? 1: 0.8}
           onPress={()=> {
+            if (disabled) return;
             this.rotate();
           }}
         >
@@ -91,10 +124,9 @@ export default class CustomBtn extends Component {
           {
             (opened) ?  <Input
               style={{color: 'black', fontFamily: mainFont, fontSize: main, marginLeft: 30, paddingLeft: 0, height: 40}}
-              onChangeText={(value) => {this.setState({value: value})}}
-              placeholder={'Исследования'}
+              onChangeText={(value) => this.onChange(value)}
               value={value}
-            /> : <Text style={{color: 'black', fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' }}>Исследования</Text>
+            /> : <Text style={(!disabled)? styles.text: styles.textDisabled}>{(value)? value: label}</Text>
           }
         </TouchableOpacity>
         {(opened) && this.renderDroppedBlock()}
@@ -104,5 +136,16 @@ export default class CustomBtn extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  content: {
+    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'white'
+  },
+  contentDisabled: {
+    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'rgba(94, 150, 197, 0.1)'
+  },
+  text: {
+    color: 'black', fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+  },
+  textDisabled: {
+    color: activeGray, fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+  }
 });

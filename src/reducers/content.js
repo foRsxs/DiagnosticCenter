@@ -17,11 +17,63 @@ const initialState = {
   newQuestion: {
     loading: false,
     status: false,  
+  },
+  order: {
+    type: null,
+    spec_id: null,
+    servid: null,
+    docdep_id: null,
+    date: null,
+    time: null
+  },
+  orderDatas: {
+    specialities: [],
+    services: [],
+    doctors: [],
+    dates: [],
+    times: []
   }
 }
   
 export default function contentReducer(state = initialState, action) {
   switch (action.type) {
+    case types.CLEARE_ORDER:
+      return {
+        ...state,
+        order: {
+          type: (action.data === 'spec_id' || action.data === 'servid' || action.data === 'docdep_id') ? state.order.type : null,
+          spec_id: (action.data === 'servid' || action.data === 'docdep_id') ? state.order.spec_id : null,
+          servid: (action.data === 'docdep_id') ? state.order.servid: null,
+          docdep_id: null,
+          date: null,
+          time: null
+        },
+      }
+    case types.UPDATE_LIST_DATES: 
+      return {
+        ...state,
+        orderDatas: {...state.orderDatas, ...action.data},
+      }
+    case types.SET_LIST_SPECIALIZATION_ORDER:
+      return {
+        ...state,
+        orderDatas: {...state.orderDatas, ...action.data},
+      }
+    case types.SET_LIST_SERVICES_ORDER: 
+      return {
+        ...state,
+        orderDatas: {...state.orderDatas, ...action.data},
+      }
+    case types.SET_LIST_DOCTORS_ORDER: 
+      return {
+        ...state,
+        orderDatas: {...state.orderDatas, ...action.data},
+      }
+    case types.UPDATE_ORDER: 
+      return {
+        ...state,
+        order: {...state.order, ...action.data},
+      }
     case types.SENDED_MESSAGE_SUCCESS: 
       return {
         ...state,

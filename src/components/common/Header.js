@@ -81,19 +81,21 @@ const styles = StyleSheet.create({
   },
   btnBack: {
     paddingTop: 10,
-    // paddingRight: 0,
-    // paddingLeft: 10,
   },
   textContainer: {
     width: width - 80,
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
-    paddingBottom: 3
+    paddingBottom: 3,
+    paddingRight: 5
   },
   text: {
     color: white,
     fontFamily: mainFont,
     fontSize: large,
+    height: 22,
+    lineHeight: 22,
+    width: 1000
   },
   inText: {
     color: darkBlue,

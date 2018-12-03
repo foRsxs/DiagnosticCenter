@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(94, 150, 197, 0.1)',
     },
     ItemActive: {
-      backgroundColor: variables.colors.backgroundBlue,
+      backgroundColor: 'rgba(94, 150, 197, 0.75)',
       width: 60,
       height: 60,
       borderRadius: 30

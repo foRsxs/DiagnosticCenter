@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler} from 'react-native';
 import {Container, Toast} from 'native-base';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import i18n from '../../i18n';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
