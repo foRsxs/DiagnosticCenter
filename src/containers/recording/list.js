@@ -44,7 +44,6 @@ class ReceptionListScreen extends Component {
   render() {
     const {loading} = this.state;
     const { navigate } = this.props.navigation;
-    const {loading} = this.state;
     const { t, listTalons } = this.props;
 
     return (
