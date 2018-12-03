@@ -33,17 +33,20 @@ class ReceptionListScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const { t } = this.props;
+    const total = '5';
+
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text="ЖУРНАЛ ЗАПИСЕЙ" navigation = {this.props.navigation}/>
-        <HeaderBottom text="у вас 3 записи" />
+        <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
+        <HeaderBottom text={ t('recordings:total_text') + `- ${total}` } />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
           <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
           <ReceptionListItem headTxt='Специалист МРТ' servTxt='(МРТ малого таза)' timeTxt='11 сентября, в 14:00' nameTxt='Нурумбетова Жасмин, каб. 24' onPress={()=> navigate('recordingItem', {reserved: true})}/>
         </Content >
         <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-          <CustomBtn label='ДОБАВИТЬ ЗАПИСЬ' onClick={()=> navigate('receptions')}/>
+          <CustomBtn label={ t('common:actions.add_recording') } onClick={()=> navigate('receptions')}/>
         </View>
       </Container>
     )
@@ -54,4 +57,12 @@ const styles = StyleSheet.create({
 
 });
 
-export default ReceptionListScreen;
+function mapStateToProps(state) {
+  return {}
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch);
+}
+
+export default withNamespaces(['recordings', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionListScreen));

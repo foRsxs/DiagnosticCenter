@@ -53,6 +53,31 @@
             "last_text": "Позвоните в call center вас обязательно проконсультируют"
         }
     },
+    "recordings": {
+        "title": "Журнал записей",
+        "total_text": "Всего записей",
+        "item": {
+            "title": "Запись на приём",
+            "check_info": "проверьте информацию",
+            "make_appointment": "вы записываетесь на прием",
+            "selected_service": "выбранная услуга",
+            "date_time": "дата и время визита",
+            "room": "кабинет",
+            "success": "запись к врачу успешно создана!"
+        }
+    },
+    "createrecord": {
+        "title": "Запись на приём",
+        "form": {
+            "consultation": "Консультация",
+            "research": "Исследования",
+            "select_specialty": "Выберите специальность",
+            "select_service": "Выберите услугу",
+            "select_doctor": "Выберите врача",
+            "select_date": "Выберите дату",
+            "select_time": "Выберите время"
+        }
+    },
     "analizes": {
         "title": "Мои анализы",
         "total_text": "Всего анализов"
@@ -106,17 +131,21 @@
     },
     "common": {
         "actions": {
+            "ok": "Ок",
             "save": "Сохранить",
             "send": "Отправить",
             "cancel": "Отмена",
             "back": "Назад",
             "call": "Позвонить",
             "close": "Закрыть",
+            "confirm": "Подтвердить",
+            "cancel_recording": "Отменить запись",
             "send_msg": "Отправить сообщение",
             "send_to_mail": "Отправить на e-mail",
             "save_to_gallery": "Сохранить в галерею",
             "appointment": "Запись на приём",
-            "ask_question": "Задать вопрос"
+            "ask_question": "Задать вопрос",
+            "add_recording": "Добавить запись"
         },
         "actions_text": {
             "question_sent": "Ваш вопрос успешно отправлен",
@@ -125,7 +154,8 @@
             "select_language": "Выберите язык интерфейса",
             "select_auth_method": "Выберите метод авторизации",
             "your_question": "Ваш вопрос",
-            "your_email": "Ваш e-mail"
+            "your_email": "Ваш e-mail",
+            "check_data": "Проверить данные"
         },
         "errors": {
             "wrong_pin_code": "Неверный пин код",

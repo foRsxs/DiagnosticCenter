@@ -32,6 +32,7 @@ let openStyle = {
     color: 'black',
   },
 }
+
 let selectedStyle= {
   container: {
     backgroundColor: accentBlue,
@@ -68,11 +69,11 @@ class ReceptionInfoScreen extends Component {
       typeExperiments: [
         {
           id: 1,
-          value: 'Консультация',
+          value: props.t('createrecord:form.consultation'),
         },
         {
           id: 2,
-          value: 'Исследования'
+          value: props.t('createrecord:form.research')
         }
       ],
       markedDates: {},
@@ -138,7 +139,7 @@ class ReceptionInfoScreen extends Component {
     this.setState({markedDates: obj});
   }
 
-  _selectDate = (date) => {
+  selectDate = (date) => {
     if (!this.state.markedDates[date]) return;
     this.props.setDate({date: moment(date, ["YYYY-MM-DD"]).format('DD.MM.YYYY').toString()});
     this.setState({showDates: false});
@@ -152,6 +153,7 @@ class ReceptionInfoScreen extends Component {
 
   renderDatePopup() {
     const {showDates, markedDates} = this.state;
+    const { t } = this.props;
 
     return (
       <Modal
@@ -159,20 +161,21 @@ class ReceptionInfoScreen extends Component {
         transparent={true}
         visible={showDates}
         style={{zIndex: 10}}
-        onRequestClose={() => {}}>
+        onRequestClose={() => {}}
+      >
           <TouchableOpacity
             activeOpacity={1}
             onPress={()=> this.setState({showDates: false})}
           >
           <View style={styles.popupWrap}>
             <View style={styles.popup}>
-              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>Выберите дату</Text>
+              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_date') }</Text>
               <Calendar
                 style={{paddingTop: 20, backgroundColor: '#fff'}}
                 theme={{
                   calendarBackground: '#fff',
                 }}
-                onDayPress={(day) => this._selectDate(day.dateString)}
+                onDayPress={(day) => this.selectDate(day.dateString)}
                 markedDates={markedDates}
                 markingType={'custom'}
               />
@@ -185,20 +188,23 @@ class ReceptionInfoScreen extends Component {
 
   renderTimePopup() {
     const {showTimes, markedTimes} = this.state;
+    const { t } = this.props;
+
     return (
       <Modal
         animationType="fade"
         transparent={true}
         visible={showTimes}
         style={{zIndex: 10}}
-        onRequestClose={() => {}}>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={()=> this.setState({showTimes: false})}
-          >
+        onRequestClose={() => {}}
+      >
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={()=> this.setState({showTimes: false})}
+        >
           <View style={styles.popupWrap}>
             <View style={styles.popup}>
-              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>Свободные номерки</Text>
+              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
               <View style={styles.timeContainer}>
                 {markedTimes.map((item, key)=>(
                   <View key={key} style={styles.timeItemWrap}>
@@ -220,27 +226,29 @@ class ReceptionInfoScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { order, orderDatas } = this.props;
+    const { t, order, orderDatas } = this.props;
     const { shortOrder, typeExperiments} = this.state;
+
     console.log(order)
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={"ЗАПИСЬ НА ПРИЁМ"} navigation = {this.props.navigation}/>
+        <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
         <HeaderBottom />
         <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, position: 'relative', flex: 1}} contentContainerStyle={{ margin: 20, position: 'relative', flex: 1, zIndex: 2}}>
           <View style={[styles.autocompleteContainer, {zIndex: 6}]}>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}}
-              label="Исследования" 
+              label={ t('createrecord:form.research') } 
               data={typeExperiments} 
               onSelect={(value) => this.props.setOrder({type: value}, 'type', 'spec')} 
               selected={(order.type)? (order.type): 1} 
-              disabled={false}/>
+              disabled={false}
+            />
           </View>
           <View style={[styles.autocompleteContainer, {top: 60, zIndex: 5}]}>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
-              label="Выберите специальность" 
+              label={ t('createrecord:form.select_specialty') }
               data={orderDatas.specialities} 
               onSelect={(value) => {
                 (order.type == 1) ? this.props.setOrder({spec_id: value}, 'spec_id', 'doc') : this.props.setOrder({spec_id: value}, 'spec_id');
@@ -252,45 +260,49 @@ class ReceptionInfoScreen extends Component {
           <View style={[styles.autocompleteContainer, {top: 120, zIndex: 4}]}>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
-              label="Выберите услугу" 
+              label={ t('createrecord:form.select_service') }
               data={orderDatas.services} 
               onSelect={(value) => this.props.setOrder({servid: value}, 'servid', 'doc')} 
               selected={order.servid}
-              disabled={((order.type === 2 && order.spec_id && orderDatas.services))?false: true}/>
+              disabled={((order.type === 2 && order.spec_id && orderDatas.services))?false: true}
+            />
           </View>
           <View style={[styles.autocompleteContainer, {top: 180, zIndex: 3}]}>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
-              label="Выберите врача" 
+              label={ t('createrecord:form.select_doctor') } 
               data={orderDatas.doctors}
               onSelect={(value) => this.props.setOrder({docdep_id: value}, 'docdep_id')}
               selected={order.docdep_id}
-              disabled={((order.type === 2 && order.spec_id && order.servid && orderDatas.doctors) || (order.type === 1 && order.spec_id && orderDatas.doctors))?false: true}/>
+              disabled={((order.type === 2 && order.spec_id && order.servid && orderDatas.doctors) || (order.type === 1 && order.spec_id && orderDatas.doctors)) ? false : true}
+            />
           </View>
           <View style={[styles.autocompleteContainer, {top: 240, zIndex: 2}]}>
             <ButtonDates 
               contentContainerStyle={{marginBottom: 10}}
-              label="Выберите дату" 
+              label={ t('createrecord:form.select_date') }
               data={orderDatas.dates} 
               onPress={() => this.setState({showDates: true})} 
               selected={order.date} 
-              disabled={(order.docdep_id)? false: true}/>
+              disabled={(order.docdep_id) ? false : true}
+            />
           </View>
           <View style={[styles.autocompleteContainer, {top: 300, zIndex: 2}]}>
             <ButtonDates 
               contentContainerStyle={{marginBottom: 10}}
-              label="Выберите время" 
+              label={ t('createrecord:form.select_time') } 
               data={orderDatas.times} 
               onPress={() => this.setState({showTimes: true})} 
               selected={order.time} 
-              disabled={(order.docdep_id && order.date)? false: true}/>
+              disabled={(order.docdep_id && order.date) ? false : true}
+            />
           </View>
           {this.renderDatePopup()}
           {this.renderTimePopup()}
         </KeyboardAwareScrollView > 
         {(shortOrder) && (
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label={'ПРОВЕРИТЬ ДАННЫЕ'} onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid})}/>
+            <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid})}/>
           </View>
         )}
       </Container>
@@ -362,4 +374,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoScreen));
+export default withNamespaces(['createrecord', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoScreen));

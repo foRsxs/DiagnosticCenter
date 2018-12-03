@@ -20,7 +20,7 @@ class ReceptionInfoItemScreen extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
+    
     this.state = {
       date: (props.navigation.state.params) ? props.navigation.state.params.dd: null,
       rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id: null,
@@ -60,6 +60,8 @@ class ReceptionInfoItemScreen extends Component {
   }
 
   renderShare() {
+    const { t } = this.props;
+
     return (
       <View style={{paddingLeft: '15%'}}>
         <TouchableOpacity
@@ -72,7 +74,7 @@ class ReceptionInfoItemScreen extends Component {
               resizeMode='cover'
               source={require('../../../assets/img/mail-icon.png')}
             />
-            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>Отправить на e-mail</Text>
+            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.send_to_mail') }</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -85,7 +87,7 @@ class ReceptionInfoItemScreen extends Component {
               resizeMode='cover'
               source={require('../../../assets/img/picture-icon.png')}
             />
-            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>Сохранить в галерею</Text>
+            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.save_to_gallery') }</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -94,55 +96,56 @@ class ReceptionInfoItemScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const { t } = this.props;
     const { reserved, modalVisible, hideButton, date, time, room  } = this.state;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={"ЗАПИСЬ НА ПРИЁМ"} navigation = {this.props.navigation}/>
-        <HeaderBottom text={(reserved)? "": "проверьте информацию"} />
+        <Header text={ t('recordings:item.title') } navigation = {this.props.navigation}/>
+        <HeaderBottom text={(reserved) ? "" : t('recordings:item.check_info')} />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>вы записываетесь на прием:</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.make_appointment')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>Пародонтозов Иван</Text>
               <Text style={styles.txtSubname}>стоматолог</Text>
             </View>
           </View>
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>вибранная услуга:</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>Пародонтозов Иван</Text>
               <Text style={styles.txtSubname}>стоматолог</Text>
             </View>
           </View>
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>дата и время визита</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.date_time')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>{date}</Text>
               <Text style={styles.txtSubname}>{time}</Text>
             </View>
           </View>
           <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>кабинет</Text>
+            <Text style={styles.txtHead}>{ t('recordings:item.room')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>№ {room}</Text>
             </View>
           </View>
           {
-            (reserved) ? this.renderShare(): null
+            (reserved) && this.renderShare()
           }
         </Content >
         {
           (!hideButton) ? (
             <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-              <CustomBtn label={(reserved)? 'Отменить запись': 'ПОДТВЕРДИТЬ'} onClick={()=> this._onClick()}/>
+              <CustomBtn label={(reserved) ? t('common:actions.cancel_recording') :  t('common:actions.confirm')} onClick={()=> this._onClick()}/>
             </View>
           ): null
         }
         <Popup 
           show={modalVisible} 
-          firstText={'запись к врачу успешно создана!'.toUpperCase()}
-          laberButton={'ок'} 
+          firstText={ t('recordings:item.success').toUpperCase() }
+          laberButton={ t('common:actions.ok') } 
           actionButton={this._save}
         />
       </Container>
@@ -199,4 +202,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen));
+export default withNamespaces(['recordings', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen));

@@ -73,7 +73,7 @@ class DoctorScreen extends Component {
             (!loading) && (
               <Image
                 style={styles.docIcon}
-                resizeMode='cover'
+                resizeMode='contain'
                 source={{uri: `${APP_IMG_URL}photo_doc/${docid}.jpg`}}
               />
             )
