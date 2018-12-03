@@ -32,7 +32,10 @@ const initialState = {
     doctors: [],
     dates: [],
     times: []
-  }
+  },
+  orderCreated: false,
+  orderDeleted: false,
+  listTalons: []
 }
   
 export default function contentReducer(state = initialState, action) {
@@ -73,6 +76,11 @@ export default function contentReducer(state = initialState, action) {
       return {
         ...state,
         orderDatas: {...state.orderDatas, ...action.data},
+      }
+    case types.SET_LIST_TALONS: 
+      return {
+        ...state,
+        listTalons: action.data,
       }
     case types.UPDATE_ORDER: 
       return {
@@ -140,6 +148,17 @@ export default function contentReducer(state = initialState, action) {
           often: action.data,
           doctors: state.questions.doctors
         }
+      }
+      
+    case types.CREATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderCreated: action.data
+      }
+    case types.DELETED_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderDeleted: action.data
       }
     default:
       return state

@@ -5,11 +5,14 @@ import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn'
 import variables from '../../styles/variables';
 import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
+
+const {blue} = variables.colors;
 
 class ReceptionListScreen extends Component {
 
@@ -39,6 +42,7 @@ class ReceptionListScreen extends Component {
   }
 
   render() {
+    const {loading} = this.state;
     const { navigate } = this.props.navigation;
     const {loading} = this.state;
     const { t, listTalons } = this.props;
