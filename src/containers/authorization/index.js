@@ -95,7 +95,7 @@ class AuthorizationScreen extends Component {
 
     if (this.checkValid(number, personalId)) {
       this.setState({loading: true})
-      this.props.authUser({phone: 7024444444, iin: 870344444444})//this.props.authUser({phone: number, iin: personalId})
+      this.props.authUser({phone: number, iin: personalId}) //this.props.authUser({phone: 7024444444, iin: 870344444444})//
         .then((resp)=>{
           this.setState({message: ''});
         })

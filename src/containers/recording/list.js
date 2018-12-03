@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
-import i18n from '../../i18n';
+import { withNamespaces } from 'react-i18next';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import CustomBtn from '../../components/common/CustomBtn'
 import variables from '../../styles/variables';
 import ReceptionListItem from '../../components/receptions/ReceptionListItem'

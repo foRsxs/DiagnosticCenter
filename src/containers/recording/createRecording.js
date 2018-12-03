@@ -1,21 +1,20 @@
 import React, {Component} from 'react';
-import {StyleSheet, BackHandler, ScrollView, TouchableOpacity, Dimensions, Modal} from 'react-native';
+import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal} from 'react-native';
 import {Container, View, Text} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {LocaleConfig, Calendar} from 'react-native-calendars';
 import moment from 'moment';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import Popup from '../../components/common/Popup';
 import Autocompete from '../../components/common/Autocomplete';
 import ButtonDates from '../../components/common/ButtonDates';
-
 
 const { mediumBlack, gray, activeGray, accentBlue, backgroundBlue } = variables.colors;
 const { mainFont } = variables.fonts;
@@ -363,4 +362,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoScreen)
+export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoScreen));

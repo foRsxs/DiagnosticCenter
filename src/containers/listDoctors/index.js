@@ -64,8 +64,14 @@ class ServicesScreen extends Component {
           {
             (!loading) && (
               (list_Doctors.length)? (
-                list_Doctors.map((item)=>(
-                  <CatalogItem key={item.docid} listview={listview} onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} name={`${item.lastname} ${item.firstname} ${item.secondname}`}/>
+                list_Doctors.map((item, index)=>(
+                  <CatalogItem 
+                    key={index} 
+                    listview={listview} 
+                    onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
+                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                  />
                 ))
               ) : <Text>{ t('listdoctors:no_doctors_text') }</Text>
             )

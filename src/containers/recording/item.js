@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet, BackHandler, TouchableOpacity, Image} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
@@ -198,4 +199,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen)
+export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen));
