@@ -20,24 +20,17 @@ export default class CustomBtn extends Component {
     this.state = {
       opened: false,
       sortedData: props.data,
-      value: this.setValue(props.selected),
-      id: null
+      value: props.selected,
+      id: null,
     }
     this.rotateValue = new Animated.Value(0)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) this.setState({sortedData: this.props.data, value: this.setValue(this.props.selected)});
+    if (prevProps.data !== this.props.data) this.setState({sortedData: this.props.data});
+    if (prevProps.selected !== this.props.selected) this.setState({value: this.props.selected});
   }
 
-  setValue = (id) => {
-    const {data} = this.props;
-    let value = '';
-    data.forEach((item) => {
-      if (+item.id === +id) value = item.value;
-    })
-    return value;
-  }
 
   render() {
     const {value} = this.state;

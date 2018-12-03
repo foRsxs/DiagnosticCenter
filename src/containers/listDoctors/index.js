@@ -50,9 +50,10 @@ class ServicesScreen extends Component {
   }
 
   render() {
-    let { listview, loading } = this.state;
+    let { listview, loading, spec_id } = this.state;
     const { list_Doctors } = this.props;
     const { navigate } = this.props.navigation;
+    console.log(list_Doctors)
     return (
       <Container>
         <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
@@ -63,7 +64,7 @@ class ServicesScreen extends Component {
             (!loading) && (
               (list_Doctors.length)? (
                 list_Doctors.map((item)=>(
-                  <CatalogItem key={item.docid} listview={listview} onClick={() => navigate('doctor',{docid: +item.docid})} imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} name={`${item.lastname} ${item.firstname} ${item.secondname}`}/>
+                  <CatalogItem key={item.docid} listview={listview} onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} name={`${item.lastname} ${item.firstname} ${item.secondname}`}/>
                 ))
               ) : <Text>Нет подходящих врачей</Text>
             )

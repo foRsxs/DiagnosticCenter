@@ -41,13 +41,18 @@ export default function contentReducer(state = initialState, action) {
       return {
         ...state,
         order: {
-          type: (action.data === 'spec_id' || action.data === 'servid' || action.data === 'docdep_id') ? state.order.type : null,
-          spec_id: (action.data === 'servid' || action.data === 'docdep_id') ? state.order.spec_id : null,
-          servid: (action.data === 'docdep_id') ? state.order.servid: null,
-          docdep_id: null,
+          type: (action.data === 'spec_id' || action.data === 'servid' || action.data === 'docdep_id' || action.data === 'date') ? state.order.type : null,
+          spec_id: (action.data === 'servid' || action.data === 'docdep_id' || action.data === 'date') ? state.order.spec_id : null,
+          servid: (action.data === 'docdep_id' || action.data === 'date') ? state.order.servid: null,
+          docdep_id: (action.data === 'date') ? state.order.docdep_id : null,
           date: null,
           time: null
         },
+      }
+    case types.UPDATE_LIST_TIMES: 
+      return {
+        ...state,
+        orderDatas: {...state.orderDatas, ...action.data},
       }
     case types.UPDATE_LIST_DATES: 
       return {

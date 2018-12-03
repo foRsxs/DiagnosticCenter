@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, BackHandler, TouchableOpacity, Image} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import i18n from '../../i18n';
+import * as ContentActions from '../../actions/content';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import CustomBtn from '../../components/common/CustomBtn';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
@@ -12,12 +15,17 @@ const { accentBlue, lightGray, mediumBlack, black } = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium, large, main }  = variables.fSize;
 
-class ReceptionInfoScreen extends Component {
+class ReceptionInfoItemScreen extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props)
+    console.log(props);
     this.state = {
+      date: (props.navigation.state.params) ? props.navigation.state.params.dd: null,
+      rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id: null,
+      room: (props.navigation.state.params) ? props.navigation.state.params.room: null,
+      serv_id: (props.navigation.state.params) ? props.navigation.state.params.serv_id: null,
+      time: (props.navigation.state.params) ? props.navigation.state.params.time: null,
       reserved: (props.navigation.state.params) ? props.navigation.state.params.reserved: false,
       modalVisible: false,
       hideButton: false,
@@ -38,8 +46,9 @@ class ReceptionInfoScreen extends Component {
   }
 
   _onClick = () => {
-    const {reserved} = this.state;
+    const {reserved, rnumb_id, date, serv_id} = this.state;
     if (!reserved) {
+      this.props.saveOrder({rnumb_id, date, serv_id})
       this.setState({modalVisible: true})
     }
   }
@@ -84,7 +93,7 @@ class ReceptionInfoScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { reserved, modalVisible, hideButton } = this.state;
+    const { reserved, modalVisible, hideButton, date, time, room  } = this.state;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
@@ -108,14 +117,14 @@ class ReceptionInfoScreen extends Component {
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>дата и время визита</Text>
             <View style={styles.wrapName}>
-              <Text style={styles.txtName}>Пародонтозов Иван</Text>
-              <Text style={styles.txtSubname}>стоматолог</Text>
+              <Text style={styles.txtName}>{date}</Text>
+              <Text style={styles.txtSubname}>{time}</Text>
             </View>
           </View>
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>кабинет</Text>
             <View style={styles.wrapName}>
-              <Text style={styles.txtName}>№ 307</Text>
+              <Text style={styles.txtName}>№ {room}</Text>
             </View>
           </View>
           {
@@ -178,4 +187,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReceptionInfoScreen;
+function mapStateToProps(state) {
+  return {
+    order: state.content.order,
+    orderDatas: state.content.orderDatas
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen)
