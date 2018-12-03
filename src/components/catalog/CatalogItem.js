@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Text, View, Icon } from 'native-base';
-import Rating from '../common/Rating';
 import horizontalStyles from './StyleHorizontal';
 import verticalStyles from './StyleVertical';
-
 
 export default class CatalogListItem extends Component {
   constructor(props) {
@@ -15,10 +13,7 @@ export default class CatalogListItem extends Component {
   renderCardView() {
     let {imageUri, name, position, category, experience} = this.props;
     return (
-      <TouchableOpacity
-        onPress={() => this.props.onClick()}
-
-        >
+      <TouchableOpacity onPress={() => this.props.onClick()} >
         <View style={verticalStyles.itemWrap}>
           <Image
             style={verticalStyles.specIcon}

@@ -2,7 +2,6 @@ import axios from 'react-native-axios'
 import {Alert, AsyncStorage} from 'react-native';
 import * as types from '../types/auth';
 import {APP_API_URL} from '../config';
-import RNLanguages from 'react-native-languages';
 import i18n from '../i18n';
 
 export function authUser(data) {
@@ -42,15 +41,14 @@ export function getUserData() {
 }
 
 export function setLanguage(lang_key) {
-  return (dispatch, getState) => {
-    //const { authorization } = getState();
-    i18n.locale = 'en-GB'//lang_key;
-    console.log(i18n.currentLocale())
+  return (dispatch) => {
+    i18n.changeLanguage(lang_key);
     dispatch(setCurrentLang(lang_key));
   }
 }
 
 export function setCurrentLang(key) {
+  i18n.changeLanguage(key);
   _storeData('lang_key', key)
   return {
     type: types.SET_CURRENT_LANG,

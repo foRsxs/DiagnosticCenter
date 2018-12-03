@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, ActivityIndicator} from 'react-native';
 import {View, Item, Textarea, Input, Form} from 'native-base';
+import { withNamespaces } from 'react-i18next';
+
 import CustomBtn from './CustomBtn';
 import variables from '../../styles/variables';
 
@@ -8,7 +10,7 @@ const { black, accentBlue, red, blue } = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium } = variables.fSize;
 
-export default class FormSend extends Component {
+class FormSend extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,17 +42,18 @@ export default class FormSend extends Component {
 
   render() {
     const { question, email, emailValid, questionValid } = this.state;
+    const { t } = this.props;
 
     return (
       <Form style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, paddingTop: 15, paddingHorizontal: 15}}>
         <View style={{flex: 1}}>
           <Item style={[styles.inputWrap, (!emailValid)? {borderColor: red}: {}]} regular>
-            <Input style={styles.input} placeholder='Ваш e-mail' onChangeText={(email) => this.validate(email)} value={email}/>
+            <Input style={styles.input} placeholder={t('common:actions_text.your_email')} onChangeText={(email) => this.validate(email)} value={email}/>
           </Item>
-          <Textarea style={[styles.textarea, (!questionValid)? {borderColor: red}: {}]} bordered placeholder="Ваш вопрос" onChangeText={(question) => this.validateMess(question)} value={question}/>
+          <Textarea style={[styles.textarea, (!questionValid)? {borderColor: red}: {}]} bordered placeholder={t('common:actions_text.your_question')} onChangeText={(question) => this.validateMess(question)} value={question}/>
         </View >
         <View style={styles.buttonWrap}>
-          { (!this.props.loading) ? <CustomBtn label='ОТПРАВИТЬ' onClick={() => this._confirm()}/> : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>}
+          { (!this.props.loading) ? <CustomBtn label={t('common:actions.send')} onClick={() => this._confirm()}/> : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>}
         </View>
       </Form>
     );
@@ -82,3 +85,5 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   }
 });
+
+export default withNamespaces('common', { wait: true })(FormSend);

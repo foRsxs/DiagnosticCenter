@@ -1,4 +1,4 @@
-import { StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
 import AthorizationScreen from '../containers/authorization';
@@ -23,7 +23,7 @@ import TimeScreen from '../containers/time';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 
-const Athorization = StackNavigator({
+const Athorization = createStackNavigator({
     authorization: { 
         screen: AthorizationScreen,
         navigationOptions: {
@@ -32,7 +32,7 @@ const Athorization = StackNavigator({
     },
 });
 
-const MainScreenNavigator = StackNavigator({
+const MainScreenNavigator = createStackNavigator({
     home: { 
         screen: HomeScreen,
         navigationOptions: {
@@ -155,7 +155,7 @@ const MainScreenNavigator = StackNavigator({
     },
 });
 
-const Drawer = DrawerNavigator(
+const Drawer = createDrawerNavigator(
     {
       Main: { screen: MainScreenNavigator }
     },

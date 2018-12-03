@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler, AsyncStorage} from 'react-native';
 import {Container, Content, View, Text, Icon, Picker, Form, Switch} from 'native-base';
-import i18n from '../../i18n';
-import * as AuthActions from '../../actions/auth';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as AuthActions from '../../actions/auth';
 import CustomBtn from '../../components/common/CustomBtn';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-
 
 class SettingsScreen extends Component {
 
@@ -31,16 +31,13 @@ class SettingsScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
-
   switchOne = (value) => {
     this.setState({ switchone: value });
   }
 
   onAuthChange(value) {
     this.setState({local_auth_methods: value});
-    
   }
-
 
   _saveChanges = () => {
     const {local_auth_methods, local_languages_key} = this.state;
@@ -68,27 +65,29 @@ class SettingsScreen extends Component {
 
   changeLang = (key) => {
     if (key === this.state.local_languages_key) return;
+    this.props.setLanguage(key);
     this.setState({local_languages_key: key})
   }
 
   render() {
-    const {methods_auth, device_touch, languages_key} = this.props;
-    const {local_auth_methods, local_languages_key} = this.state;
+    const { t, methods_auth, device_touch, languages_key } = this.props;
+    const { local_auth_methods, local_languages_key } = this.state;
+
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-          <Header text="НАСТРОЙКИ" navigation = {this.props.navigation}/>
+          <Header text={ t('settings:title') } navigation = {this.props.navigation}/>
           <HeaderBottom />
           <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
             <View style={styles.settingItem}>
-              <Text style={styles.headTxt}>Язык интерфейса</Text>
+              <Text style={styles.headTxt}>{ t('settings:items.language') }</Text>
               <Form style={{ width: '40%' }}>
                 <Picker
                   mode="dropdown"
                   style={{width: '100%', position: 'relative'}}
                   selectedValue={local_languages_key}
                   onValueChange={this.changeLang.bind(this)}
-                  headerBackButtonText="Назад"
-                  iosHeader="Выберите язык интерфейса"
+                  headerBackButtonText={ t('common:actions.back') }
+                  iosHeader={ t('common:actions_text.select_language') }
                   iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
                 >
                   <Picker.Item label="Рус" value="ru" />
@@ -98,34 +97,37 @@ class SettingsScreen extends Component {
               </Form>
             </View>
             <View style={styles.settingItem}>
-              <Text style={styles.headTxt}>Авторизация</Text>
+              <Text style={styles.headTxt}>{ t('settings:items.auth') }</Text>
               <Form style={{ width: '40%' }}>
                 <Picker
                   mode="dropdown"
                   style={{width: '100%', position: 'relative'}}
                   selectedValue={local_auth_methods}
                   onValueChange={this.onAuthChange.bind(this)}
-                  headerBackButtonText="Назад"
-                  iosHeader="Выберите метод авторизации"
+                  headerBackButtonText={ t('common:actions.back') }
+                  iosHeader={ t('common:actions_text.select_auth_method') }
                   iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
                 >
                   <Picker.Item label="Code" value="code"/>
-                  {(device_touch) ? <Picker.Item label="TouchId" value="touch"/>: <Picker.Item label="FaceId" value="face" />}
+                  { (device_touch) ? 
+                  <Picker.Item label={ t('authorization:auth_type.touch_id') } value="touch"/> : 
+                  <Picker.Item label={ t('authorization:auth_type.face_id') } value="face" />
+                  }
                 </Picker>
               </Form>
             </View>
-            <View style={[styles.settingItem, {marginTop: 10}]}>
-              <Text style={styles.headTxt}>Push уведомления</Text>
+            {/* <View style={[styles.settingItem, {marginTop: 10}]}>
+              <Text style={styles.headTxt}>{ t('settings:items.push') }</Text>
               <Switch
                 onValueChange={this.switchOne}
                 value={this.state.switchone}
               />
-            </View>
+            </View> */}
           </Content>
           {
             (local_auth_methods !== methods_auth || local_languages_key !== languages_key) ? (
               <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-                <CustomBtn label='СОХРАНИТЬ' onClick={() => this._saveChanges()}/>
+                <CustomBtn label={ t('common:actions.save') } onClick={() => this._saveChanges()}/>
               </View>
             ): false
           }
@@ -159,14 +161,12 @@ const styles = StyleSheet.create({
   },  
 });
 
-
-
 function mapStateToProps(state) {
   return {
     methods_auth: state.authorization.methods_auth,
     device_touch: state.authorization.device_touch,
     device_face: state.authorization.device_face,
-    languages_key: state.authorization.language.current_key
+    languages_key: state.authorization.language
   }
 }
 
@@ -174,4 +174,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(AuthActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen)
+export default withNamespaces(['settings', 'authorization', 'common'])(connect(mapStateToProps, mapDispatchToProps)(SettingsScreen));

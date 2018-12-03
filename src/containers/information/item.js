@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, BackHandler, Image, ActivityIndicator, Linking } from 'react-native';
 import { Container, Content, View} from 'native-base';
 import HTMLView from 'react-native-htmlview';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import LinkBtn from '../../components/common/LinkBtn';
@@ -54,6 +55,7 @@ class InfoDetailScreen extends Component {
 
   renderImage = () => {
     const {image} = this.state;
+    
     return (
       <View style={{paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center'}}>
         <Image
@@ -67,6 +69,7 @@ class InfoDetailScreen extends Component {
 
   staticContent = () => {
     const {content} = this.state;
+
     return (
       <View style={styles.textWrap}>
         <HTMLView
@@ -78,6 +81,7 @@ class InfoDetailScreen extends Component {
 
   dynamicContent = () => {
     const {loading, content} = this.state;
+
     return (
       <View style={styles.textWrap}>
         {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="small" color={blue} />}
@@ -87,6 +91,8 @@ class InfoDetailScreen extends Component {
 
   render() {
     const {call, image, header_title, post_id} = this.state;
+    const { t } = this.props;
+
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={header_title} navigation={this.props.navigation} />
@@ -96,7 +102,7 @@ class InfoDetailScreen extends Component {
           {!(post_id) && this.staticContent()}
           {(post_id) && this.dynamicContent()}
         </Content>
-        { (call) && <LinkBtn label={'Позвонить в call-центр'} onClick={()=>{}}/>}
+        { (call) && <LinkBtn label={ t('common:actions_text.call_centre_text') } onClick={()=> Linking.openURL('tel:+87252367132') }/>}
       </Container>
     )
   }
@@ -123,4 +129,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoDetailScreen);
+export default withNamespaces('common')(connect(mapStateToProps, mapDispatchToProps)(InfoDetailScreen));

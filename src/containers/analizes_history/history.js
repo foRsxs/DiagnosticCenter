@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
 import { Container, Content } from 'native-base';
-import i18n from '../../i18n';
+import { withNamespaces } from 'react-i18next';
 
 import AnalizesItem from '../../components/analizes/AnalizesItem'
 import Header from '../../components/common/Header';
@@ -28,10 +28,13 @@ class HistoryScreen extends Component {
   }
 
   render() {
+    const { t } = this.props;
+    const total = '4';
+
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text="История болезни" navigation={this.props.navigation} />
-        <HeaderBottom text="Всего записей - 8" />
+        <Header text={t('history:title')} navigation={this.props.navigation} />
+        <HeaderBottom text={ t('history:total_text') + `- ${total}` } />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           <AnalizesItem headTxt='Терапевт' dateTxt='17.06.2018' onPress={()=> this.props.navigation.navigate('historyItem')}/>
           <AnalizesItem headTxt='Терапевт' dateTxt='17.06.2018' onPress={()=> this.props.navigation.navigate('historyItem')}/>
@@ -43,4 +46,4 @@ class HistoryScreen extends Component {
   }
 }
 
-export default HistoryScreen;
+export default withNamespaces('history', { wait: true })(HistoryScreen);

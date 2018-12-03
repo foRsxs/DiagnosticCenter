@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, TextInput, FlatList} from 'react-native';
+import { withNamespaces } from 'react-i18next';
 
 import variables from '../../styles/variables';
 import NumberItem from '../common/NumberItem';
@@ -9,7 +10,7 @@ class InputNumber extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       codeNumber: '',
+      codeNumber: '',
     };
   }
   click = (value) => {
@@ -24,7 +25,7 @@ class InputNumber extends Component {
   }
   render(){
     const {codeNumber} = this.state;
-    const {onPress, message} = this.props;
+    const { t, onPress, message } = this.props;
   
     return(
       <View style={styles.container}>
@@ -42,18 +43,18 @@ class InputNumber extends Component {
             {key: '9', value: '9'},
             {key: 'x', value: 'x'},
             {key: '0', value: '0'},
-						{key: '<', value: '<'},]}
+            {key: '<', value: '<'}
+          ]}
 					scrollEnabled={false}
           horizontal={false}
           vertical={true}
 					numColumns={3}
 					style={{width: 270, height: 290}}
-          renderItem={({item}) => <NumberItem onClick={this.click} value={item.value} text={item.key}/>
-          }
+          renderItem={ ({item}) => <NumberItem onClick={this.click} value={item.value} text={item.key}/> }
         />
         {(message.length) ?<Text style={styles.message}>{message}</Text>: false}
         {/* <Text style={styles.text}>не пришёл код?</Text> */}
-        {(codeNumber.length === 4) && <CustomBtn label='Сохранить' onClick={()=> onPress(codeNumber)} />}
+        {(codeNumber.length === 4) && <CustomBtn label={ t('common:actions.save') } onClick={()=> onPress(codeNumber)} />}
       </View>
     )
   }
@@ -88,5 +89,6 @@ const styles = StyleSheet.create({
     fontFamily: variables.fonts.mainFont,
 		color: 'red'
   }
-})
-export default InputNumber
+});
+
+export default withNamespaces('common', { wait: true })(InputNumber);

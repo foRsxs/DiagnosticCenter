@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ScrollView, ActivityIndicator } from 'react-native';
-import { Container, Content, View } from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
+import { Container, Content } from 'native-base';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -51,21 +52,28 @@ class ServicesScreen extends Component {
 
   render() {
     let { listview, loading } = this.state;
-    const { list_Doctors } = this.props;
+    const { t, list_Doctors } = this.props;
     const { navigate } = this.props.navigation;
+
     return (
       <Container>
-        <Header text="КАТАЛОГ ВРАЧЕЙ" navigation = {this.props.navigation}/>
+        <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
         <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ (listview)? {} : styles.containerStyle } padder>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {
             (!loading) && (
               (list_Doctors.length)? (
-                list_Doctors.map((item)=>(
-                  <CatalogItem key={item.docid} listview={listview} onClick={() => navigate('doctor',{docid: +item.docid})} imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} name={`${item.lastname} ${item.firstname} ${item.secondname}`}/>
+                list_Doctors.map((item, index)=>(
+                  <CatalogItem 
+                    key={index} 
+                    listview={listview} 
+                    onClick={() => navigate('doctor',{docid: +item.docid})} 
+                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                  />
                 ))
-              ) : <Text>Нет подходящих врачей</Text>
+              ) : <Text>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
         </Content>
@@ -96,4 +104,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ServicesScreen)
+export default withNamespaces('listdoctors')(connect(mapStateToProps, mapDispatchToProps)(ServicesScreen));

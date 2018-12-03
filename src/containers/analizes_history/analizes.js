@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, BackHandler } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
-import i18n from '../../i18n';
+import { StyleSheet, BackHandler } from 'react-native';
+import { Container, Content } from 'native-base';
+import { withNamespaces } from 'react-i18next';
+
 import variables from '../../styles/variables'
 import AnalizesItem from '../../components/analizes/AnalizesItem'
 import Header from '../../components/common/Header';
@@ -28,10 +29,13 @@ class AnalizesScreen extends Component {
   }
 
   render() {
+    const { t } = this.props;
+    const total = '7';
+
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text="МОИ АНАЛИЗЫ" navigation={this.props.navigation} />
-        <HeaderBottom text="Всего анализов - 8" />
+        <Header text={t('analizes:title')} navigation={this.props.navigation} />
+        <HeaderBottom text={ t('analizes:total_text') + `- ${total}` } />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018' />
           <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018' />
@@ -44,7 +48,7 @@ class AnalizesScreen extends Component {
           <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018' />
           <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018' />
           <AnalizesItem headTxt='Клинический анализ крови' dateTxt='17.06.2018' />
-        </Content >
+        </Content>
       </Container>
     )
   }
@@ -61,4 +65,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AnalizesScreen;
+export default withNamespaces('analizes', { wait: true })(AnalizesScreen);

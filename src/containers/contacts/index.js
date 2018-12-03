@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, TouchableOpacity, Image, Linking, BackHandler} from 'react-native';
+import {StyleSheet, TouchableOpacity, Image, Linking, BackHandler} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -30,60 +31,61 @@ class ContactsScreen extends Component {
   }
 
   _sendQuestion = () => {
-    const {isGuest, navigation, doctor} = this.props;
-    if (isGuest) {
-      this.props.setAuthMessage('Для того чтобы задавать вопросы, Вам необходимо авторизоваться');
-      navigation.navigate('authorization');
-    } else navigation.navigate('faq');
+    const {navigation} = this.props;
+
+    navigation.navigate('faq');
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-          <Header text="КОНТАКТЫ" navigation = {this.props.navigation}/>
-          <HeaderBottom />
-          <Content padder style={{marginTop: -10, zIndex: 1, paddingTop: 10, paddingHorizontal: 20}} contentContainerStyle={{paddingBottom: 20}}>
-            <View style={styles.contactItem}>
-              <Text style={styles.headTxt}>Адрес:</Text>
-              <Text style={styles.subHeadTxt}>Казахстан, 160021, г. Шымкент, ул. Байтурсынова 68а</Text>
-            </View>
-            <View style={styles.contactItem}>
-              <Text style={styles.headTxt}>Телефоны:</Text>
-              <Text style={styles.subHeadTxt}>Call-центр</Text>
-              <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367186')}>8 (7252) 36-71-86, 36-71-32</Text>
-              <Text style={styles.subHeadTxt}>Приёмная главного врача</Text>
-              <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367184')}>8 (7252) 36-71-84</Text>
-              <Text style={styles.subHeadTxt}>Заместитель главного врача</Text>
-              <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367192')}>8 (7252) 36-71-92</Text>
-              <Text style={styles.subHeadTxt}>Телефон доверия</Text>
-              <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+8725395456')}>8 (7252) 39-54-56</Text>
-            </View>
-            <View style={styles.contactItem}>
-              <Text style={styles.headTxt}>Электронная почта:</Text>
-              <Text style={styles.linkTxt} onPress={()=> Linking.openURL('mailto:mail@diagnostika.kz')}>mail@diagnostika.kz</Text>
-            </View>
-            <View style={styles.contactItem}>
-              <Text style={styles.headTxt}>Социальные сети:</Text>
-              <View style={{flexDirection: 'row', marginTop: 5}}>
-                <TouchableOpacity style={{marginRight: 15}} onPress={()=> Linking.openURL('https://www.facebook.com/')}>
-                  <Image source={require('../../../assets/img/instagram-icon.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=> Linking.openURL('https://www.facebook.com/')}>
-                  <Image source={require('../../../assets/img/facebook-icon.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.contactItem}>
-              <Text style={[styles.headTxt, {marginBottom: 5}]}>Обратная связь:</Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}
-              >
-                <Image source={require('../../../assets/img/mark-icon.png')} style={{width: 20, height: 20}} resizeMode='contain'></Image>
-                <Text style={[styles.linkTxt, {paddingTop: 5, marginLeft: 5}]} onPress={()=> this._sendQuestion()}>Отправить сообщение</Text>
+        <Header text={ t('contacts:title') } navigation = {this.props.navigation} />
+        <HeaderBottom />
+        <Content padder style={{marginTop: -10, zIndex: 1, paddingTop: 10, paddingHorizontal: 20}} contentContainerStyle={{paddingBottom: 20}}>
+          <View style={styles.contactItem}>
+            <Text style={styles.headTxt}>{ t('contacts:address') }:</Text>
+            <Text style={styles.subHeadTxt}>{ t('contacts:address_text') }</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Text style={styles.headTxt}>{ t('contacts:phones') }:</Text>
+            <Text style={styles.subHeadTxt}>{ t('contacts:call_centre') }</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367186')}>8 (7252) 36-71-86</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:367132')}>36-71-32</Text>
+            <Text style={styles.subHeadTxt}>{ t('contacts:main_doc_office') }</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367184')}>8 (7252) 36-71-84</Text>
+            <Text style={styles.subHeadTxt}>{ t('contacts:main_doc_deputy') }</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367192')}>8 (7252) 36-71-92</Text>
+            <Text style={styles.subHeadTxt}>{ t('contacts:phone_of_trust') }</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+8725395456')}>8 (7252) 39-54-56</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Text style={styles.headTxt}>{ t('contacts:email_text') }:</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('mailto:admin@diagnostika.kz')}>admin@diagnostika.kz</Text>
+          </View>
+          <View style={styles.contactItem}>
+            <Text style={styles.headTxt}>{ t('contacts:social_text') }:</Text>
+            <View style={{flexDirection: 'row', marginTop: 5}}>
+              <TouchableOpacity style={{marginRight: 15}} onPress={()=> Linking.openURL('https://www.instagram.com/diagnostik.center/')}>
+                <Image source={require('../../../assets/img/instagram-icon.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={()=> Linking.openURL('https://www.facebook.com/diagnostika.shymkent/')}>
+                <Image source={require('../../../assets/img/facebook-icon.png')} style={{width: 40, height: 40}} resizeMode='contain'></Image>
               </TouchableOpacity>
             </View>
-          </Content >
+          </View>
+          <View style={styles.contactItem}>
+            <Text style={[styles.headTxt, {marginBottom: 5}]}>{ t('contacts:feedback_text') }:</Text>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{flexDirection: 'row', justifyContent: 'flex-start'}}
+            >
+              <Image source={require('../../../assets/img/mark-icon.png')} style={{width: 20, height: 20}} resizeMode='contain'></Image>
+              <Text style={[styles.linkTxt, {paddingTop: 5, marginLeft: 5}]} onPress={()=> this._sendQuestion()}>{t('common:actions.send_msg')}</Text>
+            </TouchableOpacity>
+          </View>
+        </Content >
       </Container>
     )
   }
@@ -127,7 +129,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+  return bindActionCreators(ContentActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsScreen)
+export default withNamespaces(['contacts', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ContactsScreen));

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, Image, Dimensions, TouchableOpacity, BackHandler, ActivityIndicator } from 'react-native';
 import { View, Text } from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
-import Rating from '../../components/common/Rating';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
@@ -49,18 +49,21 @@ class DoctorScreen extends Component {
   _openQuestion = () => {
     const {isGuest, navigation, doctor} = this.props;
     if (isGuest) {
-      this.props.setAuthMessage('Для того чтобы читать и задавать вопросы врачу, Вам необходимо авторизоваться');
+      this.props.setAuthMessage(t('common:actions.question_text'));
       navigation.navigate('authorization');
-    } else navigation.navigate('questions', {doc_id: this.state.docid, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`});
+    } else { 
+      navigation.navigate('questions', {doc_id: this.state.docid, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`});
+    }
   }
 
   render() {
     const { navigate } = this.props.navigation;
     const { docid, loading } = this.state;
-    const { doctor } = this.props;
+    const { t, doctor } = this.props;
+
     return (
       <View style={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%', backgroundColor: 'white'}}>
-        <Header text="КАРТОЧКА ВРАЧА" navigation={this.props.navigation} />
+        <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
         <HeaderBottom />
         <View style={styles.imageWrap}>
           {
@@ -85,7 +88,7 @@ class DoctorScreen extends Component {
                   </View>
                   <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
                     <TouchableOpacity onPress={() => this._openQuestion()} style={styles.blockQuestion}>
-                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>ЗАДАТЬ ВОПРОС</Text>
+                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>{ t('common:actions.ask_question') }</Text>
                       <Image
                         style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
                         resizeMode='cover'
@@ -115,7 +118,7 @@ class DoctorScreen extends Component {
           }
           {(!loading) && (
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
-            <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={() => navigate('receptions')} />
+            <CustomBtn label={ t('common:actions.appointment') } onClick={() => navigate('receptions')} />
           </View>
           )}
         </ScrollView>
@@ -219,4 +222,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DoctorScreen)
+export default withNamespaces(['listdoctors', 'common'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));

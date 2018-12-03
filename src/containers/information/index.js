@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet, BackHandler, Text, ActivityIndicator } from 'react-native';
 import { Container, Content, View } from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
@@ -36,12 +37,12 @@ class InfoScreen extends Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    const {listInformation: {list}} = this.props;
+    const { t, listInformation: {list}} = this.props;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text="ИНФОРМАЦИЯ" navigation={this.props.navigation} />
-        <HeaderBottom text={'к сведению пациента'} />
+        <Header text={ t('information:title') } navigation={this.props.navigation} />
+        <HeaderBottom text={ t('information:sub_title') } />
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
           {
             (list) ? (
@@ -56,8 +57,6 @@ class InfoScreen extends Component {
               ))
             ) : <ActivityIndicator size="small" color={blue} />
           }
-          
-          
         </Content>
       </Container>
     )
@@ -93,4 +92,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoScreen);
+export default withNamespaces('information')(connect(mapStateToProps, mapDispatchToProps)(InfoScreen));

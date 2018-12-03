@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler, ActivityIndicator, Text} from 'react-native';
+import {BackHandler, ActivityIndicator, Text} from 'react-native';
 import {Container, Content, View} from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import QuestionItem from '../../components/questions/QuestionItem';
 import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
@@ -46,11 +47,11 @@ class AllQuestionsScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { fio, doc_id, loading } = this.state;
-    const { questions } = this.props;
+    const { t, questions } = this.props;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text="ВОПРОС ВРАЧУ" navigation = {this.props.navigation}/>
+        <Header text={ t('questions:title') } navigation = {this.props.navigation}/>
         <HeaderBottom text={fio} />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           {
@@ -60,17 +61,17 @@ class AllQuestionsScreen extends Component {
                   <QuestionItem
                     key={item.id}
                     text={item.question}
-                    textAnswer={item.answer? item.answer : 'Врач еще не ответил на этот вопрос'}
+                    textAnswer={item.answer? item.answer : t('questions:doc_no_answered')}
                   />
                 ))
-              ) : <Text style={{color: 'black', fontFamily: mainFont, fontSize: medium, textAlign: 'center'}}>У этого врача еще нет ни одного вопроса</Text>
+              ) : <Text style={{color: 'black', fontFamily: mainFont, fontSize: medium, textAlign: 'center'}}>{ t('questions:doc_no_questions') }</Text>
             ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
           }
         </Content >
         {
           (!loading) && (
             <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-              <CustomBtn label='ЗАДАТЬ ВОПРОС' onClick={() => navigate("questionForm", {doc_id: doc_id})}/>
+              <CustomBtn label={ t('common:actions.ask_question') } onClick={() => navigate("questionForm", {doc_id: doc_id})}/>
             </View>
           )
         }
@@ -78,9 +79,6 @@ class AllQuestionsScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-});
 
 function mapStateToProps(state) {
   return {
@@ -92,4 +90,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllQuestionsScreen)
+export default withNamespaces(['questions', 'common'])(connect(mapStateToProps, mapDispatchToProps)(AllQuestionsScreen));

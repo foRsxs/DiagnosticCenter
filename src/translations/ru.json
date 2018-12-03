@@ -1,4 +1,136 @@
 {
-    "BtnMainDoctor": "rus",
-    "BtnMainService": "rus"
+    "authorization": {
+        "phone": "ТЕЛ",
+        "inn": "ИНН",
+        "auth_text": "Авторизоваться",
+        "need_auth_text": "Требуется авторизация", 
+        "login_without_auth": "Вход без авторизации",
+        "pin_create": "Создайте пин код",
+        "pin_input": "Введите пин код",
+        "auth_face_id": "Авторизация через FaceID",
+        "auth_touch_id": "Авторизация через TouchID",
+        "auth_type": {
+            "pin_code": "Пин код",
+            "touch_id": "Touch ID",
+            "face_id": "Face ID"
+        }
+    },
+    "menu": {
+        "home": "Главная",
+        "doctors": "Врачи",
+        "services": "Категории услуги",
+        "records": "Мои записи",
+        "analyzes": "Мои анализы",
+        "contacts": "Контакты",
+        "feedback": "Обратная связь",
+        "settings": "Настройки",
+        "logout": "Выйти",
+        "history": "История болезни",
+        "information": "Информация"
+    },
+    "home": {
+        "title": "Наши акции",
+        "faq_text_link": "Часто задаваемые вопросы",
+        "menu": {
+            "doc_list": "Список врачей",
+            "cat_services": "Категории услуг",
+            "doc_appointment": "Запись на прийом",
+            "test_results": "Результаты анализов"
+        }
+    },
+    "listdoctors": {
+        "title": "Каталог врачей",
+        "no_doctors_text": "Нет подходящих врачей",
+        "item": {
+            "title": "Карточка врача"
+        }
+    },
+    "specialization": {
+        "title": "Категории услуг",
+        "no_doctor_choose_link_text": "? Не знаю какой врач нужен",
+        "form": {
+            "fisrt_text": "Вы не знаете к какому врачу обратиться?",
+            "last_text": "Позвоните в call center вас обязательно проконсультируют"
+        }
+    },
+    "analizes": {
+        "title": "Мои анализы",
+        "total_text": "Всего анализов"
+    },
+    "history": {
+        "title": "История болезни",
+        "sub_title": "подробная информация",
+        "total_text": "Всего записей"
+    },
+    "information": {
+        "title": "Информация",
+        "sub_title": "к сведению пациента"
+    },
+    "questions": {
+        "title": "Вопрос врачу",
+        "doc_no_answered": "Врач еще не ответил на этот вопрос",
+        "doc_no_questions": "У этого врача еще нет ни одного вопроса",
+        "form": {
+            "title": "Вопрос врачу",
+            "sub_title": "напишите свой вопрос"
+        }
+    },
+    "faq": {
+        "title": "Часто задаваемые вопросы"
+    },
+    "contacts": {
+        "title": "Контакты",
+        "address": "Адрес",
+        "address_text": "Казахстан, 160021, г. Шымкент, ул. Байтурсынова 68а",
+        "phones": "Телефоны",
+        "call_centre": "Call-центр",
+        "main_doc_office": "Приёмная главного врача",
+        "main_doc_deputy": "Заместитель главного врача",
+        "phone_of_trust": "Телефон доверия",
+        "email_text": "Электронная почта",
+        "social_text": "Социальные сети",
+        "feedback_text": "Обратная связь",
+        "faq": {
+            "title": "Обратная связь",
+            "sub_title": "напишите нам"
+        }
+    },
+    "settings": {
+        "title": "Настройки",
+        "sub_title": "к сведению пациента",
+        "items": {
+            "auth": "Авторизация",
+            "language": "Язык интерфейса",
+            "push": "Push уведомления"
+        }
+    },
+    "common": {
+        "actions": {
+            "save": "Сохранить",
+            "send": "Отправить",
+            "cancel": "Отмена",
+            "back": "Назад",
+            "call": "Позвонить",
+            "close": "Закрыть",
+            "send_msg": "Отправить сообщение",
+            "send_to_mail": "Отправить на e-mail",
+            "save_to_gallery": "Сохранить в галерею",
+            "appointment": "Запись на приём",
+            "ask_question": "Задать вопрос"
+        },
+        "actions_text": {
+            "question_sent": "Ваш вопрос успешно отправлен",
+            "question_text": "Для того чтобы задавать вопросы, Вам необходимо авторизоваться",
+            "call_centre_text": "Позвонить в call-центр",
+            "select_language": "Выберите язык интерфейса",
+            "select_auth_method": "Выберите метод авторизации",
+            "your_question": "Ваш вопрос",
+            "your_email": "Ваш e-mail"
+        },
+        "errors": {
+            "wrong_pin_code": "Неверный пин код",
+            "wrong_phone": "Некорректный номер телефона",
+            "wrong_inn": "Некорректный номер ИНН"
+        }
+    }
 }

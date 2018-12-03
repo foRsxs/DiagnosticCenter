@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Alert, Image} from 'react-native';
-import {Text, View, Icon} from 'native-base';
+import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Text, View} from 'native-base';
 import variables from '../../styles/variables';
 
 const { accentBlue, mediumBlack } = variables.colors;

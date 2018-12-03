@@ -27,11 +27,11 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNTextInputMaskPackage(),
-            new FingerprintAuthPackage(),
-          new RNLanguagesPackage(),
-          new SplashScreenReactPackage()
+        new MainReactPackage(),
+        new RNLanguagesPackage(),
+        new RNTextInputMaskPackage(),
+        new FingerprintAuthPackage(),
+        new SplashScreenReactPackage()
       );
     }
 

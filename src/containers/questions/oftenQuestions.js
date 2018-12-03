@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
+import { BackHandler, ActivityIndicator, Linking } from 'react-native';
 import { Container, Content } from 'native-base';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import OftenQuestionItem from '../../components/questions/OftenQuestionItem';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
@@ -34,11 +35,11 @@ class OftenQuestionsScreen extends Component {
   }
 
   render() {
-    const {questions} = this.props;
+    const { t, questions } = this.props;
     
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text="FAQ" navigation={this.props.navigation} />
+        <Header text={ t('faq:title') } navigation={this.props.navigation} />
         <HeaderBottom search={true} />
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
           {
@@ -53,14 +54,11 @@ class OftenQuestionsScreen extends Component {
             ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
           }
         </Content >
-        <LinkBtn label='позвонить в call-центр' onClick={() => Alert.alert('ok')} />
+        <LinkBtn label={ t('common:actions_text.call_centre_text') } onClick={()=> Linking.openURL('tel:+87252367132') }/>
       </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-});
 
 function mapStateToProps(state) {
   return {
@@ -72,4 +70,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OftenQuestionsScreen)
+export default withNamespaces(['faq', 'common'])(connect(mapStateToProps, mapDispatchToProps)(OftenQuestionsScreen));

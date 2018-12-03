@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, BackHandler} from 'react-native';
+import {BackHandler} from 'react-native';
 import {Container, Toast} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import i18n from '../../i18n';
-import * as ContentActions from '../../actions/content';
+import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ContentActions from '../../actions/content';
 import FormSend from '../../components/common/Form';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
@@ -28,11 +29,13 @@ class FaqScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const {t} = this.props;
+
     if (this.props.status !== prevProps.status) {
       if (this.props.status) {
         Toast.show({
-          text: 'Ваш вопрос успешно отправлен'
-        })
+          text: t('common:actions_text.question_sent')
+        });
       } else {
         Toast.hide();
       }
@@ -45,13 +48,13 @@ class FaqScreen extends Component {
   }
 
   render() {
-    const {profile, loading} = this.props;
+    const {t, profile, loading} = this.props;
 
     return (
       <Container>
-        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
-          <Header text="ОБРАТНАЯ СВЯЗЬ" navigation = {this.props.navigation}/>
-          <HeaderBottom text="напишите нам" />
+        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
+          <Header text={ t('contacts:faq.sub_title') } navigation = {this.props.navigation}/>
+          <HeaderBottom text={ t('contacts:faq.sub_title') } />
           <FormSend sendData={this.getData} email={profile.email} loading={loading}/>
         </KeyboardAwareScrollView>
       </Container>
@@ -71,4 +74,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FaqScreen)
+export default withNamespaces(['contacts', 'common'])(connect(mapStateToProps, mapDispatchToProps)(FaqScreen));

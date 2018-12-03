@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions, FlatList} from 'react-native';
-import {H3, Content, Icon} from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions} from 'react-native';
 
 import variables from '../../styles/variables'
 
