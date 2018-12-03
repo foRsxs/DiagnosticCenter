@@ -34,9 +34,15 @@ export default class CustomBtn extends Component {
   setValue = (id) => {
     const {data} = this.props;
     let value = '';
-    data.forEach((item) => {
-      if (+item.id === +id) value = item.value;
-    })
+    if (id) {
+      data.forEach((item) => {
+        const item_id = (item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? +item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null
+        if ( item_id === +id) {
+          value = (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : ''
+        };
+      })
+    }
+    console.log(data, id, value)
     return value;
   }
 
@@ -146,6 +152,6 @@ const styles = StyleSheet.create({
     color: 'black', fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
   },
   textDisabled: {
-    color: activeGray, fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+    color: accentBlue, fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
   }
 });

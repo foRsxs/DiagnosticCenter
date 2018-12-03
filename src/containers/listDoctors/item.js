@@ -19,9 +19,12 @@ const { mainFont } = variables.fonts;
 
 class DoctorScreen extends Component {
   constructor(props) {
+    console.log(props)
     super(props);
     this.state = {
       docid: (props.navigation.state.params) ? props.navigation.state.params.docid : null,
+      spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
+      docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
       loading: true
     };
   }
@@ -58,7 +61,7 @@ class DoctorScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { docid, loading } = this.state;
+    const { docid, loading, spec_id, docdep_id } = this.state;
     const { t, doctor } = this.props;
 
     return (
@@ -118,7 +121,7 @@ class DoctorScreen extends Component {
           }
           {(!loading) && (
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
-            <CustomBtn label={ t('common:actions.appointment') } onClick={() => navigate('receptions')} />
+            <CustomBtn label='ЗАПИСЬ НА ПРИЁМ' onClick={() => navigate('receptions')} />
           </View>
           )}
         </ScrollView>

@@ -33,14 +33,15 @@ export function getListDoctors(spec_id, order = false) {
   }
 }
 
-export function getListServices(id) {
+export function getListServices(id, auto_push = false) {
   return (dispatch, getState) => {
     if (true) { 
       axios.post(`${APP_API_URL}/services`, {
         spec_id: id
       })
       .then((response) => {
-        dispatch(setListServicesOrder(response.data))
+        if (auto_push && response.data.length) dispatch(setOrderSuccess({servid: response.data[0].servid}));
+        dispatch(setListServicesOrder(response.data));
       })
     } else {
       Alert.alert('Интернет соединение отсутствует');
@@ -152,6 +153,25 @@ export function getListDates(docdep_id) {
   }
 }
 
+export function getListTimes(date) {
+  return (dispatch, getState) => {
+    if (true) { 
+      const { authorization, content: {order} } = getState();
+      axios.post(`${APP_API_URL}/rnumb_time`,{
+        api_token: authorization.token,
+        docdep_id: order.docdep_id,
+        date
+      })
+      .then((response) => {
+        console.log(response.data)
+        dispatch(setListTimes(response.data))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
 export function setOrder(data, type, nameDispatch) {
   return (dispatch, getState) => {
     const { content: {order} } = getState();
@@ -160,13 +180,21 @@ export function setOrder(data, type, nameDispatch) {
       if (!order[type] || order[type] !== data[type]) dispatch(getListSpecialization(data[type], true));
     } else if (type === 'spec_id') {
       if (order.servid) dispatch(cleareOrderSuccess('spec_id'));
-      if (!order[type] || order[type] !== data[type]) dispatch((nameDispatch == 'doc') ? getListDoctors(data[type], true) : getListServices(data[type], true));
+      console.log(data, type, nameDispatch)
+      if (!order[type] || order[type] !== data[type]) {
+        if (nameDispatch === 'doc') {
+          dispatch(getListServices(data[type], true));
+          dispatch(getListDoctors(data[type], true));
+        } else dispatch(getListServices(data[type]));
+      }
     } else if (type === 'servid') {
       if (order.docdep_id) dispatch(cleareOrderSuccess('servid'));
       if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors( order.spec_id, true));
     } else if (type === 'docdep_id') {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
-      if (!order[type] ||  order[type] !== data[type]) dispatch(getListDates( data[type], true))
+      if (!order[type] ||  order[type] !== data[type]) dispatch(getListDates( data[type], true));
+    } else if (type === 'auto') {
+
     }
     dispatch(setOrderSuccess(data))
   }
@@ -196,6 +224,50 @@ export function sendQuestion({type, question, email, doc_id}) {
   }
 }
 
+export function setDate(date) {
+  return (dispatch, getState) => {
+    const { content: {order} } = getState();
+    if (order.time) dispatch(cleareOrderSuccess('date'));
+    if (order.date !== date.date) {
+      dispatch(getListTimes(date.date, true))
+      dispatch(setOrderSuccess(date))
+    } else dispatch(setOrderSuccess({date: null}))
+  }
+}
+
+export function setTime(time) {
+  return (dispatch, getState) => {
+    const { content: {order} } = getState();
+    (order.time !== time.time) ? dispatch(setOrderSuccess(time)) : dispatch(setOrderSuccess({time: null}));
+  }
+}
+
+export function saveOrder({rnumb_id, date, serv_id}) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+    if (true) { 
+      console.log({
+        api_token: authorization.token,
+        rnumb_id, 
+        date,
+        serv_id
+      })
+      axios.post(`${APP_API_URL}/get_talon`, {
+        api_token: authorization.token,
+        rnumb_id, 
+        date,
+        serv_id
+      })
+      .then((response) => {
+        console.log(response.data)
+        //if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}))
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
 export function cleareOrderSuccess(type) {
   return {
     type: types.CLEARE_ORDER,
@@ -207,6 +279,13 @@ export function setOrderSuccess(data) {
   return {
     type: types.UPDATE_ORDER,
     data: data
+  }
+}
+
+export function setListTimes(data) {
+  return {
+    type: types.UPDATE_LIST_TIMES,
+    data: {times: data}
   }
 }
 

@@ -18,8 +18,6 @@ import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
 import FaqScreen from '../containers/contacts/faq';
 import SettingsScreen from '../containers/settings';
-import CalendarDateScreen from '../containers/calendar/date';
-import TimeScreen from '../containers/time';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 
@@ -119,18 +117,6 @@ const MainScreenNavigator = createStackNavigator({
     },
     listDoctors: { 
         screen: CatalogScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    calendarDate: { 
-        screen: CalendarDateScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    time: { 
-        screen: TimeScreen,
         navigationOptions: {
             header: null
         }
