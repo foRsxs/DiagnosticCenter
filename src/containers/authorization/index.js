@@ -38,7 +38,7 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {
     this._checkTouchSupport();
-    // AsyncStorage.clear();
+    //AsyncStorage.clear();
     //<----------------------------------------need to rewrite--------------------------------------------//
     AsyncStorage.getItem('lang_key').then((resp)=>{
       (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');

@@ -14,6 +14,15 @@ const initialState = {
   
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
+    case types.LOG_OUT:
+      return {
+        ...state,
+        token: null,
+        confirmed_auth: false,
+        methods_auth: false,
+        pinCode: null,
+        user: {}
+      }
     case types.SET_CURRENT_LANG: 
       return {
         ...state,

@@ -43,6 +43,12 @@ export function getUserData() {
   }
 }
 
+export function logOut() {
+  return {
+    type: types.LOG_OUT,
+  }
+}
+
 export function setLanguage(lang_key) {
   return (dispatch) => {
     i18n.changeLanguage(lang_key);
