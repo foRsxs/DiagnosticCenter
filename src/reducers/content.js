@@ -3,7 +3,7 @@ import * as types from '../types/content';
 const initialState = {
   authMessage: null,
   ListSpecialization: null,
-  listDoctors: [],
+  listDoctors: null,
   doctorData: null,
   sales: null,
   listInformation: {

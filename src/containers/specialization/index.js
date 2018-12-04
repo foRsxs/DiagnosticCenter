@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler, ActivityIndicator, Linking} from 'react-native';
-import {Container, Content, View} from 'native-base';
+import {Container, Content, View, Text} from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,10 +11,12 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import SpecializationItem from '../../components/specialization/SpecializationItem';
 import Popup from '../../components/common/Popup';
-import variebles from '../../styles/variables';
+import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {black, blue} = variebles.colors;
+const {black, blue} = variables.colors;
+const {medium} = variables.fSize;
+const { mainFont} = variables.fonts;
 
 class SpecializationScreen extends Component {
 
@@ -22,15 +24,17 @@ class SpecializationScreen extends Component {
     super(props);
     this.state = {
       modalVisible: false,
+      sorted_list_specialization: props.list_specialization,
+      loading: (props.list_specialization) ? false: true
     };
   }
 
-  change = (value) => {
-    this.setState(state => ({modalVisible: false}))
-  }
-
   handleChange = (value) => {
-    this.setState({inputValue: value})
+    const {list_specialization} = this.props;
+    function findElements(item) {
+      return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    }
+    this.setState({ sorted_list_specialization: list_specialization.filter(findElements)});
   }
 
   componentDidMount() {
@@ -40,6 +44,10 @@ class SpecializationScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({sorted_list_specialization: this.props.list_specialization, loading: false});
   }
 
   handleBackButtonClick = () => {
@@ -58,26 +66,33 @@ class SpecializationScreen extends Component {
   }
 
   render() {
-    const {modalVisible} = this.state;
-    const { t, list_specialization } = this.props;
+    const {modalVisible, sorted_list_specialization, loading} = this.state;
+    const { t } = this.props;
 
     return (
       <View>
         <View style={ styles.mainContainer }>
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
             <Header text={ t('specialization:title') } navigation = {this.props.navigation}/>
-            <HeaderBottom search={true} onChange={this.handleChange}/>
+            <HeaderBottom search={true} onChangeSearch={this.handleChange}/>
             <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-              {(list_specialization && list_specialization.length)? (
-                list_specialization.map((item, index) => (
-                  <SpecializationItem 
-                    key={index} 
-                    onClick={() => this.props.navigation.navigate({routeName:'listDoctors', params: {spec_id: item.spec_id}, key: item.spec_id })} 
-                    headTxt={item.spec_name} 
-                    imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
-                  />
-                ))
-              ): <ActivityIndicator size="small" color={blue} /> } 
+              {
+                (loading) ? <ActivityIndicator size="small" color={blue} />: 
+                (
+                  (sorted_list_specialization && sorted_list_specialization.length)? (
+                    sorted_list_specialization.map((item, index) => (
+                      <SpecializationItem 
+                        key={index} 
+                        onClick={() => this.props.navigation.navigate({routeName:'listDoctors', params: {spec_id: item.spec_id}, key: item.spec_id })} 
+                        headTxt={item.spec_name} 
+                        imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
+                      />
+                    ))
+                  ): (
+                    <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{t('specialization:no_doctor_text')}</Text>
+                  )
+                )
+              }
             </Content >
             <LinkBtn label={ t('specialization:no_doctor_choose_link_text') } onClick={()=> this.setState({modalVisible: true})}/>
             <Popup 

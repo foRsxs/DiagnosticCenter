@@ -7,7 +7,8 @@ import i18n from '../i18n';
 export function authUser(data) {
   return (dispatch, getState) => {
     if (true) { 
-      return axios.post(`${APP_API_URL}/get_patient`, data)
+      const { authorization } = getState();
+      return axios.post(`${APP_API_URL}/get_patient`, {...data, lang: authorization.language})
       .then((response) => {
         console.log(response.data)
         dispatch(saveUser(response.data));
@@ -29,9 +30,11 @@ export function getUserData() {
     if (true) { 
       const { authorization } = getState();
       axios.post(`${APP_API_URL}/get_patient_by_token`,{
-        api_token: authorization.token
+        api_token: authorization.token,
+        lang: authorization.language
       })
       .then((response) => {
+        console.log(response.data)
         dispatch(setUserdata(response.data))
       })
     } else {
@@ -115,12 +118,3 @@ _storeData = async (name, params) => {
     console.log(error)
   }
 }
-
-// _retrieveData = async (name) => {
-//   try {
-//     const value = await AsyncStorage.getItem(name);
-//     return value;
-//    } catch (error) {
-//     Alert.alert(JSON.stringify(error))
-//    }
-// }

@@ -4,10 +4,12 @@ import * as types from '../types/content';
 import {APP_API_URL} from '../config';
 
 export function getListSpecialization(type, order = false) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
     if (true) { 
       axios.post(`${APP_API_URL}/specs`, {
-        type: type
+        type: type,
+        lang: authorization.language
       })
       .then((response) => {
         (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
@@ -19,9 +21,12 @@ export function getListSpecialization(type, order = false) {
 }
 
 export function getListDoctors(spec_id, order = false) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (true) { 
-      const params = {}
+      const { authorization } = getState();
+      const params = {
+        lang: authorization.language
+      }
       if (spec_id) params.spec_id = spec_id;
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
@@ -36,8 +41,10 @@ export function getListDoctors(spec_id, order = false) {
 export function getListServices(id, auto_push = false) {
   return (dispatch, getState) => {
     if (true) { 
+      const { authorization } = getState();
       axios.post(`${APP_API_URL}/services`, {
-        spec_id: id
+        spec_id: id,
+        lang: authorization.language
       })
       .then((response) => {
         if (auto_push && response.data.length) dispatch(setOrderSuccess({servid: response.data[0].servid}));
@@ -50,10 +57,12 @@ export function getListServices(id, auto_push = false) {
 }
 
 export function getDoctor(doc_id) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (true) { 
+      const { authorization } = getState();
       axios.post(`${APP_API_URL}/doctor`, {
-        doc_id
+        doc_id,
+        lang: authorization.language
       })
       .then((response) => {
         dispatch(setDoctorData(response.data))
@@ -65,9 +74,12 @@ export function getDoctor(doc_id) {
 }
 
 export function getSales() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (true) { 
-      axios.get(`${APP_API_URL}/sales`)
+      const { authorization } = getState();
+      axios.get(`${APP_API_URL}/sales`, {
+        lang: authorization.language
+      })
       .then((response) => {
         dispatch(setSales(response.data))
       })
@@ -78,9 +90,12 @@ export function getSales() {
 }
 
 export function getListInformation() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (true) { 
-      axios.post(`${APP_API_URL}/articles`)
+      const { authorization } = getState();
+      axios.post(`${APP_API_URL}/articles`, {
+        lang: authorization.language
+      })
       .then((response) => {
         dispatch(setListInformation(response.data))
       })
@@ -91,9 +106,13 @@ export function getListInformation() {
 }
 
 export function getPost(post_id) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (true) { 
-      axios.post(`${APP_API_URL}/articles`,{post_id})
+      const { authorization } = getState();
+      axios.post(`${APP_API_URL}/articles`,{
+        post_id, 
+        lang: authorization.language
+      })
       .then((response) => {
         dispatch(setPost(response.data))
       })
@@ -109,11 +128,11 @@ export function getQuestions(doc_id) {
     if (true) { 
       axios.post(`${APP_API_URL}/questions`,{
         doc_id,
-        api_token: authorization.token
+        api_token: authorization.token,
+        lang: authorization.language
       })
       .then((response) => {
-        console.log(response.data)
-        dispatch(setQuestion(response.data))
+        dispatch(setQuestion(response.data));
       })
     } else {
       Alert.alert('Интернет соединение отсутствует');
@@ -123,10 +142,12 @@ export function getQuestions(doc_id) {
 
 export function getOftenQuestions() {
   return (dispatch, getState) => {
+    const { authorization } = getState();
     if (true) { 
-      axios.post(`${APP_API_URL}/faq`)
+      axios.post(`${APP_API_URL}/faq`,{
+        lang: authorization.language
+      })
       .then((response) => {
-        console.log(response.data)
         dispatch(setOftenQuestion(response.data))
       })
     } else {
@@ -141,10 +162,10 @@ export function getListDates(docdep_id) {
       const { authorization } = getState();
       axios.post(`${APP_API_URL}/rnumb_date`,{
         api_token: authorization.token,
-        docdep_id
+        docdep_id,
+        lang: authorization.language
       })
       .then((response) => {
-        console.log(response.data)
         dispatch(setListDates(response.data))
       })
     } else {
@@ -160,10 +181,10 @@ export function getListTimes(date) {
       axios.post(`${APP_API_URL}/rnumb_time`,{
         api_token: authorization.token,
         docdep_id: order.docdep_id,
-        date
+        date,
+        lang: authorization.language
       })
       .then((response) => {
-        console.log(response.data)
         dispatch(setListTimes(response.data))
       })
     } else {
@@ -192,8 +213,6 @@ export function setOrder(data, type, nameDispatch) {
     } else if (type === 'docdep_id') {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
       if (!order[type] ||  order[type] !== data[type]) dispatch(getListDates( data[type], true));
-    } else if (type === 'auto') {
-
     }
     dispatch(setOrderSuccess(data))
   }
@@ -206,7 +225,8 @@ export function sendQuestion({type, question, email, doc_id}) {
     const params = {
       api_token: authorization.token,
       question, 
-      email
+      email,
+      lang: authorization.language
     }
     if (doc_id) params.doc_id = doc_id
     if (true) { 
@@ -247,14 +267,13 @@ export function saveOrder({rnumb_id, date, serv_id}) {
     if (true) { 
       axios.post(`${APP_API_URL}/get_talon`, {
         api_token: authorization.token,
+        lang: authorization.language,
         rnumb_id, 
         date,
         serv_id
       })
       .then((response) => {
-        console.log(response.data)
         if (response.data) dispatch(setCreatingOrderSuccess(true));
-        //if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}))
       })
     } else {
       Alert.alert('Интернет соединение отсутствует');
@@ -271,9 +290,9 @@ export function getListTalons(status) {
     if (true) { 
       axios.post(`${APP_API_URL}/talon_history`, {
         api_token: authorization.token,
+        lang: authorization.language
       })
       .then((response) => {
-        console.log(response.data)
         dispatch(setListTalons(response.data));
       })
     } else {
@@ -288,6 +307,7 @@ export function deleteOrder({rnumb_id}) {
     if (true) { 
       axios.post(`${APP_API_URL}/del_talon`, {
         api_token: authorization.token,
+        lang: authorization.language,
         rnumb_id
       })
       .then((response) => {
@@ -312,6 +332,7 @@ export function getHistory({type, p_type, vis_id}) {
     const { authorization } = getState();
     let params = {
       api_token: authorization.token,
+      lang: authorization.language
     }
     if (p_type) params.p_type = p_type;
     if (vis_id) params.vis_id = vis_id;
@@ -331,6 +352,7 @@ export function getAnalizes({type='', res_id}) {
     const { authorization } = getState();
     let params = {
       api_token: authorization.token,
+      lang: authorization.language
     }
     if (res_id) params.res_id = res_id;
     if (true) { 
@@ -437,7 +459,6 @@ export function setListServicesOrder(data) {
 }
 
 export function setListDoctorsOrder(data) {
-  console.log(data)
   return {
     type: types.SET_LIST_DOCTORS_ORDER,
     data: {doctors: data}
