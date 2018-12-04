@@ -49,7 +49,7 @@ class ReceptionListScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={ t('recordings:total_text') + `- ${listTalons.length}` } />
+        <HeaderBottom text={ t('recordings:total_text') + ` - ${listTalons.length}` } />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {
@@ -60,7 +60,7 @@ class ReceptionListScreen extends Component {
                     key={index} 
                     headTxt={item.spec} 
                     servTxt='' 
-                    timeTxt= {`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
+                    timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
                     nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`} 
                     onPress={()=> navigate('recordingItem', {
                       rnumb_id: item.rnumb_id,
@@ -79,7 +79,7 @@ class ReceptionListScreen extends Component {
           }
         </Content >
         <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-          <CustomBtn label={ t('common:actions.add_recording') } onClick={()=> navigate('receptions')}/>
+          <CustomBtn label={ t('common:actions.add_recording') } onClick={()=> navigate('recordingCreate')}/>
         </View>
       </Container>
     )

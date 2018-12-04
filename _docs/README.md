@@ -7,6 +7,7 @@ add plugins:
 5) react-native-text-input-mask <-- https://github.com/react-native-community/react-native-text-input-mask
 6) react-native-htmlview <-- https://github.com/jsdf/react-native-htmlview
 7) react-native-languages <-- https://github.com/react-community/react-native-languages
+8) react-native-share <-- https://www.npmjs.com/package/react-native-share
 
 cleane cache rm -rf ~/.rncache
 

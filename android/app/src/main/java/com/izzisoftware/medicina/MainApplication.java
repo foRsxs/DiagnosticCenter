@@ -10,13 +10,14 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import cl.json.RNSharePackage;
+import cl.json.ShareApplication;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends Application implements ShareApplication, ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new RNSharePackage(),
         new RNLanguagesPackage(),
         new RNTextInputMaskPackage(),
         new FingerprintAuthPackage(),
@@ -50,5 +52,10 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+  }
+  
+  @Override
+  public String getFileProviderAuthority() {
+    return "com.izzisoftware.medicina.provider";
   }
 }

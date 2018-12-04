@@ -79,10 +79,10 @@ class ContactsScreen extends Component {
             <Text style={[styles.headTxt, {marginBottom: 5}]}>{ t('contacts:feedback_text') }:</Text>
             <TouchableOpacity
               activeOpacity={0.8}
-              style={{flexDirection: 'row', justifyContent: 'flex-start'}}
+              style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}
             >
               <Image source={require('../../../assets/img/mark-icon.png')} style={{width: 20, height: 20}} resizeMode='contain'></Image>
-              <Text style={[styles.linkTxt, {paddingTop: 5, marginLeft: 5}]} onPress={()=> this._sendQuestion()}>{t('common:actions.send_msg')}</Text>
+              <Text style={[styles.linkTxt, {marginLeft: 5}]} onPress={()=> this._sendQuestion()}>{t('common:actions.send_msg')}</Text>
             </TouchableOpacity>
           </View>
         </Content >
