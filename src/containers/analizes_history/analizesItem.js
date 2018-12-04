@@ -21,7 +21,12 @@ class AnalizesItemScreen extends Component {
     super(props);
     this.state = {
       res_id: (props.navigation.state.params) ? props.navigation.state.params.res_id : null,
-      tableHead: [props.t('analizes:table_text_first'), props.t('analizes:table_text_second'), props.t('analizes:table_text_third'), props.t('analizes:table_text_fourth')],
+      tableHead: [
+        props.t('analizes:table_text_first'), 
+        props.t('analizes:table_text_second'), 
+        props.t('analizes:table_text_third'), 
+        props.t('analizes:table_text_fourth')
+      ],
       widthArr: [50, 300, 150, 150],
       loading: true
     };

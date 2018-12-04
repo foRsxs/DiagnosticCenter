@@ -1,5 +1,5 @@
 import React from "react";
-import {BackHandler, Image} from "react-native";
+import {BackHandler, Image, AsyncStorage} from "react-native";
 import {Text, Header, Container, Content} from "native-base";
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -61,7 +61,14 @@ class DrawerMenu extends React.Component {
           <MenuItem onClick={() => navigate("settings")} label={ t('menu:settings') } imageUri={require('../../../assets/img/menu-set-ic.png')}/>
           <MenuItem onClick={() => navigate("contacts")} label={ t('menu:contacts') } imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
         </Content>
-        <MenuItem onClick={() => navigate("authorization")} label={ t('menu:logout') } imageUri={require('../../../assets/img/menu-exit-ic.png')}/>
+        <MenuItem 
+          onClick={() => { 
+            AsyncStorage.clear();
+            navigate("authorization");
+          }} 
+          label={ t('menu:logout') } 
+          imageUri={require('../../../assets/img/menu-exit-ic.png')}
+        />
       </Container>
     );
   }

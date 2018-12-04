@@ -95,6 +95,7 @@ class SettingsScreen extends Component {
                 </Picker>
               </Form>
             </View>
+            {(device_touch || device_face) && (
             <View style={styles.settingItem}>
               <Text style={styles.headTxt}>{ t('settings:items.auth') }</Text>
               <Form style={{ width: '40%' }}>
@@ -131,13 +132,14 @@ class SettingsScreen extends Component {
                 }
               </Form>
             </View>
+            )}
             {/* <View style={[styles.settingItem, {marginTop: 10}]}>
               <Text style={styles.headTxt}>{ t('settings:items.push') }</Text>
               <Switch
                 onValueChange={this.switchOne}
                 value={this.state.switchone}
               />
-            </View> */}
+            </View> */}            
           </Content>
           {
             (local_auth_methods !== methods_auth || local_languages_key !== languages_key) ? (

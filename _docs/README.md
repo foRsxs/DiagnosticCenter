@@ -13,7 +13,7 @@ cleane cache rm -rf ~/.rncache
 
 Создание билда для android
 First, from your app's root dir, run the following command:
-react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
+mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug
 
 Then the second and final step:
 cd android && ./gradlew assembleDebug
