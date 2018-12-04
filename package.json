@@ -9,8 +9,8 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
-    "moment": "^2.22.2",
     "i18next": "^12.1.0",
+    "moment": "^2.22.2",
     "native-base": "^2.8.1",
     "react": "16.5.0",
     "react-i18next": "^8.3.8",

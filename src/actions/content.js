@@ -307,6 +307,58 @@ export function deleteOrder({rnumb_id}) {
   }
 }
 
+export function getHistory({type, p_type, vis_id}) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+    let params = {
+      api_token: authorization.token,
+    }
+    if (p_type) params.p_type = p_type;
+    if (vis_id) params.vis_id = vis_id;
+    if (true) { 
+      axios.post(`${APP_API_URL}/visit_${type}`, params)
+      .then((response) => {
+        dispatch((type == 'list') ? setHistory({ list: response.data}) : setHistory({current: response.data}));
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function getAnalizes({type='', res_id}) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+    let params = {
+      api_token: authorization.token,
+    }
+    if (res_id) params.res_id = res_id;
+    if (true) { 
+      axios.post(`${APP_API_URL}/lab_research${type}`, params)
+      .then((response) => {
+        console.log(response.data)
+        dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
+      })
+    } else {
+      Alert.alert('Интернет соединение отсутствует');
+    }
+  }
+}
+
+export function setAnalizes(data) {
+  return {
+    type: types.SET_ANALIZES,
+    data: data
+  }
+}
+
+export function setHistory(data) {
+  return {
+    type: types.SET_HISTORY,
+    data: data
+  }
+}
+
 export function setCreatingOrderSuccess(status) {
   return {
     type: types.CREATE_ORDER_SUCCESS,

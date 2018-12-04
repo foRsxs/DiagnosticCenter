@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as AuthActions from '../../actions/auth';
+import * as ContentActions from '../../actions/content';
 import styles from './styles'
 import MenuItem from '../../components/menu/MenuItem';
 
@@ -21,6 +22,16 @@ class DrawerMenu extends React.Component {
   handleBackButtonClick = () => {
     this.props.navigation.closeDrawer();
     return true;
+  }
+
+  _openPage = (page, text_error) => {
+    const {t, isGuest, navigation} = this.props;
+    if (isGuest) {
+      this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
+      navigation.navigate('authorization');
+    } else { 
+      navigation.navigate(page);
+    }
   }
 
   render() {
@@ -43,9 +54,9 @@ class DrawerMenu extends React.Component {
           <MenuItem onClick={() => navigate("home")} label={ t('menu:home') } imageUri={require('../../../assets/img/menu-main-ic.png')}/>
           <MenuItem onClick={() => navigate({routeName: "listDoctors", key: 777})} label={ t('menu:doctors') } imageUri={require('../../../assets/img/menu-doc-ic.png')}/>
           <MenuItem onClick={() => navigate("specialization")} label={ t('menu:services') } imageUri={require('../../../assets/img/menu-serv-ic.png')}/>
-          <MenuItem onClick={() => navigate("recordingList")} label={ t('menu:records') } imageUri={require('../../../assets/img/menu-post-ic.png')}/>
-          <MenuItem onClick={() => navigate("analizes")} label={ t('menu:analyzes') } imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
-          <MenuItem onClick={() => navigate("history")} label={ t('menu:history') } imageUri={require('../../../assets/img/menu-history-ic.png')}/>
+          <MenuItem onClick={() => this._openPage("recordingList", 'recording')} label={ t('menu:records') } imageUri={require('../../../assets/img/menu-post-ic.png')}/>
+          <MenuItem onClick={() => this._openPage("analizes", 'analizes')} label={ t('menu:analyzes') } imageUri={require('../../../assets/img/menu-analize-ic.png')}/>
+          <MenuItem onClick={() => this._openPage("history", 'history')} label={ t('menu:history') } imageUri={require('../../../assets/img/menu-history-ic.png')}/>
           <MenuItem onClick={() => navigate("information")} label={ t('menu:information') } imageUri={require('../../../assets/img/menu-info-ic.png')}/>
           <MenuItem onClick={() => navigate("settings")} label={ t('menu:settings') } imageUri={require('../../../assets/img/menu-set-ic.png')}/>
           <MenuItem onClick={() => navigate("contacts")} label={ t('menu:contacts') } imageUri={require('../../../assets/img/menu-cont-ic.png')}/>
@@ -59,11 +70,12 @@ class DrawerMenu extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.authorization.user,
+    isGuest: state.authorization.isGuest
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AuthActions, dispatch)
+  return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
-export default withNamespaces('menu')(connect(mapStateToProps, mapDispatchToProps)(DrawerMenu));
+export default withNamespaces('menu', 'common')(connect(mapStateToProps, mapDispatchToProps)(DrawerMenu));

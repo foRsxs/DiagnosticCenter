@@ -38,14 +38,14 @@ class AuthorizationScreen extends Component {
 
   componentDidMount() {
     this._checkTouchSupport();
-    // AsyncStorage.clear();
+    //AsyncStorage.clear();
     //<----------------------------------------need to rewrite--------------------------------------------//
     AsyncStorage.getItem('lang_key').then((resp)=>{
       (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
     });
     AsyncStorage.getItem('api_token').then((resp)=>{
-      this.props.saveUser({api_token: '5927XkYG4bh6njwrHWdqLRydA9FO0DqEiKlhgR9TQf06NaXlTJUJ3EKRBfxv'});
-      // this.props.saveUser({api_token: resp});
+      //this.props.saveUser({api_token: 'qzMCCXNctm3rrC11GuFCqP19Zc2GPUPGcYgOdWBrifNnHEElXFuemPiFRqXm'});
+      this.props.saveUser({api_token: resp});
     });
     AsyncStorage.getItem('methods_auth').then((resp)=>{
       this.props.changeMethodsAuth({methods_auth: resp, confirmed: false});
@@ -95,7 +95,7 @@ class AuthorizationScreen extends Component {
 
     if (this.checkValid(number, personalId)) {
       this.setState({loading: true})
-      this.props.authUser({phone: number, iin: personalId}) //this.props.authUser({phone: 7024444444, iin: 870344444444})//
+      this.props.authUser({phone: 7024444444, iin: 870344444444})//this.props.authUser({phone: number, iin: personalId}) //
         .then((resp)=>{
           this.setState({message: ''});
         })

@@ -13,6 +13,7 @@ import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
 import RecordingCreateScreen from '../containers/recording/createRecording';
 import AnalizesScreen from '../containers/analizes_history/analizes';
+import AnalizesItemScreen from '../containers/analizes_history/analizesItem';
 import HistoryScreen from '../containers/analizes_history/history';
 import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
@@ -81,6 +82,12 @@ const MainScreenNavigator = createStackNavigator({
     },
     analizes: { 
         screen: AnalizesScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    analizesItem: { 
+        screen: AnalizesItemScreen,
         navigationOptions: {
             header: null
         }

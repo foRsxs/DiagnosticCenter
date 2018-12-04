@@ -27,10 +27,21 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const {user, getSales, getUserData} = this.props;
+    const {user, getSales, getUserData, token} = this.props;
+
     getSales();
-    if (!user) getUserData()
+    if (!user && token) getUserData();
     SplashScreen.hide();
+  }
+
+  _openPage = (page, text_error) => {
+    const {t, isGuest, navigation} = this.props;
+    if (isGuest) {
+      this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
+      navigation.navigate('authorization');
+    } else { 
+      navigation.navigate(page);
+    }
   }
 
   render() {
@@ -48,8 +59,8 @@ class HomeScreen extends Component {
           <View style={styles.buttonContainer}>
             <HomeButton keyNumber={0} nameBtn= { t('home:menu.doc_list') } onClick={() => navigate({routeName: "listDoctors", key: 7777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
             <HomeButton keyNumber={1} nameBtn= { t('home:menu.cat_services') } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
-            <HomeButton keyNumber={2} nameBtn= { t('home:menu.doc_appointment') } onClick={()=> navigate("recordingCreate")} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
-            <HomeButton keyNumber={3} nameBtn= { t('home:menu.test_results') } onClick={()=> navigate("analizes")} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
+            <HomeButton keyNumber={2} nameBtn= { t('home:menu.doc_appointment') } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
+            <HomeButton keyNumber={3} nameBtn= { t('home:menu.test_results') } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View>
         </Content >
         <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/>
@@ -71,7 +82,9 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     sales: state.content.sales,
-    profile: state.authorization.user
+    profile: state.authorization.user,
+    token: state.authorization.token,
+    isGuest: state.authorization.isGuest
   }
 }
 

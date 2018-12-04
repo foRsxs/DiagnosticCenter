@@ -35,11 +35,29 @@ const initialState = {
   },
   orderCreated: false,
   orderDeleted: false,
-  listTalons: []
+  listTalons: [],
+  history: {
+    list: null,
+    current: null
+  },
+  analizes: {
+    list: null,
+    current: null
+  }
 }
   
 export default function contentReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_ANALIZES:
+      return {
+        ...state,
+        analizes: {...state.analizes, ...action.data},
+      }
+    case types.SET_HISTORY:
+      return {
+        ...state,
+        history: {...state.history, ...action.data},
+      }
     case types.CLEARE_ORDER:
       return {
         ...state,

@@ -21,15 +21,14 @@ class HistoryItemScreen extends Component {
     super(props);
     console.log(props.navigation.state)
     this.state = {
-      p_type: (props.navigation.state.params) ? props.navigation.state.params.p_type : null,
-      keyid: (props.navigation.state.params) ? props.navigation.state.params.keyid : null,
+      res_id: (props.navigation.state.params) ? props.navigation.state.params.res_id : null,
     };
   }
 
   componentDidMount() {
-    const {p_type, keyid} = this.state;
+    const {res_id, keyid} = this.state;
 
-    this.props.getHistory({type:'html', p_type, vis_id: keyid});
+    this.props.getAnalizes({res_id});
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -94,8 +93,8 @@ class HistoryItemScreen extends Component {
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text={t('history:title')} navigation={this.props.navigation} />
-        <HeaderBottom text={t('history:sub_title')} />
+        <Header text={t('analizes:title')} navigation={this.props.navigation} />
+        <HeaderBottom text={t('analizes:sub_title')} />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           {/* <View style={styles.wrapName}>
             <Text style={styles.txtName}>Терапевт</Text>
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    history: state.content.history.current,
+    analizes: state.content.analizes.current,
   }
 }
 
@@ -158,4 +157,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['history', 'common'], { wait: true })(connect(mapStateToProps, mapDispatchToProps)(HistoryItemScreen));
+export default withNamespaces(['analizes', 'common'], { wait: true })(connect(mapStateToProps, mapDispatchToProps)(HistoryItemScreen));

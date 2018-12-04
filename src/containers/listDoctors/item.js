@@ -49,19 +49,19 @@ class DoctorScreen extends Component {
     return true;
   }
 
-  _openQuestion = () => {
-    const {isGuest, navigation, doctor} = this.props;
+  _openPage = (page, text_error) => {
+    const {t, isGuest, navigation, doctor} = this.props;
+    const {spec_id, docdep_id } = this.state;
     if (isGuest) {
-      this.props.setAuthMessage(t('common:actions.question_text'));
+      this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
-    } else { 
-      navigation.navigate('questions', {doc_id: this.state.docid, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`});
+    } else {
+      (page == 'questions') ? navigation.navigate(page, {doc_id: this.state.docid, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}): navigation.navigate(page, {spec_id, docdep_id})
     }
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-    const { docid, loading, spec_id, docdep_id } = this.state;
+    const { docid, loading} = this.state;
     const { t, doctor } = this.props;
 
     return (
@@ -90,7 +90,7 @@ class DoctorScreen extends Component {
                     <Text style={styles.subHeadTxt}>{doctor[0].speciality}</Text>
                   </View>
                   <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
-                    <TouchableOpacity onPress={() => this._openQuestion()} style={styles.blockQuestion}>
+                    <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
                       <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>{ t('common:actions.ask_question') }</Text>
                       <Image
                         style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
@@ -121,7 +121,7 @@ class DoctorScreen extends Component {
           }
           {(!loading) && (
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
-            <CustomBtn label={ t('common:actions.appointment') } onClick={() => navigate('recordingCreate', {spec_id, docdep_id}) } />
+            <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
           </View>
           )}
         </ScrollView>
