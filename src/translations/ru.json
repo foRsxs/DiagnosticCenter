@@ -88,7 +88,14 @@
         "title": "Мои анализы",
         "total_text": "Всего анализов",
         "sub_title": "подробная информация",
-        "no_analizes_text": "Нет результатов анализов"
+        "no_analizes_text": "Нет результатов анализов",
+        "text_material": "Материал",
+        "text_date_start": "Дата заказа",
+        "text_date_finish": "Дата выполнения",
+        "table_text_first": "Откл.",
+        "table_text_second": "Показатель",
+        "table_text_thirt": "Результат",
+        "table_text_fourth": "Норма"
     },
     "history": {
         "title": "История болезни",

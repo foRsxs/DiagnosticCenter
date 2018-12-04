@@ -105,11 +105,11 @@ class AuthorizationScreen extends Component {
   }
 
   _confirmCode = (code) => {
-    let { t } = this.props;
+    let { t, pinCode, setAuthorized } = this.props;
 
-    if (+code === +this.props.pinCode) {
+    if (+code === +pinCode) {
       this.setState({message: ''});
-      this.props.setAuthorized();
+      setAuthorized();
     } else {
       this.setState({message: t('common:errors.wrong_pin_code') });
     }
