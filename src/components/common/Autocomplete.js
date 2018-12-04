@@ -79,8 +79,8 @@ export default class CustomBtn extends Component {
     const {sortedData} = this.state;
     let height = (sortedData.length > 5) ? 150: sortedData.length * 30 + 7;
     return (
-      <ScrollView style={{height: height, backgroundColor: 'white', zIndex: 2, borderBottomLeftRadius: 5, borderBottomRightRadius: 5}}>
-        <List style={{padding: 10, paddingTop: 0}}>
+      <ScrollView style={[{height: height }, styles.listWrap]}>
+        <List style={ styles.listContainer }>
           {
             sortedData.map((item) => (
               <ListItem 
@@ -89,6 +89,7 @@ export default class CustomBtn extends Component {
               >
                 <TouchableOpacity
                   activeOpacity={0.8}
+                  style={{width: '100%'}}
                   onPress={()=> this.onPress(
                     (item.docdep) ? item.docdep: (item.servid) ? item.servid: (item.id) ? item.id: (item.res_id) ? item.res_id : (item.spec_id) ? item.spec_id : null, 
                     (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
@@ -142,16 +143,58 @@ export default class CustomBtn extends Component {
 }
 
 const styles = StyleSheet.create({
+  listWrap: {
+    // left: 0,
+    // position: 'absolute',
+    // right: 0,
+    // top: 30,       
+    // zIndex: 1000, 
+    borderBottomLeftRadius: 5, 
+    borderBottomRightRadius: 5
+  },
+  listContainer: {    
+    flex: 1, 
+    backgroundColor: 'white', 
+    position: 'relative',
+    padding: 10, 
+    paddingTop: 0
+  },
   content: {
-    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'white'
+    position: 'relative',
+    borderColor: accentBlue, 
+    borderWidth: 1, 
+    borderStyle: 'solid', 
+    borderRadius: 3, 
+    flex: 1, 
+    backgroundColor: 'white'
   },
   contentDisabled: {
-    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'rgba(94, 150, 197, 0.1)'
+    borderColor: accentBlue, 
+    borderWidth: 1, 
+    borderStyle: 'solid', 
+    borderRadius: 3, 
+    position: 'relative', 
+    flex: 1, 
+    backgroundColor: 'rgba(94, 150, 197, 0.1)'
   },
   text: {
-    color: 'black', fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+    color: 'black', 
+    fontFamily: mainFont, 
+    fontSize: main, 
+    paddingLeft: 30, 
+    height: 40, 
+    paddingTop: 10.5, 
+    paddingRight: 10, 
+    overflow: 'hidden' 
   },
   textDisabled: {
-    color: accentBlue, fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+    color: accentBlue, 
+    fontFamily: mainFont, 
+    fontSize: main, 
+    paddingLeft: 30, 
+    height: 40, 
+    paddingTop: 10.5, 
+    paddingRight: 10, 
+    overflow: 'hidden' 
   }
 });

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {Text, View} from 'native-base';
+import Share from 'react-native-share';
+
 import variables from '../../styles/variables';
 
 const { accentBlue, mediumBlack } = variables.colors;
@@ -24,7 +26,14 @@ export default class AnalizesItem extends Component {
           <Text style={styles.txtHead}>{headTxt}</Text>
           <Text style={styles.txtDate}>{dateTxt}</Text>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {
+              const shareOptions = {
+                title: headTxt,
+                subject: dateTxt,
+                url: '#',
+              };
+              Share.open(shareOptions);
+            }}
             activeOpacity={0.8}
             style={styles.moreIcon}>
             <Image

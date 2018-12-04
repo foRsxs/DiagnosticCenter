@@ -122,4 +122,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNamespaces(['recordings', 'common'], { wait: true })(ReceptionListItem);
+export default withNamespaces(['recordings', 'common'])(ReceptionListItem);

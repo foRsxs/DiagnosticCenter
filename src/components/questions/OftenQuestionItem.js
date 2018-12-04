@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View, Icon} from 'native-base';
 import variables from '../../styles/variables';
 

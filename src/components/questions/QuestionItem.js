@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View, Icon} from 'native-base';
+import { withNamespaces } from 'react-i18next';
+
 import variables from '../../styles/variables';
 
 const { accentBlue, black, backgroundBlue } = variables.colors;
 const { main } = variables.fonts;
 const { mainFont } = variables.fSize;
 
-export default class QuestionItem extends Component {
+class QuestionItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,17 +19,16 @@ export default class QuestionItem extends Component {
 
   render() {
     let {showAnswer} = this.state
-    let {text, textAnswer} = this.props;
+    let {t, text, textAnswer} = this.props;
+
     return (
       <View style={styles.questionItem}>
         <Text style={styles.questionItemText}>
           {text}
         </Text>
-        { (showAnswer) ? (
-        <Text style={styles.answerItemText}>
-          {textAnswer}
-        </Text>
-        ): false}
+        { (showAnswer) && (
+        <Text style={styles.answerItemText}>{textAnswer}</Text>
+        )}
         { (showAnswer) ? (
           <TouchableOpacity
             style={{width: '100%'}}
@@ -41,12 +42,11 @@ export default class QuestionItem extends Component {
             style={{width: '100%'}}
             onPress={()=> {this.setState({showAnswer: true})}} >
             <Text style={styles.buttonTextShow}>
-              посмотреть ответ {" "}
+              {t('questions:look_answer')} {" "}
               <Icon ios='ios-arrow-down' android="ios-arrow-down" style={styles.icon} />
             </Text>
           </TouchableOpacity>
-        )}
-        
+        )}        
       </View>
     );
   }
@@ -92,3 +92,5 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+export default withNamespaces(['questions', 'common'])(QuestionItem);

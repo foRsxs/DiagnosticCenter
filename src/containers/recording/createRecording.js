@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal} from 'react-native';
+import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal, ScrollView} from 'react-native';
 import {Container, View, Text} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {LocaleConfig, Calendar} from 'react-native-calendars';
@@ -44,7 +44,14 @@ let selectedStyle= {
 
 LocaleConfig.locales['ru'] = {
   monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-  monthNamesShort: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+  monthNamesShort: ['Янв','Фев','Март','Апр','Май','Июнь','Июль','Авг','Сент','Окт','Нояб','Дек'],
+  dayNames: ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
+  dayNamesShort: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб']
+};
+
+LocaleConfig.locales['kz'] = {
+  monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+  monthNamesShort: ['Янв','Фев','Март','Апр','Май','Июнь','Июль','Авг','Сент','Окт','Нояб','Дек'],
   dayNames: ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
   dayNamesShort: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб']
 };
@@ -200,21 +207,21 @@ class ReceptionInfoScreen extends Component {
           onPress={()=> this.setState({showTimes: false})}
         >
           <View style={styles.popupWrap}>
-            <View style={styles.popup}>
-              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
-              <View style={styles.timeContainer}>
-                {markedTimes.map((item, key)=>(
-                  <View key={key} style={styles.timeItemWrap}>
-                    <TouchableOpacity 
-                      onPress={()=>this.updateTimes(item)}
-                    >
-                    <Text style={[styles.timeItemAvaliable, (item.selected)? {backgroundColor: accentBlue, color: 'white'}: {}]}> { item.time } </Text>
-                    </TouchableOpacity>
-                  </View>
-                  )
-                )}
+            <ScrollView>
+              <View style={styles.popup}>
+                <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
+                <View style={styles.timeContainer}>
+                  {markedTimes.map((item, key)=>(
+                    <View key={key} style={styles.timeItemWrap}>
+                      <TouchableOpacity onPress={()=>this.updateTimes(item)}>
+                        <Text style={[styles.timeItemAvaliable, (item.selected)? {backgroundColor: accentBlue, color: 'white'}: {}]}> { item.time } </Text>
+                      </TouchableOpacity>
+                    </View>
+                    )
+                  )}
+                </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
         </TouchableOpacity>
       </Modal>
@@ -232,11 +239,16 @@ class ReceptionInfoScreen extends Component {
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
 
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
+      <Container>
+        <KeyboardAwareScrollView
+          enableOnAndroid={true}
+          keyboardShouldPersistTaps='handled'
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
         <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
         <HeaderBottom />
-        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, position: 'relative', flex: 1}} contentContainerStyle={{ margin: 20, position: 'relative', flex: 1, zIndex: 2}}>
-          <View style={[styles.autocompleteContainer, {zIndex: 6}]}>
+        <View style={{margin: 20, position: 'relative', flex: 1, zIndex: 2}} >
+          <View style={ styles.autocompleteContainer }>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}}
               label={ t('createrecord:form.research') } 
@@ -246,7 +258,7 @@ class ReceptionInfoScreen extends Component {
               disabled={false}
             />
           </View>
-          <View style={[styles.autocompleteContainer, {top: 60, zIndex: 5}]}>
+          <View style={ styles.autocompleteContainer }>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
               label={ t('createrecord:form.select_specialty') }
@@ -258,7 +270,7 @@ class ReceptionInfoScreen extends Component {
               disabled={(order.type && orderDatas.specialities)?false: true}
             />
           </View>
-          <View style={[styles.autocompleteContainer, {top: 120, zIndex: 4}]}>
+          <View style={ styles.autocompleteContainer }>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
               label={ t('createrecord:form.select_service') }
@@ -268,7 +280,7 @@ class ReceptionInfoScreen extends Component {
               disabled={((order.type === 2 && order.spec_id && orderDatas.services))?false: true}
             />
           </View>
-          <View style={[styles.autocompleteContainer, {top: 180, zIndex: 3}]}>
+          <View style={ styles.autocompleteContainer }>
             <Autocompete 
               contentContainerStyle={{marginBottom: 10}} 
               label={ t('createrecord:form.select_doctor') } 
@@ -278,7 +290,7 @@ class ReceptionInfoScreen extends Component {
               disabled={((order.type === 2 && order.spec_id && order.servid && orderDatas.doctors) || (order.type === 1 && order.spec_id && orderDatas.doctors)) ? false : true}
             />
           </View>
-          <View style={[styles.autocompleteContainer, {top: 240, zIndex: 2}]}>
+          <View style={ styles.autocompleteContainer }>
             <ButtonDates 
               contentContainerStyle={{marginBottom: 10}}
               label={ t('createrecord:form.select_date') }
@@ -288,7 +300,7 @@ class ReceptionInfoScreen extends Component {
               disabled={(order.docdep_id) ? false : true}
             />
           </View>
-          <View style={[styles.autocompleteContainer, {top: 300, zIndex: 2}]}>
+          <View style={ styles.autocompleteContainer }>
             <ButtonDates 
               contentContainerStyle={{marginBottom: 10}}
               label={ t('createrecord:form.select_time') } 
@@ -300,12 +312,13 @@ class ReceptionInfoScreen extends Component {
           </View>
           {this.renderDatePopup()}
           {this.renderTimePopup()}
-        </KeyboardAwareScrollView > 
+        </View>
         {(shortOrder) && (
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
             <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec})}/>
           </View>
-        )}
+        )}        
+        </KeyboardAwareScrollView> 
       </Container>
     )
   }
@@ -313,11 +326,7 @@ class ReceptionInfoScreen extends Component {
 
 const styles = StyleSheet.create({
   autocompleteContainer: {
-    flex: 1,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
+    position: 'relative',
     zIndex: 1
   },
   popupWrap: {
@@ -328,7 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   popup: {
-    width: '80%', 
+    width: '90%', 
     backgroundColor: 'white', 
     alignSelf: 'center', 
     borderRadius: 10, 

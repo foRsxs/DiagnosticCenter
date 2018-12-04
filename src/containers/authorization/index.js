@@ -160,7 +160,7 @@ class AuthorizationScreen extends Component {
 
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1, padding:15, paddingBottom:20}}>
-        <Text style={styles.title}>Выберите метод входа</Text>
+        <Text style={styles.title}>{ t('authorization:choose_auth_method') }</Text>
         <Content>
           <ListItem style={{marginRight: 0, marginLeft: 0, paddingRight: 11}} onPress={()=>this.setState({methods_auth_local:'code'})}>
             <Left>
