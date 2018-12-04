@@ -15,7 +15,7 @@ const { lightGray, mediumBlack, black } = variables.colors;
 const { mainFont } = variables.fonts;
 const { large, main } = variables.fSize;
 
-class HistoryItemScreen extends Component {
+class AnalizesItemScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -157,4 +157,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['analizes', 'common'], { wait: true })(connect(mapStateToProps, mapDispatchToProps)(HistoryItemScreen));
+export default withNamespaces(['analizes', 'common'])(connect(mapStateToProps, mapDispatchToProps)(AnalizesItemScreen));

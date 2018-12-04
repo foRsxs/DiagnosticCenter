@@ -158,4 +158,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['history', 'common'], { wait: true })(connect(mapStateToProps, mapDispatchToProps)(HistoryItemScreen));
+export default withNamespaces(['history', 'common'])(connect(mapStateToProps, mapDispatchToProps)(HistoryItemScreen));
