@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, BackHandler, TouchableOpacity, Image} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -77,10 +77,10 @@ class ReceptionInfoItemScreen extends Component {
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
         >
-          <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
+          <View style={ styles.actionsWrap }>
             <Image
-              style={{width: 20, height: 15, marginRight: 10, marginVertical: 3}}
-              resizeMode='cover'
+              style={ styles.actionsImg }
+              resizeMode='contain'
               source={require('../../../assets/img/mail-icon.png')}
             />
             <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.send_to_mail') }</Text>
@@ -90,10 +90,10 @@ class ReceptionInfoItemScreen extends Component {
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 5}}
         >
-          <View style={{justifyContent: 'flex-start', flexDirection: 'row'}}>
+          <View style={ styles.actionsWrap }>
             <Image
-              style={{width: 20, height: 15, marginRight: 10, marginVertical: 3}}
-              resizeMode='cover'
+              style={ styles.actionsImg }
+              resizeMode='contain'
               source={require('../../../assets/img/picture-icon.png')}
             />
             <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.save_to_gallery') }</Text>
@@ -104,7 +104,6 @@ class ReceptionInfoItemScreen extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const { t } = this.props;
     const { reserved, modalVisible, hideButton, date, time, room, doctor, spec  } = this.state;
 
@@ -145,11 +144,11 @@ class ReceptionInfoItemScreen extends Component {
           }
         </Content >
         {
-          (!hideButton) ? (
+          (!hideButton) && (
             <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
               <CustomBtn label={(reserved) ? t('common:actions.cancel_recording') :  t('common:actions.confirm')} onClick={()=> this._onClick()}/>
             </View>
-          ): null
+          )
         }
         <Popup 
           show={modalVisible} 
@@ -198,6 +197,16 @@ const styles = StyleSheet.create({
     width: '100%', 
     textAlign: 'center'
   },
+  actionsWrap: {
+    justifyContent: 'flex-start', 
+    flexDirection: 'row', 
+    alignItems: 'center'
+  },
+  actionsImg: {
+    width: 20, 
+    height: 15, 
+    marginRight: 10
+  }
 });
 
 function mapStateToProps(state) {

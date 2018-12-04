@@ -1,1 +1,169 @@
-{}
+﻿{
+    "authorization": {
+        "phone": "ТЕЛ",
+        "inn": "ЖСН",
+        "auth_text": "Авторизациялану",
+        "need_auth_text": "Авторизациялану қажет", 
+        "login_without_auth": "Авторизациясыз кіру",
+        "pin_create": "PIN кодын жасаңыз",
+        "pin_input": "PIN кодты енгізіңіз",
+        "auth_face_id": "FaceID арқылы авторизациялану",
+        "auth_touch_id": "TouchID арқылы авторизациялану",
+        "auth_type": {
+            "pin_code": "PIN код",
+            "touch_id": "Touch ID",
+            "face_id": "Face ID"
+        }
+    },
+    "menu": {
+        "home": "Басты бет",
+        "doctors": "Дәрігерлер",
+        "services": "Қызмет санаттары",
+        "records": "Менің жазылуларым",
+        "analyzes": "Менің зерттеу талдауларым",
+        "contacts": "Байланыс ақпараттары",
+        "feedback": "Кері байланыс",
+        "settings": "Баптаулар",
+        "logout": "Шығу",
+        "history": "Ауру тарихы",
+        "information": "Ақпарат"
+    },
+    "home": {
+        "title": "Біздің жеңілдіктер",
+        "faq_text_link": "Жиі қойылатын сұрақтар",
+        "menu": {
+            "doc_list": "Дәрігерлер тізімі",
+            "cat_services": "Қызмет санаттары",
+            "doc_appointment": "Қабылдауға жазылу",
+            "test_results": "Талдау нәтижелері"
+        }
+    },
+    "listdoctors": {
+        "title": "Дәрігерлер тізімдемесі",
+        "no_doctors_text": "Сәйкес дәрігерлер жоқ",
+        "item": {
+            "title": "Дәрігердің картасы"
+        }
+    },
+    "specialization": {
+        "title": "Қызмет санаттары",
+        "no_doctor_choose_link_text": "? Қандай дәрігер қажет екенін білмеймін",
+        "form": {
+            "fisrt_text": "Сіз қандай дәрігерге баруды білмейсіз бе?",
+            "last_text": "Саll орталығына хабарласыңыз, сізге міндетті түрде кеңес береді"
+        }
+    },
+    "recordings": {
+        "title": "Жазбалар журналы",
+        "total_text": "Барлық жазбалар",
+        "no_recordings_text": "Сізде әлі жазбалар жоқ",
+        "in_text": "в",
+        "short_room_text": "каб.",
+        "item": {
+            "title": "Қабылдауға жазылу",
+            "check_info": "ақпаратты тексеріңіз",
+            "make_appointment": "сіз қабылдауына жазыласыз",
+            "selected_service": "таңдалған қызмет",
+            "date_time": "Қабылдау күні мен уақыты",
+            "room": "кабинет",
+            "success": "дәрігерге жазылу сәтті жүргізілді!"
+        }
+    },
+    "createrecord": {
+        "title": "Қабылдауға жазылу",
+        "form": {
+            "consultation": "Кеңес беру",
+            "research": "Зерттеу",
+            "select_specialty": "Мамандықты таңдаңыз",
+            "select_service": "Қызметті таңдаңыз",
+            "select_doctor": "Дәрігерді таңдаңыз",
+            "select_date": "Күнді таңдаңыз",
+            "select_time": "Уақытты таңдаңыз"
+        }
+    },
+    "analizes": {
+        "title": "Менің зерттеу талдауларым",
+        "total_text": "Барлық зерттеу талдаулары"
+    },
+    "history": {
+        "title": "Ауру тарихы",
+        "sub_title": "толық ақпарат",
+        "total_text": "Барлық жазбалар"
+    },
+    "information": {
+        "title": "Ақпарат",
+        "sub_title": "пациент назарына"
+    },
+    "questions": {
+        "title": "Дәрігерге сұрақ",
+        "doc_no_answered": "Дәрігер бұл сұраққа әлі жауап бермеді",
+        "doc_no_questions": "Бұл дәрігерге әлі бірде-бір сұрақ жоқ",
+        "form": {
+            "title": "Дәрігерге сұрақ",
+            "sub_title": "өз сұрағыңызды қойыңыз"
+        }
+    },
+    "faq": {
+        "title": "Жиі қойылатын сұрақтар"
+    },
+    "contacts": {
+        "title": "Байланыс ақпараттары",
+        "address": "Мекенжай",
+        "address_text": "Қазақстан, 160021, Шымкент қаласы, Байтұрсынов көшесі 68а",
+        "phones": "Телефондар",
+        "call_centre": "Call-орталығы",
+        "main_doc_office": "Бас дәрігердің қабылдау бөлмесі",
+        "main_doc_deputy": "Бас дәрігердің орынбасары",
+        "phone_of_trust": "Сенім телефоны",
+        "email_text": "Электрондық пошта",
+        "social_text": "Әлеуметтік желілер",
+        "feedback_text": "Кері байланыс",
+        "faq": {
+            "title": "Кері байланыс",
+            "sub_title": "Бізге жазыңыз"
+        }
+    },
+    "settings": {
+        "title": "Баптаулар",
+        "sub_title": "пациенттің назарына",
+        "items": {
+            "auth": "Авторизациялану",
+            "language": "Интерфейс тілі",
+            "push": "Push хабарлама"
+        }
+    },
+    "common": {
+        "actions": {
+            "ok": "Ок",
+            "save": "Сақтау",
+            "send": "Жөнелту",
+            "cancel": "Болдырмау",
+            "back": "Артқа қайтару",
+            "call": "Қоңырау шалу",
+            "close": "Жабу",
+            "confirm": "Растау",
+            "cancel_recording": "Жазбаны болдырмау",
+            "send_msg": "Хабарламаны жөнелту",
+            "send_to_mail": "e-mail поштаға жөнелту",
+            "save_to_gallery": "Галереяға сақтау",
+            "appointment": "Қабылдауға жазылу",
+            "ask_question": "Сұрақ қою ",
+            "add_recording": "Жазба қосу"
+        },
+        "actions_text": {
+            "question_sent": "Сіздің сұрағыңыз сәтті жөнелтілді",
+            "question_text": "Сұрақ қою үшін Сізге авторизациялану қажет",
+            "call_centre_text": "Сall-орталығына қоңырау шалу",
+            "select_language": "Интерфейс тілін таңдау",
+            "select_auth_method": "Авторизация әдісін таңдау",
+            "your_question": "Сіздің сұрағыңыз",
+            "your_email": "Сіздің e-mail поштаңыз",
+            "check_data": "Деректерді тексеру"
+        },
+        "errors": {
+            "wrong_pin_code": "Қате PIN код ",
+            "wrong_phone": "Қате телефон номері",
+            "wrong_inn": "Қате ЖСН"
+        }
+    }
+}
