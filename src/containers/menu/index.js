@@ -78,4 +78,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
-export default withNamespaces('menu', 'common')(connect(mapStateToProps, mapDispatchToProps)(DrawerMenu));
+export default withNamespaces(['menu', 'common'])(connect(mapStateToProps, mapDispatchToProps)(DrawerMenu));

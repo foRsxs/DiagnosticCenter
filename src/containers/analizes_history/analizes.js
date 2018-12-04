@@ -93,4 +93,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces('analizes', { wait: true })(connect(mapStateToProps, mapDispatchToProps)(AnalizesScreen));
+export default withNamespaces('analizes')(connect(mapStateToProps, mapDispatchToProps)(AnalizesScreen));
