@@ -82,5 +82,13 @@
 	<false/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Enabling Face ID allows you quick and secure access to your account.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	<string>whatsapp</string>
+	<string>mailto</string>
+	<string>facebook</string>
+	<string>instagram</string>
+	<string>googleplus</string>
+	</array>
 </dict>
 </plist>
