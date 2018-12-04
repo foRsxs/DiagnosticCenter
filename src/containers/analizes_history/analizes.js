@@ -47,7 +47,7 @@ class AnalizesScreen extends Component {
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
-        <HeaderBottom text={ (analizes_list && analizes_list.length) ? t('analizes:total_text') + `- ${analizes_list.length}`: '' } />
+        <HeaderBottom text={ (analizes_list && analizes_list.length) ? t('analizes:total_text') + ` - ${analizes_list.length}`: '' } />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
             {

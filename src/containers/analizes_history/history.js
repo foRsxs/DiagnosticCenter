@@ -46,7 +46,7 @@ class HistoryScreen extends Component {
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
-        <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + `- ${history_list.length}`: '' } />
+        <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + ` - ${history_list.length}`: '' } />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {

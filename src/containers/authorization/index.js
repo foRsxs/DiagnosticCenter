@@ -44,8 +44,8 @@ class AuthorizationScreen extends Component {
       (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
     });
     AsyncStorage.getItem('api_token').then((resp)=>{
-      //this.props.saveUser({api_token: 'qzMCCXNctm3rrC11GuFCqP19Zc2GPUPGcYgOdWBrifNnHEElXFuemPiFRqXm'});
-      this.props.saveUser({api_token: resp});
+      this.props.saveUser({api_token: 'FY0EElsSq85KFOmFiFQtDUs25BrIysHaRX0Ko0ws97xGiddtDBsB2xVybxDl'});
+      // this.props.saveUser({api_token: resp});
     });
     AsyncStorage.getItem('methods_auth').then((resp)=>{
       this.props.changeMethodsAuth({methods_auth: resp, confirmed: false});
@@ -360,7 +360,15 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   title: {
-    color: 'white', fontFamily: mainFont, fontSize: large, position: 'absolute', top: -60, zIndex: 1, left: 0, textAlign: 'center', width: width, 
+    color: 'white', 
+    fontFamily: mainFont, 
+    fontSize: large, 
+    position: 'absolute', 
+    top: -60, 
+    zIndex: 1, 
+    left: 0, 
+    textAlign: 'center', 
+    width: width
   }
 });
 

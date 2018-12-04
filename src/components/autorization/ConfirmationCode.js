@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNamespaces('common', { wait: true })(InputNumber);
+export default withNamespaces('common')(InputNumber);

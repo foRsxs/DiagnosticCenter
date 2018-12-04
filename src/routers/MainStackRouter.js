@@ -150,10 +150,11 @@ const MainScreenNavigator = createStackNavigator({
 
 const Drawer = createDrawerNavigator(
     {
-      Main: { screen: MainScreenNavigator }
+        Main: { screen: MainScreenNavigator }
     },
     {
-      contentComponent: DrawerMenu,
+        drawerWidth: 300,
+        contentComponent: DrawerMenu,
     }
   );
 
