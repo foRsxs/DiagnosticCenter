@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
-import { Container, Content } from 'native-base';
+import { StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
+import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,10 +9,12 @@ import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import variebles from '../../styles/variables';
+import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {blue} = variebles.colors;
+const {blue} = variables.colors;
+const {medium} = variables.fSize;
+const { mainFont} = variables.fonts;
 
 class ServicesScreen extends Component {
   constructor(props) {
@@ -20,7 +22,8 @@ class ServicesScreen extends Component {
     this.state = {
       spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
       listview: true,
-      loading: true,
+      loading: (props.list_Doctors) ? false: true,
+      sorted_list_Doctors: props.list_Doctors,
     };
   }
 
@@ -33,8 +36,16 @@ class ServicesScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.list_Doctors !== nextProps.list_Doctors) this.setState({loading: false})
+  componentDidUpdate(prevProps) {
+    if (prevProps.list_Doctors !== this.props.list_Doctors) this.setState({loading: false, sorted_list_Doctors: this.props.list_Doctors});
+  }
+
+  handleChange = (value) => {
+    const {list_Doctors} = this.props;
+    function findElements(item) {
+      return `${item.lastname} ${item.firstname} ${item.secondname}`.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    }
+    this.setState({ sorted_list_Doctors: list_Doctors.filter(findElements)});
   }
 
   handleBackButtonClick = () => {
@@ -42,29 +53,25 @@ class ServicesScreen extends Component {
     return true;
   }
 
-  togle = (value) => {
+  toggle = (value) => {
     this.setState({listview: value});
   }
 
-  handleChange = (value) => {
-    this.setState({inputValue: value});
-  }
-
   render() {
-    let { listview, loading, spec_id } = this.state;
-    const { t, list_Doctors } = this.props;
+    let { listview, loading, sorted_list_Doctors } = this.state;
+    const { t } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
       <Container>
         <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
-        <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.togle} onChange={this.handleChange}/>
+        <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/>
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ (listview)? {} : styles.containerStyle } padder>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {
             (!loading) && (
-              (list_Doctors.length)? (
-                list_Doctors.map((item, index)=>(
+              (sorted_list_Doctors.length)? (
+                sorted_list_Doctors.map((item, index)=>(
                   <CatalogItem 
                     key={index} 
                     listview={listview} 
@@ -73,7 +80,7 @@ class ServicesScreen extends Component {
                     name={`${item.lastname} ${item.firstname} ${item.secondname}`}
                   />
                 ))
-              ) : <Text>{ t('listdoctors:no_doctors_text') }</Text>
+              ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
         </Content>

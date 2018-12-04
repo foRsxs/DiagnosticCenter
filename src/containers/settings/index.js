@@ -65,12 +65,11 @@ class SettingsScreen extends Component {
 
   changeLang = (key) => {
     if (key === this.state.local_languages_key) return;
-    this.props.setLanguage(key);
     this.setState({local_languages_key: key})
   }
 
   render() {
-    const { t, methods_auth, device_touch, languages_key } = this.props;
+    const { t, methods_auth, device_touch, device_face, languages_key } = this.props;
     const { local_auth_methods, local_languages_key } = this.state;
 
     return (
@@ -99,21 +98,37 @@ class SettingsScreen extends Component {
             <View style={styles.settingItem}>
               <Text style={styles.headTxt}>{ t('settings:items.auth') }</Text>
               <Form style={{ width: '40%' }}>
-                <Picker
-                  mode="dropdown"
-                  style={{width: '100%', position: 'relative'}}
-                  selectedValue={local_auth_methods}
-                  onValueChange={this.onAuthChange.bind(this)}
-                  headerBackButtonText={ t('common:actions.back') }
-                  iosHeader={ t('common:actions_text.select_auth_method') }
-                  iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
-                >
-                  <Picker.Item label="Code" value="code"/>
-                  { (device_touch) ? 
-                  <Picker.Item label={ t('authorization:auth_type.touch_id') } value="touch"/> : 
-                  <Picker.Item label={ t('authorization:auth_type.face_id') } value="face" />
-                  }
-                </Picker>
+                {(device_touch) && (
+                    <Picker
+                      mode="dropdown"
+                      style={{width: '100%', position: 'relative'}}
+                      selectedValue={local_auth_methods}
+                      onValueChange={this.onAuthChange.bind(this)}
+                      headerBackButtonText={ t('common:actions.back') }
+                      iosHeader={ t('common:actions_text.select_auth_method') }
+                      iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                    >
+                      <Picker.Item label="Code" value="code"/>
+                      <Picker.Item label={ t('authorization:auth_type.touch_id') } value="touch"/>
+                    </Picker>
+                  )
+                }
+                {
+                  (device_face) && (
+                    <Picker
+                      mode="dropdown"
+                      style={{width: '100%', position: 'relative'}}
+                      selectedValue={local_auth_methods}
+                      onValueChange={this.onAuthChange.bind(this)}
+                      headerBackButtonText={ t('common:actions.back') }
+                      iosHeader={ t('common:actions_text.select_auth_method') }
+                      iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                    >
+                      <Picker.Item label="Code" value="code"/>
+                      <Picker.Item label={ t('authorization:auth_type.face_id') } value="face" />
+                    </Picker>
+                  )
+                }
               </Form>
             </View>
             {/* <View style={[styles.settingItem, {marginTop: 10}]}>

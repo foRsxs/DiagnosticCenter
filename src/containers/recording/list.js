@@ -13,6 +13,8 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
 const {blue} = variables.colors;
+const {medium} = variables.fSize;
+const { mainFont} = variables.fonts;
 
 class ReceptionListScreen extends Component {
 
@@ -74,7 +76,7 @@ class ReceptionListScreen extends Component {
                   }/>
                 ))
               ) :
-              ( <Text>{ t('recordings:no_recordings_text') }</Text> )
+              ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('recordings:no_recordings_text') }</Text> )
             )
           }
         </Content >
