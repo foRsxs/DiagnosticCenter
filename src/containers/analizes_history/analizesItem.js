@@ -11,7 +11,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 
-const { lightGray, mediumBlack, black, accentBlue, blue } = variables.colors;
+const { lightGray, mediumBlack, black, accentBlue } = variables.colors;
 const { mainFont } = variables.fonts;
 const { large, main } = variables.fSize;
 
@@ -49,7 +49,7 @@ class AnalizesItemScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -143,12 +143,8 @@ class AnalizesItemScreen extends Component {
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
         <HeaderBottom text={t('analizes:sub_title')} />
-        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
-          {/* <View style={styles.wrapName}>
-            <Text style={styles.txtName}>Терапевт</Text>
-            <Text style={styles.txtSubname}>17.06.2018</Text>
-          </View> */}
-          {loading ? <ActivityIndicator size="small" color={blue} /> : this.renderTable()}
+        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
+          {loading ? <ActivityIndicator size="large" color={accentBlue}  /> : this.renderTable()}
         </Content>
         {this.renderShare()}
       </Container>

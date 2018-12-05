@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     letterSpacing: 10,
-    color: variables.colors.darkBlue
+    color: variables.colors.accentBlue
 	},
 	text: {
     marginVertical: 10,
     fontSize: 18,
     fontFamily: variables.fonts.mainFont,
-		color: variables.colors.darkBlue
+		color: variables.colors.accentBlue
   },
   message: {
     marginVertical: 10,

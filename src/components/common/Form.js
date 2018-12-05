@@ -6,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import CustomBtn from './CustomBtn';
 import variables from '../../styles/variables';
 
-const { black, accentBlue, red, blue } = variables.colors;
+const { black, accentBlue, red } = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium } = variables.fSize;
 
@@ -25,7 +25,7 @@ class FormSend extends Component {
     const { question, email, emailValid, questionValid } = this.state;
     this.validate(email);
     this.validateMess(question);
-    if (emailValid && questionValid) this.props.sendData({email, question})
+    if (emailValid && questionValid && question.length) this.props.sendData({email, question})
   }
 
   validate = (value) => {
@@ -53,7 +53,7 @@ class FormSend extends Component {
           <Textarea style={[styles.textarea, (!questionValid)? {borderColor: red}: {}]} bordered placeholder={t('common:actions_text.your_question')} onChangeText={(question) => this.validateMess(question)} value={question}/>
         </View >
         <View style={styles.buttonWrap}>
-          { (!this.props.loading) ? <CustomBtn label={t('common:actions.send')} onClick={() => this._confirm()}/> : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>}
+          { (!this.props.loading) ? <CustomBtn label={t('common:actions.send')} onClick={() => this._confirm()}/> : <ActivityIndicator size="small" color={accentBlue} style={{marginTop: 10}}/>}
         </View>
       </Form>
     );

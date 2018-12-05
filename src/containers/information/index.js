@@ -10,7 +10,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 
-const {backgroundBlue, black, blue} = variables.colors;
+const {backgroundBlue, black, accentBlue} = variables.colors;
 const {mainFont} = variables.fonts;
 const {main} = variables.fSize;
 
@@ -18,7 +18,9 @@ class InfoScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true,
+    };
   }
 
   componentDidMount() {
@@ -30,6 +32,10 @@ class InfoScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.listInformation !== this.props.listInformation) this.setState({loading: false});
+  }
+
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
@@ -37,25 +43,30 @@ class InfoScreen extends Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    const { t, listInformation: {list}} = this.props;
+    const { t, listInformation} = this.props;
+    const {loading} = this.state;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={ t('information:title') } navigation={this.props.navigation} />
         <HeaderBottom text={ t('information:sub_title') } />
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
+          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
-            (list) ? (
-              list.map((item)=>(
-                <View style={styles.questionItem} key={item.id}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={()=> navigate({routeName:'informationItem', params: {header_title: item.title, post_id: item.id }, key: item.id})} >
-                    <Text style={styles.questionItemText}>{item.title}</Text>
-                  </TouchableOpacity>
-                </View>
-              ))
-            ) : <ActivityIndicator size="small" color={blue} />
+            (!loading) && (
+              (listInformation && listInformation.length) ? (
+                listInformation.map((item)=>(
+                  <View style={styles.questionItem} key={item.id}>
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      onPress={()=> navigate({routeName:'informationItem', params: {header_title: item.title, post_id: item.id }, key: item.id})} >
+                      <Text style={styles.questionItemText}>{item.title}</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))
+              ) : ( <Text>{ t('information:no_information_text') }</Text> )
+            )
+            
           }
         </Content>
       </Container>
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    listInformation: state.content.listInformation,
+    listInformation: state.content.listInformation.list,
   }
 }
 

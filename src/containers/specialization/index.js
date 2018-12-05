@@ -14,7 +14,7 @@ import Popup from '../../components/common/Popup';
 import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {black, blue} = variables.colors;
+const {black, accentBlue} = variables.colors;
 const {medium} = variables.fSize;
 const { mainFont} = variables.fonts;
 
@@ -61,7 +61,6 @@ class SpecializationScreen extends Component {
 
   call = () => {
     Linking.openURL('tel:+87252367132');
-
     this.setState({modalVisible: false});
   }
 
@@ -75,9 +74,9 @@ class SpecializationScreen extends Component {
           <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
             <Header text={ t('specialization:title') } navigation = {this.props.navigation}/>
             <HeaderBottom search={true} onChangeSearch={this.handleChange}/>
-            <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
+            <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}}>
               {
-                (loading) ? <ActivityIndicator size="small" color={blue} />: 
+                (loading) ? <ActivityIndicator size="large" color={accentBlue} />: 
                 (
                   (sorted_list_specialization && sorted_list_specialization.length)? (
                     sorted_list_specialization.map((item, index) => (

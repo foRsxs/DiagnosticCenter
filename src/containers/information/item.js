@@ -13,7 +13,7 @@ import LinkBtn from '../../components/common/LinkBtn';
 import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {blue} = variables.colors;
+const {accentBlue} = variables.colors;
 
 class InfoDetailScreen extends Component {
 
@@ -30,7 +30,7 @@ class InfoDetailScreen extends Component {
   }
 
   componentDidMount() {
-    if (this.state.post_id) this.props.getPost(this.state.post_id); 
+    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({loading: false}); 
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -49,7 +49,7 @@ class InfoDetailScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -84,20 +84,20 @@ class InfoDetailScreen extends Component {
 
     return (
       <View style={styles.textWrap}>
-        {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="small" color={blue} />}
+        {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="large" color={accentBlue} />}
       </View>
     )
   }
 
   render() {
-    const {call, image, header_title, post_id} = this.state;
+    const {call, image, header_title, post_id, loading} = this.state;
     const { t } = this.props;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={header_title} navigation={this.props.navigation} />
         <HeaderBottom/>
-        <Content style={(image) ? {marginTop: -50, zIndex: 2}: {marginTop: -10, zIndex: 1}}>
+        <Content style={(image) ? {marginTop: -50, zIndex: 2}: {marginTop: -10, zIndex: 1}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}}>
           {(image) && this.renderImage()}
           {!(post_id) && this.staticContent()}
           {(post_id) && this.dynamicContent()}

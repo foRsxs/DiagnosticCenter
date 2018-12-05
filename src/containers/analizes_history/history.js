@@ -11,7 +11,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 
-const {blue} = variables.colors;
+const {accentBlue} = variables.colors;
 
 class HistoryScreen extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class HistoryScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -47,8 +47,8 @@ class HistoryScreen extends Component {
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
         <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + ` - ${history_list.length}`: '' } />
-        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
-          {(loading) && <ActivityIndicator size="small" color={blue} /> }
+        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
+          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
             (!loading) && (
               (history_list && history_list.length)? (

@@ -52,7 +52,7 @@ class ReceptionInfoItemScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 

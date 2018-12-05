@@ -72,7 +72,7 @@ class HomeScreen extends Component {
             { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="small" color={blue} /> }
           </View>
           <View style={styles.buttonContainer}>
-            <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 7777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
+            <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
             <HomeButton keyNumber={1} nameBtn= { [t('home:menu.cat_services_1'), t('home:menu.cat_services_2')] } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
             <HomeButton keyNumber={2} nameBtn= { [t('home:menu.doc_appointment_1'), t('home:menu.doc_appointment_2')] } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
             <HomeButton keyNumber={3} nameBtn= { [t('home:menu.test_results_1'), t('home:menu.test_results_2')] } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>

@@ -38,7 +38,7 @@ class HistoryItemScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -97,10 +97,6 @@ class HistoryItemScreen extends Component {
         <Header text={t('history:title')} navigation={this.props.navigation} />
         <HeaderBottom text={t('history:sub_title')} />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
-          {/* <View style={styles.wrapName}>
-            <Text style={styles.txtName}>Терапевт</Text>
-            <Text style={styles.txtSubname}>17.06.2018</Text>
-          </View> */}
           {history && this.staticContent()}
         </Content>
         {this.renderShare()}

@@ -12,7 +12,7 @@ import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-const {blue} = variables.colors;
+const {accentBlue} = variables.colors;
 const {medium} = variables.fSize;
 const { mainFont} = variables.fonts;
 
@@ -39,7 +39,7 @@ class ReceptionListScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
     return true;
   }
 
@@ -52,8 +52,8 @@ class ReceptionListScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
         <HeaderBottom text={ (listTalons) ? t('recordings:total_text') + ` - ${listTalons.length}`: '' } />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-          {(loading) && <ActivityIndicator size="small" color={blue} /> }
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}} padder>
+          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
             (!loading) && (
               (listTalons && listTalons.length)? (

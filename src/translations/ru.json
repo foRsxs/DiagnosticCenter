@@ -110,7 +110,8 @@
     },
     "information": {
         "title": "Информация",
-        "sub_title": "к сведению пациента"
+        "sub_title": "к сведению пациента",
+        "no_information_text": "Нет информации"
     },
     "questions": {
         "title": "Вопрос врачу",

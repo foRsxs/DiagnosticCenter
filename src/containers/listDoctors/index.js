@@ -12,7 +12,7 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {blue} = variables.colors;
+const {accentBlue} = variables.colors;
 const {medium} = variables.fSize;
 const { mainFont} = variables.fonts;
 
@@ -22,7 +22,7 @@ class ServicesScreen extends Component {
     this.state = {
       spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
       listview: true,
-      loading: (props.list_Doctors) ? false: true,
+      loading: true,
       sorted_list_Doctors: props.list_Doctors,
     };
   }
@@ -66,8 +66,8 @@ class ServicesScreen extends Component {
       <Container>
         <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
         <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/>
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ (listview)? {} : styles.containerStyle } padder>
-          {(loading) && <ActivityIndicator size="small" color={blue} /> }
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ [(listview)? {} : styles.containerStyle, (loading) ? {flex: 1, justifyContent: 'center'}: 0] } padder>
+          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
             (!loading) && (
               (sorted_list_Doctors.length)? (

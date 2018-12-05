@@ -5,193 +5,180 @@ import {APP_API_URL} from '../config';
 
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    console.log(1)
-    if (true) { 
+    const { authorization, content: {network_connect} } = getState();
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/specs`, {
         type: type,
         lang: authorization.language
       })
       .then((response) => {
+        if (type == 1 && !order) _storeData('specialization', JSON.stringify(response.data));
         (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      (order) ? dispatch(setListSpecializationOrder([])): _retrieveData('specialization').then((resp)=> dispatch(setListSpecialization((resp && type == 1) ? resp: [])));
     }
   }
 }
 
 export function getListDoctors(spec_id, order = false) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
+    const { authorization, content: {network_connect} } = getState();
+    if (network_connect) { 
       const params = {
         lang: authorization.language
       }
       if (spec_id) params.spec_id = spec_id;
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
+        if (!order && !spec_id) _storeData('doctors', JSON.stringify(response.data));
         (order) ? dispatch(setListDoctorsOrder(response.data)) : dispatch(setListDoctors(response.data));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      (order) ? dispatch(setListDoctorsOrder([])) : _retrieveData('doctors').then((resp)=> dispatch(setListDoctors((resp && !spec_id) ? resp: [])));
     }
   }
 }
 
 export function getListServices(id, auto_push = false) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
-      axios.post(`${APP_API_URL}/services`, {
-        spec_id: id,
-        lang: authorization.language
-      })
-      .then((response) => {
-        if (auto_push && response.data.length) dispatch(setOrderSuccess({servid: response.data[0].servid}));
-        dispatch(setListServicesOrder(response.data));
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization } = getState();
+    axios.post(`${APP_API_URL}/services`, {
+      spec_id: id,
+      lang: authorization.language
+    })
+    .then((response) => {
+      if (auto_push && response.data.length) dispatch(setOrderSuccess({servid: response.data[0].servid}));
+      dispatch(setListServicesOrder(response.data));
+    })
   }
 }
 
 export function getDoctor(doc_id) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
-      axios.post(`${APP_API_URL}/doctor`, {
-        doc_id,
-        lang: authorization.language
-      })
-      .then((response) => {
-        console.log(response.data)
-        dispatch(setDoctorData(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {language} } = getState();
+    axios.post(`${APP_API_URL}/doctor`, {
+      doc_id,
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setDoctorData(response.data));
+    })
   }
 }
 
 export function getSales() {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
+    const { authorization: {language}, content: {network_connect} } = getState();
+    if (network_connect) { 
       axios.get(`${APP_API_URL}/sales`, {
-        lang: authorization.language
+        lang: language
       })
       .then((response) => {
-        dispatch(setSales(response.data))
+        _storeData('sales', JSON.stringify(response.data));
+        dispatch(setSales(response.data));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      _retrieveData('sales').then((resp)=> dispatch(setSales((resp) ? resp: [])));
     }
   }
 }
 
 export function getListInformation() {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
-      axios.post(`${APP_API_URL}/articles`, {
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setListInformation(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {language} } = getState();
+    axios.post(`${APP_API_URL}/articles`, {
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setListInformation(response.data))
+    })
+    .catch((e)=> {
+      dispatch(setListInformation([]))
+    })
   }
 }
 
 export function getPost(post_id) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
-      axios.post(`${APP_API_URL}/articles`,{
-        post_id, 
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setPost(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization } = getState();
+    axios.post(`${APP_API_URL}/articles`,{
+      post_id, 
+      lang: authorization.language
+    })
+    .then((response) => {
+      dispatch(setPost(response.data));
+    })
+    .catch((e)=> {
+      dispatch(setPost({}));
+    })
   }
 }
 
 export function getQuestions(doc_id) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    if (true) { 
-      axios.post(`${APP_API_URL}/questions`,{
-        doc_id,
-        api_token: authorization.token,
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setQuestion(response.data));
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {token, language} } = getState();
+    axios.post(`${APP_API_URL}/questions`,{
+      doc_id,
+      api_token: token,
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setQuestion(response.data));
+    })
+    .catch((e)=>{
+      dispatch(setQuestion([]));
+    })
   }
 }
 
 export function getOftenQuestions() {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    if (true) { 
-      axios.post(`${APP_API_URL}/faq`,{
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setOftenQuestion(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {language} } = getState();
+    axios.post(`${APP_API_URL}/faq`,{
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setOftenQuestion(response.data));
+    })
+    .catch((e)=> {
+      dispatch(setOftenQuestion([]));
+    })
   }
 }
 
 export function getListDates(docdep_id) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization } = getState();
-      axios.post(`${APP_API_URL}/rnumb_date`,{
-        api_token: authorization.token,
-        docdep_id,
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setListDates(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {token, language} } = getState();
+    axios.post(`${APP_API_URL}/rnumb_date`,{
+      api_token: token,
+      docdep_id,
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setListDates(response.data));
+    })
+    .catch((e)=>{
+      dispatch(setListDates([]));
+    })
   }
 }
 
 export function getListTimes(date) {
   return (dispatch, getState) => {
-    if (true) { 
-      const { authorization, content: {order} } = getState();
-      axios.post(`${APP_API_URL}/rnumb_time`,{
-        api_token: authorization.token,
-        docdep_id: order.docdep_id,
-        date,
-        lang: authorization.language
-      })
-      .then((response) => {
-        dispatch(setListTimes(response.data))
-      })
-    } else {
-      Alert.alert('Интернет соединение отсутствует');
-    }
+    const { authorization: {token, language}, content: {order} } = getState();
+    axios.post(`${APP_API_URL}/rnumb_time`,{
+      api_token: token,
+      docdep_id: order.docdep_id,
+      date,
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setListTimes(response.data));
+    })
+    .catch((e)=> {
+      dispatch(setListTimes([]));
+    })
   }
 }
 
@@ -223,21 +210,21 @@ export function setOrder(data, type, nameDispatch) {
 export function sendQuestion({type, question, email, doc_id}) {
   return (dispatch, getState) => {
     dispatch(sendQuestionSuccess({loading: true, status: false}))
-    const { authorization } = getState();
+    const { authorization: {token, language}, content: {network_connect} } = getState();
     const params = {
-      api_token: authorization.token,
+      api_token: token,
       question, 
       email,
-      lang: authorization.language
+      lang: language
     }
     if (doc_id) params.doc_id = doc_id
-    if (true) { 
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/${type}`, params)
       .then((response) => {
-        if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}))
+        if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      dispatch(sendQuestionSuccess({loading: false, status: false}))
     }
     setTimeout(()=> {
       dispatch(sendQuestionSuccess({loading: false, status: false}))
@@ -265,8 +252,8 @@ export function setTime(time) {
 
 export function saveOrder({rnumb_id, date, serv_id}) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    if (true) { 
+    const { authorization, content: {network_connect} } = getState();
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/get_talon`, {
         api_token: authorization.token,
         lang: authorization.language,
@@ -278,7 +265,7 @@ export function saveOrder({rnumb_id, date, serv_id}) {
         if (response.data) dispatch(setCreatingOrderSuccess(true));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      dispatch(setCreatingOrderSuccess(false));
     }
     setTimeout(()=> {
       dispatch(setCreatingOrderSuccess(false))
@@ -286,27 +273,28 @@ export function saveOrder({rnumb_id, date, serv_id}) {
   }
 }
 
-export function getListTalons(status) {
+export function getListTalons() {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    if (true) { 
+    const { authorization, content: {network_connect} } = getState();
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/talon_history`, {
         api_token: authorization.token,
         lang: authorization.language
       })
       .then((response) => {
+        _storeData('talons', JSON.stringify(response.data));
         dispatch(setListTalons(response.data));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      _retrieveData('talons').then((resp)=> dispatch(setListTalons( (resp) ? resp: [] )))
     }
   }
 }
 
 export function deleteOrder({rnumb_id}) {
   return (dispatch, getState) => {
-    const { authorization, content: {listTalons} } = getState();
-    if (true) { 
+    const { authorization, content: {listTalons, network_connect} } = getState();
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/del_talon`, {
         api_token: authorization.token,
         lang: authorization.language,
@@ -321,7 +309,7 @@ export function deleteOrder({rnumb_id}) {
         }
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      dispatch(setDeletedOrder(false));
     }
     setTimeout(()=> {
       dispatch(setDeletedOrder(false))
@@ -331,40 +319,41 @@ export function deleteOrder({rnumb_id}) {
 
 export function getHistory({type, p_type, vis_id}) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { authorization, content: {network_connect} } = getState();
     let params = {
       api_token: authorization.token,
       lang: authorization.language
     }
     if (p_type) params.p_type = p_type;
     if (vis_id) params.vis_id = vis_id;
-    if (true) { 
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/visit_${type}`, params)
       .then((response) => {
+        if (type == 'list') _storeData('histories', JSON.stringify(response.data));
         dispatch((type == 'list') ? setHistory({ list: response.data}) : setHistory({current: response.data}));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      (type == 'list') ? _retrieveData('histories').then((resp)=> dispatch(setHistory( (resp) ? { list: resp }: { list: [] } ))) : dispatch(setHistory({current: []}));
     }
   }
 }
 
 export function getAnalizes({type='', res_id}) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { authorization, content: {network_connect} } = getState();
     let params = {
       api_token: authorization.token,
       lang: authorization.language
     }
     if (res_id) params.res_id = res_id;
-    if (true) { 
+    if (network_connect) { 
       axios.post(`${APP_API_URL}/lab_research${type}`, params)
       .then((response) => {
-        console.log(response.data)
+        if (type === '_list') _storeData('analizes', JSON.stringify(response.data));
         dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
       })
     } else {
-      Alert.alert('Интернет соединение отсутствует');
+      (type === '_list') ? _retrieveData('analizes').then((resp)=> dispatch(setAnalizes( (resp) ? { list: resp }: { list: [] } ))) : dispatch(setAnalizes({current: []}));
     }
   }
 }
@@ -528,4 +517,13 @@ export function setAuthMessage(mess) {
     type: types.SET_AUTH_MESSAGE,
     data: mess
   }
+}
+
+_retrieveData = async (name) => {
+  try {
+    const value = await AsyncStorage.getItem(name);
+    return JSON.parse(value);
+   } catch (error) {
+    Alert.alert(JSON.stringify(error))
+   }
 }
