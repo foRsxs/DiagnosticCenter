@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 
@@ -16,6 +16,7 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
 import ConfirmationCode from '../../components/autorization/ConfirmationCode';
+import Popup from '../../components/common/Popup';
 
 let { width, height } = Dimensions.get('window');
 const {accentBlue, white, darkBlue, mediumBlack} = variables.colors;
@@ -32,11 +33,15 @@ class AuthorizationScreen extends Component {
       message: '',
       loading: false,
       isTouchId: false,
-      isFaceId: false
+      isFaceId: false,
+      showPopup: false
     };
   }
 
   componentDidMount() {
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.props.changeNetworkConnection(isConnected);
+    });
     this._checkTouchSupport();
     //AsyncStorage.clear();
     //<----------------------------------------need to rewrite--------------------------------------------//
@@ -54,6 +59,7 @@ class AuthorizationScreen extends Component {
       this.props.savePinCode({code:resp, confirmed: false});
       SplashScreen.hide();
     });
+    this.props.getSales();
   }
 
   componentWillReceiveProps(newProps) {
@@ -71,6 +77,10 @@ class AuthorizationScreen extends Component {
 
   onChangeId = (value) => {
     this.setState({ personalId: value });
+  }
+
+  clickOnPopup = () => {
+    this.setState({ showPopup: false });
   }
 
   checkValid = (number, personalId) => {
@@ -100,7 +110,9 @@ class AuthorizationScreen extends Component {
         .then((resp)=>{
           this.setState({message: ''});
         })
-        .catch((e)=> this.setState({message: e.error}))
+        .catch((e)=> {
+          this.setState({ showPopup: (e.code === 403) ? true : false, message: e.error})
+        })
       this.setState({loading: false}) 
     }
   }
@@ -275,22 +287,27 @@ class AuthorizationScreen extends Component {
       <View style={{position: 'relative', zIndex: 2, flex: 1}}>
         <Text style={styles.title}>{(!pinCode) ? t('authorization:pin_create') : t('authorization:pin_input') }</Text> 
         <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, paddingBottom: 20, height: '100%'}} >      
-          <ConfirmationCode message={message} onPress={
-            (code)=> {
-              if (type == 'new') {
-                this.props.savePinCode({code: code, confirmed: true})
-              } else {
-                this._confirmCode(code);
+          <ConfirmationCode 
+            message={message}
+            new_user={(type == 'new')}
+            onPress={
+              (code)=> {
+                if (type == 'new') {
+                  this.props.savePinCode({code: code, confirmed: true})
+                } else {
+                  this._confirmCode(code);
+                }
               }
             }
-          }/>
+          />
         </Content>
       </View>
     )
   }
 
   render() {
-    const {token, methods_auth, confirmed_auth, pinCode, languages_key} = this.props;
+    const {t, token, methods_auth, confirmed_auth, pinCode, languages_key} = this.props;
+    const {showPopup} = this.state;
 
     return (
       <Container style={styles.container}>
@@ -308,6 +325,13 @@ class AuthorizationScreen extends Component {
           {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
           {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
         </KeyboardAwareScrollView>
+        <Popup 
+          show={showPopup}
+          firstText={t('authorization:phone_not_register')}
+          email={'email@diagnostica.kz'}
+          laberButton={ t('common:actions.ok') }
+          actionButton={this.clickOnPopup}
+        />
       </Container>
     )
   }

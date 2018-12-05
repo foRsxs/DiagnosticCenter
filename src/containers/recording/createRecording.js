@@ -50,13 +50,11 @@ LocaleConfig.locales['ru'] = {
 };
 
 LocaleConfig.locales['kz'] = {
-  monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-  monthNamesShort: ['Янв','Фев','Март','Апр','Май','Июнь','Июль','Авг','Сент','Окт','Нояб','Дек'],
-  dayNames: ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
-  dayNamesShort: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб']
+  monthNames: ['Қаңтар','Ақпан','Наурыз','Сәуір','Мамыр','Маусым','Шілде','Тамыз','Қыркүйек','Қазан','Қараша','Желтоқсан'],
+  monthNamesShort: ['Қаңтар','Ақпан','Наурыз','Сәуір','Мамыр','Маусым','Шілде','Тамыз','Қыркүйек','Қазан','Қараша','Желтоқсан'],
+  dayNames: ['Жексенбі','Дүйсенбі','Сейсенбі','Сәрсенбі','Бейсенбі','Жұма','Сенбі'],
+  dayNamesShort: ['Жс','Дс','Сс','Ср','Бс','Жм','Сб']
 };
-
-LocaleConfig.defaultLocale = 'ru';
 
 class ReceptionInfoScreen extends Component {
 
@@ -95,6 +93,9 @@ class ReceptionInfoScreen extends Component {
 
   componentDidMount() {
     const {type, spec_id, docdep_id} = this.state.props_data;
+    const {lang_key} = this.props;
+    
+    LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
     this.props.cleareOrderSuccess();
 
     if (type) this.props.setOrder({type}, 'type', 'spec');
@@ -297,7 +298,7 @@ class ReceptionInfoScreen extends Component {
               data={orderDatas.dates} 
               onPress={() => this.setState({showDates: true})} 
               selected={order.date} 
-              disabled={(order.docdep_id) ? false : true}
+              disabled={(!order.docdep_id) ? false : true}
             />
           </View>
           <View style={ styles.autocompleteContainer }>
@@ -377,6 +378,7 @@ function mapStateToProps(state) {
   return {
     order: state.content.order,
     orderDatas: state.content.orderDatas,
+    lang_key: state.authorization.language
   }
 }
 

@@ -51,12 +51,12 @@ class ReceptionListScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={ t('recordings:total_text') + ` - ${listTalons.length}` } />
+        <HeaderBottom text={ (listTalons) ? t('recordings:total_text') + ` - ${listTalons.length}`: '' } />
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           {(loading) && <ActivityIndicator size="small" color={blue} /> }
           {
             (!loading) && (
-              (listTalons.length)? (
+              (listTalons && listTalons.length)? (
                 listTalons.map((item, index)=> (
                   <ReceptionListItem 
                     key={index} 
@@ -71,7 +71,8 @@ class ReceptionListScreen extends Component {
                       time: item.time,
                       doctor: item.doc,
                       spec: item.spec,
-                      reserved: true
+                      reserved: true,
+                      serv: item.serv,
                     })
                   }/>
                 ))
@@ -89,6 +90,7 @@ class ReceptionListScreen extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state.content.listTalons)
   return {
     listTalons: state.content.listTalons,
   }

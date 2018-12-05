@@ -25,7 +25,7 @@ class InputNumber extends Component {
   }
   render(){
     const {codeNumber} = this.state;
-    const { t, onPress, message } = this.props;
+    const { t, onPress, message, new_user } = this.props;
   
     return(
       <View style={styles.container}>
@@ -54,7 +54,7 @@ class InputNumber extends Component {
         />
         {(message.length) ?<Text style={styles.message}>{message}</Text>: false}
         {/* <Text style={styles.text}>не пришёл код?</Text> */}
-        {(codeNumber.length === 4) && <CustomBtn label={ t('common:actions.save') } onClick={()=> onPress(codeNumber)} />}
+        {(codeNumber.length === 4) && <CustomBtn label={ t(`common:actions.${new_user ? 'save': 'exit'}`) } onClick={()=> onPress(codeNumber)} />}
       </View>
     )
   }

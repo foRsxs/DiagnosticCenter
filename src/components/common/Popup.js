@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, View, Modal, Dimensions} from 'react-native';
+import {Alert, StyleSheet, View, Modal, Dimensions, Linking} from 'react-native';
 import {Text} from 'native-base';
 import variables from '../../styles/variables'
 import LinkBtn from './LinkBtn';
@@ -9,7 +9,7 @@ let {width, height} = Dimensions.get('window');
 
 export default class Popup extends Component {
   render() {
-    const {show, firstText, secondText, laberButton, actionButton, labelLink, actionLink} = this.props;
+    const {show, firstText, secondText, laberButton, actionButton, labelLink, actionLink, email} = this.props;
     return (
       <Modal
         animationType="fade"
@@ -20,7 +20,8 @@ export default class Popup extends Component {
           <View style={styles.popup}>
             <View>
               <Text style={[styles.text,{ marginBottom: 10}]}>{firstText}</Text>
-              {(secondText)? <Text style={[styles.text, {marginBottom: 20}]}>{secondText}</Text>: null}
+              {(email) && <Text style={[styles.text, {marginBottom: 20}]} onPress={()=> Linking.openURL(`mailto:${email}`)}>{email}</Text>}
+              {(secondText) && <Text style={[styles.text, {marginBottom: 20}]}>{secondText}</Text>}
             </View>
             <View style={{marginTop: 10}}>
               <CustomBtn label={laberButton} contentContainerStyle={{width: 180}} onClick={()=>actionButton()}/>

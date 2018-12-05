@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     elevation: 0
   },
   headerTxt: {
-    paddingTop: 8,
     color: variables.colors.accentBlue,
     fontFamily: variables.fonts.mainFont,
     fontSize: variables.fSize.large

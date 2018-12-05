@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { Root } from "native-base";
 import { Provider } from 'react-redux';
@@ -16,10 +15,6 @@ const ReloadAppOnLanguageChange = withNamespaces('common', {
 })(WrappedStack);
 
 export default class App extends Component {
-
-  componentDidMount() {
-    StatusBar.setHidden(true);
-  }
 
   render() {
     return (

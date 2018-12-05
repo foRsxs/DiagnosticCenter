@@ -21,6 +21,7 @@ export default function authReducer(state = initialState, action) {
         confirmed_auth: false,
         methods_auth: false,
         pinCode: null,
+        isGuest: false,
         user: {}
       }
     case types.SET_CURRENT_LANG: 
@@ -36,7 +37,8 @@ export default function authReducer(state = initialState, action) {
     case types.SET_USER: 
       return {
         ...state,
-        user: action.user
+        user: action.user,
+        isGuest: false
       }
     case types.SET_USER_DATA:
       return {

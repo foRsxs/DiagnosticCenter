@@ -16,7 +16,7 @@ export function authUser(data) {
       })
       .catch((error) => {
         console.log(error.response.data)
-        return Promise.reject({error: error.response.data.message});
+        return Promise.reject({code: error.response.data.code, error: error.response.data.message});
       });
     } else {
       Alert.alert('Интернет соединение отсутствует');
@@ -29,14 +29,19 @@ export function getUserData() {
   return (dispatch, getState) => {
     if (true) { 
       const { authorization } = getState();
-      axios.post(`${APP_API_URL}/get_patient_by_token`,{
+      return axios.post(`${APP_API_URL}/get_patient_by_token`,{
         api_token: authorization.token,
         lang: authorization.language
       })
       .then((response) => {
         console.log(response.data)
         dispatch(setUserdata(response.data))
+        return Promise.resolve(response.data);
       })
+      .catch((error) => {
+        console.log(error.response.data)
+        return Promise.reject(error);
+      });
     } else {
       Alert.alert('Интернет соединение отсутствует');
     }

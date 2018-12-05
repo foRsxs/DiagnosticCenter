@@ -32,10 +32,14 @@
         "title": "Біздің жеңілдіктер",
         "faq_text_link": "Жиі қойылатын сұрақтар",
         "menu": {
-            "doc_list": "Дәрігерлер тізімі",
-            "cat_services": "Қызмет санаттары",
-            "doc_appointment": "Қабылдауға жазылу",
-            "test_results": "Талдау нәтижелері"
+            "doc_list_1": "Дәрігерлер",
+            "doc_list_2": "тізімі",
+            "cat_services_1": "Қызмет",
+            "cat_services_2": "санаттары",
+            "doc_appointment_1": "Қабылдауға",
+            "doc_appointment_2": "жазылу",
+            "test_results_1": "Талдау",
+            "test_results_2": "нәтижелері"
         }
     },
     "listdoctors": {

@@ -16,7 +16,7 @@ export default class MenuItem extends Component {
   }
   render() {
     let {pressStatus} = this.state;
-    let {imageUri, imageUriActive, label} = this.props;
+    let {imageUri, label} = this.props;
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -32,7 +32,7 @@ export default class MenuItem extends Component {
         <Image
           style={styles.menuIcon}
           resizeMode='contain'
-          source={(pressStatus) ? imageUriActive : imageUri}
+          source={imageUri}
         />
         <Text style={
           pressStatus
@@ -51,26 +51,31 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 20,
     alignItems: "center",
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderStyle: 'solid'
   },
   menuItemActive: {
-    backgroundColor: variables.colors.accentBlue,
     padding: 10,
     paddingLeft: 20,
     alignItems: "center",
     flexDirection: 'row',
+    borderColor: variables.colors.accentBlue,
+    borderWidth: 1,
+    borderStyle: 'solid'
   },
   menuItemText: {
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack,
-    paddingTop: 5
+    color: variables.colors.black,
+
   },
   menuItemTextActive: {
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
-    color: 'white',
-    paddingTop: 5
+    color: variables.colors.accentBlue,
+
   },
   menuIcon: {
     width: 20, 

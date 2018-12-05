@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Dimensions, ActivityIndicator} from 'react-native';
+import {StyleSheet, Dimensions, ActivityIndicator, NetInfo, AsyncStorage} from 'react-native';
 import {Container, Content, View} from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
@@ -27,11 +27,26 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const {user, getSales, getUserData, token} = this.props;
+    const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;
 
-    getSales();
-    if (!user && token) getUserData();
+    if (!user && token) getUserData().then((resp) => {
+      if (Object.keys(resp).length === 0) {
+        setAuthMessage(t(`common:actions_text.token_not_valid_text`))
+        AsyncStorage.clear();
+        logOut();
+        navigation.navigate("authorization");
+      }
+    });
     SplashScreen.hide();
+    NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectionChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectionChange);
+  }
+
+  _handleConnectionChange = (isConnected) => {
+    this.props.changeNetworkConnection(isConnected);
   }
 
   _openPage = (page, text_error) => {
@@ -57,10 +72,10 @@ class HomeScreen extends Component {
             { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="small" color={blue} /> }
           </View>
           <View style={styles.buttonContainer}>
-            <HomeButton keyNumber={0} nameBtn= { t('home:menu.doc_list') } onClick={() => navigate({routeName: "listDoctors", key: 7777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
-            <HomeButton keyNumber={1} nameBtn= { t('home:menu.cat_services') } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
-            <HomeButton keyNumber={2} nameBtn= { t('home:menu.doc_appointment') } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
-            <HomeButton keyNumber={3} nameBtn= { t('home:menu.test_results') } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
+            <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 7777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
+            <HomeButton keyNumber={1} nameBtn= { [t('home:menu.cat_services_1'), t('home:menu.cat_services_2')] } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
+            <HomeButton keyNumber={2} nameBtn= { [t('home:menu.doc_appointment_1'), t('home:menu.doc_appointment_2')] } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
+            <HomeButton keyNumber={3} nameBtn= { [t('home:menu.test_results_1'), t('home:menu.test_results_2')] } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View>
         </Content >
         <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/>

@@ -58,7 +58,7 @@ class AnalizesScreen extends Component {
                       key={index}
                       headTxt={item.text} 
                       dateTxt={item.dat_string} 
-                      onPress={()=> this.props.navigation.navigate({routeName: "analizesItem", key: index, params: {res_id: item.res_id}})}
+                      onPress={()=> this.props.navigation.navigate({routeName: "analizesItem", key: index, params: {res_id: item.res_id, date: item.dat_string}})}
                     />
                   ))
                 ) : 

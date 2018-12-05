@@ -6,6 +6,7 @@ import {APP_API_URL} from '../config';
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
     const { authorization } = getState();
+    console.log(1)
     if (true) { 
       axios.post(`${APP_API_URL}/specs`, {
         type: type,
@@ -65,6 +66,7 @@ export function getDoctor(doc_id) {
         lang: authorization.language
       })
       .then((response) => {
+        console.log(response.data)
         dispatch(setDoctorData(response.data))
       })
     } else {
@@ -364,6 +366,13 @@ export function getAnalizes({type='', res_id}) {
     } else {
       Alert.alert('Интернет соединение отсутствует');
     }
+  }
+}
+
+export function changeNetworkConnection(status) {
+  return {
+    type: types.UPDATE_NETWORK_CONNECTION,
+    data: status
   }
 }
 

@@ -21,6 +21,7 @@ class AnalizesItemScreen extends Component {
     super(props);
     this.state = {
       res_id: (props.navigation.state.params) ? props.navigation.state.params.res_id : null,
+      date: (props.navigation.state.params) ? props.navigation.state.params.date : '',
       tableHead: [
         props.t('analizes:table_text_first'), 
         props.t('analizes:table_text_second'), 
@@ -105,12 +106,10 @@ class AnalizesItemScreen extends Component {
           <View style={{width: '50%'}}>
             <Text style={[styles.textTop, {color: accentBlue}]}>{`${t('analizes:text_material')}: ${(analizes[0])? analizes[0].MATERIALID: ''}`}</Text>
             <Text style={styles.textTop}>{t('analizes:text_date_start')}:</Text>
-            <Text style={styles.textTop}>{t('analizes:text_date_finish')}:</Text>
           </View>
           <View style={{width: '50%'}}>
             <Text style={[styles.textTop, {color: accentBlue}]}>{`IDS: ${(analizes[0])? analizes[0].IDS: ''}`}</Text>
-            <Text style={styles.textTop}></Text>
-            <Text style={styles.textTop}></Text>
+            <Text style={styles.textTop}>{state.date}</Text>
           </View>
         </View>
         <ScrollView horizontal={true}>

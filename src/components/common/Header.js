@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     width: '100%',
-    height: 40,
+    height: 60,
     alignItems: 'flex-end',
     backgroundColor: accentBlue,
     zIndex: 3

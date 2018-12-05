@@ -1,6 +1,7 @@
 import * as types from '../types/content';
 
 const initialState = {
+  network_connect: false,
   authMessage: null,
   ListSpecialization: null,
   listDoctors: null,
@@ -35,7 +36,7 @@ const initialState = {
   },
   orderCreated: false,
   orderDeleted: false,
-  listTalons: [],
+  listTalons: null,
   history: {
     list: null,
     current: null
@@ -48,6 +49,11 @@ const initialState = {
   
 export default function contentReducer(state = initialState, action) {
   switch (action.type) {
+    case types.UPDATE_NETWORK_CONNECTION:
+      return {
+        ...state,
+        network_connect: action.data,
+      }
     case types.SET_ANALIZES:
       return {
         ...state,

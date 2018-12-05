@@ -14,9 +14,11 @@
             "pin_code": "Пин код",
             "touch_id": "Touch ID",
             "face_id": "Face ID"
-        }
+        },
+        "phone_not_register": "Ваш номер не зарегистрирован в системе. Пожалуйста отправьте скан вашего удостоверения личности и номер телефона на е-майл:"
     },
     "menu": {
+        "guest": "Гость",
         "home": "Главная",
         "doctors": "Врачи",
         "services": "Категории услуги",
@@ -33,10 +35,14 @@
         "title": "Наши акции",
         "faq_text_link": "Часто задаваемые вопросы",
         "menu": {
-            "doc_list": "Список врачей",
-            "cat_services": "Категории услуг",
-            "doc_appointment": "Запись на прийом",
-            "test_results": "Результаты анализов"
+            "doc_list_1": "Список",
+            "doc_list_2": "врачей",
+            "cat_services_1": "Категории",
+            "cat_services_2": "услуг",
+            "doc_appointment_1": "Запись",
+            "doc_appointment_2": "на прийом",
+            "test_results_1": "Результаты",
+            "test_results_2": "анализов"
         }
     },
     "listdoctors": {
@@ -91,7 +97,6 @@
         "no_analizes_text": "Нет результатов анализов",
         "text_material": "Материал",
         "text_date_start": "Дата заказа",
-        "text_date_finish": "Дата выполнения",
         "table_text_first": "Откл.",
         "table_text_second": "Показатель",
         "table_text_third": "Результат",
@@ -156,6 +161,7 @@
             "back": "Назад",
             "call": "Позвонить",
             "close": "Закрыть",
+            "exit": "Войти",
             "confirm": "Подтвердить",
             "cancel_recording": "Отменить запись",
             "send_msg": "Отправить сообщение",
@@ -166,6 +172,7 @@
             "add_recording": "Добавить запись"
         },
         "actions_text": {
+            "token_not_valid_text": "Вам нужно заново авторизоваться", 
             "question_sent": "Ваш вопрос успешно отправлен",
             "question_text": "Для того чтобы задавать вопросы, Вам необходимо авторизоваться",
             "recording_text": "Для того чтобы просматривать страницу записей, Вам необходимо авторизоваться",

@@ -28,8 +28,10 @@ class ReceptionInfoItemScreen extends Component {
       serv_id: (props.navigation.state.params) ? props.navigation.state.params.serv_id: null,
       time: (props.navigation.state.params) ? props.navigation.state.params.time: null,
       reserved: (props.navigation.state.params) ? props.navigation.state.params.reserved: false,
-      doctor: (props.navigation.state.params) ? props.navigation.state.params.doctor: false,
-      spec: (props.navigation.state.params) ? props.navigation.state.params.spec: false,
+      doctor: (props.navigation.state.params) ? props.navigation.state.params.doctor: null,
+      spec: (props.navigation.state.params) ? props.navigation.state.params.spec: null,
+      serv: (props.navigation.state.params) ? props.navigation.state.params.serv: null,
+      price: (props.navigation.state.params) ? props.navigation.state.params.price: null,
       modalVisible: false,
       hideButton: false,
     };
@@ -105,7 +107,7 @@ class ReceptionInfoItemScreen extends Component {
 
   render() {
     const { t } = this.props;
-    const { reserved, modalVisible, hideButton, date, time, room, doctor, spec  } = this.state;
+    const { reserved, modalVisible, hideButton, date, time, room, doctor, spec, serv, price } = this.state;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
@@ -119,13 +121,13 @@ class ReceptionInfoItemScreen extends Component {
               <Text style={styles.txtSubname}>{spec}</Text>
             </View>
           </View>
-          {/* <View style={styles.itemWrap}>
+          <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
             <View style={styles.wrapName}>
-              <Text style={styles.txtName}>Пародонтозов Иван</Text>
-              <Text style={styles.txtSubname}>стоматолог</Text>
+              <Text style={styles.txtName}>{serv}</Text>
+              <Text style={styles.txtSubname}>{price}</Text>
             </View>
-          </View> */}
+          </View>
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.date_time') }:</Text>
             <View style={styles.wrapName}>

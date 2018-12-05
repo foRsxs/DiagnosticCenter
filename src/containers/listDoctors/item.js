@@ -102,10 +102,11 @@ class DoctorScreen extends Component {
                 </View>
                 <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5, }}>
                   <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category} </Text>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>| {doctor[0].department}</Text>
+                  {/* <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>| {doctor[0].department}</Text> */}
                 </View>
               </View>
               <View style={{ paddingTop: 10, backgroundColor: 'white', paddingLeft: 10  }}>
+                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].department}</Text>
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].description}</Text>
                 {/* <View style={{ position: 'relative', marginBottom: 10 }}>
                   <View style={styles.listIcon}></View>
@@ -164,7 +165,6 @@ const styles = StyleSheet.create({
   docInfo: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    
   },
   docInfoBlock: {
     width: '100%',
@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
+  console.log(state.content.doctorData)
   return {
     doctor: state.content.doctorData,
     isGuest: state.authorization.isGuest

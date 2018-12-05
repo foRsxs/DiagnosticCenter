@@ -56,14 +56,14 @@ class HomeCarousel extends Component {
     wrapSlide: {
       elevation: 5,
       width: '100%',
-      height: Dheight/3.1,
+      height: 200,
       marginBottom: 20,
       marginTop: 20
     },
     iconList: {
       width: '100%',
       height: '100%',
-      borderRadius: 8
+      borderRadius: 5
     },
   });
   
