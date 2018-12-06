@@ -5,14 +5,15 @@ import {
   View,
   Animated,
   Easing,
-  ScrollView
+  ScrollView,
+  TextInput
 } from 'react-native';
 import {Text, Input, List, ListItem} from 'native-base';
 import variables from '../../styles/variables';
 
-const {accentBlue, activeGray} = variables.colors;
+const {accentBlue} = variables.colors;
 const { mainFont } = variables.fonts;
-const { medium, large, main }  = variables.fSize;
+const { medium, main }  = variables.fSize;
 
 export default class CustomBtn extends Component {
   constructor (props) {
@@ -42,7 +43,6 @@ export default class CustomBtn extends Component {
         };
       })
     }
-    console.log(data, id, value)
     return value;
   }
 
@@ -77,15 +77,15 @@ export default class CustomBtn extends Component {
 
   renderDroppedBlock() {
     const {sortedData} = this.state;
-    let height = (sortedData.length > 5) ? 150: sortedData.length * 30 + 7;
+    let height = (sortedData.length > 7) ? 150: sortedData.length * 40 + 15
     return (
-      <ScrollView style={[{height: height }, styles.listWrap]}>
+      <ScrollView style={[{height: height }, styles.listWrap]} >
         <List style={ styles.listContainer }>
           {
             sortedData.map((item) => (
               <ListItem 
                 key={(item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null} 
-                style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 5, paddingBottom: 5}}
+                style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 8, paddingBottom: 8}}
               >
                 <TouchableOpacity
                   activeOpacity={0.8}
@@ -95,7 +95,7 @@ export default class CustomBtn extends Component {
                     (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
                   )}
                 >
-                  <Text style={{fontFamily: mainFont, fontSize: main, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
+                  <Text style={{fontFamily: mainFont, fontSize: medium, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
                 </TouchableOpacity>
               </ListItem>
             ))
@@ -106,15 +106,15 @@ export default class CustomBtn extends Component {
   }
 
   render() {
-    const {opened, value} = this.state;
+    const {opened, value, sortedData} = this.state;
     const {contentContainerStyle, label, disabled} = this.props;
     const rotate = this.rotateValue.interpolate({
       inputRange:  [0, 1],
       outputRange: ['0deg', '90deg']
     })
-
+    let height = (sortedData.length > 7) ? 200: (sortedData.length ===0)? 40: sortedData.length * 36 + 50;
     return (
-      <View style={[(!disabled) ? styles.content: styles.contentDisabled, contentContainerStyle]}>
+      <View style={[(!disabled) ? styles.content: styles.contentDisabled, (opened) ? {height: height}: {},contentContainerStyle]} >
         <TouchableOpacity 
           style={{position: 'relative'}}
           activeOpacity={(disabled)? 1: 0.8}
@@ -129,7 +129,7 @@ export default class CustomBtn extends Component {
             source={require('../../../assets/img/arrow.png')}
           />
           {
-            (opened) ?  <Input
+            (opened) ?  <TextInput
               style={{color: 'black', fontFamily: mainFont, fontSize: main, marginLeft: 30, paddingLeft: 0, height: 40}}
               onChangeText={(value) => this.onChange(value)}
               value={value}
@@ -146,41 +146,48 @@ const styles = StyleSheet.create({
   listWrap: {
     // left: 0,
     // position: 'absolute',
-    // right: 0,
-    // top: 30,       
+    // right: 0,    
     // zIndex: 1000, 
-    borderBottomLeftRadius: 5, 
-    borderBottomRightRadius: 5
+    // paddingTop: 10,
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10
   },
-  listContainer: {    
+  listContainer: {   
     flex: 1, 
     backgroundColor: 'white', 
     position: 'relative',
     padding: 10, 
-    paddingTop: 0
+    paddingTop: 0,
+    paddingBottom: 0,
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10
   },
   content: {
     position: 'relative',
     borderColor: accentBlue, 
     borderWidth: 1, 
     borderStyle: 'solid', 
-    borderRadius: 3, 
-    flex: 1, 
-    backgroundColor: 'white'
+    borderRadius: 5, 
+    // flex: 1, 
+    backgroundColor: 'white',
+    height: 42,
+    overflow: 'hidden'
   },
   contentDisabled: {
     borderColor: accentBlue, 
     borderWidth: 1, 
     borderStyle: 'solid', 
-    borderRadius: 3, 
+    borderRadius: 5, 
     position: 'relative', 
-    flex: 1, 
-    backgroundColor: 'rgba(94, 150, 197, 0.1)'
+    // flex: 1,
+    height: 42,
+    backgroundColor: 'rgba(94, 150, 197, 0.1)',
+    overflow: 'hidden'
   },
   text: {
     color: 'black', 
     fontFamily: mainFont, 
-    fontSize: main, 
+    fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 
     paddingTop: 10.5, 
@@ -190,7 +197,7 @@ const styles = StyleSheet.create({
   textDisabled: {
     color: accentBlue, 
     fontFamily: mainFont, 
-    fontSize: main, 
+    fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 
     paddingTop: 10.5, 

@@ -56,7 +56,7 @@ class HomeCarousel extends Component {
     wrapSlide: {
       elevation: 5,
       width: '100%',
-      height: 200,
+      height: Dheight/3.5,
       marginBottom: 20,
       marginTop: 20
     },

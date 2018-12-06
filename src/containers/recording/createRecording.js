@@ -240,28 +240,28 @@ class ReceptionInfoScreen extends Component {
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
 
     return (
-      <Container>
+      <Container >
         <KeyboardAwareScrollView
           enableOnAndroid={true}
           keyboardShouldPersistTaps='handled'
           contentContainerStyle={{ flexGrow: 1 }}
         >
+   
         <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
         <HeaderBottom />
         <View style={{margin: 20, position: 'relative', flex: 1, zIndex: 2}} >
-          <View style={ styles.autocompleteContainer }>
+        
             <Autocompete 
-              contentContainerStyle={{marginBottom: 10}}
+              contentContainerStyle={{marginBottom: 20}}
               label={ t('createrecord:form.research') } 
               data={typeExperiments} 
               onSelect={(value) => this.props.setOrder({type: value}, 'type', 'spec')} 
               selected={(order.type)? (order.type): 1} 
               disabled={false}
             />
-          </View>
-          <View style={ styles.autocompleteContainer }>
+
             <Autocompete 
-              contentContainerStyle={{marginBottom: 10}} 
+              contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_specialty') }
               data={orderDatas.specialities} 
               onSelect={(value) => {
@@ -270,47 +270,38 @@ class ReceptionInfoScreen extends Component {
               selected={order.spec_id}
               disabled={(order.type && orderDatas.specialities)?false: true}
             />
-          </View>
-          <View style={ styles.autocompleteContainer }>
             <Autocompete 
-              contentContainerStyle={{marginBottom: 10}} 
+              contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_service') }
               data={orderDatas.services} 
               onSelect={(value) => this.props.setOrder({servid: value}, 'servid', 'doc')} 
               selected={order.servid}
               disabled={((order.type === 2 && order.spec_id && orderDatas.services))?false: true}
             />
-          </View>
-          <View style={ styles.autocompleteContainer }>
             <Autocompete 
-              contentContainerStyle={{marginBottom: 10}} 
+              contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_doctor') } 
               data={orderDatas.doctors}
               onSelect={(value) => this.props.setOrder({docdep_id: value}, 'docdep_id')}
               selected={order.docdep_id}
               disabled={((order.type === 2 && order.spec_id && order.servid && orderDatas.doctors) || (order.type === 1 && order.spec_id && orderDatas.doctors)) ? false : true}
             />
-          </View>
-          <View style={ styles.autocompleteContainer }>
             <ButtonDates 
-              contentContainerStyle={{marginBottom: 10}}
+              contentContainerStyle={{marginBottom: 20}}
               label={ t('createrecord:form.select_date') }
               data={orderDatas.dates} 
               onPress={() => this.setState({showDates: true})} 
               selected={order.date} 
-              disabled={(!order.docdep_id) ? false : true}
+              disabled={(order.docdep_id) ? false : true}
             />
-          </View>
-          <View style={ styles.autocompleteContainer }>
             <ButtonDates 
-              contentContainerStyle={{marginBottom: 10}}
+              contentContainerStyle={{marginBottom: 20}}
               label={ t('createrecord:form.select_time') } 
               data={orderDatas.times} 
               onPress={() => this.setState({showTimes: true})} 
               selected={order.time} 
               disabled={(order.docdep_id && order.date) ? false : true}
             />
-          </View>
           {this.renderDatePopup()}
           {this.renderTimePopup()}
         </View>
@@ -319,7 +310,8 @@ class ReceptionInfoScreen extends Component {
             <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec})}/>
           </View>
         )}        
-        </KeyboardAwareScrollView> 
+        </KeyboardAwareScrollView>
+ 
       </Container>
     )
   }

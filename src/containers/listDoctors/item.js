@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, Image, Dimensions, TouchableOpacity, BackHandler, ActivityIndicator } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import { View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -13,13 +14,12 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
 
 let { width, height } = Dimensions.get('window');
-const { accentBlue, darkBlue, darkGray, blue, mediumBlack } = variables.colors;
+const { accentBlue, darkBlue, darkGray, mediumBlack } = variables.colors;
 const { extralarge, medium } = variables.fSize;
 const { mainFont } = variables.fonts;
 
 class DoctorScreen extends Component {
   constructor(props) {
-    console.log(props)
     super(props);
     this.state = {
       docid: (props.navigation.state.params) ? props.navigation.state.params.docid : null,
@@ -79,7 +79,7 @@ class DoctorScreen extends Component {
             )
           }
         </View>
-        <ScrollView  contentContainerStyle={{justifyContent: 'space-between', flexGrow: 1}}>
+        <ScrollView  contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading)? {justifyContent: 'center'}: {}]}>
           {
             (!loading) ? (
             <View style={styles.docInfoWrap}>
@@ -105,22 +105,17 @@ class DoctorScreen extends Component {
                   {/* <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>| {doctor[0].department}</Text> */}
                 </View>
               </View>
-              <View style={{ paddingTop: 10, backgroundColor: 'white', paddingLeft: 10  }}>
+              <View style={{ paddingTop: 10, backgroundColor: 'white'  }}>
                 <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].department}</Text>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].description}</Text>
-                {/* <View style={{ position: 'relative', marginBottom: 10 }}>
-                  <View style={styles.listIcon}></View>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
-                </View>
-                <View style={{ position: 'relative', marginBottom: 10 }}>
-                  <View style={styles.listIcon}></View>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>имплантация зубов: (более 1600 успешных имплантаций)</Text>
-                </View> */}
+                <HTMLView
+                  stylesheet={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}
+                  value={doctor[0].description}
+                />
               </View>
             </View>
-            ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
+            ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
           }
-          {(!loading) && (
+          {(!loading && +doctor[0].allow === 1) && (
           <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
             <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
           </View>
@@ -139,7 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 50,
+    top: 70,
     left: 0,
     zIndex: 10,
     borderTopLeftRadius: 10,
@@ -210,7 +205,7 @@ const styles = StyleSheet.create({
     borderColor: accentBlue,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderRadius: 3
+    borderRadius: 5
   }
 });
 

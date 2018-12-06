@@ -36,7 +36,7 @@ class HomeButton extends Component {
     wrapButton: {
       width: '50%',
       justifyContent: 'space-between',
-      padding: 10,
+      padding: 7,
     },
     button: {
       width: '100%',

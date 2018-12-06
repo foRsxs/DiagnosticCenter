@@ -4,15 +4,13 @@ import {
   TouchableOpacity,
   View,
   Animated,
-  Easing,
-  ScrollView
 } from 'react-native';
-import {Text, Input, List, ListItem} from 'native-base';
+import {Text} from 'native-base';
 import variables from '../../styles/variables';
 
 const {accentBlue, activeGray} = variables.colors;
 const { mainFont } = variables.fonts;
-const { medium, large, main }  = variables.fSize;
+const { medium, }  = variables.fSize;
 
 export default class CustomBtn extends Component {
   constructor (props) {
@@ -64,15 +62,15 @@ export default class CustomBtn extends Component {
 
 const styles = StyleSheet.create({
   content: {
-    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'white'
+    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 5, position: 'relative', backgroundColor: 'white', height: 42
   },
   contentDisabled: {
-    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 3, position: 'relative', flex: 1, backgroundColor: 'rgba(94, 150, 197, 0.1)'
+    borderColor: accentBlue, borderWidth: 1, borderStyle: 'solid', borderRadius: 5, position: 'relative', backgroundColor: 'rgba(94, 150, 197, 0.1)', height: 42
   },
   text: {
-    color: 'black', fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+    color: 'black', fontFamily: mainFont, fontSize: medium, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
   },
   textDisabled: {
-    color: activeGray, fontFamily: mainFont, fontSize: main, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
+    color: activeGray, fontFamily: mainFont, fontSize: medium, paddingLeft: 30, height: 40, paddingTop: 10.5, paddingRight: 10, overflow: 'hidden' 
   }
 });

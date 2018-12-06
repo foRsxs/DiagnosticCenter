@@ -41,6 +41,7 @@ class AuthorizationScreen extends Component {
   componentDidMount() {
     NetInfo.isConnected.fetch().then(isConnected => {
       this.props.changeNetworkConnection(isConnected);
+      this.props.getSales();
     });
     this._checkTouchSupport();
     //AsyncStorage.clear();
@@ -59,7 +60,6 @@ class AuthorizationScreen extends Component {
       this.props.savePinCode({code:resp, confirmed: false});
       SplashScreen.hide();
     });
-    this.props.getSales();
   }
 
   componentWillReceiveProps(newProps) {

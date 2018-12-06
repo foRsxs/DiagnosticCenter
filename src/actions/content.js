@@ -31,8 +31,11 @@ export function getListDoctors(spec_id, order = false) {
       if (spec_id) params.spec_id = spec_id;
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
+        function isAllow(value) {
+          return +value.allow === 1;
+        }
         if (!order && !spec_id) _storeData('doctors', JSON.stringify(response.data));
-        (order) ? dispatch(setListDoctorsOrder(response.data)) : dispatch(setListDoctors(response.data));
+        (order) ? dispatch(setListDoctorsOrder(response.data.filter(isAllow))) : dispatch(setListDoctors(response.data));
       })
     } else {
       (order) ? dispatch(setListDoctorsOrder([])) : _retrieveData('doctors').then((resp)=> dispatch(setListDoctors((resp && !spec_id) ? resp: [])));
