@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { BackHandler, StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { BackHandler, StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { Container, Content } from 'native-base';
 import { Table, Row } from 'react-native-table-component';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Share from 'react-native-share';
 
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
+import ShareLinks from '../../components/common/ShareLinks';
+
 import variables from '../../styles/variables';
 
-const { lightGray, mediumBlack, black, accentBlue } = variables.colors;
+const { lightGray, accentBlue } = variables.colors;
 const { mainFont } = variables.fonts;
-const { large, main } = variables.fSize;
 
 class AnalizesItemScreen extends Component {
 
@@ -55,54 +55,6 @@ class AnalizesItemScreen extends Component {
   handleBackButtonClick = () => {
     this.props.navigation.goBack(null);
     return true;
-  }
-
-  shareLink = () => {
-    const {headTxt, dateTxt, pdf} = this.state;
-
-    const shareOptions = {
-      title: headTxt,
-      subject: dateTxt,
-      url: pdf,
-      social: Share.Social.EMAIL
-    };
-    Share.shareSingle(shareOptions);
-  }
-
-  renderShare() {
-    const { t } = this.props;
-
-    return (
-      <View style={{paddingLeft: '15%', paddingBottom: 10}}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={{paddingVertical: 5, marginTop: 10}}
-          onPress={()=>this.shareLink()}
-        >
-          <View style={ styles.actionsWrap }>
-            <Image
-              style={ styles.actionsImg }
-              resizeMode='contain'
-              source={require('../../../assets/img/mail-icon.png')}
-            />
-            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.send_to_mail') }</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={{paddingVertical: 5, marginTop: 5}}
-        >
-          <View style={ styles.actionsWrap }>
-            <Image
-              style={ styles.actionsImg }
-              resizeMode='contain'
-              source={require('../../../assets/img/picture-icon.png')}
-            />
-            <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.save_to_gallery') }</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   renderTable() {
@@ -154,7 +106,7 @@ class AnalizesItemScreen extends Component {
   }
   render() {
     const { t } = this.props;
-    const {loading} = this.state;
+    const { loading, pdf, headTxt, dateTxt } = this.state;
     
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
@@ -163,7 +115,7 @@ class AnalizesItemScreen extends Component {
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
           {loading ? <ActivityIndicator size="large" color={accentBlue}  /> : this.renderTable()}
         </Content>
-        {this.renderShare()}
+        <ShareLinks url={pdf} title={headTxt} text={dateTxt} />
       </Container>
     )
   }
@@ -175,49 +127,7 @@ const styles = StyleSheet.create({
   text: { textAlign: 'center', fontWeight: '100', fontFamily: mainFont },
   dataWrapper: { marginTop: -1 },
   row: { height: 40, backgroundColor: '#fff' },
-  wrapName: {
-    backgroundColor: lightGray, 
-    textAlign: 'center', 
-    borderRadius: 10, 
-    paddingHorizontal: 0, 
-    paddingVertical: 10,
-    marginHorizontal: 15
-  },
-  textTop: {
-    fontFamily: mainFont,
-    fontSize: main,
-    fontWeight: '600',
-    color: '#000' 
-  },
-  txtName: {
-    color: black, 
-    fontFamily: mainFont,
-    fontSize: large, 
-    width: '100%', 
-    textAlign: 'center',
-  },
-  txtSubname: {
-    color: mediumBlack, 
-    fontFamily: mainFont,
-    marginTop: 5,
-    fontSize: main, 
-    width: '100%', 
-    textAlign: 'center'
-  },
-  actionsWrap: {
-    justifyContent: 'flex-start', 
-    flexDirection: 'row', 
-    alignItems: 'center'
-  },
-  actionsImg: {
-    width: 20, 
-    height: 15, 
-    marginRight: 10
-  },
-  textWrap: {
-    backgroundColor: 'white', padding: 15, marginTop: 10
-  },
-})
+});
 
 function mapStateToProps(state) {
   return {

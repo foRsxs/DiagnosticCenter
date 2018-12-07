@@ -1,4 +1,8 @@
-import { createStackNavigator, createDrawerNavigator, createSwitchNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  createSwitchNavigator
+} from 'react-navigation';
 
 import HomeScreen from '../containers/home';
 import AthorizationScreen from '../containers/authorization';
@@ -23,144 +27,143 @@ import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 
 const Athorization = createStackNavigator({
-    authorization: { 
-        screen: AthorizationScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
+  authorization: {
+    screen: AthorizationScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
 });
 
 const MainScreenNavigator = createStackNavigator({
-    home: { 
-        screen: HomeScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    specialization: { 
-        screen: SpecializationScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    questions: { 
-        screen: QuestionsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    questionForm: { 
-        screen: QuestionFormScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    oftenQuestions: { 
-        screen: OftenQuestionsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    recordingCreate: { 
-        screen: RecordingCreateScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    recordingItem: { 
-        screen: RecordingItemScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    recordingList: { 
-        screen: RecordingListScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    analizes: { 
-        screen: AnalizesScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    analizesItem: { 
-        screen: AnalizesItemScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    history: { 
-        screen: HistoryScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    historyItem: { 
-        screen: HistoryItemScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    contacts: { 
-        screen: ContactsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    settings: { 
-        screen: SettingsScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    doctor: { 
-        screen: DoctorScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    listDoctors: { 
-        screen: CatalogScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    faq: { 
-        screen: FaqScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    information: { 
-        screen: InfoScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    informationItem: { 
-        screen: InfoItemScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
+  home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  specialization: {
+    screen: SpecializationScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  questions: {
+    screen: QuestionsScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  questionForm: {
+    screen: QuestionFormScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  oftenQuestions: {
+    screen: OftenQuestionsScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  recordingCreate: {
+    screen: RecordingCreateScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  recordingItem: {
+    screen: RecordingItemScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  recordingList: {
+    screen: RecordingListScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  analizes: {
+    screen: AnalizesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  analizesItem: {
+    screen: AnalizesItemScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  history: {
+    screen: HistoryScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  historyItem: {
+    screen: HistoryItemScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  contacts: {
+    screen: ContactsScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  settings: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  doctor: {
+    screen: DoctorScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  listDoctors: {
+    screen: CatalogScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  faq: {
+    screen: FaqScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  information: {
+    screen: InfoScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  informationItem: {
+    screen: InfoItemScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
 });
 
-const Drawer = createDrawerNavigator(
-    {
-        Main: { screen: MainScreenNavigator }
-    },
-    {
-        drawerWidth: 300,
-        contentComponent: DrawerMenu,
-    }
-  );
+const Drawer = createDrawerNavigator({
+  Main: {
+    screen: MainScreenNavigator
+  }
+}, {
+  drawerWidth: 300,
+  contentComponent: DrawerMenu,
+});
 
 const AppNavigator = createSwitchNavigator({
-    Auth: Athorization,
-    Home: Drawer,
+  Auth: Athorization,
+  Home: Drawer,
 });
 
 export default AppNavigator;
