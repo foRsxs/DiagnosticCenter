@@ -33,6 +33,7 @@ class ReceptionInfoItemScreen extends Component {
       spec: (props.navigation.state.params) ? props.navigation.state.params.spec: null,
       serv: (props.navigation.state.params) ? props.navigation.state.params.serv: null,
       price: (props.navigation.state.params) ? props.navigation.state.params.price: null,
+      pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf: null,
       modalVisible: false,
       hideButton: false,
     };

@@ -3,6 +3,7 @@ package com.izzisoftware.diagnosticcenter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.RNTextInputMask.RNTextInputMaskPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new RNFetchBlobPackage(),
         new ReactNativeOneSignalPackage(),
         new RNSharePackage(),
         new RNLanguagesPackage(),

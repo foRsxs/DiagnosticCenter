@@ -73,6 +73,7 @@ class ReceptionListScreen extends Component {
                       spec: item.spec,
                       reserved: true,
                       serv: item.serv,
+                      pdf: item.pdf
                     })
                   }/>
                 ))

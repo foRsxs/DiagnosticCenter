@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BackHandler, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import Share from 'react-native-share';
+import RNFetchBlob from 'react-native-fetch-blob'
+import { PermissionsAndroid } from 'react-native';
 import { Container, Content } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import { withNamespaces } from 'react-i18next';
@@ -39,6 +41,43 @@ class HistoryItemScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  async requestFilePermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          'title': 'Сохранить файл',
+          'message': 'Сохранить файл в хранилище'
+        }
+      )
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        this.saveFile();
+      } else {
+        console.log("Camera permission denied")
+      }
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+
+  saveFile = () => {
+    const { config, fs } = RNFetchBlob;
+    const {headTxt, pdf} = this.state;
+    let date= new Date();
+    let FileDir = fs.dirs.DownloadDir;
+    let options = {
+      fileCache: true,
+      addAndroidDownloads : {
+        useDownloadManager : true,
+        notification : false,
+        path:  FileDir + "/file_"+Math.floor(date.getTime() + date.getSeconds() / 2)+'.pdf',
+      }
+    }
+    config(options).fetch('GET', pdf).then((res) => {
+      console.log(res)
+    })
   }
 
   handleBackButtonClick = () => {
@@ -80,6 +119,7 @@ class HistoryItemScreen extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 5}}
+          onPress={()=> this.requestFilePermission()}
         >
           <View style={ styles.actionsWrap }>
             <Image
