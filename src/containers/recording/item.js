@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler, TouchableOpacity, Image} from 'react-native';
 import {Container, Content, View, Text} from 'native-base';
+import Share from 'react-native-share';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ class ReceptionInfoItemScreen extends Component {
 
   constructor(props) {
     super(props);
-    
+    console.log(props.navigation.state.params)
     this.state = {
       date: (props.navigation.state.params) ? props.navigation.state.params.dd: null,
       rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id: null,
@@ -70,6 +71,18 @@ class ReceptionInfoItemScreen extends Component {
     this.props.navigation.navigate('recordingList');
   }
 
+  shareLink = () => {
+    const {doc, date, pdf} = this.state;
+
+    const shareOptions = {
+      title: doc,
+      subject: date,
+      url: pdf,
+      social: Share.Social.EMAIL
+    };
+    Share.shareSingle(shareOptions);
+  }
+
   renderShare() {
     const { t } = this.props;
 
@@ -78,6 +91,7 @@ class ReceptionInfoItemScreen extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
+          onPress={()=>this.shareLink()}
         >
           <View style={ styles.actionsWrap }>
             <Image

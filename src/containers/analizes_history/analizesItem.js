@@ -5,6 +5,7 @@ import { Table, Row } from 'react-native-table-component';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Share from 'react-native-share';
 
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
@@ -21,6 +22,9 @@ class AnalizesItemScreen extends Component {
     super(props);
     this.state = {
       res_id: (props.navigation.state.params) ? props.navigation.state.params.res_id : null,
+      headTxt: (props.navigation.state.params) ? props.navigation.state.params.headTxt : null, 
+      dateTxt: (props.navigation.state.params) ? props.navigation.state.params.dateTxt : null,
+      pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf : null,
       date: (props.navigation.state.params) ? props.navigation.state.params.date : '',
       tableHead: [
         props.t('analizes:table_text_first'), 
@@ -53,6 +57,18 @@ class AnalizesItemScreen extends Component {
     return true;
   }
 
+  shareLink = () => {
+    const {headTxt, dateTxt, pdf} = this.state;
+
+    const shareOptions = {
+      title: headTxt,
+      subject: dateTxt,
+      url: pdf,
+      social: Share.Social.EMAIL
+    };
+    Share.shareSingle(shareOptions);
+  }
+
   renderShare() {
     const { t } = this.props;
 
@@ -61,6 +77,7 @@ class AnalizesItemScreen extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
+          onPress={()=>this.shareLink()}
         >
           <View style={ styles.actionsWrap }>
             <Image

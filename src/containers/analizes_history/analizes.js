@@ -43,7 +43,7 @@ class AnalizesScreen extends Component {
   render() {
     const { t, analizes_list } = this.props;
     const {loading} = this.state;
-
+    console.log(analizes_list)
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
@@ -57,8 +57,19 @@ class AnalizesScreen extends Component {
                     <AnalizesItem
                       key={index}
                       headTxt={item.text} 
-                      dateTxt={item.dat_string} 
-                      onPress={()=> this.props.navigation.navigate({routeName: "analizesItem", key: index, params: {res_id: item.res_id, date: item.dat_string}})}
+                      dateTxt={item.dat_string}
+                      pdf={item.pdf}
+                      onPress={()=> this.props.navigation.navigate({
+                        routeName: "analizesItem", 
+                        key: index, 
+                        params: {
+                          res_id: item.res_id, 
+                          date: item.dat_string, 
+                          pdf: item.pdf,
+                          headTxt: item.text,
+                          dateTxt: item.dat_string
+                        }
+                      })}
                     />
                   ))
                 ) : 

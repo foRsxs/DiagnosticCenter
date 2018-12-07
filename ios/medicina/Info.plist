@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>medicina</string>
+	<string>Diagnostic Center</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,6 +22,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>mailto</string>
+		<string>facebook</string>
+		<string>instagram</string>
+		<string>googleplus</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,8 +45,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Enabling Face ID allows you quick and secure access to your account.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -58,6 +68,10 @@
 		<string>HelveticaNeue.ttf</string>
 		<string>Helvetica-Light.ttf</string>
 		<string>HelveticaNeueCyr.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
@@ -80,15 +94,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Enabling Face ID allows you quick and secure access to your account.</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>whatsapp</string>
-		<string>mailto</string>
-		<string>facebook</string>
-		<string>instagram</string>
-		<string>googleplus</string>
-	</array>
 </dict>
 </plist>

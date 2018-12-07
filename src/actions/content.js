@@ -329,6 +329,7 @@ export function getHistory({type, p_type, vis_id}) {
     }
     if (p_type) params.p_type = p_type;
     if (vis_id) params.vis_id = vis_id;
+    console.log(params)
     if (network_connect) { 
       axios.post(`${APP_API_URL}/visit_${type}`, params)
       .then((response) => {
@@ -349,6 +350,7 @@ export function getAnalizes({type='', res_id}) {
       lang: authorization.language
     }
     if (res_id) params.res_id = res_id;
+    console.log(params)
     if (network_connect) { 
       axios.post(`${APP_API_URL}/lab_research${type}`, params)
       .then((response) => {
