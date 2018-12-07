@@ -16,7 +16,7 @@ export default class AnalizesItem extends Component {
   }
 
   render() {
-    let {headTxt, dateTxt} = this.props;
+    let {headTxt, dateTxt, pdf} = this.props;
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
@@ -30,14 +30,14 @@ export default class AnalizesItem extends Component {
               const shareOptions = {
                 title: headTxt,
                 subject: dateTxt,
-                url: '#',
+                url: pdf,
               };
               Share.open(shareOptions);
             }}
             activeOpacity={0.8}
             style={styles.moreIcon}>
             <Image
-              style={{width: 18, height: 20}}
+              style={{width: 18, height: 20, justifyContent: 'center'}}
               resizeMode='contain'
               source={require('../../../assets/img/more-icon.png')}
             />
@@ -73,10 +73,13 @@ const styles = StyleSheet.create({
     fontSize: normal
   },
   moreIcon: {
-    width: 20,
-    height: 20,
+    justifyContent: 'center',
+    paddingLeft: 5,
+    width: 25,
+    height: 30,
     position: 'absolute',
-    top: 15,
-    right: 5
+    top: 10,
+    right: 5,
+    backgroundColor: 'white'
   }
 });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BackHandler, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import Share from 'react-native-share';
 import { Container, Content } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import { withNamespaces } from 'react-i18next';
@@ -22,7 +23,10 @@ class HistoryItemScreen extends Component {
     console.log(props.navigation.state)
     this.state = {
       p_type: (props.navigation.state.params) ? props.navigation.state.params.p_type : null,
+      headTxt: (props.navigation.state.params) ? props.navigation.state.params.headTxt : null,
+      dateTxt: (props.navigation.state.params) ? props.navigation.state.params.dateTxt : null,
       keyid: (props.navigation.state.params) ? props.navigation.state.params.keyid : null,
+      pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf : null,
     };
   }
 
@@ -42,6 +46,18 @@ class HistoryItemScreen extends Component {
     return true;
   }
 
+  shareLink = () => {
+    const {headTxt, dateTxt, pdf} = this.state;
+
+    const shareOptions = {
+      title: headTxt,
+      subject: dateTxt,
+      url: pdf,
+      social: Share.Social.EMAIL
+    };
+    Share.shareSingle(shareOptions);
+  }
+
   renderShare() {
     const { t } = this.props;
 
@@ -50,6 +66,7 @@ class HistoryItemScreen extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
+          onPress={()=>this.shareLink()}
         >
           <View style={ styles.actionsWrap }>
             <Image

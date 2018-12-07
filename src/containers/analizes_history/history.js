@@ -42,7 +42,7 @@ class HistoryScreen extends Component {
   render() {
     const { t, history_list } = this.props;
     const {loading} = this.state;
-
+    console.log(history_list)
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
@@ -56,8 +56,19 @@ class HistoryScreen extends Component {
                   <AnalizesItem
                     key={index}
                     headTxt={item.text} 
-                    dateTxt={item.dat} 
-                    onPress={()=> this.props.navigation.navigate({routeName: "historyItem", key: index, params: {keyid: item.keyid, p_type: item.p_type}})}
+                    dateTxt={item.dat}
+                    pdf={item.pdf}
+                    onPress={()=> this.props.navigation.navigate({
+                      routeName: "historyItem", 
+                      key: index, 
+                      params: {
+                        keyid: item.keyid, 
+                        p_type: item.p_type, 
+                        pdf: item.pdf,
+                        headTxt: item.text,
+                        dateTxt: item.dat
+                      }
+                    })}
                   />
                 ))
               ) : 

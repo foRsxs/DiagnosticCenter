@@ -47,7 +47,7 @@ class ReceptionListScreen extends Component {
     const {loading} = this.state;
     const { navigate } = this.props.navigation;
     const { t, listTalons } = this.props;
-
+    console.log(listTalons)
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
