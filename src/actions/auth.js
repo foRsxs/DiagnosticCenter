@@ -12,7 +12,7 @@ export function authUser(data) {
 
     return axios.post(`${APP_API_URL}/get_patient`, {...data, lang: authorization.language})
     .then((response) => {
-      OneSignal.sendTag('user_keyid', response.data.keyid);
+      OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
       dispatch(saveUser(response.data));
       return Promise.resolve(response.data);
     })
@@ -31,8 +31,7 @@ export function getUserData() {
       lang: authorization.language
     })
     .then((response) => {
-      console.log(response.data);
-      OneSignal.sendTag('user_keyid', response.data.keyid);
+      OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
       dispatch(setUserdata(response.data));
       return Promise.resolve(response.data);
     })

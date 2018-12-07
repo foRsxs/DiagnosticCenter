@@ -8,6 +8,7 @@ add plugins:
 6) react-native-htmlview <-- https://github.com/jsdf/react-native-htmlview
 7) react-native-languages <-- https://github.com/react-community/react-native-languages
 8) react-native-share <-- https://www.npmjs.com/package/react-native-share
+9) react-native-onesignal <-- https://www.npmjs.com/package/react-native-onesignal
 
 cleane cache rm -rf ~/.rncache
 
