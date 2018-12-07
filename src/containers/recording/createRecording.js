@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal, ScrollView} from 'react-native';
 import {Container, View, Text} from 'native-base';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {LocaleConfig, Calendar} from 'react-native-calendars';
 import moment from 'moment';
 import { withNamespaces } from 'react-i18next';
@@ -18,7 +17,7 @@ import ButtonDates from '../../components/common/ButtonDates';
 
 const { mediumBlack, gray, activeGray, accentBlue, backgroundBlue } = variables.colors;
 const { mainFont } = variables.fonts;
-const { medium, large, main }  = variables.fSize;
+const { medium }  = variables.fSize;
 const { width, height } = Dimensions.get('window');
 
 let openStyle = {
@@ -87,7 +86,9 @@ class ReceptionInfoScreen extends Component {
         type: 1,
         spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id: null,
         docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id: null,
-      }
+      },
+      enableScroll: true,
+      openedKey: null
     };
   }
 
@@ -119,6 +120,15 @@ class ReceptionInfoScreen extends Component {
   handleBackButtonClick = () => {
     this.props.navigation.goBack();
     return true;
+  }
+
+  handleScroll(key) {
+    let { openedKey } = this.state;
+
+    this.setState({
+      openedKey: (openedKey !== key) ? key : null,
+      enableScroll: (openedKey === key) ? true : false
+    });
   }
 
   setTimes = (times, selectedTime) => {
@@ -232,7 +242,7 @@ class ReceptionInfoScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { t, order, orderDatas } = this.props;
-    const { shortOrder, typeExperiments} = this.state;
+    const { enableScroll, openedKey, shortOrder, typeExperiments} = this.state;
     let doctor = '';
     let spec = '';
 
@@ -241,48 +251,63 @@ class ReceptionInfoScreen extends Component {
 
     return (
       <Container >
-        <KeyboardAwareScrollView
-          enableOnAndroid={true}
-          keyboardShouldPersistTaps='handled'
-          contentContainerStyle={{ flexGrow: 1 }}
-        >
-   
-        <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom />
-        <View style={{margin: 20, position: 'relative', flex: 1, zIndex: 2}} >
-        
+        <ScrollView scrollEnabled={enableScroll}>   
+          <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
+          <HeaderBottom />
+          <View style={{margin: 20, position: 'relative', flex: 1, zIndex: 2}} >        
             <Autocompete 
               contentContainerStyle={{marginBottom: 20}}
               label={ t('createrecord:form.research') } 
               data={typeExperiments} 
-              onSelect={(value) => this.props.setOrder({type: value}, 'type', 'spec')} 
+              currentKey={0}
+              openedKey={openedKey}
+              onTap={ () => this.handleScroll(0) }
+              onSelect={(value) => {
+                this.handleScroll(0);
+                this.props.setOrder({type: value}, 'type', 'spec');
+              }} 
               selected={(order.type)? (order.type): 1} 
               disabled={false}
             />
-
             <Autocompete 
               contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_specialty') }
               data={orderDatas.specialities} 
+              currentKey={1}
+              openedKey={openedKey}
+              onTap={ () => this.handleScroll(1) }
               onSelect={(value) => {
+                this.handleScroll(1);
                 (order.type == 1) ? this.props.setOrder({spec_id: value}, 'spec_id', 'doc') : this.props.setOrder({spec_id: value}, 'spec_id');
               }}
               selected={order.spec_id}
-              disabled={(order.type && orderDatas.specialities)?false: true}
+              disabled={(order.type && orderDatas.specialities) ? false : true}
             />
             <Autocompete 
               contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_service') }
               data={orderDatas.services} 
-              onSelect={(value) => this.props.setOrder({servid: value}, 'servid', 'doc')} 
+              currentKey={2}
+              openedKey={openedKey}
+              onTap={ () => this.handleScroll(2) }
+              onSelect={(value) => {                
+                this.handleScroll(2);
+                this.props.setOrder({servid: value}, 'servid', 'doc');
+              }}
               selected={order.servid}
-              disabled={((order.type === 2 && order.spec_id && orderDatas.services))?false: true}
+              disabled={((order.type === 2 && order.spec_id && orderDatas.services)) ? false : true}
             />
             <Autocompete 
               contentContainerStyle={{marginBottom: 20}} 
               label={ t('createrecord:form.select_doctor') } 
               data={orderDatas.doctors}
-              onSelect={(value) => this.props.setOrder({docdep_id: value}, 'docdep_id')}
+              currentKey={3}
+              openedKey={openedKey}
+              onTap={ () => this.handleScroll(3) }
+              onSelect={(value) => {                
+                this.handleScroll(3);
+                this.props.setOrder({docdep_id: value}, 'docdep_id');
+              }}
               selected={order.docdep_id}
               disabled={((order.type === 2 && order.spec_id && order.servid && orderDatas.doctors) || (order.type === 1 && order.spec_id && orderDatas.doctors)) ? false : true}
             />
@@ -310,8 +335,7 @@ class ReceptionInfoScreen extends Component {
             <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec})}/>
           </View>
         )}        
-        </KeyboardAwareScrollView>
- 
+        </ScrollView> 
       </Container>
     )
   }

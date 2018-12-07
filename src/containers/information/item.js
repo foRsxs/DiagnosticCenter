@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, Image, ActivityIndicator, Linking } from 'react-native';
+import { StyleSheet, BackHandler, Image, ActivityIndicator, Linking, TouchableOpacity, Modal } from 'react-native';
 import { Container, Content, View} from 'native-base';
 import HTMLView from 'react-native-htmlview';
+import ImageViewer from 'react-native-image-zoom-viewer';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -26,7 +27,10 @@ class InfoDetailScreen extends Component {
       content: (props.navigation.state.params) ? props.navigation.state.params.content : '',
       post_id: (props.navigation.state.params) ? props.navigation.state.params.post_id : null,
       loading: true,
+      openPopup: false
     };
+
+    this.openPopup = this.openPopup.bind(this);
   }
 
   componentDidMount() {
@@ -44,25 +48,40 @@ class InfoDetailScreen extends Component {
         image: {uri: `${APP_IMG_URL}storage/${nextProps.post.image}`},
         content: nextProps.post.body,
         loading: false
-      })
+      });
     }
   }
 
   handleBackButtonClick = () => {
-    this.props.navigation.goBack(null);
-    return true;
+    let { popupOpened } = this.state;
+
+    if (popupOpened) {
+      this.setState({ openPopup: false });
+    } else {
+      this.props.navigation.goBack(null);
+      return true;
+    }
+  }
+
+  openPopup() {
+    this.setState({ openPopup: true });
   }
 
   renderImage = () => {
-    const {image} = this.state;
+    const {image, openPopup} = this.state;
     
     return (
       <View style={{paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          resizeMode='contain'
-          style={styles.iconList}
-          source={image}
-        />
+        <TouchableOpacity onPress={this.openPopup} style={styles.iconList}>
+          <Image
+            resizeMode='contain'
+            style={styles.iconList}
+            source={image}
+          />
+        </TouchableOpacity>
+        <Modal visible={openPopup} transparent={true} onRequestClose={() => this.setState({ openPopup: false }) }>
+          <ImageViewer imageUrls={[{url: image.uri}]}/>
+        </Modal>
       </View>
     )
   }
@@ -72,9 +91,7 @@ class InfoDetailScreen extends Component {
 
     return (
       <View style={styles.textWrap}>
-        <HTMLView
-          value={content}
-        />
+        <HTMLView value={content} />
       </View>
     )
   }

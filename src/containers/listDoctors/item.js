@@ -79,7 +79,7 @@ class DoctorScreen extends Component {
             )
           }
         </View>
-        <ScrollView  contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading)? {justifyContent: 'center'}: {}]}>
+        <ScrollView contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading) ? {justifyContent: 'center'} : {}]}>
           {
             (!loading) ? (
             <View style={styles.docInfoWrap}>
@@ -91,7 +91,7 @@ class DoctorScreen extends Component {
                   </View>
                   <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
                     <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
-                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>{ t('common:actions.ask_question') }</Text>
+                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue }}>{ t('common:actions.ask_question') }</Text>
                       <Image
                         style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
                         resizeMode='cover'
@@ -100,8 +100,8 @@ class DoctorScreen extends Component {
                     </TouchableOpacity>
                   </View>
                 </View>
-                <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5, }}>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category} </Text>
+                <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5 }}>
+                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category}</Text>
                   {/* <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>| {doctor[0].department}</Text> */}
                 </View>
               </View>
@@ -160,6 +160,9 @@ const styles = StyleSheet.create({
   docInfo: {
     flexDirection: 'column',
     justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderBottomColor: accentBlue
   },
   docInfoBlock: {
     width: '100%',
