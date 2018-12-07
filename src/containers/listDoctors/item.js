@@ -79,7 +79,7 @@ class DoctorScreen extends Component {
             )
           }
         </View>
-        <ScrollView contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading)? {justifyContent: 'center'}: {}]}>
+        <ScrollView contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading) ? {justifyContent: 'center'} : {}]}>
           {
             (!loading) ? (
             <View style={styles.docInfoWrap}>
@@ -91,7 +91,7 @@ class DoctorScreen extends Component {
                   </View>
                   <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
                     <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
-                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, }}>{ t('common:actions.ask_question') }</Text>
+                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue }}>{ t('common:actions.ask_question') }</Text>
                       <Image
                         style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
                         resizeMode='cover'
