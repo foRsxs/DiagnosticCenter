@@ -1,4 +1,4 @@
-package com.izzisoftware.medicina;
+package com.izzisoftware.diagnosticcenter;
 
 import android.app.Application;
 
@@ -58,6 +58,6 @@ public class MainApplication extends Application implements ShareApplication, Re
   
   @Override
   public String getFileProviderAuthority() {
-    return "com.izzisoftware.medicina.provider";
+    return "com.izzisoftware.diagnosticcenter.provider";
   }
 }
