@@ -18,7 +18,7 @@ class SettingsScreen extends Component {
     this.state = {
       local_auth_methods: props.methods_auth,
       local_languages_key: props.languages_key,
-      switchone: false,
+      local_notify: props.notify,
       showButton: false
     };
   }
@@ -31,8 +31,9 @@ class SettingsScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
-  switchOne = (value) => {
-    this.setState({ switchone: value });
+  switchNotify = (value) => {
+    this.setState({ local_notify: value });
+
   }
 
   onAuthChange(value) {
@@ -40,12 +41,17 @@ class SettingsScreen extends Component {
   }
 
   _saveChanges = () => {
-    const {local_auth_methods, local_languages_key} = this.state;
-    const {methods_auth, savePinCode, changeMethodsAuth, navigation, languages_key} = this.props;
+    const {local_notify, local_auth_methods, local_languages_key} = this.state;
+    const {notify, methods_auth, savePinCode, changeMethodsAuth, navigation, languages_key} = this.props;
 
     if (languages_key !== local_languages_key) {
       this.props.setLanguage(local_languages_key);
     }
+    
+    if (notify !== local_notify) {
+      this.props.changeNotify(local_notify);
+    }
+
     if (methods_auth !== local_auth_methods) {
       savePinCode({code: null, confirmed: false});
       AsyncStorage.removeItem('pinCode');
@@ -69,8 +75,8 @@ class SettingsScreen extends Component {
   }
 
   render() {
-    const { t, methods_auth, device_touch, device_face, languages_key } = this.props;
-    const { local_auth_methods, local_languages_key } = this.state;
+    const { t, notify, methods_auth, device_touch, device_face, languages_key } = this.props;
+    const { local_notify, local_auth_methods, local_languages_key } = this.state;
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
@@ -133,20 +139,20 @@ class SettingsScreen extends Component {
               </Form>
             </View>
             )}
-            {/* <View style={[styles.settingItem, {marginTop: 10}]}>
+            <View style={[styles.settingItem, {marginTop: 10}]}>
               <Text style={styles.headTxt}>{ t('settings:items.push') }</Text>
               <Switch
-                onValueChange={this.switchOne}
-                value={this.state.switchone}
+                onValueChange={this.switchNotify}
+                value={local_notify}
               />
-            </View> */}            
+            </View>           
           </Content>
           {
-            (local_auth_methods !== methods_auth || local_languages_key !== languages_key) ? (
+            (local_auth_methods !== methods_auth || local_languages_key !== languages_key || local_notify !== notify) && (
               <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
                 <CustomBtn label={ t('common:actions.save') } onClick={() => this._saveChanges()}/>
               </View>
-            ): false
+            )
           }
       </Container>
     )
@@ -180,6 +186,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
+    notify: state.authorization.notify,
     methods_auth: state.authorization.methods_auth,
     device_touch: state.authorization.device_touch,
     device_face: state.authorization.device_face,

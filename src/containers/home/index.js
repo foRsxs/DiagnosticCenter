@@ -27,16 +27,19 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;
-
-    if (!user && token) getUserData().then((resp) => {
-      if (Object.keys(resp).length === 0) {
-        setAuthMessage(t(`common:actions_text.token_not_valid_text`))
-        AsyncStorage.clear();
-        logOut();
-        navigation.navigate("authorization");
-      }
-    });
+    const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;  
+    
+    if (!user && token) {
+      getUserData().then((resp) => {
+        if (Object.keys(resp).length === 0) {
+          setAuthMessage(t(`common:actions_text.token_not_valid_text`))
+          AsyncStorage.clear();
+          logOut();
+          navigation.navigate("authorization");
+        }
+      });
+    }
+    
     SplashScreen.hide();
     NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectionChange);
   }

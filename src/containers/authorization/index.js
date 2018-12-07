@@ -46,17 +46,20 @@ class AuthorizationScreen extends Component {
     this._checkTouchSupport();
     //AsyncStorage.clear();
     //<----------------------------------------need to rewrite--------------------------------------------//
-    AsyncStorage.getItem('lang_key').then((resp)=>{
+    AsyncStorage.getItem('notify').then((resp) => {
+      (resp) ? this.props.changeNotify(resp == 'true') : this.props.changeNotify(true);
+    });
+    AsyncStorage.getItem('lang_key').then((resp) => {
       (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
     });
-    AsyncStorage.getItem('api_token').then((resp)=>{
+    AsyncStorage.getItem('api_token').then((resp) => {
       // this.props.saveUser({api_token: 'FY0EElsSq85KFOmFiFQtDUs25BrIysHaRX0Ko0ws97xGiddtDBsB2xVybxDl'});
       this.props.saveUser({api_token: resp});
     });
-    AsyncStorage.getItem('methods_auth').then((resp)=>{
+    AsyncStorage.getItem('methods_auth').then((resp) => {
       this.props.changeMethodsAuth({methods_auth: resp, confirmed: false});
     });
-    AsyncStorage.getItem('pinCode').then((resp)=>{
+    AsyncStorage.getItem('pinCode').then((resp) => {
       this.props.savePinCode({code:resp, confirmed: false});
       SplashScreen.hide();
     });

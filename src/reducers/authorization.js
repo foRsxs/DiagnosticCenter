@@ -4,6 +4,7 @@ const initialState = {
   token: null,
   confirmed_auth: false, //<--
   methods_auth: null,
+  notify: true,
   pinCode: null,
   user: {},
   device_touch: false,
@@ -20,6 +21,7 @@ export default function authReducer(state = initialState, action) {
         token: null,
         confirmed_auth: false,
         methods_auth: false,
+        notify: true,
         pinCode: null,
         isGuest: false,
         user: {}
@@ -28,6 +30,11 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         language: action.data
+      }
+    case types.SET_NOTIFY: 
+      return {
+        ...state,
+        notify: action.data
       }
     case types.SET_USER_GUEST:
       return {

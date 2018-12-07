@@ -3,6 +3,7 @@ package com.izzisoftware.medicina;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.RNTextInputMask.RNTextInputMaskPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
 import com.facebook.react.ReactNativeHost;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new ReactNativeOneSignalPackage(),
         new RNSharePackage(),
         new RNLanguagesPackage(),
         new RNTextInputMaskPackage(),
