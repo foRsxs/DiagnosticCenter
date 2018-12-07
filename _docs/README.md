@@ -2,13 +2,13 @@ add plugins:
 
 1) react-i18next <-- https://github.com/i18next/react-i18next
 2) react-native-snap-carousel <-- https://github.com/archriss/react-native-snap-carousel
-3) react-native-responsive-dimensions <-- https://www.npmjs.com/package/react-native-responsive-dimensions
-4) react-native-star-rating <-- https://github.com/djchie/react-native-star-rating
-5) react-native-text-input-mask <-- https://github.com/react-native-community/react-native-text-input-mask
-6) react-native-htmlview <-- https://github.com/jsdf/react-native-htmlview
-7) react-native-languages <-- https://github.com/react-community/react-native-languages
-8) react-native-share <-- https://www.npmjs.com/package/react-native-share
-9) react-native-onesignal <-- https://www.npmjs.com/package/react-native-onesignal
+3) react-native-star-rating <-- https://github.com/djchie/react-native-star-rating
+4) react-native-text-input-mask <-- https://github.com/react-native-community/react-native-text-input-mask
+5) react-native-htmlview <-- https://github.com/jsdf/react-native-htmlview
+6) react-native-languages <-- https://github.com/react-community/react-native-languages
+7) react-native-share <-- https://www.npmjs.com/package/react-native-share
+8) react-native-onesignal <-- https://www.npmjs.com/package/react-native-onesignal
+
 
 cleane cache rm -rf ~/.rncache
 

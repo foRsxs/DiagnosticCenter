@@ -8,14 +8,14 @@ import {
   ScrollView,
   TextInput
 } from 'react-native';
-import {Text, Input, List, ListItem} from 'native-base';
+import {Text, List, ListItem} from 'native-base';
 import variables from '../../styles/variables';
 
 const {accentBlue} = variables.colors;
 const { mainFont } = variables.fonts;
 const { medium, main }  = variables.fSize;
 
-export default class CustomBtn extends Component {
+export default class Autocompete extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -30,11 +30,15 @@ export default class CustomBtn extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data) this.setState({sortedData: this.props.data, value: this.setValue(this.props.selected)});
+    if (prevProps.openedKey !== this.props.openedKey) {
+      this.rotate(this.props.openedKey === this.props.currentKey);
+    }
   }
 
   setValue = (id) => {
     const {data} = this.props;
     let value = '';
+
     if (id) {
       data.forEach((item) => {
         const item_id = (item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? +item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null
@@ -43,41 +47,42 @@ export default class CustomBtn extends Component {
         };
       })
     }
+
     return value;
   }
 
   onPress = (id,value) => {
     this.setState({value: value, id: id, opened: false});
-    this.rotate();
     this.props.onSelect(id);
   }
   
   onChange = (value) => {
     const {data} = this.props;
-    let array = []
+    let array = [];
+
     data.forEach((item) => {
       const text = (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null;
       if (text.toLowerCase().indexOf(value.toLowerCase()) !== -1) array.push(item);
-    })
+    });
     this.setState({sortedData: array, value: value})
   }
 
-  rotate () {
-    const {opened} = this.state;
-    this.rotateValue.setValue((opened)? 1: 0)
+  rotate (value) {
+    this.rotateValue.setValue((value) ? 1 : 0);
     Animated.timing(
       this.rotateValue,
       {
-        toValue: (opened)? 0: 1,
+        toValue: (value) ? 1 : 0,
         duration: 200,
         easing: Easing.linear
       }
-    ).start(()=> {this.setState({opened: !opened})})
+    ).start(()=> {this.setState({opened: value})})
   }
 
   renderDroppedBlock() {
     const {sortedData} = this.state;
-    let height = (sortedData.length > 7) ? 150: sortedData.length * 40 + 15
+    let height = (sortedData.length > 7) ? 150 : sortedData.length * 40 + 15;
+
     return (
       <ScrollView style={[{height: height }, styles.listWrap]} >
         <List style={ styles.listContainer }>
@@ -107,12 +112,13 @@ export default class CustomBtn extends Component {
 
   render() {
     const {opened, value, sortedData} = this.state;
-    const {contentContainerStyle, label, disabled} = this.props;
+    const { onTap, contentContainerStyle, label, disabled} = this.props;
     const rotate = this.rotateValue.interpolate({
       inputRange:  [0, 1],
       outputRange: ['0deg', '90deg']
-    })
-    let height = (sortedData.length > 7) ? 200: (sortedData.length ===0)? 40: sortedData.length * 36 + 50;
+    });
+    let height = (sortedData.length > 7) ? 200: (sortedData.length ===0) ? 40 : sortedData.length * 36 + 50;
+
     return (
       <View style={[(!disabled) ? styles.content: styles.contentDisabled, (opened) ? {height: height}: {},contentContainerStyle]} >
         <TouchableOpacity 
@@ -120,7 +126,7 @@ export default class CustomBtn extends Component {
           activeOpacity={(disabled)? 1: 0.8}
           onPress={()=> {
             if (disabled) return;
-            this.rotate();
+            onTap();
           }}
         >
           <Animated.Image
@@ -144,11 +150,6 @@ export default class CustomBtn extends Component {
 
 const styles = StyleSheet.create({
   listWrap: {
-    // left: 0,
-    // position: 'absolute',
-    // right: 0,    
-    // zIndex: 1000, 
-    // paddingTop: 10,
     borderBottomLeftRadius: 10, 
     borderBottomRightRadius: 10
   },
@@ -168,7 +169,6 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderStyle: 'solid', 
     borderRadius: 5, 
-    // flex: 1, 
     backgroundColor: 'white',
     height: 42,
     overflow: 'hidden'

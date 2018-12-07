@@ -54,6 +54,7 @@ class HomeScreen extends Component {
 
   _openPage = (page, text_error) => {
     const {t, isGuest, navigation} = this.props;
+    
     if (isGuest) {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
