@@ -13,7 +13,7 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import { CALL_CENTRE_TEL } from '../../config';
 
-const { blue } = variables.colors;
+const { accentBlue } = variables.colors;
 const {medium} = variables.fSize;
 const { mainFont} = variables.fonts;
 
@@ -60,9 +60,9 @@ class OftenQuestionsScreen extends Component {
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={ t('faq:title') } navigation={this.props.navigation} />
         <HeaderBottom search={true} onChangeSearch={this.handleChange}/>
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder contentContainerStyle={(loading)?{flex:1, justifyContent: 'center'}:{}}>
           {
-            (loading) ? <ActivityIndicator size="small" color={blue} />:
+            (loading) ? <ActivityIndicator size="large" color={accentBlue} />:
             (
               (sorted_questions && sorted_questions.length)? (
                 sorted_questions.map((item, index)=>(

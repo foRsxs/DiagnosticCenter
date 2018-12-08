@@ -12,7 +12,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 
-const { blue } = variables.colors;
+const { accentBlue } = variables.colors;
 const { medium } = variables.fSize;
 const { mainFont } = variables.fonts;
 
@@ -35,8 +35,8 @@ class AllQuestionsScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.questions !== nextProps.questions) this.setState({loading: false})
+  componentDidUpdate(prevProps) {
+    if (prevProps.questions !== this.props.questions) this.setState({loading: false})
   }
 
   handleBackButtonClick = () => {
@@ -53,7 +53,7 @@ class AllQuestionsScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('questions:title') } navigation = {this.props.navigation}/>
         <HeaderBottom text={fio} />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder contentContainerStyle={(loading)?{flex:1,justifyContent:'center'}:{}}>
           {
             (!loading) ? (
               (questions.length) ? (
@@ -65,7 +65,7 @@ class AllQuestionsScreen extends Component {
                   />
                 ))
               ) : <Text style={{color: 'black', fontFamily: mainFont, fontSize: medium, textAlign: 'center'}}>{ t('questions:doc_no_questions') }</Text>
-            ) : <ActivityIndicator size="small" color={blue} style={{marginTop: 10}}/>
+            ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
           }
         </Content >
         {

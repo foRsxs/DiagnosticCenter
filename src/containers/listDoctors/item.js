@@ -68,6 +68,7 @@ class DoctorScreen extends Component {
       <View style={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%', backgroundColor: 'white'}}>
         <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
         <HeaderBottom />
+        
         <View style={styles.imageWrap}>
           {
             (!loading) && (
@@ -76,8 +77,11 @@ class DoctorScreen extends Component {
                 resizeMode='contain'
                 source={{uri: `${APP_IMG_URL}photo_doc/${docid}.jpg`}}
               />
+             
             )
+            
           }
+          <View style={{height: height*.22, backgroundColor:'white', marginTop:50, width: width}}/>
         </View>
         <ScrollView contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading) ? {justifyContent: 'center'} : {}]}>
           {
@@ -128,8 +132,7 @@ class DoctorScreen extends Component {
 
 const styles = StyleSheet.create({
   imageWrap: {
-    width: width - 80,
-    marginHorizontal: 40,
+    width: width,
     height: height*0.3,
     justifyContent: 'center',
     alignItems: 'center',
@@ -142,7 +145,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   docIcon: {
+    position: 'absolute',
     width: '100%',
+    zIndex:2,
     height: height*0.30,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
