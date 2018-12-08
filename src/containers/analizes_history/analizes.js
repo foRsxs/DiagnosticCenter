@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
+import { BackHandler, ActivityIndicator } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,6 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 const {accentBlue} = variables.colors;
 
 class AnalizesScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +42,7 @@ class AnalizesScreen extends Component {
   render() {
     const { t, analizes_list } = this.props;
     const {loading} = this.state;
-    console.log(analizes_list)
+
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
@@ -59,21 +58,22 @@ class AnalizesScreen extends Component {
                       headTxt={item.text} 
                       dateTxt={item.dat_string}
                       pdf={item.pdf}
-                      onPress={()=> this.props.navigation.navigate({
-                        routeName: "analizesItem", 
-                        key: index, 
-                        params: {
-                          res_id: item.res_id, 
-                          date: item.dat_string, 
-                          pdf: item.pdf,
-                          headTxt: item.text,
-                          dateTxt: item.dat_string
-                        }
-                      })}
+                      onPress={() => {
+                        this.props.navigation.navigate({
+                          routeName: "analizesItem", 
+                          key: index, 
+                          params: {
+                            res_id: item.res_id, 
+                            date: item.dat_string, 
+                            pdf: item.pdf,
+                            headTxt: item.text,
+                            dateTxt: item.dat_string
+                          }
+                        });
+                      }}
                     />
                   ))
-                ) : 
-                ( <Text>{ t('analizes:no_analizes_text') }</Text> )
+                ) : ( <Text>{ t('analizes:no_analizes_text') }</Text> )
               )
             }
         </Content>
@@ -82,26 +82,14 @@ class AnalizesScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  analizeTitle: {
-    color: variables.colors.wiolet,
-    fontSize: variables.fSize.medium,
-    fontFamily: variables.fonts.mainFont,
-    width: '100%',
-    textAlign: 'center',
-    marginBottom: 10
-  }
-});
-
 function mapStateToProps(state) {
-  console.log(state.content.analizes)
   return {
-    analizes_list: state.content.analizes.list,
+    analizes_list: state.content.analizes.list
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+  return bindActionCreators(ContentActions, dispatch);
 }
 
 export default withNamespaces('analizes')(connect(mapStateToProps, mapDispatchToProps)(AnalizesScreen));

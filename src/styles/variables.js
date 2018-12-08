@@ -18,8 +18,7 @@ const variables = {
         accentBlue: '#5E96C5'
     },
     fonts: {
-        mainFont: 'HelveticaNeueCyr',
-        // light: 'HelveticaNeueCyr'
+        mainFont: 'HelveticaNeueCyr'
     },
     fSize: {
         extralarge: 25,
@@ -30,4 +29,5 @@ const variables = {
         small: 10,
     } 
 }
-export default variables
+
+export default variables;

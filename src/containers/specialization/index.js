@@ -12,11 +12,11 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import SpecializationItem from '../../components/specialization/SpecializationItem';
 import Popup from '../../components/common/Popup';
 import variables from '../../styles/variables';
-import {APP_IMG_URL} from '../../config';
+import { APP_IMG_URL, CALL_CENTRE_TEL} from '../../config';
 
-const {black, accentBlue} = variables.colors;
-const {medium} = variables.fSize;
-const { mainFont} = variables.fonts;
+const { black, accentBlue } = variables.colors;
+const { medium } = variables.fSize;
+const { mainFont } = variables.fonts;
 
 class SpecializationScreen extends Component {
 
@@ -51,7 +51,7 @@ class SpecializationScreen extends Component {
   }
 
   handleBackButtonClick = () => {
-    if(this.state.modalVisible){
+    if (this.state.modalVisible) {
       this.setState({modalVisible: false})
     } else {
       this.props.navigation.goBack();
@@ -60,7 +60,7 @@ class SpecializationScreen extends Component {
   }
 
   call = () => {
-    Linking.openURL('tel:+87252367132');
+    Linking.openURL(`tel:${CALL_CENTRE_TEL}`);
     this.setState({modalVisible: false});
   }
 
@@ -120,13 +120,24 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   chooseWrap: {
-    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)'
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%',
+    height: '100%', 
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   chooseContent: {
-    position: 'absolute', bottom: 0, zIndex: 3, backgroundColor: 'white', width: '100%', borderRadius: 5
+    position: 'absolute', 
+    bottom: 0, 
+    zIndex: 3, 
+    backgroundColor: 'white', 
+    width: '100%', 
+    borderRadius: 5
   },
   chooseText: {
-    textAlign: 'center', color: black
+    textAlign: 'center', 
+    color: black
   }
 });
 

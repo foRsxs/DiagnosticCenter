@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
+
 import variables from '../../styles/variables'
 
 export default class LinkBtn extends Component {

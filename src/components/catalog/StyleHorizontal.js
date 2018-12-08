@@ -69,12 +69,13 @@ const styles = StyleSheet.create({
     width: 20,
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center' },
+    justifyContent: 'center' 
+  },
   icon: {
     color: 'white',
     fontFamily: variables.fonts.mainFont,
     fontSize: medium
-    }
+  }
 });
 
 export default styles;

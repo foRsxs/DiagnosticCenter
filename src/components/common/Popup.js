@@ -10,6 +10,7 @@ let {width, height} = Dimensions.get('window');
 export default class Popup extends Component {
   render() {
     const {show, firstText, secondText, laberButton, actionButton, labelLink, actionLink, email} = this.props;
+    
     return (
       <Modal
         animationType="fade"

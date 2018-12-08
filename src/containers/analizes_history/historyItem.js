@@ -12,7 +12,6 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 
 class HistoryItemScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +43,7 @@ class HistoryItemScreen extends Component {
     const {history} = this.props;
 
     return (
-      <View style={styles.textWrap}>
+      <View style={{ backgroundColor: 'white', padding: 15, marginTop: 10 }}>
         <HTMLView value={history.data} />
       </View>
     )

@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions} from 'react-native';
 
-import variables from '../../styles/variables'
+import variables from '../../styles/variables';
+
+let {width, height} = Dimensions.get('window');
 
 export default class HeaderBottom extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            listActive: true,
-        }
-      }
-    
+  constructor(props) {
+    super(props)
+    this.state = {
+      listActive: true,
+    }
+  }
+  
   render(){
     const { katalogDoctor = false, search = false, islanguages = false, language, onChangeSearch, text, changeLang, togleClick } = this.props
+
     return(
       <View style={styles.bigContainer}>
         <View style={[styles.container, (islanguages)? {justifyContent: 'center'}: {}] }>
@@ -75,7 +78,7 @@ export default class HeaderBottom extends Component {
     )
   }
 }
-let {width, height} = Dimensions.get('window')
+
 const styles = StyleSheet.create({
   bigContainer: {
     width: '100%',

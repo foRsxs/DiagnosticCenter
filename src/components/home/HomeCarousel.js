@@ -13,6 +13,7 @@ class HomeCarousel extends Component {
   
     _renderItem = ( {item, index} ) => {
       const {navigate} = this.props;
+      
       return (
         <View style={styles.wrapSlide}>
           <TouchableOpacity

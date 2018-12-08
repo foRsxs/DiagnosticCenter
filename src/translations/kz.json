@@ -5,6 +5,7 @@
         "auth_text": "Авторизациялану",
         "need_auth_text": "Авторизациялану қажет", 
         "login_without_auth": "Авторизациясыз кіру",
+        "choose_auth_method": "Кіру әдісін таңдаңыз",
         "pin_create": "PIN кодын жасаңыз",
         "pin_input": "PIN кодты енгізіңіз",
         "auth_face_id": "FaceID арқылы авторизациялану",
@@ -13,7 +14,8 @@
             "pin_code": "PIN код",
             "touch_id": "Touch ID",
             "face_id": "Face ID"
-        }
+        },
+        "phone_not_register": "Сіздің нөміріңіз жүйеде тіркелмеген. Өзіңіздің жеке куәлігіңізді және телефон нөміріңізді электронды поштаға сканерлеңіз:"
     },
     "menu": {
         "home": "Басты бет",
@@ -32,14 +34,14 @@
         "title": "Біздің жеңілдіктер",
         "faq_text_link": "Жиі қойылатын сұрақтар",
         "menu": {
-            "doc_list_1": "Дәрігерлер",
-            "doc_list_2": "тізімі",
-            "cat_services_1": "Қызмет",
-            "cat_services_2": "санаттары",
-            "doc_appointment_1": "Қабылдауға",
-            "doc_appointment_2": "жазылу",
-            "test_results_1": "Талдау",
-            "test_results_2": "нәтижелері"
+        	"doc_list_1": "Тізімі",
+            "doc_list_2": "дәрігерлер",
+            "cat_services_1": "Санаттары",
+            "cat_services_2": "қызмет",
+            "doc_appointment_1": "Жазылу",
+            "doc_appointment_2": "қабылдауға",
+            "test_results_1": "Нәтижелері",
+            "test_results_2": "талдау"
         }
     },
     "listdoctors": {
@@ -52,6 +54,7 @@
     "specialization": {
         "title": "Қызмет санаттары",
         "no_doctor_choose_link_text": "? Қандай дәрігер қажет екенін білмеймін",
+        "no_doctor_text": "Сәйкес келетін санат жоқ", 
         "form": {
             "fisrt_text": "Сіз қандай дәрігерге баруды білмейсіз бе?",
             "last_text": "Саll орталығына хабарласыңыз, сізге міндетті түрде кеңес береді"
@@ -70,7 +73,8 @@
             "selected_service": "таңдалған қызмет",
             "date_time": "Қабылдау күні мен уақыты",
             "room": "кабинет",
-            "success": "дәрігерге жазылу сәтті жүргізілді!"
+            "success": "дәрігерге жазылу сәтті жүргізілді!",
+         	"cancel_recording": "жазылу болдырмау"
         }
     },
     "createrecord": {
@@ -87,28 +91,40 @@
     },
     "analizes": {
         "title": "Менің зерттеу талдауларым",
-        "total_text": "Барлық зерттеу талдаулары"
+        "total_text": "Барлық зерттеу талдаулары",
+        "sub_title": "толық ақпарат",
+        "no_analizes_text": "Талдау нәтижелері жоқ",
+        "text_material": "Материал",
+        "text_date_start": "Тапсырыс күні",
+        "table_text_first": "Өшіру",
+        "table_text_second": "Көрсеткіштері",
+        "table_text_third": "Нәтижесі",
+        "table_text_fourth": "Норма"
     },
     "history": {
         "title": "Ауру тарихы",
         "sub_title": "толық ақпарат",
-        "total_text": "Барлық жазбалар"
+        "total_text": "Барлық жазбалар",
+        "no_histories_text": "Ауру тарихы жоқ"
     },
     "information": {
         "title": "Ақпарат",
-        "sub_title": "пациент назарына"
+        "sub_title": "пациент назарына",
+        "no_information_text": "Ақпарат жоқ"
     },
     "questions": {
         "title": "Дәрігерге сұрақ",
         "doc_no_answered": "Дәрігер бұл сұраққа әлі жауап бермеді",
         "doc_no_questions": "Бұл дәрігерге әлі бірде-бір сұрақ жоқ",
+        "look_answer": "жауапты қарау",
         "form": {
             "title": "Дәрігерге сұрақ",
             "sub_title": "өз сұрағыңызды қойыңыз"
         }
     },
     "faq": {
-        "title": "Жиі қойылатын сұрақтар"
+        "title": "Жиі қойылатын сұрақтар",
+        "no_often_questions_text": "Сұрақ табылмады"
     },
     "contacts": {
         "title": "Байланыс ақпараттары",
@@ -155,8 +171,12 @@
             "add_recording": "Жазба қосу"
         },
         "actions_text": {
+        	"token_not_valid_text": "Сізге қайтадан авторизациядан өту қажет", 
             "question_sent": "Сіздің сұрағыңыз сәтті жөнелтілді",
             "question_text": "Сұрақ қою үшін Сізге авторизациялану қажет",
+            "recording_text": "Жазба парақшасын көру үшін, Сізге авторизациядан өту қажет",
+            "analizes_text": "Талдаулар парақшасын көру үшін, Сізге авторизациядан өту қажет",
+            "history_text": "Ауру тарихы парақшасын көру үшін, Сізге авторизациядан өту қажет",
             "call_centre_text": "Сall-орталығына қоңырау шалу",
             "select_language": "Интерфейс тілін таңдау",
             "select_auth_method": "Авторизация әдісін таңдау",

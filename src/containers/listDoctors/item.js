@@ -213,7 +213,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log(state.content.doctorData)
   return {
     doctor: state.content.doctorData,
     isGuest: state.authorization.isGuest

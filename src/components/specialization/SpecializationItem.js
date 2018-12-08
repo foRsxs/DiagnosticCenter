@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Text, View, Icon} from 'native-base';
-import variables from '../../styles/variables'
+
+import variables from '../../styles/variables';
 
 export default class SpecializationItem extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class SpecializationItem extends Component {
 
   render() {
     let {imageUri, headTxt, subTxt} = this.props;
+
     return (
       <TouchableOpacity
         onPress={() => this.props.onClick()}

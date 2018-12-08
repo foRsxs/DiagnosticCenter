@@ -17,7 +17,6 @@ class FaqScreen extends Component {
   }
   
   getData = (data) => {
-    console.log(data)
     this.props.sendQuestion({type: 'faq', ...data});
   }
 

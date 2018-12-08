@@ -3,5 +3,6 @@
   "displayName": "Diagnostic Center",
   "api_url": "http://89.218.154.86:8081/api",
   "api_img_url": "http://89.218.154.86:8081/",
-  "one_signal_key": "80a04676-cb78-4f3c-89af-da39c0525c03"
+  "one_signal_key": "80a04676-cb78-4f3c-89af-da39c0525c03",
+  "call_centre_tel": "+87252390621"
 }

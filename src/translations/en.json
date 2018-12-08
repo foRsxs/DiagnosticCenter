@@ -1,1 +1,195 @@
-{}
+﻿{
+    "authorization": {
+        "phone": "TEL",
+        "inn": "IIN",
+        "auth_text": "Log in",
+        "need_auth_text": "Authorization required", 
+        "login_without_auth": "Login without authorization",
+        "choose_auth_method": "Select login method",
+        "pin_create": "Create PIN code",
+        "pin_input": "Enter pin code",
+        "auth_face_id": "Authorization FaceID",
+        "auth_touch_id": "Authorization TouchID",
+        "auth_type": {
+            "pin_code": "PIN code",
+            "touch_id": "TouchID",
+            "face_id": "FaceID"
+        },
+        "phone_not_register": "Your number is not registered in the system. Please send a scan of your ID and phone number to an e-mail:"
+    },
+    "menu": {
+        "guest": "Guest",
+        "home": "Main",
+        "doctors": "Doctors",
+        "services": "Services",
+        "records": "My appointments",
+        "analyzes": "My analyzes",
+        "contacts": "Contacts",
+        "feedback": "Feedback",
+        "settings": "Settings",
+        "logout": "Exit",
+        "history": "Medical history",
+        "information": "Information"
+    },
+    "home": {
+        "title": "Our promotions",
+        "faq_text_link": "FAQ",
+        "menu": {
+            "doc_list_1": "List",
+            "doc_list_2": "doctors",
+            "cat_services_1": "Category",
+            "cat_services_2": "service",
+            "doc_appointment_1": "Appointment",
+            "doc_appointment_2": "to visit",
+            "test_results_1": "Results",
+            "test_results_2": "analyzes"
+        }
+    },
+    "listdoctors": {
+        "title": "List of doctors",
+        "no_doctors_text": "No appropriate doctors",
+        "item": {
+            "title": "Card of doctor"
+        }
+    },
+    "specialization": {
+        "title": "Service Categories",
+        "no_doctor_choose_link_text": "? I do not know which doctor is needed",
+        "no_doctor_text": "No appropriate categories", 
+        "form": {
+            "fisrt_text": "You do not know which doctor to contact?",
+            "last_text": "Call the call center you will be advised"
+        }
+    },
+    "recordings": {
+        "title": "Journal of appointments",
+        "total_text": "Total appointments",
+        "no_recordings_text": "You're don't have any appointments",
+        "in_text": "in",
+        "short_room_text": "cab.",
+        "item": {
+            "title": "Appointments to the doctor",
+            "check_info": "check information",
+            "make_appointment": "you make an appointment",
+            "selected_service": "selected service",
+            "date_time": "date and time of visit",
+            "room": "cabinet",
+            "success": "Medical appointment has been successfully created!",
+            "cancel_recording": "post canceled"
+        }
+    },
+    "createrecord": {
+        "title": "Appointment",
+        "form": {
+            "consultation": "Consultation",
+            "research": "Research",
+            "select_specialty": "Choose a specialty",
+            "select_service": "Choose a service",
+            "select_doctor": "Choose a doctor",
+            "select_date": "Choose a date",
+            "select_time": "Choose a time"
+        }
+    },
+    "analizes": {
+        "title": "My analyzes",
+        "total_text": "Total analyzes",
+        "sub_title": "detailed information",
+        "no_analizes_text": "No test results",
+        "text_material": "Material",
+        "text_date_start": "Order date",
+        "table_text_first": "Off",
+        "table_text_second": "Indicator",
+        "table_text_third": "Result",
+        "table_text_fourth": "Norm"
+    },
+    "history": {
+        "title": "Medical history",
+        "sub_title": "detailed information",
+        "total_text": "Total records",
+        "no_histories_text": "No medical history"
+    },
+    "information": {
+        "title": "Information",
+        "sub_title": "patient information",
+        "no_information_text": "No information"
+    },
+    "questions": {
+        "title": "Question to the doctor",
+        "doc_no_answered": "The doctor has not answered this question yet",
+        "doc_no_questions": "This doctor has no questions yet",
+        "look_answer": "see answer",
+        "form": {
+            "title": "Question to the doctor",
+            "sub_title": "write your question"
+        }
+    },
+    "faq": {
+        "title": "Frequently asked Questions",
+        "no_often_questions_text": "No questions found"
+    },
+    "contacts": {
+        "title": "Contacts",
+        "address": "Address",
+        "address_text": "Kazakhstan, 160021, Shymkent, ul. Baitursynov 68a",
+        "phones": "Telephones",
+        "call_centre": "Call-center",
+        "main_doc_office": "Reception of the chief doctor",
+        "main_doc_deputy": "Deputy Head Doctor",
+        "phone_of_trust": "Helpline",
+        "email_text": "Email",
+        "social_text": "Social networks",
+        "feedback_text": "Feedback",
+        "faq": {
+            "title": "Feedback",
+            "sub_title": "write to us"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "sub_title": "patient information",
+        "items": {
+            "auth": "Authorization",
+            "language": "Interface language",
+            "push": "Push notifications"
+        }
+    },
+    "common": {
+        "actions": {
+            "ok": "Ок",
+            "save": "Save",
+            "send": "Send to",
+            "cancel": "Cancel",
+            "back": "Back",
+            "call": "Call",
+            "close": "Close",
+            "exit": "Enter",
+            "confirm": "Confirm",
+            "cancel_recording": "Cancel appointment",
+            "send_msg": "send a message",
+            "send_to_mail": "send an e-mail",
+            "save_to_gallery": "Save to gallery",
+            "appointment": "Appointment",
+            "ask_question": "Ask a Question",
+            "add_recording": "Add a appointment"
+        },
+        "actions_text": {
+            "token_not_valid_text": "You need to re-login", 
+            "question_sent": "Your question has been sent successfully",
+            "question_text": "To ask questions, you need to log in",
+            "recording_text": "In order to view the page of records, you need to log in",
+            "analizes_text": "To view the analysis page, you need to log in",
+            "history_text": "To view the medical history page, you need to log in",
+            "call_centre_text": "Call to call-center",
+            "select_language": "Select interface language",
+            "select_auth_method": "Choose authorization method",
+            "your_question": "Your question",
+            "your_email": "Your e-mail",
+            "check_data": "Check data"
+        },
+        "errors": {
+            "wrong_pin_code": "Invalid PIN code",
+            "wrong_phone": "Invalid phone number",
+            "wrong_inn": "Incorrect IIN number"
+        }
+    }
+}

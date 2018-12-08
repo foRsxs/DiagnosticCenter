@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 
-
 import variables from '../../styles/variables';
+
 const { large } = variables.fSize;
-const {darkBlue, white, accentBlue} = variables.colors;
-const {mainFont} = variables.fonts;
+const { darkBlue, white, accentBlue } = variables.colors;
+const { mainFont } = variables.fonts;
+let { width } = Dimensions.get('window');
 
 export default class Header extends Component {
   constructor(props) {
@@ -14,8 +15,10 @@ export default class Header extends Component {
     this.state = {
     };
   }
+
   render() {
     const { inversion = false, backDisabled = false, disabledButtons = false } = this.props
+
     return (
       <View style={!inversion ? styles.container : styles.inContainer}>
         {(!disabledButtons) && (
@@ -28,27 +31,25 @@ export default class Header extends Component {
               }
             </TouchableOpacity>
             {
-              (!backDisabled) ?
-                <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
-                  {
-                    (!inversion) ?
-                      <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
-                      <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
-                  }
-
-                </TouchableOpacity> : null
+              (!backDisabled) && (
+              <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
+                {
+                  (!inversion) ?
+                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
+                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
+                }
+              </TouchableOpacity>
+              )
             }
           </View>
         )}
         <View style={styles.textContainer} >
           <Text style={!inversion ? styles.text : styles.inText}>{this.props.text.toUpperCase()}</Text>
-        </View>
-        
+        </View>        
       </View>
     )
   }
 }
-let { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {

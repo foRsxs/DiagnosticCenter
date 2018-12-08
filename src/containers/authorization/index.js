@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Image, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-
 import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
@@ -11,6 +10,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TouchID from 'react-native-touch-id';
 import TextInputMask from 'react-native-text-input-mask';
+
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
@@ -19,7 +19,7 @@ import ConfirmationCode from '../../components/autorization/ConfirmationCode';
 import Popup from '../../components/common/Popup';
 
 let { width, height } = Dimensions.get('window');
-const {accentBlue, white, darkBlue, mediumBlack} = variables.colors;
+const {accentBlue, white, mediumBlack} = variables.colors;
 const {mainFont} = variables.fonts;
 const {large, normal, main, medium} = variables.fSize;
 
@@ -53,7 +53,6 @@ class AuthorizationScreen extends Component {
       (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
     });
     AsyncStorage.getItem('api_token').then((resp) => {
-      // this.props.saveUser({api_token: 'FY0EElsSq85KFOmFiFQtDUs25BrIysHaRX0Ko0ws97xGiddtDBsB2xVybxDl'});
       this.props.saveUser({api_token: resp});
     });
     AsyncStorage.getItem('methods_auth').then((resp) => {
@@ -107,16 +106,21 @@ class AuthorizationScreen extends Component {
     let {number, personalId} = this.state;
 
     if (this.checkValid(number, personalId)) {
-      this.setState({loading: true})
-      // this.props.authUser({phone: 7777777777, iin: 777777777777})//
+      this.setState({loading: true});
       this.props.authUser({phone: number, iin: personalId})
         .then((resp)=>{
-          this.setState({message: ''});
+          this.setState({
+            message: '',
+            loading: false
+          });
         })
         .catch((e)=> {
-          this.setState({ showPopup: (e.code === 403) ? true : false, message: e.error})
-        })
-      this.setState({loading: false}) 
+          this.setState({ 
+            showPopup: (e.code === 403) ? true : false, 
+            message: e.error,
+            loading: false
+          });
+        });
     }
   }
 
@@ -139,9 +143,9 @@ class AuthorizationScreen extends Component {
           this.setState({isFaceId: true});
           this.props.setMethodsAuthDevice({face: true, touch: false});
         } else if (biometryType === 'TouchID' || biometryType) {
-          this.setState({isTouchId: true});  
-          this.props.setMethodsAuthDevice({face: false, touch: true}); 
-        } 
+          this.setState({isTouchId: true});
+          this.props.setMethodsAuthDevice({face: false, touch: true});
+        }
       })
       .catch(() => {
         this.setState({isTouchId: false, isFaceId: false});
@@ -158,7 +162,8 @@ class AuthorizationScreen extends Component {
       sensorDescription: (this.state.isTouchId) ? t('authorization:auth_type.touch_id') : t('authorization:auth_type.face_id'),
       cancelText: t('common:actions.cancel'),
     }
-    TouchID.authenticate('',optionalConfigObject)
+
+    TouchID.authenticate('', optionalConfigObject)
     .then(() => {
       this.props.setAuthorized();
     })
@@ -171,7 +176,7 @@ class AuthorizationScreen extends Component {
   }
 
   renderConfirmCodeChoose() {
-    let {methods_auth_local, isFaceId, isTouchId} = this.state;
+    let { methods_auth_local, isFaceId, isTouchId } = this.state;
     let { t, changeMethodsAuth } = this.props;
 
     return (
@@ -211,20 +216,20 @@ class AuthorizationScreen extends Component {
             )
           }
         </Content>
-        <CustomBtn 
-          label={t('common:actions.save')} 
-          onClick={()=> changeMethodsAuth({methods_auth: methods_auth_local, confirmed: (methods_auth_local === 'code')? false: true})} 
+        <CustomBtn
+          label={t('common:actions.save')}
+          onClick={()=> changeMethodsAuth({methods_auth: methods_auth_local, confirmed: (methods_auth_local === 'code')? false: true})}
         />
       </View>
     )
   }
 
-  renderAuthView() { 
+  renderAuthView() {
     const {message, loading, } = this.state;
     const {t, authMessage} = this.props;
 
     return (
-      <View style={{position: 'relative',  alignItems: 'center', zIndex: 3, height: height-150, padding: 15, paddingBottom: 16}}>       
+      <View style={{position: 'relative',  alignItems: 'center', zIndex: 3, height: height-150, padding: 15, paddingBottom: 16}}>
         <Image style={{ zIndex: 1, height: 130, marginBottom: 10 }} resizeMode='contain' fadeDuration={0} source={require('../../../assets/img/logo.png')} />
         <View style={styles.content}>
           <View style={{marginBottom: 20, position: 'relative'}}>
@@ -240,7 +245,7 @@ class AuthorizationScreen extends Component {
             </View>
             <View style={styles.textInpWrap}>
               <Text style={styles.textInp} >{ t('authorization:phone') }</Text>
-            </View> 
+            </View>
           </View>
           <View style={{position: 'relative'}}>
             <View style={{ alignItems: 'center' }}>
@@ -261,7 +266,7 @@ class AuthorizationScreen extends Component {
           {(authMessage) && <Text style={{color: accentBlue, fontFamily: mainFont, textAlign: 'center', marginTop: 10, fontSize: medium}}>{authMessage}</Text>}
           {(message.length) ? <Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>: false}
         </View>
-        {(loading)? (<ActivityIndicator size="small" color={accentBlue} />): (<CustomBtn label={ t('authorization:auth_text') } onClick={()=>this.authUser()} />)}    
+        {(loading)? (<ActivityIndicator size="small" color={accentBlue} />): (<CustomBtn label={ t('authorization:auth_text') } onClick={()=>this.authUser()} />)}
       </View>
     )
   }
@@ -274,23 +279,23 @@ class AuthorizationScreen extends Component {
 
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}} >
-        <Text style={styles.title}>{(isTouchId) ? t('authorization:auth_touch_id') : t('authorization:auth_face_id')}</Text> 
+        <Text style={styles.title}>{(isTouchId) ? t('authorization:auth_touch_id') : t('authorization:auth_face_id')}</Text>
         <TouchableOpacity onPress={()=>this._openScan()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} activeOpacity={1}>
           <Text style={{color: 'transparent'}}>122</Text>
         </TouchableOpacity>
       </View>
     )
   }
-  
+
   renderPinCode(type) {
     const { message } = this.state;
     const { t, pinCode } = this.props;
 
     return (
       <View style={{position: 'relative', zIndex: 2, flex: 1}}>
-        <Text style={styles.title}>{(!pinCode) ? t('authorization:pin_create') : t('authorization:pin_input') }</Text> 
-        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, paddingBottom: 20, height: '100%'}} >      
-          <ConfirmationCode 
+        <Text style={styles.title}>{(!pinCode) ? t('authorization:pin_create') : t('authorization:pin_input') }</Text>
+        <Content contentContainerStyle={{position: 'relative', zIndex: 2, justifyContent: 'space-between', padding: 15, paddingBottom: 20, height: '100%'}} >
+          <ConfirmationCode
             message={message}
             new_user={(type == 'new')}
             onPress={
@@ -314,11 +319,11 @@ class AuthorizationScreen extends Component {
 
     return (
       <Container style={styles.container}>
-        <KeyboardAwareScrollView 
-          enableOnAndroid={true} 
-          keyboardShouldPersistTaps='handled' 
-          style={{flex:1}} 
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}} 
+        <KeyboardAwareScrollView
+          enableOnAndroid={true}
+          keyboardShouldPersistTaps='handled'
+          style={{flex:1}}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}}
         >
           <Header disabledButtons={true} text="" navigation = {this.props.navigation} />
           <HeaderBottom language={languages_key} islanguages={!token} changeLang={(value)=>this.changeLang(value)}  />
@@ -328,7 +333,7 @@ class AuthorizationScreen extends Component {
           {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
           {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
         </KeyboardAwareScrollView>
-        <Popup 
+        <Popup
           show={showPopup}
           firstText={t('authorization:phone_not_register')}
           email={'email@diagnostica.kz'}
@@ -388,14 +393,14 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   title: {
-    color: 'white', 
-    fontFamily: mainFont, 
-    fontSize: large, 
-    position: 'absolute', 
-    top: -60, 
-    zIndex: 1, 
-    left: 0, 
-    textAlign: 'center', 
+    color: 'white',
+    fontFamily: mainFont,
+    fontSize: large,
+    position: 'absolute',
+    top: -60,
+    zIndex: 1,
+    left: 0,
+    textAlign: 'center',
     width: width
   }
 });

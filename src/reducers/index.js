@@ -5,6 +5,6 @@ import content from './content';
 const rootReducer = combineReducers({
   authorization,
   content
-})
+});
 
-export default rootReducer
+export default rootReducer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, PermissionsAndroid } from 'react-native';
+import { Alert, StyleSheet, View, Text, TouchableOpacity, Image, PermissionsAndroid } from 'react-native';
 import Share from 'react-native-share';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { withNamespaces } from 'react-i18next';
@@ -13,32 +13,34 @@ const { large, main } = variables.fSize;
 class ShareLinks extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
-  async requestFilePermission(url, title, text) {
+  async requestFilePermission(url, title) {
+    const { t } = this.props;
+
     if (!url && !title) return;
 
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
         {
-          'title': 'Сохранить файл',
-          'message': 'Сохранить файл в хранилище'
+          'title': t('common:files.action_title'),
+          'message': t('common:files.action_message')
         }
       );
 
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        this.saveFile(url, title, text);
+        this.saveFile(url, title);
       } else {
-        console.log("Camera permission denied")
+        Alert.alert(t('common:files.action_decline'));
       }
     } catch (err) {
       console.warn(err)
     }
   }
   
-  saveFile = (url, title, text) => {
+  saveFile = (url, title) => {
+    const { t } = this.props;
     const { config, fs } = RNFetchBlob;
     const FileDir = fs.dirs.DownloadDir;
 
@@ -51,16 +53,20 @@ class ShareLinks extends Component {
       }
     }
 
-    config(options).fetch('GET', url).then((res) => {
-      console.log(res)
-    });
+    config(options).fetch('GET', url)
+      .then(() => {
+        Alert.alert(t('common:files.action_success'));
+      })
+      .catch(() => {
+        Alert.alert(t('common:files.action_error'));
+      });
   }
 
   shareLink = (url, title, text) => {
     if (!url && !title) return;
 
     const shareOptions = {
-      title: title,
+      title: `${title} ${text}`,
       subject: text,
       url: url,
       social: Share.Social.EMAIL
@@ -90,7 +96,7 @@ class ShareLinks extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 5}}
-          onPress={()=> this.requestFilePermission(url, title, text)}
+          onPress={()=> this.requestFilePermission(url, title)}
         >
           <View style={ styles.actionsWrap }>
             <Image

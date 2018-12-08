@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
-import {Container, Content, View, Text} from 'native-base';
+import { BackHandler, ActivityIndicator } from 'react-native';
+import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,9 +12,9 @@ import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-const {accentBlue} = variables.colors;
-const {medium} = variables.fSize;
-const { mainFont} = variables.fonts;
+const { accentBlue } = variables.colors;
+const { medium } = variables.fSize;
+const { mainFont } = variables.fonts;
 
 class ReceptionListScreen extends Component {
 
@@ -44,10 +44,10 @@ class ReceptionListScreen extends Component {
   }
 
   render() {
-    const {loading} = this.state;
+    const { loading } = this.state;
     const { navigate } = this.props.navigation;
     const { t, listTalons } = this.props;
-    console.log(listTalons)
+ 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
@@ -77,8 +77,7 @@ class ReceptionListScreen extends Component {
                     })
                   }/>
                 ))
-              ) :
-              ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('recordings:no_recordings_text') }</Text> )
+              ) : ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('recordings:no_recordings_text') }</Text> )
             )
           }
         </Content >
@@ -91,7 +90,6 @@ class ReceptionListScreen extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.content.listTalons)
   return {
     listTalons: state.content.listTalons,
   }

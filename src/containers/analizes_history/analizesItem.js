@@ -17,7 +17,6 @@ const { lightGray, accentBlue } = variables.colors;
 const { mainFont } = variables.fonts;
 
 class AnalizesItemScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +37,7 @@ class AnalizesItemScreen extends Component {
   }
 
   componentDidMount() {
-    const {res_id} = this.state;
+    const { res_id } = this.state;
 
     this.props.getAnalizes({res_id});
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
@@ -61,11 +60,17 @@ class AnalizesItemScreen extends Component {
     const {analizes, t} = this.props;
     const state = this.state;
     const tableData = [];
+
     for (let i = 0; i < analizes.length; i += 1) {
       const rowData = [];
+
       for (let j = 0; j < 4; j += 1) {
-        (j === 0) ? rowData.push(`${(analizes[i].DIST) ? analizes[i].DIST: ''}`) : (j === 1) ? rowData.push(`${analizes[i].MEASUR}`): (j === 2) ? rowData.push(`${analizes[i].TEXT} ${(analizes[i].UNIT)? analizes[i].UNIT: ''}`) : rowData.push(`${analizes[i].NORM}`)
+        (j === 0) ? rowData.push(`${(analizes[i].DIST) ? analizes[i].DIST: ''}`) 
+        : (j === 1) ? rowData.push(`${analizes[i].MEASUR}`) 
+        : (j === 2) ? rowData.push(`${analizes[i].TEXT} ${(analizes[i].UNIT)? analizes[i].UNIT: ''}`) 
+        : rowData.push(`${analizes[i].NORM}`);
       }
+
       tableData.push(rowData);
     }
 
@@ -112,8 +117,8 @@ class AnalizesItemScreen extends Component {
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
         <HeaderBottom text={t('analizes:sub_title')} />
-        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
-          {loading ? <ActivityIndicator size="large" color={accentBlue}  /> : this.renderTable()}
+        <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading) ? {flex: 1, justifyContent: 'center'} : {}}>
+          {loading ? <ActivityIndicator size="large" color={accentBlue} /> : this.renderTable()}
         </Content>
         <ShareLinks url={pdf} title={headTxt} text={dateTxt} />
       </Container>
@@ -122,11 +127,28 @@ class AnalizesItemScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  header: { height: 50, backgroundColor: lightGray},
-  text: { textAlign: 'center', fontWeight: '100', fontFamily: mainFont },
-  dataWrapper: { marginTop: -1 },
-  row: { height: 40, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    padding: 16, 
+    paddingTop: 30, 
+    backgroundColor: '#fff' 
+  },
+  header: { 
+    height: 50, 
+    backgroundColor: lightGray
+  },
+  text: { 
+    textAlign: 'center', 
+    fontWeight: '100', 
+    fontFamily: mainFont 
+  },
+  dataWrapper: { 
+    marginTop: -1 
+  },
+  row: { 
+    height: 40, 
+    backgroundColor: '#fff' 
+  }
 });
 
 function mapStateToProps(state) {
@@ -136,7 +158,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+  return bindActionCreators(ContentActions, dispatch);
 }
 
 export default withNamespaces(['analizes', 'common'])(connect(mapStateToProps, mapDispatchToProps)(AnalizesItemScreen));

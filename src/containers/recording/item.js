@@ -13,12 +13,11 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 import Popup from '../../components/common/Popup';
 
-const { accentBlue } = variables.colors;
+const { accentBlue, lightGray, mediumBlack, black } = variables.colors;
 const { mainFont } = variables.fonts;
-const { medium }  = variables.fSize;
+const { medium, large, main }  = variables.fSize;
 
 class ReceptionInfoItemScreen extends Component {
-
   constructor(props) {
     super(props);
 
@@ -33,6 +32,8 @@ class ReceptionInfoItemScreen extends Component {
       spec: (props.navigation.state.params) ? props.navigation.state.params.spec: null,
       serv: (props.navigation.state.params) ? props.navigation.state.params.serv: null,
       price: (props.navigation.state.params) ? props.navigation.state.params.price: null,
+      headTxt: (props.navigation.state.params) ? `${props.navigation.state.params.doctor}, ${props.navigation.state.params.spec}` : null, 
+      dateTxt: (props.navigation.state.params) ? `${props.navigation.state.params.dd} ${props.navigation.state.params.time}` : null,
       pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf: null,
       modalVisible: false,
       hideButton: false,
@@ -142,6 +143,39 @@ const styles = StyleSheet.create({
     width: '100%', 
     textAlign: 'center',
     marginBottom: 5
+  },
+  wrapName: {
+    backgroundColor: lightGray, 
+    width: '100%', 
+    textAlign: 'center', 
+    borderRadius: 10, 
+    paddingHorizontal: 0, 
+    paddingVertical: 10
+  },
+  txtName: {
+    color: black, 
+    fontFamily: mainFont,
+    fontSize: large, 
+    width: '100%', 
+    textAlign: 'center'
+  },
+  txtSubname: {
+    color: mediumBlack, 
+    fontFamily: mainFont,
+    fontSize: main, 
+    marginTop: 5,
+    width: '100%', 
+    textAlign: 'center'
+  },
+  actionsWrap: {
+    justifyContent: 'flex-start', 
+    flexDirection: 'row', 
+    alignItems: 'center'
+  },
+  actionsImg: {
+    width: 20, 
+    height: 15, 
+    marginRight: 10
   }
 });
 

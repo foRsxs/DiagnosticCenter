@@ -12,6 +12,7 @@ export default class CatalogListItem extends Component {
 
   renderCardView() {
     let {imageUri, name, position, category, experience} = this.props;
+    
     return (
       <TouchableOpacity onPress={() => this.props.onClick()} >
         <View style={verticalStyles.itemWrap}>

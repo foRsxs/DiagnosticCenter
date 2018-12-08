@@ -12,15 +12,15 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const {accentBlue} = variables.colors;
-const {medium} = variables.fSize;
-const { mainFont} = variables.fonts;
+const { accentBlue } = variables.colors;
+const { medium } = variables.fSize;
+const { mainFont } = variables.fonts;
 
 class ServicesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spec_id: (props.navigation.state.params)? props.navigation.state.params.spec_id: null,
+      spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       listview: true,
       loading: true,
       sorted_list_Doctors: props.list_Doctors,
@@ -37,11 +37,17 @@ class ServicesScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.list_Doctors !== this.props.list_Doctors) this.setState({loading: false, sorted_list_Doctors: this.props.list_Doctors});
+    if (prevProps.list_Doctors !== this.props.list_Doctors) {
+      this.setState({
+        loading: false, 
+        sorted_list_Doctors: this.props.list_Doctors
+      });
+    }
   }
 
   handleChange = (value) => {
     const {list_Doctors} = this.props;
+    
     function findElements(item) {
       return `${item.lastname} ${item.firstname} ${item.secondname}`.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }

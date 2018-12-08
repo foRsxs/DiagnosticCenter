@@ -12,7 +12,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import LinkBtn from '../../components/common/LinkBtn';
 import variables from '../../styles/variables';
-import {APP_IMG_URL} from '../../config';
+import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
 
 const {accentBlue} = variables.colors;
 
@@ -34,7 +34,7 @@ class InfoDetailScreen extends Component {
   }
 
   componentDidMount() {
-    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({loading: false}); 
+    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({loading: false});
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
@@ -69,7 +69,7 @@ class InfoDetailScreen extends Component {
 
   renderImage = () => {
     const {image, openPopup} = this.state;
-    
+
     return (
       <View style={{paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity onPress={this.openPopup} style={styles.iconList}>
@@ -119,7 +119,7 @@ class InfoDetailScreen extends Component {
           {!(post_id) && this.staticContent()}
           {(post_id) && this.dynamicContent()}
         </Content>
-        { (call) && <LinkBtn label={ t('common:actions_text.call_centre_text') } onClick={()=> Linking.openURL('tel:+87252367132') }/>}
+        { (call) && <LinkBtn label={ t('common:actions_text.call_centre_text') } onClick={()=> Linking.openURL(`tel:${CALL_CENTRE_TEL}`) }/>}
       </Container>
     )
   }
