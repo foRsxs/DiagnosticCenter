@@ -61,6 +61,7 @@ class ReceptionInfoItemScreen extends Component {
 
   _onClick = () => {
     const {reserved, rnumb_id, date, serv_id} = this.state;
+
     if (!reserved) {
       this.props.saveOrder({rnumb_id, date, serv_id});
     } else {
@@ -89,6 +90,7 @@ class ReceptionInfoItemScreen extends Component {
               <Text style={styles.txtSubname}>{spec}</Text>
             </View>
           </View>
+          { (serv) ? (
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
             <View style={styles.wrapName}>
@@ -96,6 +98,14 @@ class ReceptionInfoItemScreen extends Component {
               <Text style={styles.txtSubname}>{price}</Text>
             </View>
           </View>
+          ) : (
+          <View style={styles.itemWrap}>
+            <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
+            <View style={styles.wrapName}>
+              <Text style={styles.txtName}>{spec}</Text>
+            </View>
+          </View>
+          )}
           <View style={styles.itemWrap}>
             <Text style={styles.txtHead}>{ t('recordings:item.date_time') }:</Text>
             <View style={styles.wrapName}>

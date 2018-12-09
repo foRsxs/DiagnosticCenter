@@ -49,7 +49,8 @@
         "title": "List of doctors",
         "no_doctors_text": "No appropriate doctors",
         "item": {
-            "title": "Card of doctor"
+            "title": "Card of doctor",
+            "experience": "Work experience"
         }
     },
     "specialization": {
@@ -190,6 +191,13 @@
             "wrong_pin_code": "Invalid PIN code",
             "wrong_phone": "Invalid phone number",
             "wrong_inn": "Incorrect IIN number"
+        },
+        "files": {
+            "action_title": "Save file",
+            "action_message": "App trying to save file in folder Downloads",
+            "action_success": "File success save in folder Downloads",
+            "action_decline": "Access denied to save file",
+            "action_error": "An error occurred while saving the file, try again later"
         }
     }
 }

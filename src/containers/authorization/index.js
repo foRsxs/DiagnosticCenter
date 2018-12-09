@@ -77,8 +77,17 @@ class AuthorizationScreen extends Component {
     this.setState({ number: value });
   }
 
-  onChangeId = (value) => {
-    this.setState({ personalId: value });
+  onChangeId = (text) => {
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (var i=0; i < text.length; i++) {
+      if(numbers.indexOf(text[i]) > -1 ) {
+        newText = newText + text[i];
+      }
+    }
+
+    this.setState({ personalId: newText });
   }
 
   clickOnPopup = () => {
@@ -225,7 +234,7 @@ class AuthorizationScreen extends Component {
   }
 
   renderAuthView() {
-    const {message, loading, } = this.state;
+    const {message, loading, personalId } = this.state;
     const {t, authMessage} = this.props;
 
     return (
@@ -249,7 +258,7 @@ class AuthorizationScreen extends Component {
           </View>
           <View style={{position: 'relative'}}>
             <View style={{ alignItems: 'center' }}>
-              <TextInput style={styles.input} onChangeText={(text) => this.onChangeId(text)} placeholder='' keyboardType='number-pad' maxLength={12}/>
+              <TextInput style={styles.input} onChangeText={(text) => this.onChangeId(text)} value={personalId} keyboardType='number-pad' maxLength={12}/>
             </View>
             <View style={styles.textInpWrap}>
               <Text style={styles.textInp}>{ t('authorization:inn') }</Text>
@@ -281,7 +290,7 @@ class AuthorizationScreen extends Component {
       <View style={{position: 'relative', zIndex: 2, flex: 1}} >
         <Text style={styles.title}>{(isTouchId) ? t('authorization:auth_touch_id') : t('authorization:auth_face_id')}</Text>
         <TouchableOpacity onPress={()=>this._openScan()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} activeOpacity={1}>
-          <Text style={{color: 'transparent'}}>122</Text>
+          <Text style={{color: 'transparent'}}>1</Text>
         </TouchableOpacity>
       </View>
     )

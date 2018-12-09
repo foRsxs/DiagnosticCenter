@@ -1,7 +1,7 @@
 const variables = {
     colors: {
         blue: '#4e9eff',
-        lightBlue: 'rgba(78, 158, 255, 0.25)',
+        lightBlue: 'rgba(94, 150, 197, 0.15)',
         darkBlue: '#1C6693',
         white: '#ffffff',
         black: '#383838',

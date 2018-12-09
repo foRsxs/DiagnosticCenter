@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View} from 'native-base';
-import Share from 'react-native-share';
 import { withNamespaces } from 'react-i18next';
 
+import CShare from '../../components/common/CShare';
 import variables from '../../styles/variables';
 
 const {accentBlue, black, backgroundBlue, mediumBlack, red} = variables.colors;
 const {mainFont} = variables.fonts;
-const { medium, normal, main} = variables.fSize;
+const { medium, normal, main } = variables.fSize;
 
 class ReceptionListItem extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class ReceptionListItem extends Component {
   }
 
   render() {
-    let {t, headTxt, servTxt, timeTxt, nameTxt, disable, onPress} = this.props;
+    let {t, pdf, headTxt, servTxt, timeTxt, nameTxt, disable, onPress} = this.props;
 
     return (
       <View>
@@ -29,30 +29,12 @@ class ReceptionListItem extends Component {
         >
           <View style={ disable ? styles.receptionItemDisable : styles.receptionItem }>
             <Text style={styles.txtTime}>{timeTxt}</Text>
-            <View style={{flexDirection: 'row', alignItems:'center', flexWrap: 'wrap',}}>
+            <View style={{flexDirection: 'row', alignItems:'center', flexWrap: 'wrap'}}>
               <Text style={styles.txtHead}>{headTxt}</Text>
               <Text style={styles.txtHeadServ}>{servTxt}</Text>
             </View>
             <Text style={styles.txtName}>{nameTxt}</Text>
-            { (!disable) && (
-            <TouchableOpacity
-              onPress={() => { 
-                const shareOptions = {
-                  title: nameTxt,
-                  subject: servTxt + timeTxt,
-                  url: '#',
-                };
-                Share.open(shareOptions);
-              }}
-              activeOpacity={0.8}
-              style={styles.moreIcon}>
-              <Image
-                style={{width: 18, height: 20}}
-                resizeMode='contain'
-                source={require('../../../assets/img/more-icon.png')}
-              />
-            </TouchableOpacity>
-            )}
+            { (!disable) && (<CShare url={pdf} title={headTxt} text={dateTxt} />)}
           </View>
         </TouchableOpacity>
         { (disable) && (<Text style={styles.disableText}>{t('recordings:item.cancel_recording')}</Text>) }
@@ -101,13 +83,6 @@ const styles = StyleSheet.create({
     fontFamily: mainFont,
     fontSize: normal,
     marginTop: 5
-  },
-  moreIcon: {
-    width: 20,
-    height: 20,
-    position: 'absolute',
-    top: 28,
-    right: 5
   },
   disableText: {
     textAlign: 'right',

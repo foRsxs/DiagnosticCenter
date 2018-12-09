@@ -90,7 +90,7 @@ export default class Autocompete extends Component {
             sortedData.map((item) => (
               <ListItem 
                 key={(item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null} 
-                style={{marginLeft: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 8, paddingBottom: 8}}
+                style={{marginLeft: 0, paddingLeft: 20, paddingRight: 0, paddingTop: 8, paddingBottom: 8}}
               >
                 <TouchableOpacity
                   activeOpacity={0.8}
@@ -111,7 +111,7 @@ export default class Autocompete extends Component {
   }
 
   render() {
-    const {opened, value, sortedData} = this.state;
+    const { opened, value, sortedData } = this.state;
     const { onTap, contentContainerStyle, label, disabled} = this.props;
     const rotate = this.rotateValue.interpolate({
       inputRange:  [0, 1],
@@ -120,7 +120,7 @@ export default class Autocompete extends Component {
     let height = (sortedData.length > 7) ? 200: (sortedData.length ===0) ? 40 : sortedData.length * 36 + 50;
 
     return (
-      <View style={[(!disabled) ? styles.content: styles.contentDisabled, (opened) ? {height: height}: {},contentContainerStyle]} >
+      <View style={[(!disabled) ? styles.content: styles.contentDisabled, (opened) ? {height: height} : {}, contentContainerStyle]} >
         <TouchableOpacity 
           style={{position: 'relative'}}
           activeOpacity={(disabled)? 1: 0.8}
@@ -135,7 +135,8 @@ export default class Autocompete extends Component {
             source={require('../../../assets/img/arrow.png')}
           />
           {
-            (opened) ?  <TextInput
+            (opened) ?  
+            <TextInput
               style={{color: 'black', fontFamily: mainFont, fontSize: main, marginLeft: 30, paddingLeft: 0, height: 40}}
               onChangeText={(value) => this.onChange(value)}
               value={value}

@@ -13,8 +13,8 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
 
-let { width, height } = Dimensions.get('window');
-const { accentBlue, darkBlue, darkGray, mediumBlack } = variables.colors;
+let { height } = Dimensions.get('window');
+const { white, lightBlue, accentBlue, darkBlue, darkGray, mediumBlack } = variables.colors;
 const { extralarge, medium } = variables.fSize;
 const { mainFont } = variables.fonts;
 
@@ -63,111 +63,101 @@ class DoctorScreen extends Component {
   render() {
     const { docid, loading} = this.state;
     const { t, doctor } = this.props;
+    let description = (doctor) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
 
     return (
-      <View style={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%', backgroundColor: 'white'}}>
-        <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
-        <HeaderBottom />
-        
-        <View style={styles.imageWrap}>
-          {
-            (!loading) && (
-              <Image
-                style={styles.docIcon}
-                resizeMode='contain'
-                source={{uri: `${APP_IMG_URL}photo_doc/${docid}.jpg`}}
-              />
-             
-            )
-            
-          }
-          <View style={{height: height*.22, backgroundColor:'white', marginTop:50, width: width}}/>
-        </View>
-        <ScrollView contentContainerStyle={[{justifyContent: 'space-between', flexGrow: 1}, (loading) ? {justifyContent: 'center'} : {}]}>
-          {
-            (!loading) ? (
-            <View style={styles.docInfoWrap}>
-              <View style={styles.docInfo}>
-                <View style={styles.docInfoBlock}>
-                  <View style={{ width: '100%', paddingRight: 115 }}>
-                    <Text style={styles.headTxt}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
-                    <Text style={styles.subHeadTxt}>{doctor[0].speciality}</Text>
-                  </View>
-                  <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
-                    <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
-                      <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue }}>{ t('common:actions.ask_question') }</Text>
-                      <Image
-                        style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
-                        resizeMode='cover'
-                        source={require('../../../assets/img/conversation.png')}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5 }}>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category}</Text>
-                  {/* <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>| {doctor[0].department}</Text> */}
-                </View>
-              </View>
-              <View style={{ paddingTop: 10, backgroundColor: 'white'  }}>
-                <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].department}</Text>
-                <HTMLView
-                  stylesheet={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}
-                  value={doctor[0].description}
-                />
-              </View>
-            </View>
-            ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
-          }
-          {(!loading && +doctor[0].allow === 1) && (
-          <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
-            <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
+      <ScrollView>
+        <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: 'white'}}>
+          <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
+          <HeaderBottom />        
+          <View style={styles.imageWrap}>
+            {
+              (!loading) && (
+                <Image
+                  style={styles.docIcon}
+                  resizeMode='contain'
+                  source={{uri: `${APP_IMG_URL}photo_doc/${docid}.jpg`}}
+                />)            
+            }
           </View>
-          )}
-        </ScrollView>
-      </View>
+          <View style={[{justifyContent: 'space-between', flexGrow: 1}, (loading) ? {justifyContent: 'center'} : {}]}>
+            {
+              (!loading) ? (
+              <View style={styles.docInfoWrap}>
+                <View style={styles.docInfo}>
+                  <View style={styles.docInfoBlock}>
+                    <View style={{ width: '100%', paddingRight: 115 }}>
+                      <Text style={styles.headTxt}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
+                      <Text style={styles.subHeadTxt}>{doctor[0].speciality}</Text>
+                    </View>
+                    <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
+                      <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
+                        <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue }}>{ t('common:actions.ask_question') }</Text>
+                        <Image
+                          style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
+                          resizeMode='cover'
+                          source={require('../../../assets/img/conversation.png')}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5 }}>
+                    { (doctor[0].experience && doctor[0].category) && (
+                      <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category} | </Text> 
+                    ) }
+                    <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{ t('listdoctors:item.experience') }: {doctor[0].experience}</Text>
+                  </View>
+                </View>
+                <View style={{ paddingHorizontal: 20, paddingVertical: 10}}>
+                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].department}</Text>
+                  <HTMLView
+                    stylesheet={ stylesHtml }
+                    value={`<p>${description}</p>`}
+                  />
+                </View>
+              </View>
+              ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
+            }
+            {(!loading && +doctor[0].allow === 1) && (
+            <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
+              <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
+            </View>
+            )}
+          </View>
+        </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   imageWrap: {
-    width: width,
+    width: '100%',
     height: height*0.3,
+    marginTop: -50,
+    zIndex: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    top: 70,
-    left: 0,
-    zIndex: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    position: 'relative',
     overflow: 'hidden',
   },
   docIcon: {
-    position: 'absolute',
     width: '100%',
-    zIndex:2,
+    paddingHorizontal: 20,
+    position: 'absolute',
     height: height*0.30,
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    overflow: 'hidden'
+    borderTopRightRadius: 10
   },
   docInfoWrap: {
-    width: '100%',
-    paddingTop: height*0.27,
-    paddingHorizontal: 20,
-    paddingBottom: 10,
     justifyContent: 'flex-end',
-    marginTop: -20,
     width: '100%',
   },
   docInfo: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    borderBottomColor: accentBlue
+    backgroundColor: lightBlue,    
+    padding: 20,
   },
   docInfoBlock: {
     width: '100%',
@@ -210,11 +200,25 @@ const styles = StyleSheet.create({
     padding: 7,
     paddingBottom: 5,
     justifyContent: 'space-between',
+    backgroundColor: white,
     borderColor: accentBlue,
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 5
   }
+});
+
+const stylesHtml = StyleSheet.create({
+  p: {
+    margin: 0,
+    fontSize: variables.fSize.main, 
+    fontFamily: variables.fonts.mainFont, 
+    color: variables.colors.mediumBlack
+  },
+  ul: {
+    marginTop: 0,
+    padding: 0,
+  },
 });
 
 function mapStateToProps(state) {

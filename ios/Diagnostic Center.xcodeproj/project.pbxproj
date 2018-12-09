@@ -1417,7 +1417,6 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
-					"\"$(SRCROOT)/Diagnostic Center\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1460,7 +1459,6 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
-					"\"$(SRCROOT)/Diagnostic Center\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

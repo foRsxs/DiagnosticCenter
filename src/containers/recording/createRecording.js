@@ -250,7 +250,7 @@ class ReceptionInfoScreen extends Component {
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
 
     return (
-      <Container >
+      <Container>
         <ScrollView scrollEnabled={enableScroll}>   
           <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
           <HeaderBottom />

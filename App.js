@@ -7,9 +7,10 @@ import OneSignal from 'react-native-onesignal';
 
 import MainStackRouter from './src/routers/MainStackRouter';
 import configureStore from './src/store/configureStore';
-
+import variables from './src/styles/variables';
 import { ONE_SIGNAL_KEY } from './src/config';
 
+const { accentBlue } = variables.colors;
 const store = configureStore();
 
 const WrappedStack = ({ t }) => <MainStackRouter screenProps={{ t }} />;
@@ -26,7 +27,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    StatusBar.setBackgroundColor('#5E96C5');
+    StatusBar.setBackgroundColor(accentBlue);
   }
 
   render() {

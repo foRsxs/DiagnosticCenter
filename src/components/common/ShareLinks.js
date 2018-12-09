@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, View, Text, TouchableOpacity, Image, PermissionsAndroid } from 'react-native';
+import { Platform, Alert, StyleSheet, View, Text, TouchableOpacity, Image, PermissionsAndroid } from 'react-native';
 import Share from 'react-native-share';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { withNamespaces } from 'react-i18next';
@@ -15,24 +15,28 @@ class ShareLinks extends Component {
     super(props);
   }
 
-  async requestFilePermission(url, title) {
+  async requestFilePermission(url, title, text, save) {
     const { t } = this.props;
 
     if (!url && !title) return;
 
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          'title': t('common:files.action_title'),
-          'message': t('common:files.action_message')
-        }
-      );
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            'title': t('common:files.action_title'),
+            'message': t('common:files.action_message')
+          }
+        );
 
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        this.saveFile(url, title);
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          (save) ? this.saveFile(url, title) : this.sharePDF(url, title, text);
+        } else {
+          Alert.alert(t('common:files.action_decline'));
+        }
       } else {
-        Alert.alert(t('common:files.action_decline'));
+        (save) ? this.saveFile(url, title) : this.sharePDF(url, title, text);
       }
     } catch (err) {
       console.warn(err)
@@ -42,18 +46,15 @@ class ShareLinks extends Component {
   saveFile = (url, title) => {
     const { t } = this.props;
     const { config, fs } = RNFetchBlob;
-    const FileDir = fs.dirs.DownloadDir;
+    const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
 
-    let options = {
+    const configOptions = {
       fileCache: true,
-      addAndroidDownloads : {
-        useDownloadManager: true,
-        notification: false,
-        path: `${FileDir}/${title}.pdf`,
-      }
-    }
+      path: `${FileDir}/${title}.pdf`
+    };
 
-    config(options).fetch('GET', url)
+    config(configOptions)
+      .fetch('GET', url)
       .then(() => {
         Alert.alert(t('common:files.action_success'));
       })
@@ -62,16 +63,29 @@ class ShareLinks extends Component {
       });
   }
 
-  shareLink = (url, title, text) => {
-    if (!url && !title) return;
-
-    const shareOptions = {
-      title: `${title} ${text}`,
-      subject: text,
-      url: url,
-      social: Share.Social.EMAIL
+  sharePDF(url, title, text) {
+    let filePath = null;
+    const { config, fs } = RNFetchBlob;
+    const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+    const configOptions = {
+      fileCache: true,
+      path: `${FileDir}/${title}.pdf`
     };
-    Share.shareSingle(shareOptions);
+
+    config(configOptions)
+      .fetch('GET', url)
+      .then(async resp => {
+        filePath = resp.path();
+        
+        let options = {
+          type: 'application/pdf',
+          title: `${title} ${text}`,
+          subject: text,
+          url: (Platform.OS === 'android') ? 'file://' + filePath : filePath,
+          social: Share.Social.EMAIL
+        };
+        await Share.open(options);
+      });
   }
 
   render() {
@@ -82,7 +96,7 @@ class ShareLinks extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 10}}
-          onPress={()=>this.shareLink(url, title, text)}
+          onPress={()=> this.requestFilePermission(url, title, text, false)}
         >
           <View style={ styles.actionsWrap }>
             <Image
@@ -96,7 +110,7 @@ class ShareLinks extends Component {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{paddingVertical: 5, marginTop: 5}}
-          onPress={()=> this.requestFilePermission(url, title)}
+          onPress={()=> this.requestFilePermission(url, title, text, true)}
         >
           <View style={ styles.actionsWrap }>
             <Image

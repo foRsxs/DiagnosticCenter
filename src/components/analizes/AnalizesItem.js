@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View} from 'native-base';
-import Share from 'react-native-share';
 
+import CShare from '../../components/common/CShare';
 import variables from '../../styles/variables';
 
 const { accentBlue, mediumBlack } = variables.colors;
@@ -17,6 +17,7 @@ export default class AnalizesItem extends Component {
 
   render() {
     let {headTxt, dateTxt, pdf} = this.props;
+
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
@@ -25,23 +26,7 @@ export default class AnalizesItem extends Component {
         <View style={styles.analizesItem}>
           <Text style={styles.txtHead}>{headTxt}</Text>
           <Text style={styles.txtDate}>{dateTxt}</Text>
-          <TouchableOpacity
-            onPress={() => {
-              const shareOptions = {
-                title: headTxt,
-                subject: dateTxt,
-                url: pdf,
-              };
-              Share.open(shareOptions);
-            }}
-            activeOpacity={0.8}
-            style={styles.moreIcon}>
-            <Image
-              style={{width: 18, height: 20, justifyContent: 'center'}}
-              resizeMode='contain'
-              source={require('../../../assets/img/more-icon.png')}
-            />
-          </TouchableOpacity>
+          <CShare url={pdf} title={headTxt} text={dateTxt} />
         </View>
       </TouchableOpacity>
     );
@@ -71,15 +56,5 @@ const styles = StyleSheet.create({
     color: mediumBlack,
     fontFamily: mainFont,
     fontSize: normal
-  },
-  moreIcon: {
-    justifyContent: 'center',
-    paddingLeft: 5,
-    width: 25,
-    height: 30,
-    position: 'absolute',
-    top: 10,
-    right: 5,
-    backgroundColor: 'white'
   }
 });
