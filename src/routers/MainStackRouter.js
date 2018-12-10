@@ -40,7 +40,7 @@ const MainScreenNavigator = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: {
       header: null
-    }
+    },
   },
   specialization: {
     screen: SpecializationScreen,
@@ -159,6 +159,9 @@ const Drawer = createDrawerNavigator({
 }, {
   drawerWidth: 350,
   contentComponent: DrawerMenu,
+  contentOptions: {
+    inactiveBackgroundColor: '#000000',
+}
 });
 
 const AppNavigator = createSwitchNavigator({

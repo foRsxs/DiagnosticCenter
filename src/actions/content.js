@@ -49,8 +49,9 @@ export function getListDoctors(spec_id, servid, order = false) {
 
 export function getListServices(id, auto_push = false) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { authorization, content: {order} } = getState();
     axios.post(`${APP_API_URL}/services`, {
+      type: order.type,
       spec_id: id,
       lang: authorization.language
     })

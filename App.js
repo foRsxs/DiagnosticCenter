@@ -4,7 +4,6 @@ import { Root } from 'native-base';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-
 import MainStackRouter from './src/routers/MainStackRouter';
 import configureStore from './src/store/configureStore';
 import variables from './src/styles/variables';
@@ -27,18 +26,14 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    //StatusBar.setBackgroundColor(accentBlue);
+    StatusBar.setBackgroundColor(accentBlue);
   }
 
   render() {
     return (
       <Root>
-        <StatusBar
-          backgroundColor={accentBlue}
-          barStyle="light-content"
-        />
         <Provider store={store}>
-          <ReloadAppOnLanguageChange />
+          <ReloadAppOnLanguageChange/>
         </Provider>
       </Root>
     );

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 51;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -33,6 +34,7 @@
 		A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB58051720F48DE952F62AB /* libTouchID.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF26A66CA45741B3821C37D3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */; };
+		B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */; };
 		CE115A8E21BAB982001BFF48 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8D21BAB982001BFF48 /* UserNotifications.framework */; };
 		CE115A9021BAB982001BFF48 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8F21BAB982001BFF48 /* UserNotificationsUI.framework */; };
 		CE115A9421BAB982001BFF48 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE115A9321BAB982001BFF48 /* NotificationViewController.m */; };
@@ -55,7 +57,6 @@
 		E8B4809943F241F2A1584DC3 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BEF732FF6484E12B346591A /* HelveticaNeue.ttf */; };
 		EAF023D9C2544518A3A6D0AA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */; };
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
-		B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -374,6 +375,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = TouchID;
 		};
+		CE876FA921BEA2DA0015793C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -442,6 +450,7 @@
 		AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		B1F21064206949A5B8D92CCA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		B596078F02BA4CDAA48BF09C /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
+		BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		CE115A8721BAB87E001BFF48 /* Diagnostic Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Diagnostic Center.entitlements"; sourceTree = "<group>"; };
 		CE115A8C21BAB982001BFF48 /* DiagnosticCenter.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DiagnosticCenter.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE115A8D21BAB982001BFF48 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -459,11 +468,10 @@
 		CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTextInputMask.xcodeproj; path = "../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask.xcodeproj"; sourceTree = "<group>"; };
 		CE72B9A2219F0EBB009D0A91 /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InputMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -770,6 +778,7 @@
 				552939714F4547C7B72C2FCD /* libRNTextInputMask.a */,
 				02E153B8EA2043BCB27D5E35 /* libRNShare.a */,
 				B596078F02BA4CDAA48BF09C /* libRCTOneSignal.a */,
+				BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -778,6 +787,14 @@
 			isa = PBXGroup;
 			children = (
 				CE852CDD219C673900D11EFA /* libTouchID.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE876FA621BEA2DA0015793C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE876FAA21BEA2DA0015793C /* libRNFetchBlob.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -935,6 +952,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = CE876FA621BEA2DA0015793C /* Products */;
+					ProjectRef = CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */;
 				},
 				{
 					ProductGroup = CE2B1CE72181AAC300CD5FF7 /* Products */;
@@ -1272,6 +1293,13 @@
 			fileType = archive.ar;
 			path = libTouchID.a;
 			remoteRef = CE852CDC219C673900D11EFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE876FAA21BEA2DA0015793C /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = CE876FA921BEA2DA0015793C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

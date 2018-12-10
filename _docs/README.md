@@ -8,9 +8,7 @@ add plugins:
 6) react-native-languages <-- https://github.com/react-community/react-native-languages
 7) react-native-share <-- https://www.npmjs.com/package/react-native-share
 8) react-native-onesignal <-- https://www.npmjs.com/package/react-native-onesignal
-9) react-native-fs <-- https://www.npmjs.com/package/react-native-fs
-10) react-native-image-zoom-viewer <-- https://github.com/ascoders/react-native-image-viewer
-
+9) react-native-image-zoom-viewer <-- https://github.com/ascoders/react-native-image-viewer
 
 cleane cache rm -rf ~/.rncache
 
