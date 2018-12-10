@@ -98,10 +98,12 @@ class ReceptionInfoScreen extends Component {
     
     LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
     this.props.cleareOrderSuccess();
+    this.props.cleareOrderDatas();
 
     if (type) this.props.setOrder({type}, 'type', 'spec');
     if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
     if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id');
+ 
 
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
@@ -245,9 +247,13 @@ class ReceptionInfoScreen extends Component {
     const { enableScroll, openedKey, shortOrder, typeExperiments} = this.state;
     let doctor = '';
     let spec = '';
+    let serv = '';
+    let price = '';
 
     orderDatas.doctors.forEach((item) => {if (+item.docdep === +order.docdep_id) doctor = `${item.lastname} ${item.firstname} ${item.secondname}`});
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
+    orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) serv = `${item.text}`});
+    orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) price = `${item.price}`});
 
     return (
       <Container>
@@ -332,7 +338,7 @@ class ReceptionInfoScreen extends Component {
         </View>
         {(shortOrder) && (
           <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-            <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec})}/>
+            <CustomBtn label={ t('common:actions_text.check_data') } onClick={()=> navigate('recordingItem', {...shortOrder, serv_id: order.servid, doctor, spec, serv, price, type: order.type})}/>
           </View>
         )}        
         </ScrollView> 

@@ -17,7 +17,7 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import variebles from '../../styles/variables';
 
 const Height = Dimensions.get('window').height;
-const {blue} = variebles.colors;
+const {accentBlue} = variebles.colors;
 
 class HomeScreen extends Component {
 
@@ -73,7 +73,7 @@ class HomeScreen extends Component {
         <HeaderBottom/>
         <Content style={{marginTop: -60, zIndex: 2}}>
           <View style={{height: Height/3, justifyContent: 'center', alignItems: 'center'}}>
-            { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="small" color={blue} /> }
+            { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={accentBlue} /> }
           </View>
           <View style={styles.buttonContainer}>
             <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>

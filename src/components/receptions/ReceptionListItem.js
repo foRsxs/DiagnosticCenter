@@ -19,7 +19,7 @@ class ReceptionListItem extends Component {
   }
 
   render() {
-    let {t, pdf, headTxt, servTxt, timeTxt, nameTxt, disable, onPress} = this.props;
+    let {t, pdf, headTxt, servTxt, timeTxt, nameTxt, docTxt, disable, onPress} = this.props;
 
     return (
       <View>
@@ -31,10 +31,10 @@ class ReceptionListItem extends Component {
             <Text style={styles.txtTime}>{timeTxt}</Text>
             <View style={{flexDirection: 'row', alignItems:'center', flexWrap: 'wrap'}}>
               <Text style={styles.txtHead}>{headTxt}</Text>
-              <Text style={styles.txtHeadServ}>{servTxt}</Text>
+              <Text style={styles.txtHeadServ}>({servTxt})</Text>
             </View>
             <Text style={styles.txtName}>{nameTxt}</Text>
-            { (!disable) && (<CShare url={pdf} title={headTxt} text={dateTxt} />)}
+            { (!disable && pdf) && (<CShare url={pdf} title={`${docTxt} ${headTxt}`} text={timeTxt} />)}
           </View>
         </TouchableOpacity>
         { (disable) && (<Text style={styles.disableText}>{t('recordings:item.cancel_recording')}</Text>) }

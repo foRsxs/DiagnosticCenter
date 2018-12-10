@@ -22,6 +22,7 @@ class ReceptionInfoItemScreen extends Component {
     super(props);
 
     this.state = {
+      type: (props.navigation.state.params) ? props.navigation.state.params.type: null,
       date: (props.navigation.state.params) ? props.navigation.state.params.dd: null,
       rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id: null,
       room: (props.navigation.state.params) ? props.navigation.state.params.room: null,
@@ -50,7 +51,6 @@ class ReceptionInfoItemScreen extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({modalVisible: true});
-    if (prevProps.orderCreated !== this.props.orderCreated && !this.props.orderCreated) this.setState({modalVisible: false});
     if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
   }
 
@@ -60,16 +60,18 @@ class ReceptionInfoItemScreen extends Component {
   }
 
   _onClick = () => {
-    const {reserved, rnumb_id, date, serv_id} = this.state;
+    const {reserved, rnumb_id, date, serv_id, type} = this.state;
 
     if (!reserved) {
-      this.props.saveOrder({rnumb_id, date, serv_id});
+      this.props.saveOrder({rnumb_id, date, serv_id, type});
     } else {
       this.props.deleteOrder({rnumb_id});
     }
   }
 
   _save = () => {
+    this.props.setCreatingOrderSuccess(false);
+    this.props.getListTalons();
     this.setState({modalVisible: false, hideButton: true});
     this.props.navigation.navigate('recordingList');
   }
@@ -95,7 +97,7 @@ class ReceptionInfoItemScreen extends Component {
             <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
             <View style={styles.wrapName}>
               <Text style={styles.txtName}>{serv}</Text>
-              <Text style={styles.txtSubname}>{price}</Text>
+              {price && <Text style={styles.txtSubname}>{`(${price}) KZT`}</Text>}
             </View>
           </View>
           ) : (
@@ -120,7 +122,7 @@ class ReceptionInfoItemScreen extends Component {
             </View>
           </View>
           {
-            (reserved) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
+            (reserved && pdf) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
           }
         </Content >
         {

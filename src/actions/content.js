@@ -21,7 +21,7 @@ export function getListSpecialization(type, order = false) {
   }
 }
 
-export function getListDoctors(spec_id, order = false) {
+export function getListDoctors(spec_id, servid, order = false) {
   return (dispatch, getState) => {
     const { authorization, content: {network_connect} } = getState();
     if (network_connect) { 
@@ -29,16 +29,20 @@ export function getListDoctors(spec_id, order = false) {
         lang: authorization.language
       }
       if (spec_id) params.spec_id = spec_id;
+      if (servid) params.servid = servid;
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
         function isAllow(value) {
           return +value.allow === 1;
         }
-        if (!order && !spec_id) _storeData('doctors', JSON.stringify(response.data));
-        (order) ? dispatch(setListDoctorsOrder(response.data.filter(isAllow))) : dispatch(setListDoctors(response.data));
+        if (!order && !spec_id && !servid) _storeData('doctors', JSON.stringify(response.data));
+        if (order) {
+          if (response.data.filter(isAllow).length === 1) dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
+          dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
+        } else dispatch(setListDoctors(response.data));
       })
     } else {
-      (order) ? dispatch(setListDoctorsOrder([])) : _retrieveData('doctors').then((resp)=> dispatch(setListDoctors((resp && !spec_id) ? resp: [])));
+      (order) ? dispatch(setListDoctorsOrder([])) : _retrieveData('doctors').then((resp)=> dispatch(setListDoctors((resp && !spec_id && !servid) ? resp: [])));
     }
   }
 }
@@ -192,16 +196,16 @@ export function setOrder(data, type, nameDispatch) {
       dispatch(cleareOrderSuccess());
       if (!order[type] || order[type] !== data[type]) dispatch(getListSpecialization(data[type], true));
     } else if (type === 'spec_id') {
-      if (order.servid) dispatch(cleareOrderSuccess('spec_id'));
+      dispatch(cleareOrderSuccess('spec_id'));
       if (!order[type] || order[type] !== data[type]) {
         if (nameDispatch === 'doc') {
           dispatch(getListServices(data[type], true));
-          dispatch(getListDoctors(data[type], true));
+          dispatch(getListDoctors(data[type], null, true));
         } else dispatch(getListServices(data[type]));
       }
     } else if (type === 'servid') {
       if (order.docdep_id) dispatch(cleareOrderSuccess('servid'));
-      if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors( order.spec_id, true));
+      if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors( null, data[type], true));
     } else if (type === 'docdep_id') {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
       if (!order[type] ||  order[type] !== data[type]) dispatch(getListDates( data[type], true));
@@ -253,7 +257,7 @@ export function setTime(time) {
   }
 }
 
-export function saveOrder({rnumb_id, date, serv_id}) {
+export function saveOrder({type, rnumb_id, date, serv_id}) {
   return (dispatch, getState) => {
     const { authorization, content: {network_connect} } = getState();
     if (network_connect) { 
@@ -262,7 +266,8 @@ export function saveOrder({rnumb_id, date, serv_id}) {
         lang: authorization.language,
         rnumb_id, 
         date,
-        serv_id
+        serv_id,
+        type,
       })
       .then((response) => {
         if (response.data) dispatch(setCreatingOrderSuccess(true));
@@ -270,9 +275,6 @@ export function saveOrder({rnumb_id, date, serv_id}) {
     } else {
       dispatch(setCreatingOrderSuccess(false));
     }
-    setTimeout(()=> {
-      dispatch(setCreatingOrderSuccess(false))
-    }, 3000)
   }
 }
 
@@ -411,6 +413,12 @@ export function cleareOrderSuccess(type) {
   return {
     type: types.CLEARE_ORDER,
     data: type
+  }
+}
+
+export function cleareOrderDatas() {
+  return {
+    type: types.CLEARE_ORDER_DATA,
   }
 }
 

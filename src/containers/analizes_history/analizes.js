@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator } from 'react-native';
+import { BackHandler, ActivityIndicator, Text } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';

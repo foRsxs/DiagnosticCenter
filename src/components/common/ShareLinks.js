@@ -18,7 +18,7 @@ class ShareLinks extends Component {
   async requestFilePermission(url, title, text, save) {
     const { t } = this.props;
 
-    if (!url && !title) return;
+    if (!url || !title) return;
 
     try {
       if (Platform.OS === 'android') {

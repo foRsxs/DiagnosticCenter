@@ -168,6 +168,7 @@ class AuthorizationScreen extends Component {
     const optionalConfigObject = {
       title: t('authorization:need_auth_text'),
       color: "#000",
+      imageColor: accentBlue,
       sensorDescription: (this.state.isTouchId) ? t('authorization:auth_type.touch_id') : t('authorization:auth_type.face_id'),
       cancelText: t('common:actions.cancel'),
     }

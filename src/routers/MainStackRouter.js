@@ -157,7 +157,7 @@ const Drawer = createDrawerNavigator({
     screen: MainScreenNavigator
   }
 }, {
-  drawerWidth: 300,
+  drawerWidth: 350,
   contentComponent: DrawerMenu,
 });
 

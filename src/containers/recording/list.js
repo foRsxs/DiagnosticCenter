@@ -47,7 +47,7 @@ class ReceptionListScreen extends Component {
     const { loading } = this.state;
     const { navigate } = this.props.navigation;
     const { t, listTalons } = this.props;
- 
+
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
@@ -61,7 +61,9 @@ class ReceptionListScreen extends Component {
                   <ReceptionListItem 
                     key={index} 
                     headTxt={item.spec} 
-                    servTxt='' 
+                    servTxt={item.serv}
+                    docTxt={item.doc}
+                    pdf={item.pdf}
                     timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
                     nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`} 
                     onPress={()=> navigate('recordingItem', {
@@ -73,7 +75,8 @@ class ReceptionListScreen extends Component {
                       spec: item.spec,
                       reserved: true,
                       serv: item.serv,
-                      pdf: item.pdf
+                      pdf: item.pdf,
+                      price: item.price,
                     })
                   }/>
                 ))

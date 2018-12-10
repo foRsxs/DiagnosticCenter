@@ -106,7 +106,7 @@ export default function contentReducer(state = initialState, action) {
         ...state,
         listTalons: action.data,
       }
-    case types.UPDATE_ORDER: 
+    case types.UPDATE_ORDER:
       return {
         ...state,
         order: {...state.order, ...action.data},
@@ -178,6 +178,17 @@ export default function contentReducer(state = initialState, action) {
       return {
         ...state,
         orderCreated: action.data
+      }
+    case types.CLEARE_ORDER_DATA: 
+      return {
+        ...state,
+        orderDatas: {
+          specialities: [],
+          services: [],
+          doctors: [],
+          dates: [],
+          times: []
+        }
       }
     case types.DELETED_ORDER_SUCCESS:
       return {

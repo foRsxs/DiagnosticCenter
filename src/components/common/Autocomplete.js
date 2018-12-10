@@ -6,7 +6,8 @@ import {
   Animated,
   Easing,
   ScrollView,
-  TextInput
+  TextInput,
+  ActivityIndicator
 } from 'react-native';
 import {Text, List, ListItem} from 'native-base';
 import variables from '../../styles/variables';
@@ -81,29 +82,31 @@ export default class Autocompete extends Component {
 
   renderDroppedBlock() {
     const {sortedData} = this.state;
-    let height = (sortedData.length > 7) ? 150 : sortedData.length * 40 + 15;
+    let height = (sortedData.length > 7) ? 150 : (sortedData.length)? sortedData.length * 40 + 15: 20;
 
     return (
       <ScrollView style={[{height: height }, styles.listWrap]} >
         <List style={ styles.listContainer }>
-          {
-            sortedData.map((item) => (
-              <ListItem 
-                key={(item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null} 
-                style={{marginLeft: 0, paddingLeft: 20, paddingRight: 0, paddingTop: 8, paddingBottom: 8}}
-              >
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  style={{width: '100%'}}
-                  onPress={()=> this.onPress(
-                    (item.docdep) ? item.docdep: (item.servid) ? item.servid: (item.id) ? item.id: (item.res_id) ? item.res_id : (item.spec_id) ? item.spec_id : null, 
-                    (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
-                  )}
+          { 
+            (sortedData.length) ? (
+              sortedData.map((item) => (
+                <ListItem 
+                  key={(item.docdep) ? +item.docdep: (item.servid) ? +item.servid: (item.id) ? item.id: (item.res_id) ? +item.res_id : (item.spec_id) ? +item.spec_id : null} 
+                  style={{marginLeft: 0, paddingLeft: 20, paddingRight: 0, paddingTop: 8, paddingBottom: 8}}
                 >
-                  <Text style={{fontFamily: mainFont, fontSize: medium, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
-                </TouchableOpacity>
-              </ListItem>
-            ))
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={{width: '100%'}}
+                    onPress={()=> this.onPress(
+                      (item.docdep) ? item.docdep: (item.servid) ? item.servid: (item.id) ? item.id: (item.res_id) ? item.res_id : (item.spec_id) ? item.spec_id : null, 
+                      (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
+                    )}
+                  >
+                    <Text style={{fontFamily: mainFont, fontSize: medium, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
+                  </TouchableOpacity>
+                </ListItem>
+              ))
+            ) : <ActivityIndicator size="small" color={accentBlue} /> 
           } 
         </List>
       </ScrollView>

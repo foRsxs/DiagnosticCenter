@@ -27,12 +27,16 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    StatusBar.setBackgroundColor(accentBlue);
+    //StatusBar.setBackgroundColor(accentBlue);
   }
 
   render() {
     return (
       <Root>
+        <StatusBar
+          backgroundColor={accentBlue}
+          barStyle="light-content"
+        />
         <Provider store={store}>
           <ReloadAppOnLanguageChange />
         </Provider>
