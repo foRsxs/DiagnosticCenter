@@ -69,13 +69,11 @@ const styles = StyleSheet.create({
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
     color: variables.colors.black,
-
   },
   menuItemTextActive: {
     fontSize: variables.fSize.large,
     fontFamily: variables.fonts.mainFont,
     color: variables.colors.accentBlue,
-
   },
   menuIcon: {
     width: 20, 

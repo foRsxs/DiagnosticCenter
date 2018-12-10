@@ -5,7 +5,7 @@ import {
 } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
-import AthorizationScreen from '../containers/authorization';
+import AuthorizationScreen from '../containers/authorization';
 import DrawerMenu from '../containers/menu';
 import SpecializationScreen from '../containers/specialization';
 import QuestionsScreen from '../containers/questions/allQuestions';
@@ -26,9 +26,9 @@ import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 
-const Athorization = createStackNavigator({
+const Authorization = createStackNavigator({
   authorization: {
-    screen: AthorizationScreen,
+    screen: AuthorizationScreen,
     navigationOptions: {
       header: null
     }
@@ -40,7 +40,7 @@ const MainScreenNavigator = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: {
       header: null
-    },
+    }
   },
   specialization: {
     screen: SpecializationScreen,
@@ -156,16 +156,14 @@ const Drawer = createDrawerNavigator({
   Main: {
     screen: MainScreenNavigator
   }
-}, {
+}, 
+{
   drawerWidth: 350,
   contentComponent: DrawerMenu,
-  contentOptions: {
-    inactiveBackgroundColor: '#000000',
-}
 });
 
 const AppNavigator = createSwitchNavigator({
-  Auth: Athorization,
+  Auth: Authorization,
   Home: Drawer,
 });
 

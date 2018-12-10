@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 import {BackHandler, Image, AsyncStorage} from "react-native";
-import {Text, Header, Container, Content} from "native-base";
+import {Text, View, Container, Content} from "native-base";
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import * as ContentActions from '../../actions/content';
 import styles from './styles'
 import MenuItem from '../../components/menu/MenuItem';
 
-class DrawerMenu extends React.Component {
+class DrawerMenu extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
@@ -26,6 +26,7 @@ class DrawerMenu extends React.Component {
 
   _openPage = (page, text_error) => {
     const {t, isGuest, navigation} = this.props;
+    
     if (isGuest) {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
@@ -39,17 +40,15 @@ class DrawerMenu extends React.Component {
     const { t, user, logOut, isGuest } = this.props;
 
     return (
-      <Container style={styles.container}>
-   
-        <Header style={styles.header}>
+      <Container style={styles.container}>   
+        <View style={styles.header}>
           <Image
             style={{width: 20, height: 20, marginRight: 15}}
             resizeMode='contain'
             source={require('../../../assets/img/menu-user-ic.png')}
           />
           <Text style={styles.headerTxt}>{(isGuest)? t('menu:guest') : (user.api_token) ?`${user.lastname} ${user.firstname} ${user.secondname}`: ''}</Text>
-        </Header>
-
+        </View>
         <Content>
           <MenuItem 
             onClick={() => navigate("home")} 

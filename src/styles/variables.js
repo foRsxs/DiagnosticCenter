@@ -15,7 +15,8 @@ const variables = {
         wiolet: '#82B6FF',
         backgroundBlue: 'rgba(94, 150, 197, 0.15)',
         red: '#FF3237',
-        accentBlue: '#5E96C5'
+        accentBlue: '#5E96C5',
+        barColor: '#426382'
     },
     fonts: {
         mainFont: 'HelveticaNeueCyr'

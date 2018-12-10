@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 
 import variables from '../../styles/variables';
 
 const { large } = variables.fSize;
-const { darkBlue, white, accentBlue } = variables.colors;
+const { darkBlue, white, accentBlue, barColor } = variables.colors;
 const { mainFont } = variables.fonts;
 let { width } = Dimensions.get('window');
 
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
   }
 
   render() {
@@ -21,6 +19,7 @@ export default class Header extends Component {
 
     return (
       <View style={!inversion ? styles.container : styles.inContainer}>
+        <StatusBar backgroundColor={barColor} barStyle='light-content' />
         {(!disabledButtons) && (
           <View style={styles.btnContainer}>
             <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >

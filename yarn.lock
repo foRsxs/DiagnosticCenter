@@ -4693,23 +4693,11 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-animatable@^1.2.4:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.0.tgz#b5c3940fc758cfd9b2fe54613a457c4b6962b46e"
-  dependencies:
-    prop-types "^15.5.10"
-
 react-native-axios@^0.17.1:
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/react-native-axios/-/react-native-axios-0.17.1.tgz#44292950aa07ceee2e4bd349106ff773bef81f8f"
   dependencies:
     follow-redirects "0.0.7"
-
-react-native-button@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-2.3.0.tgz#7d0a90095d415b0edf98a904556a7c4439646568"
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native-calendars@^1.21.0:
   version "1.21.0"
@@ -4826,15 +4814,6 @@ react-native-splash-screen@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.1.1.tgz#1a4e46c9fdce53ff52af2a2cb4181788c4e30b30"
 
-react-native-star-rating@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-star-rating/-/react-native-star-rating-1.1.0.tgz#57fcd023c63e947427c4dbbd1c8f4cc49e5c48ce"
-  dependencies:
-    prop-types "^15.5.10"
-    react-native-animatable "^1.2.4"
-    react-native-button "^2.3.0"
-    react-native-vector-icons "^4.5.0"
-
 react-native-tab-view@^0.0.77:
   version "0.0.77"
   resolved "http://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-0.0.77.tgz#11ceb8e7c23100d07e628dc151b57797524d00d4"
@@ -4859,7 +4838,7 @@ react-native-touch-id@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-native-touch-id/-/react-native-touch-id-4.3.0.tgz#c25abd1d03d1ce5075f73ca87b18b47e7d60fa71"
 
-react-native-vector-icons@4.6.0, react-native-vector-icons@^4.5.0:
+react-native-vector-icons@4.6.0:
   version "4.6.0"
   resolved "http://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-4.6.0.tgz#e4014311ffa6de397d914ffc31b7097a874cc8d5"
   dependencies:

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     height: 80,
     paddingLeft: 20,
     justifyContent: 'flex-start',
-    paddingTop: 0,
+    paddingTop: 28,
     borderBottomWidth: 0,
     elevation: 0
   },
