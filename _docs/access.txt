@@ -1,0 +1,4 @@
+Keystore: diagnosticcenter.keystore
+Alias: diagnosticcenter
+Keystore password: qaLXN95%n6
+Key password: eMnp*hJF41
