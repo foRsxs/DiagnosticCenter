@@ -15,7 +15,9 @@ class QuestionFormScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      doc_id: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null
+      doc_id: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null,
+      specid: (props.navigation.state.params) ? props.navigation.state.params.specid : null,
+      docdep: (props.navigation.state.params) ? props.navigation.state.params.docdep : null,
     };
   }
   
@@ -33,6 +35,9 @@ class QuestionFormScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { t } = this.props;
+    const { doc_id, specid, docdep } = this.state;
+
     if (this.props.status !== prevProps.status) {
       if (this.props.status) {
         Toast.show({
@@ -40,6 +45,7 @@ class QuestionFormScreen extends Component {
         });
       } else {
         Toast.hide();
+        this.props.navigation.navigate('doctor',{docid: +doc_id, spec_id: specid, docdep_id: docdep})
       }
     }
   }

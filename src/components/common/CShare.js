@@ -10,7 +10,7 @@ class СShare extends Component {
   }
 
   async requestFilePermission(url, title, text, save) {
-    const { t } = this.props;
+    const { t, isLoading } = this.props;
 
     if (!url && !title) return;
 
@@ -25,12 +25,14 @@ class СShare extends Component {
         );
 
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          (save) ? this.saveFile(url, title) : this.sharePDF(url, title, text);
+          this.sharePDF(url, title, text);
         } else {
+          isLoading(false);
           Alert.alert(t('common:files.action_decline'));
         }
+        
       } else {
-        (save) ? this.saveFile(url, title) : this.sharePDF(url, title, text);
+        this.sharePDF(url, title, text);
       }
     } catch (err) {
       console.warn(err)
@@ -51,7 +53,7 @@ class СShare extends Component {
       .fetch('GET', url)
       .then(async resp => {
         filePath = resp.path();
-
+        this.props.isLoading(false);
         let options = {
           type: 'application/pdf',
           title: `${title} ${text}`,
@@ -59,15 +61,21 @@ class СShare extends Component {
           url: (Platform.OS === 'android') ? 'file://' + filePath : filePath
         };
         await Share.open(options);
-      });
+      })
+      .catch((e)=>{
+        this.props.isLoading(false);
+      })
   }
 
   render() {
-    const { url, title, text } = this.props;
+    const { url, title, text, isLoading } = this.props;
 
     return (
       <TouchableOpacity
-        onPress={()=> this.requestFilePermission(url, title, text, false)}
+        onPress={()=> {
+          isLoading(true);
+          this.requestFilePermission(url, title, text, false);
+        }}
         activeOpacity={0.8}
         style={styles.moreIcon}>
         <Image

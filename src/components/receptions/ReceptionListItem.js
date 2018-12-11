@@ -14,13 +14,14 @@ class ReceptionListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      disable: false
+      disable: false,
+      loading: false
     };
   }
 
   render() {
-    let {t, pdf, headTxt, servTxt, timeTxt, nameTxt, docTxt, disable, onPress} = this.props;
-
+    const {t, pdf, headTxt, servTxt, timeTxt, nameTxt, docTxt, disable, onPress} = this.props;
+    const {loading} = this.state;
     return (
       <View>
         <TouchableOpacity
@@ -34,7 +35,8 @@ class ReceptionListItem extends Component {
               <Text style={styles.txtHeadServ}>({servTxt})</Text>
             </View>
             <Text style={styles.txtName}>{nameTxt}</Text>
-            { (!disable && pdf) && (<CShare url={pdf} title={`${docTxt} ${headTxt}`} text={timeTxt} />)}
+            {(loading) ? <ActivityIndicator size="small" color={accentBlue} style={styles.moreIcon}/>: ((!disable && pdf) && (<CShare url={pdf} title={`${docTxt} ${headTxt}`} text={timeTxt} isLoading={(value) => this.setState({loading: value})}/>))}
+            
           </View>
         </TouchableOpacity>
         { (disable) && (<Text style={styles.disableText}>{t('recordings:item.cancel_recording')}</Text>) }
@@ -44,6 +46,16 @@ class ReceptionListItem extends Component {
 }
 
 const styles = StyleSheet.create({
+  moreIcon: {
+    justifyContent: 'center',
+    paddingLeft: 5,
+    width: 25,
+    height: 30,
+    position: 'absolute',
+    top: 10,
+    right: 5,
+    backgroundColor: 'transparent'
+  },
   receptionItem: {
     borderRadius: 10,
     alignItems: "flex-start",

@@ -48,7 +48,7 @@ class FormSend extends Component {
       <Form style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, paddingTop: 15, paddingHorizontal: 15}}>
         <View style={{flex: 1}}>
           <Item style={[styles.inputWrap, (!emailValid)? {borderColor: red}: {}]} regular>
-            <Input style={styles.input} placeholder={t('common:actions_text.your_email')} onChangeText={(email) => this.validate(email)} value={email}/>
+            <Input style={styles.input} onChangeText={(email) => this.validate(email)} value={email}/>
           </Item>
           <Textarea style={[styles.textarea, (!questionValid)? {borderColor: red}: {}]} bordered placeholder={t('common:actions_text.your_question')} onChangeText={(question) => this.validateMess(question)} value={question}/>
         </View >
