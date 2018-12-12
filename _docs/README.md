@@ -9,6 +9,7 @@ add plugins:
 7) react-native-share <-- https://www.npmjs.com/package/react-native-share
 8) react-native-onesignal <-- https://www.npmjs.com/package/react-native-onesignal
 9) react-native-image-zoom-viewer <-- https://github.com/ascoders/react-native-image-viewer
+10) react-native-fetch-blob <-- https://github.com/vonovak/react-native-fetch-blob
 
 cleane cache rm -rf ~/.rncache
 

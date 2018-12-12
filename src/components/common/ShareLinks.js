@@ -48,6 +48,7 @@ class ShareLinks extends Component {
   }
   
   saveFile = (url, title) => {
+    console.log(url)
     const { t } = this.props;
     const { config, fs } = RNFetchBlob;
     const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
@@ -56,7 +57,7 @@ class ShareLinks extends Component {
       fileCache: true,
       path: `${FileDir}/${title}.pdf`
     };
-
+    
     config(configOptions)
       .fetch('GET', url)
       .then(() => {

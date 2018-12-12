@@ -33,13 +33,15 @@ export function getListDoctors(spec_id, servid, order = false) {
      
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
-        console.log(response.data)
         function isAllow(value) {
           return +value.allow === 1;
         }
         if (!order && !spec_id && !servid) _storeData('doctors', JSON.stringify(response.data));
         if (order) {
-          if (response.data.filter(isAllow).length === 1) dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
+          if (response.data.filter(isAllow).length === 1) {
+            dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
+            dispatch(getListDates({docdep_id: response.data[0].docdep}));
+          }
           dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
         } else dispatch(setListDoctors(response.data));
       })
@@ -211,7 +213,7 @@ export function setOrder(data, type, nameDispatch) {
       if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors( null, data[type], true));
     } else if (type === 'docdep_id') {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
-      if (!order[type] ||  order[type] !== data[type]) dispatch(getListDates( data[type], true));
+      if (!order[type] || order[type] !== data[type]) dispatch(getListDates( data[type], true));
     }
     dispatch(setOrderSuccess(data))
   }

@@ -47,7 +47,7 @@ class DrawerMenu extends Component {
             resizeMode='contain'
             source={require('../../../assets/img/menu-user-ic.png')}
           />
-          <Text style={styles.headerTxt}>{(isGuest)? t('menu:guest') : (user.api_token) ?`${user.lastname} ${user.firstname} ${user.secondname}`: ''}</Text>
+          <Text style={styles.headerTxt}>{(isGuest)? t('menu:guest') : (user.api_token && user.firstname) ?`${user.lastname} ${user.firstname} ${user.secondname}`: ''}</Text>
         </View>
         <Content>
           <MenuItem 
