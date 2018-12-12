@@ -30,8 +30,10 @@ export function getListDoctors(spec_id, servid, order = false) {
       }
       if (spec_id) params.spec_id = spec_id;
       if (servid) params.servid = servid;
+      console.log(params)
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
+        console.log(response.data)
         function isAllow(value) {
           return +value.allow === 1;
         }

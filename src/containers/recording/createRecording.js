@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal, ScrollView} from 'react-native';
+import {StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal, ScrollView, ActivityIndicator} from 'react-native';
 import {Container, View, Text} from 'native-base';
 import {LocaleConfig, Calendar} from 'react-native-calendars';
 import moment from 'moment';
@@ -88,7 +88,8 @@ class ReceptionInfoScreen extends Component {
         docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id: null,
       },
       enableScroll: true,
-      openedKey: null
+      openedKey: null,
+      loading: false
     };
   }
 
@@ -113,6 +114,7 @@ class ReceptionInfoScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.orderDatas !== this.props.orderDatas) this.setState({loading: false})
     if (prevProps.orderDatas.dates !== this.props.orderDatas.dates) this.setDates(this.props.orderDatas.dates);
     if (prevProps.orderDatas.times !== this.props.orderDatas.times) this.setTimes(this.props.orderDatas.times);
     if (prevProps.order.date !== this.props.order.date) this.setDates(this.props.orderDatas.dates, this.props.order.date);
@@ -241,10 +243,11 @@ class ReceptionInfoScreen extends Component {
     )
   }
 
+
   render() {
     const { navigate } = this.props.navigation;
     const { t, order, orderDatas } = this.props;
-    const { enableScroll, openedKey, shortOrder, typeExperiments} = this.state;
+    const { enableScroll, openedKey, shortOrder, typeExperiments, loading} = this.state;
     let doctor = '';
     let spec = '';
     let serv = '';
@@ -252,11 +255,13 @@ class ReceptionInfoScreen extends Component {
 
     orderDatas.doctors.forEach((item) => {if (+item.docdep === +order.docdep_id) doctor = `${item.lastname} ${item.firstname} ${item.secondname}`});
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
-    orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) serv = `${item.text}`});
-    orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) price = `${item.price}`});
+    orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) {serv = `${item.text}`; price = `${item.price}`}});
 
     return (
       <Container>
+        {(loading) && (<View style={styles.loaderWrap}>
+          <ActivityIndicator size="large" color={accentBlue} />
+        </View>)}
         <ScrollView scrollEnabled={enableScroll}>   
           <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
           <HeaderBottom />
@@ -269,6 +274,7 @@ class ReceptionInfoScreen extends Component {
               openedKey={openedKey}
               onTap={ () => this.handleScroll(0) }
               onSelect={(value) => {
+                this.setState({loading: true});
                 this.handleScroll(0);
                 this.props.setOrder({type: value}, 'type', 'spec');
               }} 
@@ -281,8 +287,9 @@ class ReceptionInfoScreen extends Component {
               data={orderDatas.specialities} 
               currentKey={1}
               openedKey={openedKey}
-              onTap={ () => this.handleScroll(1) }
+              onTap={ () => this.handleScroll(1)}
               onSelect={(value) => {
+                this.setState({loading: true});
                 this.handleScroll(1);
                 (order.type == 1) ? this.props.setOrder({spec_id: value}, 'spec_id', 'doc') : this.props.setOrder({spec_id: value}, 'spec_id');
               }}
@@ -296,7 +303,8 @@ class ReceptionInfoScreen extends Component {
               currentKey={2}
               openedKey={openedKey}
               onTap={ () => this.handleScroll(2) }
-              onSelect={(value) => {                
+              onSelect={(value) => {
+                this.setState({loading: true});              
                 this.handleScroll(2);
                 this.props.setOrder({servid: value}, 'servid', 'doc');
               }}
@@ -310,7 +318,8 @@ class ReceptionInfoScreen extends Component {
               currentKey={3}
               openedKey={openedKey}
               onTap={ () => this.handleScroll(3) }
-              onSelect={(value) => {                
+              onSelect={(value) => {
+                this.setState({loading: true});             
                 this.handleScroll(3);
                 this.props.setOrder({docdep_id: value}, 'docdep_id');
               }}
@@ -321,7 +330,7 @@ class ReceptionInfoScreen extends Component {
               contentContainerStyle={{marginBottom: 20}}
               label={ t('createrecord:form.select_date') }
               data={orderDatas.dates} 
-              onPress={() => this.setState({showDates: true})} 
+              onPress={() => this.setState({showDates: true})}
               selected={order.date} 
               disabled={(order.docdep_id) ? false : true}
             />
@@ -393,6 +402,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: 20
   },
+  loaderWrap: {
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  }
 });
 
 

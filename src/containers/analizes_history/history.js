@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, Text } from 'react-native';
+import { BackHandler, ActivityIndicator, Text, StyleSheet, View } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -17,7 +17,8 @@ class HistoryScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      shareLoading: false
     };
   }
 
@@ -41,12 +42,15 @@ class HistoryScreen extends Component {
 
   render() {
     const { t, history_list } = this.props;
-    const {loading} = this.state;
+    const {loading, shareLoading} = this.state;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
         <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + ` - ${history_list.length}`: '' } />
+        {(shareLoading) && (<View style={styles.loaderWrap}>
+          <ActivityIndicator size="large" color={accentBlue} />
+        </View>)}
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
           {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
@@ -58,6 +62,7 @@ class HistoryScreen extends Component {
                     headTxt={item.text} 
                     dateTxt={item.dat}
                     pdf={item.pdf}
+                    isLoading={(value)=> this.setState({shareLoading: value})}
                     onPress={() => {
                       this.props.navigation.navigate({
                         routeName: "historyItem", 
@@ -82,6 +87,19 @@ class HistoryScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  loaderWrap: {
+    zIndex: 10,
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  }
+})
 
 function mapStateToProps(state) {
   return {

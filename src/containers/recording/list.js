@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { BackHandler, ActivityIndicator } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
+import { BackHandler, ActivityIndicator, StyleSheet, View } from 'react-native';
+import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -21,7 +21,8 @@ class ReceptionListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      shareLoading: false
     };
   }
 
@@ -44,7 +45,7 @@ class ReceptionListScreen extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading, shareLoading } = this.state;
     const { navigate } = this.props.navigation;
     const { t, listTalons } = this.props;
 
@@ -52,6 +53,9 @@ class ReceptionListScreen extends Component {
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
         <HeaderBottom text={ (listTalons) ? t('recordings:total_text') + ` - ${listTalons.length}`: '' } />
+        {(shareLoading) && (<View style={styles.loaderWrap}>
+          <ActivityIndicator size="large" color={accentBlue} />
+        </View>)}
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}} padder>
           {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
           {
@@ -66,6 +70,7 @@ class ReceptionListScreen extends Component {
                     pdf={item.pdf}
                     timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
                     nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`} 
+                    isLoading={(value)=> this.setState({shareLoading: value})}
                     onPress={()=> navigate('recordingItem', {
                       rnumb_id: item.rnumb_id,
                       dd: item.dd,
@@ -91,6 +96,19 @@ class ReceptionListScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  loaderWrap: {
+    zIndex: 10,
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  }
+})
 
 function mapStateToProps(state) {
   return {

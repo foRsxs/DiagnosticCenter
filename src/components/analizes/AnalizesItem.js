@@ -12,14 +12,10 @@ const { normal, medium } = variables.fSize;
 export default class AnalizesItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: false,
-    };
   }
 
   render() {
-    const {headTxt, dateTxt, pdf} = this.props;
-    const {loading} = this.state;
+    const {headTxt, dateTxt, pdf, isLoading} = this.props;
 
     return (
       <TouchableOpacity
@@ -29,7 +25,7 @@ export default class AnalizesItem extends Component {
         <View style={styles.analizesItem}>
           <Text style={styles.txtHead}>{headTxt}</Text>
           <Text style={styles.txtDate}>{dateTxt}</Text>
-          {(loading) ? <ActivityIndicator size="small" color={accentBlue} style={styles.moreIcon}/> : <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => this.setState({loading: value})}/>}
+          <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => isLoading(value)}/>
         </View>
       </TouchableOpacity>
     );
@@ -37,16 +33,6 @@ export default class AnalizesItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  moreIcon: {
-    justifyContent: 'center',
-    paddingLeft: 5,
-    width: 25,
-    height: 30,
-    position: 'absolute',
-    top: 10,
-    right: 5,
-    backgroundColor: 'transparent'
-  },
   analizesItem: {
     borderRadius: 10,
     alignItems: "flex-start",
@@ -54,6 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginBottom: 10,
     padding: 10,
+    paddingRight: 30,
     position: 'relative',
     borderColor: accentBlue,
     borderWidth: 1,

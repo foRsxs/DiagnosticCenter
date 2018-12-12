@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, Text } from 'react-native';
+import { BackHandler, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -17,7 +17,8 @@ class AnalizesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      shareLoading: false
     };
   }
 
@@ -41,12 +42,15 @@ class AnalizesScreen extends Component {
 
   render() {
     const { t, analizes_list } = this.props;
-    const {loading} = this.state;
+    const {loading, shareLoading} = this.state;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
         <HeaderBottom text={ (analizes_list && analizes_list.length) ? t('analizes:total_text') + ` - ${analizes_list.length}`: '' } />
+        {(shareLoading) && (<View style={styles.loaderWrap}>
+          <ActivityIndicator size="large" color={accentBlue} />
+        </View>)}
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
           {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
             {
@@ -58,6 +62,7 @@ class AnalizesScreen extends Component {
                       headTxt={item.text} 
                       dateTxt={item.dat_string}
                       pdf={item.pdf}
+                      isLoading={(value)=> this.setState({shareLoading: value})}
                       onPress={() => {
                         this.props.navigation.navigate({
                           routeName: "analizesItem", 
@@ -82,6 +87,18 @@ class AnalizesScreen extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  loaderWrap: {
+    zIndex: 10,
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  }
+})
 function mapStateToProps(state) {
   return {
     analizes_list: state.content.analizes.list

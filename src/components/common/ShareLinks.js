@@ -36,6 +36,7 @@ class ShareLinks extends Component {
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           (save) ? this.saveFile(url, title) : this.sharePDF(url, title, text);
         } else {
+          this.setState({loading: false});
           Alert.alert(t('common:files.action_decline'));
         }
       } else {
@@ -59,9 +60,11 @@ class ShareLinks extends Component {
     config(configOptions)
       .fetch('GET', url)
       .then(() => {
+        this.setState({loading: false});
         Alert.alert(t('common:files.action_success'));
       })
       .catch(() => {
+        this.setState({loading: false});
         Alert.alert(t('common:files.action_error'));
       });
   }
