@@ -66,7 +66,7 @@ class DoctorScreen extends Component {
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
 
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: 'white'}}>
           <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
           <HeaderBottom />        

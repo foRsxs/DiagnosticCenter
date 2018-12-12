@@ -222,8 +222,8 @@ class ReceptionInfoScreen extends Component {
           onPress={()=> this.setState({showTimes: false})}
         >
           <View style={styles.popupWrap}>
-            <ScrollView>
-              <View style={styles.popup}>
+            <ScrollView >
+              <View style={[styles.popup, {marginTop: 30}]}>
                 <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
                 <View style={styles.timeContainer}>
                   {markedTimes.map((item, key)=>(
@@ -274,7 +274,7 @@ class ReceptionInfoScreen extends Component {
               openedKey={openedKey}
               onTap={ () => this.handleScroll(0) }
               onSelect={(value) => {
-                this.setState({loading: true});
+                if (order.type !== value) this.setState({loading: true});  
                 this.handleScroll(0);
                 this.props.setOrder({type: value}, 'type', 'spec');
               }} 
@@ -289,7 +289,7 @@ class ReceptionInfoScreen extends Component {
               openedKey={openedKey}
               onTap={ () => this.handleScroll(1)}
               onSelect={(value) => {
-                this.setState({loading: true});
+                if (order.spec_id !== value) this.setState({loading: true});  
                 this.handleScroll(1);
                 (order.type == 1) ? this.props.setOrder({spec_id: value}, 'spec_id', 'doc') : this.props.setOrder({spec_id: value}, 'spec_id');
               }}
@@ -304,7 +304,7 @@ class ReceptionInfoScreen extends Component {
               openedKey={openedKey}
               onTap={ () => this.handleScroll(2) }
               onSelect={(value) => {
-                this.setState({loading: true});              
+                if (order.servid !== value) this.setState({loading: true});               
                 this.handleScroll(2);
                 this.props.setOrder({servid: value}, 'servid', 'doc');
               }}
@@ -319,7 +319,7 @@ class ReceptionInfoScreen extends Component {
               openedKey={openedKey}
               onTap={ () => this.handleScroll(3) }
               onSelect={(value) => {
-                this.setState({loading: true});             
+                if (order.docdep_id !== value) this.setState({loading: true});             
                 this.handleScroll(3);
                 this.props.setOrder({docdep_id: value}, 'docdep_id');
               }}
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   popup: {
-    width: '90%', 
+    width: 300, 
     backgroundColor: 'white', 
     alignSelf: 'center', 
     borderRadius: 10, 
