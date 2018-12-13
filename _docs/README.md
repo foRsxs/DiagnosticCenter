@@ -11,20 +11,18 @@ add plugins:
 9) react-native-image-zoom-viewer <-- https://github.com/ascoders/react-native-image-viewer
 10) react-native-fetch-blob <-- https://github.com/vonovak/react-native-fetch-blob
 
+(Устранение ошибки при сборке - https://github.com/wkh237/react-native-fetch-blob/issues/716)
+
 cleane cache rm -rf ~/.rncache
 
-Создание билда для android
-First, from your app's root dir, run the following command:
+Создание dev-билда для android:
 mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && cd ../
 
-Then the second and final step:
-cd android && ./gradlew assembleDebug
+Создание release-билда для android:
+mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleRelease && cd ../
 
 If ERROR when run dev-mode, need clean all build android:
 cd android && ./gradlew clean
-
-Generating the release APK:
-cd android && ./gradlew assembleRelease
 
 Run: react-native run-android --variant=release
 

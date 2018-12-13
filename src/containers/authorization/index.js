@@ -346,7 +346,7 @@ class AuthorizationScreen extends Component {
         <Popup
           show={showPopup}
           firstText={t('authorization:phone_not_register')}
-          email={'email@diagnostica.kz'}
+          email={'info@diagnostika.kz'}
           laberButton={ t('common:actions.ok') }
           actionButton={this.clickOnPopup}
         />

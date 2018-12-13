@@ -65,6 +65,8 @@ class DoctorScreen extends Component {
     const { t, doctor } = this.props;
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
 
+    console.log(doctor);
+
     return (
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: 'white'}}>
@@ -92,9 +94,12 @@ class DoctorScreen extends Component {
                     </View>
                     <View style={{ width: 100, position: 'absolute', right: 0, top: 0 }}>
                       <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
-                        <Text uppercase={false} style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue }}>{ t('common:actions.ask_question') }</Text>
+                        <Text 
+                          uppercase={false} 
+                          style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, width: 63}}
+                        >{ t('common:actions.ask_question') }</Text>
                         <Image
-                          style={{ width: 25, height: 25, position: 'absolute', right: 6, top: 6 }}
+                          style={{ width: 25, height: 25}}
                           resizeMode='cover'
                           source={require('../../../assets/img/conversation.png')}
                         />
@@ -118,11 +123,14 @@ class DoctorScreen extends Component {
               </View>
               ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
             }
-            {(!loading && +doctor[0].allow === 1) && (
             <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
+            {(!loading && +doctor[0].allow === 1) && (
               <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
-            </View>
             )}
+            {(!loading && +doctor[0].allow === 0) && (           
+              <Text style={{ textAlign: 'center' }}>{ t('listdoctors:item.no_recording_text') }</Text>            
+            )}
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -197,9 +205,9 @@ const styles = StyleSheet.create({
   blockQuestion: {
     position: 'relative',
     flexDirection: 'row',
-    padding: 7,
-    paddingBottom: 5,
+    padding: 6,
     justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: white,
     borderColor: accentBlue,
     borderWidth: 1,

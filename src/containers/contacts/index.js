@@ -51,8 +51,7 @@ class ContactsScreen extends Component {
           <View style={styles.contactItem}>
             <Text style={styles.headTxt}>{ t('contacts:phones') }:</Text>
             <Text style={styles.subHeadTxt}>{ t('contacts:call_centre') }</Text>
-            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367186')}>8 (7252) 36-71-86</Text>
-            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:367132')}>36-71-32</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252390621')}>8 (7252) 39-06-21</Text>
             <Text style={styles.subHeadTxt}>{ t('contacts:main_doc_office') }</Text>
             <Text style={styles.linkTxt} onPress={()=> Linking.openURL('tel:+87252367184')}>8 (7252) 36-71-84</Text>
             <Text style={styles.subHeadTxt}>{ t('contacts:main_doc_deputy') }</Text>
@@ -62,7 +61,7 @@ class ContactsScreen extends Component {
           </View>
           <View style={styles.contactItem}>
             <Text style={styles.headTxt}>{ t('contacts:email_text') }:</Text>
-            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('mailto:admin@diagnostika.kz')}>admin@diagnostika.kz</Text>
+            <Text style={styles.linkTxt} onPress={()=> Linking.openURL('mailto:info@diagnostika.kz')}>info@diagnostika.kz</Text>
           </View>
           <View style={styles.contactItem}>
             <Text style={styles.headTxt}>{ t('contacts:social_text') }:</Text>

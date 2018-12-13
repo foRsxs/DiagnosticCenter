@@ -49,7 +49,8 @@
         "no_doctors_text": "Сәйкес дәрігерлер жоқ",
         "item": {
             "title": "Дәрігердің картасы",
-            "experience": "Жұмыс тәжірибесі"
+            "experience": "Жұмыс тәжірибесі",
+            "no_recording_text": "Жазылу қарастырылмаған"
         }
     },
     "specialization": {

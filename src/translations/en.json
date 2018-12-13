@@ -50,7 +50,8 @@
         "no_doctors_text": "No appropriate doctors",
         "item": {
             "title": "Card of doctor",
-            "experience": "Work experience"
+            "experience": "Work experience",
+            "no_recording_text": "Appointment is not provided"
         }
     },
     "specialization": {
