@@ -83,9 +83,9 @@ class ReceptionInfoScreen extends Component {
       markedDates: {},
       markedTimes: [],
       props_data: {
-        type: 1,
-        spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id: null,
-        docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id: null,
+        type: (props.navigation.state.params) ? +props.navigation.state.params.type: 1,
+        spec_id: (props.navigation.state.params) ? +props.navigation.state.params.spec_id: null,
+        docdep_id: (props.navigation.state.params) ? +props.navigation.state.params.docdep_id: null,
       },
       enableScroll: true,
       openedKey: null,
@@ -96,7 +96,7 @@ class ReceptionInfoScreen extends Component {
   componentDidMount() {
     const {type, spec_id, docdep_id} = this.state.props_data;
     const {lang_key} = this.props;
-    
+
     LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
     this.props.cleareOrderSuccess();
     this.props.cleareOrderDatas();
@@ -104,7 +104,6 @@ class ReceptionInfoScreen extends Component {
     if (type) this.props.setOrder({type}, 'type', 'spec');
     if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
     if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id');
- 
 
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
@@ -256,7 +255,7 @@ class ReceptionInfoScreen extends Component {
     orderDatas.doctors.forEach((item) => {if (+item.docdep === +order.docdep_id) doctor = `${item.lastname} ${item.firstname} ${item.secondname}`});
     orderDatas.specialities.forEach((item) => {if (+item.spec_id === +order.spec_id) spec = `${item.spec_name}`});
     orderDatas.services.forEach((item) => {if (+item.servid === +order.servid) {serv = `${item.text}`; price = `${item.price}`}});
-
+    console.log(orderDatas, order)
     return (
       <Container>
         {(loading) && (<View style={styles.loaderWrap}>

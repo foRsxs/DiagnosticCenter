@@ -23,14 +23,15 @@ export function getListSpecialization(type, order = false) {
 
 export function getListDoctors(spec_id, servid, order = false) {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
-    if (network_connect) { 
+    const { authorization, content } = getState();
+    if (content.network_connect) { 
       const params = {
         lang: authorization.language
       }
       if (spec_id) params.spec_id = spec_id;
       if (servid) params.servid = servid;
-     
+      if (order && content.order.type !== 1 ) params.type = content.order.type;
+
       axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
         function isAllow(value) {

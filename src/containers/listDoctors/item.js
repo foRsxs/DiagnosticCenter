@@ -56,7 +56,7 @@ class DoctorScreen extends Component {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
     } else {
-      (page == 'questions') ? navigation.navigate(page, {doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}): navigation.navigate(page, {spec_id, docdep_id})
+      (page == 'questions') ? navigation.navigate(page, {doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}): navigation.navigate(page, {spec_id, docdep_id, type: doctor[0].type[0]})
     }
   }
 
@@ -64,8 +64,6 @@ class DoctorScreen extends Component {
     const { docid, loading} = this.state;
     const { t, doctor } = this.props;
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
-
-    console.log(doctor);
 
     return (
       <ScrollView style={{backgroundColor: 'white'}}>
