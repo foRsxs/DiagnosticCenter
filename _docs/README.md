@@ -13,7 +13,8 @@ add plugins:
 
 (Устранение ошибки при сборке - https://github.com/wkh237/react-native-fetch-blob/issues/716)
 
-cleane cache rm -rf ~/.rncache
+cleane cache: 
+rm -rf ~/.rncache
 
 Создание dev-билда для android:
 mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && cd ../

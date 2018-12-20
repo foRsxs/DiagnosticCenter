@@ -66,7 +66,7 @@ class HomeScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { t, sales } = this.props;
-
+    
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('home:title') } navigation = {this.props.navigation} backDisabled={true} />

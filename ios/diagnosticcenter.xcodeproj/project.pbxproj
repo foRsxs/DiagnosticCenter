@@ -35,14 +35,6 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF26A66CA45741B3821C37D3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */; };
 		B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */; };
-		CE115A8E21BAB982001BFF48 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8D21BAB982001BFF48 /* UserNotifications.framework */; };
-		CE115A9021BAB982001BFF48 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8F21BAB982001BFF48 /* UserNotificationsUI.framework */; };
-		CE115A9421BAB982001BFF48 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE115A9321BAB982001BFF48 /* NotificationViewController.m */; };
-		CE115A9721BAB982001BFF48 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE115A9521BAB982001BFF48 /* MainInterface.storyboard */; };
-		CE115A9B21BAB982001BFF48 /* DiagnosticCenter.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE115A8C21BAB982001BFF48 /* DiagnosticCenter.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CE115AA121BABA42001BFF48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA021BABA42001BFF48 /* UIKit.framework */; };
-		CE115AA321BABA4C001BFF48 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA221BABA4C001BFF48 /* SystemConfiguration.framework */; };
-		CE115AA421BABA62001BFF48 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8621BAB761001BFF48 /* libRCTOneSignal.a */; };
 		CE157B0D21B6E2A50010F838 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B0C21B6E28D0010F838 /* libRNShare.a */; };
 		CE157B0F21B6E3190010F838 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B0E21B6E3190010F838 /* Social.framework */; };
 		CE157B1121B6E32B0010F838 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B1021B6E32B0010F838 /* MessageUI.framework */; };
@@ -326,13 +318,6 @@
 			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
 			remoteInfo = RCTOneSignal;
 		};
-		CE115A9921BAB982001BFF48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE115A8B21BAB982001BFF48;
-			remoteInfo = DiagnosticCenter;
-		};
 		CE157B0B21B6E28D0010F838 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE157B0721B6E28D0010F838 /* RNShare.xcodeproj */;
@@ -391,7 +376,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				CE115A9B21BAB982001BFF48 /* DiagnosticCenter.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,14 +435,8 @@
 		B1F21064206949A5B8D92CCA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		B596078F02BA4CDAA48BF09C /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
 		BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
-		CE115A8721BAB87E001BFF48 /* Diagnostic Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Diagnostic Center.entitlements"; sourceTree = "<group>"; };
-		CE115A8C21BAB982001BFF48 /* DiagnosticCenter.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DiagnosticCenter.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE115A8D21BAB982001BFF48 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CE115A8F21BAB982001BFF48 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
-		CE115A9221BAB982001BFF48 /* NotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
-		CE115A9321BAB982001BFF48 /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
-		CE115A9621BAB982001BFF48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		CE115A9821BAB982001BFF48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE115AA021BABA42001BFF48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE115AA221BABA4C001BFF48 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE157B0721B6E28D0010F838 /* RNShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
@@ -500,18 +478,6 @@
 				A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */,
 				101C1ADC306B4F7D8AF0065E /* libRCTOneSignal.a in Frameworks */,
 				B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE115A8921BAB982001BFF48 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE115AA421BABA62001BFF48 /* libRCTOneSignal.a in Frameworks */,
-				CE115AA321BABA4C001BFF48 /* SystemConfiguration.framework in Frameworks */,
-				CE115AA121BABA42001BFF48 /* UIKit.framework in Frameworks */,
-				CE115A9021BAB982001BFF48 /* UserNotificationsUI.framework in Frameworks */,
-				CE115A8E21BAB982001BFF48 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +546,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* medicina */ = {
+		13B07FAE1A68108700A75B9A /* diagnosticcenter */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -590,7 +556,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = medicina;
+			name = diagnosticcenter;
 			sourceTree = "<group>";
 		};
 		146834001AC3E56700842450 /* Products */ = {
@@ -686,11 +652,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				CE115A8721BAB87E001BFF48 /* Diagnostic Center.entitlements */,
 				CE72B9A2219F0EBB009D0A91 /* InputMask.framework */,
-				13B07FAE1A68108700A75B9A /* medicina */,
+				13B07FAE1A68108700A75B9A /* diagnosticcenter */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				CE115A9121BAB982001BFF48 /* DiagnosticCenter */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CFC9F43904D34EB496813B66 /* Resources */,
@@ -705,7 +669,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Diagnostic Center.app */,
-				CE115A8C21BAB982001BFF48 /* DiagnosticCenter.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -725,17 +688,6 @@
 				CE115A8621BAB761001BFF48 /* libRCTOneSignal.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CE115A9121BAB982001BFF48 /* DiagnosticCenter */ = {
-			isa = PBXGroup;
-			children = (
-				CE115A9221BAB982001BFF48 /* NotificationViewController.h */,
-				CE115A9321BAB982001BFF48 /* NotificationViewController.m */,
-				CE115A9521BAB982001BFF48 /* MainInterface.storyboard */,
-				CE115A9821BAB982001BFF48 /* Info.plist */,
-			);
-			path = DiagnosticCenter;
 			sourceTree = "<group>";
 		};
 		CE157B0821B6E28D0010F838 /* Products */ = {
@@ -841,29 +793,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				CE115A9A21BAB982001BFF48 /* PBXTargetDependency */,
 			);
 			name = "Diagnostic Center";
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Diagnostic Center.app */;
 			productType = "com.apple.product-type.application";
-		};
-		CE115A8B21BAB982001BFF48 /* DiagnosticCenter */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE115A9C21BAB982001BFF48 /* Build configuration list for PBXNativeTarget "DiagnosticCenter" */;
-			buildPhases = (
-				CE115A8821BAB982001BFF48 /* Sources */,
-				CE115A8921BAB982001BFF48 /* Frameworks */,
-				CE115A8A21BAB982001BFF48 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DiagnosticCenter;
-			productName = DiagnosticCenter;
-			productReference = CE115A8C21BAB982001BFF48 /* DiagnosticCenter.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -872,7 +806,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 940;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = "IZZI software";
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						SystemCapabilities = {
@@ -883,9 +817,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					CE115A8B21BAB982001BFF48 = {
-						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -981,7 +912,6 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Diagnostic Center */,
-				CE115A8B21BAB982001BFF48 /* DiagnosticCenter */,
 			);
 		};
 /* End PBXProject section */
@@ -1330,14 +1260,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE115A8A21BAB982001BFF48 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE115A9721BAB982001BFF48 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1385,34 +1307,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE115A8821BAB982001BFF48 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE115A9421BAB982001BFF48 /* NotificationViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CE115A9A21BAB982001BFF48 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE115A8B21BAB982001BFF48 /* DiagnosticCenter */;
-			targetProxy = CE115A9921BAB982001BFF48 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CE115A9521BAB982001BFF48 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE115A9621BAB982001BFF48 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
@@ -1599,68 +1494,6 @@
 			};
 			name = Release;
 		};
-		CE115A9D21BAB982001BFF48 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6SMF8XRHEF;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
-				INFOPLIST_FILE = DiagnosticCenter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.applabs.diagnosticcenter.DiagnosticCenter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CE115A9E21BAB982001BFF48 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 6SMF8XRHEF;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
-				INFOPLIST_FILE = DiagnosticCenter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.applabs.diagnosticcenter.DiagnosticCenter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1678,15 +1511,6 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE115A9C21BAB982001BFF48 /* Build configuration list for PBXNativeTarget "DiagnosticCenter" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE115A9D21BAB982001BFF48 /* Debug */,
-				CE115A9E21BAB982001BFF48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -80,7 +80,7 @@ class InfoDetailScreen extends Component {
           />
         </TouchableOpacity>
         <Modal visible={openPopup} transparent={true} onRequestClose={() => this.setState({ openPopup: false }) }>
-          <ImageViewer imageUrls={[{url: image.uri}]}/>
+          <ImageViewer imageUrls={[{url: image.uri}]} enableSwipeDown={true} onSwipeDown={()=> this.setState({ openPopup: false })}/>
         </Modal>
       </View>
     )
