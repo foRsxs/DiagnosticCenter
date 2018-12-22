@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, Alert, StyleSheet, View, Text, TouchableOpacity, Image, PermissionsAndroid, ActivityIndicator } from 'react-native';
 import Share from 'react-native-share';
-import RNFetchBlob from 'react-native-fetch-blob';
+import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
 import variables from '../../styles/variables';

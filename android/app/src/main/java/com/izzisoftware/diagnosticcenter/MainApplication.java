@@ -3,8 +3,8 @@ package com.izzisoftware.diagnosticcenter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-
 import com.RNFetchBlob.RNFetchBlobPackage;
+
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.RNTextInputMask.RNTextInputMaskPackage;
 import com.rnfingerprint.FingerprintAuthPackage;

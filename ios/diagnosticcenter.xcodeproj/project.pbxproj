@@ -26,6 +26,7 @@
 		3583ECA9A8FA472793C90E6E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8809285EBB4B99B11C836E /* Feather.ttf */; };
 		53113EA2BBCC4542B2638778 /* HelveticaNeueCyr.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15A26D55140742A395B8A8E4 /* HelveticaNeueCyr.ttf */; };
 		54D4FF5832114DC0A34C79D2 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48B347E2567B40B1A065BD6C /* Foundation.ttf */; };
+		68C02B325BF949B9987D3C52 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D84822A9F3D499CA926AE09 /* libRNFetchBlob.a */; };
 		749B9D0C2BE140CD989CA1A7 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BEB83855E17466E90CD937D /* rubicon-icon-font.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		93BE82A7CE004B2D8AE00488 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92B3EDE8AF184582AEA67667 /* SimpleLineIcons.ttf */; };
@@ -34,18 +35,17 @@
 		A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB58051720F48DE952F62AB /* libTouchID.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF26A66CA45741B3821C37D3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */; };
-		B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */; };
 		CE157B0D21B6E2A50010F838 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B0C21B6E28D0010F838 /* libRNShare.a */; };
 		CE157B0F21B6E3190010F838 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B0E21B6E3190010F838 /* Social.framework */; };
 		CE157B1121B6E32B0010F838 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE157B1021B6E32B0010F838 /* MessageUI.framework */; };
 		CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B1D112181AAC300CD5FF7 /* libRNLanguages.a */; };
 		CE4B3F3A219AE46A002E92AA /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B3F39219AE445002E92AA /* libSplashScreen.a */; };
 		CE72B9E9219F1A9A009D0A91 /* libRNTextInputMask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */; };
-		CEF0952121CBD7650047B7C3 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF0952021CBD7650047B7C3 /* NotificationService.m */; };
-		CEF0952521CBD7650047B7C3 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEF0951D21CBD7640047B7C3 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CEF0952921CBD7D30047B7C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA021BABA42001BFF48 /* UIKit.framework */; };
-		CEF0952A21CBD7E00047B7C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA221BABA4C001BFF48 /* SystemConfiguration.framework */; };
-		CEF0952B21CBD7EC0047B7C3 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8621BAB761001BFF48 /* libRCTOneSignal.a */; };
+		CEE9F75B21CE8D3A006A02DF /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9F75A21CE8D3A006A02DF /* NotificationService.m */; };
+		CEE9F75F21CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CEE9F76321CE8D9C006A02DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA021BABA42001BFF48 /* UIKit.framework */; };
+		CEE9F76421CE8DA9006A02DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA221BABA4C001BFF48 /* SystemConfiguration.framework */; };
+		CEE9F76521CE8DB5006A02DF /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115A8621BAB761001BFF48 /* libRCTOneSignal.a */; };
 		CEF0952E21CBD8970047B7C3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF0952D21CBD8970047B7C3 /* HealthKit.framework */; };
 		CEF0953021CBD8A10047B7C3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF0952F21CBD8A10047B7C3 /* StoreKit.framework */; };
 		CEF0953221CBD8C20047B7C3 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF0953121CBD8C20047B7C3 /* PassKit.framework */; };
@@ -356,6 +356,13 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		CE6077DD21CE6FBD006B94CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
 		CE72B9A0219F0EA3009D0A91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */;
@@ -370,18 +377,11 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = TouchID;
 		};
-		CE876FA921BEA2DA0015793C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A15C300E1CD25C330074CB35;
-			remoteInfo = RNFetchBlob;
-		};
-		CEF0952321CBD7650047B7C3 /* PBXContainerItemProxy */ = {
+		CEE9F75D21CE8D3A006A02DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CEF0951C21CBD7640047B7C3;
+			remoteGlobalIDString = CEE9F75621CE8D3A006A02DF;
 			remoteInfo = OneSignalNotificationServiceExtension;
 		};
 /* End PBXContainerItemProxy section */
@@ -393,7 +393,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				CEF0952521CBD7650047B7C3 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+				CEE9F75F21CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -442,6 +442,7 @@
 		680AAE1473184A748480CF1C /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7D84822A9F3D499CA926AE09 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8ECCD5DACC814CFAB54DA79C /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		92B3EDE8AF184582AEA67667 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -451,8 +452,8 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AE7A29180D654E389D5F9617 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		B1F21064206949A5B8D92CCA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		B596078F02BA4CDAA48BF09C /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
-		BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		CE115A8D21BAB982001BFF48 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CE115A8F21BAB982001BFF48 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		CE115AA021BABA42001BFF48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -463,7 +464,10 @@
 		CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLanguages.xcodeproj; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; };
 		CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTextInputMask.xcodeproj; path = "../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask.xcodeproj"; sourceTree = "<group>"; };
-		CEF0951D21CBD7640047B7C3 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE9F75921CE8D3A006A02DF /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		CEE9F75A21CE8D3A006A02DF /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		CEE9F75C21CE8D3A006A02DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF0951F21CBD7650047B7C3 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		CEF0952021CBD7650047B7C3 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		CEF0952221CBD7650047B7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -474,7 +478,6 @@
 		CEF0953321CBD92D0047B7C3 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		CEF0953421CBD9DB0047B7C3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CEF095CB21CBE8950047B7C3 /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InputMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -509,18 +512,18 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A520253579604D60BED8FA1E /* libTouchID.a in Frameworks */,
 				101C1ADC306B4F7D8AF0065E /* libRCTOneSignal.a in Frameworks */,
-				B03026724F9643D2AAC99BF5 /* libRNFetchBlob.a in Frameworks */,
 				CEF0953521CBD9DB0047B7C3 /* GameKit.framework in Frameworks */,
+				68C02B325BF949B9987D3C52 /* libRNFetchBlob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEF0951A21CBD7640047B7C3 /* Frameworks */ = {
+		CEE9F75421CE8D3A006A02DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF0952B21CBD7EC0047B7C3 /* libRCTOneSignal.a in Frameworks */,
-				CEF0952A21CBD7E00047B7C3 /* SystemConfiguration.framework in Frameworks */,
-				CEF0952921CBD7D30047B7C3 /* UIKit.framework in Frameworks */,
+				CEE9F76521CE8DB5006A02DF /* libRCTOneSignal.a in Frameworks */,
+				CEE9F76421CE8DA9006A02DF /* SystemConfiguration.framework in Frameworks */,
+				CEE9F76321CE8D9C006A02DF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +686,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				680AAE1473184A748480CF1C /* TouchID.xcodeproj */,
 				33B456402BEA4936A2A6E763 /* RCTOneSignal.xcodeproj */,
-				CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */,
+				B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				13B07FAE1A68108700A75B9A /* diagnosticcenter */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				CEF0951E21CBD7650047B7C3 /* OneSignalNotificationServiceExtension */,
+				CEE9F75821CE8D3A006A02DF /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CFC9F43904D34EB496813B66 /* Resources */,
@@ -718,7 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* diagnosticcenter.app */,
-				CEF0951D21CBD7640047B7C3 /* OneSignalNotificationServiceExtension.appex */,
+				CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -765,6 +769,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE6077DA21CE6FBD006B94CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE6077DE21CE6FBD006B94CD /* libRNFetchBlob.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CE72B99C219F0EA3009D0A91 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,7 +792,7 @@
 				552939714F4547C7B72C2FCD /* libRNTextInputMask.a */,
 				02E153B8EA2043BCB27D5E35 /* libRNShare.a */,
 				B596078F02BA4CDAA48BF09C /* libRCTOneSignal.a */,
-				BC438FE1CF5144E7BE5761F1 /* libRNFetchBlob.a */,
+				7D84822A9F3D499CA926AE09 /* libRNFetchBlob.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -793,12 +805,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE876FA621BEA2DA0015793C /* Products */ = {
+		CEE9F75821CE8D3A006A02DF /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
-				CE876FAA21BEA2DA0015793C /* libRNFetchBlob.a */,
+				CEE9F75921CE8D3A006A02DF /* NotificationService.h */,
+				CEE9F75A21CE8D3A006A02DF /* NotificationService.m */,
+				CEE9F75C21CE8D3A006A02DF /* Info.plist */,
 			);
-			name = Products;
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		CEF0951E21CBD7650047B7C3 /* OneSignalNotificationServiceExtension */ = {
@@ -854,20 +868,20 @@
 			buildRules = (
 			);
 			dependencies = (
-				CEF0952421CBD7650047B7C3 /* PBXTargetDependency */,
+				CEE9F75E21CE8D3A006A02DF /* PBXTargetDependency */,
 			);
 			name = diagnosticcenter;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* diagnosticcenter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CEF0951C21CBD7640047B7C3 /* OneSignalNotificationServiceExtension */ = {
+		CEE9F75621CE8D3A006A02DF /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEF0952621CBD7650047B7C3 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildConfigurationList = CEE9F76021CE8D3A006A02DF /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				CEF0951921CBD7640047B7C3 /* Sources */,
-				CEF0951A21CBD7640047B7C3 /* Frameworks */,
-				CEF0951B21CBD7640047B7C3 /* Resources */,
+				CEE9F75321CE8D3A006A02DF /* Sources */,
+				CEE9F75421CE8D3A006A02DF /* Frameworks */,
+				CEE9F75521CE8D3A006A02DF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -875,7 +889,7 @@
 			);
 			name = OneSignalNotificationServiceExtension;
 			productName = OneSignalNotificationServiceExtension;
-			productReference = CEF0951D21CBD7640047B7C3 /* OneSignalNotificationServiceExtension.appex */;
+			productReference = CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -915,13 +929,8 @@
 							};
 						};
 					};
-					CEF0951C21CBD7640047B7C3 = {
+					CEE9F75621CE8D3A006A02DF = {
 						CreatedOnToolsVersion = 10.1;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
 					};
 				};
 			};
@@ -990,8 +999,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = CE876FA621BEA2DA0015793C /* Products */;
-					ProjectRef = CF945CA042924938AB843EE3 /* RNFetchBlob.xcodeproj */;
+					ProductGroup = CE6077DA21CE6FBD006B94CD /* Products */;
+					ProjectRef = B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */;
 				},
 				{
 					ProductGroup = CE2B1CE72181AAC300CD5FF7 /* Products */;
@@ -1017,7 +1026,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* diagnosticcenter */,
-				CEF0951C21CBD7640047B7C3 /* OneSignalNotificationServiceExtension */,
+				CEE9F75621CE8D3A006A02DF /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1317,6 +1326,13 @@
 			remoteRef = CE4B3F38219AE445002E92AA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CE6077DE21CE6FBD006B94CD /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = CE6077DD21CE6FBD006B94CD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1329,13 +1345,6 @@
 			fileType = archive.ar;
 			path = libTouchID.a;
 			remoteRef = CE852CDC219C673900D11EFA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CE876FAA21BEA2DA0015793C /* libRNFetchBlob.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFetchBlob.a;
-			remoteRef = CE876FA921BEA2DA0015793C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1366,7 +1375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEF0951B21CBD7640047B7C3 /* Resources */ = {
+		CEE9F75521CE8D3A006A02DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1420,21 +1429,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEF0951921CBD7640047B7C3 /* Sources */ = {
+		CEE9F75321CE8D3A006A02DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF0952121CBD7650047B7C3 /* NotificationService.m in Sources */,
+				CEE9F75B21CE8D3A006A02DF /* NotificationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CEF0952421CBD7650047B7C3 /* PBXTargetDependency */ = {
+		CEE9F75E21CE8D3A006A02DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEF0951C21CBD7640047B7C3 /* OneSignalNotificationServiceExtension */;
-			targetProxy = CEF0952321CBD7650047B7C3 /* PBXContainerItemProxy */;
+			target = CEE9F75621CE8D3A006A02DF /* OneSignalNotificationServiceExtension */;
+			targetProxy = CEE9F75D21CE8D3A006A02DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1446,8 +1455,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
@@ -1457,9 +1466,10 @@
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)..\node_modules\neact-native-onesignalios/**",
-					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1470,6 +1480,7 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1479,7 +1490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.izzisoftware.diagnosticcenter;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = diagnosticcenter;
-				PROVISIONING_PROFILE_SPECIFIER = "Diagnostic Center";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1492,8 +1503,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
 				HEADER_SEARCH_PATHS = (
@@ -1502,9 +1513,10 @@
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)..\node_modules\neact-native-onesignalios/**",
-					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1515,6 +1527,7 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1524,7 +1537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.izzisoftware.diagnosticcenter;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = diagnosticcenter;
-				PROVISIONING_PROFILE_SPECIFIER = "Diagnostic Center";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1576,7 +1589,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1622,14 +1634,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		CEF0952721CBD7650047B7C3 /* Debug */ = {
+		CEE9F76121CE8D3A006A02DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1638,9 +1649,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1656,13 +1666,12 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izzisoftware.diagnosticcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Diagnostic Center";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		CEF0952821CBD7650047B7C3 /* Release */ = {
+		CEE9F76221CE8D3A006A02DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1671,9 +1680,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
@@ -1689,7 +1697,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izzisoftware.diagnosticcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Diagnostic Center";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1716,11 +1723,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEF0952621CBD7650047B7C3 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+		CEE9F76021CE8D3A006A02DF /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CEF0952721CBD7650047B7C3 /* Debug */,
-				CEF0952821CBD7650047B7C3 /* Release */,
+				CEE9F76121CE8D3A006A02DF /* Debug */,
+				CEE9F76221CE8D3A006A02DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
