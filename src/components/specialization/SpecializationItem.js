@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   },
   specIcon: {
     position: 'absolute',
-    top: '50%'-15,
     left: 10,
     width: 30, 
     height: 30,

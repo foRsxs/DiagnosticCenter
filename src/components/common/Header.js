@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Dimensions, Image, TextInput } from 'react-native';
 import { Icon } from 'native-base';
 
 import variables from '../../styles/variables';
 
 const { large } = variables.fSize;
-const { darkBlue, white, accentBlue, barColor } = variables.colors;
+const { white, accentBlue, barColor } = variables.colors;
 const { mainFont } = variables.fonts;
-let { width } = Dimensions.get('window');
+let { width, height } = Dimensions.get('window');
 
 export default class Header extends Component {
   constructor(props) {
@@ -15,36 +15,38 @@ export default class Header extends Component {
   }
 
   render() {
-    const { inversion = false, backDisabled = false, disabledButtons = false } = this.props
+    const { backDisabled = false, disabledButtons = false, search = false, text } = this.props
 
     return (
-      <View style={!inversion ? styles.container : styles.inContainer}>
-        <StatusBar backgroundColor={barColor} barStyle='light-content' />
-        {(!disabledButtons) && (
-          <View style={styles.btnContainer}>
-            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()} activeOpacity={0.6} style={styles.btnMenu} >
-              {
-                (!inversion) ?
-                  <Icon ios='ios-menu' android="md-menu" style={{ color: 'white', width: 30, height: 30 }} /> :
-                  <Icon ios='ios-menu' android="md-menu" style={{ color: variables.colors.blue, width: 30, height: 30 }} />
-              }
-            </TouchableOpacity>
+      <View style={{width: '100%', zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+        <View style={styles.container}>
+          <StatusBar backgroundColor={barColor} barStyle='light-content' />
             {
               (!backDisabled) && (
               <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
-                {
-                  (!inversion) ?
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> :
-                    <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: variables.colors.blue, paddingLeft: 5, width: 30, height: 30 }} />
-                }
+                <Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} /> 
               </TouchableOpacity>
               )
             }
-          </View>
-        )}
-        <View style={styles.textContainer} >
-          <Text style={!inversion ? styles.text : styles.inText}>{this.props.text.toUpperCase()}</Text>
-        </View>        
+            {
+              (search) && (
+                <View style={styles.inputContainer}>
+                  <Image style={styles.searchIcon} resizeMode='contain' source={require('../../../assets/img/search-icon.png')} />
+                  <TextInput style={[styles.input]} placeholder='' onChangeText={(text) => onChangeSearch(text)}/>  
+                </View>
+              )
+            }
+            {
+              (text) && (
+                <View style={styles.textContainer} >
+                  <Text style={styles.text}>{text}</Text>
+                </View> 
+              )
+            }       
+        </View>
+        <View style={{alignItems: 'center', marginTop: -width+height/25, zIndex: 1, backgroundColor: 'rgba(0, 0, 0, 0)'}}>
+          <View style={styles.oval} />
+        </View>
       </View>
     )
   }
@@ -55,35 +57,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     width: '100%',
-    height: 60,
+    height: 50,
     alignItems: 'flex-end',
     backgroundColor: accentBlue,
-    zIndex: 3
-  },
-  inContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: 40,
-    backgroundColor: white,
-    zIndex: 3
-  },
-  btnContainer: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    width: 80
-  },
-  btnMenu: {
-    paddingTop: 10,
-    paddingRight: 0,
-    paddingLeft: 15,
+    zIndex: 3,
+    paddingHorizontal: 15
   },
   btnBack: {
-    paddingTop: 10,
+    flex: 1,
+    justifyContent: 'flex-start',
   },
   textContainer: {
-    width: width - 80,
+    flex: 6,
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
     paddingBottom: 3,
@@ -97,9 +82,34 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     width: 1000
   },
-  inText: {
-    color: darkBlue,
-    fontFamily: mainFont,
-    fontSize: large,
+  oval: {
+    width: width,
+    height: width,
+    borderRadius: width,
+    backgroundColor: variables.colors.accentBlue,
+    transform: [
+      {scaleX: 3}
+    ]
   },
+  inputContainer: {
+    flex: 9,
+    position: 'relative'
+  },
+  searchIcon: {
+    position: 'absolute',
+    zIndex: 5,
+    left: 5,
+    top: 8,
+    width: 18, 
+    height: 18
+  },
+	input: {
+		width: '100%',
+    height: 35, 
+    padding: 0,
+    paddingLeft: 30,
+    paddingRight: 10,
+		borderRadius: 5,
+		backgroundColor: variables.colors.white
+	},
 });

@@ -335,8 +335,8 @@ class AuthorizationScreen extends Component {
           style={{flex:1}}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}}
         >
-          <Header disabledButtons={true} text="" navigation = {this.props.navigation} />
-          <HeaderBottom language={languages_key} islanguages={!token} changeLang={(value)=>this.changeLang(value)}  />
+          <Header backDisabled={true} search={true} navigation = {this.props.navigation} />
+          {/* <HeaderBottom language={languages_key} islanguages={!token} changeLang={(value)=>this.changeLang(value)}  /> */}
           {(!token) && this.renderAuthView()}
           {(token && !methods_auth) && this.renderConfirmCodeChoose()}
           {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}

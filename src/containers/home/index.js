@@ -70,7 +70,7 @@ class HomeScreen extends Component {
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
         <Header text={ t('home:title') } navigation = {this.props.navigation} backDisabled={true} />
-        <HeaderBottom/>
+        {/* <HeaderBottom/> */}
         <Content style={{marginTop: -60, zIndex: 2}}>
           <View style={{height: Height/3, justifyContent: 'center', alignItems: 'center'}}>
             { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={accentBlue} /> }
