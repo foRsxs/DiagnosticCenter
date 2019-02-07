@@ -5,7 +5,6 @@
 	};
 	objectVersion = 51;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +58,7 @@
 		E8B4809943F241F2A1584DC3 /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BEF732FF6484E12B346591A /* HelveticaNeue.ttf */; };
 		EAF023D9C2544518A3A6D0AA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */; };
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
+		60DD79B42C384A849253B97C /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79253E1E4E0340D5AD001AE8 /* libRNGestureHandler.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -481,6 +481,8 @@
 		EB4E060364484F79991575BD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		077B31C44E364AA49F267539 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		79253E1E4E0340D5AD001AE8 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +516,7 @@
 				101C1ADC306B4F7D8AF0065E /* libRCTOneSignal.a in Frameworks */,
 				CEF0953521CBD9DB0047B7C3 /* GameKit.framework in Frameworks */,
 				68C02B325BF949B9987D3C52 /* libRNFetchBlob.a in Frameworks */,
+				60DD79B42C384A849253B97C /* libRNGestureHandler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +690,7 @@
 				680AAE1473184A748480CF1C /* TouchID.xcodeproj */,
 				33B456402BEA4936A2A6E763 /* RCTOneSignal.xcodeproj */,
 				B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */,
+				077B31C44E364AA49F267539 /* RNGestureHandler.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1467,6 +1471,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)..\node_modules\neact-native-onesignalios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1480,6 +1485,7 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1514,6 +1520,7 @@
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)..\node_modules\neact-native-onesignalios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1527,6 +1534,7 @@
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
 					"\"$(SRCROOT)/medicina\"",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				OTHER_LDFLAGS = (

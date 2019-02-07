@@ -1,4 +1,5 @@
 import {
+  createAppContainer,
   createStackNavigator,
   createDrawerNavigator,
   createSwitchNavigator
@@ -162,9 +163,12 @@ const Drawer = createDrawerNavigator({
   contentComponent: DrawerMenu,
 });
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createAppContainer(createSwitchNavigator({
   Auth: Authorization,
   Home: Drawer,
-});
-
+  },
+  {
+    initialRouteName: 'Auth',
+  },
+));
 export default AppNavigator;
