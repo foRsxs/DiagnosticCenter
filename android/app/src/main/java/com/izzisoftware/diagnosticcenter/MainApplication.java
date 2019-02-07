@@ -3,15 +3,15 @@ package com.izzisoftware.diagnosticcenter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.RNFetchBlob.RNFetchBlobPackage;
-
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import com.RNTextInputMask.RNTextInputMaskPackage;
-import com.rnfingerprint.FingerprintAuthPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
+import com.RNTextInputMask.RNTextInputMaskPackage;
+import com.rnfingerprint.FingerprintAuthPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
