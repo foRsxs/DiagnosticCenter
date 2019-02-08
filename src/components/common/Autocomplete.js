@@ -12,9 +12,9 @@ import {
 import {Text, List, ListItem} from 'native-base';
 import variables from '../../styles/variables';
 
-const {accentBlue} = variables.colors;
-const { mainFont } = variables.fonts;
 const { medium, main }  = variables.fSize;
+
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 export default class Autocompete extends Component {
   constructor (props) {
@@ -102,11 +102,11 @@ export default class Autocompete extends Component {
                       (item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`: (item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null
                     )}
                   >
-                    <Text style={{fontFamily: mainFont, fontSize: medium, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
+                    <Text style={{fontFamily: MAIN_FONT, fontSize: medium, width: '100%'}}>{(item.lastname) ? `${item.lastname} ${item.firstname} ${item.secondname}`:(item.text) ? item.text: (item.value) ? item.value: (item.res_text) ? item.res_text : (item.spec_name) ? item.spec_name : null}</Text>
                   </TouchableOpacity>
                 </ListItem>
               ))
-            ) : <ActivityIndicator size="small" color={accentBlue} /> 
+            ) : <ActivityIndicator size="small" color={ACCENT_BLUE} /> 
           } 
         </List>
       </ScrollView>
@@ -140,7 +140,7 @@ export default class Autocompete extends Component {
           {
             (opened) ?  
             <TextInput
-              style={{color: 'black', fontFamily: mainFont, fontSize: main, marginLeft: 30, paddingLeft: 0, height: 40}}
+              style={{color: 'black', fontFamily: MAIN_FONT, fontSize: main, marginLeft: 30, paddingLeft: 0, height: 40}}
               onChangeText={(value) => this.onChange(value)}
               value={value}
             /> : <Text style={(!disabled)? styles.text: styles.textDisabled}>{(value)? value: label}</Text>
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'relative',
-    borderColor: accentBlue, 
+    borderColor: ACCENT_BLUE, 
     borderWidth: 1, 
     borderStyle: 'solid', 
     borderRadius: 5, 
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   contentDisabled: {
-    borderColor: accentBlue, 
+    borderColor: ACCENT_BLUE, 
     borderWidth: 1, 
     borderStyle: 'solid', 
     borderRadius: 5, 
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black', 
-    fontFamily: mainFont, 
+    fontFamily: MAIN_FONT, 
     fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 
@@ -199,8 +199,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden' 
   },
   textDisabled: {
-    color: accentBlue, 
-    fontFamily: mainFont, 
+    color: ACCENT_BLUE, 
+    fontFamily: MAIN_FONT, 
     fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 

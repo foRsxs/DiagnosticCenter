@@ -6,12 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import variables from '../../styles/variables'
 import AnalizesItem from '../../components/analizes/AnalizesItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-const {accentBlue} = variables.colors;
+import { ACCENT_BLUE } from '../../styles/constants';
 
 class AnalizesScreen extends Component {
   constructor(props) {
@@ -49,10 +48,10 @@ class AnalizesScreen extends Component {
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
         <HeaderBottom text={ (analizes_list && analizes_list.length) ? t('analizes:total_text') + ` - ${analizes_list.length}`: '' } />
         {(shareLoading) && (<View style={styles.loaderWrap}>
-          <ActivityIndicator size="large" color={accentBlue} />
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
             {
               (!loading) && (
                 (analizes_list && analizes_list.length)? (

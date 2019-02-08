@@ -14,10 +14,9 @@ import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-import variebles from '../../styles/variables';
-
 const Height = Dimensions.get('window').height;
-const {accentBlue} = variebles.colors;
+
+import { ACCENT_BLUE } from '../../styles/constants';
 
 class HomeScreen extends Component {
 
@@ -73,7 +72,7 @@ class HomeScreen extends Component {
         {/* <HeaderBottom/> */}
         <Content style={{marginTop: -60, zIndex: 2}}>
           <View style={{height: Height/3, justifyContent: 'center', alignItems: 'center'}}>
-            { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={accentBlue} /> }
+            { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           </View>
           <View style={styles.buttonContainer}>
             <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>

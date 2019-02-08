@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {Text} from 'native-base';
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Text } from 'native-base';
 
 import variables from '../../styles/variables'
+
+import { DARK_BLUE, MAIN_FONT } from '../../styles/constants';
 
 export default class LinkBtn extends Component {
   render() {
@@ -17,15 +19,15 @@ export default class LinkBtn extends Component {
 const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
-    justifyContent: 'center', 
-    width: '100%', 
+    justifyContent: 'center',
+    width: '100%',
     marginBottom: 20,
     marginTop: 20
   },
   buttonTxt: {
-    color: variables.colors.darkBlue, 
-    fontFamily: variables.fonts.mainFont,
-    fontSize: variables.fSize.main, 
+    color: DARK_BLUE,
+    fontFamily: MAIN_FONT,
+    fontSize: variables.fSize.main,
     textAlign: 'center'
   }
 });

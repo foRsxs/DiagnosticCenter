@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn'
-import variables from '../../styles/variables';
 import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
-const { accentBlue } = variables.colors;
+import variables from '../../styles/variables';
 const { medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class ReceptionListScreen extends Component {
 
@@ -54,10 +54,10 @@ class ReceptionListScreen extends Component {
         <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
         <HeaderBottom text={ (listTalons) ? t('recordings:total_text') + ` - ${listTalons.length}`: '' } />
         {(shareLoading) && (<View style={styles.loaderWrap}>
-          <ActivityIndicator size="large" color={accentBlue} />
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}} padder>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
               (listTalons && listTalons.length)? (
@@ -85,7 +85,7 @@ class ReceptionListScreen extends Component {
                     })
                   }/>
                 ))
-              ) : ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('recordings:no_recordings_text') }</Text> )
+              ) : ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('recordings:no_recordings_text') }</Text> )
             )
           }
         </Content >

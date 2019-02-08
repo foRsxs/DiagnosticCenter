@@ -10,12 +10,12 @@ import OftenQuestionItem from '../../components/questions/OftenQuestionItem';
 import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import variables from '../../styles/variables';
 import { CALL_CENTRE_TEL } from '../../config';
 
-const { accentBlue } = variables.colors;
+import variables from '../../styles/variables';
 const {medium} = variables.fSize;
-const { mainFont} = variables.fonts;
+
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class OftenQuestionsScreen extends Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class OftenQuestionsScreen extends Component {
         <HeaderBottom search={true} onChangeSearch={this.handleChange}/>
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder contentContainerStyle={(loading)?{flex:1, justifyContent: 'center'}:{}}>
           {
-            (loading) ? <ActivityIndicator size="large" color={accentBlue} />:
+            (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} />:
             (
               (sorted_questions && sorted_questions.length)? (
                 sorted_questions.map((item, index)=>(
@@ -73,7 +73,7 @@ class OftenQuestionsScreen extends Component {
                   />
                 ))
               ): (
-                <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{t('faq:no_often_questions_text')}</Text>
+                <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{t('faq:no_often_questions_text')}</Text>
               )
             )
           }

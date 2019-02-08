@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Text} from 'native-base';
+
 import variables from '../../styles/variables'
+
+import { ACCENT_BLUE, BLACK, MAIN_FONT  } from '../../styles/constants';
 
 export default class MenuItem extends Component {
   constructor(props) {
@@ -61,19 +64,19 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     alignItems: "center",
     flexDirection: 'row',
-    borderColor: variables.colors.accentBlue,
+    borderColor: ACCENT_BLUE,
     borderWidth: 1,
     borderStyle: 'solid'
   },
   menuItemText: {
     fontSize: variables.fSize.large,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.black,
+    fontFamily: MAIN_FONT,
+    color: BLACK,
   },
   menuItemTextActive: {
     fontSize: variables.fSize.large,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.accentBlue,
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE,
   },
   menuIcon: {
     width: 20, 

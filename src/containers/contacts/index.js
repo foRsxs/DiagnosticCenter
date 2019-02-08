@@ -10,6 +10,8 @@ import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
+import { ACCENT_BLUE, DARK_GREY, BLACK, MAIN_FONT } from '../../styles/constants';
+
 class ContactsScreen extends Component {
 
   constructor(props) {
@@ -96,28 +98,28 @@ const styles = StyleSheet.create({
   },
   headTxt: {
     fontSize: variables.fSize.large, 
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.black, 
+    fontFamily: MAIN_FONT,
+    color: BLACK, 
     width: '100%', 
     textAlign: 'left',
   },
   subHeadTxt: {
     fontSize: variables.fSize.main, 
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.darkGray, 
+    fontFamily: MAIN_FONT,
+    color: DARK_GREY, 
     width: '100%', 
     textAlign: 'left',
     marginVertical: 5
   },
   linkTxt: {
     fontSize: variables.fSize.main, 
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.accentBlue, 
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE, 
     width: '100%', 
     textAlign: 'left',
     textDecorationLine: "underline",
     textDecorationStyle: "solid",
-    textDecorationColor: variables.colors.accentBlue,
+    textDecorationColor: ACCENT_BLUE,
   }
 });
 

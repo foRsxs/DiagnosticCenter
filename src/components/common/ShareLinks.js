@@ -5,10 +5,9 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
 import variables from '../../styles/variables';
-
-const { lightGray, mediumBlack, black, accentBlue } = variables.colors;
-const { mainFont } = variables.fonts;
 const { large, main } = variables.fSize;
+
+import { LIGHT_GRAY, MEDIUM_BLACK, BLACK, ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class ShareLinks extends Component {
   constructor(props) {
@@ -104,7 +103,7 @@ class ShareLinks extends Component {
 
     return (
       (loading? (
-        <ActivityIndicator size="small" color={accentBlue} style={{marginVertical: 30}}/>
+        <ActivityIndicator size="small" color={ACCENT_BLUE} style={{marginVertical: 30}}/>
       ):(
         <View style={{paddingLeft: '15%', paddingBottom: 10}}>
           <TouchableOpacity
@@ -121,7 +120,7 @@ class ShareLinks extends Component {
                 resizeMode='contain'
                 source={require('../../../assets/img/mail-icon.png')}
               />
-              <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.send_to_mail') }</Text>
+              <Text style={{color: BLACK, fontFamily: MAIN_FONT, fontSize: large}}>{ t('common:actions.send_to_mail') }</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -138,7 +137,7 @@ class ShareLinks extends Component {
                 resizeMode='contain'
                 source={require('../../../assets/img/picture-icon.png')}
               />
-              <Text style={{color: black, fontFamily: mainFont, fontSize: large}}>{ t('common:actions.save_to_gallery') }</Text>
+              <Text style={{color: BLACK, fontFamily: MAIN_FONT, fontSize: large}}>{ t('common:actions.save_to_gallery') }</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -150,7 +149,7 @@ class ShareLinks extends Component {
 
 const styles = StyleSheet.create({
   wrapName: {
-    backgroundColor: lightGray, 
+    backgroundColor: LIGHT_GRAY, 
     textAlign: 'center', 
     borderRadius: 10, 
     paddingHorizontal: 0, 
@@ -158,15 +157,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 15
   },
   txtName: {
-    color: black, 
-    fontFamily: mainFont,
+    color: BLACK, 
+    fontFamily: MAIN_FONT,
     fontSize: large, 
     width: '100%', 
     textAlign: 'center',
   },
   txtSubname: {
-    color: mediumBlack, 
-    fontFamily: mainFont,
+    color: MEDIUM_BLACK, 
+    fontFamily: MAIN_FONT,
     marginTop: 5,
     fontSize: main, 
     width: '100%', 

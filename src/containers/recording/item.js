@@ -13,9 +13,9 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 import Popup from '../../components/common/Popup';
 
-const { accentBlue, lightGray, mediumBlack, black } = variables.colors;
-const { mainFont } = variables.fonts;
 const { medium, large, main }  = variables.fSize;
+
+import { ACCENT_BLUE, LIGHT_GRAY, MEDIUM_BLACK, BLACK, MAIN_FONT } from '../../styles/constants';
 
 class ReceptionInfoItemScreen extends Component {
   constructor(props) {
@@ -149,15 +149,15 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   txtHead: {
-    color: accentBlue, 
-    fontFamily: mainFont,
+    color: ACCENT_BLUE, 
+    fontFamily: MAIN_FONT,
     fontSize: medium, 
     width: '100%', 
     textAlign: 'center',
     marginBottom: 5
   },
   wrapName: {
-    backgroundColor: lightGray, 
+    backgroundColor: LIGHT_GRAY, 
     width: '100%', 
     textAlign: 'center', 
     borderRadius: 10, 
@@ -165,15 +165,15 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   txtName: {
-    color: black, 
-    fontFamily: mainFont,
+    color: BLACK, 
+    fontFamily: MAIN_FONT,
     fontSize: large, 
     width: '100%', 
     textAlign: 'center'
   },
   txtSubname: {
-    color: mediumBlack, 
-    fontFamily: mainFont,
+    color: MEDIUM_BLACK, 
+    fontFamily: MAIN_FONT,
     fontSize: main, 
     marginTop: 5,
     width: '100%', 

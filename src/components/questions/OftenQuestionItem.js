@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View, Icon} from 'native-base';
-import variables from '../../styles/variables';
 
-const {backgroundBlue, accentBlue, black} = variables.colors;
+import variables from '../../styles/variables';
 const {main} = variables.fSize;
-const {mainFont} = variables.fonts;
+
+import { BACKGROUND_BLUE, BLACK, ACCENT_BLUE, MAIN_FONT  } from '../../styles/constants';
 
 export default class QuestionItem extends Component {
   constructor(props) {
@@ -52,22 +52,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     width: '100%',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10,
     padding: 10,
     position: 'relative'
   },
   questionItemText: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: black,
+    fontFamily: MAIN_FONT,
+    color: BLACK,
     textAlign: 'left',
     width: '100%'
   },
   answerItemText: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: accentBlue,
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE,
     textAlign: 'left',
     width: '100%',
     paddingTop: 5
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   icon: {
-    color: accentBlue,  
+    color: ACCENT_BLUE,  
     fontSize: main,
-    fontFamily: mainFont,
+    fontFamily: MAIN_FONT,
   },
 });

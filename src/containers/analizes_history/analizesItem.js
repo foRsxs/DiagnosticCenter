@@ -11,10 +11,7 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 
-import variables from '../../styles/variables';
-
-const { lightGray, accentBlue } = variables.colors;
-const { mainFont } = variables.fonts;
+import { LIGHT_GRAY, ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class AnalizesItemScreen extends Component {
   constructor(props) {
@@ -78,11 +75,11 @@ class AnalizesItemScreen extends Component {
       <View style={styles.container}>
         <View style={{width: '100%', flexDirection: 'row', marginBottom: 20}}>
           <View style={{width: '50%'}}>
-            <Text style={[styles.textTop, {color: accentBlue}]}>{`${t('analizes:text_material')}: ${(analizes[0])? analizes[0].MATERIALID: ''}`}</Text>
+            <Text style={[styles.textTop, {color: ACCENT_BLUE}]}>{`${t('analizes:text_material')}: ${(analizes[0])? analizes[0].MATERIALID: ''}`}</Text>
             <Text style={styles.textTop}>{t('analizes:text_date_start')}:</Text>
           </View>
           <View style={{width: '50%'}}>
-            <Text style={[styles.textTop, {color: accentBlue}]}>{`IDS: ${(analizes[0])? analizes[0].IDS: ''}`}</Text>
+            <Text style={[styles.textTop, {color: ACCENT_BLUE}]}>{`IDS: ${(analizes[0])? analizes[0].IDS: ''}`}</Text>
             <Text style={styles.textTop}>{state.date}</Text>
           </View>
         </View>
@@ -118,7 +115,7 @@ class AnalizesItemScreen extends Component {
         <Header text={t('analizes:title')} navigation={this.props.navigation} />
         <HeaderBottom text={t('analizes:sub_title')} />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading) ? {flex: 1, justifyContent: 'center'} : {}}>
-          {loading ? <ActivityIndicator size="large" color={accentBlue} /> : this.renderTable()}
+          {loading ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : this.renderTable()}
         </Content>
         <ShareLinks url={pdf} title={headTxt} text={dateTxt} />
       </Container>
@@ -135,12 +132,12 @@ const styles = StyleSheet.create({
   },
   header: { 
     height: 50, 
-    backgroundColor: lightGray
+    backgroundColor: LIGHT_GRAY
   },
   text: { 
     textAlign: 'center', 
     fontWeight: '100', 
-    fontFamily: mainFont 
+    fontFamily: MAIN_FONT 
   },
   dataWrapper: { 
     marginTop: -1 

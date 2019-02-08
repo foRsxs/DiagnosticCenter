@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import variables from '../../styles/variables'
+import { WHITE, ACTIVE_LIGHT_GRAY, LIGHT_GRAY, DARK_BLUE, MAIN_FONT } from '../../styles/constants';
 
 export default class NumberItem extends Component {
   constructor(props) {
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'rgba(94, 150, 197, 0.1)',
+    backgroundColor: LIGHT_GRAY,
   },
   ItemActive: {
-    backgroundColor: 'rgba(94, 150, 197, 0.75)',
+    backgroundColor: ACTIVE_LIGHT_GRAY,
     width: 60,
     height: 60,
     borderRadius: 30
@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 38,
     lineHeight: 47,
-    fontFamily: 'HelveticaNeue',
-    color: variables.colors.darkBlue,
+    fontFamily: MAIN_FONT,
+    color: DARK_BLUE,
   },
   TextActive: {
     top: 7,
     textAlign: 'center',
     fontSize: 38,
     lineHeight: 47,
-    fontFamily: 'HelveticaNeue',
-    color: variables.colors.white,
+    fontFamily: MAIN_FONT,
+    color: WHITE,
   },
 });

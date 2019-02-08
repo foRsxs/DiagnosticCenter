@@ -8,9 +8,9 @@ import {
 import { Text } from 'native-base';
 import variables from '../../styles/variables';
 
-const { accentBlue, activeGray } = variables.colors;
-const { mainFont } = variables.fonts;
-const { medium, } = variables.fSize;
+const { medium } = variables.fSize;
+
+import { ACTIVE_GRAY, ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 export default class CustomBtn extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ export default class CustomBtn extends Component {
 
 const styles = StyleSheet.create({
   content: {
-    borderColor: accentBlue,
+    borderColor: ACCENT_BLUE,
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 5,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     height: 42
   },
   contentDisabled: {
-    borderColor: accentBlue, 
+    borderColor: ACCENT_BLUE, 
     borderWidth: 1, 
     borderStyle: 'solid', 
     borderRadius: 5, 
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black', 
-    fontFamily: mainFont, 
+    fontFamily: MAIN_FONT, 
     fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   textDisabled: {
-    color: activeGray, 
-    fontFamily: mainFont, 
+    color: ACTIVE_GRAY, 
+    fontFamily: MAIN_FONT, 
     fontSize: medium, 
     paddingLeft: 30, 
     height: 40, 

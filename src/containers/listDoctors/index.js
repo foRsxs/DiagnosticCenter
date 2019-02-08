@@ -9,12 +9,12 @@ import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import variables from '../../styles/variables';
 import {APP_IMG_URL} from '../../config';
 
-const { accentBlue } = variables.colors;
+import variables from '../../styles/variables';
 const { medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class ServicesScreen extends Component {
   constructor(props) {
@@ -73,7 +73,7 @@ class ServicesScreen extends Component {
         <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
         <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/>
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ [(listview)? {} : styles.containerStyle, (loading) ? {flex: 1, justifyContent: 'center'}: 0] } padder>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
               (sorted_list_Doctors.length)? (
@@ -86,7 +86,7 @@ class ServicesScreen extends Component {
                     name={`${item.lastname} ${item.firstname} ${item.secondname}`}
                   />
                 ))
-              ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('listdoctors:no_doctors_text') }</Text>
+              ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
         </Content>

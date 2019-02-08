@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 
-const { darkGray, backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { small, medium, normal} = variables.fSize
+
+import { DARK_GREY, BACKGROUND_BLUE, MEDIUM_BLACK, BLUE, RED, MAIN_FONT } from '../../styles/constants';
 
 const styles = StyleSheet.create({
   bottomBlock: {
@@ -12,8 +13,8 @@ const styles = StyleSheet.create({
   },
   addInfoText: {
     width: '70%',
-    color: darkGray,
-    fontFamily: variables.fonts.mainFont,
+    color: DARK_GREY,
+    fontFamily: MAIN_FONT,
     fontSize: small
   },
   specItem: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10
   },
   itemWrap: {
@@ -45,13 +46,13 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap'
   },
   specItemText: {
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: medium,
-    color: mediumBlack,
+    color: MEDIUM_BLACK,
   },
   specItemSubText: {
     fontSize: normal,
-    color: blue,
+    color: BLUE,
   },
   specIcon: {
     position: 'absolute',
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: red,
+    backgroundColor: RED,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     width: 20,
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: 'white',
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: medium
   }
 });

@@ -3,6 +3,8 @@ import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions} 
 
 import variables from '../../styles/variables';
 
+import { ACCENT_BLUE, MAIN_FONT, WHITE, BLACK } from '../../styles/constants';
+
 let {width, height} = Dimensions.get('window');
 
 export default class HeaderBottom extends Component {
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', 
     width: '100%',
     height: 35,
-    backgroundColor: variables.colors.accentBlue,
+    backgroundColor: ACCENT_BLUE,
     zIndex: 2,
 	},
 	btnContainer: {
@@ -107,9 +109,9 @@ const styles = StyleSheet.create({
     left: 10
 	},
 	text: {
-    color: variables.colors.white,
+    color: WHITE,
     top: 10,
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: variables.fSize.medium,
     lineHeight: 23,
     letterSpacing: 1
@@ -136,28 +138,28 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 10,
 		borderRadius: 5,
-		backgroundColor: variables.colors.white
+		backgroundColor: WHITE
 	},
   oval: {
     width: width,
     height: width,
     borderRadius: width,
-    backgroundColor: variables.colors.accentBlue,
+    backgroundColor: ACCENT_BLUE,
     transform: [
       {scaleX: 3}
     ]
   },
   langActive: {
-    color: variables.colors.black,
+    color: BLACK,
     margin: 5,
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: variables.fSize.medium,
     zIndex: 10
   },
   lang: {
-    color: variables.colors.white,
+    color: WHITE,
     margin: 5,
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: variables.fSize.medium,
     zIndex: 10
   },

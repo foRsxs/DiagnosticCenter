@@ -1,6 +1,8 @@
 import {StyleSheet} from 'react-native';
 import variables from '../../styles/variables'
 
+import { BACKGROUND_BLUE, ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
@@ -9,7 +11,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   header: {
-    backgroundColor: variables.colors.backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     flexDirection: 'row',
     alignItems: 'center',
     height: 80,
@@ -20,8 +22,8 @@ const styles = StyleSheet.create({
     elevation: 0
   },
   headerTxt: {
-    color: variables.colors.accentBlue,
-    fontFamily: variables.fonts.mainFont,
+    color: ACCENT_BLUE,
+    fontFamily: MAIN_FONT,
     fontSize: variables.fSize.large
   },
   footer: {

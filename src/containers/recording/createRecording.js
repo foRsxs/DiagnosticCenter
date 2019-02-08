@@ -9,23 +9,24 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
-import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import Autocompete from '../../components/common/Autocomplete';
 import ButtonDates from '../../components/common/ButtonDates';
 
-const { mediumBlack, gray, activeGray, accentBlue, backgroundBlue } = variables.colors;
-const { mainFont } = variables.fonts;
-const { medium }  = variables.fSize;
 const { width, height } = Dimensions.get('window');
+
+import variables from '../../styles/variables';
+const { medium }  = variables.fSize;
+
+import { ACCENT_BLUE, GRAY, MEDIUM_BLACK, BACKGROUND_BLUE, ACTIVE_GRAY, MAIN_FONT } from '../../styles/constants';
 
 let openStyle = {
   container: {
-    backgroundColor: gray,
+    backgroundColor: GRAY,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: activeGray
+    borderColor: ACTIVE_GRAY
   },
   text: {
     color: 'black',
@@ -34,7 +35,7 @@ let openStyle = {
 
 let selectedStyle= {
   container: {
-    backgroundColor: accentBlue,
+    backgroundColor: ACCENT_BLUE,
   },
   text: {
     color: 'white',
@@ -187,7 +188,7 @@ class ReceptionInfoScreen extends Component {
           >
           <View style={styles.popupWrap}>
             <View style={styles.popup}>
-              <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_date') }</Text>
+              <Text style={{textAlign: 'center', fontFamily: MAIN_FONT, fontSize: medium}}>{ t('createrecord:form.select_date') }</Text>
               <Calendar
                 style={{paddingTop: 20, backgroundColor: '#fff'}}
                 theme={{
@@ -223,12 +224,12 @@ class ReceptionInfoScreen extends Component {
           <View style={styles.popupWrap}>
             <ScrollView >
               <View style={[styles.popup, {marginTop: 30}]}>
-                <Text style={{textAlign: 'center', fontFamily: mainFont, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
+                <Text style={{textAlign: 'center', fontFamily: MAIN_FONT, fontSize: medium}}>{ t('createrecord:form.select_time') }</Text>
                 <View style={styles.timeContainer}>
                   {markedTimes.map((item, key)=>(
                     <View key={key} style={styles.timeItemWrap}>
                       <TouchableOpacity onPress={()=>this.updateTimes(item)}>
-                        <Text style={[styles.timeItemAvaliable, (item.selected)? {backgroundColor: accentBlue, color: 'white'}: {}]}> { item.time } </Text>
+                        <Text style={[styles.timeItemAvaliable, (item.selected)? {backgroundColor: ACCENT_BLUE, color: 'white'}: {}]}> { item.time } </Text>
                       </TouchableOpacity>
                     </View>
                     )
@@ -259,7 +260,7 @@ class ReceptionInfoScreen extends Component {
     return (
       <Container>
         {(loading) && (<View style={styles.loaderWrap}>
-          <ActivityIndicator size="large" color={accentBlue} />
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <ScrollView scrollEnabled={enableScroll}>   
           <Header text={ t('createrecord:title') } navigation = {this.props.navigation}/>
@@ -383,16 +384,16 @@ const styles = StyleSheet.create({
   timeItemAvaliable: {
     width: 70,
     paddingVertical: 5,
-    backgroundColor: backgroundBlue,
-    borderColor: accentBlue,
+    backgroundColor: BACKGROUND_BLUE,
+    borderColor: ACCENT_BLUE,
     borderRadius: 10,
     borderWidth: 1,
     textAlign: 'center',
     margin: 10,
     justifyContent: 'center',
     fontSize: variables.fSize.large,
-    fontFamily: variables.fonts.mainFont,
-    color: mediumBlack
+    fontFamily: MAIN_FONT,
+    color: MEDIUM_BLACK
   },
   timeContainer: {
     paddingHorizontal: 0,

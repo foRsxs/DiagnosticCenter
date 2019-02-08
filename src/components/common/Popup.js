@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, View, Modal, Dimensions, Linking} from 'react-native';
+import {StyleSheet, View, Modal, Dimensions, Linking} from 'react-native';
 import {Text} from 'native-base';
-import variables from '../../styles/variables'
 import LinkBtn from './LinkBtn';
 import CustomBtn from './CustomBtn';
+import variables from '../../styles/variables';
 
 let {width, height} = Dimensions.get('window');
+import { BACKGROUND_POPUP, MEDIUM_BLACK  } from '../../styles/constants';
 
 export default class Popup extends Component {
   render() {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     height: height, 
     justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)'
+    backgroundColor: BACKGROUND_POPUP
   },
   popup: {
     width: '80%', 
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   text: {
-    color: variables.colors.mediumBlack, 
+    color: MEDIUM_BLACK, 
     fontSize: variables.fSize.large, 
     width: '100%', 
     textAlign: 'center'

@@ -14,9 +14,9 @@ import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
 
 let { height } = Dimensions.get('window');
-const { white, lightBlue, accentBlue, darkBlue, darkGray, mediumBlack } = variables.colors;
 const { extralarge, medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+
+import { WHITE, LIGHT_BLUE, ACCENT_BLUE, DARK_BLUE, DARK_GREY, MEDIUM_BLACK, MAIN_FONT  } from '../../styles/constants';
 
 class DoctorScreen extends Component {
   constructor(props) {
@@ -66,8 +66,8 @@ class DoctorScreen extends Component {
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
 
     return (
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: 'white'}}>
+      <ScrollView style={{backgroundColor: WHITE}}>
+        <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: WHITE}}>
           <Header text={ t('listdoctors:item.title') } navigation={this.props.navigation} />
           <HeaderBottom />        
           <View style={styles.imageWrap}>
@@ -94,7 +94,7 @@ class DoctorScreen extends Component {
                       <TouchableOpacity onPress={() => this._openPage('questions', 'question')} style={styles.blockQuestion}>
                         <Text 
                           uppercase={false} 
-                          style={{ fontSize: 13, lineHeight: 14, fontFamily: variables.fonts.mainFont, color: darkBlue, width: 63}}
+                          style={{ fontSize: 13, lineHeight: 14, fontFamily: MAIN_FONT, color: DARK_BLUE, width: 63}}
                         >{ t('common:actions.ask_question') }</Text>
                         <Image
                           style={{ width: 25, height: 25}}
@@ -106,22 +106,22 @@ class DoctorScreen extends Component {
                   </View>
                   <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', marginTop: 5 }}>
                     { (doctor[0].experience && doctor[0].category) && (
-                      <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{doctor[0].category} | </Text> 
+                      <Text style={{ fontSize: variables.fSize.main, fontFamily: MAIN_FONT, color: DARK_GREY }}>{doctor[0].category} | </Text> 
                     ) }
-                    <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: darkGray }}>{ t('listdoctors:item.experience') }: {doctor[0].experience}</Text>
+                    <Text style={{ fontSize: variables.fSize.main, fontFamily: MAIN_FONT, color: DARK_GREY }}>{ t('listdoctors:item.experience') }: {doctor[0].experience}</Text>
                   </View>
                 </View>
                 <View style={{ paddingHorizontal: 20, paddingVertical: 10}}>
-                  <Text style={{ fontSize: variables.fSize.main, fontFamily: variables.fonts.mainFont, color: variables.colors.mediumBlack }}>{doctor[0].department}</Text>
+                  <Text style={{ fontSize: variables.fSize.main, fontFamily: MAIN_FONT, color: MEDIUM_BLACK }}>{doctor[0].department}</Text>
                   <HTMLView
                     stylesheet={ stylesHtml }
                     value={`<p>${description}</p>`}
                   />
                 </View>
               </View>
-              ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
+              ) : <ActivityIndicator size="large" color={ACCENT_BLUE} style={{marginTop: 10}}/>
             }
-            <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: 'white' }}>
+            <View style={{ paddingHorizontal: 15, paddingVertical: 20, backgroundColor: WHITE }}>
             {(!loading && +doctor[0].allow === 1) && (
               <CustomBtn label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
             )}
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   docInfo: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: lightBlue,    
+    backgroundColor: LIGHT_BLUE,    
     padding: 20,
   },
   docInfoBlock: {
@@ -173,15 +173,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   headTxt: {
-    fontFamily: mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: extralarge,
-    color: mediumBlack,
+    color: MEDIUM_BLACK,
     lineHeight: 24
   },
   subHeadTxt: {
-    fontFamily: mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: medium,
-    color: accentBlue,
+    color: ACCENT_BLUE,
     marginVertical: 5
   },
   ratingWrap: {
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   listIcon: {
-    backgroundColor: accentBlue,
+    backgroundColor: ACCENT_BLUE,
     width: 4,
     height: 4,
     borderRadius: 3,
@@ -206,8 +206,8 @@ const styles = StyleSheet.create({
     padding: 6,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: white,
-    borderColor: accentBlue,
+    backgroundColor: WHITE,
+    borderColor: ACCENT_BLUE,
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 5
@@ -218,8 +218,8 @@ const stylesHtml = StyleSheet.create({
   p: {
     margin: 0,
     fontSize: variables.fSize.main, 
-    fontFamily: variables.fonts.mainFont, 
-    color: variables.colors.mediumBlack
+    fontFamily: MAIN_FONT, 
+    color: MEDIUM_BLACK
   },
   ul: {
     marginTop: 0,

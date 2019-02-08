@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
-import {Text, View} from 'native-base';
-
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View } from 'native-base';
 import CShare from '../../components/common/CShare';
-import variables from '../../styles/variables';
 
-const { accentBlue, mediumBlack } = variables.colors;
-const { mainFont } = variables.fonts;
+import variables from '../../styles/variables';
 const { normal, medium } = variables.fSize;
+
+import { MEDIUM_BLACK, ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 export default class AnalizesItem extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class AnalizesItem extends Component {
   }
 
   render() {
-    const {headTxt, dateTxt, pdf, isLoading} = this.props;
+    const { headTxt, dateTxt, pdf, isLoading } = this.props;
 
     return (
       <TouchableOpacity
@@ -25,7 +24,7 @@ export default class AnalizesItem extends Component {
         <View style={styles.analizesItem}>
           <Text style={styles.txtHead}>{headTxt}</Text>
           <Text style={styles.txtDate}>{dateTxt}</Text>
-          <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => isLoading(value)}/>
+          <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => isLoading(value)} />
         </View>
       </TouchableOpacity>
     );
@@ -42,19 +41,19 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingRight: 30,
     position: 'relative',
-    borderColor: accentBlue,
+    borderColor: ACCENT_BLUE,
     borderWidth: 1,
     borderStyle: 'solid'
   },
   txtHead: {
-    color: mediumBlack,
-    fontFamily: mainFont,
+    color: MEDIUM_BLACK,
+    fontFamily: MAIN_FONT,
     fontSize: medium
   },
   txtDate: {
     marginTop: 5,
-    color: mediumBlack,
-    fontFamily: mainFont,
+    color: MEDIUM_BLACK,
+    fontFamily: MAIN_FONT,
     fontSize: normal
   }
 });

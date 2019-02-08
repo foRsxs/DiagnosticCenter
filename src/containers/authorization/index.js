@@ -12,6 +12,7 @@ import TouchID from 'react-native-touch-id';
 import TextInputMask from 'react-native-text-input-mask';
 
 import Header from '../../components/common/Header';
+import FooterTabs from '../../components/common/FooterTabs';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -19,9 +20,9 @@ import ConfirmationCode from '../../components/autorization/ConfirmationCode';
 import Popup from '../../components/common/Popup';
 
 let { width, height } = Dimensions.get('window');
-const {accentBlue, white, mediumBlack} = variables.colors;
-const {mainFont} = variables.fonts;
 const {large, normal, main, medium} = variables.fSize;
+
+import { ACCENT_BLUE, WHITE, MEDIUM_BLACK, MAIN_FONT } from '../../styles/constants';
 
 class AuthorizationScreen extends Component {
   constructor(props) {
@@ -168,7 +169,7 @@ class AuthorizationScreen extends Component {
     const optionalConfigObject = {
       title: t('authorization:need_auth_text'),
       color: "#000",
-      imageColor: accentBlue,
+      imageColor: ACCENT_BLUE,
       sensorDescription: (this.state.isTouchId) ? t('authorization:auth_type.touch_id') : t('authorization:auth_type.face_id'),
       cancelText: t('common:actions.cancel'),
     }
@@ -198,7 +199,7 @@ class AuthorizationScreen extends Component {
               <Text>{ t('authorization:auth_type.pin_code') }</Text>
             </Left>
             <Right>
-              <CheckBox onPress={()=>this.setState({methods_auth_local:'code'})} checked={(methods_auth_local==='code')} color={accentBlue}/>
+              <CheckBox onPress={()=>this.setState({methods_auth_local:'code'})} checked={(methods_auth_local==='code')} color={ACCENT_BLUE}/>
             </Right>
           </ListItem>
           {
@@ -208,7 +209,7 @@ class AuthorizationScreen extends Component {
                   <Text>{ t('authorization:auth_type.touch_id') }</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={accentBlue}/>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'touch'})} checked={(methods_auth_local==='touch')} color={ACCENT_BLUE}/>
                 </Right>
               </ListItem>
             )
@@ -220,7 +221,7 @@ class AuthorizationScreen extends Component {
                   <Text>{ t('authorization:auth_type.face_id') }</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={accentBlue}/>
+                  <CheckBox onPress={()=>this.setState({methods_auth_local:'face'})} checked={(methods_auth_local==='face')} color={ACCENT_BLUE}/>
                 </Right>
               </ListItem>
             )
@@ -270,13 +271,13 @@ class AuthorizationScreen extends Component {
               activeOpacity={0.8}
               onPress={()=>this._setGuest()}
             >
-              <Text style={{color: accentBlue, fontFamily: mainFont, fontSize: medium}}>{ t('authorization:login_without_auth') }</Text>
+              <Text style={{color: ACCENT_BLUE, fontFamily: MAIN_FONT, fontSize: medium}}>{ t('authorization:login_without_auth') }</Text>
             </TouchableOpacity>
           </View>
-          {(authMessage) && <Text style={{color: accentBlue, fontFamily: mainFont, textAlign: 'center', marginTop: 10, fontSize: medium}}>{authMessage}</Text>}
+          {(authMessage) && <Text style={{color: ACCENT_BLUE, fontFamily: MAIN_FONT, textAlign: 'center', marginTop: 10, fontSize: medium}}>{authMessage}</Text>}
           {(message.length) ? <Text style={{color: 'red', textAlign: 'center', marginTop: 10, fontSize: normal}}>{message}</Text>: false}
         </View>
-        {(loading)? (<ActivityIndicator size="small" color={accentBlue} />): (<CustomBtn label={ t('authorization:auth_text') } onClick={()=>this.authUser()} />)}
+        {(loading)? (<ActivityIndicator size="small" color={ACCENT_BLUE} />): (<CustomBtn label={ t('authorization:auth_text') } onClick={()=>this.authUser()} />)}
       </View>
     )
   }
@@ -335,7 +336,7 @@ class AuthorizationScreen extends Component {
           style={{flex:1}}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-around'}}
         >
-          <Header backDisabled={true} search={true} navigation = {this.props.navigation} />
+          <Header isHome={true} backButton={false} callButton={false}  search={false} navigation = {this.props.navigation} />
           {/* <HeaderBottom language={languages_key} islanguages={!token} changeLang={(value)=>this.changeLang(value)}  /> */}
           {(!token) && this.renderAuthView()}
           {(token && !methods_auth) && this.renderConfirmCodeChoose()}
@@ -350,6 +351,7 @@ class AuthorizationScreen extends Component {
           laberButton={ t('common:actions.ok') }
           actionButton={this.clickOnPopup}
         />
+        <FooterTabs />
       </Container>
     )
   }
@@ -360,7 +362,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: white,
+    backgroundColor: WHITE,
   },
   logo: {
     position: 'absolute',
@@ -378,12 +380,12 @@ const styles = StyleSheet.create({
     paddingLeft: 60,
     paddingRight: 10,
     fontSize: large,
-    fontFamily: mainFont,
-    color: mediumBlack,
-    backgroundColor: 'white',
+    fontFamily: MAIN_FONT,
+    color: MEDIUM_BLACK,
+    backgroundColor: WHITE,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: accentBlue,
+    borderColor: ACCENT_BLUE,
   },
   textInpWrap: {
     position: 'absolute',
@@ -391,7 +393,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: '100%',
     width: 50,
-    backgroundColor: accentBlue,
+    backgroundColor: ACCENT_BLUE,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     justifyContent: 'center',
@@ -399,12 +401,12 @@ const styles = StyleSheet.create({
   },
   textInp: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: 'white'
+    fontFamily: MAIN_FONT,
+    color: WHITE
   },
   title: {
-    color: 'white',
-    fontFamily: mainFont,
+    color: WHITE,
+    fontFamily: MAIN_FONT,
     fontSize: large,
     position: 'absolute',
     top: -60,

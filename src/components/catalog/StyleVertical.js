@@ -2,13 +2,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 import variables from '../../styles/variables';
 
 let { height } = Dimensions.get('window')
-
-const { backgroundBlue, mediumBlack, blue, red } = variables.colors;
 const { medium, normal} = variables.fSize
+
+import { BACKGROUND_BLUE, MEDIUM_BLACK, BLUE, RED, MAIN_FONT } from '../../styles/constants';
 
 const styles = StyleSheet.create({
   itemWrap: {
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -25,21 +25,21 @@ const styles = StyleSheet.create({
   specItemText: {
     textAlign: 'center',
     lineHeight: 18,
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: medium,
-    color: mediumBlack,
+    color: MEDIUM_BLACK,
   },
   specItemSubText: {
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: normal,
-    color: blue,
+    color: BLUE,
   },
   specIcon: {
     width: '100%',
     height: height/5,
   },
   arrowWrap: {
-    backgroundColor: red,
+    backgroundColor: RED,
     width: '100%',
     height: 20,
     alignItems: 'center',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: 'white',
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: medium
   }
 });

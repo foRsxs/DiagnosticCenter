@@ -9,9 +9,8 @@ import * as ContentActions from '../../actions/content';
 import AnalizesItem from '../../components/analizes/AnalizesItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import variables from '../../styles/variables';
 
-const {accentBlue} = variables.colors;
+import { ACCENT_BLUE } from '../../styles/constants';
 
 class HistoryScreen extends Component {
   constructor(props) {
@@ -49,10 +48,10 @@ class HistoryScreen extends Component {
         <Header text={t('history:title')} navigation={this.props.navigation} />
         <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + ` - ${history_list.length}`: '' } />
         {(shareLoading) && (<View style={styles.loaderWrap}>
-          <ActivityIndicator size="large" color={accentBlue} />
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
               (history_list && history_list.length)? (

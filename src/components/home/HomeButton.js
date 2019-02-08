@@ -4,6 +4,8 @@ import { Text } from 'native-base';
 
 import variables from '../../styles/variables'
 
+import { ACCENT_BLUE, MAIN_FONT  } from '../../styles/constants';
+
 class HomeButton extends Component {
   constructor(props){
     super(props);
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     alignItems: 'center',
-    backgroundColor: variables.colors.accentBlue,
+    backgroundColor: ACCENT_BLUE,
     borderRadius: 5
   },
   txtButtonWrap: {
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     textAlign: 'center',
     fontSize: variables.fSize.main,
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     letterSpacing: 2
   }
 });

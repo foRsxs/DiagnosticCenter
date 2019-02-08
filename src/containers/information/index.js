@@ -10,9 +10,9 @@ import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 
-const {backgroundBlue, black, accentBlue} = variables.colors;
-const {mainFont} = variables.fonts;
 const {main} = variables.fSize;
+
+import { BACKGROUND_BLUE, ACCENT_BLUE, BLACK, MAIN_FONT } from '../../styles/constants';
 
 class InfoScreen extends Component {
 
@@ -51,7 +51,7 @@ class InfoScreen extends Component {
         <Header text={ t('information:title') } navigation={this.props.navigation} />
         <HeaderBottom text={ t('information:sub_title') } />
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder contentContainerStyle={(loading)? {flex: 1, justifyContent: 'center'}:{}}>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
               (listInformation && listInformation.length) ? (
@@ -79,15 +79,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'flex-start',
     width: '100%',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10,
     padding: 10,
     position: 'relative'
   },
   questionItemText: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: black,
+    fontFamily: MAIN_FONT,
+    color: BLACK,
     textAlign: 'left',
     width: '100%'
   },

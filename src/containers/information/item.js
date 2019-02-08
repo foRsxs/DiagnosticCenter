@@ -11,10 +11,9 @@ import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import LinkBtn from '../../components/common/LinkBtn';
-import variables from '../../styles/variables';
 import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
 
-const {accentBlue} = variables.colors;
+import { ACCENT_BLUE } from '../../styles/constants';
 
 class InfoDetailScreen extends Component {
 
@@ -101,7 +100,7 @@ class InfoDetailScreen extends Component {
 
     return (
       <View style={styles.textWrap}>
-        {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="large" color={accentBlue} />}
+        {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
       </View>
     )
   }

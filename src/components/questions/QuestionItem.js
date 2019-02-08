@@ -4,10 +4,9 @@ import {Text, View, Icon} from 'native-base';
 import { withNamespaces } from 'react-i18next';
 
 import variables from '../../styles/variables';
+const { main } = variables.fSize;
 
-const { accentBlue, black, backgroundBlue } = variables.colors;
-const { main } = variables.fonts;
-const { mainFont } = variables.fSize;
+import { BACKGROUND_BLUE, BLACK, ACCENT_BLUE, MAIN_FONT  } from '../../styles/constants';
 
 class QuestionItem extends Component {
   constructor(props) {
@@ -57,20 +56,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     width: '100%',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10,
     padding: 10
   },
   questionItemText: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: black,
+    fontFamily: MAIN_FONT,
+    color: BLACK,
     textAlign: 'justify'
   },
   answerItemText: {
     fontSize: main,
-    fontFamily: mainFont,
-    color: accentBlue,
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE,
     textAlign: 'justify',
     paddingTop: 5
   },
@@ -79,16 +78,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   icon: {
-    color: accentBlue,  
+    color: ACCENT_BLUE,  
     fontSize: main,
-    fontFamily: mainFont,
+    fontFamily: MAIN_FONT,
     paddingLeft: 10
   },
   buttonTextShow: {
     textAlign:'right', 
     fontSize: main,
-    fontFamily: mainFont,
-    color: accentBlue, 
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE, 
     alignItems: 'center'
   }
 });

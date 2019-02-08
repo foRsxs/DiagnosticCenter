@@ -11,6 +11,8 @@ import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 
+import { MEDIUM_BLACK, MAIN_FONT } from '../../styles/constants';
+
 class SettingsScreen extends Component {
 
   constructor(props) {
@@ -168,8 +170,8 @@ const styles = StyleSheet.create({
   },
   headTxt: {
     fontSize: variables.fSize.medium,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack,
+    fontFamily: MAIN_FONT,
+    color: MEDIUM_BLACK,
     width: '60%'
   },
   pickerIcon: {

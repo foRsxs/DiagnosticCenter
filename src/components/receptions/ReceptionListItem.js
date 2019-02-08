@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, View} from 'native-base';
 import { withNamespaces } from 'react-i18next';
-
 import CShare from '../../components/common/CShare';
-import variables from '../../styles/variables';
 
-const {accentBlue, black, backgroundBlue, mediumBlack, red} = variables.colors;
-const {mainFont} = variables.fonts;
+import variables from '../../styles/variables';
 const { medium, normal, main } = variables.fSize;
+
+import { BACKGROUND_BLUE, BLACK, ACCENT_BLUE, MAIN_FONT, RED, MEDIUM_BLACK } from '../../styles/constants';
 
 class ReceptionListItem extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "flex-start",
     width: '100%',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10,
     padding: 10,
     position: 'relative',
@@ -67,30 +66,30 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "flex-start",
     width: '100%',
-    backgroundColor: backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10,
     padding: 10,
     position: 'relative',
     opacity: 0.5
   },
   txtHead: {
-    color: black,
+    color: BLACK,
     fontSize: medium
   },
   txtHeadServ: {
-    color: black,
-    fontFamily: mainFont,
+    color: BLACK,
+    fontFamily: MAIN_FONT,
     fontSize: normal,
     paddingTop: 3
   },
   txtTime: {
-    color: accentBlue,
-    fontFamily: mainFont,
+    color: ACCENT_BLUE,
+    fontFamily: MAIN_FONT,
     fontSize: main
   },
   txtName: {
-    color: mediumBlack,
-    fontFamily: mainFont,
+    color: MEDIUM_BLACK,
+    fontFamily: MAIN_FONT,
     fontSize: normal,
     marginTop: 5
   },
@@ -99,8 +98,8 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30,
     fontSize: normal,
-    fontFamily: mainFont,
-    color: red,
+    fontFamily: MAIN_FONT,
+    color: RED,
     position: 'absolute',
     bottom: 10,
     right: 10

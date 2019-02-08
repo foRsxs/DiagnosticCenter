@@ -4,6 +4,8 @@ import {Text, View, Icon} from 'native-base';
 
 import variables from '../../styles/variables';
 
+import { BACKGROUND_BLUE, DARK_GREY, MAIN_FONT, RED, MEDIUM_BLACK } from '../../styles/constants';
+
 export default class SpecializationItem extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 55,
     justifyContent: 'space-between',
-    backgroundColor: variables.colors.backgroundBlue,
+    backgroundColor: BACKGROUND_BLUE,
     marginBottom: 10
   },
   itemWrap: {
@@ -68,14 +70,14 @@ const styles = StyleSheet.create({
   },
   specItemText: {
     fontSize: variables.fSize.medium,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.mediumBlack,
+    fontFamily: MAIN_FONT,
+    color: MEDIUM_BLACK,
     textAlignVertical: 'center',
   },
   specItemSubText: {
     fontSize: variables.fSize.normal,
-    fontFamily: variables.fonts.mainFont,
-    color: variables.colors.darkGray,
+    fontFamily: MAIN_FONT,
+    color: DARK_GREY,
   },
   specIcon: {
     position: 'absolute',
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: variables.colors.red,
+    backgroundColor: RED,
     borderTopRightRadius: 10, 
     borderBottomRightRadius: 10, 
     width: 20,
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color:'white',  
-    fontFamily: variables.fonts.mainFont,
+    fontFamily: MAIN_FONT,
     fontSize: variables.fSize.medium
   }
 });

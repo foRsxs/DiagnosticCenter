@@ -157,16 +157,16 @@ const Drawer = createDrawerNavigator({
   Main: {
     screen: MainScreenNavigator
   }
-}, 
-{
-  drawerWidth: 350,
-  contentComponent: DrawerMenu,
-});
+},
+  {
+    drawerWidth: 350,
+    contentComponent: DrawerMenu,
+  });
 
 const AppNavigator = createAppContainer(createSwitchNavigator({
   Auth: Authorization,
   Home: Drawer,
-  },
+},
   {
     initialRouteName: 'Auth',
   },

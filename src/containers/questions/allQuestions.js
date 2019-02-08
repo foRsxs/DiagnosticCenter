@@ -10,11 +10,11 @@ import QuestionItem from '../../components/questions/QuestionItem';
 import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
-import variables from '../../styles/variables';
 
-const { accentBlue } = variables.colors;
+import variables from '../../styles/variables';
 const { medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
 
 class AllQuestionsScreen extends Component {
   constructor(props) {
@@ -64,8 +64,8 @@ class AllQuestionsScreen extends Component {
                     textAnswer={item.answer? item.answer : t('questions:doc_no_answered')}
                   />
                 ))
-              ) : <Text style={{color: 'black', fontFamily: mainFont, fontSize: medium, textAlign: 'center'}}>{ t('questions:doc_no_questions') }</Text>
-            ) : <ActivityIndicator size="large" color={accentBlue} style={{marginTop: 10}}/>
+              ) : <Text style={{color: 'black', fontFamily: MAIN_FONT, fontSize: medium, textAlign: 'center'}}>{ t('questions:doc_no_questions') }</Text>
+            ) : <ActivityIndicator size="large" color={ACCENT_BLUE} style={{marginTop: 10}}/>
           }
         </Content >
         {
