@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
-import {StyleSheet, Dimensions, ActivityIndicator, NetInfo, AsyncStorage} from 'react-native';
-import {Container, Content, View} from 'native-base';
+import {StyleSheet, ActivityIndicator, NetInfo, AsyncStorage} from 'react-native';
+import {Container, Content} from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import * as ContentActions from '../../actions/content';
 import * as AuthActions from '../../actions/auth';
 import HomeCarousel from '../../components/home/HomeCarousel';
-import HomeButton from '../../components/home/HomeButton';
-import LinkBtn from '../../components/common/LinkBtn';
+// import HomeButton from '../../components/home/HomeButton';
+// import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
+import FooterTabs from '../../components/common/FooterTabs';
+import MenuList from '../../components/common/MenuList';
+import styles from './styles';
 
-const Height = Dimensions.get('window').height;
-
-import { ACCENT_BLUE } from '../../styles/constants';
+import { ACCENT_BLUE, COLOR_LIGHT_GRAY, WHITE } from '../../styles/constants';
+import { ICON_CONTACT, ICON_INFO, ICON_VACANCY, ICON_QUESTION } from '../../styles/images';
 
 class HomeScreen extends Component {
 
@@ -24,6 +26,28 @@ class HomeScreen extends Component {
     super(props);
     this.state = {};
   }
+
+  menuList = [
+    {
+      text: 'Контакты',
+      icon: ICON_CONTACT,
+      link: 'contacts'
+    },
+    {
+      text: 'Информация',
+      icon: ICON_INFO,
+      link: 'information'
+    },
+    {
+      text: 'Вакансии',
+      icon: ICON_VACANCY,
+    },
+    {
+      text: 'Частые вопросы',
+      icon: ICON_QUESTION,
+      link: 'oftenQuestions'
+    },
+  ]
 
   componentDidMount() {
     const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;  
@@ -67,35 +91,26 @@ class HomeScreen extends Component {
     const { t, sales } = this.props;
     
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('home:title') } navigation = {this.props.navigation} backDisabled={true} />
-        {/* <HeaderBottom/> */}
-        <Content style={{marginTop: -60, zIndex: 2}}>
-          <View style={{height: Height/3, justifyContent: 'center', alignItems: 'center'}}>
+      <Container contentContainerStyle={styles.wrapContainer}>
+        <Header isHome={true} />
+        <Content>
+          <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
             { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
-          </View>
-          <View style={styles.buttonContainer}>
+          </LinearGradient>
+          {/* <View>
             <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
             <HomeButton keyNumber={1} nameBtn= { [t('home:menu.cat_services_1'), t('home:menu.cat_services_2')] } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
             <HomeButton keyNumber={2} nameBtn= { [t('home:menu.doc_appointment_1'), t('home:menu.doc_appointment_2')] } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
             <HomeButton keyNumber={3} nameBtn= { [t('home:menu.test_results_1'), t('home:menu.test_results_2')] } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
-          </View>
+          </View> */}
+          <MenuList fields={this.menuList} navigation={this.props.navigation} />
         </Content >
-        <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/>
+        <FooterTabs />
+        {/* <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/> */}
       </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexWrap:'wrap', 
-    width: '100%', 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    paddingHorizontal: 10
-  }
-});
 
 function mapStateToProps(state) {
   return {

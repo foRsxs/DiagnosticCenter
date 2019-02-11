@@ -26,8 +26,15 @@ import FaqScreen from '../containers/contacts/faq';
 import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
+import WelcomeScreen from '../containers/welcome';
 
 const Authorization = createStackNavigator({
+  welcome: {
+    screen: WelcomeScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
   authorization: {
     screen: AuthorizationScreen,
     navigationOptions: {

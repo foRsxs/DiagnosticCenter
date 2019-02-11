@@ -6,6 +6,8 @@ import {APP_IMG_URL} from '../../config';
 let Dheight = Dimensions.get('window').height;
 let Dwidth = Dimensions.get('window').width;
 
+import { WHITE } from '../../styles/constants';
+
 class HomeCarousel extends Component {
     constructor(props){
       super(props);
@@ -57,14 +59,14 @@ class HomeCarousel extends Component {
     wrapSlide: {
       elevation: 5,
       width: '100%',
-      height: Dheight/3.5,
+      height: Dheight/3.3,
       marginBottom: 20,
       marginTop: 20
     },
     iconList: {
       width: '100%',
       height: '100%',
-      borderRadius: 5
+      borderRadius: 15,
     },
   });
   

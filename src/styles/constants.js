@@ -21,6 +21,8 @@ export const BACKGROUND_POPUP = 'rgba(0, 0, 0, 0.8)';
 
 export const COLOR_BLUE = '#4074A0';
 export const COLOR_BORDER = '#ebebeb';
+export const COLOR_LIGHT_GRAY = '#e8f0f7';
+export const COLOR_DARK_BLUE = '#2A425F';
 
 //FONTS
 export const MAIN_FONT = 'HelveticaNeueCyr';
