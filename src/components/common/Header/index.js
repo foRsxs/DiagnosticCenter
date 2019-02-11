@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Icon } from 'native-base';
+import { withNamespaces } from 'react-i18next';
 import styles from './style'
 
 import { BAR_COLOR } from '../../../styles/constants';
@@ -12,13 +13,13 @@ import {
 	ICON_SEARCH
 } from '../../../styles/images';
 
-export default class Header extends Component {
+class Header extends Component {
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false } = this.props;
+		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false, t } = this.props;
 
 		return (
 			<View style={styles.headerWrap}>
@@ -30,7 +31,7 @@ export default class Header extends Component {
 								<View style={styles.leftContainer}>
 									<TouchableOpacity style={styles.headerLeftBtn} onPress={() => alert('press')}>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_OFTEN_QUESTION} />
-										<Text style={styles.headerLeftText}>частые{"\n"}вопросы</Text>
+										<Text style={styles.headerLeftText}>{t('header_links:questions')}</Text>
 									</TouchableOpacity>
 								</View>
 								<View style={styles.centerContainer}>
@@ -38,7 +39,7 @@ export default class Header extends Component {
 								</View>
 								<View style={styles.rightContainer}>
 									<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }} onPress={() => alert('press')}>
-										<Text style={styles.headerRightText}>call{"\n"}центр</Text>
+										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
 								</View>
@@ -91,3 +92,5 @@ export default class Header extends Component {
 		)
 	}
 }
+
+export default withNamespaces('header_links')(Header);

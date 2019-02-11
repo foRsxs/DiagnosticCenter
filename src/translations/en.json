@@ -17,6 +17,36 @@
         },
         "phone_not_register": "Your number is not registered in the system. Please send a scan of your ID and phone number to an e-mail:"
     },
+    "header_links": {
+        "questions": "often questions",
+        "callcenter": "call center"
+    },
+    "footer_menu": {
+        "home": "Main",
+        "doctors": "Doctors",
+        "records": "Appointment",
+        "services": "Services",
+        "profile": "Profile"
+    },
+    "welcome": {
+        "enter_app": "Как войти в приложение",
+        "enter_text": "Для полного доступа к приложению и к своим данным необходимо авторизироваться в приложении",
+        "enter_text1": "Выберите",
+        "enter_text2": "язык",
+        "enter_text3": "Введите",
+        "enter_text4": "номер мобильного телефона",
+        "enter_text5": "и",
+        "enter_text6": "ИНН",
+        "enter_text7": "для проверки ваших даних в Личном Кабинете Пациента и получения кода",
+        "enter_text8": "Если все данные введены верно, нажмите кнопку",
+        "enter_text9": "Получить код",
+        "enter_text10": "и ожидайте код",
+        "enter_text11": "Введите полученный код",
+        "enter_text12": "Нажмите кнопку",
+        "enter_text13": "Подтвердить",
+        "enter_text14": "чтобы войти в систему",
+        "enter_text15": "Теперь вы можете пользоваться полным фунционалом приложения"
+    },
     "menu": {
         "guest": "Guest",
         "home": "Main",
@@ -172,7 +202,8 @@
             "save_to_gallery": "Save to gallery",
             "appointment": "Appointment",
             "ask_question": "Ask a Question",
-            "add_recording": "Add a appointment"
+            "add_recording": "Add a appointment",
+            "continue": "Продолжить"
         },
         "actions_text": {
             "token_not_valid_text": "You need to re-login", 

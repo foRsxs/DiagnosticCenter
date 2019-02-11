@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
+import { withNamespaces } from 'react-i18next';
 import styles from './styles';
 
 import {
@@ -24,6 +25,8 @@ class FooterTabs extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<Footer style={styles.container}>
 				<FooterTab style={[{ backgroundColor: 'white' }]}>
@@ -35,7 +38,7 @@ class FooterTabs extends Component {
 							resizeMode='contain'
 							source={ICON_MAIN}
 						/>
-						<Text uppercase={false} style={styles.buttonText}>Главная</Text>
+						<Text uppercase={false} style={styles.buttonText}>{t('footer_menu:home')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -45,7 +48,7 @@ class FooterTabs extends Component {
 							resizeMode='contain'
 							source={ICON_DOCTORS}
 						/>
-						<Text uppercase={false} style={styles.buttonText}>Врачи</Text>
+						<Text uppercase={false} style={styles.buttonText}>{t('footer_menu:doctors')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -55,7 +58,7 @@ class FooterTabs extends Component {
 							resizeMode='contain'
 							source={ICON_POST}
 						/>
-						<Text uppercase={false} style={styles.buttonText}>Запись</Text>
+						<Text uppercase={false} style={styles.buttonText}>{t('footer_menu:records')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -65,7 +68,7 @@ class FooterTabs extends Component {
 							resizeMode='contain'
 							source={ICON_SERVICE}
 						/>
-						<Text uppercase={false} style={styles.buttonText}>Услуги</Text>
+						<Text uppercase={false} style={styles.buttonText}>{t('footer_menu:services')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -75,7 +78,7 @@ class FooterTabs extends Component {
 							resizeMode='contain'
 							source={ICON_PROFILE}
 						/>
-						<Text uppercase={false} style={styles.buttonText}>Профиль</Text>
+						<Text uppercase={false} style={styles.buttonText}>{t('footer_menu:profile')}</Text>
 					</Button>
 				</FooterTab>
 			</Footer>
@@ -83,4 +86,4 @@ class FooterTabs extends Component {
 	}
 }
 
-export default FooterTabs
+export default withNamespaces('footer_menu')(FooterTabs);
