@@ -26,6 +26,7 @@ import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 import WelcomeScreen from '../containers/welcome';
+import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
 
 const ProfileNavigator = createBottomTabNavigator(
@@ -39,6 +40,12 @@ const ProfileNavigator = createBottomTabNavigator(
     },
     authorization: {
       screen: AuthorizationScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    profile: {
+      screen: ProfileScreen,
       navigationOptions: {
         header: null
       }

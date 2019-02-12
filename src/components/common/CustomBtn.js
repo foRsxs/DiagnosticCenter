@@ -3,12 +3,17 @@ import { StyleSheet } from 'react-native';
 import { Text, Button } from 'native-base';
 import variables from '../../styles/variables'
 
-import { RED, MAIN_FONT } from '../../styles/constants';
+import { MAIN_FONT, COLOR_BLUE, RED } from '../../styles/constants';
 
 export default class CustomBtn extends Component {
+
+  colorBtn(val) {
+    return (val === 'blue') ? COLOR_BLUE : RED;
+  }
+
   render() {
     return (
-      <Button onPress={() => this.props.onClick('teest')} style={[styles.btn, this.props.contentContainerStyle]}>
+      <Button onPress={() => this.props.onClick('teest')} style={[styles.btn, this.props.contentContainerStyle, { backgroundColor: this.colorBtn(this.props.color) }]}>
         <Text style={styles.textBtn}>{this.props.label.toUpperCase()}</Text>
       </Button>
     );
@@ -23,7 +28,6 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 25,
-    backgroundColor: RED
   },
   textBtn: {
     fontFamily: MAIN_FONT,

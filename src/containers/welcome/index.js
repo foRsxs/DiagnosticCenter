@@ -8,6 +8,7 @@ import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
 
 import { IMAGE_WELCOME_1, IMAGE_WELCOME_2, IMAGE_WELCOME_3 } from '../../styles/images';
+import { RED } from '../../styles/constants';
 
 class WelcomeScreen extends Component {
 
