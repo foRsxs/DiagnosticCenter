@@ -12,7 +12,6 @@ import TouchID from 'react-native-touch-id';
 import TextInputMask from 'react-native-text-input-mask';
 
 import Header from '../../components/common/Header';
-import FooterTabs from '../../components/common/FooterTabs';
 import HeaderBottom from '../../components/common/HeaderBottom';
 import variables from '../../styles/variables';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -351,7 +350,6 @@ class AuthorizationScreen extends Component {
           laberButton={ t('common:actions.ok') }
           actionButton={this.clickOnPopup}
         />
-        <FooterTabs />
       </Container>
     )
   }

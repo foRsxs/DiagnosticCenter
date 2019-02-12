@@ -13,7 +13,6 @@ import HomeCarousel from '../../components/home/HomeCarousel';
 // import HomeButton from '../../components/home/HomeButton';
 // import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
-import FooterTabs from '../../components/common/FooterTabs';
 import MenuList from '../../components/common/MenuList';
 import styles from './styles';
 
@@ -105,7 +104,6 @@ class HomeScreen extends Component {
           </View> */}
           <MenuList fields={this.menuList} navigation={this.props.navigation} />
         </Content >
-        <FooterTabs />
         {/* <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/> */}
       </Container>
     )

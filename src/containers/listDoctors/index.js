@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
+//import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
 
 import variables from '../../styles/variables';
@@ -70,8 +70,8 @@ class ServicesScreen extends Component {
 
     return (
       <Container>
-        <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
-        <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/>
+        <Header search={true} onChangeSearch={this.handleChange} navigation = {this.props.navigation} />
+        {/* <HeaderBottom katalogDoctor={true}  onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/> */}
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ [(listview)? {} : styles.containerStyle, (loading) ? {flex: 1, justifyContent: 'center'}: 0] } padder>
           {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {

@@ -1,13 +1,12 @@
+import React, { Component } from 'react';
 import {
   createAppContainer,
-  createStackNavigator,
-  createDrawerNavigator,
+  createBottomTabNavigator,
   createSwitchNavigator
 } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
-import DrawerMenu from '../containers/menu';
 import SpecializationScreen from '../containers/specialization';
 import QuestionsScreen from '../containers/questions/allQuestions';
 import QuestionFormScreen from '../containers/questions/createQuestion';
@@ -27,155 +26,185 @@ import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/information/item';
 import WelcomeScreen from '../containers/welcome';
+import FooterTabs from '../components/common/FooterTabs';
 
-const Authorization = createStackNavigator({
-  welcome: {
-    screen: WelcomeScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  authorization: {
-    screen: AuthorizationScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-});
-
-const MainScreenNavigator = createStackNavigator({
-  home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  specialization: {
-    screen: SpecializationScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  questions: {
-    screen: QuestionsScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  questionForm: {
-    screen: QuestionFormScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  oftenQuestions: {
-    screen: OftenQuestionsScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  recordingCreate: {
-    screen: RecordingCreateScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  recordingItem: {
-    screen: RecordingItemScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  recordingList: {
-    screen: RecordingListScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  analizes: {
-    screen: AnalizesScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  analizesItem: {
-    screen: AnalizesItemScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  history: {
-    screen: HistoryScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  historyItem: {
-    screen: HistoryItemScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  contacts: {
-    screen: ContactsScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  settings: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  doctor: {
-    screen: DoctorScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  listDoctors: {
-    screen: CatalogScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  faq: {
-    screen: FaqScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  information: {
-    screen: InfoScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  informationItem: {
-    screen: InfoItemScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-});
-
-const Drawer = createDrawerNavigator({
-  Main: {
-    screen: MainScreenNavigator
-  }
-},
+const ProfileNavigator = createBottomTabNavigator(
   {
-    drawerWidth: 350,
-    contentComponent: DrawerMenu,
-  });
+    welcome: {
+      screen: WelcomeScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      },
+    },
+    authorization: {
+      screen: AuthorizationScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    analizes: {
+      screen: AnalizesScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    analizesItem: {
+      screen: AnalizesItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    settings: {
+      screen: SettingsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+  {
+    tabBarComponent: props => <FooterTabs props={props} />
+  }
+);
+
+const MainNavigator = createBottomTabNavigator(
+  {
+    home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    oftenQuestions: {
+      screen: OftenQuestionsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    contacts: {
+      screen: ContactsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    information: {
+      screen: InfoScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    informationItem: {
+      screen: InfoItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+  {
+    tabBarComponent: props => <FooterTabs props={props} />
+  }
+);
+
+const DoctorNavigator = createBottomTabNavigator(
+  {
+    questions: {
+      screen: QuestionsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    questionForm: {
+      screen: QuestionFormScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    doctor: {
+      screen: DoctorScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    listDoctors: {
+      screen: CatalogScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+  {
+    tabBarComponent: props => <FooterTabs props={props} />
+  }
+);
+
+const ServiceNavigator = createBottomTabNavigator(
+  {
+    specialization: {
+      screen: SpecializationScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+  {
+    tabBarComponent: props => <FooterTabs props={props} />
+  }
+);
+
+const RecordNavigator = createBottomTabNavigator(
+  {
+    recordingCreate: {
+      screen: RecordingCreateScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    recordingItem: {
+      screen: RecordingItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    recordingList: {
+      screen: RecordingListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    faq: {
+      screen: FaqScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    history: {
+      screen: HistoryScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    historyItem: {
+      screen: HistoryItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+  {
+    tabBarComponent: props => <FooterTabs props={props} />
+  }
+);
 
 const AppNavigator = createAppContainer(createSwitchNavigator({
-  Auth: Authorization,
-  Home: Drawer,
+  Profile: ProfileNavigator,
+  Main: MainNavigator,
+  Doctor: DoctorNavigator,
+  Service: ServiceNavigator,
+  Record: RecordNavigator,
 },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Profile',
   },
 ));
+
 export default AppNavigator;
