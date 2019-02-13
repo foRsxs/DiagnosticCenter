@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { Container, Content, View } from 'native-base';
+import { BackHandler, ActivityIndicator, Linking } from 'react-native';
+import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import * as ContentActions from '../../actions/content';
+import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import SpecializationItem from '../../components/SpecializationItem';
-import styles from './styles';
+import Popup from '../../components/common/Popup';
+import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
 
+import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
 
 class ServicesScreen extends Component {
@@ -15,22 +21,48 @@ class ServicesScreen extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      serviceList: [
-        {
-          text: 'МРТ головы',
-          price: 1000
-        },
-        {
-          text: 'МРТ брюшной полости',
-          price: 1000
-        }
-      ],
-      loading: false
+      sorted_list_specialization: props.list_specialization,
+      loading: (props.list_specialization) ? false : true
     };
   }
 
+  handleChange = (value) => {
+    const { list_specialization } = this.props;
+    function findElements(item) {
+      return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    }
+    this.setState({ sorted_list_specialization: list_specialization.filter(findElements) });
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    if (!this.props.list_specialization) this.props.getListSpecialization(1);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
+  }
+
+  handleBackButtonClick = () => {
+    if (this.state.modalVisible) {
+      this.setState({ modalVisible: false })
+    } else {
+      this.props.navigation.goBack();
+    }
+    return true;
+  }
+
+  call = () => {
+    Linking.openURL(`tel:${CALL_CENTRE_TEL}`);
+    this.setState({ modalVisible: false });
+  }
+
   render() {
-    const { serviceList, loading } = this.state;
+    const { modalVisible, sorted_list_specialization, loading } = this.state;
     const { t } = this.props;
 
     return (
@@ -42,17 +74,32 @@ class ServicesScreen extends Component {
               {
                 (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                   (
-                    serviceList.map((item, index) => (
-                      <SpecializationItem
-                        key={index}
-                        onClick={() => this.props.navigation.navigate('listDoctors')}
-                        headTxt={item.text}
-                        price={item.price}
-                      />
-                    ))
+                    (sorted_list_specialization && sorted_list_specialization.length) ? (
+                      sorted_list_specialization.map((item, index) => (
+                        <SpecializationItem
+                          key={index}
+                          //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
+                          onClick={() => this.props.navigation.navigate('servicesDetail')}
+                          headTxt={item.spec_name}
+                          imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
+                        />
+                      ))
+                    ) : (
+                        <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
+                      )
                   )
               }
             </Content >
+            <LinkBtn label={t('specialization:no_doctor_choose_link_text')} onClick={() => this.setState({ modalVisible: true })} />
+            <Popup
+              show={modalVisible}
+              firstText={t('specialization:form.fisrt_text')}
+              secondText={t('specialization:form.last_text')}
+              laberButton={t('common:actions.call')}
+              actionButton={this.call}
+              labelLink={t('common:actions.close')}
+              actionLink={() => this.setState({ modalVisible: false })}
+            />
           </Container>
         </View>
       </View>
@@ -60,4 +107,14 @@ class ServicesScreen extends Component {
   }
 }
 
-export default withNamespaces(['faq', 'common'])(ServicesScreen);
+function mapStateToProps(state) {
+  return {
+    list_specialization: state.content.ListSpecialization,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default withNamespaces(['faq', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ServicesScreen));

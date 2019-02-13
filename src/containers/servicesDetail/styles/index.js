@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import variables from '../../../styles/variables';
 const { medium } = variables.fSize;
-import { MAIN_FONT, DARK_GREY } from '../../../styles/constants';
+import { DARK_GREY, MAIN_FONT } from '../../../styles/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -18,11 +18,6 @@ export default StyleSheet.create({
         marginTop: -10,
         zIndex: 1,
         paddingTop: 10
-    },
-    noText: {
-        textAlign: 'center',
-        fontSize: medium,
-        fontFamily: MAIN_FONT
     },
     title: {
         color: DARK_GREY,

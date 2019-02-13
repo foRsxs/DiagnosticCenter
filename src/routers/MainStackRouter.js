@@ -28,6 +28,7 @@ import InfoItemScreen from '../containers/information/item';
 import WelcomeScreen from '../containers/welcome';
 import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
+import ServicesDetailScreen from '../containers/servicesDetail';
 import ServicesScreen from '../containers/services';
 
 const ProfileNavigator = createBottomTabNavigator(
@@ -147,14 +148,14 @@ const DoctorNavigator = createBottomTabNavigator(
 
 const ServiceNavigator = createBottomTabNavigator(
   {
-    specialization: {
-      screen: SpecializationScreen,
+    services: {
+      screen: ServicesScreen,
       navigationOptions: {
         header: null
       }
     },
-    services: {
-      screen: ServicesScreen,
+    servicesDetail: {
+      screen: ServicesDetailScreen,
       navigationOptions: {
         header: null
       }
@@ -199,6 +200,12 @@ const RecordNavigator = createBottomTabNavigator(
     },
     historyItem: {
       screen: HistoryItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    specialization: {
+      screen: SpecializationScreen,
       navigationOptions: {
         header: null
       }

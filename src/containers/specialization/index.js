@@ -69,8 +69,11 @@ class SpecializationScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header search={true} />
+            <Header backButton={true} search={true} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+              {(sorted_list_specialization && sorted_list_specialization.length) && (
+                <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
+              )}
               {
                 (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                   (
@@ -79,7 +82,7 @@ class SpecializationScreen extends Component {
                         <SpecializationItem
                           key={index}
                           //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
-                          onClick={() => this.props.navigation.navigate('services')}
+                          onClick={() => this.props.navigation.navigate('servicesDetail')}
                           headTxt={item.spec_name}
                           imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
                           redArrow={true}
