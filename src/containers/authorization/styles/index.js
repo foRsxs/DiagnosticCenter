@@ -61,7 +61,8 @@ export default StyleSheet.create({
     wrapScan: {
         position: 'relative',
         zIndex: 2,
-        flex: 1
+        flex: 1,
+        paddingBottom: 20
     },
     scanClick: {
         flex: 1,
@@ -74,14 +75,15 @@ export default StyleSheet.create({
     wrapPin: {
         position: 'relative',
         zIndex: 2,
-        flex: 1
+        flex: 1,
+        paddingBottom: 20
     },
     pinContent: {
         position: 'relative',
         zIndex: 2,
         justifyContent: 'space-between',
         padding: 15,
-        paddingBottom: 20,
+        paddingBottom: 0,
         height: '100%'
     },
     wrapMain: {
@@ -119,11 +121,10 @@ export default StyleSheet.create({
         backgroundColor: WHITE,
     },
     title: {
-        color: WHITE,
+        color: BLACK,
         fontFamily: MAIN_FONT,
         fontSize: large,
-        position: 'absolute',
-        top: -60,
+        marginTop: 20,
         zIndex: 1,
         left: 0,
         textAlign: 'center',

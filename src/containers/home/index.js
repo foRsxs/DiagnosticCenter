@@ -23,30 +23,30 @@ class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      menuList: [
+        {
+          text: 'Контакты',
+          icon: ICON_CONTACT,
+          value: 'contacts'
+        },
+        {
+          text: 'Информация',
+          icon: ICON_INFO,
+          value: 'information'
+        },
+        {
+          text: 'Вакансии',
+          icon: ICON_VACANCY,
+        },
+        {
+          text: 'Частые вопросы',
+          icon: ICON_QUESTION,
+          value: 'oftenQuestions'
+        },
+      ]
+    };
   }
-
-  menuList = [
-    {
-      text: 'Контакты',
-      icon: ICON_CONTACT,
-      link: 'contacts'
-    },
-    {
-      text: 'Информация',
-      icon: ICON_INFO,
-      link: 'information'
-    },
-    {
-      text: 'Вакансии',
-      icon: ICON_VACANCY,
-    },
-    {
-      text: 'Частые вопросы',
-      icon: ICON_QUESTION,
-      link: 'oftenQuestions'
-    },
-  ]
 
   componentDidMount() {
     const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;  
@@ -85,6 +85,11 @@ class HomeScreen extends Component {
     }
   }
 
+  onPress = (type) => {
+    const {navigation} = this.props;
+    (type === 'LogOut') ? navigation.navigate('authorization') : navigation.navigate(type); 
+  } 
+
   render() {
     const { navigate } = this.props.navigation;
     const { t, sales } = this.props;
@@ -102,7 +107,7 @@ class HomeScreen extends Component {
             <HomeButton keyNumber={2} nameBtn= { [t('home:menu.doc_appointment_1'), t('home:menu.doc_appointment_2')] } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
             <HomeButton keyNumber={3} nameBtn= { [t('home:menu.test_results_1'), t('home:menu.test_results_2')] } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
           </View> */}
-          <MenuList fields={this.menuList} navigation={this.props.navigation} />
+          <MenuList onPress={(value)=>this.onPress(value)} valueName={'value'} fields={this.state.menuList} navigation={this.props.navigation} />
         </Content >
         {/* <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/> */}
       </Container>

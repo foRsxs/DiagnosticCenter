@@ -54,7 +54,7 @@ class FooterTabs extends Component {
 					</Button>
 					<Button transparent
 						style={styles.button}
-						onPress={() => alert('press')}>
+						onPress={() => navigation.navigate('recordingList')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -64,7 +64,7 @@ class FooterTabs extends Component {
 					</Button>
 					<Button transparent
 						style={styles.button}
-						onPress={() => alert('press')}>
+						onPress={() => navigation.navigate('specialization')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'

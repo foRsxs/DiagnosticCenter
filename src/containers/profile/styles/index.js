@@ -1,6 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native'
 
-const Height = Dimensions.get('window').height;
+import variables from '../../../styles/variables';
+const { medium, large } = variables.fSize;
+import {  MAIN_FONT, BLACK, DARK_GREY, COLOR_BORDER } from '../../../styles/constants';
 
 export default StyleSheet.create({
 	wrapContainer: {
@@ -8,9 +10,29 @@ export default StyleSheet.create({
         flexDirection: 'column', 
         height: '100%'
     },
-    wrapCarousel: {
-        height: Height/2.8, 
-        justifyContent: 'center', 
+    prifileBlock: {
+        paddingTop: 20,
+        paddingBottom: 40,
+        paddingHorizontal: 40,
+        borderBottomWidth: 1,
+        borderColor: COLOR_BORDER
+    },
+    prifileItem: {
+        flexDirection: 'row',
+        marginBottom: 20,
         alignItems: 'center'
+    },
+    titles: {
+        fontSize: medium,
+        color: BLACK,
+        fontFamily: MAIN_FONT,
+        marginRight: 10
+    },
+    text: {
+        fontSize: large,
+        color: BLACK,
+        fontFamily: DARK_GREY,
+        fontFamily: MAIN_FONT,
+        lineHeight: 22
     }
 });

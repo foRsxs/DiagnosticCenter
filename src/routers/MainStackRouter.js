@@ -28,6 +28,7 @@ import InfoItemScreen from '../containers/information/item';
 import WelcomeScreen from '../containers/welcome';
 import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
+import ServicesScreen from '../containers/services';
 
 const ProfileNavigator = createBottomTabNavigator(
   {
@@ -148,6 +149,12 @@ const ServiceNavigator = createBottomTabNavigator(
   {
     specialization: {
       screen: SpecializationScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    services: {
+      screen: ServicesScreen,
       navigationOptions: {
         header: null
       }

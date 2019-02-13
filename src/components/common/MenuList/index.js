@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Image} from 'react-native';
-import {ListItem, Left, Body, Right, Text, Icon} from 'native-base';
+import {ListItem, Left, Right, Text, Icon} from 'native-base';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 class MenuList extends Component {
@@ -12,11 +13,11 @@ class MenuList extends Component {
 
 	render() {
 
-		const { fields, navigation } = this.props;
+		const { fields, onPress, valueName } = this.props;
 
 		return (
 			fields.map((x, i) => (
-				<ListItem key={i} onPress={() => navigation.navigate(x.link)} style={styles.listWrap}>
+				<ListItem key={i} onPress={() => {onPress(x[valueName])}} style={styles.listWrap}>
 				  <Left>
 						<Image
 							resizeMode='contain'
@@ -33,5 +34,10 @@ class MenuList extends Component {
 		);
 	}
 }
+
+MenuList.propTypes = {
+	onPress: PropTypes.func,
+	fields: PropTypes.array.isRequired,
+};
 
 export default MenuList

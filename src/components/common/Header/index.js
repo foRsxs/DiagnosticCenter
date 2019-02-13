@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
+import PropTypes from 'prop-types';
 import styles from './style'
 
 import { BAR_COLOR } from '../../../styles/constants';
@@ -92,5 +93,14 @@ class Header extends Component {
 		)
 	}
 }
+
+Header.propTypes = {
+	backButton: PropTypes.bool,
+	search: PropTypes.bool,
+	isHome: PropTypes.bool,
+	textUpper: PropTypes.bool,
+	callButton: PropTypes.bool,
+	text: PropTypes.string
+};
 
 export default withNamespaces('header_links')(Header);

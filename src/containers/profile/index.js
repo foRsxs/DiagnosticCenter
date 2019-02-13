@@ -12,50 +12,72 @@ class ProfileScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      menuList: [
+        {
+          text: 'Карта пациента',
+          icon: ICON_CARD_PATIENT,
+          value: 'contacts'
+        },
+        {
+          text: 'Результаты анализов',
+          icon: ICON_ANALIZE,
+          value: 'analizes'
+        },
+        {
+          text: 'Журнал записей на приём',
+          icon: ICON_JOURNAL_POSTS,
+          value: "recordingList"
+        },
+        {
+          text: 'Настройки',
+          icon: ICON_SETTINGS,
+          value: 'settings'
+        },
+        {
+          text: 'Выход из учётной записи',
+          icon: ICON_LOGOUT,
+          value: 'LogOut'
+        },
+      ]
+    };
   }
 
-  menuList = [
-    {
-      text: 'Карта пациента',
-      icon: ICON_CARD_PATIENT,
-      link: 'contacts'
-    },
-    {
-      text: 'Результаты анализов',
-      icon: ICON_ANALIZE,
-      link: 'information'
-    },
-    {
-      text: 'Журнал записей на приём',
-      icon: ICON_JOURNAL_POSTS,
-    },
-    {
-      text: 'Настройки',
-      icon: ICON_SETTINGS,
-      link: 'oftenQuestions'
-    },
-    {
-      text: 'Выход из учётной записи',
-      icon: ICON_LOGOUT,
-      link: 'oftenQuestions'
-    },
-  ]
+  onPress = (type) => {
+    const {navigation} = this.props;
+    (type === 'LogOut') ? navigation.navigate('authorization') : navigation.navigate(type); 
+  } 
 
   render() {
+    let { t } = this.props;
     
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
         <Header isHome={true} />
         <Content>
-          <View>
-            <Text>Profile</Text>
+          <View style={styles.prifileBlock}>
+            <View style={styles.prifileItem}>
+              <Text style={styles.titles}>{t('profile:name')}</Text>
+              <Text style={styles.text}>Иванов Иван Иванович</Text>
+            </View>
+            <View style={styles.prifileItem}>
+              <Text style={styles.titles}>{t('profile:birthDate')}</Text>
+              <Text style={styles.text}>15.09.1975</Text>
+            </View>
+            <View style={styles.prifileItem}>
+              <Text style={styles.titles}>{t('profile:phone')}</Text>
+              <Text style={styles.text}>8 (777) 333-22-11</Text>
+            </View>
+            <View style={styles.prifileItem}>
+              <Text style={styles.titles}>{t('profile:address')}</Text>
+              <Text style={styles.text}>г. Шымкент, пр. Кунаева, 22</Text>
+            </View>
           </View>
-          <MenuList fields={this.menuList} navigation={this.props.navigation} />
+          <MenuList onPress={(value)=>this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />
         </Content >
       </Container>
     )
   }
 }
 
-export default withNamespaces('home')(ProfileScreen);
+export default withNamespaces('profile')(ProfileScreen);

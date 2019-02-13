@@ -63,7 +63,7 @@ class AuthorizationScreen extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.confirmed_auth) this.props.navigation.navigate('home');
+    if (newProps.confirmed_auth) this.props.navigation.navigate('profile');
   }
 
   changeLang = (key) => {

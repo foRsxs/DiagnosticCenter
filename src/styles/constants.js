@@ -23,6 +23,7 @@ export const COLOR_BLUE = '#4074A0';
 export const COLOR_BORDER = '#ebebeb';
 export const COLOR_LIGHT_GRAY = '#e8f0f7';
 export const COLOR_DARK_BLUE = '#2A425F';
+export const COLOR_TEXT_GREEN = '#08ADB5';
 
 //FONTS
 export const MAIN_FONT = 'HelveticaNeueCyr';

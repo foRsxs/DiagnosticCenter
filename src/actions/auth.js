@@ -12,6 +12,7 @@ export function authUser(data) {
 
     return axios.post(`${APP_API_URL}/get_patient`, {...data, lang: authorization.language})
     .then((response) => {
+      console.log(response);
       OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
       dispatch(saveUser(response.data));
       return Promise.resolve(response.data);

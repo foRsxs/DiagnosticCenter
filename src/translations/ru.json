@@ -189,6 +189,12 @@
             "push": "Push уведомления"
         }
     },
+    "profile": {
+        "name": "ФИО:",
+        "birthDate": "Дата рожденя:",
+        "phone": "Телефон:",
+        "address": "Адрес:"
+    },
     "common": {
         "actions": {
             "ok": "Ок",
