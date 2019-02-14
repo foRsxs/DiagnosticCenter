@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 let { width, height } = Dimensions.get('window');
 
 import variables from '../../../../styles/variables';
-const { large, main } = variables.fSize;
+const { large, normal } = variables.fSize;
 
 import { WHITE, ACCENT_BLUE, MAIN_FONT } from '../../../../styles/constants';
 
@@ -24,7 +24,7 @@ export default StyleSheet.create({
 	headerLeftText: {
 		marginLeft: 8,
 		width: 65,
-		fontSize: main,
+		fontSize: normal,
 		color: WHITE,
 		lineHeight: 15
 	},
@@ -33,7 +33,7 @@ export default StyleSheet.create({
 	},
 	headerRightText: {
 		width: 55,
-		fontSize: main,
+		fontSize: normal,
 		color: WHITE,
 		textAlign: 'right',
 		marginRight: 10,
@@ -43,10 +43,17 @@ export default StyleSheet.create({
 		width: '100%',
 		textAlign: 'center',
 		fontSize: large,
-		color: WHITE
+		color: WHITE,
+		width: '100%',
+		paddingHorizontal: 30
 	},
 	headerRight: {
-		flex: 1,
+		width: 30,
+		height: 30,
+		position: 'absolute',
+		top: 15,
+		right: 20,
+		zIndex: 10,
 		alignItems: 'flex-end'
 	},
 	container: {
@@ -83,7 +90,12 @@ export default StyleSheet.create({
 		height: 35,
 	},
 	btnBack: {
-		flex: 1,
+		width: 30,
+		height: 20,
+		position: 'absolute',
+		left: 20,
+		top: 22,
+		zIndex: 10,
 		justifyContent: 'flex-start',
 	},
 	textContainer: {
@@ -99,7 +111,9 @@ export default StyleSheet.create({
 		fontSize: large,
 		height: 22,
 		lineHeight: 22,
-		width: width - 80
+		width: '100%',
+		textAlign: 'center',
+		paddingHorizontal: 30
 	},
 	ovalWrap: {
 		alignItems: 'center',
@@ -119,6 +133,11 @@ export default StyleSheet.create({
 	inputContainer: {
 		flex: 9,
 		position: 'relative'
+	},
+	inputContainerSearch: {
+		flex: 9,
+		position: 'relative',
+		marginLeft: 40
 	},
 	searchIcon: {
 		position: 'absolute',

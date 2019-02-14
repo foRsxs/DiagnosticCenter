@@ -53,7 +53,7 @@ class ProfileScreen extends Component {
     
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
-        <Header isHome={true} />
+        <Header isHome={true} navigation={this.props.navigation}/>
         <Content>
           <View style={styles.prifileBlock}>
             <View style={styles.prifileItem}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, Image, ActivityIndicator, Linking, TouchableOpacity, Modal } from 'react-native';
-import { Container, Content, View} from 'native-base';
+import { Image, ActivityIndicator, Linking, TouchableOpacity, Modal } from 'react-native';
+import { Container, Content, View } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { withNamespaces } from 'react-i18next';
@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 import LinkBtn from '../../components/common/LinkBtn';
 import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
 
+import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
 
 class InfoDetailScreen extends Component {
@@ -33,32 +33,16 @@ class InfoDetailScreen extends Component {
   }
 
   componentDidMount() {
-    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({loading: false});
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({ loading: false });
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.post !== nextProps.post) {
       this.setState({
-        image: {uri: `${APP_IMG_URL}storage/${nextProps.post.image}`},
+        image: { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` },
         content: nextProps.post.body,
         loading: false
       });
-    }
-  }
-
-  handleBackButtonClick = () => {
-    let { popupOpened } = this.state;
-
-    if (popupOpened) {
-      this.setState({ openPopup: false });
-    } else {
-      this.props.navigation.goBack(null);
-      return true;
     }
   }
 
@@ -67,10 +51,10 @@ class InfoDetailScreen extends Component {
   }
 
   renderImage = () => {
-    const {image, openPopup} = this.state;
+    const { image, openPopup } = this.state;
 
     return (
-      <View style={{paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={styles.imageWrapper}>
         <TouchableOpacity onPress={this.openPopup} style={styles.iconList}>
           <Image
             resizeMode='contain'
@@ -78,15 +62,15 @@ class InfoDetailScreen extends Component {
             source={image}
           />
         </TouchableOpacity>
-        <Modal visible={openPopup} transparent={true} onRequestClose={() => this.setState({ openPopup: false }) }>
-          <ImageViewer imageUrls={[{url: image.uri}]} enableSwipeDown={true} onSwipeDown={()=> this.setState({ openPopup: false })}/>
+        <Modal visible={openPopup} transparent={true} onRequestClose={() => this.setState({ openPopup: false })}>
+          <ImageViewer imageUrls={[{ url: image.uri }]} enableSwipeDown={true} onSwipeDown={() => this.setState({ openPopup: false })} />
         </Modal>
       </View>
     )
   }
 
   staticContent = () => {
-    const {content} = this.state;
+    const { content } = this.state;
 
     return (
       <View style={styles.textWrap}>
@@ -96,44 +80,32 @@ class InfoDetailScreen extends Component {
   }
 
   dynamicContent = () => {
-    const {loading, content} = this.state;
+    const { loading, content } = this.state;
 
     return (
       <View style={styles.textWrap}>
-        {(!loading) ? <HTMLView value={content}/> : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
+        {(!loading) ? <HTMLView value={content} /> : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
       </View>
     )
   }
 
   render() {
-    const {call, image, header_title, post_id, loading} = this.state;
+    const { call, image, header_title, post_id, loading } = this.state;
     const { t } = this.props;
 
     return (
-      <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text={header_title} navigation={this.props.navigation} />
-        <HeaderBottom/>
-        <Content style={(image) ? {marginTop: -50, zIndex: 2}: {marginTop: -10, zIndex: 1}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}}>
+      <Container contentContainerStyle={styles.mainContainer}>
+        <Header backButton={true} text={header_title} navigation={this.props.navigation}/>
+        <Content style={(image) ? { zIndex: 2 } : { marginTop: -10, zIndex: 1 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
           {(image) && this.renderImage()}
           {!(post_id) && this.staticContent()}
           {(post_id) && this.dynamicContent()}
         </Content>
-        { (call) && <LinkBtn label={ t('common:actions_text.call_centre_text') } onClick={()=> Linking.openURL(`tel:${CALL_CENTRE_TEL}`) }/>}
+        {(call) && <LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)} />}
       </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  textWrap: {
-    backgroundColor: 'white', padding: 15, marginTop: 10
-  },
-  iconList: {
-    width: '100%',
-    height: 200,
-    borderRadius: 8
-  },
-});
 
 function mapStateToProps(state) {
   return {

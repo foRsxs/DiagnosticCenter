@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, Linking } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
+import { ActivityIndicator, Linking } from 'react-native';
+import { Container, Content, View, Text, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -35,25 +35,11 @@ class ServicesScreen extends Component {
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
     if (!this.props.list_specialization) this.props.getListSpecialization(1);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
-  }
-
-  handleBackButtonClick = () => {
-    if (this.state.modalVisible) {
-      this.setState({ modalVisible: false })
-    } else {
-      this.props.navigation.goBack();
-    }
-    return true;
   }
 
   call = () => {
@@ -69,26 +55,28 @@ class ServicesScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header search={true} />
+            <Header search={true} navigation={this.props.navigation} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              {
-                (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                  (
-                    (sorted_list_specialization && sorted_list_specialization.length) ? (
-                      sorted_list_specialization.map((item, index) => (
-                        <SpecializationItem
-                          key={index}
-                          //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
-                          onClick={() => this.props.navigation.navigate('servicesDetail')}
-                          headTxt={item.spec_name}
-                          imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
-                        />
-                      ))
-                    ) : (
-                        <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
-                      )
-                  )
-              }
+              <List>
+                {
+                  (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                    (
+                      (sorted_list_specialization && sorted_list_specialization.length) ? (
+                        sorted_list_specialization.map((item, index) => (
+                          <SpecializationItem
+                            key={index}
+                            //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
+                            onClick={() => this.props.navigation.navigate('servicesDetail')}
+                            headTxt={item.spec_name}
+                            imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
+                          />
+                        ))
+                      ) : (
+                          <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
+                        )
+                    )
+                }
+              </List>
             </Content >
             <LinkBtn label={t('specialization:no_doctor_choose_link_text')} onClick={() => this.setState({ modalVisible: true })} />
             <Popup

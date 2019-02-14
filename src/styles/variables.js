@@ -15,7 +15,7 @@ const variables = {
         large: scale(20),
         medium: scale(17),
         main: scale(15),
-        normal: scale(12),
+        normal: scale(13),
         small: scale(10),
     } 
 }

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { View, Item, Textarea, Input, Form } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 
-import CustomBtn from './CustomBtn';
-import variables from '../../styles/variables';
+import CustomBtn from '../CustomBtn';
 
-const { medium } = variables.fSize;
-
-import { RED, ACCENT_BLUE, BLACK, MAIN_FONT } from '../../styles/constants';
+import styles from './styles';
+import { RED, ACCENT_BLUE } from '../../../styles/constants';
 
 class FormSend extends Component {
   constructor(props) {
@@ -45,45 +43,22 @@ class FormSend extends Component {
     const { t } = this.props;
 
     return (
-      <Form style={{ justifyContent: 'space-between', flexDirection: 'column', flex: 1, paddingTop: 15, paddingHorizontal: 15 }}>
+      <Form style={styles.formWrap}>
         <View style={{ flex: 1 }}>
+          <Item style={styles.inputWrap} regular>
+            <Input style={styles.input} placeholder={t('common:actions_text.your_name')} />
+          </Item>
           <Item style={[styles.inputWrap, (!emailValid) ? { borderColor: RED } : {}]} regular>
             <Input style={styles.input} onChangeText={(email) => this.validate(email)} value={email} />
           </Item>
           <Textarea style={[styles.textarea, (!questionValid) ? { borderColor: RED } : {}]} bordeRED placeholder={t('common:actions_text.your_question')} onChangeText={(question) => this.validateMess(question)} value={question} />
         </View >
         <View style={styles.buttonWrap}>
-          {(!this.props.loading) ? <CustomBtn label={t('common:actions.send')} onClick={() => this._confirm()} /> : <ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginTop: 10 }} />}
+          {(!this.props.loading) ? <CustomBtn label={t('common:actions.send_msg')} onClick={() => this._confirm()} /> : <ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginTop: 10 }} />}
         </View>
       </Form>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  inputWrap: {
-    marginBottom: 20,
-    borderColor: ACCENT_BLUE,
-    borderRadius: 10,
-    backgroundColor: 'white'
-  },
-  input: {
-    fontFamily: MAIN_FONT,
-    fontSize: medium,
-    color: BLACK
-  },
-  textarea: {
-    height: 150,
-    fontSize: medium,
-    fontFamily: MAIN_FONT,
-    borderColor: ACCENT_BLUE,
-    borderRadius: 10,
-    backgroundColor: 'white'
-  },
-  buttonWrap: {
-    paddingTop: 20,
-    paddingBottom: 15,
-  }
-});
 
 export default withNamespaces('common', { wait: true })(FormSend);

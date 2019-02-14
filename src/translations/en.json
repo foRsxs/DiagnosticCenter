@@ -229,6 +229,7 @@
             "select_auth_method": "Choose authorization method",
             "your_question": "Your question",
             "your_email": "Your e-mail",
+            "your_name": "Ваше имя",
             "check_data": "Check data"
         },
         "errors": {

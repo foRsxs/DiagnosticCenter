@@ -227,6 +227,7 @@
             "select_auth_method": "Авторизация әдісін таңдау",
             "your_question": "Сіздің сұрағыңыз",
             "your_email": "Сіздің e-mail поштаңыз",
+            "your_name": "Ваше имя",
             "check_data": "Деректерді тексеру"
         },
         "errors": {
