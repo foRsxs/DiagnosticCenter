@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
+import { StyleSheet, BackHandler, ActivityIndicator, View} from 'react-native';
 import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
@@ -21,7 +22,7 @@ class ServicesScreen extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
-      listview: true,
+      // listview: true,
       loading: true,
       sorted_list_Doctors: props.list_Doctors,
     };
@@ -59,10 +60,6 @@ class ServicesScreen extends Component {
     return true;
   }
 
-  toggle = (value) => {
-    this.setState({listview: value});
-  }
-
   render() {
     let { listview, loading, sorted_list_Doctors } = this.state;
     const { t } = this.props;
@@ -70,17 +67,15 @@ class ServicesScreen extends Component {
 
     return (
       <Container>
-        <Header search={true} onChangeSearch={this.handleChange} navigation = {this.props.navigation} />
-        {/* <HeaderBottom katalogDoctor={true}  onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/> */}
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ [(listview)? {} : styles.containerStyle, (loading) ? {flex: 1, justifyContent: 'center'}: 0] } padder>
+        <Header backButton={true} text={'Выберите врача'} navigation = {this.props.navigation} />
+        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
           {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
               (sorted_list_Doctors.length)? (
                 sorted_list_Doctors.map((item, index)=>(
                   <CatalogItem 
-                    key={index} 
-                    listview={listview} 
+                    key={index}  
                     onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
                     imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
                     name={`${item.lastname} ${item.firstname} ${item.secondname}`}
@@ -89,7 +84,7 @@ class ServicesScreen extends Component {
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
-        </Content>
+        </KeyboardAwareScrollView>
       </Container>
     )
   }
@@ -100,7 +95,7 @@ const styles = StyleSheet.create({
     width: '100%', 
     flexWrap: 'wrap', 
     flexDirection: 'row', 
-    paddingHorizontal: 5
+    // paddingHorizontal: 5
   },
   wrapPopup: {
     position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 3

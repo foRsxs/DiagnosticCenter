@@ -24,6 +24,8 @@ export const COLOR_BORDER = '#ebebeb';
 export const COLOR_LIGHT_GRAY = '#e8f0f7';
 export const COLOR_DARK_BLUE = '#2A425F';
 export const COLOR_TEXT_GREEN = '#08ADB5';
+export const COLOR_NEW_GRAY = '#DADADA';
+export const COLOR_LIGHT_BLACK = 'rgba(70, 76, 79, 0.75)'
 
 //FONTS
 export const MAIN_FONT = 'HelveticaNeueCyr';
