@@ -30,6 +30,7 @@ import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
 import ServicesDetailScreen from '../containers/servicesDetail';
 import ServicesScreen from '../containers/services';
+import doctorsListScreen from '../containers/recording/doctorsList';
 
 const ProfileNavigator = createBottomTabNavigator(
   {
@@ -168,6 +169,12 @@ const ServiceNavigator = createBottomTabNavigator(
 
 const RecordNavigator = createBottomTabNavigator(
   {
+    doctorsList: {
+      screen: doctorsListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
     recordingCreate: {
       screen: RecordingCreateScreen,
       navigationOptions: {

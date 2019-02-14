@@ -1,53 +1,11 @@
 import * as types from '../types/content';
+import {initialState} from '../store/initialState';
 
-const initialState = {
-  network_connect: false,
-  authMessage: null,
-  ListSpecialization: null,
-  listDoctors: null,
-  doctorData: null,
-  sales: null,
-  listInformation: {
-    list: null,
-    post: null
-  },
-  questions: {
-    often: null,
-    doctors: null
-  },
-  newQuestion: {
-    loading: false,
-    status: false,  
-  },
-  order: {
-    type: null,
-    spec_id: null,
-    servid: null,
-    docdep_id: null,
-    date: null,
-    time: null
-  },
-  orderDatas: {
-    specialities: [],
-    services: [],
-    doctors: [],
-    dates: [],
-    times: []
-  },
-  orderCreated: false,
-  orderDeleted: false,
-  listTalons: null,
-  history: {
-    list: null,
-    current: null
-  },
-  analizes: {
-    list: null,
-    current: null
-  }
+sortedFunc=(data)=>{
+  return data.sort((a, b) => { return a.specid - b.specid})
 }
   
-export default function contentReducer(state = initialState, action) {
+export default function contentReducer(state = initialState.content, action) {
   switch (action.type) {
     case types.UPDATE_NETWORK_CONNECTION:
       return {
@@ -130,6 +88,7 @@ export default function contentReducer(state = initialState, action) {
       return {
         ...state,
         listDoctors: action.data,
+        sortedListDoctor: sortedFunc(action.data)
       }
     case types.SET_DOCTOR_DATA:
       return {

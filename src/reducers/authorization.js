@@ -1,19 +1,7 @@
 import * as types from '../types/auth';
-
-const initialState = {
-  token: null,
-  confirmed_auth: false, //<--
-  methods_auth: null,
-  notify: true,
-  pinCode: null,
-  user: {},
-  device_touch: false,
-  device_face: false,
-  isGuest: false, //<--,
-  language: null
-}
+import {initialState} from '../store/initialState';
   
-export default function authReducer(state = initialState, action) {
+export default function authReducer(state = initialState.auth, action) {
   switch (action.type) {
     case types.LOG_OUT:
       return {

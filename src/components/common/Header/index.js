@@ -58,7 +58,7 @@ class Header extends Component {
 						(search) && (
 							<View style={styles.inputContainer}>
 								<Image style={styles.searchIcon} resizeMode='contain' source={ICON_SEARCH} />
-								<TextInput style={[styles.input]} placeholder='' onChangeText={(text) => onChangeSearch(text)} />
+								<TextInput style={[styles.input]} placeholder='' onChangeText={(text) => this.props.onChangeSearch(text)} />
 							</View>
 						)
 					}
