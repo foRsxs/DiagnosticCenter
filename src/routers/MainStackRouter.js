@@ -10,7 +10,7 @@ import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
 import QuestionsScreen from '../containers/questions/allQuestions';
 import QuestionFormScreen from '../containers/questions/createQuestion';
-import OftenQuestionsScreen from '../containers/questions/oftenQuestions';
+import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';

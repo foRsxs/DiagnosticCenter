@@ -30,7 +30,7 @@ class Header extends Component {
 						(isHome) && (
 							<View style={styles.headerHomeWrap}>
 								<View style={styles.leftContainer}>
-									<TouchableOpacity style={styles.headerLeftBtn} onPress={() => alert('press')}>
+									<TouchableOpacity style={styles.headerLeftBtn} onPress={() => this.props.navigation.navigate("oftenQuestions")}>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_OFTEN_QUESTION} />
 										<Text style={styles.headerLeftText}>{t('header_links:questions')}</Text>
 									</TouchableOpacity>
@@ -98,8 +98,8 @@ Header.propTypes = {
 	backButton: PropTypes.bool,
 	search: PropTypes.bool,
 	isHome: PropTypes.bool,
-	textUpper: PropTypes.bool,
 	callButton: PropTypes.bool,
+	textUpper: PropTypes.string,
 	text: PropTypes.string
 };
 
