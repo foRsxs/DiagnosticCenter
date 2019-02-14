@@ -10,7 +10,7 @@ import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
 import QuestionsScreen from '../containers/questions/allQuestions';
 import QuestionFormScreen from '../containers/questions/createQuestion';
-import OftenQuestionsScreen from '../containers/questions/oftenQuestions';
+import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';
@@ -28,6 +28,7 @@ import InfoItemScreen from '../containers/information/item';
 import WelcomeScreen from '../containers/welcome';
 import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
+import ServicesDetailScreen from '../containers/servicesDetail';
 import ServicesScreen from '../containers/services';
 
 const ProfileNavigator = createBottomTabNavigator(
@@ -147,14 +148,14 @@ const DoctorNavigator = createBottomTabNavigator(
 
 const ServiceNavigator = createBottomTabNavigator(
   {
-    specialization: {
-      screen: SpecializationScreen,
+    services: {
+      screen: ServicesScreen,
       navigationOptions: {
         header: null
       }
     },
-    services: {
-      screen: ServicesScreen,
+    servicesDetail: {
+      screen: ServicesDetailScreen,
       navigationOptions: {
         header: null
       }
@@ -199,6 +200,12 @@ const RecordNavigator = createBottomTabNavigator(
     },
     historyItem: {
       screen: HistoryItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    specialization: {
+      screen: SpecializationScreen,
       navigationOptions: {
         header: null
       }
