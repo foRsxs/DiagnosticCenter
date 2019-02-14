@@ -64,7 +64,7 @@ class FooterTabs extends Component {
 					</Button>
 					<Button transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('specialization')}>
+						onPress={() => navigation.navigate('services')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'

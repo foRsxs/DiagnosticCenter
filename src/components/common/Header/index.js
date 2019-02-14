@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StatusBar, View, Text, TouchableOpacity, Image, TextInput, Linking } from 'react-native';
 import { Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import styles from './style'
+import { CALL_CENTRE_TEL } from '../../../config';
+import styles from './style';
+
 
 import { BAR_COLOR } from '../../../styles/constants';
 
-import { 
+import {
 	ICON_OFTEN_QUESTION,
 	ICON_LOGO,
 	ICON_PHONE,
@@ -20,7 +22,7 @@ class Header extends Component {
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false, t } = this.props;
+		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
 
 		return (
 			<View style={styles.headerWrap}>
@@ -39,7 +41,7 @@ class Header extends Component {
 									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
 								</View>
 								<View style={styles.rightContainer}>
-									<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }} onPress={() => alert('press')}>
+									<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }} onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
 										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
@@ -56,7 +58,7 @@ class Header extends Component {
 					}
 					{
 						(search) && (
-							<View style={styles.inputContainer}>
+							<View style={(backButton) ? styles.inputContainerSearch : styles.inputContainer}>
 								<Image style={styles.searchIcon} resizeMode='contain' source={ICON_SEARCH} />
 								<TextInput style={[styles.input]} placeholder='' onChangeText={(text) => this.props.onChangeSearch(text)} />
 							</View>
@@ -79,8 +81,17 @@ class Header extends Component {
 					{
 						(callButton) && (
 							<View style={styles.headerRight} >
-								<TouchableOpacity onPress={() => alert('press')}>
+								<TouchableOpacity onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
 									<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
+								</TouchableOpacity>
+							</View>
+						)
+					}
+					{
+						(plusButton) && (
+							<View style={styles.headerRight} >
+								<TouchableOpacity onPress={() => alert('press')}>
+									<Icon ios='ios-add' android="ios-add" style={{ color: 'white', paddingLeft: 5, fontSize: 36 }} />
 								</TouchableOpacity>
 							</View>
 						)
@@ -99,6 +110,7 @@ Header.propTypes = {
 	search: PropTypes.bool,
 	isHome: PropTypes.bool,
 	callButton: PropTypes.bool,
+	plusButton: PropTypes.bool,
 	textUpper: PropTypes.string,
 	text: PropTypes.string
 };

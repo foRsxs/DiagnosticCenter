@@ -21,10 +21,10 @@ import AnalizesItemScreen from '../containers/analizes_history/analizesItem';
 import HistoryScreen from '../containers/analizes_history/history';
 import HistoryItemScreen from '../containers/analizes_history/historyItem';
 import ContactsScreen from '../containers/contacts';
-import FaqScreen from '../containers/contacts/faq';
+import FaqScreen from '../containers/faq';
 import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
-import InfoItemScreen from '../containers/information/item';
+import InfoItemScreen from '../containers/informationItem';
 import WelcomeScreen from '../containers/welcome';
 import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
@@ -88,25 +88,36 @@ const MainNavigator = createBottomTabNavigator(
     oftenQuestions: {
       screen: OftenQuestionsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
     contacts: {
       screen: ContactsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    faq: {
+      screen: FaqScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
       }
     },
     information: {
       screen: InfoScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
     informationItem: {
       screen: InfoItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
   },
@@ -158,7 +169,8 @@ const ServiceNavigator = createBottomTabNavigator(
     servicesDetail: {
       screen: ServicesDetailScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
   },
@@ -193,12 +205,6 @@ const RecordNavigator = createBottomTabNavigator(
         header: null
       }
     },
-    faq: {
-      screen: FaqScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
     history: {
       screen: HistoryScreen,
       navigationOptions: {
@@ -214,7 +220,8 @@ const RecordNavigator = createBottomTabNavigator(
     specialization: {
       screen: SpecializationScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
   },

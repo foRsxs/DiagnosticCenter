@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, Linking, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -7,9 +7,7 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import OftenQuestionItem from '../../components/OftenQuestionItem';
-import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
-import { CALL_CENTRE_TEL } from '../../config';
 
 import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
@@ -25,11 +23,6 @@ class OftenQuestionsScreen extends Component {
 
 	componentDidMount() {
 		this.props.getOftenQuestions();
-		BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-	}
-
-	componentWillUnmount() {
-		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -44,18 +37,13 @@ class OftenQuestionsScreen extends Component {
 		this.setState({ sorted_questions: questions.filter(findElements) });
 	}
 
-	handleBackButtonClick = () => {
-		this.props.navigation.goBack();
-		return true;
-	}
-
 	render() {
 		const { t } = this.props;
 		const { loading, sorted_questions } = this.state;
 
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
-				<Header backButton={true} textUpper={t('faq:title')} />
+				<Header backButton={true} textUpper={t('faq:title')} navigation={this.props.navigation} />
 				<Content style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
 					{(sorted_questions && sorted_questions.length) && (
 						<View>
@@ -80,7 +68,6 @@ class OftenQuestionsScreen extends Component {
 							)
 					}
 				</Content >
-				<LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)} />
 			</Container>
 		)
 	}

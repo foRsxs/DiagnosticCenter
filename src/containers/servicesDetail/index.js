@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
+import { Container, Content, View, Text, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 
 import Header from '../../components/common/Header';
@@ -37,22 +37,24 @@ class ServicesDetailScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-          <Header backButton={true} search={true} />
+            <Header backButton={true} search={true} navigation={this.props.navigation} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
               <Text style={styles.title}>{t('createrecord:form.select_service')}</Text>
-              {
-                (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                  (
-                    serviceList.map((item, index) => (
-                      <SpecializationItem
-                        key={index}
-                        onClick={() => this.props.navigation.navigate('listDoctors')}
-                        headTxt={item.text}
-                        price={item.price}
-                      />
-                    ))
-                  )
-              }
+              <List>
+                {
+                  (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                    (
+                      serviceList.map((item, index) => (
+                        <SpecializationItem
+                          key={index}
+                          onClick={() => this.props.navigation.navigate('listDoctors')}
+                          headTxt={item.text}
+                          price={item.price}
+                        />
+                      ))
+                    )
+                }
+              </List>
             </Content >
           </Container>
         </View>
