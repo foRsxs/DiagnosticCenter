@@ -117,13 +117,17 @@
     "createrecord": {
         "title": "Appointment",
         "form": {
-            "consultation": "Consultation",
-            "research": "Research",
-            "select_specialty": "Choose a specialty",
-            "select_service": "Choose a service",
-            "select_doctor": "Choose a doctor",
-            "select_date": "Choose a date",
-            "select_time": "Choose a time"
+            "consultation": "Консультация",
+            "research": "Исследования",
+            "select_specialty": "Выберите специальность",
+            "select_service": "Выберите услугу",
+            "select_doctor": "Выберите врача",
+            "select_date": "Выберите дату",
+            "specialty": "Специальность",
+            "service": "Оказываемая услуга",
+            "doctor": "Врач",
+            "date": "Дата",
+            "time": "Время"
         }
     },
     "analizes": {

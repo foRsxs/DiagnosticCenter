@@ -31,3 +31,21 @@ export const ICON_LOGOUT = require('../../assets/img/icon-logout.png');
 export const IMAGE_WELCOME_1 = require('../../assets/img/welcome1.png');
 export const IMAGE_WELCOME_2 = require('../../assets/img/welcome2.png');
 export const IMAGE_WELCOME_3 = require('../../assets/img/welcome3.png');
+
+//RECORD IMAGES
+export const CONSULT_BG = require('../../assets/img/consult-bg.png');
+export const RESEARCH_BG = require('../../assets/img/research-bg.png');
+
+//ICONS SMALL FORM
+export const ICON_DOCTOR_SMALL = require('../../assets/img/icon-doctor-small.png');
+export const ICON_DOCTOR_SMALL_ACTIVE = require('../../assets/img/icon-doctor-small-active.png');
+export const ICON_CALENDAR_SMALL = require('../../assets/img/icon-small-calendar.png');
+export const ICON_CALENDAR_SMALL_ACTIVE = require('../../assets/img/icon-small-calendar-active.png');
+export const ICON_NUMBER_SMALL = require('../../assets/img/icon-small-number.png');
+export const ICON_PRICE_SMALL = require('../../assets/img/icon-small-price.png');
+export const ICON_SERVICE_SMALL = require('../../assets/img/icon-small-service.png');
+export const ICON_SERVICE_SMALL_ACTIVE = require('../../assets/img/icon-small-service-active.png');
+export const ICON_TIME_SMALL = require('../../assets/img/icon-small-time.png');
+export const ICON_TIME_SMALL_ACTIVE = require('../../assets/img/icon-small-time-active.png');
+export const ICON_SPEC_SMALL = require('../../assets/img/icon-spec-small.png');
+export const ICON_SPEC_SMALL_ACTIVE = require('../../assets/img/icon-spec-small-active.png');

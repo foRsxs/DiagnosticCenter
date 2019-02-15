@@ -116,13 +116,17 @@
     "createrecord": {
         "title": "Қабылдауға жазылу",
         "form": {
-            "consultation": "Кеңес беру",
-            "research": "Зерттеу",
-            "select_specialty": "Мамандықты таңдаңыз",
-            "select_service": "Қызметті таңдаңыз",
-            "select_doctor": "Дәрігерді таңдаңыз",
-            "select_date": "Күнді таңдаңыз",
-            "select_time": "Уақытты таңдаңыз"
+            "consultation": "Консультация",
+            "research": "Исследования",
+            "select_specialty": "Выберите специальность",
+            "select_service": "Выберите услугу",
+            "select_doctor": "Выберите врача",
+            "select_date": "Выберите дату",
+            "specialty": "Специальность",
+            "service": "Оказываемая услуга",
+            "doctor": "Врач",
+            "date": "Дата",
+            "time": "Время"
         }
     },
     "analizes": {
