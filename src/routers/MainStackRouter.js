@@ -15,7 +15,7 @@ import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
-import RecordingCreateScreen from '../containers/recording/createRecording';
+import RecordingCreateScreen from '../containers/recording';
 import AnalizesScreen from '../containers/analizes_history/analizes';
 import AnalizesItemScreen from '../containers/analizes_history/analizesItem';
 import HistoryScreen from '../containers/analizes_history/history';
@@ -181,26 +181,26 @@ const ServiceNavigator = createBottomTabNavigator(
 
 const RecordNavigator = createBottomTabNavigator(
   {
-    doctorsList: {
-      screen: doctorsListScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
     recordingCreate: {
       screen: RecordingCreateScreen,
       navigationOptions: {
         header: null
       }
     },
-    recordingItem: {
-      screen: RecordingItemScreen,
+    recordingList: {
+      screen: RecordingListScreen,
       navigationOptions: {
         header: null
       }
     },
-    recordingList: {
-      screen: RecordingListScreen,
+    doctorsList: {
+      screen: doctorsListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    recordingItem: {
+      screen: RecordingItemScreen,
       navigationOptions: {
         header: null
       }

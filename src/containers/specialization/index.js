@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, Linking } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
+import { Container, Content, View, Text, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

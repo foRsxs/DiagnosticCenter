@@ -123,7 +123,11 @@
             "select_service": "Выберите услугу",
             "select_doctor": "Выберите врача",
             "select_date": "Выберите дату",
-            "select_time": "Выберите время"
+            "specialty": "Специальность",
+            "service": "Оказываемая услуга",
+            "doctor": "Врач",
+            "date": "Дата",
+            "time": "Время"
         }
     },
     "analizes": {
