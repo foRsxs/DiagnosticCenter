@@ -15,7 +15,7 @@ import {APP_IMG_URL} from '../../config';
 import variables from '../../styles/variables';
 const { medium } = variables.fSize;
 
-import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK, COLOR_NEW_GRAY } from '../../styles/constants';
 
 class ListDoctors extends Component {
   constructor(props) {
@@ -64,16 +64,12 @@ class ListDoctors extends Component {
   funLogo = (id) =>{
     const { logoKey } = this.state
     this.setState({logoKey: id})
-    // return <Text>{(id !== logoKey)?value:''}</Text>
   }
 
   render() {
     let { listview, loading, sorted_list_Doctors, logoKey } = this.state;
-    const { t, recording = false } = this.props;
+    const { t, recording = false, list_Doctors } = this.props;
     const { navigate } = this.props.navigation;
-
-    // (sorted_list_Doctors)&&sorted_list_Doctors.sort((a, b) => { return a.specid - b.specid})
-    console.log('list', this.props.sortedListDoctor);
 
     return (
       <Container>
@@ -84,16 +80,21 @@ class ListDoctors extends Component {
             (!loading) && (
               (sorted_list_Doctors.length)? (
                 sorted_list_Doctors.map((item, index)=>(
-                  <View  key={index}  >
-                   
-                  <CatalogItem 
-                   
-                    onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
-                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
-                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
-                    position={item.speciality}
-                    info={item.description_short}
-                  />
+                  <View  key={index}>
+                    <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10}}>{item.category}</Text>
+                    <View style={{width: '50%', height: 0.5, backgroundColor: COLOR_NEW_GRAY, marginBottom: 5}}/>
+                    {
+                    item.doctors.map((item)=>(
+                      <CatalogItem 
+                        key={item.spec_id}
+                        onClick={() => {this.props.getDoctor(item.docid), navigate('doctor',{docid: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`})}}
+                        imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                        name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                        position={item.speciality}
+                        info={item.description_short}
+                     />
+                    ))
+                    } 
                   </View>
                 ))
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
@@ -107,8 +108,8 @@ class ListDoctors extends Component {
 
 function mapStateToProps(state) {
   return {
-    list_Doctors: state.content.listDoctors,
-    sortedListDoctor: state.content.sortedListDoctor
+    // list_Doctors: state.content.listDoctors,
+    list_Doctors: state.content.sortedListDoctor
   }
 }
 

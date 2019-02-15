@@ -15,8 +15,8 @@ export const initialState = {
         network_connect: false,
         authMessage: null,
         ListSpecialization: null,
-        listDoctors: null,
-        sortedListDoctor: null,
+        listDoctors: [],
+        sortedListDoctor: [],
         doctorData: null,
         sales: null,
         listInformation: {

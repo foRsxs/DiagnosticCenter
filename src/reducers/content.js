@@ -1,8 +1,28 @@
 import * as types from '../types/content';
 import {initialState} from '../store/initialState';
 
-sortedFunc=(data)=>{
-  return data.sort((a, b) => { return a.specid - b.specid})
+catNameFunc = (data) =>{
+  let catName = null;
+  let arr = [];
+  data.forEach((item, i)=> {
+    if(catName && catName === item.speciality){
+      arr.forEach((k, y)=>{
+        if(k.category===item.speciality){
+          arr[y]['doctors'].push(item)
+        }
+      })
+    } else {
+      catName = item.speciality;
+      arr.push({'category': catName, 'doctors': [item]});
+    }
+  })
+
+  return arr;
+}
+
+sortedFunc = (data) =>{
+  const sortData = data.sort((a, b) => { return a.specid - b.specid})
+  return catNameFunc(sortData)
 }
   
 export default function contentReducer(state = initialState.content, action) {

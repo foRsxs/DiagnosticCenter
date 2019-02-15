@@ -31,7 +31,7 @@ class DoctorScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    this.props.getDoctor(this.state.docid)
+    // this.props.getDoctor(this.state.docid)
   }
 
   componentWillUnmount() {
@@ -64,7 +64,9 @@ class DoctorScreen extends Component {
     const { docid, loading} = this.state;
     const { t, doctor } = this.props;
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
-
+    
+    console.log(this.props.navigation.state.params.docid)
+    
     return (
       <ScrollView style={{backgroundColor: WHITE}}>
         <View style={{justifyContent: 'space-between', flexDirection: 'column', flex: 1, backgroundColor: WHITE}}>
@@ -76,7 +78,7 @@ class DoctorScreen extends Component {
                 <Image
                   style={styles.docIcon}
                   resizeMode='contain'
-                  source={{uri: `${APP_IMG_URL}photo_doc/${docid}.jpg`}}
+                  source={{uri: this.props.navigation.state.params.uri}}
                 />)            
             }
           </View>
