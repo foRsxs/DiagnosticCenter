@@ -7,14 +7,15 @@ import { MAIN_FONT, COLOR_PLACEHOLDER, ACCENT_BLUE } from '../../../styles/const
 
 export default StyleSheet.create({
     itemWrap: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         alignItems: 'flex-end',
         borderBottomWidth: 1,
         borderColor: ACCENT_BLUE,
-        paddingVertical: 10
+        paddingVertical: 10,
+        width: '100%'
     },
     itemImage: {
-        width: 25, 
+        width: 25,
         height: 25,
         marginRight: 10
     },
