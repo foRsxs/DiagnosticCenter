@@ -108,6 +108,7 @@
             "check_info": "check information",
             "make_appointment": "you make an appointment",
             "selected_service": "selected service",
+            "select_date": "Выберите дату визита",
             "date_time": "date and time of visit",
             "room": "cabinet",
             "success": "Medical appointment has been successfully created!",

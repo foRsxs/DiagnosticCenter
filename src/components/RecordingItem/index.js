@@ -11,10 +11,10 @@ class RecordingItem extends Component {
   }
 
   render() {
-    let { title, placeholder, icon, onClick } = this.props;
+    let { title, placeholder, icon, onClick, contentContainerStyle } = this.props;
 
     return (
-      <TouchableOpacity style={styles.itemWrap} onPress={onClick}>
+      <TouchableOpacity style={[styles.itemWrap, contentContainerStyle]} onPress={onClick}>
         <Image
           style={styles.itemImage}
           resizeMode='contain'
@@ -33,7 +33,8 @@ RecordingItem.propTypes = {
   title: PropTypes.string,
   placeholder: PropTypes.string,
   onClick: PropTypes.func,
-  icon: PropTypes.number
+  icon: PropTypes.number,
+  contentContainerStyle: PropTypes.object
 };
 
 export default RecordingItem

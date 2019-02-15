@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ImageBackground, TouchableOpacity, Image } from 'react-native';
-import { Container, View, Text, Content, Tabs, Tab, Form, Item, Label, Input } from 'native-base';
+import { ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { Container, View, Content, Tabs, Tab } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,9 +9,9 @@ import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
 import RecordingItem from '../../components/RecordingItem';
 import styles from './styles';
-import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL } from '../../styles/images';
+import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_UPDATE } from '../../styles/images';
 
-class ReceptionInfoScreen extends Component {
+class ReceptionCreateScreen extends Component {
 
 	constructor(props) {
 		super(props);
@@ -27,6 +27,16 @@ class ReceptionInfoScreen extends Component {
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Content>
+					<TouchableOpacity
+						onPress={() => alert('update')}
+						style={styles.btnUpdate}
+					>
+						<Image
+							style={styles.imgUpdate}
+							resizeMode='contain'
+							source={ICON_UPDATE}
+						/>
+					</TouchableOpacity>
 					{(activeTabOne) ? (
 						<ImageBackground
 							style={styles.bgImage}
@@ -44,17 +54,40 @@ class ReceptionInfoScreen extends Component {
 						<Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.consultation').toUpperCase()}>
 							<View style={styles.wrapper}>
 								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
+								<RecordingItem onClick={() => this.props.navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
+								<RecordingItem onClick={() => this.props.navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
 								<View style={styles.datetimeWrap}>
-									<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
-									<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
+									<View style={{ flex: 2 }}>
+										<RecordingItem onClick={() => this.props.navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
+									</View>
+									<View style={styles.separator}></View>
+									<View style={{ flex: 1 }}>
+										<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
+									</View>
 								</View>
 							</View>
-							<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigate('authorization')} />
+							<View style={styles.buttonWrap}>
+								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigate('authorization')} disabled={true} />
+							</View>
 						</Tab>
 						<Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.research').toUpperCase()}>
-							<Text>tab2</Text>
+							<View style={styles.wrapper}>
+								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
+								<RecordingItem onClick={() => this.props.navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
+								<RecordingItem onClick={() => this.props.navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
+								<View style={styles.datetimeWrap}>
+									<View style={{ flex: 2 }}>
+										<RecordingItem onClick={() => this.props.navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
+									</View>
+									<View style={styles.separator}></View>
+									<View style={{ flex: 1 }}>
+										<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
+									</View>
+								</View>
+							</View>
+							<View style={styles.buttonWrap}>
+								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigate('authorization')} />
+							</View>
 						</Tab>
 					</Tabs>
 				</Content >
@@ -75,4 +108,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['createrecord', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoScreen));
+export default withNamespaces(['createrecord', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionCreateScreen));

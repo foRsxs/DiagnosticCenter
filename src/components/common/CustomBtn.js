@@ -13,7 +13,7 @@ export default class CustomBtn extends Component {
 
   render() {
     return (
-      <Button onPress={() => this.props.onClick('teest')} style={[styles.btn, this.props.contentContainerStyle, { backgroundColor: this.colorBtn(this.props.color) }]}>
+      <Button disabled={this.props.disabled} onPress={() => this.props.onClick('teest')} style={[styles.btn, this.props.contentContainerStyle, { backgroundColor: this.colorBtn(this.props.color), opacity: (this.props.disabled) ? 0.5 : 1 }]}>
         <Text style={styles.textBtn}>{this.props.label.toUpperCase()}</Text>
       </Button>
     );

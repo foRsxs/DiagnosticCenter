@@ -31,6 +31,7 @@ import FooterTabs from '../components/common/FooterTabs';
 import ServicesDetailScreen from '../containers/servicesDetail';
 import ServicesScreen from '../containers/services';
 import doctorsListScreen from '../containers/recording/doctorsList';
+import DateScreen from '../containers/dateScreen';
 
 const ProfileNavigator = createBottomTabNavigator(
   {
@@ -166,13 +167,6 @@ const ServiceNavigator = createBottomTabNavigator(
         header: null
       }
     },
-    servicesDetail: {
-      screen: ServicesDetailScreen,
-      navigationOptions: {
-        header: null,
-        tabBarVisible: false
-      }
-    },
   },
   {
     tabBarComponent: props => <FooterTabs props={props} />
@@ -219,6 +213,20 @@ const RecordNavigator = createBottomTabNavigator(
     },
     specialization: {
       screen: SpecializationScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    servicesDetail: {
+      screen: ServicesDetailScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    dateScreen: {
+      screen: DateScreen,
       navigationOptions: {
         header: null,
         tabBarVisible: false
