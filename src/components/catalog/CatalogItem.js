@@ -13,10 +13,10 @@ export default class CatalogListItem extends Component {
   }
 
   render() {
-    let {imageUri, name, position, category, info} = this.props; 
+    let {imageUri, name, position, category, info, contentContainerStyle} = this.props; 
     const {moreInfo} = this.state;
     return (
-      <View style={styles.block}>
+      <View style={[styles.block, contentContainerStyle]}>
         <View style={styles.blockImg}>
           <Image
             style={styles.img}
