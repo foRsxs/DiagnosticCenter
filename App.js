@@ -3,12 +3,13 @@ import { withNamespaces } from 'react-i18next';
 import { Root } from 'native-base';
 import { Provider } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
+import { PersistGate } from 'redux-persist/integration/react';
+
 import MainStackRouter from './src/routers/MainStackRouter';
 import configureStore from './src/store/configureStore';
 import { ONE_SIGNAL_KEY } from './src/config';
 
-const store = configureStore();
-
+const { store, persistor } = configureStore();
 const WrappedStack = ({ t }) => <MainStackRouter screenProps={{ t }} />;
 
 const ReloadAppOnLanguageChange = withNamespaces('common', {
@@ -26,7 +27,9 @@ export default class App extends Component {
     return (
       <Root>
         <Provider store={store}>
-          <ReloadAppOnLanguageChange/>
+          <PersistGate loading={null} persistor={persistor}>
+            <ReloadAppOnLanguageChange/>
+          </PersistGate>
         </Provider>
       </Root>
     );

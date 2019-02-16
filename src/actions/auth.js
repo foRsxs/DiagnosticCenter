@@ -1,5 +1,4 @@
-import axios from 'react-native-axios'
-import { AsyncStorage } from 'react-native';
+import axios from 'axios';
 import OneSignal from 'react-native-onesignal';
 
 import * as types from '../types/auth';
@@ -44,8 +43,6 @@ export function getUserData() {
 
 export function changeNotify(value) {
   OneSignal.setSubscription(value);
-  _storeData('notify', JSON.stringify(value));
-
   return {
     data: value,
     type: types.SET_NOTIFY,
@@ -67,7 +64,6 @@ export function setLanguage(lang_key) {
 
 export function setCurrentLang(key) {
   i18n.changeLanguage(key);
-  _storeData('lang_key', key)
   return {
     type: types.SET_CURRENT_LANG,
     data: key
@@ -75,7 +71,6 @@ export function setCurrentLang(key) {
 }
 
 export function saveUser(data) {
-  if (data.api_token) _storeData('api_token', data.api_token);
   return {
     type: types.SET_USER_DATA,
     user: data
@@ -90,7 +85,6 @@ export function setUserdata(data) {
 }
 
 export function changeMethodsAuth(data) {
-  if (data.methods_auth) _storeData('methods_auth', data.methods_auth);
   return {
     type: types.SET_METHODS_AUTH,
     data: data
@@ -98,7 +92,6 @@ export function changeMethodsAuth(data) {
 }
 
 export function savePinCode(data) {
-  if (data.code) _storeData('pinCode', data.code);
   return {
     type: types.SET_PIN_CODE,
     code: data
@@ -122,14 +115,5 @@ export function setMethodsAuthDevice(data) {
 export function setGuest() {
   return {
     type: types.SET_USER_GUEST,
-  }
-}
-
-//Storage
-_storeData = async (name, params) => {
-  try {
-    await AsyncStorage.setItem(name, params);
-  } catch (error) {
-    console.log(error)
   }
 }

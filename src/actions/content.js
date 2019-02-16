@@ -1,4 +1,4 @@
-import axios from 'react-native-axios'
+import axios from 'axios'
 import {Alert, AsyncStorage} from 'react-native';
 import * as types from '../types/content';
 import {APP_API_URL} from '../config';

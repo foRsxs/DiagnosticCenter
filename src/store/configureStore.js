@@ -1,12 +1,24 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import reducer from '../reducers'
+import { createStore } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import middleware from '../middleware';
+import rootReducer from '../reducers';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default function configureStore() {
-  const store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-  )
+  let store = createStore(
+    persistedReducer,
+    middleware
+  );
+
+  let persistor = persistStore(store);
 
   if (module.hot) {
     module.hot.accept(() => {
@@ -15,5 +27,5 @@ export default function configureStore() {
     });
   }
 
-  return store;
+  return { store, persistor }
 }

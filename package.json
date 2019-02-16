@@ -9,6 +9,7 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "i18next": "^14.1.1",
     "moment": "^2.24.0",
     "native-base": "^2.11.0",
@@ -16,7 +17,6 @@
     "react": "16.8.1",
     "react-i18next": "^9.0.10",
     "react-native": "0.58.4",
-    "react-native-axios": "^0.17.1",
     "react-native-calendars": "^1.22.0",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-htmlview": "^0.13.0",
@@ -34,6 +34,8 @@
     "react-navigation": "^3.1.5",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.10.15"
   },

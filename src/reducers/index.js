@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
+
 import authorization from './authorization';
+import specialties from './specialties';
 import content from './content';
 
-const rootReducer = combineReducers({
+export default combineReducers({
   authorization,
+  specialties,
   content
 });
-
-export default rootReducer;
