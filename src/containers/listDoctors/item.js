@@ -58,6 +58,7 @@ class DoctorScreen extends Component {
   _openPage = (page, text_error) => {
     const {t, isGuest, navigation, doctor} = this.props;
     const {spec_id, docdep_id, docid } = this.state;
+    
     if (isGuest) {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
@@ -140,36 +141,38 @@ class DoctorScreen extends Component {
   renderProfile(){
     const { doctor } = this.props;
     let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
+
     return(
       <View style={styles.bottomContainer}>
-      <View style={styles.mainInfo}>
-        <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
-        <Text style={styles.speciality}>{doctor[0].speciality}</Text>
-        <Text style={styles.category}>Категория</Text>
+        <View style={styles.mainInfo}>
+          <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
+          <Text style={styles.speciality}>{doctor[0].speciality}</Text>
+          <Text style={styles.category}>Категория</Text>
+        </View>
+        <KeyboardAwareScrollView style={styles.blockInfo}>
+          <HTMLView
+            stylesheet={ stylesHtml }
+            value={`<p>${description}</p>`}
+          />
+          <View style={styles.emptyBlock}/>
+        </KeyboardAwareScrollView>
       </View>
-      <KeyboardAwareScrollView style={styles.blockInfo}>
-        <HTMLView
-          stylesheet={ stylesHtml }
-          value={`<p>${description}</p>`}
-        />
-        <View style={styles.emptyBlock}/>
-      </KeyboardAwareScrollView>
-    </View>
     )
   }
 
   renderQuestions(){
     const { moreInfo } = this.state;
     const { questions, t } = this.props;
+
     return(
       <View style={styles.bottomContainer}>
-      <View style={styles.wrapBtnQuest}>
-        <TouchableOpacity activeOpacity={0.9} style={styles.btnQuest}>
-          <Image style={styles.iconQuest} source={ICON_FOR_QUESTION}/>
-          <Text style={styles.textBtn}>{ t('common:actions.ask_question_doctor') }</Text>
-        </TouchableOpacity>
-      </View>
-      <KeyboardAwareScrollView>
+        <View style={styles.wrapBtnQuest}>
+          <TouchableOpacity activeOpacity={0.9} style={styles.btnQuest}>
+            <Image style={styles.iconQuest} source={ICON_FOR_QUESTION}/>
+            <Text style={styles.textBtn}>{ t('common:actions.ask_question_doctor') }</Text>
+          </TouchableOpacity>
+        </View>
+        <KeyboardAwareScrollView>
           {
             (questions.length>= 1) ?
             questions.map((item)=>(
@@ -184,11 +187,10 @@ class DoctorScreen extends Component {
               </View> 
             )) : <Text style={styles.emptyData}>Данных нет</Text>
           }
-      </KeyboardAwareScrollView>
-    </View>
+        </KeyboardAwareScrollView>
+      </View>
     )
   }
-
 
   render() {
     const { docid, loading, tabProfile} = this.state;

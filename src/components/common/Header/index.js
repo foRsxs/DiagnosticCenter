@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { CALL_CENTRE_TEL } from '../../../config';
 import styles from './style';
 
-
 import { BAR_COLOR } from '../../../styles/constants';
 
 import {

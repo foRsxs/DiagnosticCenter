@@ -35,11 +35,10 @@ class SettingsScreen extends Component {
 
   switchNotify = (value) => {
     this.setState({ local_notify: value });
-
   }
 
   onAuthChange(value) {
-    this.setState({local_auth_methods: value});
+    this.setState({ local_auth_methods: value });
   }
 
   _saveChanges = () => {
@@ -56,7 +55,6 @@ class SettingsScreen extends Component {
 
     if (methods_auth !== local_auth_methods) {
       savePinCode({code: null, confirmed: false});
-      AsyncStorage.removeItem('pinCode');
       if (local_auth_methods === 'code') {
         changeMethodsAuth({methods_auth: local_auth_methods, confirmed: false});
         navigation.navigate('authorization');
@@ -82,80 +80,80 @@ class SettingsScreen extends Component {
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-          <Header text={ t('settings:title') } navigation = {this.props.navigation}/>
-          <HeaderBottom />
-          <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-            <View style={styles.settingItem}>
-              <Text style={styles.headTxt}>{ t('settings:items.language') }</Text>
-              <Form style={{ width: '40%' }}>
-                <Picker
-                  mode="dropdown"
-                  style={{width: '100%', position: 'relative'}}
-                  selectedValue={local_languages_key}
-                  onValueChange={this.changeLang.bind(this)}
-                  headerBackButtonText={ t('common:actions.back') }
-                  iosHeader={ t('common:actions_text.select_language') }
-                  iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
-                >
-                  <Picker.Item label="Рус" value="ru" />
-                  <Picker.Item label="Kaз" value="kz" />
-                  <Picker.Item label="Eng" value="en" />
-                </Picker>
-              </Form>
+        <Header text={ t('settings:title') } navigation = {this.props.navigation}/>
+        <HeaderBottom />
+        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
+          <View style={styles.settingItem}>
+            <Text style={styles.headTxt}>{ t('settings:items.language') }</Text>
+            <Form style={{ width: '40%' }}>
+              <Picker
+                mode="dropdown"
+                style={{width: '100%', position: 'relative'}}
+                selectedValue={local_languages_key}
+                onValueChange={this.changeLang.bind(this)}
+                headerBackButtonText={ t('common:actions.back') }
+                iosHeader={ t('common:actions_text.select_language') }
+                iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+              >
+                <Picker.Item label="Рус" value="ru" />
+                <Picker.Item label="Kaз" value="kz" />
+                <Picker.Item label="Eng" value="en" />
+              </Picker>
+            </Form>
+          </View>
+          {(device_touch || device_face) && (
+          <View style={styles.settingItem}>
+            <Text style={styles.headTxt}>{ t('settings:items.auth') }</Text>
+            <Form style={{ width: '40%' }}>
+              {(device_touch) && (
+                  <Picker
+                    mode="dropdown"
+                    style={{width: '100%', position: 'relative'}}
+                    selectedValue={local_auth_methods}
+                    onValueChange={this.onAuthChange.bind(this)}
+                    headerBackButtonText={ t('common:actions.back') }
+                    iosHeader={ t('common:actions_text.select_auth_method') }
+                    iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                  >
+                    <Picker.Item label="Code" value="code"/>
+                    <Picker.Item label={ t('authorization:auth_type.touch_id') } value="touch"/>
+                  </Picker>
+                )
+              }
+              {
+                (device_face) && (
+                  <Picker
+                    mode="dropdown"
+                    style={{width: '100%', position: 'relative'}}
+                    selectedValue={local_auth_methods}
+                    onValueChange={this.onAuthChange.bind(this)}
+                    headerBackButtonText={ t('common:actions.back') }
+                    iosHeader={ t('common:actions_text.select_auth_method') }
+                    iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                  >
+                    <Picker.Item label="Code" value="code"/>
+                    <Picker.Item label={ t('authorization:auth_type.face_id') } value="face" />
+                  </Picker>
+                )
+              }
+            </Form>
+          </View>
+          )}
+          <View style={[styles.settingItem, {marginTop: 10}]}>
+            <Text style={styles.headTxt}>{ t('settings:items.push') }</Text>
+            <Switch
+              onValueChange={this.switchNotify}
+              value={local_notify}
+            />
+          </View>           
+        </Content>
+        {
+          (local_auth_methods !== methods_auth || local_languages_key !== languages_key || local_notify !== notify) && (
+            <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
+              <CustomBtn label={ t('common:actions.save') } onClick={() => this._saveChanges()}/>
             </View>
-            {(device_touch || device_face) && (
-            <View style={styles.settingItem}>
-              <Text style={styles.headTxt}>{ t('settings:items.auth') }</Text>
-              <Form style={{ width: '40%' }}>
-                {(device_touch) && (
-                    <Picker
-                      mode="dropdown"
-                      style={{width: '100%', position: 'relative'}}
-                      selectedValue={local_auth_methods}
-                      onValueChange={this.onAuthChange.bind(this)}
-                      headerBackButtonText={ t('common:actions.back') }
-                      iosHeader={ t('common:actions_text.select_auth_method') }
-                      iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
-                    >
-                      <Picker.Item label="Code" value="code"/>
-                      <Picker.Item label={ t('authorization:auth_type.touch_id') } value="touch"/>
-                    </Picker>
-                  )
-                }
-                {
-                  (device_face) && (
-                    <Picker
-                      mode="dropdown"
-                      style={{width: '100%', position: 'relative'}}
-                      selectedValue={local_auth_methods}
-                      onValueChange={this.onAuthChange.bind(this)}
-                      headerBackButtonText={ t('common:actions.back') }
-                      iosHeader={ t('common:actions_text.select_auth_method') }
-                      iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
-                    >
-                      <Picker.Item label="Code" value="code"/>
-                      <Picker.Item label={ t('authorization:auth_type.face_id') } value="face" />
-                    </Picker>
-                  )
-                }
-              </Form>
-            </View>
-            )}
-            <View style={[styles.settingItem, {marginTop: 10}]}>
-              <Text style={styles.headTxt}>{ t('settings:items.push') }</Text>
-              <Switch
-                onValueChange={this.switchNotify}
-                value={local_notify}
-              />
-            </View>           
-          </Content>
-          {
-            (local_auth_methods !== methods_auth || local_languages_key !== languages_key || local_notify !== notify) && (
-              <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-                <CustomBtn label={ t('common:actions.save') } onClick={() => this._saveChanges()}/>
-              </View>
-            )
-          }
+          )
+        }
       </Container>
     )
   }

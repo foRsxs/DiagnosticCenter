@@ -518,11 +518,9 @@ export function setAuthMessage(mess) {
   }
 }
 
-_retrieveData = async (name) => {
-  try {
-    const value = await AsyncStorage.getItem(name);
-    return JSON.parse(value);
-   } catch (error) {
-    Alert.alert(JSON.stringify(error))
-   }
+export function setWelcomeScreen(data) {
+  return {
+    type: types.WELCOME_SCREEN_HIDE,
+    data: data
+  }
 }

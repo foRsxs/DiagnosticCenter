@@ -72,13 +72,13 @@ class ListDoctors extends Component {
     return (
       <Container>
         <Header search={true} onChangeSearch={this.handleChange}/>
-        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
+        <KeyboardAwareScrollView style={{zIndex: 1, marginTop: -10, paddingTop: 10 }}>
           {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
             (!loading) && (
-              (sorted_list_Doctors.length)? (
+              (sorted_list_Doctors.length) ? (
                 sorted_list_Doctors.map((item, index)=>(
-                  <View  key={index}>
+                  <View key={index}>
                     <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10}}>{item.category}</Text>
                     <View style={{width: '50%', height: 0.5, backgroundColor: COLOR_NEW_GRAY, marginBottom: 5}}/>
                     {

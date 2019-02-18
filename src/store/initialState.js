@@ -1,14 +1,14 @@
 export const initialState = {
   auth: {
     token: null,
-    confirmed_auth: false, //<--
+    confirmed_auth: false,
     methods_auth: null,
     notify: true,
     pinCode: null,
     user: {},
     device_touch: false,
     device_face: false,
-    isGuest: false, //<--,
+    isGuest: false,
     language: null
   },
   content: {
@@ -56,6 +56,7 @@ export const initialState = {
     analizes: {
       list: null,
       current: null
-    }
+    },
+    hideScreen: false
   }
 }

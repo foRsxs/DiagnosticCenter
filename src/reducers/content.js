@@ -174,6 +174,11 @@ export default function contentReducer(state = initialState.content, action) {
         ...state,
         orderDeleted: action.data
       }
+    case types.WELCOME_SCREEN_HIDE:
+      return {
+        ...state,
+        hideScreen: action.data
+      }
     default:
       return state
   }

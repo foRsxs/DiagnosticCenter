@@ -3,19 +3,26 @@ import { Image, ScrollView, View } from 'react-native';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
+import * as ContentActions from '../../actions/content';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
 
 import { IMAGE_WELCOME_1, IMAGE_WELCOME_2, IMAGE_WELCOME_3 } from '../../styles/images';
-import { RED } from '../../styles/constants';
 
 class WelcomeScreen extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this._checkWelcome();
 	}
+
+	_checkWelcome = () => {		
+		const { navigate, hideScreen } = this.props.navigation;
+		navigate(hideScreen ? 'home' : 'authorization');
+  };
 
 	componentDidMount() {
 		SplashScreen.hide();
@@ -51,11 +58,27 @@ class WelcomeScreen extends Component {
 				<Text style={styles.darkText}>{t('welcome:enter_text12')} <Text style={styles.textBold}>"{t('welcome:enter_text13')}"</Text> {t('welcome:enter_text14')}</Text>
 				<Text style={styles.blueText}>{t('welcome:enter_text15')}</Text>
 				<View style={styles.button}>
-					<CustomBtn label={t('common:actions.continue')} onClick={() => navigate('authorization')} />
+          <CustomBtn 
+            label={ t('common:actions.continue') } 
+            onClick={() => { 
+              this.props.setWelcomeScreen(true);
+              navigate('home') 
+            }} 
+          />
 				</View>
 			</ScrollView>
 		)
 	}
 }
 
-export default withNamespaces(['welcome', 'common'])(WelcomeScreen);
+function mapStateToProps(state) {
+  return {
+    hideScreen: state.content.hideScreen
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ ...ContentActions }, dispatch)
+}
+
+export default withNamespaces(['welcome', 'common'])(connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen));

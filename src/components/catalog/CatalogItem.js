@@ -30,10 +30,14 @@ export default class CatalogListItem extends Component {
           </Text>
           <Text style={styles.special}>{position}</Text>
           <Text style={styles.category}>Категория</Text>
-          {(moreInfo)&&(<HTMLView value={(info) ? info : ''} />)}
-          <TouchableOpacity onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
-            <Text style={styles.openInfo}>{(moreInfo) ? 'Скрыть описание' : 'Посмотреть описание'}</Text><Image source={require('../../../assets/img/new_arrow_blue.png')} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
-          </TouchableOpacity>
+          {( moreInfo ) && (
+          <View>
+            <HTMLView value={(info) ? info : ''} />
+            <TouchableOpacity onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
+              <Text style={styles.openInfo}>{(moreInfo) ? 'Скрыть описание' : 'Посмотреть описание'}</Text><Image source={require('../../../assets/img/new_arrow_blue.png')} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
+            </TouchableOpacity>
+          </View>
+          )}
           <TouchableOpacity onPress={() => this.props.onClick()} style={styles.btn}>
             <Image source={require('../../../assets/img/new_arrow.png')} style={styles.iconBtn}/>
           </TouchableOpacity>

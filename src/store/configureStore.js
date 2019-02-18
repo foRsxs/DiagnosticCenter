@@ -12,13 +12,15 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default function configureStore() {
+export default function configureStore(callback) {
   let store = createStore(
     persistedReducer,
     middleware
   );
 
-  let persistor = persistStore(store);
+  persistStore(store, null, () => {
+    callback();
+  });
 
   if (module.hot) {
     module.hot.accept(() => {
@@ -27,5 +29,5 @@ export default function configureStore() {
     });
   }
 
-  return { store, persistor }
+  return store;
 }

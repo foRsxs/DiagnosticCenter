@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Container, Content, View, Text} from 'native-base';
 import { withNamespaces } from 'react-i18next';
+import * as AuthActions from '../../actions/auth';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import Header from '../../components/common/Header';
 import MenuList from '../../components/common/MenuList';
@@ -45,11 +48,28 @@ class ProfileScreen extends Component {
 
   onPress = (type) => {
     const {navigation} = this.props;
-    (type === 'LogOut') ? navigation.navigate('authorization') : navigation.navigate(type); 
-  } 
+    
+    if (type === 'LogOut') {
+      this.props.logOut();
+      navigation.navigate('home');
+    } else {
+      navigation.navigate(type); 
+    } 
+  }
+
+  componentDidMount() {
+    const { navigate } = this.props.navigation;
+    let { user, getUserData } = this.props; 
+
+    if (user && user.token) {
+      getUserData();
+    } else {
+      navigate('authorization');
+    }
+	}
 
   render() {
-    let { t } = this.props;
+    let { t, user } = this.props;
     
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
@@ -58,19 +78,19 @@ class ProfileScreen extends Component {
           <View style={styles.prifileBlock}>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:name')}</Text>
-              <Text style={styles.text}>Иванов Иван Иванович</Text>
+              <Text style={styles.text}>{user.lastname} {user.firstname} {user.secondname}</Text>
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:birthDate')}</Text>
-              <Text style={styles.text}>15.09.1975</Text>
+              <Text style={styles.text}>-</Text>
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:phone')}</Text>
-              <Text style={styles.text}>8 (777) 333-22-11</Text>
+              <Text style={styles.text}>{user.phone}</Text>
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:address')}</Text>
-              <Text style={styles.text}>г. Шымкент, пр. Кунаева, 22</Text>
+              <Text style={styles.text}>-</Text>
             </View>
           </View>
           <MenuList onPress={(value)=>this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />
@@ -80,4 +100,14 @@ class ProfileScreen extends Component {
   }
 }
 
-export default withNamespaces('profile')(ProfileScreen);
+function mapStateToProps(state) {
+  return {
+    user: state.authorization.user
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ ...AuthActions }, dispatch)
+}
+
+export default withNamespaces(['profile', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ProfileScreen));
