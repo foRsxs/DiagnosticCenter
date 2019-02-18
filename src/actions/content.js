@@ -5,19 +5,14 @@ import {APP_API_URL} from '../config';
 
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/specs`, {
-        type: type,
-        lang: authorization.language
-      })
-      .then((response) => {
-        if (type == 1 && !order) _storeData('specialization', JSON.stringify(response.data));
-        (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
-      })
-    } else {
-      (order) ? dispatch(setListSpecializationOrder([])): _retrieveData('specialization').then((resp)=> dispatch(setListSpecialization((resp && type == 1) ? resp: [])));
-    }
+    const { authorization } = getState();
+    axios.post(`${APP_API_URL}/specs`, {
+      type: type,
+      lang: authorization.language
+    })
+    .then((response) => {
+      (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
+    })
   }
 }
 
@@ -82,18 +77,13 @@ export function getDoctor(doc_id) {
 
 export function getSales() {
   return (dispatch, getState) => {
-    const { authorization: {language}, content: {network_connect} } = getState();
-    if (network_connect) { 
-      axios.get(`${APP_API_URL}/sales`, {
-        lang: language
-      })
-      .then((response) => {
-        _storeData('sales', JSON.stringify(response.data));
-        dispatch(setSales(response.data));
-      })
-    } else {
-      _retrieveData('sales').then((resp)=> dispatch(setSales((resp) ? resp: [])));
-    }
+    const { authorization: {language} } = getState();
+    axios.get(`${APP_API_URL}/sales`, {
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setSales(response.data));
+    })
   }
 }
 
@@ -223,7 +213,7 @@ export function setOrder(data, type, nameDispatch) {
 export function sendQuestion({type, question, email, doc_id}) {
   return (dispatch, getState) => {
     dispatch(sendQuestionSuccess({loading: true, status: false}))
-    const { authorization: {token, language}, content: {network_connect} } = getState();
+    const { authorization: {token, language} } = getState();
     const params = {
       api_token: token,
       question, 
@@ -231,14 +221,10 @@ export function sendQuestion({type, question, email, doc_id}) {
       lang: language
     }
     if (doc_id) params.doc_id = doc_id
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/${type}`, params)
-      .then((response) => {
-        if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}));
-      })
-    } else {
-      dispatch(sendQuestionSuccess({loading: false, status: false}))
-    }
+    axios.post(`${APP_API_URL}/${type}`, params)
+    .then((response) => {
+      if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}));
+    });
     setTimeout(()=> {
       dispatch(sendQuestionSuccess({loading: false, status: false}))
     }, 3000)
@@ -265,63 +251,50 @@ export function setTime(time) {
 
 export function saveOrder({type, rnumb_id, date, serv_id}) {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/get_talon`, {
-        api_token: authorization.token,
-        lang: authorization.language,
-        rnumb_id, 
-        date,
-        serv_id,
-        type,
-      })
-      .then((response) => {
-        if (response.data) dispatch(setCreatingOrderSuccess(true));
-      })
-    } else {
-      dispatch(setCreatingOrderSuccess(false));
-    }
+    const { authorization } = getState();
+    axios.post(`${APP_API_URL}/get_talon`, {
+      api_token: authorization.token,
+      lang: authorization.language,
+      rnumb_id, 
+      date,
+      serv_id,
+      type,
+    })
+    .then((response) => {
+      if (response.data) dispatch(setCreatingOrderSuccess(true));
+    })
   }
 }
 
 export function getListTalons() {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/talon_history`, {
-        api_token: authorization.token,
-        lang: authorization.language
-      })
-      .then((response) => {
-        _storeData('talons', JSON.stringify(response.data));
-        dispatch(setListTalons(response.data));
-      })
-    } else {
-      _retrieveData('talons').then((resp)=> dispatch(setListTalons( (resp) ? resp: [] )))
-    }
+    const { authorization } = getState();
+    axios.post(`${APP_API_URL}/talon_history`, {
+      api_token: authorization.token,
+      lang: authorization.language
+    })
+    .then((response) => {
+      dispatch(setListTalons(response.data));
+    })
   }
 }
 
 export function deleteOrder({rnumb_id}) {
   return (dispatch, getState) => {
-    const { authorization, content: {listTalons, network_connect} } = getState();
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/del_talon`, {
-        api_token: authorization.token,
-        lang: authorization.language,
-        rnumb_id
-      })
-      .then((response) => {
-        let array=[];
-        if (response.data[0].err_code == 0) {
-          listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
-          dispatch(setDeletedOrder(true));
-          dispatch(setListTalons(array))
-        }
-      })
-    } else {
-      dispatch(setDeletedOrder(false));
-    }
+    const { authorization, content: {listTalons} } = getState();
+    axios.post(`${APP_API_URL}/del_talon`, {
+      api_token: authorization.token,
+      lang: authorization.language,
+      rnumb_id
+    })
+    .then((response) => {
+      let array=[];
+      if (response.data[0].err_code == 0) {
+        listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
+        dispatch(setDeletedOrder(true));
+        dispatch(setListTalons(array))
+      }
+    });
     setTimeout(()=> {
       dispatch(setDeletedOrder(false))
     }, 3000)
@@ -330,7 +303,7 @@ export function deleteOrder({rnumb_id}) {
 
 export function getHistory({type, p_type, vis_id}) {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
+    const { authorization } = getState();
     let params = {
       api_token: authorization.token,
       lang: authorization.language
@@ -339,15 +312,10 @@ export function getHistory({type, p_type, vis_id}) {
     if (p_type) params.p_type = p_type;
     if (vis_id) params.vis_id = vis_id;
 
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/visit_${type}`, params)
-      .then((response) => {
-        if (type == 'list') _storeData('histories', JSON.stringify(response.data));
-        dispatch((type == 'list') ? setHistory({ list: response.data}) : setHistory({current: response.data}));
-      })
-    } else {
-      (type == 'list') ? _retrieveData('histories').then((resp)=> dispatch(setHistory( (resp) ? { list: resp }: { list: [] } ))) : dispatch(setHistory({current: []}));
-    }
+    axios.post(`${APP_API_URL}/visit_${type}`, params)
+    .then((response) => {
+      dispatch((type == 'list') ? setHistory({ list: response.data}) : setHistory({current: response.data}));
+    })
   }
 }
 
@@ -361,15 +329,10 @@ export function getAnalizes({type='', res_id}) {
     
     if (res_id) params.res_id = res_id;
 
-    if (network_connect) { 
-      axios.post(`${APP_API_URL}/lab_research${type}`, params)
-      .then((response) => {
-        if (type === '_list') _storeData('analizes', JSON.stringify(response.data));
-        dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
-      })
-    } else {
-      (type === '_list') ? _retrieveData('analizes').then((resp)=> dispatch(setAnalizes( (resp) ? { list: resp }: { list: [] } ))) : dispatch(setAnalizes({current: []}));
-    }
+    axios.post(`${APP_API_URL}/lab_research${type}`, params)
+    .then((response) => {
+      dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
+    })
   }
 }
 

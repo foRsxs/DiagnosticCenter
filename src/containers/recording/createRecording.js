@@ -114,6 +114,7 @@ class ReceptionInfoScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log(prevProps);
     if (prevProps.orderDatas !== this.props.orderDatas) this.setState({loading: false})
     if (prevProps.orderDatas.dates !== this.props.orderDatas.dates) this.setDates(this.props.orderDatas.dates);
     if (prevProps.orderDatas.times !== this.props.orderDatas.times) this.setTimes(this.props.orderDatas.times);

@@ -109,10 +109,15 @@
             "make_appointment": "you make an appointment",
             "selected_service": "selected service",
             "select_date": "Выберите дату визита",
+            "select_time": "Выберите время визита",
             "date_time": "date and time of visit",
             "room": "cabinet",
             "success": "Medical appointment has been successfully created!",
-            "cancel_recording": "post canceled"
+            "cancel_recording": "post canceled",
+            "ok_recording": "запись доступна",
+            "date_select": "выбранная дата",
+            "ok_time": "свободные номерки",
+            "time_select": "выбранное время"
         }
     },
     "createrecord": {
@@ -129,7 +134,12 @@
             "doctor": "Врач",
             "date": "Дата",
             "time": "Время"
-        }
+        },
+        "price": "Стоимость",
+        "room_number": "Кабинет",
+        "help_text": "Подготовка к исследованию МРТ Для большинства МРТ-исследований специальной подготовки не требуется, только 2 вида исследований требуют определенной подготовки:",
+        "help_text1": "МРТ брюной полости - рекомендуется воздерживаться от еды и питья за 5 часов до исследования.",
+        "help_text2": "МРТ органов малого таза - должен быть наполнен мочевой пузырь."
     },
     "analizes": {
         "title": "My analyzes",
@@ -201,6 +211,11 @@
         "birthDate": "Дата рожденя:",
         "phone": "Телефон:",
         "address": "Адрес:"
+    },
+    "patient": {
+        "title": "Карта пациента",
+        "no_patient_text": "Нет даных",
+        "protocol_vizit": "Протокол визита"
     },
     "common": {
         "actions": {

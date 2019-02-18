@@ -17,7 +17,7 @@ class ProfileScreen extends Component {
         {
           text: 'Карта пациента',
           icon: ICON_CARD_PATIENT,
-          value: 'contacts'
+          value: 'cardPatientDetailScreen'
         },
         {
           text: 'Результаты анализов',

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import AnalizesItem from '../../components/analizes/AnalizesItem'
+import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
 import HeaderBottom from '../../components/common/HeaderBottom';
 

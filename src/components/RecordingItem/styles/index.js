@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import variables from '../../../styles/variables';
 const { medium } = variables.fSize;
 
-import { MAIN_FONT, COLOR_PLACEHOLDER, ACCENT_BLUE } from '../../../styles/constants';
+import { MAIN_FONT, COLOR_PLACEHOLDER, ACCENT_BLUE, BLACK } from '../../../styles/constants';
 
 export default StyleSheet.create({
     itemWrap: {
@@ -30,4 +30,9 @@ export default StyleSheet.create({
         color: COLOR_PLACEHOLDER,
         fontFamily: MAIN_FONT
     },
+    itemText: {
+        fontSize: medium,
+        color: BLACK,
+        fontFamily: MAIN_FONT
+    }
 });

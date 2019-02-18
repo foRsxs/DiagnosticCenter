@@ -4,6 +4,8 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
+import { ICON_MORE } from '../../styles/images';
+
 class СShare extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +83,7 @@ class СShare extends Component {
         <Image
           style={{width: 18, height: 20}}
           resizeMode='contain'
-          source={require('../../../assets/img/more-icon.png')}
+          source={ICON_MORE}
         />
       </TouchableOpacity>
     )
@@ -92,11 +94,8 @@ const styles = StyleSheet.create({
   moreIcon: {
     justifyContent: 'center',
     paddingLeft: 5,
-    width: 25,
-    height: 30,
-    position: 'absolute',
-    top: 10,
-    right: 5,
+    width: 18,
+    height: 20,
     backgroundColor: 'transparent'
   }
 });

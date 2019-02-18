@@ -4,6 +4,7 @@ export const ICON_LOGO = require('../../assets/img/logo.png');
 export const ICON_PHONE = require('../../assets/img/icon-phone.png');
 export const ICON_SEARCH = require('../../assets/img/search-icon.png');
 export const ICON_UPDATE = require('../../assets/img/icon-update.png');
+export const ICON_MORE = require('../../assets/img/icon-more.png');
 
 //ICONS FOOTERTAB
 export const ICON_MAIN = require('../../assets/img/icon-main.png');
