@@ -55,7 +55,7 @@ class ReceptionCreateScreen extends Component {
 							<View style={styles.wrapper}>
 								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
 								<RecordingItem onClick={() => this.props.navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
+								<RecordingItem onClick={() => this.props.navigation.navigate('doctorsList')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
 								<View style={styles.datetimeWrap}>
 									<View style={{ flex: 2 }}>
 										<RecordingItem onClick={() => this.props.navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />

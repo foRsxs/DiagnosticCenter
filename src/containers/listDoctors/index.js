@@ -9,7 +9,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
-//import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
 
 import variables from '../../styles/variables';
@@ -83,7 +82,7 @@ class ListDoctors extends Component {
                     <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10}}>{item.category}</Text>
                     <View style={{width: '50%', height: 0.5, backgroundColor: COLOR_NEW_GRAY, marginBottom: 5}}/>
                     {
-                    item.doctors.map((item, index, length)=>(console.log(item, index, length.length),(
+                    item.doctors.map((item, index, length)=>((
                       <CatalogItem 
                         key={item.docid}
                         contentContainerStyle={(index===length.length-1)?{borderBottomWidth: 0}:{}}

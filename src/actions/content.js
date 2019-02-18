@@ -33,11 +33,11 @@ export function getListDoctors(spec_id, servid, order = false) {
       if (order && content.order.type !== 1 ) params.type = content.order.type;
 
       axios.post(`${APP_API_URL}/doctors`, params)
-      .then((response) => {
+      .then((response) => {console.log(response)
         function isAllow(value) {
           return +value.allow === 1;
         }
-        if (!order && !spec_id && !servid) _storeData('doctors', JSON.stringify(response.data));
+        if (!order && !spec_id && !servid)
         if (order) {
           if (response.data.filter(isAllow).length === 1) {
             dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
@@ -136,7 +136,7 @@ export function getQuestions(doc_id) {
       api_token: token,
       lang: language
     })
-    .then((response) => {
+    .then((response) => {console.log(11111111111)
       dispatch(setQuestion(response.data));
     })
     .catch((e)=>{

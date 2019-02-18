@@ -217,10 +217,12 @@
             "send_msg": "Отправить сообщение",
             "send_to_mail": "Отправить на e-mail",
             "save_to_gallery": "Сохранить в галерею",
-            "appointment": "Запись на приём",
+            "appointment": "Запись на приём", 
             "ask_question": "Задать вопрос",
             "add_recording": "Добавить запись",
-            "continue": "Продолжить"
+            "continue": "Продолжить",
+            "ask_question_doctor": "Задать вопрос врачу",
+            "questions": "вопросы"
         },
         "actions_text": {
             "token_not_valid_text": "Вам нужно заново авторизоваться", 

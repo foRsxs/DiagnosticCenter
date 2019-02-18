@@ -50,3 +50,5 @@ export const ICON_TIME_SMALL = require('../../assets/img/icon-small-time.png');
 export const ICON_TIME_SMALL_ACTIVE = require('../../assets/img/icon-small-time-active.png');
 export const ICON_SPEC_SMALL = require('../../assets/img/icon-spec-small.png');
 export const ICON_SPEC_SMALL_ACTIVE = require('../../assets/img/icon-spec-small-active.png');
+export const ICON_FOR_QUESTION = require('../../assets/img/iconQuest.png');
+export const ICON_BLUE_ARROW = require('../../assets/img/new_arrow_blue.png');

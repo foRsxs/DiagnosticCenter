@@ -144,7 +144,8 @@ const DoctorNavigator = createBottomTabNavigator(
     doctor: {
       screen: DoctorScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
     listDoctors: {
