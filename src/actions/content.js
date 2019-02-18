@@ -6,6 +6,7 @@ import {APP_API_URL} from '../config';
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
     const { authorization } = getState();
+    
     axios.post(`${APP_API_URL}/specs`, {
       type: type,
       lang: authorization.language
@@ -19,31 +20,30 @@ export function getListSpecialization(type, order = false) {
 export function getListDoctors(spec_id, servid, order = false) {
   return (dispatch, getState) => {
     const { authorization, content } = getState();
-    if (content.network_connect) { 
-      const params = {
-        lang: authorization.language
-      }
-      if (spec_id) params.spec_id = spec_id;
-      if (servid) params.servid = servid;
-      if (order && content.order.type !== 1 ) params.type = content.order.type;
-
-      axios.post(`${APP_API_URL}/doctors`, params)
-      .then((response) => {console.log(response)
-        function isAllow(value) {
-          return +value.allow === 1;
-        }
-        if (!order && !spec_id && !servid)
-        if (order) {
-          if (response.data.filter(isAllow).length === 1) {
-            dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
-            dispatch(getListDates({docdep_id: response.data[0].docdep}));
-          }
-          dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
-        } else dispatch(setListDoctors(response.data));
-      })
-    } else {
-      (order) ? dispatch(setListDoctorsOrder([])) : _retrieveData('doctors').then((resp)=> dispatch(setListDoctors((resp && !spec_id && !servid) ? resp: [])));
+    const params = {
+      lang: authorization.language
     }
+
+    if (spec_id) params.spec_id = spec_id;
+    if (servid) params.servid = servid;
+    if (order && content.order.type !== 1 ) params.type = content.order.type;
+
+    axios.post(`${APP_API_URL}/doctors`, params)
+    .then((response) => {
+      function isAllow(value) {
+        return +value.allow === 1;
+      }
+
+      if (order) {
+        if (response.data.filter(isAllow).length === 1) {
+          dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
+          dispatch(getListDates({docdep_id: response.data[0].docdep}));
+        }
+        dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
+      } else { 
+        dispatch(setListDoctors(response.data));
+      }
+    });
   }
 }
 
@@ -78,6 +78,7 @@ export function getDoctor(doc_id) {
 export function getSales() {
   return (dispatch, getState) => {
     const { authorization: {language} } = getState();
+
     axios.get(`${APP_API_URL}/sales`, {
       lang: language
     })
@@ -90,6 +91,7 @@ export function getSales() {
 export function getListInformation() {
   return (dispatch, getState) => {
     const { authorization: {language} } = getState();
+
     axios.post(`${APP_API_URL}/articles`, {
       lang: language
     })
@@ -105,6 +107,7 @@ export function getListInformation() {
 export function getPost(post_id) {
   return (dispatch, getState) => {
     const { authorization } = getState();
+
     axios.post(`${APP_API_URL}/articles`,{
       post_id, 
       lang: authorization.language
@@ -121,23 +124,25 @@ export function getPost(post_id) {
 export function getQuestions(doc_id) {
   return (dispatch, getState) => {
     const { authorization: {token, language} } = getState();
+
     axios.post(`${APP_API_URL}/questions`,{
       doc_id,
       api_token: token,
       lang: language
     })
-    .then((response) => {console.log(11111111111)
+    .then((response) => {
       dispatch(setQuestion(response.data));
     })
     .catch((e)=>{
       dispatch(setQuestion([]));
-    })
+    });
   }
 }
 
 export function getOftenQuestions() {
   return (dispatch, getState) => {
     const { authorization: {language} } = getState();
+
     axios.post(`${APP_API_URL}/faq`,{
       lang: language
     })
@@ -153,6 +158,7 @@ export function getOftenQuestions() {
 export function getListDates(docdep_id) {
   return (dispatch, getState) => {
     const { authorization: {token, language} } = getState();
+
     axios.post(`${APP_API_URL}/rnumb_date`,{
       api_token: token,
       docdep_id,
@@ -170,6 +176,7 @@ export function getListDates(docdep_id) {
 export function getListTimes(date) {
   return (dispatch, getState) => {
     const { authorization: {token, language}, content: {order} } = getState();
+
     axios.post(`${APP_API_URL}/rnumb_time`,{
       api_token: token,
       docdep_id: order.docdep_id,
@@ -188,6 +195,7 @@ export function getListTimes(date) {
 export function setOrder(data, type, nameDispatch) {
   return (dispatch, getState) => {
     const { content: {order} } = getState();
+
     if (type === 'type') {
       dispatch(cleareOrderSuccess());
       if (!order[type] || order[type] !== data[type]) dispatch(getListSpecialization(data[type], true));
@@ -220,7 +228,9 @@ export function sendQuestion({type, question, email, doc_id}) {
       email,
       lang: language
     }
-    if (doc_id) params.doc_id = doc_id
+    
+    if (doc_id) params.doc_id = doc_id;
+
     axios.post(`${APP_API_URL}/${type}`, params)
     .then((response) => {
       if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}));
@@ -234,11 +244,14 @@ export function sendQuestion({type, question, email, doc_id}) {
 export function setDate(date) {
   return (dispatch, getState) => {
     const { content: {order} } = getState();
+
     if (order.time) dispatch(cleareOrderSuccess('date'));
     if (order.date !== date.date) {
-      dispatch(getListTimes(date.date, true))
+      dispatch(getListTimes(date.date, true));
       dispatch(setOrderSuccess(date))
-    } else dispatch(setOrderSuccess({date: null}))
+    } else { 
+      dispatch(setOrderSuccess({date: null}));
+    }
   }
 }
 
@@ -269,6 +282,7 @@ export function saveOrder({type, rnumb_id, date, serv_id}) {
 export function getListTalons() {
   return (dispatch, getState) => {
     const { authorization } = getState();
+
     axios.post(`${APP_API_URL}/talon_history`, {
       api_token: authorization.token,
       lang: authorization.language
@@ -282,6 +296,7 @@ export function getListTalons() {
 export function deleteOrder({rnumb_id}) {
   return (dispatch, getState) => {
     const { authorization, content: {listTalons} } = getState();
+
     axios.post(`${APP_API_URL}/del_talon`, {
       api_token: authorization.token,
       lang: authorization.language,
@@ -292,11 +307,11 @@ export function deleteOrder({rnumb_id}) {
       if (response.data[0].err_code == 0) {
         listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
         dispatch(setDeletedOrder(true));
-        dispatch(setListTalons(array))
+        dispatch(setListTalons(array));
       }
     });
     setTimeout(()=> {
-      dispatch(setDeletedOrder(false))
+      dispatch(setDeletedOrder(false));
     }, 3000)
   }
 }
@@ -321,7 +336,7 @@ export function getHistory({type, p_type, vis_id}) {
 
 export function getAnalizes({type='', res_id}) {
   return (dispatch, getState) => {
-    const { authorization, content: {network_connect} } = getState();
+    const { authorization } = getState();
     let params = {
       api_token: authorization.token,
       lang: authorization.language
