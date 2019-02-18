@@ -11,7 +11,7 @@ class RecordingItem extends Component {
   }
 
   render() {
-    let { title, placeholder, icon, onClick, contentContainerStyle } = this.props;
+    let { title, placeholder, icon, onClick, contentContainerStyle, text } = this.props;
 
     return (
       <TouchableOpacity style={[styles.itemWrap, contentContainerStyle]} onPress={onClick}>
@@ -22,7 +22,12 @@ class RecordingItem extends Component {
         />
         <View>
           <Text style={styles.itemTitle}>{title}</Text>
-          <Text style={styles.itemPlaceholder}>{placeholder}</Text>
+          {(placeholder) && (
+            <Text style={styles.itemPlaceholder}>{placeholder}</Text>
+          )}
+          {(text) && (
+            <Text style={styles.itemText}>{text}</Text>
+          )}
         </View>
       </TouchableOpacity>
     );
@@ -32,6 +37,7 @@ class RecordingItem extends Component {
 RecordingItem.propTypes = {
   title: PropTypes.string,
   placeholder: PropTypes.string,
+  text: PropTypes.string,
   onClick: PropTypes.func,
   icon: PropTypes.number,
   contentContainerStyle: PropTypes.object

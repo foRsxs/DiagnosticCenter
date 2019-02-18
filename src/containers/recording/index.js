@@ -21,7 +21,7 @@ class ReceptionCreateScreen extends Component {
 	}
 
 	render() {
-		const { navigate } = this.props.navigation;
+		const { navigation } = this.props;
 		const { t } = this.props;
 		const { activeTabOne } = this.state;
 		return (
@@ -53,16 +53,16 @@ class ReceptionCreateScreen extends Component {
 					<Tabs onChangeTab={() => this.setState({ activeTabOne: !activeTabOne })} tabContainerStyle={styles.wrapTabs}>
 						<Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.consultation').toUpperCase()}>
 							<View style={styles.wrapper}>
-								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
+								<RecordingItem onClick={() => navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
+								<RecordingItem onClick={() => navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
+								<RecordingItem onClick={() => navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
 								<View style={styles.datetimeWrap}>
 									<View style={{ flex: 2 }}>
-										<RecordingItem onClick={() => this.props.navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
+										<RecordingItem onClick={() => navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
 									</View>
 									<View style={styles.separator}></View>
 									<View style={{ flex: 1 }}>
-										<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
+										<RecordingItem onClick={() => navigation.navigate('timeScreen')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
 									</View>
 								</View>
 							</View>
@@ -72,21 +72,21 @@ class ReceptionCreateScreen extends Component {
 						</Tab>
 						<Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.research').toUpperCase()}>
 							<View style={styles.wrapper}>
-								<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
-								<RecordingItem onClick={() => this.props.navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
+								<RecordingItem onClick={() => navigation.navigate('specialization')} icon={ICON_SPEC_SMALL} title={t('createrecord:form.specialty')} placeholder={t('createrecord:form.select_specialty')} />
+								<RecordingItem onClick={() => navigation.navigate('servicesDetail')} icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')} placeholder={t('createrecord:form.select_service')} />
+								<RecordingItem onClick={() => navigation.navigate('listDoctors')} icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')} placeholder={t('createrecord:form.select_doctor')} />
 								<View style={styles.datetimeWrap}>
 									<View style={{ flex: 2 }}>
-										<RecordingItem onClick={() => this.props.navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
+										<RecordingItem onClick={() => navigation.navigate('dateScreen')} icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} placeholder={t('createrecord:form.select_date')} />
 									</View>
 									<View style={styles.separator}></View>
 									<View style={{ flex: 1 }}>
-										<RecordingItem onClick={() => this.props.navigation.navigate('specialization')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} placeholder='12:00' />
+										<RecordingItem onClick={() => navigation.navigate('timeScreen')} contentContainerStyle={{ paddingLeft: 10 }} icon={ICON_TIME_SMALL} title={t('createrecord:form.time')} text='12:00' />
 									</View>
 								</View>
 							</View>
 							<View style={styles.buttonWrap}>
-								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigate('authorization')} />
+								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigation.navigate('checkRecordScreen')} />
 							</View>
 						</Tab>
 					</Tabs>

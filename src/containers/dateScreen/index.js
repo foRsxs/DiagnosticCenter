@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, TouchableOpacity, Dimensions, Modal, ScrollView, ActivityIndicator } from 'react-native';
-import { Container, Content, View, Text } from 'native-base';
+import { View } from 'react-native';
+import { Container, Content, Text } from 'native-base';
 import { LocaleConfig, Calendar } from 'react-native-calendars';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -9,10 +9,8 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 
-import variables from '../../styles/variables';
-const { medium } = variables.fSize;
-
-import { ACCENT_BLUE, GRAY, DARK_GREY, BACKGROUND_BLUE, ACTIVE_GRAY, COLOR_BORDER, MAIN_FONT } from '../../styles/constants';
+import styles from './styles';
+import { ACCENT_BLUE, GRAY, ACTIVE_GRAY, BLACK, WHITE } from '../../styles/constants';
 
 let openStyle = {
 	container: {
@@ -22,7 +20,7 @@ let openStyle = {
 		borderColor: ACTIVE_GRAY
 	},
 	text: {
-		color: 'black',
+		color: BLACK,
 	},
 }
 
@@ -31,7 +29,7 @@ let selectedStyle = {
 		backgroundColor: ACCENT_BLUE,
 	},
 	text: {
-		color: 'white',
+		color: WHITE,
 	},
 }
 
@@ -61,9 +59,6 @@ class DateScreen extends Component {
 				selected: false,
 				time: "15:00",
 			},
-			shortOrder: null,
-			showDates: false,
-			showTimes: false,
 			typeExperiments: [
 				{
 					id: 1,
@@ -83,20 +78,28 @@ class DateScreen extends Component {
 					customStyles: openStyle
 				},
 			},
-			markedTimes: [],
 			props_data: {
 				type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
 				spec_id: (props.navigation.state.params) ? +props.navigation.state.params.spec_id : null,
 				docdep_id: (props.navigation.state.params) ? +props.navigation.state.params.docdep_id : null,
 			},
-			enableScroll: true,
-			openedKey: null,
-			loading: false
 		};
 	}
 
+	componentDidMount() {
+		const {type, spec_id, docdep_id} = this.state.props_data;
+		const {lang_key} = this.props;
+	
+		LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
+		this.props.cleareOrderSuccess();
+		this.props.cleareOrderDatas();
+	
+		if (type) this.props.setOrder({type}, 'type', 'spec');
+		if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
+		if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id'); 
+	  }
+
 	componentDidUpdate(prevProps) {
-		if (prevProps.orderDatas !== this.props.orderDatas) this.setState({ loading: false })
 		if (prevProps.orderDatas.dates !== this.props.orderDatas.dates) this.setDates(this.props.orderDatas.dates);
 		if (prevProps.order.date !== this.props.order.date) this.setDates(this.props.orderDatas.dates, this.props.order.date);
 	}
@@ -121,14 +124,14 @@ class DateScreen extends Component {
 	}
 
 	render() {
-		const { showDates, markedDates } = this.state;
+		const { markedDates } = this.state;
 		const { t } = this.props;
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} text={t('recordings:item.select_date')} navigation={this.props.navigation} />
 				<Content>
 					<Calendar
-						style={{ paddingTop: 20, backgroundColor: '#fff', marginHorizontal: 20 }}
+						style={styles.calendar}
 						theme={{
 							calendarBackground: '#fff',
 						}}
@@ -136,14 +139,16 @@ class DateScreen extends Component {
 						markedDates={markedDates}
 						markingType={'custom'}
 					/>
-					<View style={{ paddingVertical: 10, borderTopWidth: 1, borderColor: COLOR_BORDER }}>
-						<View style={styles.itemsWrap}>
-							<View style={styles.unSelectedItem}></View>
-							<Text style={styles.itemsTxt}>запись доступна</Text>
-						</View>
-						<View style={styles.itemsWrap}>
-							<View style={styles.selectedItem}></View>
-							<Text style={styles.itemsTxt}>выбранная дата</Text>
+					<View style={styles.bottomWrap}>
+						<View style={styles.centerWrap}>
+							<View style={styles.itemsWrap}>
+								<View style={styles.unSelectedItem}></View>
+								<Text style={styles.itemsTxt}>{t('recordings:item.ok_recording')}</Text>
+							</View>
+							<View style={styles.itemsWrap}>
+								<View style={styles.selectedItem}></View>
+								<Text style={styles.itemsTxt}>{t('recordings:item.date_select')}</Text>
+							</View>
 						</View>
 					</View>
 				</Content>
@@ -151,39 +156,6 @@ class DateScreen extends Component {
 		)
 	}
 }
-
-const styles = StyleSheet.create({
-	mainContainer: {
-		flexDirection: 'column',
-		height: '100%',
-	},
-	unSelectedItem: {
-		marginRight: 10,
-		backgroundColor: BACKGROUND_BLUE,
-		borderColor: ACCENT_BLUE,
-		width: 10,
-		height: 10,
-		borderRadius: 15,
-		borderWidth: 1
-	},
-	selectedItem: {
-		marginRight: 10,
-		backgroundColor: ACCENT_BLUE,
-		width: 10,
-		height: 10,
-		borderRadius: 15
-	},
-	itemsWrap: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	itemsTxt: {
-		color: DARK_GREY,
-		fontFamily: MAIN_FONT,
-		fontSize: medium
-	}
-})
 
 function mapStateToProps(state) {
 	return {

@@ -32,6 +32,10 @@ import ServicesDetailScreen from '../containers/servicesDetail';
 import ServicesScreen from '../containers/services';
 import doctorsListScreen from '../containers/recording/doctorsList';
 import DateScreen from '../containers/dateScreen';
+import TimeScreen from '../containers/timeScreen';
+import CheckRecordScreen from '../containers/checkRecord';
+import CardPatientScreen from '../containers/cardPatient';
+import CardPatientDetailScreen from '../containers/cardPatientDetail';
 
 const ProfileNavigator = createBottomTabNavigator(
   {
@@ -57,19 +61,36 @@ const ProfileNavigator = createBottomTabNavigator(
     analizes: {
       screen: AnalizesScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
     analizesItem: {
       screen: AnalizesItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
     },
     settings: {
       screen: SettingsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    cardPatientScreen: {
+      screen: CardPatientScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    cardPatientDetailScreen: {
+      screen: CardPatientDetailScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
       }
     },
   },
@@ -227,6 +248,20 @@ const RecordNavigator = createBottomTabNavigator(
     },
     dateScreen: {
       screen: DateScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    timeScreen: {
+      screen: TimeScreen,
+      navigationOptions: {
+        header: null,
+        tabBarVisible: false
+      }
+    },
+    checkRecordScreen: {
+      screen: CheckRecordScreen,
       navigationOptions: {
         header: null,
         tabBarVisible: false

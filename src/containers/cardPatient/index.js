@@ -11,7 +11,7 @@ import Header from '../../components/common/Header';
 
 import { ACCENT_BLUE } from '../../styles/constants';
 
-class AnalizesScreen extends Component {
+class CardPatientScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,7 @@ class AnalizesScreen extends Component {
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header backButton={true} text={t('analizes:title')} navigation={this.props.navigation} />
+        <Header backButton={true} text={t('patient:title')} navigation={this.props.navigation} />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
@@ -66,7 +66,7 @@ class AnalizesScreen extends Component {
                       }}
                     />
                   ))
-                ) : (<Text>{t('analizes:no_analizes_text')}</Text>)
+                ) : (<Text>{t('patient:no_patient_text')}</Text>)
               )
             }
           </List>
@@ -98,4 +98,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch);
 }
 
-export default withNamespaces('analizes')(connect(mapStateToProps, mapDispatchToProps)(AnalizesScreen));
+export default withNamespaces('patient')(connect(mapStateToProps, mapDispatchToProps)(CardPatientScreen));
