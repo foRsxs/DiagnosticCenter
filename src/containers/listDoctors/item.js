@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Image, TouchableOpacity, BackHandler, ActivityIndicator } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import { View, Text, Container } from 'native-base';
 import { withNamespaces } from 'react-i18next';
@@ -19,7 +19,7 @@ class DoctorScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      docid: (props.navigation.state.params) ? props.navigation.state.params.docid : null,
+      docid: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null,
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
       loading: true,
@@ -30,7 +30,6 @@ class DoctorScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    this.props.getQuestions(this.state.docid)
   }
 
   componentWillUnmount() {
@@ -56,36 +55,42 @@ class DoctorScreen extends Component {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
     } else {
-      (page == 'questions') ? navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}` }) : navigation.navigate(page, { spec_id, docdep_id, type: doctor[0].type[0] })
+      (page == 'questions') ? navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) : navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] })
     }
   }
 
   renderProfile() {
     const { doctor } = this.props;
-    let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
-
+    const { loading } = this.state;
+    let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
+    
     return (
       <View style={styles.bottomContainer}>
-        <KeyboardAwareScrollView>
-          <View style={styles.mainInfo}>
-            <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
-            <Text style={styles.speciality}>{doctor[0].speciality}</Text>
-            <Text style={styles.category}>{doctor[0].category}</Text>
-          </View>
-          <View style={styles.blockInfo}>
-            <HTMLView
-              stylesheet={stylesHtml}
-              value={`<p>${description}</p>`}
-            />
-            <View style={styles.emptyBlock} />
-          </View>
-        </KeyboardAwareScrollView>
+        {
+          (loading) ? 
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
+          : 
+          <KeyboardAwareScrollView>
+            <View style={styles.mainInfo}>
+              <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
+              <Text style={styles.speciality}>{doctor.speciality}</Text>
+              <Text style={styles.category}>{doctor.category}</Text>
+            </View> 
+            <View style={styles.blockInfo}>
+              <HTMLView
+                stylesheet={stylesHtml}
+                value={`<p>${description}</p>`}
+              />
+              <View style={styles.emptyBlock} />
+            </View>
+          </KeyboardAwareScrollView>
+        } 
       </View>
     )
   }
 
   renderQuestions() {
-    const { moreInfo, docid } = this.state;
+    const { moreInfo, docid, loading } = this.state;
     const { questions, t, navigation } = this.props;
 
     return (
@@ -100,7 +105,7 @@ class DoctorScreen extends Component {
           {
             (questions.length>= 1) ?
             questions.map((item)=>(
-              <View style={styles.mainInfo}>
+              <View style={styles.mainInfo} key={item.id}>
                 <Text style={styles.textQuestion}>{item.question}</Text>
                 {
                   (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
@@ -117,8 +122,8 @@ class DoctorScreen extends Component {
   }
 
   render() {
-    const { docid, loading, tabProfile } = this.state;
-    const { t, doctor, navigation, questions } = this.props;
+    const { loading, tabProfile } = this.state;
+    const { t, doctor } = this.props;
 
     return (
       <Container>
@@ -133,11 +138,11 @@ class DoctorScreen extends Component {
           (tabProfile) &&
           <View style={styles.btnWrap}>
             {
-              (!loading && +doctor[0].allow === 1) && (
+              (!loading && +doctor.allow === 1) && (
                 <CustomBtn contentContainerStyle={styles.redBtn} label={t('common:actions.appointment')} onClick={() => this._openPage('recordingCreate', 'recording')} />
               )}
             {
-              (!loading && +doctor[0].allow === 0) && (
+              (!loading && +doctor.allow === 0) && (
                 <Text style={{ textAlign: 'center' }}>{t('listdoctors:item.no_recording_text')}</Text>
               )}
           </View>

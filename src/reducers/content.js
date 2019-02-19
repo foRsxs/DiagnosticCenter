@@ -108,7 +108,7 @@ export default function contentReducer(state = initialState.content, action) {
     case types.SET_DOCTOR_DATA:
       return {
         ...state,
-        doctorData: action.data
+        doctorData: action.data[0]
       }
     case types.SET_SALES:
       return {

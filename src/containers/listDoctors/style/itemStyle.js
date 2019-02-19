@@ -57,10 +57,11 @@ export const styles = StyleSheet.create({
   },
   name: {
     fontSize: extralarge,
-    lineHeight: scale(26),
+    fontFamily: MAIN_FONT,
     color: BLACK
   },
   speciality: {
+    paddingVertical: scale(5),
     fontFamily: MAIN_FONT,
     fontSize: medium,
     color: ACCENT_BLUE

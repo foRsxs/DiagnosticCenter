@@ -55,8 +55,6 @@ class DoctorList extends Component {
     const { t, recording = false } = this.props;
     const { navigate } = this.props.navigation;
 
-    console.log('list', sorted_list_Doctors);
-
     return (
       <Container>
         <Header backButton={true} text={'Выберите врача'} navigation = {this.props.navigation} /> 
@@ -78,7 +76,7 @@ class DoctorList extends Component {
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
-          <View style={{width: '100%', height: 10}}></View>
+          <View style={{width: '100%', height: 10}}/>
         </KeyboardAwareScrollView>
       </Container>
     )
