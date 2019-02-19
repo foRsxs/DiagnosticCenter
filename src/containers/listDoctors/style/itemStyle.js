@@ -15,14 +15,16 @@ export const styles = StyleSheet.create({
   avatar: {
     width: scale(200),
 		height: scale(200),
-		borderRadius: scale(100),
+    borderRadius: scale(100),
+    borderWidth: 1,
+    borderColor: ACCENT_BLUE,
 		zIndex: 10
 	},
 	topContent: {
 		height: scale(195),
 		width: '100%',
 		backgroundColor: BACKGROUND_BLUE,
-    top: scale(-20),
+    marginTop: scale(-20),
     justifyContent: 'flex-end'
   },
   tabs: {
@@ -49,13 +51,13 @@ export const styles = StyleSheet.create({
   mainInfo: {
     width: '100%',
     paddingHorizontal: scale(15),
-    paddingBottom: scale(10),
+    paddingVertical: scale(10),
     borderBottomWidth: 0.5,
     borderColor: COLOR_NEW_GRAY
   },
   name: {
-    fontFamily: MAIN_FONT,
     fontSize: extralarge,
+    lineHeight: scale(26),
     color: BLACK
   },
   speciality: {
@@ -81,7 +83,7 @@ export const styles = StyleSheet.create({
   wrapBtnQuest: {
     width: '100%',
     alignItems: 'center',
-    paddingBottom: scale(10),
+    paddingVertical: scale(10),
     borderBottomWidth: 0.5,
     borderColor: COLOR_NEW_GRAY
   },
@@ -150,12 +152,15 @@ export const styles = StyleSheet.create({
 export const stylesHtml = StyleSheet.create({
     p: {
       margin: 0,
-      fontSize: variables.fSize.main, 
+      fontSize: medium, 
       fontFamily: MAIN_FONT, 
-      color: MEDIUM_BLACK
+      color: ACCENT_BLUE
     },
     ul: {
       marginTop: 0,
       padding: 0,
     },
+    li: {
+      color: MEDIUM_BLACK
+    }
   });
