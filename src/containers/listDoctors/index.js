@@ -86,7 +86,7 @@ class ListDoctors extends Component {
                       <CatalogItem 
                         key={item.docid}
                         contentContainerStyle={(index===length.length-1)?{borderBottomWidth: 0}:{}}
-                        onClick={() => {this.props.getDoctor(item.docid), navigate('doctor',{doc_id: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`})}}
+                        onClick={() => {this.props.getDoctor(item.docid), this.props.getQuestions(item.docid),  navigate('doctor',{docid: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`})}}
                         imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
                         name={`${item.lastname} ${item.firstname} ${item.secondname}`}
                         position={item.speciality}
@@ -99,7 +99,7 @@ class ListDoctors extends Component {
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
-          <View style={{width: '100%', height: 10}} />
+          <View style={{width: '100%', height: 10}}></View>
         </KeyboardAwareScrollView>
       </Container>
     )
