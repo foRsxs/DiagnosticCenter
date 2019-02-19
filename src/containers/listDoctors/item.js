@@ -30,7 +30,6 @@ class DoctorScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    this.props.getQuestions(this.state.docid)
   }
 
   componentWillUnmount() {
@@ -117,8 +116,8 @@ class DoctorScreen extends Component {
   }
 
   render() {
-    const { docid, loading, tabProfile } = this.state;
-    const { t, doctor, navigation, questions } = this.props;
+    const { loading, tabProfile } = this.state;
+    const { t, doctor } = this.props;
 
     return (
       <Container>
