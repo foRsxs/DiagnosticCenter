@@ -28,6 +28,7 @@ class AuthorizationScreen extends Component {
       personalId: '',
       methods_auth_local: 'code',
       message: '',
+      smsCode: '',
       loading: false,
       isTouchId: false,
       isFaceId: false,
@@ -86,6 +87,10 @@ class AuthorizationScreen extends Component {
     }
 
     this.setState({ personalId: newText });
+  }
+
+  onChangeSms = (value) => {
+    this.setState({ smsCode: value });
   }
 
   clickOnPopup = () => {

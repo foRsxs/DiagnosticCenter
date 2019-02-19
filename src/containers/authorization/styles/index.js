@@ -23,7 +23,8 @@ export default StyleSheet.create({
         position: 'relative',
         alignItems: 'center',
         zIndex: 3,
-        height: height - 150,
+        height: '100%',
+        flex: 1,
         padding: 15,
         paddingBottom: 16
     },
