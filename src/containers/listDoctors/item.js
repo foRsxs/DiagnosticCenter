@@ -56,22 +56,22 @@ class DoctorScreen extends Component {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
     } else {
-      (page == 'questions') ? navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}` }) : navigation.navigate(page, { spec_id, docdep_id, type: doctor[0].type[0] })
+      (page == 'questions') ? navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) : navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] })
     }
   }
 
   renderProfile() {
     const { doctor } = this.props;
-    let description = (doctor && doctor[0].description) ? doctor[0].description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
+    let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
 
     return (
       <View style={styles.bottomContainer}>
         <KeyboardAwareScrollView>
           <View style={styles.mainInfo}>
-            <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
-            <Text style={styles.speciality}>{doctor[0].speciality}</Text>
-            <Text style={styles.category}>{doctor[0].category}</Text>
-          </View>
+            <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
+            <Text style={styles.speciality}>{doctor.speciality}</Text>
+            <Text style={styles.category}>{doctor.category}</Text>
+          </View> 
           <View style={styles.blockInfo}>
             <HTMLView
               stylesheet={stylesHtml}
@@ -133,11 +133,11 @@ class DoctorScreen extends Component {
           (tabProfile) &&
           <View style={styles.btnWrap}>
             {
-              (!loading && +doctor[0].allow === 1) && (
+              (!loading && +doctor.allow === 1) && (
                 <CustomBtn contentContainerStyle={styles.redBtn} label={t('common:actions.appointment')} onClick={() => this._openPage('recordingCreate', 'recording')} />
               )}
             {
-              (!loading && +doctor[0].allow === 0) && (
+              (!loading && +doctor.allow === 0) && (
                 <Text style={{ textAlign: 'center' }}>{t('listdoctors:item.no_recording_text')}</Text>
               )}
           </View>
