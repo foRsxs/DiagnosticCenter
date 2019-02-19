@@ -4,10 +4,13 @@ import storage from 'redux-persist/lib/storage';
 
 import middleware from '../middleware';
 import rootReducer from '../reducers';
+import initialState from './initialState';
 
 const persistConfig = {
+  timeout: 10000,
   key: 'root',
   storage,
+  whitelist: ['authorization'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -15,6 +18,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export default function configureStore(callback) {
   let store = createStore(
     persistedReducer,
+    initialState,
     middleware
   );
 
