@@ -4,7 +4,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
-import styles from './styles';
+import { styles } from './styles';
 import { ACCENT_BLUE } from '../../../styles/constants';
 import { PICTURE_ICON, MAIL_ICON } from '../../../styles/images';
 
@@ -46,7 +46,6 @@ class ShareLinks extends Component {
 	}
 
 	saveFile = (url, title) => {
-		console.log(url)
 		const { t } = this.props;
 		const { config, fs } = RNFetchBlob;
 		const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
@@ -124,7 +123,7 @@ class ShareLinks extends Component {
 						</TouchableOpacity>
 						<TouchableOpacity
 							activeOpacity={0.8}
-							style={bottomLink}
+							style={styles.bottomLink}
 							onPress={() => {
 								this.setState({ loading: true });
 								this.requestFilePermission(url, title, text, true);

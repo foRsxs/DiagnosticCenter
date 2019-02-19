@@ -47,7 +47,7 @@ class ReceptionCreateScreen extends Component {
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Content>
 					<TouchableOpacity
-						onPress={() => alert('update')}
+						onPress={() => {}}
 						style={styles.btnUpdate}
 					>
 						<Image

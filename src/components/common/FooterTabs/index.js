@@ -27,7 +27,7 @@ class FooterTabs extends Component {
 
 	render() {
 		const { t, navigation } = this.props;
-		const { key } = navigation.state;
+    const { routeName } = navigation.state.routes[navigation.state.index];
 
 		return (
 			<Footer style={styles.container}>
@@ -38,9 +38,9 @@ class FooterTabs extends Component {
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
-							source={(key === 'Main') ? ICON_MAIN_ACTIVE : ICON_MAIN}
+							source={(routeName === 'Main') ? ICON_MAIN_ACTIVE : ICON_MAIN}
 						/>
-						<Text uppercase={false} style={(key === 'Main') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:home')}</Text>
+						<Text uppercase={false} style={(routeName === 'Main') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:home')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -48,9 +48,9 @@ class FooterTabs extends Component {
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
-							source={(key === 'Doctor') ? ICON_DOCTORS_ACTIVE : ICON_DOCTORS}
+							source={(routeName === 'Doctor') ? ICON_DOCTORS_ACTIVE : ICON_DOCTORS}
 						/>
-						<Text uppercase={false} style={(key === 'Doctor') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:doctors')}</Text>
+						<Text uppercase={false} style={(routeName === 'Doctor') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:doctors')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -58,9 +58,9 @@ class FooterTabs extends Component {
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
-							source={(key === 'Record') ? ICON_POST_ACTIVE : ICON_POST}
+							source={(routeName === 'Record') ? ICON_POST_ACTIVE : ICON_POST}
 						/>
-						<Text uppercase={false} style={(key === 'Record') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:records')}</Text>
+						<Text uppercase={false} style={(routeName === 'Record') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:records')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -68,9 +68,9 @@ class FooterTabs extends Component {
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
-							source={(key === 'Service') ? ICON_SERVICE_ACTIVE : ICON_SERVICE}
+							source={(routeName === 'Service') ? ICON_SERVICE_ACTIVE : ICON_SERVICE}
 						/>
-						<Text uppercase={false} style={(key === 'Service') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:services')}</Text>
+						<Text uppercase={false} style={(routeName === 'Service') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:services')}</Text>
 					</Button>
 					<Button transparent
 						style={styles.button}
@@ -78,9 +78,9 @@ class FooterTabs extends Component {
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
-							source={(key === 'Profile') ? ICON_PROFILE_ACTIVE : ICON_PROFILE}
+							source={(routeName === 'Profile') ? ICON_PROFILE_ACTIVE : ICON_PROFILE}
 						/>
-						<Text uppercase={false} style={(key === 'Profile') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:profile')}</Text>
+						<Text uppercase={false} style={(routeName === 'Profile') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:profile')}</Text>
 					</Button>
 				</FooterTab>
 			</Footer>

@@ -9,7 +9,6 @@ import {
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
-import QuestionsScreen from '../containers/questions/allQuestions';////////////Need delete
 import QuestionFormScreen from '../containers/questions/createQuestion';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
@@ -97,6 +96,17 @@ const ProfileNavigator = createStackNavigator(
   },
 );
 
+ProfileNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions = {};
+  
+  if (routeName === 'welcome' || routeName === 'analizes' || routeName === 'analizesItem' || routeName === 'settings' || routeName === 'cardPatientScreen' || routeName === 'cardPatientDetailScreen') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
+
 const MainNavigator = createStackNavigator(
   {
     home: {
@@ -143,6 +153,17 @@ const MainNavigator = createStackNavigator(
   },
 );
 
+MainNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions = {};
+  
+  if (routeName === 'oftenQuestions' || routeName === 'contacts' || routeName === 'faq' || routeName === 'information' || routeName === 'informationItem') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
+
 const DoctorNavigator = createStackNavigator(
   {
     listDoctors: {
@@ -167,6 +188,17 @@ const DoctorNavigator = createStackNavigator(
     }
   },
 );
+
+DoctorNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions = {};
+
+  if (routeName === 'doctor') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
 
 const ServiceNavigator = createStackNavigator(
   {
@@ -254,6 +286,17 @@ const RecordNavigator = createStackNavigator(
     },
   },
 );
+
+RecordNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions = {};
+  
+  if (routeName === 'specialization' || routeName === 'servicesDetail' || routeName === 'dateScreen' || routeName === 'timeScreen' || routeName === 'checkRecordScreen') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
 
 const AppTabNavigator = createBottomTabNavigator(
   {
