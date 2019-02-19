@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { BackHandler, ActivityIndicator, StyleSheet, View } from 'react-native';
 import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
@@ -9,7 +9,6 @@ import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn'
 import ReceptionListItem from '../../components/receptions/ReceptionListItem'
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 import variables from '../../styles/variables';
 const { medium } = variables.fSize;
@@ -36,7 +35,7 @@ class ReceptionListScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.listTalons !== this.props.listTalons) this.setState({loading: false});
+    if (prevProps.listTalons !== this.props.listTalons) this.setState({ loading: false });
   }
 
   handleBackButtonClick = () => {
@@ -50,28 +49,27 @@ class ReceptionListScreen extends Component {
     const { t, listTalons } = this.props;
 
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('recordings:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={ (listTalons) ? t('recordings:total_text') + ` - ${listTalons.length}`: '' } />
+      <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+        <Header text={t('recordings:title')} navigation={this.props.navigation} />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}} padder>
-          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}} padder>
+          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} />}
           {
             (!loading) && (
-              (listTalons && listTalons.length)? (
-                listTalons.map((item, index)=> (
-                  <ReceptionListItem 
-                    key={index} 
-                    headTxt={item.spec} 
+              (listTalons && listTalons.length) ? (
+                listTalons.map((item, index) => (
+                  <ReceptionListItem
+                    key={index}
+                    headTxt={item.spec}
                     servTxt={item.serv}
                     docTxt={item.doc}
                     pdf={item.pdf}
-                    timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`} 
-                    nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`} 
-                    isLoading={(value)=> this.setState({shareLoading: value})}
-                    onPress={()=> navigate('recordingItem', {
+                    timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`}
+                    nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`}
+                    isLoading={(value) => this.setState({ shareLoading: value })}
+                    onPress={() => navigate('recordingItem', {
                       rnumb_id: item.rnumb_id,
                       dd: item.dd,
                       room: item.room,
@@ -83,14 +81,14 @@ class ReceptionListScreen extends Component {
                       pdf: item.pdf,
                       price: item.price,
                     })
-                  }/>
+                    } />
                 ))
-              ) : ( <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('recordings:no_recordings_text') }</Text> )
+              ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('recordings:no_recordings_text')}</Text>)
             )
           }
         </Content >
-        <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-          <CustomBtn label={ t('common:actions.add_recording') } onClick={()=> navigate('recordingCreate')}/>
+        <View style={{ paddingHorizontal: 15, paddingVertical: 20 }}>
+          <CustomBtn label={t('common:actions.add_recording')} onClick={() => navigate('recordingCreate')} />
         </View>
       </Container>
     )
@@ -100,12 +98,12 @@ class ReceptionListScreen extends Component {
 const styles = StyleSheet.create({
   loaderWrap: {
     zIndex: 10,
-    position: 'absolute', 
-    top: 0, 
-    left: 0, 
-    width: '100%', 
-    height: '100%', 
-    justifyContent: 'center', 
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
     alignItems: 'center'
   }
 })

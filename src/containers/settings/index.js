@@ -9,7 +9,6 @@ import * as AuthActions from '../../actions/auth';
 import CustomBtn from '../../components/common/CustomBtn';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 import { MEDIUM_BLACK, MAIN_FONT } from '../../styles/constants';
 
@@ -80,8 +79,7 @@ class SettingsScreen extends Component {
 
     return (
       <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('settings:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom />
+        <Header backButton={true} text={ t('settings:title') } navigation = {this.props.navigation}/>
         <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
           <View style={styles.settingItem}>
             <Text style={styles.headTxt}>{ t('settings:items.language') }</Text>
