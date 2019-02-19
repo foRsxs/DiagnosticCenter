@@ -40,7 +40,7 @@ class FormSend extends Component {
 
   render() {
     const { question, email, emailValid, questionValid } = this.state;
-    const { t } = this.props;
+    const { t, sendQuest = false } = this.props;
 
     return (
       <Form style={styles.formWrap}>
@@ -49,12 +49,12 @@ class FormSend extends Component {
             <Input style={styles.input} placeholder={t('common:actions_text.your_name')} />
           </Item>
           <Item style={[styles.inputWrap, (!emailValid) ? { borderColor: RED } : {}]} regular>
-            <Input style={styles.input} onChangeText={(email) => this.validate(email)} value={email} />
+            <Input style={styles.input} onChangeText={(email) => this.validate(email)} value={email} placeholder={t('common:actions_text.your_email')}/>
           </Item>
           <Textarea style={[styles.textarea, (!questionValid) ? { borderColor: RED } : {}]} bordeRED placeholder={t('common:actions_text.your_question')} onChangeText={(question) => this.validateMess(question)} value={question} />
         </View >
         <View style={styles.buttonWrap}>
-          {(!this.props.loading) ? <CustomBtn label={t('common:actions.send_msg')} onClick={() => this._confirm()} /> : <ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginTop: 10 }} />}
+          {(!this.props.loading) ? <CustomBtn label={(sendQuest) ? t('common:actions.send_question') : t('common:actions.send_msg')} onClick={() => this._confirm()} /> : <ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginTop: 10 }} />}
         </View>
       </Form>
     );

@@ -60,8 +60,8 @@ class QuestionFormScreen extends Component {
     return (
       <Container>
         <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}>
-          <Header text={t('questions:form.title')} navigation={this.props.navigation} />
-          <FormSend sendData={this.getData} email={profile.email} loading={loading} />
+          <Header backButton={true} text={t('questions:form.title')} navigation={this.props.navigation} />
+          <FormSend sendData={this.getData} email={profile.email} loading={loading} sendQuest={true}/>
         </KeyboardAwareScrollView>
       </Container>
     )

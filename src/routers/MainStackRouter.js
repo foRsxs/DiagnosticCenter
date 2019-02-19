@@ -8,7 +8,7 @@ import {
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
-import QuestionsScreen from '../containers/questions/allQuestions';
+import QuestionsScreen from '../containers/questions/allQuestions';////////////Need delete
 import QuestionFormScreen from '../containers/questions/createQuestion';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
@@ -150,14 +150,8 @@ const MainNavigator = createBottomTabNavigator(
 
 const DoctorNavigator = createBottomTabNavigator(
   {
-    questions: {
-      screen: QuestionsScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
-    questionForm: {
-      screen: QuestionFormScreen,
+    listDoctors: {
+      screen: CatalogScreen,
       navigationOptions: {
         header: null
       }
@@ -169,12 +163,13 @@ const DoctorNavigator = createBottomTabNavigator(
         tabBarVisible: false
       }
     },
-    listDoctors: {
-      screen: CatalogScreen,
+    questionForm: {
+      screen: QuestionFormScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
-    },
+    }
   },
   {
     tabBarComponent: props => <FooterTabs props={props} />

@@ -99,7 +99,7 @@ class ListDoctors extends Component {
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
             )
           }
-          <View style={{width: '100%', height: 10}}></View>
+          <View style={{width: '100%', height: 10}} />
         </KeyboardAwareScrollView>
       </Container>
     )
