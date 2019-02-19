@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 import { ACCENT_BLUE } from '../../styles/constants';
 
@@ -46,7 +45,6 @@ class HistoryScreen extends Component {
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
-        <HeaderBottom text={ (history_list && history_list.length) ? t('history:total_text') + ` - ${history_list.length}`: '' } />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import styles from './styles';
+import { ICON_INSTAGRAM, ICON_FACEBOOK, MARK_ICON } from '../../styles/images';
 
 class ContactsScreen extends Component {
 
@@ -52,10 +53,10 @@ class ContactsScreen extends Component {
             <Text style={styles.headTxt}>{t('contacts:social_text')}:</Text>
             <View style={{ flexDirection: 'row', marginTop: 5 }}>
               <TouchableOpacity style={{ marginRight: 15 }} onPress={() => Linking.openURL('https://www.instagram.com/diagnostik.center/')}>
-                <Image source={require('../../../assets/img/instagram-icon.png')} style={{ width: 40, height: 40 }} resizeMode='contain'></Image>
+                <Image source={ICON_INSTAGRAM} style={{ width: 40, height: 40 }} resizeMode='contain'></Image>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => Linking.openURL('https://www.facebook.com/diagnostika.shymkent/')}>
-                <Image source={require('../../../assets/img/facebook-icon.png')} style={{ width: 40, height: 40 }} resizeMode='contain'></Image>
+                <Image source={ICON_FACEBOOK} style={{ width: 40, height: 40 }} resizeMode='contain'></Image>
               </TouchableOpacity>
             </View>
           </View>
@@ -65,7 +66,7 @@ class ContactsScreen extends Component {
               activeOpacity={0.8}
               style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}
             >
-              <Image source={require('../../../assets/img/mark-icon.png')} style={{ width: 20, height: 20 }} resizeMode='contain'></Image>
+              <Image source={MARK_ICON} style={{ width: 20, height: 20 }} resizeMode='contain'></Image>
               <Text style={[styles.linkTxt, { marginLeft: 5 }]} onPress={() => this._sendQuestion()}>{t('common:actions.send_msg')}</Text>
             </TouchableOpacity>
           </View>

@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 
 class HistoryItemScreen extends Component {
@@ -56,7 +55,6 @@ class HistoryItemScreen extends Component {
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header text={t('history:title')} navigation={this.props.navigation} />
-        <HeaderBottom text={t('history:sub_title')} />
         <Content padder style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }}>
           {history && this.staticContent()}
         </Content>

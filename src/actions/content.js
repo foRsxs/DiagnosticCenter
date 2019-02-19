@@ -1,5 +1,5 @@
-import axios from 'axios'
-import {Alert, AsyncStorage} from 'react-native';
+import axios from 'axios';
+
 import * as types from '../types/content';
 import {APP_API_URL} from '../config';
 
@@ -30,7 +30,7 @@ export function getListDoctors(spec_id, servid, order = false) {
 
     axios.post(`${APP_API_URL}/doctors`, params)
     .then((response) => {
-      function isAllow(value) {
+      isAllow = (value) => {
         return +value.allow === 1;
       }
 
@@ -348,13 +348,6 @@ export function getAnalizes({type='', res_id}) {
     .then((response) => {
       dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
     })
-  }
-}
-
-export function changeNetworkConnection(status) {
-  return {
-    type: types.UPDATE_NETWORK_CONNECTION,
-    data: status
   }
 }
 

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {BackHandler} from 'react-native';
-import {Container, Toast} from 'native-base';
+import React, { Component } from 'react';
+import { BackHandler } from 'react-native';
+import { Container, Toast } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import FormSend from '../../components/common/Form';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 class QuestionFormScreen extends Component {
   constructor(props) {
@@ -20,10 +19,10 @@ class QuestionFormScreen extends Component {
       docdep: (props.navigation.state.params) ? props.navigation.state.params.docdep : null,
     };
   }
-  
+
   getData = (data) => {
-    const {doc_id} = this.state;
-    this.props.sendQuestion({type: 'questions', doc_id , ...data});
+    const { doc_id } = this.state;
+    this.props.sendQuestion({ type: 'questions', doc_id, ...data });
   }
 
   componentDidMount() {
@@ -45,7 +44,7 @@ class QuestionFormScreen extends Component {
         });
       } else {
         Toast.hide();
-        this.props.navigation.navigate('doctor',{docid: +doc_id, spec_id: specid, docdep_id: docdep})
+        this.props.navigation.navigate('doctor', { docid: +doc_id, spec_id: specid, docdep_id: docdep })
       }
     }
   }
@@ -60,10 +59,9 @@ class QuestionFormScreen extends Component {
 
     return (
       <Container>
-        <KeyboardAwareScrollView  enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}>
-          <Header text={ t('questions:form.title') } navigation = {this.props.navigation}/>
-          <HeaderBottom text={ t('questions:form.sub_title') } />
-          <FormSend sendData={this.getData} email={profile.email} loading={loading}/>
+        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}>
+          <Header text={t('questions:form.title')} navigation={this.props.navigation} />
+          <FormSend sendData={this.getData} email={profile.email} loading={loading} />
         </KeyboardAwareScrollView>
       </Container>
     )

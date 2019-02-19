@@ -5,6 +5,11 @@ export const ICON_PHONE = require('../../assets/img/icon-phone.png');
 export const ICON_SEARCH = require('../../assets/img/search-icon.png');
 export const ICON_UPDATE = require('../../assets/img/icon-update.png');
 export const ICON_MORE = require('../../assets/img/icon-more.png');
+export const NEW_ARROW = require('../../assets/img/new_arrow.png');
+export const NEW_ARROW_BLUE = require('../../assets/img/new_arrow_blue.png');
+export const MARK_ICON = require('../../assets/img/mark-icon.png');
+export const MAIL_ICON = require('../../assets/img/mail-icon.png');
+export const PICTURE_ICON = require('../../assets/img/picture-icon.png');
 
 //ICONS FOOTERTAB
 export const ICON_MAIN = require('../../assets/img/icon-main.png');
@@ -53,3 +58,7 @@ export const ICON_SPEC_SMALL = require('../../assets/img/icon-spec-small.png');
 export const ICON_SPEC_SMALL_ACTIVE = require('../../assets/img/icon-spec-small-active.png');
 export const ICON_FOR_QUESTION = require('../../assets/img/iconQuest.png');
 export const ICON_BLUE_ARROW = require('../../assets/img/new_arrow_blue.png');
+
+//WELCOME SOCIAL
+export const ICON_INSTAGRAM = require('../../assets/img/instagram-icon.png');
+export const ICON_FACEBOOK = require('../../assets/img/facebook-icon.png');

@@ -9,10 +9,9 @@ export const initialState = {
     device_touch: false,
     device_face: false,
     isGuest: false,
-    language: null
+    language: 'ru'
   },
   content: {
-    network_connect: false,
     authMessage: null,
     ListSpecialization: null,
     listDoctors: [],

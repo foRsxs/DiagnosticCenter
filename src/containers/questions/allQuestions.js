@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {BackHandler, ActivityIndicator, Text} from 'react-native';
-import {Container, Content, View} from 'native-base';
+import React, { Component } from 'react';
+import { BackHandler, ActivityIndicator, Text } from 'react-native';
+import { Container, Content, View } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,7 +9,6 @@ import * as ContentActions from '../../actions/content';
 import QuestionItem from '../../components/questions/QuestionItem';
 import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 
 import variables from '../../styles/variables';
 const { medium } = variables.fSize;
@@ -36,7 +35,7 @@ class AllQuestionsScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.questions !== this.props.questions) this.setState({loading: false})
+    if (prevProps.questions !== this.props.questions) this.setState({ loading: false })
   }
 
   handleBackButtonClick = () => {
@@ -50,28 +49,27 @@ class AllQuestionsScreen extends Component {
     const { t, questions } = this.props;
 
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('questions:title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={fio} />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder contentContainerStyle={(loading)?{flex:1,justifyContent:'center'}:{}}>
+      <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+        <Header text={t('questions:title')} navigation={this.props.navigation} />
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
           {
             (!loading) ? (
               (questions.length) ? (
-                questions.map((item)=> (
+                questions.map((item) => (
                   <QuestionItem
                     key={item.id}
                     text={item.question}
-                    textAnswer={item.answer? item.answer : t('questions:doc_no_answered')}
+                    textAnswer={item.answer ? item.answer : t('questions:doc_no_answered')}
                   />
                 ))
-              ) : <Text style={{color: 'black', fontFamily: MAIN_FONT, fontSize: medium, textAlign: 'center'}}>{ t('questions:doc_no_questions') }</Text>
-            ) : <ActivityIndicator size="large" color={ACCENT_BLUE} style={{marginTop: 10}}/>
+              ) : <Text style={{ color: 'black', fontFamily: MAIN_FONT, fontSize: medium, textAlign: 'center' }}>{t('questions:doc_no_questions')}</Text>
+            ) : <ActivityIndicator size="large" color={ACCENT_BLUE} style={{ marginTop: 10 }} />
           }
         </Content >
         {
           (!loading) && (
-            <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-              <CustomBtn label={ t('common:actions.ask_question') } onClick={() => navigate("questionForm", {doc_id: doc_id})}/>
+            <View style={{ paddingHorizontal: 15, paddingVertical: 20 }}>
+              <CustomBtn label={t('common:actions.ask_question')} onClick={() => navigate("questionForm", { doc_id: doc_id })} />
             </View>
           )
         }

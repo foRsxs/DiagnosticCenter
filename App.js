@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Root } from 'native-base';
+import { NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
+import { offlineActionTypes } from 'react-native-offline';
 import OneSignal from 'react-native-onesignal';
 
 import MainStackRouter from './src/routers/MainStackRouter';
@@ -23,6 +25,21 @@ export default class App extends Component {
       store: configureStore(() => this.setState({ isLoading: false })),
     };
     OneSignal.init(ONE_SIGNAL_KEY);
+  }
+
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectionChange);
+  }
+
+  componentWillUnmount = () => {
+    NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectionChange);
+  };
+
+  _handleConnectionChange = (isConnected) => {
+    this.state.store.dispatch({
+      type: offlineActionTypes.CONNECTION_CHANGE,
+      payload: isConnected,
+    });
   }
 
   render() {
