@@ -25,7 +25,7 @@ class DoctorScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      docid: (props.navigation.state.params) ? props.navigation.state.params.docid : null,
+      docid: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null,
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
       loading: true,
