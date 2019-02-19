@@ -71,6 +71,7 @@ class DoctorList extends Component {
                     name={`${item.lastname} ${item.firstname} ${item.secondname}`}
                     position={item.speciality}
                     info={item.description_short}
+                    category={item.category}
                   />
                 ))
               ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>

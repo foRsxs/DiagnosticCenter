@@ -103,7 +103,10 @@ class DoctorScreen extends Component {
         </View>
         <KeyboardAwareScrollView>
           {
-            (questions.length>= 1) ?
+            (loading) && (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
+          }
+          {
+            (!loading && questions.length>= 1) ?
             questions.map((item)=>(
               <View style={styles.mainInfo} key={item.id}>
                 <Text style={styles.textQuestion}>{item.question}</Text>
