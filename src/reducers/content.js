@@ -48,6 +48,13 @@ export default function contentReducer(state = initialState.content, action) {
           date: null,
           time: null
         },
+        orderValues: {
+          spec: (action.data === 'spec_id' || action.data === 'servid' || action.data === 'docdep_id' || action.data === 'date') ? state.orderValues.spec : null,
+          serv: (action.data === 'servid' || action.data === 'docdep_id' || action.data === 'date') ? state.orderValues.serv: null,
+          docdep: (action.data === 'docdep_id' || action.data === 'date') ? state.orderValues.docdep : null,
+          date: (action.data === 'date') ? state.orderValues.date : null,
+          time: null
+        },
       }
     case types.UPDATE_LIST_TIMES: 
       return {
@@ -83,6 +90,11 @@ export default function contentReducer(state = initialState.content, action) {
       return {
         ...state,
         order: {...state.order, ...action.data},
+      }
+    case types.UPDATE_ORDER_VALUE:
+      return {
+        ...state,
+        orderValues: {...state.orderValues, ...action.data},
       }
     case types.SENDED_MESSAGE_SUCCESS: 
       return {

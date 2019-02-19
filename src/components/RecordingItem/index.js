@@ -22,12 +22,9 @@ class RecordingItem extends Component {
         />
         <View>
           <Text style={styles.itemTitle}>{title}</Text>
-          {(placeholder) && (
-            <Text style={styles.itemPlaceholder}>{placeholder}</Text>
-          )}
-          {(text) && (
-            <Text style={styles.itemText}>{text}</Text>
-          )}
+          {
+            (text) ? <Text style={styles.itemText}>{text}</Text> : <Text style={styles.itemPlaceholder}>{placeholder}</Text>
+          }
         </View>
       </TouchableOpacity>
     );

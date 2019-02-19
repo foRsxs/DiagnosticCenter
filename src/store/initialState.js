@@ -38,6 +38,13 @@ export const initialState = {
       date: null,
       time: null
     },
+    orderValues: {
+      spec_id: null,
+      servid: null,
+      docdep_id: null,
+      date: null,
+      time: null
+    },
     orderDatas: {
       specialities: [],
       services: [],

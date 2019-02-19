@@ -18,6 +18,7 @@ export function getListSpecialization(type, order = false) {
 }
 
 export function getListDoctors(spec_id, servid, order = false) {
+
   return (dispatch, getState) => {
     const { authorization, content } = getState();
     const params = {
@@ -30,10 +31,11 @@ export function getListDoctors(spec_id, servid, order = false) {
 
     axios.post(`${APP_API_URL}/doctors`, params)
     .then((response) => {
+
       isAllow = (value) => {
         return +value.allow === 1;
       }
-
+      console.log(order, response.data)
       if (order) {
         if (response.data.filter(isAllow).length === 1) {
           dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
@@ -56,7 +58,10 @@ export function getListServices(id, auto_push = false) {
       lang: authorization.language
     })
     .then((response) => {
-      if (auto_push && response.data.length) dispatch(setOrderSuccess({servid: response.data[0].servid}));
+      if (auto_push && response.data.length) {
+        dispatch(setOrderSuccess({servid: response.data[0].servid}));
+        dispatch(setOrderValueSuccess({serv: response.data[0].text}));
+      }
       dispatch(setListServicesOrder(response.data));
     })
   }
@@ -214,7 +219,7 @@ export function setOrder(data, type, nameDispatch) {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
       if (!order[type] || order[type] !== data[type]) dispatch(getListDates( data[type], true));
     }
-    dispatch(setOrderSuccess(data))
+    dispatch(setOrderSuccess(data));
   }
 }
 
@@ -351,6 +356,12 @@ export function getAnalizes({type='', res_id}) {
   }
 }
 
+export function setOrderValue(data) {
+  return (dispatch) => {
+    dispatch(setOrderValueSuccess(data))
+  }
+}
+
 export function setAnalizes(data) {
   return {
     type: types.SET_ANALIZES,
@@ -402,6 +413,13 @@ export function cleareOrderDatas() {
 export function setOrderSuccess(data) {
   return {
     type: types.UPDATE_ORDER,
+    data: data
+  }
+}
+
+export function setOrderValueSuccess(data) {
+  return {
+    type: types.UPDATE_ORDER_VALUE,
     data: data
   }
 }

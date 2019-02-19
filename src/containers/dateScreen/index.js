@@ -87,17 +87,17 @@ class DateScreen extends Component {
 	}
 
 	componentDidMount() {
-		const {type, spec_id, docdep_id} = this.state.props_data;
+		// const {type, spec_id, docdep_id} = this.state.props_data;
 		const {lang_key} = this.props;
 	
 		LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
-		this.props.cleareOrderSuccess();
-		this.props.cleareOrderDatas();
+		// this.props.cleareOrderSuccess();
+		// this.props.cleareOrderDatas();
 	
-		if (type) this.props.setOrder({type}, 'type', 'spec');
-		if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
-		if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id'); 
-	  }
+		// if (type) this.props.setOrder({type}, 'type', 'spec');
+		// if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
+		// if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id'); 
+	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.orderDatas.dates !== this.props.orderDatas.dates) this.setDates(this.props.orderDatas.dates);

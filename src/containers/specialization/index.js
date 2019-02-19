@@ -19,27 +19,15 @@ class SpecializationScreen extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       modalVisible: false,
-      sorted_list_specialization: props.list_specialization,
-      loading: (props.list_specialization) ? false : true
+      loading: (props.orderDatas.specialities) ? false : true,
     };
   }
 
-  handleChange = (value) => {
-    const { list_specialization } = this.props;
-    function findElements(item) {
-      return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-    }
-    this.setState({ sorted_list_specialization: list_specialization.filter(findElements) });
-  }
-
-  componentDidMount() {
-    if (!this.props.list_specialization) this.props.getListSpecialization(1);
-  }
-
   componentDidUpdate(prevProps) {
-    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
+    if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) this.setState({loading: false });
   }
 
   call = () => {
@@ -48,8 +36,8 @@ class SpecializationScreen extends Component {
   }
 
   render() {
-    const { modalVisible, sorted_list_specialization, loading } = this.state;
-    const { t } = this.props;
+    const { modalVisible, loading } = this.state;
+    const { t, orderDatas, order, setOrder, navigation, setOrderValue } = this.props;
 
     return (
       <View>
@@ -57,19 +45,23 @@ class SpecializationScreen extends Component {
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header backButton={true} search={true} navigation={this.props.navigation} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              {(sorted_list_specialization && sorted_list_specialization.length) && (
+              {(orderDatas.specialities && orderDatas.specialities.length) && (
                 <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
               )}
               <List>
                 {
                   (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                     (
-                      (sorted_list_specialization && sorted_list_specialization.length) ? (
-                        sorted_list_specialization.map((item, index) => (
+                      (orderDatas.specialities && orderDatas.specialities.length) ? (
+                        orderDatas.specialities.map((item, index) => (
                           <SpecializationItem
                             key={index}
                             //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
-                            onClick={() => this.props.navigation.navigate('servicesDetail')}
+                            onClick={() => {
+                              setOrderValue({spec: item.spec_name});
+                              (order.type === 1) ? setOrder({spec_id: item.spec_id}, 'spec_id', 'doc') : setOrder({spec_id: item.spec_id}, 'spec_id');
+                              navigation.goBack()
+                            }}
                             headTxt={item.spec_name}
                             imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
                             redArrow={true}
@@ -101,7 +93,8 @@ class SpecializationScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    list_specialization: state.content.ListSpecialization,
+    orderDatas: state.content.orderDatas,
+    order: state.content.order
   }
 }
 

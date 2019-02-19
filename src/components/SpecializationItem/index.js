@@ -46,7 +46,7 @@ class SpecializationItem extends Component {
 SpecializationItem.propTypes = {
   imageUri: PropTypes.string,
   headTxt: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.any,
   redArrow: PropTypes.bool
 };
 
