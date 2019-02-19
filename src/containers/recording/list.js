@@ -50,7 +50,7 @@ class ReceptionListScreen extends Component {
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text={t('recordings:title')} navigation={this.props.navigation} />
+        <Header backButton={true} plusButton={true} text={t('recordings:title')} navigation={this.props.navigation} />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}

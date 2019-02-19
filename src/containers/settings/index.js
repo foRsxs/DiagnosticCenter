@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, BackHandler, AsyncStorage} from 'react-native';
-import {Container, Content, View, Text, Icon, Picker, Form, Switch} from 'native-base';
+import { StyleSheet, BackHandler } from 'react-native';
+import { Container, Content, View, Text, Icon, Picker, Form, Switch } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

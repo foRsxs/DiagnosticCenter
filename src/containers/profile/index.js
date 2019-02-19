@@ -61,7 +61,7 @@ class ProfileScreen extends Component {
     const { navigate } = this.props.navigation;
     let { user, getUserData } = this.props; 
 
-    if (user && user.token) {
+    if (user && user.api_token) {
       getUserData();
     } else {
       navigate('authorization');

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {
   createAppContainer,
   createBottomTabNavigator,
-  createSwitchNavigator
+  createSwitchNavigator,
+  createStackNavigator
 } from 'react-navigation';
 
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
-import QuestionsScreen from '../containers/questions/allQuestions';
+import QuestionsScreen from '../containers/questions/allQuestions';////////////Need delete
 import QuestionFormScreen from '../containers/questions/createQuestion';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
@@ -37,7 +38,7 @@ import CheckRecordScreen from '../containers/checkRecord';
 import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
 
-const ProfileNavigator = createBottomTabNavigator(
+const ProfileNavigator = createStackNavigator(
   {
     welcome: {
       screen: WelcomeScreen,
@@ -94,12 +95,9 @@ const ProfileNavigator = createBottomTabNavigator(
       }
     },
   },
-  {
-    tabBarComponent: props => <FooterTabs props={props} />
-  }
 );
 
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createStackNavigator(
   {
     home: {
       screen: HomeScreen,
@@ -143,21 +141,12 @@ const MainNavigator = createBottomTabNavigator(
       }
     },
   },
-  {
-    tabBarComponent: props => <FooterTabs props={props} />
-  }
 );
 
-const DoctorNavigator = createBottomTabNavigator(
+const DoctorNavigator = createStackNavigator(
   {
-    questions: {
-      screen: QuestionsScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
-    questionForm: {
-      screen: QuestionFormScreen,
+    listDoctors: {
+      screen: CatalogScreen,
       navigationOptions: {
         header: null
       }
@@ -169,19 +158,17 @@ const DoctorNavigator = createBottomTabNavigator(
         tabBarVisible: false
       }
     },
-    listDoctors: {
-      screen: CatalogScreen,
+    questionForm: {
+      screen: QuestionFormScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false
       }
-    },
+    }
   },
-  {
-    tabBarComponent: props => <FooterTabs props={props} />
-  }
 );
 
-const ServiceNavigator = createBottomTabNavigator(
+const ServiceNavigator = createStackNavigator(
   {
     services: {
       screen: ServicesScreen,
@@ -190,12 +177,9 @@ const ServiceNavigator = createBottomTabNavigator(
       }
     },
   },
-  {
-    tabBarComponent: props => <FooterTabs props={props} />
-  }
 );
 
-const RecordNavigator = createBottomTabNavigator(
+const RecordNavigator = createStackNavigator(
   {
     recordingCreate: {
       screen: RecordingCreateScreen,
@@ -269,21 +253,21 @@ const RecordNavigator = createBottomTabNavigator(
       }
     },
   },
+);
+
+const AppTabNavigator = createBottomTabNavigator(
+  {
+    Profile: ProfileNavigator,
+    Main: MainNavigator,
+    Doctor: DoctorNavigator,
+    Service: ServiceNavigator,
+    Record: RecordNavigator,
+  },
   {
     tabBarComponent: props => <FooterTabs props={props} />
   }
 );
 
-const AppNavigator = createAppContainer(createSwitchNavigator({
-  Profile: ProfileNavigator,
-  Main: MainNavigator,
-  Doctor: DoctorNavigator,
-  Service: ServiceNavigator,
-  Record: RecordNavigator,
-},
-  {
-    initialRouteName: 'Profile',
-  },
-));
+const AppNavigator = createAppContainer(AppTabNavigator);
 
 export default AppNavigator;

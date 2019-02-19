@@ -57,10 +57,11 @@ export const styles = StyleSheet.create({
   },
   name: {
     fontSize: extralarge,
-    lineHeight: scale(26),
+    fontFamily: MAIN_FONT,
     color: BLACK
   },
   speciality: {
+    paddingVertical: scale(5),
     fontFamily: MAIN_FONT,
     fontSize: medium,
     color: ACCENT_BLUE
@@ -83,7 +84,7 @@ export const styles = StyleSheet.create({
   wrapBtnQuest: {
     width: '100%',
     alignItems: 'center',
-    paddingVertical: scale(10),
+    paddingVertical: scale(16),
     borderBottomWidth: 0.5,
     borderColor: COLOR_NEW_GRAY
   },
@@ -144,7 +145,7 @@ export const styles = StyleSheet.create({
   },
   emptyData: {
     width: '100%',
-    paddingTop: scale(50),
+    paddingTop: scale(20),
     textAlign: 'center'
   }
 });

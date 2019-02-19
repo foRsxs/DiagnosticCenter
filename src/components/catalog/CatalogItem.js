@@ -16,7 +16,7 @@ class CatalogListItem extends Component {
   }
 
   render() {
-    let { imageUri, name, position, info, contentContainerStyle, t } = this.props;
+    let { imageUri, name, position, info, contentContainerStyle, t , category} = this.props;
     const { moreInfo } = this.state;
     return (
       <View style={[styles.block, contentContainerStyle]}>
@@ -32,7 +32,7 @@ class CatalogListItem extends Component {
             {name}
           </Text>
           <Text style={styles.special}>{position}</Text>
-          <Text style={styles.category}>{t('listdoctors:category')}</Text>
+          <Text style={styles.category}>{category}</Text>
           {(moreInfo) && (
             <View>
               <HTMLView value={(info) ? info : ''} />

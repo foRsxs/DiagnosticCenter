@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, BackHandler } from 'react-native';
+import { Image, TouchableOpacity, BackHandler, ActivityIndicator } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import { View, Text, Container } from 'native-base';
 import { withNamespaces } from 'react-i18next';
@@ -30,7 +30,6 @@ class DoctorScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    this.props.getQuestions(this.state.docid)
   }
 
   componentWillUnmount() {
@@ -62,30 +61,36 @@ class DoctorScreen extends Component {
 
   renderProfile() {
     const { doctor } = this.props;
+    const { loading } = this.state;
     let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
-
+    
     return (
       <View style={styles.bottomContainer}>
-        <KeyboardAwareScrollView>
-          <View style={styles.mainInfo}>
-            <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
-            <Text style={styles.speciality}>{doctor.speciality}</Text>
-            <Text style={styles.category}>{doctor.category}</Text>
-          </View> 
-          <View style={styles.blockInfo}>
-            <HTMLView
-              stylesheet={stylesHtml}
-              value={`<p>${description}</p>`}
-            />
-            <View style={styles.emptyBlock} />
-          </View>
-        </KeyboardAwareScrollView>
+        {
+          (loading) ? 
+          <ActivityIndicator size="large" color={ACCENT_BLUE} />
+          : 
+          <KeyboardAwareScrollView>
+            <View style={styles.mainInfo}>
+              <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
+              <Text style={styles.speciality}>{doctor.speciality}</Text>
+              <Text style={styles.category}>{doctor.category}</Text>
+            </View> 
+            <View style={styles.blockInfo}>
+              <HTMLView
+                stylesheet={stylesHtml}
+                value={`<p>${description}</p>`}
+              />
+              <View style={styles.emptyBlock} />
+            </View>
+          </KeyboardAwareScrollView>
+        } 
       </View>
     )
   }
 
   renderQuestions() {
-    const { moreInfo, docid } = this.state;
+    const { moreInfo, docid, loading } = this.state;
     const { questions, t, navigation } = this.props;
 
     return (
@@ -98,9 +103,12 @@ class DoctorScreen extends Component {
         </View>
         <KeyboardAwareScrollView>
           {
-            (questions.length>= 1) ?
+            (loading) && (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
+          }
+          {
+            (!loading && questions.length>= 1) ?
             questions.map((item)=>(
-              <View style={styles.mainInfo}>
+              <View style={styles.mainInfo} key={item.id}>
                 <Text style={styles.textQuestion}>{item.question}</Text>
                 {
                   (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
@@ -117,8 +125,8 @@ class DoctorScreen extends Component {
   }
 
   render() {
-    const { docid, loading, tabProfile } = this.state;
-    const { t, doctor, navigation, questions } = this.props;
+    const { loading, tabProfile } = this.state;
+    const { t, doctor } = this.props;
 
     return (
       <Container>

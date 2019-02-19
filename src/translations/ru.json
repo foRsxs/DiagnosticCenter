@@ -173,7 +173,7 @@
         "doc_no_questions": "У этого врача еще нет ни одного вопроса",
         "look_answer": "посмотреть ответ",
         "form": {
-            "title": "Вопрос врачу",
+            "title": "Задать вопрос врачу",
             "sub_title": "напишите свой вопрос"
         }
     },
@@ -240,7 +240,8 @@
             "add_recording": "Добавить запись",
             "continue": "Продолжить",
             "ask_question_doctor": "Задать вопрос врачу",
-            "questions": "вопросы"
+            "questions": "вопросы",
+            "send_question": "отправить вопрос"
         },
         "actions_text": {
             "token_not_valid_text": "Вам нужно заново авторизоваться", 
