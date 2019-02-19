@@ -4,7 +4,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
-import { styles } from './styles';
+import styles from './styles';
 import { ICON_MORE } from '../../../styles/images';
 
 class СShare extends Component {

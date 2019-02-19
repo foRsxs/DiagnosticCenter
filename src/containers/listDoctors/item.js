@@ -11,7 +11,7 @@ import * as ContentActions from '../../actions/content';
 import { ICON_FOR_QUESTION, ICON_BLUE_ARROW } from '../../styles/images';
 import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
-import { styles, stylesHtml } from './style/itemStyle'
+import { styles, stylesHtml } from './style'
 
 import { WHITE, ACCENT_BLUE } from '../../styles/constants';
 
@@ -55,7 +55,10 @@ class DoctorScreen extends Component {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
     } else {
-      (page == 'questions') ? navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) : navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] })
+      (page == 'questions') ? 
+        navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) 
+      :
+        navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] });
     }
   }
 

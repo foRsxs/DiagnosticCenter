@@ -1,29 +1,48 @@
-import { StyleSheet } from 'react-native';
-import variables, {scale} from '../../../styles/variables';
-import {ACCENT_BLUE, BACKGROUND_BLUE, WHITE, COLOR_NEW_GRAY, BLACK, DARK_GREY, COLOR_TEXT_GREEN, MAIN_FONT, MEDIUM_BLACK } from '../../../styles/constants';
+import {
+  StyleSheet
+} from 'react-native';
 
-const { medium, extralarge, normal } = variables.fSize;
+import variables, {
+  scale
+} from '../../../styles/variables';
+import {
+  ACCENT_BLUE,
+  BACKGROUND_BLUE,
+  WHITE,
+  COLOR_NEW_GRAY,
+  BLACK,
+  DARK_GREY,
+  COLOR_TEXT_GREEN,
+  MAIN_FONT,
+  MEDIUM_BLACK
+} from '../../../styles/constants';
+
+const {
+  medium,
+  extralarge,
+  normal
+} = variables.fSize;
 
 export const styles = StyleSheet.create({
   imgWrap: {
     width: '100%',
     height: scale(200),
-		position: 'absolute',
-		top: scale(10),
+    position: 'absolute',
+    top: scale(10),
     alignItems: 'center'
   },
   avatar: {
     width: scale(200),
-		height: scale(200),
+    height: scale(200),
     borderRadius: scale(100),
     borderWidth: 1,
     borderColor: ACCENT_BLUE,
-		zIndex: 10
-	},
-	topContent: {
-		height: scale(195),
-		width: '100%',
-		backgroundColor: BACKGROUND_BLUE,
+    zIndex: 10
+  },
+  topContent: {
+    height: scale(195),
+    width: '100%',
+    backgroundColor: BACKGROUND_BLUE,
     marginTop: scale(-20),
     justifyContent: 'flex-end'
   },
@@ -42,7 +61,7 @@ export const styles = StyleSheet.create({
   },
   textTab: {
     fontFamily: MAIN_FONT,
-    color: WHITE, 
+    color: WHITE,
     fontSize: medium
   },
   bottomContainer: {
@@ -77,7 +96,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: scale(15),
     marginBottom: scale(85)
   },
-  emptyBlock:{
+  emptyBlock: {
     width: '100%',
     height: scale(85)
   },
@@ -112,30 +131,36 @@ export const styles = StyleSheet.create({
     paddingVertical: scale(8)
   },
   more: {
-		flexDirection: 'row',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end'
-	},
+  },
   arrow: {
-		marginLeft: 5,
-		height: scale(8),
-		width: scale(12)
-	},
-	arrowActive: {
-		marginLeft: 5,
-		height: scale(8),
-		width: scale(12),
-		transform: [{ rotate: '180deg'}]
-	},
-	openInfo: {
+    marginLeft: 5,
+    height: scale(8),
+    width: scale(12)
+  },
+  arrowActive: {
+    marginLeft: 5,
+    height: scale(8),
+    width: scale(12),
+    transform: [{
+      rotate: '180deg'
+    }]
+  },
+  openInfo: {
     fontFamily: MAIN_FONT,
-		fontSize: normal,
-		color: COLOR_TEXT_GREEN
+    fontSize: normal,
+    color: COLOR_TEXT_GREEN
   },
   btnWrap: {
     position: 'absolute',
+    backgroundColor: '#ffffff',
+    width: '100%',
     bottom: 0,
-    paddingBottom: scale(35),
+    zIndex: 14,
+    paddingTop: scale(10),
+    paddingBottom: scale(25),
     paddingHorizontal: scale(25)
   },
   redBtn: {
@@ -149,19 +174,19 @@ export const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
-  
+
 export const stylesHtml = StyleSheet.create({
-    p: {
-      margin: 0,
-      fontSize: medium, 
-      fontFamily: MAIN_FONT, 
-      color: ACCENT_BLUE
-    },
-    ul: {
-      marginTop: 0,
-      padding: 0,
-    },
-    li: {
-      color: MEDIUM_BLACK
-    }
-  });
+  p: {
+    margin: 0,
+    fontSize: medium,
+    fontFamily: MAIN_FONT,
+    color: ACCENT_BLUE
+  },
+  ul: {
+    marginTop: 0,
+    padding: 0,
+  },
+  li: {
+    color: MEDIUM_BLACK
+  }
+});

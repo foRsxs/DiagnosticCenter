@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { ListItem, Left, Right, Text, Icon, List } from 'native-base';
 import PropTypes from 'prop-types';
+
 import styles from './styles';
 
 class MenuList extends Component {
@@ -12,7 +13,6 @@ class MenuList extends Component {
 	}
 
 	render() {
-
 		const { fields, onPress, valueName } = this.props;
 
 		return (

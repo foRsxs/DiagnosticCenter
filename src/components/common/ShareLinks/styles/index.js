@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 import variables from '../../../../styles/variables';
-const { large } = variables.fSize;
-
 import { BLACK, MAIN_FONT } from '../../../../styles/constants';
 
-export const styles = StyleSheet.create({
+const { large } = variables.fSize;
+
+export default StyleSheet.create({
   actionsWrap: {
     justifyContent: 'flex-start',
     flexDirection: 'row',

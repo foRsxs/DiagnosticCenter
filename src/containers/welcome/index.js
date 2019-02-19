@@ -3,11 +3,12 @@ import { Image, ScrollView, View } from 'react-native';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
-import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Timeline from 'react-native-timeline-listview'
 
+import * as AuthActions from '../../actions/auth';
+import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
 
@@ -49,8 +50,14 @@ class WelcomeScreen extends Component {
 	}
 
 	_checkWelcome = () => {
-		const { navigate, hideScreen } = this.props.navigation;
-		navigate(hideScreen ? 'home' : 'authorization');
+		const { hideScreen, token } = this.props;
+		const { navigate } = this.props.navigation;
+
+		if (hideScreen && token) {
+			navigate('home');
+		} else if (hideScreen && !token) {
+			navigate('authorization');
+		}
 	};
 
 	componentDidMount() {
@@ -116,12 +123,13 @@ class WelcomeScreen extends Component {
 
 function mapStateToProps(state) {
 	return {
+		token: state.authorization.token,
 		hideScreen: state.content.hideScreen
 	}
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ ...ContentActions }, dispatch)
+	return bindActionCreators({ ...AuthActions, ...ContentActions }, dispatch)
 }
 
 export default withNamespaces(['welcome', 'common'])(connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen));

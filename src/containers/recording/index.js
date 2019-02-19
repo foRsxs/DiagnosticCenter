@@ -12,7 +12,6 @@ import styles from './styles';
 import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_UPDATE } from '../../styles/images';
 
 class ReceptionCreateScreen extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {

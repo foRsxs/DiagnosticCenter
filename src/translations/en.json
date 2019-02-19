@@ -77,6 +77,12 @@
             "doc_appointment_2": "to visit",
             "test_results_1": "Results",
             "test_results_2": "analyzes"
+        },
+        "menu_list": {
+            "contacts": "Контакты",
+            "information": "Информация",
+            "vacancy": "Вакансии",
+            "faq": "Частые вопросы"
         }
     },
     "listdoctors": {

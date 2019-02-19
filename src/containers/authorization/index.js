@@ -37,18 +37,14 @@ class AuthorizationScreen extends Component {
   }
 
   componentDidMount() {
-    const { notify, languages_key, token, methods_auth } = this.props;
+    const { notify, languages_key, token, methods_auth, pinCode } = this.props;
 
     this.props.changeNotify(notify);
     this.props.setCurrentLang(languages_key);
     this.props.saveUser({ api_token: token });
     this.props.changeMethodsAuth({ methods_auth: methods_auth, confirmed: false });
+    this.props.savePinCode({ code: pinCode, confirmed: false });
     this._checkTouchSupport();
-
-    // AsyncStorage.getItem('pinCode').then((resp) => {
-    //   this.props.savePinCode({ code: resp, confirmed: false });
-    //   SplashScreen.hide();
-    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -78,6 +74,7 @@ class AuthorizationScreen extends Component {
   }
 
   onChangeSms = (value) => {
+    console.log(this.state.smsCode);
     this.setState({ smsCode: value });
   }
 
@@ -111,6 +108,7 @@ class AuthorizationScreen extends Component {
         .then((resp) => {
           this.setState({
             message: '',
+            showSms: true,
             loading: false
           });
         })
@@ -258,7 +256,11 @@ class AuthorizationScreen extends Component {
             />
             <TextInput style={styles.input} placeholder={t('authorization:inn')} onChangeText={(text) => this.onChangeId(text)} value={personalId} keyboardType='number-pad' maxLength={12} />
           </View>
-          {(loading) ? (<ActivityIndicator size="small" color={ACCENT_BLUE} />) : (<CustomBtn color='blue' label={t('authorization:get_code')} onClick={() => this.setState({ showSms: true })} />)}
+          {(loading) ? (
+            <ActivityIndicator size="small" color={ACCENT_BLUE} />
+          ) : (
+            <CustomBtn color='blue' label={t('authorization:get_code')} onClick={() => this.authUser() } />
+          )}
           {(authMessage) && <Text style={styles.authMessage}>{authMessage}</Text>}
           {(message.length) ? <Text style={styles.errorMessage}>{message}</Text> : false}
         </View>
@@ -275,7 +277,7 @@ class AuthorizationScreen extends Component {
         <View style={styles.content}>
           <Text style={styles.smsTitle}>{t('authorization:auth_sms1')}{"\n"}{formattedNumber} {t('authorization:auth_sms2')}</Text>
           <TextInput style={styles.inputSMS} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} />
-          <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => this.authUser()} />
+          <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => {}} />
         </View>
       </View>
     )
@@ -311,7 +313,7 @@ class AuthorizationScreen extends Component {
             onPress={
               (code) => {
                 if (type == 'new') {
-                  this.props.savePinCode({ code: code, confirmed: true })
+                  this.props.savePinCode({ code: code, confirmed: true });
                 } else {
                   this._confirmCode(code);
                 }
@@ -324,7 +326,7 @@ class AuthorizationScreen extends Component {
   }
 
   render() {
-    const { t, token, methods_auth, confirmed_auth, pinCode, languages_key } = this.props;
+    const { t, token, methods_auth, confirmed_auth, pinCode } = this.props;
     const { showPopup, showSms } = this.state;
 
     return (
@@ -335,7 +337,7 @@ class AuthorizationScreen extends Component {
           style={styles.wrapMain}
           contentContainerStyle={styles.contentStyleMain}
         >
-          <Header isHome={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
+          <Header isHome={false} isAuth={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
           {(!token && !showSms) && this.renderAuthView()}
           {(!token && showSms) && this.renderSmsCode()}
           {(token && !methods_auth) && this.renderConfirmCodeChoose()}

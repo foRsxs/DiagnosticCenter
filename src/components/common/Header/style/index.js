@@ -2,9 +2,9 @@ import { StyleSheet, Dimensions } from 'react-native';
 let { width, height } = Dimensions.get('window');
 
 import variables from '../../../../styles/variables';
-const { large, normal } = variables.fSize;
-
 import { WHITE, ACCENT_BLUE, MAIN_FONT } from '../../../../styles/constants';
+
+const { large, normal } = variables.fSize;
 
 export default StyleSheet.create({
 	headerWrap: {

@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import variables from '../../../../styles/variables';
-const { normal } = variables.fSize;
-
 import { COLOR_BLUE, COLOR_BORDER, RED } from '../../../../styles/constants';
+
+const { normal } = variables.fSize;
 
 export default StyleSheet.create({
 	container: {

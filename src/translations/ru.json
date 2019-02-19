@@ -77,6 +77,12 @@
             "doc_appointment_2": "на приём",
             "test_results_1": "Результаты",
             "test_results_2": "анализов"
+        },
+        "menu_list": {
+            "contacts": "Контакты",
+            "information": "Информация",
+            "vacancy": "Вакансии",
+            "faq": "Частые вопросы"
         }
     },
     "listdoctors": {

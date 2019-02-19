@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { Text, View } from 'native-base';
 import PropTypes from 'prop-types';
+
 import styles from './styles';
 
 class RecordingItem extends Component {

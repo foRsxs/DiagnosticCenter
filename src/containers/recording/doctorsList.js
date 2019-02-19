@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ActivityIndicator, View} from 'react-native';
-import { Container, Content, Text } from 'native-base';
+import { ActivityIndicator, View } from 'react-native';
+import { Container, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,13 +9,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as ContentActions from '../../actions/content';
 import CatalogItem from '../../components/catalog/CatalogItem';
 import Header from '../../components/common/Header';
-//import HeaderBottom from '../../components/common/HeaderBottom';
 import {APP_IMG_URL} from '../../config';
-
 import variables from '../../styles/variables';
-const { medium } = variables.fSize;
-
 import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+
+const { medium } = variables.fSize;
 
 class DoctorList extends Component {
   constructor(props) {

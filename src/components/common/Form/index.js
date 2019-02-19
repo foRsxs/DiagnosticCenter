@@ -4,7 +4,6 @@ import { View, Item, Textarea, Input, Form } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 
 import CustomBtn from '../CustomBtn';
-
 import styles from './styles';
 import { RED, ACCENT_BLUE } from '../../../styles/constants';
 

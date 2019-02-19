@@ -24,21 +24,21 @@ class HomeScreen extends Component {
     this.state = {
       menuList: [
         {
-          text: 'Контакты',
+          text: props.t(`home:menu_list.contacts`),
           icon: ICON_CONTACT,
           value: 'contacts'
         },
         {
-          text: 'Информация',
+          text: props.t(`home:menu_list.information`),
           icon: ICON_INFO,
           value: 'information'
         },
         {
-          text: 'Вакансии',
+          text: props.t(`home:menu_list.vacancy`),
           icon: ICON_VACANCY,
         },
         {
-          text: 'Частые вопросы',
+          text: props.t(`home:menu_list.faq`),
           icon: ICON_QUESTION,
           value: 'oftenQuestions'
         },
@@ -48,6 +48,8 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     const { user, getUserData, token, t, setAuthMessage, logOut, navigation } = this.props;
+
+    this.props.getSales();
 
     if (!user && token) {
       getUserData().then((resp) => {

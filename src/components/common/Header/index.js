@@ -21,7 +21,7 @@ class Header extends Component {
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
+		const { backButton = false, search = false, text, isHome = false, isAuth = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
 
 		return (
 			<View style={styles.headerWrap}>
@@ -45,6 +45,17 @@ class Header extends Component {
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
 								</View>
+							</View>
+						)
+					}
+					{
+						(isAuth) && (
+							<View style={styles.headerHomeWrap}>
+								<View style={styles.leftContainer}></View>
+								<View style={styles.centerContainer}>
+									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
+								</View>
+								<View style={styles.rightContainer}></View>
 							</View>
 						)
 					}
@@ -89,7 +100,7 @@ class Header extends Component {
 					{
 						(plusButton) && (
 							<View style={styles.headerRight} >
-								<TouchableOpacity onPress={() => alert('press')}>
+								<TouchableOpacity onPress={() => {}}>
 									<Icon ios='ios-add' android="ios-add" style={{ color: 'white', paddingLeft: 5, fontSize: 36 }} />
 								</TouchableOpacity>
 							</View>
@@ -108,6 +119,7 @@ Header.propTypes = {
 	backButton: PropTypes.bool,
 	search: PropTypes.bool,
 	isHome: PropTypes.bool,
+	isAuth: PropTypes.bool,
 	callButton: PropTypes.bool,
 	plusButton: PropTypes.bool,
 	textUpper: PropTypes.string,

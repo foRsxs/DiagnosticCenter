@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import styles from './styles';
 import { withNavigation } from 'react-navigation';
 
+import styles from './styles';
 import {
 	ICON_MAIN,
 	ICON_MAIN_ACTIVE,

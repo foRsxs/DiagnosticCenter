@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import variables from '../../../../styles/variables';
-const { large } = variables.fSize;
-
 import { COLOR_DARK_BLUE } from '../../../../styles/constants';
+
+const { large } = variables.fSize;
 
 export default StyleSheet.create({
 	listWrap: {

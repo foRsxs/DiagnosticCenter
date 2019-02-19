@@ -4,7 +4,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 
-import { styles } from './styles';
+import styles from './styles';
 import { ACCENT_BLUE } from '../../../styles/constants';
 import { PICTURE_ICON, MAIL_ICON } from '../../../styles/images';
 

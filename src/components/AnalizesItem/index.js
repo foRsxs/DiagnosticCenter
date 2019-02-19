@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ListItem, Right, Body, } from 'native-base';
-import CShare from '../common/CShare';
 
+import CShare from '../common/CShare';
 import styles from './styles';
 
 export default class AnalizesItem extends Component {

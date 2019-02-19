@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Modal, Dimensions, Linking} from 'react-native';
+import {View, Modal, Linking} from 'react-native';
 import {Text} from 'native-base';
-import LinkBtn from './LinkBtn';
-import CustomBtn from './CustomBtn';
-import variables from '../../styles/variables';
 
-let {width, height} = Dimensions.get('window');
-import { BACKGROUND_POPUP, MEDIUM_BLACK  } from '../../styles/constants';
+import LinkBtn from '../LinkBtn';
+import CustomBtn from '../CustomBtn';
+
+import styles from './styles';
 
 export default class Popup extends Component {
   render() {
@@ -35,27 +34,3 @@ export default class Popup extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  popupWrap: {
-    width: width, 
-    height: height, 
-    justifyContent: 'center', 
-    alignItems: 'center',
-    backgroundColor: BACKGROUND_POPUP
-  },
-  popup: {
-    width: '80%', 
-    backgroundColor: 'white', 
-    alignSelf: 'center', 
-    borderRadius: 10, 
-    padding: 20,
-    justifyContent: 'space-between'
-  },
-  text: {
-    color: MEDIUM_BLACK, 
-    fontSize: variables.fSize.large, 
-    width: '100%', 
-    textAlign: 'center'
-  }
-});

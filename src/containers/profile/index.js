@@ -51,7 +51,7 @@ class ProfileScreen extends Component {
     
     if (type === 'LogOut') {
       this.props.logOut();
-      navigation.navigate('home');
+      navigation.navigate('authorization');
     } else {
       navigation.navigate(type); 
     } 

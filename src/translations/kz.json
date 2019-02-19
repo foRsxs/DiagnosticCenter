@@ -76,6 +76,12 @@
             "doc_appointment_2": "қабылдауға",
             "test_results_1": "Нәтижелері",
             "test_results_2": "талдау"
+        },
+        "menu_list": {
+            "contacts": "Контакты",
+            "information": "Информация",
+            "vacancy": "Вакансии",
+            "faq": "Частые вопросы"
         }
     },
     "listdoctors": {

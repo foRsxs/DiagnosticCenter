@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   createAppContainer,
   createBottomTabNavigator,
@@ -37,21 +37,19 @@ import CheckRecordScreen from '../containers/checkRecord';
 import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
 
-const ProfileNavigator = createStackNavigator(
+const AuthNavigator = createStackNavigator(
   {
-    welcome: {
-      screen: WelcomeScreen,
-      navigationOptions: {
-        header: null,
-        tabBarVisible: false
-      },
-    },
     authorization: {
       screen: AuthorizationScreen,
       navigationOptions: {
         header: null
       }
     },
+  }
+);
+
+const ProfileNavigator = createStackNavigator(
+  {
     profile: {
       screen: ProfileScreen,
       navigationOptions: {
@@ -61,36 +59,31 @@ const ProfileNavigator = createStackNavigator(
     analizes: {
       screen: AnalizesScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     analizesItem: {
       screen: AnalizesItemScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     settings: {
       screen: SettingsScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     cardPatientScreen: {
       screen: CardPatientScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     cardPatientDetailScreen: {
       screen: CardPatientDetailScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
   },
@@ -100,7 +93,8 @@ ProfileNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions = {};
   
-  if (routeName === 'welcome' || routeName === 'analizes' || routeName === 'analizesItem' || routeName === 'settings' || routeName === 'cardPatientScreen' || routeName === 'cardPatientDetailScreen') {
+  if (routeName === 'analizes' || routeName === 'analizesItem' || routeName === 'settings' 
+    || routeName === 'cardPatientScreen' || routeName === 'cardPatientDetailScreen') {
     navigationOptions.tabBarVisible = false;
   }
 
@@ -118,36 +112,31 @@ const MainNavigator = createStackNavigator(
     oftenQuestions: {
       screen: OftenQuestionsScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     contacts: {
       screen: ContactsScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     faq: {
       screen: FaqScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     information: {
       screen: InfoScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     informationItem: {
       screen: InfoItemScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
   },
@@ -157,7 +146,8 @@ MainNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions = {};
   
-  if (routeName === 'oftenQuestions' || routeName === 'contacts' || routeName === 'faq' || routeName === 'information' || routeName === 'informationItem') {
+  if (routeName === 'oftenQuestions' || routeName === 'contacts' || routeName === 'faq'
+    || routeName === 'information' || routeName === 'informationItem') {
     navigationOptions.tabBarVisible = false;
   }
 
@@ -175,15 +165,13 @@ const DoctorNavigator = createStackNavigator(
     doctor: {
       screen: DoctorScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     questionForm: {
       screen: QuestionFormScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     }
   },
@@ -252,36 +240,31 @@ const RecordNavigator = createStackNavigator(
     specialization: {
       screen: SpecializationScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     servicesDetail: {
       screen: ServicesDetailScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     dateScreen: {
       screen: DateScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     timeScreen: {
       screen: TimeScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
     checkRecordScreen: {
       screen: CheckRecordScreen,
       navigationOptions: {
-        header: null,
-        tabBarVisible: false
+        header: null
       }
     },
   },
@@ -291,7 +274,8 @@ RecordNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions = {};
   
-  if (routeName === 'specialization' || routeName === 'servicesDetail' || routeName === 'dateScreen' || routeName === 'timeScreen' || routeName === 'checkRecordScreen') {
+  if (routeName === 'specialization' || routeName === 'servicesDetail' || routeName === 'dateScreen'
+    || routeName === 'timeScreen' || routeName === 'checkRecordScreen') {
     navigationOptions.tabBarVisible = false;
   }
 
@@ -311,6 +295,15 @@ const AppTabNavigator = createBottomTabNavigator(
   }
 );
 
-const AppNavigator = createAppContainer(AppTabNavigator);
+const AppNavigator = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: WelcomeScreen,
+    Auth: AuthNavigator,
+    App: AppTabNavigator
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));
 
 export default AppNavigator;

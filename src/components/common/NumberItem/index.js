@@ -17,7 +17,8 @@ export default class NumberItem extends Component {
 
 	render() {
 		let { pressStatus } = this.state;
-		const { value, text } = this.props
+    const { value, text } = this.props
+    
 		return (
 			<View style={styles.wrapItem}>
 				{

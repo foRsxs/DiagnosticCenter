@@ -25,19 +25,11 @@ i18n
   .use(reactI18nextModule)
   .init({
     fallbackLng: 'ru',
-
     resources: {en, kz, ru},
-
     // have a common namespace used around the full app
     ns: ['common'],
     defaultNS: 'common',
-
     debug: true,
-
-    // cache: {
-    //   enabled: true
-    // },
-
     interpolation: {
       escapeValue: false, // not needed for react as it does escape per default to prevent xss!
     }
