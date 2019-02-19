@@ -144,30 +144,32 @@ class DoctorScreen extends Component {
 
     return(
       <View style={styles.bottomContainer}>
-        <View style={styles.mainInfo}>
-          <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
-          <Text style={styles.speciality}>{doctor[0].speciality}</Text>
-          <Text style={styles.category}>Категория</Text>
-        </View>
-        <KeyboardAwareScrollView style={styles.blockInfo}>
+        <KeyboardAwareScrollView>
+          <View style={styles.mainInfo}>
+            <Text style={styles.name}>{`${doctor[0].lastname} ${doctor[0].firstname} ${doctor[0].secondname}`}</Text>
+            <Text style={styles.speciality}>{doctor[0].speciality}</Text>
+            <Text style={styles.category}>{doctor[0].category}</Text>
+          </View>
+          <View style={styles.blockInfo}>
           <HTMLView
             stylesheet={ stylesHtml }
             value={`<p>${description}</p>`}
           />
           <View style={styles.emptyBlock}/>
+          </View>
         </KeyboardAwareScrollView>
       </View>
     )
   }
 
   renderQuestions(){
-    const { moreInfo } = this.state;
-    const { questions, t } = this.props;
+    const { moreInfo, docid } = this.state;
+    const { questions, t, navigation } = this.props;
 
     return(
       <View style={styles.bottomContainer}>
         <View style={styles.wrapBtnQuest}>
-          <TouchableOpacity activeOpacity={0.9} style={styles.btnQuest}>
+          <TouchableOpacity activeOpacity={0.9} style={styles.btnQuest} onPress={() => navigation.navigate("questionForm", {doc_id: docid})}>
             <Image style={styles.iconQuest} source={ICON_FOR_QUESTION}/>
             <Text style={styles.textBtn}>{ t('common:actions.ask_question_doctor') }</Text>
           </TouchableOpacity>
@@ -201,14 +203,21 @@ class DoctorScreen extends Component {
         <View style={styles.imgWrap}>
           <Image
             style={styles.avatar}
-            resizeMode='contain'
+            resizeMode='cover'
             source={{uri: this.props.navigation.state.params.uri}}
           />    
         </View>
         {
           (tabProfile) &&
           <View style={styles.btnWrap}>
+          {
+            (!loading && +doctor[0].allow === 1) && (
             <CustomBtn contentContainerStyle={styles.redBtn} label={ t('common:actions.appointment') } onClick={() =>  this._openPage('recordingCreate', 'recording')} />
+          )}
+          {
+            (!loading && +doctor[0].allow === 0) && (           
+            <Text style={{ textAlign: 'center' }}>{ t('listdoctors:item.no_recording_text') }</Text>            
+          )} 
           </View> 
         }
         <View style={{flex: 1}}>
