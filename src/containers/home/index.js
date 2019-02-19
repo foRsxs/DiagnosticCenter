@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, NetInfo, AsyncStorage } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { Container, Content } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
@@ -53,7 +53,6 @@ class HomeScreen extends Component {
       getUserData().then((resp) => {
         if (Object.keys(resp).length === 0) {
           setAuthMessage(t(`common:actions_text.token_not_valid_text`))
-          AsyncStorage.clear();
           logOut();
           navigation.navigate("authorization");
         }

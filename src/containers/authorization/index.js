@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, ActivityIndicator, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
+import { View, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Text, ListItem, Container, Left, Right, CheckBox, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import * as AuthActions from '../../actions/auth';
@@ -37,16 +37,14 @@ class AuthorizationScreen extends Component {
   }
 
   componentDidMount() {
-    const { notify, languages_key, token } = this.props;
+    const { notify, languages_key, token, methods_auth } = this.props;
 
     this.props.changeNotify(notify);
     this.props.setCurrentLang(languages_key);
     this.props.saveUser({ api_token: token });
+    this.props.changeMethodsAuth({ methods_auth: methods_auth, confirmed: false });
     this._checkTouchSupport();
 
-    // AsyncStorage.getItem('methods_auth').then((resp) => {
-    //   this.props.changeMethodsAuth({ methods_auth: resp, confirmed: false });
-    // });
     // AsyncStorage.getItem('pinCode').then((resp) => {
     //   this.props.savePinCode({ code: resp, confirmed: false });
     //   SplashScreen.hide();
