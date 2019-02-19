@@ -6,7 +6,6 @@ import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TouchID from 'react-native-touch-id';
 import TextInputMask from 'react-native-text-input-mask';
@@ -38,29 +37,20 @@ class AuthorizationScreen extends Component {
   }
 
   componentDidMount() {
-    NetInfo.isConnected.fetch().then(isConnected => {
-      this.props.changeNetworkConnection(isConnected);
-      this.props.getSales();
-    });
+    const { notify, languages_key, token } = this.props;
+
+    this.props.changeNotify(notify);
+    this.props.setCurrentLang(languages_key);
+    this.props.saveUser({ api_token: token });
     this._checkTouchSupport();
-    //AsyncStorage.clear();
-    //<----------------------------------------need to rewrite--------------------------------------------//
-    AsyncStorage.getItem('notify').then((resp) => {
-      (resp) ? this.props.changeNotify(resp == 'true') : this.props.changeNotify(true);
-    });
-    AsyncStorage.getItem('lang_key').then((resp) => {
-      (resp) ? this.props.setCurrentLang(resp) : this.props.setCurrentLang('ru');
-    });
-    AsyncStorage.getItem('api_token').then((resp) => {
-      this.props.saveUser({ api_token: resp });
-    });
-    AsyncStorage.getItem('methods_auth').then((resp) => {
-      this.props.changeMethodsAuth({ methods_auth: resp, confirmed: false });
-    });
-    AsyncStorage.getItem('pinCode').then((resp) => {
-      this.props.savePinCode({ code: resp, confirmed: false });
-      SplashScreen.hide();
-    });
+
+    // AsyncStorage.getItem('methods_auth').then((resp) => {
+    //   this.props.changeMethodsAuth({ methods_auth: resp, confirmed: false });
+    // });
+    // AsyncStorage.getItem('pinCode').then((resp) => {
+    //   this.props.savePinCode({ code: resp, confirmed: false });
+    //   SplashScreen.hide();
+    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -374,6 +364,7 @@ function mapStateToProps(state) {
     pinCode: state.authorization.pinCode,
     confirmed_auth: state.authorization.confirmed_auth,
     authMessage: state.content.authMessage,
+    notify: state.authorization.notify,
     languages_key: state.authorization.language
   }
 }

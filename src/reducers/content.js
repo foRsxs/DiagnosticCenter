@@ -27,11 +27,6 @@ sortedFunc = (data) =>{
   
 export default function contentReducer(state = initialState.content, action) {
   switch (action.type) {
-    case types.UPDATE_NETWORK_CONNECTION:
-      return {
-        ...state,
-        network_connect: action.data,
-      }
     case types.SET_ANALIZES:
       return {
         ...state,

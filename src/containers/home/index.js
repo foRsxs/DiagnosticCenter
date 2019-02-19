@@ -61,15 +61,6 @@ class HomeScreen extends Component {
     }
 
     SplashScreen.hide();
-    NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectionChange);
-  }
-
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectionChange);
-  }
-
-  _handleConnectionChange = (isConnected) => {
-    this.props.changeNetworkConnection(isConnected);
   }
 
   _openPage = (page, text_error) => {

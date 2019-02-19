@@ -18,10 +18,13 @@ class WelcomeScreen extends Component {
 
 	constructor(props) {
 		super(props);
-		this.renderDetail = this.renderDetail.bind(this)
 		this.state = {
 			data: [
-				{ title: this.props.t('welcome:enter_text1'), titleBold: this.props.t('welcome:enter_text2'), image: IMAGE_WELCOME_1, imgStyle: { width: '100%', height: 140 } },
+				{ 
+          title: this.props.t('welcome:enter_text1'), 
+          titleBold: this.props.t('welcome:enter_text2'), 
+          image: IMAGE_WELCOME_1, imgStyle: { width: '100%', height: 140 } 
+        },
 				{
 					title: this.props.t('welcome:enter_text3'),
 					titleBold: this.props.t('welcome:enter_text4'),
@@ -34,9 +37,14 @@ class WelcomeScreen extends Component {
 					image: IMAGE_WELCOME_2,
 					imgStyle: { width: '100%', height: 260 }
 				},
-				{ title: this.props.t('welcome:enter_text11'), image: IMAGE_WELCOME_3, imgStyle: { width: '100%', height: 280 } }
+				{ 
+          title: this.props.t('welcome:enter_text11'), 
+          image: IMAGE_WELCOME_3, 
+          imgStyle: { width: '100%', height: 280 } 
+        }
 			]
-		};
+    };
+		this.renderDetail = this.renderDetail.bind(this);
 		this._checkWelcome();
 	}
 

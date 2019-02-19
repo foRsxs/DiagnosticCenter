@@ -98,18 +98,18 @@ class DoctorScreen extends Component {
         </View>
         <KeyboardAwareScrollView>
           {
-            (questions.length >= 1) ?
-              questions.map((item) => (
-                <View style={styles.mainInfo}>
-                  <Text style={styles.textQuestion}>{item.question}</Text>
-                  {
-                    (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>)
-                  }
-                  <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({ moreInfo: !moreInfo })} style={styles.more}>
-                    <Text style={styles.openInfo}>{(moreInfo) ? 'скрить ответ' : 'посмотреть ответ'}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow} />
-                  </TouchableOpacity>
-                </View>
-              )) : <Text style={styles.emptyData}>Данных нет</Text>
+            (questions.length>= 1) ?
+            questions.map((item)=>(
+              <View style={styles.mainInfo}>
+                <Text style={styles.textQuestion}>{item.question}</Text>
+                {
+                  (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
+                }
+                <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
+                  <Text style={styles.openInfo}>{(moreInfo) ? 'скрить ответ' : 'посмотреть ответ'}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
+                </TouchableOpacity>
+              </View> 
+            )) : <Text style={styles.emptyData}>{t('faq:no_often_questions_text')}</Text>
           }
         </KeyboardAwareScrollView>
       </View>
@@ -183,4 +183,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['listdoctors', 'common', 'footer_menu'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));
+export default withNamespaces(['listdoctors', 'common', 'footer_menu', 'faq'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));
