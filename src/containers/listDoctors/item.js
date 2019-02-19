@@ -187,7 +187,7 @@ class DoctorScreen extends Component {
                   <Text style={styles.openInfo}>{(moreInfo) ? 'скрить ответ' : 'посмотреть ответ'}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
                 </TouchableOpacity>
               </View> 
-            )) : <Text style={styles.emptyData}>Данных нет</Text>
+            )) : <Text style={styles.emptyData}>{t('faq:no_often_questions_text')}</Text>
           }
         </KeyboardAwareScrollView>
       </View>
@@ -261,4 +261,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces(['listdoctors', 'common', 'footer_menu'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));
+export default withNamespaces(['listdoctors', 'common', 'footer_menu', 'faq'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));
