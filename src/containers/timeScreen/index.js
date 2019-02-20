@@ -14,31 +14,15 @@ class TimeScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			testShortOrder: {
-				dd: "14.12.2018",
-				rnumb_id: "5677155",
-				room: "412",
-				selected: false,
-				time: "15:00",
-			},
 			shortOrder: null,
 			showDates: false,
 			showTimes: false,
-			typeExperiments: [
-				{
-					id: 1,
-					value: props.t('createrecord:form.consultation'),
-				},
-				{
-					id: 2,
-					value: props.t('createrecord:form.research')
-				}
-			],
-			markedTimes: [
-				'09:00',
-        '17:30'
-			],
+			markedTimes: [],
 		};
+	}
+
+	componentDidMount() {
+		this.setTimes(this.props.orderDatas.times)
 	}
 
 	componentDidUpdate(prevProps) {
@@ -57,9 +41,11 @@ class TimeScreen extends Component {
 	}
 
 	updateTimes = (time) => {
-		this.props.setTime({ time: time.time });
+		const { setTime, order, navigation } = this.props;
+		setTime({ time: time.time });
 		this.setState({ shortOrder: time, showTimes: false });
-		if (this.props.order.time == time.time) this.setState({ shortOrder: null })
+		if (order.time == time.time) this.setState({ shortOrder: null });
+		navigation.goBack();
 	}
 
 	render() {

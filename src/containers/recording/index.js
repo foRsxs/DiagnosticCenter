@@ -13,35 +13,52 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 
 class ReceptionCreateScreen extends Component {
 	constructor(props) {
-		super(props);
+    super(props);
+    console.log(props)
 		this.state = {
       activeTabOne: true,
       props_data: {
 				type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
-				spec_id: (props.navigation.state.params) ? +props.navigation.state.params.spec_id : null,
-				docdep_id: (props.navigation.state.params) ? +props.navigation.state.params.docdep_id : null,
+				spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
+				docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
 			},
 		}
   }
   
   componentDidMount() {
     const {type, spec_id, docdep_id} = this.state.props_data;
-		const {setOrder, cleareOrderSuccess, cleareOrderDatas} = this.props;
+		const {setOrder, cleareOrderSuccess, cleareOrderDatas, setOrderValue, doctorData} = this.props;
 
 		cleareOrderSuccess();
 		cleareOrderDatas();
-	
+    console.log(type, spec_id, docdep_id)
 		if (type) setOrder({type}, 'type', 'spec');
-		if (spec_id && type == 1) setOrder({spec_id}, 'spec_id', 'doc');
-		if (docdep_id) setOrder({docdep_id}, 'docdep_id'); 
+		if (spec_id && type == 1) {
+      setOrder({spec_id}, 'spec_id', 'doc');
+      setOrderValue({spec: doctorData.speciality});
+    }
+		if (docdep_id) {
+      setOrder({docdep_id}, 'docdep_id');
+      setOrderValue({docdep: `${doctorData.lastname} ${doctorData.firstname} ${doctorData.secondname}`});
+    }
   }
 
+  complete = () => {
+    const { navigation, orderDatas, order } = this.props; 
+    navigation.navigate('checkRecordScreen', {
+      price: orderDatas.services.find((item) => +item.servid === +order.servid).price, 
+      room: orderDatas.times.find((item) => item.time === order.time).room,
+      rnumb_id: orderDatas.times.find((item) => item.time === order.time).rnumb_id,
+    });
+  }
 
 	render() {
 		const { navigation, setOrder, orderValues, order } = this.props;
 		const { t } = this.props;
     const { activeTabOne } = this.state;
     
+    const orderIsComplete = (order.date && order.docdep_id && order.servid && order.spec_id && order.time) ? true : false;
+
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Content>
@@ -85,7 +102,6 @@ class ReceptionCreateScreen extends Component {
                   placeholder={t('createrecord:form.select_specialty')} 
                 />
                 <RecordingItem 
-                  //onClick={() => navigation.navigate('servicesDetail')} 
                   icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')}
                   text={orderValues.serv}
                   placeholder={t('createrecord:form.select_service')} 
@@ -108,6 +124,7 @@ class ReceptionCreateScreen extends Component {
                       }} 
                       icon={ICON_CALENDAR_SMALL} 
                       title={t('createrecord:form.date')} 
+                      text={orderValues.date}
                       placeholder={t('createrecord:form.select_date')} 
                     />
 									</View>
@@ -121,13 +138,14 @@ class ReceptionCreateScreen extends Component {
                       contentContainerStyle={{ paddingLeft: 10 }} 
                       icon={ICON_TIME_SMALL} 
                       title={t('createrecord:form.time')} 
-                      placeholder='12:00' 
+                      placeholder='12:00'
+                      text={orderValues.time}
                     />
 									</View>
 								</View>
 							</View>
 							<View style={styles.buttonWrap}>
-								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigate('authorization')} disabled={true} />
+								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.complete()} disabled={!orderIsComplete} />
 							</View>
 						</Tab>
 						<Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.research').toUpperCase()}>
@@ -165,6 +183,7 @@ class ReceptionCreateScreen extends Component {
                         navigation.navigate('dateScreen');
                       }} 
                       icon={ICON_CALENDAR_SMALL} title={t('createrecord:form.date')} 
+                      text={orderValues.date}
                       placeholder={t('createrecord:form.select_date')} 
                     />
 									</View>
@@ -178,12 +197,13 @@ class ReceptionCreateScreen extends Component {
                       contentContainerStyle={{ paddingLeft: 10 }} 
                       icon={ICON_TIME_SMALL} 
                       title={t('createrecord:form.time')} 
-                      text='12:00' />
+                      text={orderValues.time}
+                    />
 									</View>
 								</View>
 							</View>
 							<View style={styles.buttonWrap}>
-								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => navigation.navigate('checkRecordScreen')} />
+								<CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.complete()} disabled={!orderIsComplete}/>
 							</View>
 						</Tab>
 					</Tabs>
@@ -198,7 +218,8 @@ function mapStateToProps(state) {
 		order: state.content.order,
     orderDatas: state.content.orderDatas,
     orderValues: state.content.orderValues,
-		lang_key: state.authorization.language
+    lang_key: state.authorization.language,
+    doctorData: state.content.doctorData,
 	}
 }
 

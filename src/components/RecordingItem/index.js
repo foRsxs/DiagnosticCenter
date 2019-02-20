@@ -15,7 +15,11 @@ class RecordingItem extends Component {
     let { title, placeholder, icon, onClick, contentContainerStyle, text } = this.props;
 
     return (
-      <TouchableOpacity style={[styles.itemWrap, contentContainerStyle]} onPress={onClick}>
+      <TouchableOpacity 
+        style={[styles.itemWrap, contentContainerStyle]} 
+        onPress={onClick}
+        activeOpacity={(onClick)? 0.7:1}
+        >
         <Image
           style={styles.itemImage}
           resizeMode='contain'
