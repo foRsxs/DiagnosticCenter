@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import moment from 'moment';
 import { Container, Content, Text } from 'native-base';
 import { LocaleConfig, Calendar } from 'react-native-calendars';
 import { withNamespaces } from 'react-i18next';
@@ -52,51 +53,14 @@ class DateScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			testShortOrder: {
-				dd: "14.12.2018",
-				rnumb_id: "5677155",
-				room: "412",
-				selected: false,
-				time: "15:00",
-			},
-			typeExperiments: [
-				{
-					id: 1,
-					value: props.t('createrecord:form.consultation'),
-				},
-				{
-					id: 2,
-					value: props.t('createrecord:form.research')
-				}
-			],
-			markedDates: {
-				'2019-02-10': {
-					selected: true,
-					customStyles: selectedStyle,
-				},
-				'2019-02-08': {
-					customStyles: openStyle
-				},
-			},
-			props_data: {
-				type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
-				spec_id: (props.navigation.state.params) ? +props.navigation.state.params.spec_id : null,
-				docdep_id: (props.navigation.state.params) ? +props.navigation.state.params.docdep_id : null,
-			},
+			markedDates: {},
 		};
 	}
 
 	componentDidMount() {
-		// const {type, spec_id, docdep_id} = this.state.props_data;
-		const {lang_key} = this.props;
-	
+		const {lang_key, orderDatas} = this.props;
+		this.setDates(orderDatas.dates)
 		LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
-		// this.props.cleareOrderSuccess();
-		// this.props.cleareOrderDatas();
-	
-		// if (type) this.props.setOrder({type}, 'type', 'spec');
-		// if (spec_id && type == 1) this.props.setOrder({spec_id}, 'spec_id', 'doc');
-		// if (docdep_id) this.props.setOrder({docdep_id}, 'docdep_id'); 
 	}
 
 	componentDidUpdate(prevProps) {
@@ -118,9 +82,11 @@ class DateScreen extends Component {
 	}
 
 	selectDate = (date) => {
+		const { setDate, navigation } = this.props;
 		if (!this.state.markedDates[date]) return;
-		this.props.setDate({ date: moment(date, ["YYYY-MM-DD"]).format('DD.MM.YYYY').toString() });
+		setDate({ date: moment(date, ["YYYY-MM-DD"]).format('DD.MM.YYYY').toString() });
 		this.setState({ showDates: false });
+		navigation.goBack();
 	}
 
 	render() {

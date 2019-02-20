@@ -58,7 +58,11 @@ class DoctorScreen extends Component {
       (page == 'questions') ? 
         navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) 
       :
-        navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] });
+        navigation.navigate({
+          key: docdep_id,
+          routeName: page,
+          params: { spec_id, docdep_id, type: doctor.type[0]},
+        });
     }
   }
 

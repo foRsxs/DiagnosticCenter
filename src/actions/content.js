@@ -39,6 +39,7 @@ export function getListDoctors(spec_id, servid, order = false) {
       if (order) {
         if (response.data.filter(isAllow).length === 1) {
           dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
+          dispatch(setOrderValueSuccess({docdep: `${response.data[0].lastname} ${response.data[0].firstname} ${response.data[0].secondname}`}));
           dispatch(getListDates({docdep_id: response.data[0].docdep}));
         }
         dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
@@ -253,9 +254,11 @@ export function setDate(date) {
     if (order.time) dispatch(cleareOrderSuccess('date'));
     if (order.date !== date.date) {
       dispatch(getListTimes(date.date, true));
-      dispatch(setOrderSuccess(date))
+      dispatch(setOrderSuccess(date));
+      dispatch(setOrderValueSuccess(date));
     } else { 
       dispatch(setOrderSuccess({date: null}));
+      dispatch(setOrderValueSuccess({date: null}));
     }
   }
 }
@@ -263,7 +266,13 @@ export function setDate(date) {
 export function setTime(time) {
   return (dispatch, getState) => {
     const { content: {order} } = getState();
-    (order.time !== time.time) ? dispatch(setOrderSuccess(time)) : dispatch(setOrderSuccess({time: null}));
+    if (order.time !== time.time) {
+      dispatch(setOrderSuccess(time));
+      dispatch(setOrderValueSuccess(time));
+    } else {
+      dispatch(setOrderSuccess({time: null}));
+      dispatch(setOrderValueSuccess({time: null}));
+    }
   }
 }
 
@@ -279,7 +288,7 @@ export function saveOrder({type, rnumb_id, date, serv_id}) {
       type,
     })
     .then((response) => {
-      if (response.data) dispatch(setCreatingOrderSuccess(true));
+      if (response.data) dispatch(setCreatingOrderSuccess(true))
     })
   }
 }
@@ -353,6 +362,12 @@ export function getAnalizes({type='', res_id}) {
     .then((response) => {
       dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
     })
+  }
+}
+
+export function cleareOrder() {
+  return (dispatch) => {
+    dispatch(cleareOrderSuccess());
   }
 }
 
