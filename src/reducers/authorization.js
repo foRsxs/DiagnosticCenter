@@ -12,6 +12,7 @@ export default function authReducer(state = initialState.auth, action) {
         notify: true,
         pinCode: null,
         isGuest: false,
+        enableSecure: false,
         user: {}
       }
     case types.SET_CURRENT_LANG: 
@@ -23,6 +24,11 @@ export default function authReducer(state = initialState.auth, action) {
       return {
         ...state,
         notify: action.data
+      }
+    case types.SET_SECURE:
+      return {
+        ...state,
+        enableSecure: action.data
       }
     case types.SET_USER_GUEST:
       return {

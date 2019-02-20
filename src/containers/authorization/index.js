@@ -32,7 +32,8 @@ class AuthorizationScreen extends Component {
       isTouchId: false,
       isFaceId: false,
       showPopup: false,
-      showSms: false
+      showSms: false,
+      user: {}
     };
   }
 
@@ -42,6 +43,7 @@ class AuthorizationScreen extends Component {
     this.props.changeNotify(notify);
     this.props.setCurrentLang(languages_key);
     this.props.saveUser({ api_token: token });
+
     this.props.changeMethodsAuth({ methods_auth: methods_auth, confirmed: false });
     this.props.savePinCode({ code: pinCode, confirmed: false });
     this._checkTouchSupport();
@@ -74,8 +76,21 @@ class AuthorizationScreen extends Component {
   }
 
   onChangeSms = (value) => {
-    console.log(this.state.smsCode);
     this.setState({ smsCode: value });
+  }
+
+  checkSMSCode = () => {
+    const { smsCode, user } = this.state;
+    const { t, fullAuthUser, setAuthorized } = this.props;
+    if (+smsCode !== +user.sms_code) {
+      this.setState({ message: t('common:errors.wrong_sms_code') });
+      return;
+    } else {
+      this.setState({ message: '', showSms: false });
+      fullAuthUser(user);
+      setAuthorized(true);
+    }
+
   }
 
   clickOnPopup = () => {
@@ -107,6 +122,7 @@ class AuthorizationScreen extends Component {
       this.props.authUser({ phone: number, iin: personalId })
         .then((resp) => {
           this.setState({
+            user: resp,
             message: '',
             showSms: true,
             loading: false
@@ -127,7 +143,7 @@ class AuthorizationScreen extends Component {
 
     if (+code === +pinCode) {
       this.setState({ message: '' });
-      setAuthorized();
+      setAuthorized(true);
     } else {
       this.setState({ message: t('common:errors.wrong_pin_code') });
     }
@@ -164,7 +180,7 @@ class AuthorizationScreen extends Component {
 
     TouchID.authenticate('', optionalConfigObject)
       .then(() => {
-        this.props.setAuthorized();
+        this.props.setAuthorized(true);
       })
   }
 
@@ -269,16 +285,18 @@ class AuthorizationScreen extends Component {
   }
 
   renderSmsCode() {
-    const { formattedNumber } = this.state;
+    const { formattedNumber, message } = this.state;
     const { t } = this.props;
 
     return (
       <View style={styles.wrapAuthView}>
         <View style={styles.content}>
           <Text style={styles.smsTitle}>{t('authorization:auth_sms1')}{"\n"}{formattedNumber} {t('authorization:auth_sms2')}</Text>
-          <TextInput style={styles.inputSMS} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} />
-          <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => {}} />
+          <TextInput style={[styles.inputSMS, {marginBottom: 30}]} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} />
+          <Text style={[styles.errorMessage, {marginTop: 0, marginBottom: 10}]}>{message}</Text>
+          <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => this.checkSMSCode()} />
         </View>
+        
       </View>
     )
   }
@@ -326,7 +344,7 @@ class AuthorizationScreen extends Component {
   }
 
   render() {
-    const { t, token, methods_auth, confirmed_auth, pinCode } = this.props;
+    const { t, token, methods_auth, confirmed_auth, pinCode, enableSecure } = this.props;
     const { showPopup, showSms } = this.state;
 
     return (
@@ -340,10 +358,10 @@ class AuthorizationScreen extends Component {
           <Header isHome={false} isAuth={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
           {(!token && !showSms) && this.renderAuthView()}
           {(!token && showSms) && this.renderSmsCode()}
-          {(token && !methods_auth) && this.renderConfirmCodeChoose()}
-          {(token && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
-          {(token && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
-          {(token && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
+          {(token && enableSecure && !methods_auth) && this.renderConfirmCodeChoose()}
+          {(token && enableSecure && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
+          {(token && enableSecure && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}
+          {(token && enableSecure && methods_auth && methods_auth !== 'code' && !confirmed_auth) && this.renderTouchFaceId()}
         </KeyboardAwareScrollView>
         <Popup
           show={showPopup}
@@ -365,7 +383,9 @@ function mapStateToProps(state) {
     confirmed_auth: state.authorization.confirmed_auth,
     authMessage: state.content.authMessage,
     notify: state.authorization.notify,
-    languages_key: state.authorization.language
+    languages_key: state.authorization.language,
+    user: state.authorization.user,
+    enableSecure: state.authorization.enableSecure
   }
 }
 

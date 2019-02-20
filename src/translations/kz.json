@@ -214,7 +214,10 @@
         "items": {
             "auth": "Авторизациялану",
             "language": "Интерфейс тілі",
-            "push": "Push хабарлама"
+            "push": "Push хабарлама",
+            "newPinCode": "Сменить пин код",
+            "secureEnable": "Включить защиту личных данных",
+            "secureDisable": "Отключить защиту личных данных"
         }
     },
     "profile": {
@@ -267,7 +270,8 @@
         "errors": {
             "wrong_pin_code": "Қате PIN код ",
             "wrong_phone": "Қате телефон номері",
-            "wrong_inn": "Қате ЖСН"
+            "wrong_inn": "Қате ЖСН",
+            "wrong_sms_code": "Қате sms код"
         },
         "files": {
             "action_title": "Файлды сақтау",

@@ -215,7 +215,10 @@
         "items": {
             "auth": "Authorization",
             "language": "Interface language",
-            "push": "Push notifications"
+            "push": "Push notifications",
+            "newPinCode": "Сменить пин код",
+            "secureEnable": "Включить защиту личных данных",
+            "secureDisable": "Отключить защиту личных данных"
         }
     },
     "profile": {
@@ -269,7 +272,8 @@
         "errors": {
             "wrong_pin_code": "Invalid PIN code",
             "wrong_phone": "Invalid phone number",
-            "wrong_inn": "Incorrect IIN number"
+            "wrong_inn": "Incorrect IIN number",
+            "wrong_sms_code": "Invalid sms code"
         },
         "files": {
             "action_title": "Save file",
