@@ -36,6 +36,7 @@ class HomeScreen extends Component {
         {
           text: props.t(`home:menu_list.vacancy`),
           icon: ICON_VACANCY,
+          value: 'vacancy'
         },
         {
           text: props.t(`home:menu_list.faq`),
@@ -78,6 +79,7 @@ class HomeScreen extends Component {
   onPress = (type) => {
     const { navigation } = this.props;
     (type === 'LogOut') ? navigation.navigate('authorization') : navigation.navigate(type);
+    (type === 'vacancy') ? '' : '';
   }
 
   render() {

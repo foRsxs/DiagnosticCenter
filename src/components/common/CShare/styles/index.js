@@ -4,12 +4,12 @@ export default StyleSheet.create({
   moreIcon: {
     justifyContent: 'center',
     paddingLeft: 5,
-    width: 18,
-    height: 20,
+    width: 24,
+    height: 27,
     backgroundColor: 'transparent'
   },
   icon: {
-    width: 18,
-    height: 20
+    width: 24,
+    height: 27,
   }
 })

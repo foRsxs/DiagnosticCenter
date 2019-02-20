@@ -84,6 +84,18 @@ const ProfileNavigator = createStackNavigator(
         header: null
       }
     },
+    recordingList: {
+      screen: RecordingListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    recordingItem: {
+      screen: RecordingItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
   },
 );
 
@@ -92,7 +104,8 @@ ProfileNavigator.navigationOptions = ({ navigation }) => {
   let navigationOptions = {};
   
   if (routeName === 'analizes' || routeName === 'analizesItem' || routeName === 'settings' 
-    || routeName === 'cardPatientScreen' || routeName === 'cardPatientDetailScreen') {
+    || routeName === 'cardPatientScreen' || routeName === 'cardPatientDetailScreen'
+    || routeName === 'recordingList' || routeName === 'recordingItem') {
     navigationOptions.tabBarVisible = false;
   }
 
@@ -267,7 +280,8 @@ RecordNavigator.navigationOptions = ({ navigation }) => {
   let navigationOptions = {};
   
   if (routeName === 'specialization' || routeName === 'servicesDetail' || routeName === 'dateScreen'
-    || routeName === 'timeScreen' || routeName === 'checkRecordScreen') {
+    || routeName === 'timeScreen' || routeName === 'checkRecordScreen' || routeName === 'recordingList'
+    || routeName === 'recordingItem') {
     navigationOptions.tabBarVisible = false;
   }
 

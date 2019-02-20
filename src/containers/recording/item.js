@@ -7,14 +7,16 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
+import RecordingItem from '../../components/RecordingItem';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
 import ShareLinks from '../../components/common/ShareLinks';
 import Popup from '../../components/common/Popup';
 
-const { medium, large, main } = variables.fSize;
+const { medium, large, main, normal } = variables.fSize;
 
-import { ACCENT_BLUE, LIGHT_GRAY, MEDIUM_BLACK, BLACK, MAIN_FONT } from '../../styles/constants';
+import { ACCENT_BLUE, LIGHT_GRAY, MEDIUM_BLACK, BLACK, MAIN_FONT, COLOR_LIGHT_BLACK } from '../../styles/constants';
+import { ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
 
 class ReceptionInfoItemScreen extends Component {
   constructor(props) {
@@ -81,43 +83,64 @@ class ReceptionInfoItemScreen extends Component {
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
-        <Header text={t('recordings:item.title')} navigation={this.props.navigation} />
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} padder>
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{t('recordings:item.make_appointment')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{doctor}</Text>
-              <Text style={styles.txtSubname}>{spec}</Text>
-            </View>
-          </View>
-          {(serv) ? (
-            <View style={styles.itemWrap}>
-              <Text style={styles.txtHead}>{t('recordings:item.selected_service')}:</Text>
-              <View style={styles.wrapName}>
-                <Text style={styles.txtName}>{serv}</Text>
-                {price && <Text style={styles.txtSubname}>{`(${price}) KZT`}</Text>}
+        <Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
+        <Content>
+          <View style={styles.wrapper}>
+            <RecordingItem
+              icon={ICON_SERVICE_SMALL}
+              title={t('createrecord:form.service')}
+              placeholder={t('createrecord:form.select_service')}
+              text={serv}
+            />
+            <View style={styles.datetimeWrap}>
+              <View style={{ flex: 2 }}>
+                <RecordingItem
+                  icon={ICON_PRICE_SMALL}
+                  title={t('createrecord:price')}
+                  placeholder={t('createrecord:price')}
+                  text={price && <Text style={styles.txtSubname}>{`(${price}) KZT`}</Text>}
+                />
+              </View>
+              <View style={styles.separator}></View>
+              <View style={{ flex: 1 }}>
+                <RecordingItem
+                  contentContainerStyle={{ paddingLeft: 10 }}
+                  icon={ICON_NUMBER_SMALL}
+                  title={t('createrecord:room_number')}
+                  text={room}
+                  placeholder='300'
+                />
               </View>
             </View>
-          ) : (
-              <View style={styles.itemWrap}>
-                <Text style={styles.txtHead}>{t('recordings:item.selected_service')}:</Text>
-                <View style={styles.wrapName}>
-                  <Text style={styles.txtName}>{spec}</Text>
-                </View>
+            <RecordingItem
+              icon={ICON_DOCTOR_SMALL}
+              title={t('createrecord:form.doctor')}
+              placeholder={t('createrecord:form.select_doctor')}
+              text={doctor}
+            />
+            <View style={styles.datetimeWrap}>
+              <View style={{ flex: 2 }}>
+                <RecordingItem
+                  icon={ICON_CALENDAR_SMALL}
+                  title={t('createrecord:form.date')}
+                  placeholder={t('createrecord:form.select_date')}
+                  text={date}
+                />
               </View>
-            )}
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{t('recordings:item.date_time')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{date}</Text>
-              <Text style={styles.txtSubname}>{time}</Text>
+              <View style={styles.separator}></View>
+              <View style={{ flex: 1 }}>
+                <RecordingItem
+                  contentContainerStyle={{ paddingLeft: 10 }}
+                  icon={ICON_TIME_SMALL}
+                  title={t('createrecord:form.time')}
+                  placeholder='12:00'
+                  text={time}
+                />
+              </View>
             </View>
           </View>
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{t('recordings:item.room')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>№ {room}</Text>
-            </View>
+          <View style={styles.helpText}>
+            <Text>{t('createrecord:help_text')}</Text>
           </View>
           {
             (reserved && pdf) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
@@ -186,6 +209,28 @@ const styles = StyleSheet.create({
     width: 20,
     height: 15,
     marginRight: 10
+  },
+  wrapper: {
+    paddingHorizontal: 20,
+    flex: 1
+  },
+  datetimeWrap: {
+    flexDirection: 'row',
+    flex: 1
+  },
+  separator: {
+    marginVertical: 10,
+    borderLeftWidth: 1,
+    borderColor: ACCENT_BLUE
+  },
+  helpText: {
+    fontSize: normal,
+    color: COLOR_LIGHT_BLACK,
+    fontFamily: MAIN_FONT,
+    paddingLeft: 50,
+    paddingRight: 30,
+    marginBottom: 0,
+    marginTop: 10
   }
 });
 

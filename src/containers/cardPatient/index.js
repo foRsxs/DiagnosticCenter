@@ -21,15 +21,15 @@ class CardPatientScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getAnalizes({ type: '_list' })
+    this.props.getHistory({ type: 'list' });
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.analizes_list !== this.props.analizes_list) this.setState({ loading: false });
+    if (prevProps.history_list !== this.props.history_list) this.setState({ loading: false });
   }
 
   render() {
-    const { t, analizes_list } = this.props;
+    const { t, history_list } = this.props;
     const { loading, shareLoading } = this.state;
 
     return (
@@ -43,30 +43,30 @@ class CardPatientScreen extends Component {
           <List>
             {
               (!loading) && (
-                (analizes_list && analizes_list.length) ? (
-                  analizes_list.map((item, index) => (
+                (history_list && history_list.length) ? (
+                  history_list.map((item, index) => (
                     <AnalizesItem
                       key={index}
                       headTxt={item.text}
-                      dateTxt={item.dat_string}
+                      dateTxt={item.dat}
                       pdf={item.pdf}
                       isLoading={(value) => this.setState({ shareLoading: value })}
                       onPress={() => {
                         this.props.navigation.navigate({
-                          routeName: "analizesItem",
+                          routeName: "cardPatientDetailScreen",
                           key: index,
                           params: {
-                            res_id: item.res_id,
-                            date: item.dat_string,
+                            keyid: item.keyid,
+                            p_type: item.p_type,
                             pdf: item.pdf,
                             headTxt: item.text,
-                            dateTxt: item.dat_string
+                            dateTxt: item.dat
                           }
                         });
                       }}
                     />
                   ))
-                ) : (<Text>{t('patient:no_patient_text')}</Text>)
+                ) : (<Text>{t('history:no_histories_text')}</Text>)
               )
             }
           </List>
@@ -89,8 +89,9 @@ const styles = StyleSheet.create({
   }
 })
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    analizes_list: state.content.analizes.list
+    history_list: state.content.history.list,
   }
 }
 
@@ -98,4 +99,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch);
 }
 
-export default withNamespaces('patient')(connect(mapStateToProps, mapDispatchToProps)(CardPatientScreen));
+export default withNamespaces(['patient','history'])(connect(mapStateToProps, mapDispatchToProps)(CardPatientScreen));

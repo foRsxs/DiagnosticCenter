@@ -64,8 +64,8 @@ export default StyleSheet.create({
 		backgroundColor: ACCENT_BLUE,
 		zIndex: 3,
 		height: scale(60),
-		paddingTop: scale(15),
-		paddingHorizontal: scale(15)
+		paddingTop: 15,
+		paddingHorizontal: 15
 	},
 	leftContainer: {
 		flex: 3,
@@ -113,7 +113,7 @@ export default StyleSheet.create({
 		lineHeight: scale(22),
 		width: '100%',
 		textAlign: 'center',
-		paddingHorizontal: scale(30)
+		paddingHorizontal: 30
 	},
 	ovalWrap: {
 		alignItems: 'center',
@@ -137,7 +137,7 @@ export default StyleSheet.create({
 	inputContainerSearch: {
 		flex: 9,
 		position: 'relative',
-		marginLeft: scale(40)
+		marginLeft: 40
 	},
 	searchIcon: {
 		position: 'absolute',
@@ -151,9 +151,9 @@ export default StyleSheet.create({
 		width: '100%',
 		height: scale(35),
 		padding: 0,
-		paddingLeft: scale(30),
-		paddingRight: scale(10),
-		borderRadius: scale(5),
+		paddingLeft: 30,
+		paddingRight: 10,
+		borderRadius: 5,
 		backgroundColor: WHITE
 	},
 });

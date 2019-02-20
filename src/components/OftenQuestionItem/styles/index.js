@@ -31,17 +31,18 @@ export default StyleSheet.create({
         width: '100%',
         paddingTop: 5
     },
-    iconWrap: {
-        position: 'absolute',
-        width: 20,
-        height: 20,
-        top: 15,
-        right: 15,
-        zIndex: 1,
+    itemClick: {
+        width: '100%'
     },
     icon: {
         color: COLOR_TEXT_GREEN,
         fontSize: 20,
         fontFamily: MAIN_FONT,
+        position: 'absolute',
+        width: 20,
+        height: 20,
+        top: 0,
+        right: 0,
+        zIndex: 1,
     },
 });
