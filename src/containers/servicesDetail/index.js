@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { Container, Content, View, Text, List } from 'native-base';
+import { ActivityIndicator,ScrollView } from 'react-native';
+import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -60,10 +60,10 @@ class ServicesDetailScreen extends Component {
             <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
               { (isOrder) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
-              <List>
-                {
-                  (loading && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                    (
+              {
+                (loading && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : ( 
+                  <ScrollView>
+                    {
                       services.map((item, index) => (
                         <SpecializationItem
                           key={index}
@@ -76,10 +76,10 @@ class ServicesDetailScreen extends Component {
                           price={item.price}
                         />
                       ))
-                    )
-                }
-              </List>
-                
+                    }
+                  </ScrollView>
+                )
+              }
             </Content >
           </Container>
         </View>

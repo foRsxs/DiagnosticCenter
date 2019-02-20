@@ -160,7 +160,7 @@ class ReceptionCreateScreen extends Component {
                 <RecordingItem
                   onClick={() => {
                     if (!order.spec_id) return;
-                    navigation.navigate('servicesDetail', { isOrder: true })
+                    navigation.navigate({ routeName: 'servicesDetail',  params: { isOrder: true }, key: order.spec_id });
                   }}
                   icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')}
                   text={orderValues.serv}
@@ -198,6 +198,7 @@ class ReceptionCreateScreen extends Component {
                       icon={ICON_TIME_SMALL}
                       title={t('createrecord:form.time')}
                       text={orderValues.time}
+                      placeholder='12:00'
                     />
                   </View>
                 </View>

@@ -26,22 +26,21 @@ class DoctorList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.list_Doctors !== this.props.list_Doctors) {
-    //   this.setState({
-    //     loading: false, 
-    //     sorted_list_Doctors: this.props.list_Doctors
-    //   });
-    // }
+    if (prevProps.orderDatas.doctors !== this.props.orderDatas.doctors) {
+      this.setState({
+        loading: false
+      });
+    }
   }
 
   render() {
     let { isOrder, loading } = this.state;
-    const { t, recording = false, orderDatas, setOrderValue, setOrder, navigation } = this.props;
+    const { t, orderDatas, setOrderValue, setOrder, navigation } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
       <Container>
-        <Header backButton={true} text={'Выберите врача'} navigation = {this.props.navigation} /> 
+        <Header backButton={true} text={t('createrecord:form.select_doctor')} navigation = {this.props.navigation} /> 
         <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
           {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
           {
@@ -97,4 +96,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces('listdoctors')(connect(mapStateToProps, mapDispatchToProps)(DoctorList));
+export default withNamespaces(['listdoctors', 'createrecord'])(connect(mapStateToProps, mapDispatchToProps)(DoctorList));
