@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   textBtn: {
     fontFamily: MAIN_FONT,
-    fontSize: variables.fSize.medium,
+    fontSize: variables.fSize.large,
     textAlignVertical: 'center',
     textAlign: 'center',
     letterSpacing: 2
