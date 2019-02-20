@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Root } from 'native-base';
-import { NetInfo } from 'react-native';
+import { NetInfo, } from 'react-native';
 import { Provider } from 'react-redux';
 import { offlineActionTypes } from 'react-native-offline';
 import OneSignal from 'react-native-onesignal';
@@ -33,7 +33,9 @@ export default class App extends Component {
 
   componentWillUnmount = () => {
     NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectionChange);
+
   };
+
 
   _handleConnectionChange = (isConnected) => {
     this.state.store.dispatch({
