@@ -35,7 +35,6 @@ export function getListDoctors(spec_id, servid, order = false) {
       isAllow = (value) => {
         return +value.allow === 1;
       }
-      console.log(order, response.data)
       if (order) {
         if (response.data.filter(isAllow).length === 1) {
           dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
@@ -53,6 +52,7 @@ export function getListDoctors(spec_id, servid, order = false) {
 export function getListServices(id, auto_push = false) {
   return (dispatch, getState) => {
     const { authorization, content: {order} } = getState();
+
     axios.post(`${APP_API_URL}/services`, {
       type: order.type,
       spec_id: id,
@@ -71,6 +71,7 @@ export function getListServices(id, auto_push = false) {
 export function getDoctor(doc_id) {
   return (dispatch, getState) => {
     const { authorization: {language} } = getState();
+
     axios.post(`${APP_API_URL}/doctor`, {
       doc_id,
       lang: language
@@ -266,6 +267,7 @@ export function setDate(date) {
 export function setTime(time) {
   return (dispatch, getState) => {
     const { content: {order} } = getState();
+
     if (order.time !== time.time) {
       dispatch(setOrderSuccess(time));
       dispatch(setOrderValueSuccess(time));
@@ -279,6 +281,7 @@ export function setTime(time) {
 export function saveOrder({type, rnumb_id, date, serv_id}) {
   return (dispatch, getState) => {
     const { authorization } = getState();
+    
     axios.post(`${APP_API_URL}/get_talon`, {
       api_token: authorization.token,
       lang: authorization.language,

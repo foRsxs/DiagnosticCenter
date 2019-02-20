@@ -21,42 +21,46 @@ class SpecializationScreen extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
       loading: (props.orderDatas.specialities) ? false : true,
+      specialities: props.orderDatas.specialities
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) this.setState({loading: false });
+    if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) {
+      this.setState({ loading: false });
+    }
   }
 
-  call = () => {
-    Linking.openURL(`tel:${CALL_CENTRE_TEL}`);
-    this.setState({ modalVisible: false });
+  handleChange = (value) => {    
+    findElements = (item) => {
+      return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    }
+
+    this.setState({ specialities: this.props.orderDatas.specialities.filter(findElements)});
   }
 
   render() {
-    const { modalVisible, loading } = this.state;
-    const { t, orderDatas, order, setOrder, navigation, setOrderValue } = this.props;
+    const { loading, specialities } = this.state;
+    const { t, order, setOrder, navigation, setOrderValue } = this.props;
 
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header backButton={true} search={true} navigation={this.props.navigation} />
+            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              {(orderDatas.specialities && orderDatas.specialities.length) && (
+              {(specialities.length > 0) && (
                 <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
               )}
               <List>
                 {
                   (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                     (
-                      (orderDatas.specialities && orderDatas.specialities.length) ? (
-                        orderDatas.specialities.map((item, index) => (
+                      (specialities && specialities.length) ? (
+                        specialities.map((item, index) => (
                           <SpecializationItem
                             key={index}
-                            //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
                             onClick={() => {
                               setOrderValue({spec: item.spec_name});
                               (order.type === 1) ? setOrder({spec_id: item.spec_id}, 'spec_id', 'doc') : setOrder({spec_id: item.spec_id}, 'spec_id');
@@ -68,22 +72,12 @@ class SpecializationScreen extends Component {
                           />
                         ))
                       ) : (
-                          <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
-                        )
+                        <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
+                      )
                     )
                 }
               </List>
             </Content >
-            <LinkBtn label={t('specialization:no_doctor_choose_link_text')} onClick={() => this.setState({ modalVisible: true })} />
-            <Popup
-              show={modalVisible}
-              firstText={t('specialization:form.fisrt_text')}
-              secondText={t('specialization:form.last_text')}
-              laberButton={t('common:actions.call')}
-              actionButton={this.call}
-              labelLink={t('common:actions.close')}
-              actionLink={() => this.setState({ modalVisible: false })}
-            />
           </Container>
         </View>
       </View>

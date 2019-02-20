@@ -78,11 +78,11 @@ class ProfileScreen extends Component {
           <View style={styles.prifileBlock}>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:name')}</Text>
-              <Text style={styles.text}>{user.lastname} {user.firstname} {user.secondname}</Text>
+              <Text style={styles.text}>{`${user.lastname} ${user.firstname} ${user.secondname}`}</Text>
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:birthDate')}</Text>
-              <Text style={styles.text}>-</Text>
+              <Text style={styles.text}>{user.birth_date}</Text>
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:phone')}</Text>
@@ -90,7 +90,7 @@ class ProfileScreen extends Component {
             </View>
             <View style={styles.prifileItem}>
               <Text style={styles.titles}>{t('profile:address')}</Text>
-              <Text style={styles.text}>-</Text>
+              <Text style={styles.text}>{user.address}</Text>
             </View>
           </View>
           <MenuList onPress={(value)=>this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />

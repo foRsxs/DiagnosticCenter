@@ -6,11 +6,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import SpecializationItem from '../../components/SpecializationItem';
-import Popup from '../../components/common/Popup';
-import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
+import { APP_IMG_URL } from '../../config';
 
 import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
@@ -27,14 +25,16 @@ class ServicesScreen extends Component {
 
   handleChange = (value) => {
     const { list_specialization } = this.props;
-    function findElements(item) {
+
+    findElements = (item) => {
       return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
+
     this.setState({ sorted_list_specialization: list_specialization.filter(findElements) });
   }
 
   componentDidMount() {
-    if (!this.props.list_specialization) this.props.getListSpecialization(1);
+    this.props.getListSpecialization(2);
   }
 
   componentDidUpdate(prevProps) {
@@ -42,14 +42,14 @@ class ServicesScreen extends Component {
   }
 
   render() {
-    const { modalVisible, sorted_list_specialization, loading } = this.state;
+    const { sorted_list_specialization, loading } = this.state;
     const { t } = this.props;
 
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header search={true} navigation={this.props.navigation} />
+            <Header search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
               <List style={styles.list}>
                 {
@@ -59,15 +59,14 @@ class ServicesScreen extends Component {
                         sorted_list_specialization.map((item, index) => (
                           <SpecializationItem
                             key={index}
-                            //onClick={() => this.props.navigation.navigate({ routeName: 'listDoctors', params: { spec_id: item.spec_id }, key: item.spec_id })}
-                            onClick={() => this.props.navigation.navigate('servicesDetail')}
+                            onClick={() => this.props.navigation.navigate({ routeName: 'servicesDetail', params: { spec_id: item.spec_id }, key: item.spec_id })}
                             headTxt={item.spec_name}
                             imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
                           />
                         ))
                       ) : (
-                          <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
-                        )
+                        <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
+                      )
                     )
                 }
               </List>

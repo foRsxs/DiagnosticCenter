@@ -15,79 +15,71 @@ import { ACCENT_BLUE } from '../../styles/constants';
 class ServicesDetailScreen extends Component {
 
   constructor(props) {
-    console.log(props)
     super(props);
     this.state = {
-      modalVisible: false,
-      loading: (props.orderDatas.services) ? false : true,
-      serviceList: [
-        {
-          text: 'МРТ головы',
-          price: 1000
-        },
-        {
-          text: 'МРТ брюшной полости',
-          price: 1000
-        }
-      ],
+      loading: true,
+      spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false,
+      services: props.orderDatas.services,
     };
   }
 
+  componentDidMount() {
+    const { spec_id } = this.state;
+
+    if (spec_id) {
+      this.props.getListServices(spec_id);
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    if (prevProps.orderDatas.services !== this.props.orderDatas.services) this.setState({ loading: false });
+    if (prevProps.orderDatas.services !== this.props.orderDatas.services) { 
+      this.setState({
+        services: this.props.orderDatas.services,
+        loading: false,
+      });
+    }
+  }
+
+  handleChange = (value) => {    
+    findElements = (item) => {
+      return item.text.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+    }
+
+    this.setState({ services: this.props.orderDatas.services.filter(findElements)});
   }
 
   render() {
-    const { serviceList, loading, isOrder } = this.state;
-    const { t, orderDatas, order, setOrder, navigation, setOrderValue } = this.props;
+    const { loading, isOrder, services } = this.state;
+    const { t, setOrder, navigation, setOrderValue } = this.props;
 
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header backButton={true} search={true} navigation={this.props.navigation} />
+            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              <Text style={styles.title}>{t('createrecord:form.select_service')}</Text>
-              {
-                (isOrder) ? (
-                  <List>
-                    {
-                      (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                        (
-                          orderDatas.services.map((item, index) => (
-                            <SpecializationItem
-                              key={index}
-                              onClick={() => {
-                                setOrderValue({ serv: item.text });
-                                setOrder({ servid: item.servid }, 'servid');
-                                navigation.goBack()
-                              }}
-                              headTxt={item.text}
-                              price={item.price}
-                            />
-                          ))
-                        )
-                    }
-                  </List>
-                ) : (
-                    <List>
-                      {
-                        (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                          (
-                            serviceList.map((item, index) => (
-                              <SpecializationItem
-                                key={index}
-                                headTxt={item.text}
-                                price={item.price}
-                              />
-                            ))
-                          )
-                      }
-                    </List>
-                  )
-              }
-
+              { (isOrder) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
+              <List>
+                {
+                  (loading && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                    (
+                      services.map((item, index) => (
+                        <SpecializationItem
+                          key={index}
+                          onClick={() => {
+                            setOrderValue({ serv: item.text });
+                            setOrder({ servid: item.servid }, 'servid');
+                            navigation.goBack()
+                          }}
+                          headTxt={item.text}
+                          price={item.price}
+                        />
+                      ))
+                    )
+                }
+              </List>
+                
             </Content >
           </Container>
         </View>

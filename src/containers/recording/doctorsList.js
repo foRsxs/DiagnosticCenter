@@ -18,17 +18,11 @@ const { medium } = variables.fSize;
 class DoctorList extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false,
-      loading: (props.orderDatas.services) ? false : true,
+      loading: (props.orderDatas.doctors) ? false : true,
     };
-  }
-
-  componentDidMount() {
-
-    //this.props.getListDoctors();
   }
 
   componentDidUpdate(prevProps) {
@@ -68,7 +62,7 @@ class DoctorList extends Component {
                       info={item.description_short}
                     />
                   ))
-                ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
+                ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, margin: 15}}>{ t('listdoctors:no_doctors_text') }</Text>
               ): (
                 (sorted_list_Doctors.length)? (
                   sorted_list_Doctors.map((item, index)=>(
