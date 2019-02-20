@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     height: scale(200),
     position: 'absolute',
     top: scale(10),
-    alignItems: 'center'
+    alignItems: 'center',
   },
   avatar: {
     width: scale(200),
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     height: scale(195),
     width: '100%',
     backgroundColor: BACKGROUND_BLUE,
-    marginTop: scale(-20),
+    marginTop: scale(-15),
     justifyContent: 'flex-end'
   },
   tabs: {
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   },
   mainInfo: {
     width: '100%',
-    paddingHorizontal: scale(15),
+    paddingHorizontal: scale(25),
     paddingVertical: scale(10),
     borderBottomWidth: 0.5,
     borderColor: COLOR_NEW_GRAY
@@ -95,12 +95,8 @@ export const styles = StyleSheet.create({
   blockInfo: {
     width: '100%',
     paddingVertical: scale(10),
-    paddingHorizontal: scale(15),
-    marginBottom: scale(85)
-  },
-  emptyBlock: {
-    width: '100%',
-    height: scale(85)
+    paddingHorizontal: scale(25),
+    paddingBottom: scale(120),
   },
   wrapBtnQuest: {
     width: '100%',
@@ -161,8 +157,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
     zIndex: 14,
-    paddingTop: scale(10),
-    paddingBottom: scale(25),
+    paddingBottom: scale(35),
     paddingHorizontal: scale(25)
   },
   redBtn: {
@@ -190,6 +185,6 @@ export const stylesHtml = StyleSheet.create({
     padding: 0,
   },
   li: {
-    color: MEDIUM_BLACK
+    color: MEDIUM_BLACK,
   }
 });

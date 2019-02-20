@@ -113,7 +113,7 @@
         "in_text": "в",
         "short_room_text": "каб.",
         "item": {
-            "title": "Запись на приём",
+            "title": "Записаться на приём",
             "check_info": "проверьте информацию",
             "make_appointment": "вы записываетесь на прием",
             "selected_service": "выбранная услуга",
@@ -130,7 +130,7 @@
         }
     },
     "createrecord": {
-        "title": "Запись на приём",
+        "title": "Записаться на приём",
         "form": {
             "consultation": "Консультация",
             "research": "Исследования",
@@ -187,7 +187,9 @@
         "title": "FAQ",
         "no_often_questions_text": "Вопросов не найдено",
         "titleMain": "Часто задаваемые вопросы",
-        "subtitleMain": "Если у вас возникли дополнительные вопросы. Позвоните в call-центр"
+        "subtitleMain": "Если у вас возникли дополнительные вопросы. Позвоните в call-центр",
+        "hide_answer": "скрыть ответ",
+        "show_answer": "посмотреть ответ"
     },
     "contacts": {
         "title": "Контакты",
@@ -241,7 +243,7 @@
             "send_msg": "Отправить сообщение",
             "send_to_mail": "Отправить на e-mail",
             "save_to_gallery": "Сохранить в галерею",
-            "appointment": "Запись на приём", 
+            "appointment": "Записаться на приём", 
             "ask_question": "Задать вопрос",
             "add_recording": "Добавить запись",
             "continue": "Продолжить",

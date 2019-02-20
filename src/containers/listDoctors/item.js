@@ -58,22 +58,26 @@ class DoctorScreen extends Component {
       (page == 'questions') ? 
         navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) 
       :
-        navigation.navigate(page, { spec_id, docdep_id, type: doctor.type[0] });
+        navigation.navigate({
+          key: docdep_id,
+          routeName: page,
+          params: { spec_id, docdep_id, type: doctor.type[0]},
+        });
     }
   }
 
   renderProfile() {
     const { doctor } = this.props;
     const { loading } = this.state;
-    let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p>', 'g'), '<span>').replace(new RegExp('</p>', 'g'), '</span>') : '';
+    let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p', 'g'), '<span').replace(new RegExp('</p>', 'g'), '</span>') : '';
     
     return (
       <View style={styles.bottomContainer}>
         {
           (loading) ? 
-          <ActivityIndicator size="large" color={ACCENT_BLUE} />
+          (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
           : 
-          <KeyboardAwareScrollView>
+          (<KeyboardAwareScrollView>
             <View style={styles.mainInfo}>
               <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
               <Text style={styles.speciality}>{doctor.speciality}</Text>
@@ -84,9 +88,8 @@ class DoctorScreen extends Component {
                 stylesheet={stylesHtml}
                 value={`<p>${description}</p>`}
               />
-              <View style={styles.emptyBlock} />
             </View>
-          </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView>)
         } 
       </View>
     )
@@ -117,7 +120,7 @@ class DoctorScreen extends Component {
                   (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
                 }
                 <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
-                  <Text style={styles.openInfo}>{(moreInfo) ? 'скрить ответ' : 'посмотреть ответ'}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
+                  <Text style={styles.openInfo}>{(moreInfo) ? t('faq:hide_answer') : t('faq:show_answer')}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
                 </TouchableOpacity>
               </View> 
             )) : <Text style={styles.emptyData}>{t('faq:no_often_questions_text')}</Text>
