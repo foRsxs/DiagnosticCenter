@@ -15,7 +15,7 @@ class SpecializationItem extends Component {
 
     return (
       <ListItem onPress={() => this.props.onClick()} style={styles.specItem}>
-        <Left>
+        <Left style={styles.leftAlign}>
           {(imageUri) && (
             <Image
               style={styles.specIcon}
@@ -28,7 +28,7 @@ class SpecializationItem extends Component {
         </Left>
         <Right>
           {(price) ? (
-            <Text style={styles.price}>{price}{"\n"}KZT</Text>
+            <Text style={styles.price}>{price}{"\n"}<Text style={styles.currency}>KZT</Text></Text>
           ) : (redArrow) ? (
             <View style={styles.wrapArrowRed}>
               <Icon style={styles.arrowRed} active name="ios-arrow-forward" />

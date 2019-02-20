@@ -18,27 +18,27 @@ class ProfileScreen extends Component {
     this.state = {
       menuList: [
         {
-          text: 'Карта пациента',
+          text: props.t('patient:title'),
           icon: ICON_CARD_PATIENT,
-          value: 'cardPatientDetailScreen'
+          value: 'cardPatientScreen'
         },
         {
-          text: 'Результаты анализов',
+          text: props.t('analizes:title'),
           icon: ICON_ANALIZE,
           value: 'analizes'
         },
         {
-          text: 'Журнал записей на приём',
+          text: props.t('profile:journal'),
           icon: ICON_JOURNAL_POSTS,
           value: "recordingList"
         },
         {
-          text: 'Настройки',
+          text: props.t('menu:settings'),
           icon: ICON_SETTINGS,
           value: 'settings'
         },
         {
-          text: 'Выход из учётной записи',
+          text: props.t('profile:logout'),
           icon: ICON_LOGOUT,
           value: 'LogOut'
         },
@@ -110,4 +110,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...AuthActions }, dispatch)
 }
 
-export default withNamespaces(['profile', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ProfileScreen));
+export default withNamespaces(['profile', 'common', 'patient', 'analizes', 'menu'])(connect(mapStateToProps, mapDispatchToProps)(ProfileScreen));

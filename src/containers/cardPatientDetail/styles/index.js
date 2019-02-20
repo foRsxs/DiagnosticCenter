@@ -16,7 +16,9 @@ export default StyleSheet.create({
         color: MEDIUM_BLACK,
         fontFamily: MAIN_FONT,
         fontSize: medium,
-        textAlign: 'center'
+        textAlign: 'center',
+        lineHeight: 19,
+        marginBottom: 10
     },
     bottomText: {
         color: MEDIUM_BLACK,

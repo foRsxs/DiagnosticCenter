@@ -30,8 +30,7 @@ export default StyleSheet.create({
     },
     text: {
         fontSize: large,
-        color: BLACK,
-        fontFamily: DARK_GREY,
+        color: DARK_GREY,
         fontFamily: MAIN_FONT,
         lineHeight: 22
     }

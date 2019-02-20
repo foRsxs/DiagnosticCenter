@@ -100,7 +100,7 @@ class Header extends Component {
 					{
 						(plusButton) && (
 							<View style={styles.headerRight} >
-								<TouchableOpacity onPress={() => {}}>
+								<TouchableOpacity onPress={() => this.props.navigation.navigate('recordingCreate')}>
 									<Icon ios='ios-add' android="ios-add" style={{ color: 'white', paddingLeft: 5, fontSize: 36 }} />
 								</TouchableOpacity>
 							</View>

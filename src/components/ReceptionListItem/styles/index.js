@@ -2,9 +2,15 @@ import { StyleSheet } from 'react-native';
 import variables from '../../../styles/variables';
 import { BACKGROUND_BLUE, BLACK, ACCENT_BLUE, MAIN_FONT, RED, MEDIUM_BLACK } from '../../../styles/constants';
 
-const { medium, normal, main } = variables.fSize;
+const { medium, normal, large, main } = variables.fSize;
 
 export default StyleSheet.create({
+  listWrap: {
+		marginLeft: 0, 
+		paddingLeft: 15, 
+		paddingTop: 10, 
+		paddingBottom: 10
+	},
   moreIcon: {
     justifyContent: 'center',
     paddingLeft: 5,
@@ -16,38 +22,30 @@ export default StyleSheet.create({
     backgroundColor: 'transparent'
   },
   receptionItem: {
-    borderRadius: 10,
     alignItems: "flex-start",
     width: '100%',
-    backgroundColor: BACKGROUND_BLUE,
-    marginBottom: 10,
-    padding: 10,
     position: 'relative',
   },
   receptionItemDisable: {
-    borderRadius: 10,
     alignItems: "flex-start",
     width: '100%',
-    backgroundColor: BACKGROUND_BLUE,
-    marginBottom: 10,
-    padding: 10,
     position: 'relative',
     opacity: 0.5
   },
   txtHead: {
     color: BLACK,
-    fontSize: medium
+    fontSize: large
   },
   txtHeadServ: {
     color: BLACK,
     fontFamily: MAIN_FONT,
-    fontSize: normal,
+    fontSize: main,
     paddingTop: 3
   },
   txtTime: {
     color: ACCENT_BLUE,
     fontFamily: MAIN_FONT,
-    fontSize: main
+    fontSize: medium
   },
   txtName: {
     color: MEDIUM_BLACK,

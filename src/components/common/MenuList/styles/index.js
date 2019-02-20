@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../../styles/variables';
+import variables, {scale} from '../../../../styles/variables';
 import { COLOR_DARK_BLUE } from '../../../../styles/constants';
 
 const { large } = variables.fSize;
@@ -21,5 +21,8 @@ export default StyleSheet.create({
 		textAlign: 'left',
 		color: COLOR_DARK_BLUE,
 		fontSize: large
+	},
+	arrow: {
+		fontSize: 24
 	}
 });

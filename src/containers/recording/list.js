@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import CustomBtn from '../../components/common/CustomBtn'
 import ReceptionListItem from '../../components/ReceptionListItem'
 import Header from '../../components/common/Header';
 
@@ -86,10 +85,7 @@ class ReceptionListScreen extends Component {
               ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('recordings:no_recordings_text')}</Text>)
             )
           }
-        </Content >
-        <View style={{ paddingHorizontal: 15, paddingVertical: 20 }}>
-          <CustomBtn label={t('common:actions.add_recording')} onClick={() => navigate('recordingCreate')} />
-        </View>
+        </Content>
       </Container>
     )
   }

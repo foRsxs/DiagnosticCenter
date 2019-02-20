@@ -29,7 +29,7 @@ class MenuList extends Component {
 								<Text style={styles.listText}>{x.text}</Text>
 							</Left>
 							<Right>
-								<Icon active name="ios-arrow-forward" />
+								<Icon style={styles.arrow} active name="ios-arrow-forward" />
 							</Right>
 						</ListItem>
 					))

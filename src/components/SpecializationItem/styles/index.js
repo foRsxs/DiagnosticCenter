@@ -10,14 +10,14 @@ import {
   COLOR_TEXT_GREEN
 } from '../../../styles/constants';
 
-const { large, medium } = variables.fSize;
+const { large, medium, main } = variables.fSize;
 
 export default StyleSheet.create({
   specItem: {
     marginLeft: 0,
-    paddingLeft: scale(15),
-    paddingTop: scale(8),
-    paddingBottom: scale(8)
+    paddingLeft: 15,
+    paddingTop: 8,
+    paddingBottom: 8
   },
   specItemText: {
     fontSize: large,
@@ -27,18 +27,18 @@ export default StyleSheet.create({
     letterSpacing: 1
   },
   specIcon: {
-    marginRight: scale(10),
-    width: scale(25),
-    height: scale(25),
+    marginRight: 10,
+    width: 25,
+    height: 25,
   },
   arrow: {
     color: ACCENT_BLUE,
-    fontSize: scale(24)
+    fontSize: 24
   },
   wrapArrowRed: {
-    width: scale(30),
-    height: scale(30),
-    borderRadius: scale(30),
+    width: 30,
+    height: 30,
+    borderRadius: 30,
     backgroundColor: RED,
     alignItems: 'center',
     justifyContent: 'center'
@@ -51,6 +51,14 @@ export default StyleSheet.create({
     textAlign: 'right',
     color: COLOR_TEXT_GREEN,
     fontSize: medium,
-    lineHeight: scale(18)
+    lineHeight: 18
+  },
+  leftAlign: {
+    alignItems: 'center'
+  },
+  currency: {
+    color: COLOR_TEXT_GREEN,
+    lineHeight: 18,
+    fontSize: main,
   }
 });
