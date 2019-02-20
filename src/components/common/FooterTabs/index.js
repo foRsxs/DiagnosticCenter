@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, Alert } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { withNavigation } from 'react-navigation';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as AuthActions from '../../../actions/auth';
 
 import styles from './styles';
 import {
@@ -26,13 +30,14 @@ class FooterTabs extends Component {
 	}
 
 	render() {
-		const { t, navigation } = this.props;
-    const { routeName } = navigation.state.routes[navigation.state.index];
+		const { t, navigation, user } = this.props;
+		const { routeName } = navigation.state.routes[navigation.state.index];
 
 		return (
 			<Footer style={styles.container}>
 				<FooterTab style={[{ backgroundColor: 'white' }]}>
-					<Button transparent
+					<Button 
+						transparent
 						style={styles.button}
 						onPress={() => navigation.navigate('home')}>
 						<Image
@@ -42,7 +47,8 @@ class FooterTabs extends Component {
 						/>
 						<Text uppercase={false} style={(routeName === 'Main') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:home')}</Text>
 					</Button>
-					<Button transparent
+					<Button 
+						transparent
 						style={styles.button}
 						onPress={() => navigation.navigate('listDoctors')}>
 						<Image
@@ -52,9 +58,29 @@ class FooterTabs extends Component {
 						/>
 						<Text uppercase={false} style={(routeName === 'Doctor') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:doctors')}</Text>
 					</Button>
-					<Button transparent
+					<Button 
+						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('recordingCreate')}>
+						onPress={() => { 
+							if (user && user.api_token) {							
+								navigation.navigate('recordingCreate');
+							} else {
+								Alert.alert(
+									t('common:actions_text.auth_text'),
+									'',
+									[
+										{
+											text: t('common:actions.cancel'),
+											onPress: () => {},
+											style: 'cancel',
+										},
+										{text: t('common:actions.ok'), onPress: () => navigation.navigate('authorization') },
+									],
+									{cancelable: false},
+								);
+							}
+						}}
+					>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -62,7 +88,8 @@ class FooterTabs extends Component {
 						/>
 						<Text uppercase={false} style={(routeName === 'Record') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:records')}</Text>
 					</Button>
-					<Button transparent
+					<Button 
+						transparent
 						style={styles.button}
 						onPress={() => navigation.navigate('services')}>
 						<Image
@@ -72,9 +99,29 @@ class FooterTabs extends Component {
 						/>
 						<Text uppercase={false} style={(routeName === 'Service') ? styles.buttonActiveText : styles.buttonText}>{t('footer_menu:services')}</Text>
 					</Button>
-					<Button transparent
+					<Button 
+						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('profile')}>
+						onPress={() => { 
+							if (user && user.api_token) {							
+								navigation.navigate('profile');
+							} else {
+								Alert.alert(
+									t('common:actions_text.auth_text'),
+									'',
+									[
+										{
+											text: t('common:actions.cancel'),
+											onPress: () => {},
+											style: 'cancel',
+										},
+										{text: t('common:actions.ok'), onPress: () => navigation.navigate('authorization') },
+									],
+									{cancelable: false},
+								);
+							}
+						}}
+					>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -88,4 +135,14 @@ class FooterTabs extends Component {
 	}
 }
 
-export default withNamespaces('footer_menu')(withNavigation(FooterTabs));
+function mapStateToProps(state) {
+  return {
+    user: state.authorization.user
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({...AuthActions}, dispatch)
+}
+
+export default withNamespaces(['footer_menu', 'common'])(connect(mapStateToProps, mapDispatchToProps)(withNavigation(FooterTabs)));

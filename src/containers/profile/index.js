@@ -58,14 +58,7 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    const { navigate } = this.props.navigation;
-    let { user, getUserData } = this.props; 
-
-    if (user && user.api_token) {
-      getUserData();
-    } else {
-      navigate('authorization');
-    }
+    this.props.getUserData();
 	}
 
   render() {

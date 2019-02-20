@@ -14,7 +14,6 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 class ReceptionCreateScreen extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       activeTabOne: true,
       props_data: {
@@ -31,7 +30,7 @@ class ReceptionCreateScreen extends Component {
 
     cleareOrderSuccess();
     cleareOrderDatas();
-    console.log(type, spec_id, docdep_id)
+
     if (type) setOrder({ type }, 'type', 'spec');
     if (spec_id && type == 1) {
       setOrder({ spec_id }, 'spec_id', 'doc');
@@ -45,6 +44,7 @@ class ReceptionCreateScreen extends Component {
 
   complete = () => {
     const { navigation, orderDatas, order } = this.props;
+
     navigation.navigate('checkRecordScreen', {
       price: orderDatas.services.find((item) => +item.servid === +order.servid).price,
       room: orderDatas.times.find((item) => item.time === order.time).room,
@@ -56,7 +56,6 @@ class ReceptionCreateScreen extends Component {
     const { navigation, setOrder, orderValues, order } = this.props;
     const { t } = this.props;
     const { activeTabOne } = this.state;
-
     const orderIsComplete = (order.date && order.docdep_id && order.servid && order.spec_id && order.time) ? true : false;
 
     return (
@@ -79,12 +78,12 @@ class ReceptionCreateScreen extends Component {
               source={CONSULT_BG}
             />
           ) : (
-              <ImageBackground
-                style={styles.bgImage}
-                resizeMode='cover'
-                source={RESEARCH_BG}
-              />
-            )}
+            <ImageBackground
+              style={styles.bgImage}
+              resizeMode='cover'
+              source={RESEARCH_BG}
+            />
+          )}
           <Tabs
             onChangeTab={() => {
               this.setState({ activeTabOne: !activeTabOne });
@@ -169,7 +168,7 @@ class ReceptionCreateScreen extends Component {
                 <RecordingItem
                   onClick={() => {
                     if (!order.servid) return;
-                    navigation.navigate('doctorsList', { isOrder: true })
+                    navigation.navigate('doctorsList', { isOrder: true });
                   }}
                   icon={ICON_DOCTOR_SMALL} title={t('createrecord:form.doctor')}
                   text={orderValues.docdep}

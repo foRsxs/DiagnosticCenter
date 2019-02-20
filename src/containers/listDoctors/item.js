@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import { ICON_FOR_QUESTION, ICON_BLUE_ARROW } from '../../styles/images';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -187,6 +188,7 @@ class DoctorScreen extends Component {
 
 function mapStateToProps(state) {
   return {
+    user: state.authorization.user,
     doctor: state.content.doctorData,
     questions: state.content.questions.doctors,
     isGuest: state.authorization.isGuest
@@ -194,7 +196,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+  return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
 export default withNamespaces(['listdoctors', 'common', 'footer_menu', 'faq'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));

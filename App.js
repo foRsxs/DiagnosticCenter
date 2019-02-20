@@ -36,7 +36,6 @@ export default class App extends Component {
 
   };
 
-
   _handleConnectionChange = (isConnected) => {
     this.state.store.dispatch({
       type: offlineActionTypes.CONNECTION_CHANGE,

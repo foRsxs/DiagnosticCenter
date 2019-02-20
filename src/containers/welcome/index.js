@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View, Alert } from 'react-native';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
@@ -50,8 +50,24 @@ class WelcomeScreen extends Component {
 	}
 
 	_checkWelcome = () => {
-		const { hideScreen, token, enableSecure } = this.props;
+		const { hideScreen, token, enableSecure, t } = this.props;
 		const { navigate } = this.props.navigation;
+
+		if (!hideScreen) {
+			Alert.alert(
+				t('welcome:notify.title'),
+				t('welcome:notify.message'),
+				[
+					{
+						text: t('common:actions.cancel'),
+						onPress: () => this.props.changeNotify(false),
+						style: 'cancel',
+					},
+					{text: t('common:actions.confirm'), onPress: () => this.props.changeNotify(true)},
+				],
+				{cancelable: false},
+			);
+		}
 
 		if (hideScreen && token && enableSecure) {
 			navigate('authorization');

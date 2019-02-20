@@ -49,7 +49,11 @@
         "enter_text12": "Нажмите кнопку",
         "enter_text13": "Подтвердить",
         "enter_text14": "чтобы войти в систему",
-        "enter_text15": "Теперь вы можете пользоваться полным фунционалом приложения"
+        "enter_text15": "Теперь вы можете пользоваться полным фунционалом приложения",
+        "notify": {
+            "title": "Показывать оповещения",
+            "message": "Разрешить показывать оповещения"
+        }
     },
     "menu": {
         "guest": "Guest",
@@ -267,7 +271,8 @@
             "your_question": "Your question",
             "your_email": "Your e-mail",
             "your_name": "Ваше имя",
-            "check_data": "Check data"
+            "check_data": "Check data",
+            "auth_text": "Авторизоваться?"
         },
         "errors": {
             "wrong_pin_code": "Invalid PIN code",

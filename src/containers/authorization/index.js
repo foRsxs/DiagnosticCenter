@@ -90,7 +90,6 @@ class AuthorizationScreen extends Component {
       fullAuthUser(user);
       setAuthorized(true);
     }
-
   }
 
   clickOnPopup = () => {
@@ -240,20 +239,13 @@ class AuthorizationScreen extends Component {
     return (
       <View style={styles.wrapAuthView}>
         <View style={styles.wrapLanguage}>
-          <TouchableOpacity
-            onPress={() => this.changeLang('kz')}
-            style={{ zIndex: 2 }}
-          >
+          <TouchableOpacity onPress={() => this.changeLang('kz')}>
             <Text style={(languages_key === 'kz') ? styles.langActive : styles.lang}>KAZ</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.changeLang('ru')}
-          >
+          <TouchableOpacity onPress={() => this.changeLang('ru')}>
             <Text style={(languages_key === 'ru') ? styles.langActive : styles.lang}>РУС</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.changeLang('en')}
-          >
+          <TouchableOpacity onPress={() => this.changeLang('en')}>
             <Text style={(languages_key === 'en') ? styles.langActive : styles.lang}>ENG</Text>
           </TouchableOpacity>
         </View>
@@ -270,7 +262,14 @@ class AuthorizationScreen extends Component {
               mask={"+7 ([000]) [000] [00] [00]"}
               placeholder={t('authorization:phone')}
             />
-            <TextInput style={styles.input} placeholder={t('authorization:inn')} onChangeText={(text) => this.onChangeId(text)} value={personalId} keyboardType='number-pad' maxLength={12} />
+            <TextInput 
+              style={styles.input} 
+              placeholder={t('authorization:inn')} 
+              onChangeText={(text) => this.onChangeId(text)} 
+              value={personalId} 
+              keyboardType='number-pad' 
+              maxLength={12} 
+            />
           </View>
           {(loading) ? (
             <ActivityIndicator size="small" color={ACCENT_BLUE} />
@@ -377,6 +376,7 @@ class AuthorizationScreen extends Component {
 
 function mapStateToProps(state) {
   return {
+    hideScreen: state.content.hideScreen,
     token: state.authorization.token,
     methods_auth: state.authorization.methods_auth,
     pinCode: state.authorization.pinCode,
