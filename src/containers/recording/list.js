@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn'
-import ReceptionListItem from '../../components/receptions/ReceptionListItem'
+import ReceptionListItem from '../../components/ReceptionListItem'
 import Header from '../../components/common/Header';
 
 import variables from '../../styles/variables';

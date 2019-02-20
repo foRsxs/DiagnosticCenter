@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import * as ContentActions from '../../actions/content';
-import CatalogItem from '../../components/catalog/CatalogItem';
+import CatalogItem from '../../components/CatalogItem';
 import Header from '../../components/common/Header';
 import {APP_IMG_URL} from '../../config';
 import variables from '../../styles/variables';

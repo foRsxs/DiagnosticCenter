@@ -12,7 +12,7 @@ import TextInputMask from 'react-native-text-input-mask';
 
 import Header from '../../components/common/Header';
 import CustomBtn from '../../components/common/CustomBtn';
-import ConfirmationCode from '../../components/autorization/ConfirmationCode';
+import ConfirmationCode from '../../components/ConfirmationCode';
 import Popup from '../../components/common/Popup';
 import styles from './styles';
 

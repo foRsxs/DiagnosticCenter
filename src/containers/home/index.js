@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import * as ContentActions from '../../actions/content';
 import * as AuthActions from '../../actions/auth';
-import HomeCarousel from '../../components/home/HomeCarousel';
+import HomeCarousel from '../../components/HomeCarousel';
 import Header from '../../components/common/Header';
 import MenuList from '../../components/common/MenuList';
 import styles from './styles';

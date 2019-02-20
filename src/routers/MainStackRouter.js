@@ -9,17 +9,15 @@ import {
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
 import SpecializationScreen from '../containers/specialization';
-import QuestionFormScreen from '../containers/questions/createQuestion';
+import QuestionFormScreen from '../containers/questionForm';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
 import CatalogScreen from '../containers/listDoctors';
 import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
 import RecordingCreateScreen from '../containers/recording';
-import AnalizesScreen from '../containers/analizes_history/analizes';
-import AnalizesItemScreen from '../containers/analizes_history/analizesItem';
-import HistoryScreen from '../containers/analizes_history/history';
-import HistoryItemScreen from '../containers/analizes_history/historyItem';
+import AnalizesScreen from '../containers/analizes';
+import AnalizesItemScreen from '../containers/analizes/item';
 import ContactsScreen from '../containers/contacts';
 import FaqScreen from '../containers/faq';
 import SettingsScreen from '../containers/settings';
@@ -225,18 +223,18 @@ const RecordNavigator = createStackNavigator(
         header: null
       }
     },
-    history: {
-      screen: HistoryScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
-    historyItem: {
-      screen: HistoryItemScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
+    // history: {
+    //   screen: HistoryScreen,
+    //   navigationOptions: {
+    //     header: null
+    //   }
+    // },
+    // historyItem: {
+    //   screen: HistoryItemScreen,
+    //   navigationOptions: {
+    //     header: null
+    //   }
+    // },
     specialization: {
       screen: SpecializationScreen,
       navigationOptions: {

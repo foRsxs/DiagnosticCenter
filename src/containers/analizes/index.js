@@ -9,6 +9,7 @@ import * as ContentActions from '../../actions/content';
 import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
 
+import styles from './styles.js';
 import { ACCENT_BLUE } from '../../styles/constants';
 
 class AnalizesScreen extends Component {
@@ -33,12 +34,12 @@ class AnalizesScreen extends Component {
     const { loading, shareLoading } = this.state;
 
     return (
-      <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+      <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={t('analizes:title')} navigation={this.props.navigation} />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <Content style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
           {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} />}
           <List>
             {
@@ -76,18 +77,6 @@ class AnalizesScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  loaderWrap: {
-    zIndex: 10,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
 function mapStateToProps(state) {
   return {
     analizes_list: state.content.analizes.list

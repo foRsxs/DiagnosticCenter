@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { Text, View, Icon } from 'native-base';
 import styles from './styles';
 
-export default class QuestionItem extends Component {
+export default class OftenQuestionItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
