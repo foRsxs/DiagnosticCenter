@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, FlatList } from 'react-native';
+import { View, Text, TextInput, FlatList } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import NumberItem from '../common/NumberItem';
 import CustomBtn from '../common/CustomBtn';
 
-import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+import styles from './styles';
 
 class InputNumber extends Component {
   constructor(props) {
@@ -59,36 +59,5 @@ class InputNumber extends Component {
     )
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  input: {
-    height: 50,
-    fontSize: 45,
-    fontFamily: MAIN_FONT,
-    lineHeight: 47,
-    padding: 0,
-    margin: 15,
-    marginTop: 10,
-    marginBottom: 10,
-    letterSpacing: 10,
-    color: ACCENT_BLUE
-  },
-  text: {
-    marginVertical: 10,
-    fontSize: 18,
-    fontFamily: MAIN_FONT,
-    color: ACCENT_BLUE
-  },
-  message: {
-    marginVertical: 10,
-    fontSize: 18,
-    fontFamily: MAIN_FONT,
-    color: 'red'
-  }
-});
 
 export default withNamespaces('common')(InputNumber);

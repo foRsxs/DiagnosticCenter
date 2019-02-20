@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BackHandler } from 'react-native';
 import { Container, Toast } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { withNamespaces } from 'react-i18next';
@@ -9,6 +8,7 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import FormSend from '../../components/common/Form';
 import Header from '../../components/common/Header';
+import styles from './styles';
 
 class QuestionFormScreen extends Component {
   constructor(props) {
@@ -23,14 +23,6 @@ class QuestionFormScreen extends Component {
   getData = (data) => {
     const { doc_id } = this.state;
     this.props.sendQuestion({ type: 'questions', doc_id, ...data });
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
   componentDidUpdate(prevProps) {
@@ -49,20 +41,15 @@ class QuestionFormScreen extends Component {
     }
   }
 
-  handleBackButtonClick = () => {
-    this.props.navigation.goBack();
-    return true;
-  }
-
   render() {
     const { doc_id } = this.state;
     const { t, profile, loading } = this.props;
 
     return (
       <Container>
-        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}>
+        <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={styles.mainContainer}>
           <Header backButton={true} text={t('questions:form.title')} navigation={this.props.navigation} />
-          <FormSend sendData={this.getData} email={profile.email} loading={loading} sendQuest={true} docid={doc_id}/>
+          <FormSend sendData={this.getData} email={profile.email} loading={loading} sendQuest={true} docid={doc_id} />
         </KeyboardAwareScrollView>
       </Container>
     )
