@@ -35,12 +35,12 @@ class ServicesDetailScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.orderDatas.services !== this.props.orderDatas.services ) this.setState({loading: false });
+    if (prevProps.orderDatas.services !== this.props.orderDatas.services) this.setState({ loading: false });
   }
 
   render() {
     const { serviceList, loading, isOrder } = this.state;
-    const { t, orderDatas, order, setOrder, navigation, setOrderValue  } = this.props;
+    const { t, orderDatas, order, setOrder, navigation, setOrderValue } = this.props;
 
     return (
       <View>
@@ -59,8 +59,8 @@ class ServicesDetailScreen extends Component {
                             <SpecializationItem
                               key={index}
                               onClick={() => {
-                                setOrderValue({serv: item.text});
-                                setOrder({servid: item.servid}, 'servid');
+                                setOrderValue({ serv: item.text });
+                                setOrder({ servid: item.servid }, 'servid');
                                 navigation.goBack()
                               }}
                               headTxt={item.text}
@@ -70,25 +70,24 @@ class ServicesDetailScreen extends Component {
                         )
                     }
                   </List>
-                ): (
-                  <List>
-                    {
-                      (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                        (
-                          serviceList.map((item, index) => (
-                            <SpecializationItem
-                              key={index}
-                             
-                              headTxt={item.text}
-                              price={item.price}
-                            />
-                          ))
-                        )
-                    }
-              </List>
-                )
+                ) : (
+                    <List>
+                      {
+                        (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                          (
+                            serviceList.map((item, index) => (
+                              <SpecializationItem
+                                key={index}
+                                headTxt={item.text}
+                                price={item.price}
+                              />
+                            ))
+                          )
+                      }
+                    </List>
+                  )
               }
-              
+
             </Content >
           </Container>
         </View>

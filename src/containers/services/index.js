@@ -20,7 +20,6 @@ class ServicesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false,
       sorted_list_specialization: props.list_specialization,
       loading: (props.list_specialization) ? false : true
     };
@@ -42,11 +41,6 @@ class ServicesScreen extends Component {
     if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
   }
 
-  call = () => {
-    Linking.openURL(`tel:${CALL_CENTRE_TEL}`);
-    this.setState({ modalVisible: false });
-  }
-
   render() {
     const { modalVisible, sorted_list_specialization, loading } = this.state;
     const { t } = this.props;
@@ -57,7 +51,7 @@ class ServicesScreen extends Component {
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header search={true} navigation={this.props.navigation} />
             <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              <List>
+              <List style={styles.list}>
                 {
                   (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                     (
@@ -78,16 +72,6 @@ class ServicesScreen extends Component {
                 }
               </List>
             </Content >
-            <LinkBtn label={t('specialization:no_doctor_choose_link_text')} onClick={() => this.setState({ modalVisible: true })} />
-            <Popup
-              show={modalVisible}
-              firstText={t('specialization:form.fisrt_text')}
-              secondText={t('specialization:form.last_text')}
-              laberButton={t('common:actions.call')}
-              actionButton={this.call}
-              labelLink={t('common:actions.close')}
-              actionLink={() => this.setState({ modalVisible: false })}
-            />
           </Container>
         </View>
       </View>

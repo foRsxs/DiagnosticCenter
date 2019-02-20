@@ -30,4 +30,5 @@ export const COLOR_PLACEHOLDER = 'rgba(151, 151, 151, 0.5)';
 
 //FONTS
 export const MAIN_FONT = 'HelveticaRegular';
+export const FONT_LIGHT = 'Helvetica-Light';
 

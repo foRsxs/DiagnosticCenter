@@ -65,7 +65,7 @@ class WelcomeScreen extends Component {
 	}
 
 	renderImage(image, style) {
-		return <Image style={style} source={image} />
+		return <Image style={style} resizeMode='contain' source={image} />
 	}
 
 	renderDetail(rowData) {

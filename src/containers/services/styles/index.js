@@ -17,11 +17,14 @@ export default StyleSheet.create({
     content: {
         marginTop: -10,
         zIndex: 1,
-        paddingTop: 10
+        paddingTop: 10,
     },
     noText: {
         textAlign: 'center',
         fontSize: medium,
         fontFamily: MAIN_FONT
+    },
+    list: {
+        paddingBottom: 10
     }
 });

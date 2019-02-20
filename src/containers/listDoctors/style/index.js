@@ -14,7 +14,8 @@ import {
   DARK_GREY,
   COLOR_TEXT_GREEN,
   MAIN_FONT,
-  MEDIUM_BLACK
+  MEDIUM_BLACK,
+  FONT_LIGHT
 } from '../../../styles/constants';
 
 const {
@@ -77,7 +78,8 @@ export const styles = StyleSheet.create({
   name: {
     fontSize: extralarge,
     fontFamily: MAIN_FONT,
-    color: BLACK
+    color: BLACK,
+    lineHeight: scale(27)
   },
   speciality: {
     paddingVertical: scale(5),
@@ -179,8 +181,9 @@ export const stylesHtml = StyleSheet.create({
   p: {
     margin: 0,
     fontSize: medium,
-    fontFamily: MAIN_FONT,
-    color: ACCENT_BLUE
+    fontFamily: FONT_LIGHT,
+    color: ACCENT_BLUE,
+    lineHeight: scale(20)
   },
   ul: {
     marginTop: 0,

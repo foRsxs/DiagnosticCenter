@@ -194,6 +194,12 @@ const ServiceNavigator = createStackNavigator(
         header: null
       }
     },
+    servicesDetail: {
+      screen: ServicesDetailScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
   },
 );
 
@@ -223,18 +229,6 @@ const RecordNavigator = createStackNavigator(
         header: null
       }
     },
-    // history: {
-    //   screen: HistoryScreen,
-    //   navigationOptions: {
-    //     header: null
-    //   }
-    // },
-    // historyItem: {
-    //   screen: HistoryItemScreen,
-    //   navigationOptions: {
-    //     header: null
-    //   }
-    // },
     specialization: {
       screen: SpecializationScreen,
       navigationOptions: {
