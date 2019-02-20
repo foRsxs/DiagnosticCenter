@@ -11,13 +11,18 @@ export function authUser(data) {
 
     return axios.post(`${APP_API_URL}/get_patient`, {...data, lang: authorization.language})
     .then((response) => {
-      OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
-      dispatch(saveUser(response.data));
       return Promise.resolve(response.data);
     })
     .catch((error) => {
       return Promise.reject({code: error.response.data.code, error: error.response.data.message});
     });
+  }
+}
+
+export function fullAuthUser(data) {
+  return (dispatch) => {
+    OneSignal.sendTag('user_keyid', JSON.stringify(data.keyid));
+    dispatch(saveUser(data));
   }
 }
 
@@ -97,10 +102,17 @@ export function savePinCode(data) {
   }
 }
 
-export function setAuthorized() {
+export function setAuthorized(data) {
   return {
     type: types.SET_AUTHORIZED,
-    value: true
+    value: data
+  }
+}
+
+export function updateSecure(data) {
+  return {
+    type: types.SET_SECURE,
+    data: data
   }
 }
 

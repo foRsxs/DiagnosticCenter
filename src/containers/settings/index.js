@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, TouchableOpacity } from 'react-native';
 import { Container, Content, View, Text, Icon, Picker, Form, Switch } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -18,21 +18,18 @@ class SettingsScreen extends Component {
     this.state = {
       local_auth_methods: props.methods_auth,
       local_languages_key: props.languages_key,
+      local_secure: props.enableSecure,
       local_notify: props.notify,
       showButton: false
     };
   }
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
   switchNotify = (value) => {
     this.setState({ local_notify: value });
+  }
+  
+  switchSecure = (value) => {
+    this.setState({ local_secure: value });
   }
 
   onAuthChange(value) {
@@ -40,31 +37,39 @@ class SettingsScreen extends Component {
   }
 
   _saveChanges = () => {
-    const { local_notify, local_auth_methods, local_languages_key } = this.state;
-    const { notify, methods_auth, savePinCode, changeMethodsAuth, navigation, languages_key } = this.props;
+    const { local_notify, local_auth_methods, local_languages_key, local_secure } = this.state;
+    const { notify, methods_auth, savePinCode, changeMethodsAuth, navigation, languages_key, enableSecure, updateSecure, setLanguage, changeNotify } = this.props;
 
     if (languages_key !== local_languages_key) {
-      this.props.setLanguage(local_languages_key);
+      setLanguage(local_languages_key);
     }
 
     if (notify !== local_notify) {
-      this.props.changeNotify(local_notify);
+      changeNotify(local_notify);
+    }
+
+    if (local_secure !== enableSecure) {
+      updateSecure(local_secure);
+      changeMethodsAuth({ methods_auth: null, confirmed: false });
+      if (local_secure) {
+        changeMethodsAuth({ methods_auth: null, confirmed: false });
+        return navigation.navigate('authorization');
+      } else {
+        changeMethodsAuth({ methods_auth: null, confirmed: true });
+        savePinCode({ code: null, confirmed: true });
+      }
     }
 
     if (methods_auth !== local_auth_methods) {
       savePinCode({ code: null, confirmed: false });
       if (local_auth_methods === 'code') {
         changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: false });
-        navigation.navigate('authorization');
+        return navigation.navigate('authorization');
       } else {
         changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: true });
       }
     }
-  }
-
-  handleBackButtonClick = () => {
-    this.props.navigation.goBack();
-    return true;
+    navigation.goBack();
   }
 
   changeLang = (key) => {
@@ -73,8 +78,8 @@ class SettingsScreen extends Component {
   }
 
   render() {
-    const { t, notify, methods_auth, device_touch, device_face, languages_key } = this.props;
-    const { local_notify, local_auth_methods, local_languages_key } = this.state;
+    const { t, notify, methods_auth, device_touch, device_face, languages_key, pinCode, changeMethodsAuth, navigation, savePinCode, enableSecure } = this.props;
+    const { local_notify, local_auth_methods, local_languages_key, local_secure } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
@@ -98,7 +103,7 @@ class SettingsScreen extends Component {
               </Picker>
             </Form>
           </View>
-          {(device_touch || device_face) && (
+          { ((enableSecure) &&(device_touch || device_face)) && (
             <View style={styles.settingItem}>
               <Text style={styles.headTxt}>{t('settings:items.auth')}</Text>
               <Form style={styles.form}>
@@ -136,6 +141,7 @@ class SettingsScreen extends Component {
               </Form>
             </View>
           )}
+          
           <View style={[styles.settingItem, { marginTop: 10 }]}>
             <Text style={styles.headTxt}>{t('settings:items.push')}</Text>
             <Switch
@@ -143,9 +149,33 @@ class SettingsScreen extends Component {
               value={local_notify}
             />
           </View>
+          <View style={[styles.settingItem, { marginTop: 20 }]}>
+            <Text style={styles.headTxt}>{(local_secure)? t('settings:items.secureDisable'): t('settings:items.secureEnable')}</Text>
+            <Switch
+              onValueChange={this.switchSecure}
+              value={local_secure}
+            />
+          </View>
+          {
+            (pinCode) && (
+              <TouchableOpacity 
+                style={{marginTop: 25}}
+                activeOpacity={0.8}
+                onPress={()=> {
+                  savePinCode({ code: null, confirmed: false });
+                  changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: false });
+                  navigation.navigate('authorization');
+                }}
+                >
+                <View style={[styles.settingItem]}>
+                  <Text style={styles.headTxt}>{t('settings:items.newPinCode')}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          }
         </Content>
         {
-          (local_auth_methods !== methods_auth || local_languages_key !== languages_key || local_notify !== notify) && (
+          (local_auth_methods !== methods_auth || local_languages_key !== languages_key || local_notify !== notify || local_secure !== enableSecure) && (
             <View style={styles.btnWrap}>
               <CustomBtn label={t('common:actions.save')} onClick={() => this._saveChanges()} />
             </View>
@@ -162,7 +192,9 @@ function mapStateToProps(state) {
     methods_auth: state.authorization.methods_auth,
     device_touch: state.authorization.device_touch,
     device_face: state.authorization.device_face,
-    languages_key: state.authorization.language
+    languages_key: state.authorization.language,
+    pinCode: state.authorization.pinCode,
+    enableSecure: state.authorization.enableSecure
   }
 }
 

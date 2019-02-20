@@ -46,12 +46,22 @@ class ListDoctors extends Component {
 
   handleChange = (value) => {
     const {list_Doctors} = this.props;
-    
+    let array = []
+
     findElements = (item) => {
       return `${item.lastname} ${item.firstname} ${item.secondname}`.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
 
-    this.setState({ sorted_list_Doctors: list_Doctors.filter(findElements)});
+    list_Doctors.forEach(element => {
+      if (element.doctors.filter(findElements).length) {
+        array.push({
+          category: element.category,
+          doctors: element.doctors.filter(findElements)
+        })
+      }
+    });
+
+    this.setState({ sorted_list_Doctors: array});
   }
 
   handleBackButtonClick = () => {

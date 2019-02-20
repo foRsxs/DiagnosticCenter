@@ -50,13 +50,15 @@ class WelcomeScreen extends Component {
 	}
 
 	_checkWelcome = () => {
-		const { hideScreen, token } = this.props;
+		const { hideScreen, token, enableSecure } = this.props;
 		const { navigate } = this.props.navigation;
 
-		if (hideScreen && token) {
+		if (hideScreen && token && enableSecure) {
+			navigate('authorization');
+		} else if (hideScreen && token && !enableSecure) {
 			navigate('home');
 		} else if (hideScreen && !token) {
-			navigate('authorization');
+			navigate('home');
 		}
 	};
 
@@ -124,7 +126,8 @@ class WelcomeScreen extends Component {
 function mapStateToProps(state) {
 	return {
 		token: state.authorization.token,
-		hideScreen: state.content.hideScreen
+		hideScreen: state.content.hideScreen,
+		enableSecure: state.authorization.enableSecure
 	}
 }
 

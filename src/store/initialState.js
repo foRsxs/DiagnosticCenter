@@ -9,6 +9,7 @@ export const initialState = {
     device_touch: false,
     device_face: false,
     isGuest: false,
+    enableSecure: false,
     language: 'ru'
   },
   content: {
