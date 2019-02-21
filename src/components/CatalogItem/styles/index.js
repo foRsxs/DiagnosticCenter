@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   img: {
     width: scale(65),
 		height: scale(65),
-		borderRadius: scale(40),
+		borderRadius: scale(33),
 		borderWidth: 1,
 		borderColor: ACCENT_BLUE,
     marginTop: scale(5)

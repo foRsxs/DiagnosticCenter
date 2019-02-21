@@ -354,7 +354,7 @@ class AuthorizationScreen extends Component {
           style={styles.wrapMain}
           contentContainerStyle={styles.contentStyleMain}
         >
-          <Header isHome={false} isAuth={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
+          <Header isHome={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
           {(!token && !showSms) && this.renderAuthView()}
           {(!token && showSms) && this.renderSmsCode()}
           {(token && enableSecure && !methods_auth) && this.renderConfirmCodeChoose()}

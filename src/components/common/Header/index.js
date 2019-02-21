@@ -21,12 +21,12 @@ class Header extends Component {
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, isAuth = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
+		const { backButton = false, search = false, text, isHome = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
 
 		return (
 			<View style={styles.headerWrap}>
+				<StatusBar backgroundColor={BAR_COLOR} barStyle='light-content' />
 				<View style={styles.container}>
-					<StatusBar backgroundColor={BAR_COLOR} barStyle='light-content' />
 					{
 						(isHome) && (
 							<View style={styles.headerHomeWrap}>
@@ -45,17 +45,6 @@ class Header extends Component {
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
 								</View>
-							</View>
-						)
-					}
-					{
-						(isAuth) && (
-							<View style={styles.headerHomeWrap}>
-								<View style={styles.leftContainer}></View>
-								<View style={styles.centerContainer}>
-									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
-								</View>
-								<View style={styles.rightContainer}></View>
 							</View>
 						)
 					}
@@ -119,7 +108,6 @@ Header.propTypes = {
 	backButton: PropTypes.bool,
 	search: PropTypes.bool,
 	isHome: PropTypes.bool,
-	isAuth: PropTypes.bool,
 	callButton: PropTypes.bool,
 	plusButton: PropTypes.bool,
 	textUpper: PropTypes.string,

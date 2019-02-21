@@ -35,7 +35,7 @@ import CheckRecordScreen from '../containers/checkRecord';
 import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
 
-const AuthNavigator = createStackNavigator(
+const ProfileNavigator = createStackNavigator(
   {
     authorization: {
       screen: AuthorizationScreen,
@@ -43,11 +43,6 @@ const AuthNavigator = createStackNavigator(
         header: null
       }
     },
-  }
-);
-
-const ProfileNavigator = createStackNavigator(
-  {
     profile: {
       screen: ProfileScreen,
       navigationOptions: {
@@ -304,7 +299,6 @@ const AppTabNavigator = createBottomTabNavigator(
 const AppNavigator = createAppContainer(createSwitchNavigator(
   {
     AuthLoading: WelcomeScreen,
-    Auth: AuthNavigator,
     App: AppTabNavigator
   },
   {

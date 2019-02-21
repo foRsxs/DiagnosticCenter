@@ -24,7 +24,7 @@ export default class App extends Component {
       isLoading: true,
       store: configureStore(() => this.setState({ isLoading: false })),
     };
-    OneSignal.init(ONE_SIGNAL_KEY);
+    OneSignal.init(ONE_SIGNAL_KEY, {kOSSettingsKeyAutoPrompt: false});
   }
 
   componentDidMount() {

@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions} from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, { scale } from '../../../styles/variables';
 import {
   ACCENT_BLUE,
   WHITE,
@@ -158,7 +158,7 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     fontFamily: MAIN_FONT,
     fontSize: variables.fSize.main,
-    zIndex: 10
+    zIndex: 10,
   },
   smsTitle: {
     textAlign: 'center',

@@ -1,9 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
-let { width, height } = Dimensions.get('window');
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 import variables, { scale } from '../../../../styles/variables';
 import { WHITE, ACCENT_BLUE, MAIN_FONT } from '../../../../styles/constants';
 
+let { width, height } = Dimensions.get('window');
 const { large, normal } = variables.fSize;
 
 export default StyleSheet.create({
@@ -14,7 +14,7 @@ export default StyleSheet.create({
 	},
 	headerHomeWrap: {
 		flex: 1,
-		flexDirection: 'row'
+		flexDirection: 'row',
 	},
 	headerLeftBtn: {
 		flexDirection: 'row',
@@ -63,8 +63,8 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: ACCENT_BLUE,
 		zIndex: 3,
-		height: scale(60),
-		paddingTop: 15,
+		height:  (Platform.OS === 'ios') ? scale(75) : scale(60),
+		paddingTop: (Platform.OS === 'ios') ? scale(30) : scale(15),
 		paddingHorizontal: 15
 	},
 	leftContainer: {
@@ -94,7 +94,7 @@ export default StyleSheet.create({
 		height: scale(20),
 		position: 'absolute',
 		left: scale(20),
-		top: scale(22),
+		top:  (Platform.OS === 'ios') ? scale(37) : scale(22),
 		zIndex: 10,
 		justifyContent: 'flex-start',
 	},
