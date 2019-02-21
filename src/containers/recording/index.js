@@ -57,7 +57,6 @@ class ReceptionCreateScreen extends Component {
     const { t } = this.props;
     const { activeTabOne } = this.state;
     const orderIsComplete = (order.date && order.docdep_id && order.servid && order.spec_id && order.time) ? true : false;
-
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Content>

@@ -80,7 +80,7 @@ class ReceptionInfoItemScreen extends Component {
   render() {
     const { t } = this.props;
     const { reserved, modalVisible, hideButton, date, time, room, doctor, spec, serv, price, pdf, headTxt, dateTxt } = this.state;
-
+    console.log(date)
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
@@ -232,7 +232,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     orderCreated: state.content.orderCreated,
-    orderDeleted: state.content.orderDeleted
+    orderDeleted: state.content.orderDeleted,
+    lang_key: state.authorization.language,
   }
 }
 
