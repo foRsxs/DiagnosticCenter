@@ -13,7 +13,9 @@ import Popup from '../../components/common/Popup';
 import styles from './styles';
 import { ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
 import 'moment/locale/ru';
-moment.locale('ru');
+import 'moment/locale/kk';
+import 'moment/locale/en-gb';
+
 
 class CheckRecordScreen extends Component {
 
@@ -26,6 +28,7 @@ class CheckRecordScreen extends Component {
       modalVisible: false,
       hideButton: false,
     }
+    moment.locale((props.lang_key === 'kz')? 'kk': (props.lang_key === 'en')? 'en-gb': 'ru');
   }
 
   componentDidMount() {
@@ -98,7 +101,7 @@ class CheckRecordScreen extends Component {
               <View style={{ flex: 2 }}>
                 <RecordingItem 
                   icon={ICON_CALENDAR_SMALL} 
-                  itle={t('createrecord:form.date')} 
+                  title={t('createrecord:form.date')} 
                   placeholder={t('createrecord:form.select_date')} 
                   text={moment(orderValues.data).format("DD MMMM, YYYY")}
                 />
@@ -121,7 +124,7 @@ class CheckRecordScreen extends Component {
           {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
-              <CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.createOrder()} />
+              <CustomBtn label={t('common:actions.confirm')} onClick={() => this.createOrder()} />
             </View>
             )
           }

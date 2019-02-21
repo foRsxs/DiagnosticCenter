@@ -16,36 +16,38 @@ class CatalogListItem extends Component {
   }
 
   render() {
-    let { imageUri, name, position, info, contentContainerStyle, t , category} = this.props;
+    let { imageUri, name, position, info, contentContainerStyle, t, category } = this.props;
     const { moreInfo } = this.state;
     return (
-      <View style={[styles.block, contentContainerStyle]}>
-        <View style={styles.blockImg}>
-          <Image
-            style={styles.img}
-            resizeMode='cover'
-            source={imageUri}
-          />
-        </View>
-        <View style={styles.content}>
-          <Text style={styles.name}>
-            {name}
-          </Text>
-          <Text style={styles.special}>{position}</Text>
-          <Text style={styles.category}>{category}</Text>
-          {(moreInfo) && (
-            <View>
-              <HTMLView value={(info) ? info : ''} />
-              <TouchableOpacity onPress={() => this.setState({ moreInfo: !moreInfo })} style={styles.more}>
-                <Text style={styles.openInfo}>{(moreInfo) ? t('listdoctors:hide_desc') : t('listdoctors:show_desc')}</Text><Image source={NEW_ARROW_BLUE} style={(moreInfo) ? styles.arrowActive : styles.arrow} />
-              </TouchableOpacity>
+      <TouchableOpacity onPress={() => this.props.onClick()}>
+        <View style={[styles.block, contentContainerStyle]}>
+          <View style={styles.blockImg}>
+            <Image
+              style={styles.img}
+              resizeMode='cover'
+              source={imageUri}
+            />
+          </View>
+          <View style={styles.content}>
+            <Text style={styles.name}>
+              {name}
+            </Text>
+            {(position) && (<Text style={styles.special}>{position}</Text>)}
+            {(category) && (<Text style={styles.category}>{category}</Text>)}
+            {(info) && (
+              <View>
+                {(moreInfo) && (<HTMLView value={(info) ? info : ''} />)}
+                <TouchableOpacity onPress={() => this.setState({ moreInfo: !moreInfo })} style={styles.more}>
+                  <Text style={styles.openInfo}>{(moreInfo) ? t('listdoctors:hide_desc') : t('listdoctors:show_desc')}</Text><Image source={NEW_ARROW_BLUE} style={(moreInfo) ? styles.arrowActive : styles.arrow} />
+                </TouchableOpacity>
+              </View>
+            )}
+            <View style={styles.btn}>
+              <Image source={NEW_ARROW} style={styles.iconBtn} />
             </View>
-          )}
-          <TouchableOpacity onPress={() => this.props.onClick()} style={styles.btn}>
-            <Image source={NEW_ARROW} style={styles.iconBtn} />
-          </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

@@ -80,7 +80,7 @@ class ReceptionInfoItemScreen extends Component {
   render() {
     const { t } = this.props;
     const { reserved, modalVisible, hideButton, date, time, room, doctor, spec, serv, price, pdf, headTxt, dateTxt } = this.state;
-
+    console.log(date)
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
@@ -138,9 +138,6 @@ class ReceptionInfoItemScreen extends Component {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.helpText}>
-            <Text>{t('createrecord:help_text')}</Text>
           </View>
           {
             (reserved && pdf) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
@@ -212,11 +209,9 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     paddingHorizontal: 20,
-    flex: 1
   },
   datetimeWrap: {
     flexDirection: 'row',
-    flex: 1
   },
   separator: {
     marginVertical: 10,
@@ -237,7 +232,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     orderCreated: state.content.orderCreated,
-    orderDeleted: state.content.orderDeleted
+    orderDeleted: state.content.orderDeleted,
+    lang_key: state.authorization.language,
   }
 }
 

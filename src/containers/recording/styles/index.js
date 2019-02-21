@@ -54,16 +54,15 @@ export default StyleSheet.create({
   },
   wrapper: {
     padding: 20,
-    flex: 1
   },
   datetimeWrap: {
     flexDirection: 'row',
-    flex: 1
+    alignItems: 'center'
   },
   separator: {
-    marginVertical: 10,
     borderLeftWidth: 1,
-    borderColor: ACCENT_BLUE
+    borderColor: ACCENT_BLUE,
+    height: 50
   },
   buttonWrap: {
     paddingHorizontal: 20

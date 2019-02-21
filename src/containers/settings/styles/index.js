@@ -44,7 +44,7 @@ export default StyleSheet.create({
     paddingTop: 0, 
     marginRight: 0
   }, 
-  btnwrap: {
+  btnWrap: {
     paddingHorizontal: 15, 
     paddingVertical: 20
   }

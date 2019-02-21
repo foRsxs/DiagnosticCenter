@@ -227,7 +227,7 @@
     },
     "profile": {
         "name": "ФИО:",
-        "birthDate": "Дата рожденя:",
+        "birthDate": "Дата рождения:",
         "phone": "Телефон:",
         "address": "Адрес:",
         "journal": "Журнал записей на приём",
@@ -249,7 +249,7 @@
             "close": "Закрыть",
             "exit": "Войти",
             "confirm": "Подтвердить",
-            "cancel_recording": "Отменить запись",
+            "cancel_recording": "Удалить запись",
             "send_msg": "Отправить сообщение",
             "send_to_mail": "Отправить на e-mail",
             "save_to_gallery": "Сохранить в галерею",

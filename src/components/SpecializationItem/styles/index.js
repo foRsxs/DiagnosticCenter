@@ -24,7 +24,8 @@ export default StyleSheet.create({
     fontFamily: FONT_LIGHT,
     color: BLACK,
     textAlignVertical: 'center',
-    letterSpacing: 1
+    letterSpacing: 1,
+    lineHeight: scale(22)
   },
   specIcon: {
     marginRight: 10,

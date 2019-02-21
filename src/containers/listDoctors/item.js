@@ -76,7 +76,7 @@ class DoctorScreen extends Component {
       <View style={styles.bottomContainer}>
         {
           (loading) ? 
-          (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
+          (<ActivityIndicator style={(loading) ? { marginTop: 100 } : {}} size="large" color={ACCENT_BLUE} />)
           : 
           (<KeyboardAwareScrollView>
             <View style={styles.mainInfo}>
@@ -108,7 +108,7 @@ class DoctorScreen extends Component {
             <Text style={styles.textBtn}>{t('common:actions.ask_question_doctor')}</Text>
           </TouchableOpacity>
         </View>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
           {
             (loading) && (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
           }
