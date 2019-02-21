@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import variables, {scale} from '../../../../styles/variables';
-import { COLOR_DARK_BLUE } from '../../../../styles/constants';
+import { BLACK } from '../../../../styles/constants';
 
-const { large } = variables.fSize;
+const { medium } = variables.fSize;
 
 export default StyleSheet.create({
 	listWrap: {
@@ -19,8 +19,8 @@ export default StyleSheet.create({
 	},
 	listText: {
 		textAlign: 'left',
-		color: COLOR_DARK_BLUE,
-		fontSize: large
+		color: BLACK,
+		fontSize: medium
 	},
 	arrow: {
 		fontSize: 24

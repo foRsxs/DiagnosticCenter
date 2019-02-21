@@ -192,7 +192,7 @@ DoctorNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions = {};
 
-  if (routeName === 'doctor') {
+  if (routeName === 'doctor' || routeName === 'questionForm') {
     navigationOptions.tabBarVisible = false;
   }
 

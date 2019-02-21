@@ -6,7 +6,9 @@ import {
 	COLOR_NEW_GRAY, 
 	BLACK, 
 	COLOR_LIGHT_BLACK,
-	COLOR_TEXT_GREEN
+	COLOR_TEXT_GREEN,
+	MAIN_FONT,
+	FONT_LIGHT
 } from '../../../styles/constants';
 
 const { medium, main, normal } = variables.fSize;
@@ -38,15 +40,21 @@ export const styles = StyleSheet.create({
 	name: {
 		width: scale(245),
 		fontSize: medium,
-		color: BLACK
+		color: BLACK,
+		fontFamily: MAIN_FONT,
+		lineHeight: 21
 	},
 	special: {
 		fontSize: main,
-		color: ACCENT_BLUE
+		color: ACCENT_BLUE,
+		fontFamily: FONT_LIGHT,
+		lineHeight: scale(18)
 	},
 	category: {
 		color: COLOR_LIGHT_BLACK,
-		fontSize: normal
+		fontSize: normal,
+		fontFamily: FONT_LIGHT,
+		lineHeight: scale(16)
 	},
 	logoInfo: {
 		width: '80%'
@@ -89,6 +97,8 @@ export const styles = StyleSheet.create({
 	},
 	openInfo: {
 		fontSize: normal,
-		color: COLOR_TEXT_GREEN
+		color: COLOR_TEXT_GREEN,
+		fontFamily: FONT_LIGHT,
+		lineHeight: scale(17)
 	}
 })

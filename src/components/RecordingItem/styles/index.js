@@ -17,6 +17,7 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: ACCENT_BLUE,
     paddingVertical: 10,
+    paddingRight: 15,
     width: '100%'
   },
   itemImage: {

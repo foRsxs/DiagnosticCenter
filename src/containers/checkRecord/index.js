@@ -98,7 +98,7 @@ class CheckRecordScreen extends Component {
               <View style={{ flex: 2 }}>
                 <RecordingItem 
                   icon={ICON_CALENDAR_SMALL} 
-                  itle={t('createrecord:form.date')} 
+                  title={t('createrecord:form.date')} 
                   placeholder={t('createrecord:form.select_date')} 
                   text={moment(orderValues.data).format("DD MMMM, YYYY")}
                 />
@@ -121,7 +121,7 @@ class CheckRecordScreen extends Component {
           {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
-              <CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.createOrder()} />
+              <CustomBtn label={t('common:actions.confirm')} onClick={() => this.createOrder()} />
             </View>
             )
           }

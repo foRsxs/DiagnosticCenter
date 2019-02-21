@@ -139,9 +139,6 @@ class ReceptionInfoItemScreen extends Component {
               </View>
             </View>
           </View>
-          <View style={styles.helpText}>
-            <Text>{t('createrecord:help_text')}</Text>
-          </View>
           {
             (reserved && pdf) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
           }
@@ -212,11 +209,9 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     paddingHorizontal: 20,
-    flex: 1
   },
   datetimeWrap: {
     flexDirection: 'row',
-    flex: 1
   },
   separator: {
     marginVertical: 10,

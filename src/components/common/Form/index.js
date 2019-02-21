@@ -60,4 +60,4 @@ class FormSend extends Component {
   }
 }
 
-export default withNamespaces('common', { wait: true })(FormSend);
+export default withNamespaces('common')(FormSend);

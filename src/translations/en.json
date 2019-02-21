@@ -249,7 +249,7 @@
             "close": "Close",
             "exit": "Enter",
             "confirm": "Confirm",
-            "cancel_recording": "Cancel appointment",
+            "cancel_recording": "Delete appointment",
             "send_msg": "send a message",
             "send_to_mail": "send an e-mail",
             "save_to_gallery": "Save to gallery",
