@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEF0951C21CBD7640047B7C3"
+               BlueprintIdentifier = "CEE9F75621CE8D3A006A02DF"
                BuildableName = "OneSignalNotificationServiceExtension.appex"
                BlueprintName = "OneSignalNotificationServiceExtension"
                ReferencedContainer = "container:diagnosticcenter.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CEF0951C21CBD7640047B7C3"
+            BlueprintIdentifier = "CEE9F75621CE8D3A006A02DF"
             BuildableName = "OneSignalNotificationServiceExtension.appex"
             BlueprintName = "OneSignalNotificationServiceExtension"
             ReferencedContainer = "container:diagnosticcenter.xcodeproj">
