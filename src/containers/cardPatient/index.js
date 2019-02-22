@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
+
 function mapStateToProps(state) {
-  console.log(state);
   return {
     history_list: state.content.history.list,
   }

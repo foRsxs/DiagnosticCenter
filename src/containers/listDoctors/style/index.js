@@ -1,7 +1,9 @@
 import {
+  Platform,
   StyleSheet
 } from 'react-native';
 
+import { isIphoneXorAbove } from '../../../utils/helpers';
 import variables, {
   scale
 } from '../../../styles/variables';
@@ -26,19 +28,20 @@ const {
 
 export const styles = StyleSheet.create({
   imgWrap: {
-    width: '100%',
+    width: scale(200),
     height: scale(200),
     position: 'absolute',
-    top: scale(10),
+    top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(50) : (Platform.OS === 'ios') ? scale(30) : scale(10),
     alignItems: 'center',
+    alignSelf: 'center',
+    zIndex: 10
   },
   avatar: {
     width: scale(200),
     height: scale(200),
     borderRadius: scale(100),
     borderWidth: 1,
-    borderColor: ACCENT_BLUE,
-    zIndex: 10
+    borderColor: ACCENT_BLUE
   },
   topContent: {
     height: scale(195),
@@ -49,7 +52,7 @@ export const styles = StyleSheet.create({
   },
   tabs: {
     flexDirection: 'row',
-    width: '100%'
+    width: '100%',
   },
   tab: {
     width: '50%',
@@ -63,7 +66,7 @@ export const styles = StyleSheet.create({
   textTab: {
     fontFamily: MAIN_FONT,
     color: WHITE,
-    fontSize: medium
+    fontSize: medium,
   },
   bottomContainer: {
     height: scale(411)

@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 
+import { isIphoneXorAbove } from '../../../../utils/helpers';
 import variables, { scale } from '../../../../styles/variables';
 import { WHITE, ACCENT_BLUE, MAIN_FONT } from '../../../../styles/constants';
 
@@ -19,7 +20,6 @@ export default StyleSheet.create({
 	headerLeftBtn: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		zIndex: 10
 	},
 	headerLeftText: {
 		marginLeft: scale(8),
@@ -29,6 +29,7 @@ export default StyleSheet.create({
 		lineHeight: scale(15)
 	},
 	logo: {
+		width: '100%',
 		height: scale(50)
 	},
 	headerRightText: {
@@ -38,6 +39,11 @@ export default StyleSheet.create({
 		textAlign: 'right',
 		marginRight: scale(10),
 		lineHeight: scale(15)
+	},
+	headerRightBtn: {
+		flexDirection: 'row', 
+		alignItems: 'center', 
+		justifyContent: 'flex-end'
 	},
 	textUpper: {
 		width: '100%',
@@ -53,7 +59,6 @@ export default StyleSheet.create({
 		position: 'absolute',
 		top: scale(15),
 		right: scale(20),
-		zIndex: scale(10),
 		alignItems: 'flex-end'
 	},
 	container: {
@@ -63,8 +68,8 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: ACCENT_BLUE,
 		zIndex: 3,
-		height:  (Platform.OS === 'ios') ? scale(75) : scale(60),
-		paddingTop: (Platform.OS === 'ios') ? scale(30) : scale(15),
+		height: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(90) : (Platform.OS === 'ios') ? scale(75) : scale(60),
+		paddingTop: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(45) : (Platform.OS === 'ios') ? scale(30) : scale(15),
 		paddingHorizontal: 15
 	},
 	leftContainer: {
@@ -94,8 +99,8 @@ export default StyleSheet.create({
 		height: scale(20),
 		position: 'absolute',
 		left: scale(20),
-		top:  (Platform.OS === 'ios') ? scale(37) : scale(22),
-		zIndex: 10,
+		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(22),
+		zIndex: 20,
 		justifyContent: 'flex-start',
 	},
 	textContainer: {
