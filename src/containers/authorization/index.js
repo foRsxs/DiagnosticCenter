@@ -267,7 +267,7 @@ class AuthorizationScreen extends Component {
               placeholder={t('authorization:inn')} 
               onChangeText={(text) => this.onChangeId(text)} 
               value={personalId} 
-              keyboardType='number-pad' 
+              keyboardType='number-pad'
               maxLength={12} 
             />
           </View>

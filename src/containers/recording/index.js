@@ -147,7 +147,13 @@ class ReceptionCreateScreen extends Component {
                 <CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.complete()} disabled={!orderIsComplete} />
               </View>
             </Tab>
-            <Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.research').toUpperCase()}>
+            <Tab 
+              tabStyle={styles.tab} 
+              activeTabStyle={styles.tabActive} 
+              textStyle={styles.tabText} 
+              activeTextStyle={styles.tabTextActive} 
+              heading={t('createrecord:form.research').toUpperCase()}
+            >
               <View style={styles.wrapper}>
                 <RecordingItem
                   onClick={() => navigation.navigate('specialization')}

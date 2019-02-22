@@ -21,7 +21,7 @@ class HomeCarousel extends Component {
           onPress={() => navigate('informationItem', { image: { uri: `${APP_IMG_URL}storage/${item.image}` }, call: true, header_title: item.title, content: item.body })}
         >
           <Image
-            resizeMode='contain'
+            resizeMode='cover'
             style={styles.iconList}
             source={{ uri: `${APP_IMG_URL}storage/${item.image}` }}
           />

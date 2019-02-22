@@ -1,12 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-let Dheight = Dimensions.get('window').height;
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   wrapSlide: {
     elevation: 5,
     width: '100%',
-    //height: Dheight / 3.3,
     marginBottom: 20,
     marginTop: 20
   },

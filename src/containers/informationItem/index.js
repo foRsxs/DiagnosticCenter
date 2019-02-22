@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, ActivityIndicator, Linking, TouchableOpacity, Modal } from 'react-native';
-import { Container, Content, View } from 'native-base';
+import { Container, Content, View, Icon } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { withNamespaces } from 'react-i18next';
@@ -30,6 +30,7 @@ class InfoDetailScreen extends Component {
     };
 
     this.openPopup = this.openPopup.bind(this);
+    this.closePopup = this.closePopup.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +51,10 @@ class InfoDetailScreen extends Component {
     this.setState({ openPopup: true });
   }
 
+  closePopup() {
+    this.setState({ openPopup: false });
+  }
+
   renderImage = () => {
     const { image, openPopup } = this.state;
 
@@ -62,8 +67,11 @@ class InfoDetailScreen extends Component {
             source={image}
           />
         </TouchableOpacity>
-        <Modal visible={openPopup} transparent={true} onRequestClose={() => this.setState({ openPopup: false })}>
-          <ImageViewer imageUrls={[{ url: image.uri }]} enableSwipeDown={true} onSwipeDown={() => this.setState({ openPopup: false })} />
+        <Modal visible={openPopup} transparent={true} onRequestClose={this.closePopup}>
+          <TouchableOpacity onPress={this.closePopup} style={styles.closeBtn}>
+            <Icon style={{ color: '#ffffff' }} name='ios-close' />
+          </TouchableOpacity>
+          <ImageViewer imageUrls={[{ url: image.uri }]} enableSwipeDown={true} onSwipeDown={this.closePopup} />
         </Modal>
       </View>
     )

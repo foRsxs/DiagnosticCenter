@@ -33,6 +33,7 @@ export default StyleSheet.create({
   },
   tabActive: {
     backgroundColor: WHITE,
+    borderBottomColor: WHITE,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
   },
