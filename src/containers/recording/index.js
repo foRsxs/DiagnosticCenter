@@ -90,6 +90,7 @@ class ReceptionCreateScreen extends Component {
               setOrder({ type: (activeTabOne) ? 2 : 1 }, 'type', 'spec');
             }}
             tabContainerStyle={styles.wrapTabs}
+            tabBarUnderlineStyle={{ backgroundColor: 'transparent' }}
           >
             <Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.consultation').toUpperCase()}>
               <View style={styles.wrapper}>
