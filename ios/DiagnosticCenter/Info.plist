@@ -52,7 +52,7 @@
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>some string value stating the reason</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -77,6 +77,7 @@
 		<string>FontAwesome5_Brands.ttf</string>
 		<string>FontAwesome5_Regular.ttf</string>
 		<string>FontAwesome5_Solid.ttf</string>
+		<string>Helvetica.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

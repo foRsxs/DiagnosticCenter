@@ -29,6 +29,6 @@ export const COLOR_LIGHT_BLACK = 'rgba(70, 76, 79, 0.75)';
 export const COLOR_PLACEHOLDER = 'rgba(151, 151, 151, 0.5)';
 
 //FONTS
-export const MAIN_FONT = 'HelveticaRegular';
+export const MAIN_FONT = 'Helvetica';
 export const FONT_LIGHT = 'Helvetica-Light';
 

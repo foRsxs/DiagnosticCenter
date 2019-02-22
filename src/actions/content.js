@@ -322,12 +322,9 @@ export function deleteOrder({rnumb_id}) {
     .then((response) => {
       let array=[];
       if (response.data[0].err_code == 0) {
-        listTalons.forEach((item)=> {
-          array.push(item);
-          item['active'] = (+item.rnumb_id == +rnumb_id) ? false : true;
-        })
+        listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
         dispatch(setDeletedOrder(true));
-        dispatch(setListTalons(array));
+        dispatch(setListTalons(array))
       }
     });
     setTimeout(()=> {
