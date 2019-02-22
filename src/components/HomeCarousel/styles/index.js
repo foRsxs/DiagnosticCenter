@@ -6,7 +6,7 @@ export default StyleSheet.create({
   wrapSlide: {
     elevation: 5,
     width: '100%',
-    height: Dheight / 3.3,
+    //height: Dheight / 3.3,
     marginBottom: 20,
     marginTop: 20
   },

@@ -239,13 +239,13 @@ class AuthorizationScreen extends Component {
     return (
       <View style={styles.wrapAuthView}>
         <View style={styles.wrapLanguage}>
-          <TouchableOpacity onPress={() => this.changeLang('kz')}>
+          <TouchableOpacity style={(languages_key === 'kz') ? styles.langActiveWrap : styles.langWrap} onPress={() => this.changeLang('kz')}>
             <Text style={(languages_key === 'kz') ? styles.langActive : styles.lang}>KAZ</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.changeLang('ru')}>
+          <TouchableOpacity style={(languages_key === 'ru') ? styles.langActiveWrap : styles.langWrap} onPress={() => this.changeLang('ru')}>
             <Text style={(languages_key === 'ru') ? styles.langActive : styles.lang}>РУС</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.changeLang('en')}>
+          <TouchableOpacity style={(languages_key === 'en') ? styles.langActiveWrap : styles.langWrap} onPress={() => this.changeLang('en')}>
             <Text style={(languages_key === 'en') ? styles.langActive : styles.lang}>ENG</Text>
           </TouchableOpacity>
         </View>

@@ -19,7 +19,9 @@ export default class AnalizesItem extends Component {
           <Text style={styles.txtDate}>{dateTxt}</Text>
         </Body>
         <Right>
-          <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => isLoading(value)} />
+          {(pdf && headTxt) && (
+            <CShare url={pdf} title={headTxt} text={dateTxt} isLoading={(value) => isLoading(value)} />
+          )}
         </Right>
       </ListItem>
     );

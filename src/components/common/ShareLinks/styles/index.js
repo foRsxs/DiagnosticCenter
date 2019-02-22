@@ -17,12 +17,12 @@ export default StyleSheet.create({
     marginRight: 10
   },
   topLink: {
-    paddingVertical: 5,
+    paddingVertical: 2,
     marginTop: 10
   },
   bottomLink: {
-    paddingVertical: 5,
-    marginTop: 5
+    paddingVertical: 2,
+    marginTop: 0
   },
   linkText: {
     color: BLACK,

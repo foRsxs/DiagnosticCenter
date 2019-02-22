@@ -103,7 +103,7 @@ class ShareLinks extends Component {
 			(loading ? (
 				<ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginVertical: 30 }} />
 			) : (
-					<View style={{ paddingLeft: '15%', paddingBottom: 10 }}>
+					<View style={{ paddingLeft: '15%', paddingBottom: 20 }}>
 						<TouchableOpacity
 							activeOpacity={0.8}
 							style={styles.topLink}

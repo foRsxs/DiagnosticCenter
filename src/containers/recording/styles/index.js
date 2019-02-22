@@ -65,7 +65,9 @@ export default StyleSheet.create({
     height: 50
   },
   buttonWrap: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 15
   },
   btnUpdate: {
     position: 'absolute',

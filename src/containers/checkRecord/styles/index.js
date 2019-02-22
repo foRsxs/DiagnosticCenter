@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, { scale } from '../../../styles/variables';
 const { normal } = variables.fSize;
 import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK } from '../../../styles/constants';
 
@@ -23,7 +23,15 @@ export default StyleSheet.create({
         borderColor: ACCENT_BLUE
     },
     buttonWrap: {
-        paddingHorizontal: 20
+        position: 'absolute',
+        backgroundColor: '#ffffff',
+        width: '100%',
+        bottom: 0,
+        zIndex: 14,
+        height: scale(70),
+        paddingTop: scale(10),
+        paddingBottom: scale(20),
+        paddingHorizontal: scale(20)
     },
     helpText: {
         fontSize: normal,

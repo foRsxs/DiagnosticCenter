@@ -29,7 +29,9 @@ class ReceptionListItem extends Component {
           </View>
         </Left>
         <Right>
-        <CShare url={pdf} title={`${docTxt} ${headTxt}`} text={timeTxt} isLoading={(value) => isLoading(value)} />
+          {(pdf && (docTxt || headTxt)) && (
+            <CShare url={pdf} title={`${docTxt} ${headTxt}`} text={timeTxt} isLoading={(value) => isLoading(value)} />
+          )}
         </Right>
       </ListItem>
     );

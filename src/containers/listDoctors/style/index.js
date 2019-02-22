@@ -160,12 +160,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
     zIndex: 14,
-    paddingBottom: scale(35),
+    paddingTop: scale(10),
+    paddingBottom: scale(20),
     paddingHorizontal: scale(25)
   },
   redBtn: {
-    width: scale(325),
-    height: scale(50),
     zIndex: 15,
   },
   emptyData: {

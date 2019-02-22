@@ -42,11 +42,6 @@ export default StyleSheet.create({
     padding: 15,
     paddingBottom: 16
   },
-  wrapLanguage: {
-    flexDirection: 'row',
-    backgroundColor: COLOR_LIGHT_GRAY,
-    borderRadius: 10
-  },
   authTitle: {
     textAlign: 'center',
     fontSize: extralarge,
@@ -144,21 +139,30 @@ export default StyleSheet.create({
     textAlign: 'center',
     width: width
   },
-  langActive: {
+  wrapLanguage: {
+    flexDirection: 'row',
+    backgroundColor: COLOR_LIGHT_GRAY,
+    borderRadius: 10
+  },
+  langActiveWrap: {
     backgroundColor: COLOR_BLUE,
     borderRadius: 10,
-    color: WHITE,
     paddingHorizontal: 10,
+    zIndex: 10
+  },
+  langWrap: {
+    paddingHorizontal: 10,
+    zIndex: 10,
+  },
+  langActive: {
+    color: WHITE,
     fontFamily: MAIN_FONT,
     fontSize: variables.fSize.main,
-    zIndex: 10
   },
   lang: {
     color: COLOR_BLUE,
-    paddingHorizontal: 10,
     fontFamily: MAIN_FONT,
     fontSize: variables.fSize.main,
-    zIndex: 10,
   },
   smsTitle: {
     textAlign: 'center',

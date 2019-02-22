@@ -25,10 +25,11 @@ class CheckRecordScreen extends Component {
       price: (props.navigation.state.params) ? props.navigation.state.params.price : null,
       room: (props.navigation.state.params) ? props.navigation.state.params.room : null,
       rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id : null,
+      preparation_text: (props.navigation.state.params) ? props.navigation.state.params.preparation_text : null,
       modalVisible: false,
       hideButton: false,
     }
-    moment.locale((props.lang_key === 'kz')? 'kk': (props.lang_key === 'en')? 'en-gb': 'ru');
+    moment.locale((props.lang_key === 'kz') ? 'kk' : (props.lang_key === 'en') ? 'en-gb' : 'ru');
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ class CheckRecordScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({modalVisible: true});
+    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({ modalVisible: true });
     if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
   }
 
@@ -44,7 +45,7 @@ class CheckRecordScreen extends Component {
     const { order, saveOrder } = this.props;
     const { rnumb_id } = this.state;
 
-    saveOrder({rnumb_id, date: order.date, serv_id: order.servid, type: order.type});
+    saveOrder({ rnumb_id, date: order.date, serv_id: order.servid, type: order.type });
   }
 
   _save = () => {
@@ -52,89 +53,92 @@ class CheckRecordScreen extends Component {
     setCreatingOrderSuccess(false);
     getListTalons();
     cleareOrder();
-    this.setState({modalVisible: false, hideButton: true});
+    this.setState({ modalVisible: false, hideButton: true });
     navigation.navigate('recordingList');
   }
 
   render() {
     const { t, orderValues } = this.props;
-    const { price, room, modalVisible, hideButton } = this.state;
+    const { price, room, modalVisible, hideButton, preparation_text } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={t('recordings:item.select_time')} navigation={this.props.navigation} />
         <Content>
           <View style={styles.wrapper}>
-            <RecordingItem 
-              icon={ICON_SERVICE_SMALL} 
-              title={t('createrecord:form.service')} 
-              placeholder={t('createrecord:form.select_service')} 
+            <RecordingItem
+              icon={ICON_SERVICE_SMALL}
+              title={t('createrecord:form.service')}
+              placeholder={t('createrecord:form.select_service')}
               text={orderValues.serv}
             />
             <View style={styles.datetimeWrap}>
               <View style={{ flex: 2 }}>
-                <RecordingItem 
-                  icon={ICON_PRICE_SMALL} 
-                  title={t('createrecord:price')} 
-                  placeholder={t('createrecord:form.select_date')} 
+                <RecordingItem
+                  icon={ICON_PRICE_SMALL}
+                  title={t('createrecord:price')}
+                  placeholder={t('createrecord:form.select_date')}
                   text={`${price} KZT`}
                 />
               </View>
               <View style={styles.separator}></View>
               <View style={{ flex: 1 }}>
-                <RecordingItem 
-                  contentContainerStyle={{ paddingLeft: 10 }} 
-                  icon={ICON_NUMBER_SMALL} 
-                  title={t('createrecord:room_number')} 
+                <RecordingItem
+                  contentContainerStyle={{ paddingLeft: 10 }}
+                  icon={ICON_NUMBER_SMALL}
+                  title={t('createrecord:room_number')}
                   text={room.toString()}
-                  placeholder='300' 
+                  placeholder='300'
                 />
               </View>
             </View>
-            <RecordingItem 
-              icon={ICON_DOCTOR_SMALL} 
-              title={t('createrecord:form.doctor')} 
-              placeholder={t('createrecord:form.select_doctor')} 
+            <RecordingItem
+              icon={ICON_DOCTOR_SMALL}
+              title={t('createrecord:form.doctor')}
+              placeholder={t('createrecord:form.select_doctor')}
               text={orderValues.docdep}
             />
             <View style={styles.datetimeWrap}>
               <View style={{ flex: 2 }}>
-                <RecordingItem 
-                  icon={ICON_CALENDAR_SMALL} 
-                  title={t('createrecord:form.date')} 
-                  placeholder={t('createrecord:form.select_date')} 
+                <RecordingItem
+                  icon={ICON_CALENDAR_SMALL}
+                  title={t('createrecord:form.date')}
+                  placeholder={t('createrecord:form.select_date')}
                   text={moment(orderValues.data).format("DD MMMM, YYYY")}
                 />
               </View>
               <View style={styles.separator}></View>
               <View style={{ flex: 1 }}>
-                <RecordingItem 
-                  contentContainerStyle={{ paddingLeft: 10 }} 
-                  icon={ICON_TIME_SMALL} 
-                  title={t('createrecord:form.time')} 
-                  placeholder='12:00' 
+                <RecordingItem
+                  contentContainerStyle={{ paddingLeft: 10 }}
+                  icon={ICON_TIME_SMALL}
+                  title={t('createrecord:form.time')}
+                  placeholder='12:00'
                   text={orderValues.time}
-                  />
+                />
               </View>
             </View>
           </View>
-          <View style={styles.helpText}>
-            <Text>{t('createrecord:help_text')}</Text>
-          </View>
           {
+            (preparation_text) && (
+              <View style={styles.helpText}>
+                <Text>{preparation_text}</Text>
+              </View>
+            )}
+          <Popup
+            show={modalVisible}
+            firstText={t('recordings:item.success').toUpperCase()}
+            laberButton={t('common:actions.ok')}
+            actionButton={this._save}
+          />
+        </Content >
+        {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
               <CustomBtn label={t('common:actions.confirm')} onClick={() => this.createOrder()} />
             </View>
-            )
-          }
-          <Popup 
-            show={modalVisible} 
-            firstText={ t('recordings:item.success').toUpperCase() }
-            laberButton={ t('common:actions.ok') } 
-            actionButton={this._save}
-          />
-        </Content >
+          )
+        }
       </Container>
     )
   }

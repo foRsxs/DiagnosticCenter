@@ -49,6 +49,7 @@ class ReceptionCreateScreen extends Component {
       price: orderDatas.services.find((item) => +item.servid === +order.servid).price,
       room: orderDatas.times.find((item) => item.time === order.time).room,
       rnumb_id: orderDatas.times.find((item) => item.time === order.time).rnumb_id,
+      preparation_text: orderDatas.services.find((item) => +item.servid === +order.servid).preparation,
     });
   }
 
