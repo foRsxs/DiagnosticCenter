@@ -95,7 +95,7 @@ class SettingsScreen extends Component {
                 onValueChange={this.changeLang.bind(this)}
                 headerBackButtonText={t('common:actions.back')}
                 iosHeader={t('common:actions_text.select_language')}
-                iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                iosIcon={<Icon style={styles.pickerIcon} name="arrow-forward" />}
               >
                 <Picker.Item label="Рус" value="ru" />
                 <Picker.Item label="Kaз" value="kz" />
@@ -115,7 +115,7 @@ class SettingsScreen extends Component {
                     onValueChange={this.onAuthChange.bind(this)}
                     headerBackButtonText={t('common:actions.back')}
                     iosHeader={t('common:actions_text.select_auth_method')}
-                    iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                    iosIcon={<Icon style={styles.pickerIcon} name="arrow-forward" />}
                   >
                     <Picker.Item label="Code" value="code" />
                     <Picker.Item label={t('authorization:auth_type.touch_id')} value="touch" />
@@ -131,7 +131,7 @@ class SettingsScreen extends Component {
                       onValueChange={this.onAuthChange.bind(this)}
                       headerBackButtonText={t('common:actions.back')}
                       iosHeader={t('common:actions_text.select_auth_method')}
-                      iosIcon={<Icon style={styles.pickerIcon} name="ios-arrow-down-outline" />}
+                      iosIcon={<Icon style={styles.pickerIcon} name="arrow-forward" />}
                     >
                       <Picker.Item label="Code" value="code" />
                       <Picker.Item label={t('authorization:auth_type.face_id')} value="face" />

@@ -40,7 +40,7 @@ class Header extends Component {
 									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
 								</View>
 								<View style={styles.rightContainer}>
-									<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }} onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
+									<TouchableOpacity style={styles.headerRightBtn} onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
 										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
