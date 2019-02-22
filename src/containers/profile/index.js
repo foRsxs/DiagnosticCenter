@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Container, Content, View, Text} from 'native-base';
+import React, { Component } from 'react';
+import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
@@ -47,46 +47,48 @@ class ProfileScreen extends Component {
   }
 
   onPress = (type) => {
-    const {navigation} = this.props;
-    
+    const { navigation } = this.props;
+
     if (type === 'LogOut') {
       this.props.logOut();
       navigation.navigate('authorization');
     } else {
-      navigation.navigate(type); 
-    } 
+      navigation.navigate(type);
+    }
   }
 
   componentDidMount() {
     this.props.getUserData();
-	}
+  }
 
   render() {
     let { t, user } = this.props;
-    
+
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
-        <Header isHome={true} navigation={this.props.navigation}/>
+        <Header isHome={true} navigation={this.props.navigation} />
         <Content>
-          <View style={styles.prifileBlock}>
-            <View style={styles.prifileItem}>
-              <Text style={styles.titles}>{t('profile:name')}</Text>
-              <Text style={styles.text}>{`${user.lastname} ${user.firstname} ${user.secondname}`}</Text>
+          {(user) && (
+            <View style={styles.prifileBlock}>
+              <View style={styles.prifileItem}>
+                <Text style={styles.titles}>{t('profile:name')}</Text>
+                <Text style={styles.text}>{`${user.lastname} ${user.firstname} ${user.secondname}`}</Text>
+              </View>
+              <View style={styles.prifileItem}>
+                <Text style={styles.titles}>{t('profile:birthDate')}</Text>
+                <Text style={styles.text}>{user.birth_date}</Text>
+              </View>
+              <View style={styles.prifileItem}>
+                <Text style={styles.titles}>{t('profile:phone')}</Text>
+                <Text style={styles.text}>{user.phone}</Text>
+              </View>
+              <View style={styles.prifileItem}>
+                <Text style={styles.titles}>{t('profile:address')}</Text>
+                <Text style={styles.text}>{user.address}</Text>
+              </View>
             </View>
-            <View style={styles.prifileItem}>
-              <Text style={styles.titles}>{t('profile:birthDate')}</Text>
-              <Text style={styles.text}>{user.birth_date}</Text>
-            </View>
-            <View style={styles.prifileItem}>
-              <Text style={styles.titles}>{t('profile:phone')}</Text>
-              <Text style={styles.text}>{user.phone}</Text>
-            </View>
-            <View style={styles.prifileItem}>
-              <Text style={styles.titles}>{t('profile:address')}</Text>
-              <Text style={styles.text}>{user.address}</Text>
-            </View>
-          </View>
-          <MenuList onPress={(value)=>this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />
+          )}
+          <MenuList onPress={(value) => this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />
         </Content >
       </Container>
     )
