@@ -199,7 +199,7 @@ class AuthorizationScreen extends Component {
           style={styles.wrapMain}
           contentContainerStyle={styles.contentStyleMain}
         >
-          <Header isHome={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
+          <Header isHome={false} isPin={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
           {(token && enableSecure && !methods_auth) && this.renderConfirmCodeChoose()}
           {(token && enableSecure && methods_auth === 'code' && !confirmed_auth && !pinCode) && this.renderPinCode('new')}
           {(token && enableSecure && methods_auth === 'code' && !confirmed_auth && pinCode) && this.renderPinCode('confirm')}

@@ -322,7 +322,8 @@ const AppTabNavigator = createBottomTabNavigator(
     Record: RecordNavigator,
   },
   {
-    tabBarComponent: props => <FooterTabs props={props} />
+    tabBarComponent: props => <FooterTabs props={props} />,
+    initialRouteName: 'Main',
   }
 );
 

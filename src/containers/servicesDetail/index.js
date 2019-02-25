@@ -5,7 +5,9 @@ import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
+import { authAlert } from '../../utils/helpers';
 import Header from '../../components/common/Header';
 import SpecializationItem from '../../components/SpecializationItem';
 import styles from './styles';
@@ -52,19 +54,23 @@ class ServicesDetailScreen extends Component {
 
   onClick = (serv) => {
     const { isOrder, spec_value, spec_id } = this.state;
-    const { setOrderValue, setOrder, navigation } = this.props;
+    const { t, setOrderValue, setOrder, navigation, isGuest, setAuthMessage } = this.props;
 
     if (isOrder) {
       setOrderValue({ serv: serv.text });
       setOrder({ servid: serv.servid }, 'servid');
       navigation.goBack()
     } else {
-      console.log(spec_value, spec_id)
-      navigation.navigate({
-        key: serv.servid,
-        routeName: 'recordingCreate',
-        params: { spec_id, type: 2, spec_value, servid: serv.servid, serv_value: serv.text },
-      });
+      if (isGuest) {
+        setAuthMessage(t(`common:actions_text.record_text`));
+        authAlert(t, navigation);
+      } else {
+        navigation.navigate({
+          key: serv.servid,
+          routeName: 'recordingCreate',
+          params: { spec_id, type: 2, spec_value, servid: serv.servid, serv_value: serv.text },
+        });
+      }
     }
   }
 
@@ -106,12 +112,13 @@ class ServicesDetailScreen extends Component {
 function mapStateToProps(state) {
   return {
     orderDatas: state.content.orderDatas,
-    order: state.content.order
+    order: state.content.order,
+    isGuest: state.authorization.isGuest
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+  return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
-export default withNamespaces('createrecord')(connect(mapStateToProps, mapDispatchToProps)(ServicesDetailScreen));
+export default withNamespaces(['common', 'createrecord'])(connect(mapStateToProps, mapDispatchToProps)(ServicesDetailScreen));

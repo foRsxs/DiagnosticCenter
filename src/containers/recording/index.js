@@ -117,7 +117,6 @@ class ReceptionCreateScreen extends Component {
             initialPage={initialPage}
             page={activeTab}
             onChangeTab={(event) => {
-              console.log('change', event)
               if (firstChangeDisabled) {
                 this.setState({firstChangeDisabled: false});
                 return;

@@ -69,7 +69,7 @@ class WelcomeScreen extends Component {
 			);
 		}
 		if (hideScreen && token && enableSecure) {
-			navigate('authorization');
+			navigate('AuthMethods');
 		} else if (hideScreen && token && !enableSecure) {
 			navigate('App');
 		} else if (hideScreen && !token) {

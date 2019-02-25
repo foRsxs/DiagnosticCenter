@@ -53,7 +53,7 @@ class SettingsScreen extends Component {
       changeMethodsAuth({ methods_auth: null, confirmed: false });
       if (local_secure) {
         changeMethodsAuth({ methods_auth: null, confirmed: false });
-        return navigation.navigate('authMethods');
+        return navigation.navigate('AuthMethods');
       } else {
         changeMethodsAuth({ methods_auth: null, confirmed: true });
         savePinCode({ code: null, confirmed: true });
@@ -64,7 +64,7 @@ class SettingsScreen extends Component {
       savePinCode({ code: null, confirmed: false });
       if (local_auth_methods === 'code') {
         changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: false });
-        return navigation.navigate('authorization');
+        return navigation.navigate('AuthMethods');
       } else {
         changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: true });
       }

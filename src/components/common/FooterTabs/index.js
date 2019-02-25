@@ -33,7 +33,7 @@ class FooterTabs extends Component {
 
 	_navigateToWalkthrough = (root) => {
 		const { jumpTo, navigation } = this.props.props;
-		console.log(root, this.props)
+	
 		navigation.dispatch(StackActions.popToTop());
 
     jumpTo(root);
@@ -72,12 +72,11 @@ class FooterTabs extends Component {
 						transparent
 						style={styles.button}
 						onPress={() => { 
-								this._navigateToWalkthrough('Record');
 							if (isGuest) { 
 								this.props.setAuthMessage(t(`common:actions_text.record_text`));
 								authAlert(t, navigation);
 							} else {
-								navigation.navigate('recordingCreate');
+								this._navigateToWalkthrough('Record');
 							}
 						}}
 					>
@@ -107,7 +106,7 @@ class FooterTabs extends Component {
 								this.props.setAuthMessage(t(`common:actions_text.profile_text`));
 								authAlert(t, navigation);
 							} else {
-								navigation.navigate('profile');
+								this._navigateToWalkthrough('Profile');
 							}
 						}}
 					>
