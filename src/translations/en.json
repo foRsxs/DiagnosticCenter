@@ -262,6 +262,8 @@
             "token_not_valid_text": "You need to re-login", 
             "question_sent": "Your question has been sent successfully",
             "question_text": "To ask questions, you need to log in",
+            "profile_text": "Для того чтобы войти в профиль, Вам необходимо авторизоваться",
+            "record_text": "Для того чтобы записаться на приём, Вам необходимо авторизоваться",
             "recording_text": "In order to view the page of records, you need to log in",
             "analizes_text": "To view the analysis page, you need to log in",
             "history_text": "To view the medical history page, you need to log in",

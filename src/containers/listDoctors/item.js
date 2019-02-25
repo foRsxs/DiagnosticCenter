@@ -9,6 +9,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
+import { authAlert } from '../../utils/helpers';
 import { ICON_FOR_QUESTION, ICON_BLUE_ARROW } from '../../styles/images';
 import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
@@ -54,7 +55,7 @@ class DoctorScreen extends Component {
 
     if (isGuest) {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
-      navigation.navigate('authorization');
+      authAlert(t, navigation);
     } else {
       (page == 'questions') ? 
         navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) 
@@ -98,12 +99,23 @@ class DoctorScreen extends Component {
 
   renderQuestions() {
     const { moreInfo, docid, loading } = this.state;
-    const { questions, t, navigation } = this.props;
+    const { questions, t, navigation, isGuest } = this.props;
 
     return (
       <View style={styles.bottomContainer}>
         <View style={styles.wrapBtnQuest}>
-          <TouchableOpacity activeOpacity={0.9} style={styles.btnQuest} onPress={() => navigation.navigate("questionForm", { doc_id: docid })}>
+          <TouchableOpacity 
+            activeOpacity={0.9} 
+            style={styles.btnQuest} 
+            onPress={() => {
+              if (isGuest) {
+                this.props.setAuthMessage(t(`common:actions_text.question_text`));
+                authAlert(t, navigation);
+              } else {
+                navigation.navigate("questionForm", { doc_id: docid })
+              }
+            }}
+          >
             <Image style={styles.iconQuest} source={ICON_FOR_QUESTION} />
             <Text style={styles.textBtn}>{t('common:actions.ask_question_doctor')}</Text>
           </TouchableOpacity>
@@ -149,7 +161,11 @@ class DoctorScreen extends Component {
           <View style={styles.btnWrap}>
             {
               (!loading && +doctor.allow === 1) && (
-                <CustomBtn contentContainerStyle={styles.redBtn} label={t('common:actions.appointment')} onClick={() => this._openPage('recordingCreate', 'recording')} />
+                <CustomBtn 
+                  contentContainerStyle={styles.redBtn} 
+                  label={t('common:actions.appointment')} 
+                  onClick={() => this._openPage('recordingCreate', 'record')} 
+                />
               )}
             {
               (!loading && +doctor.allow === 0) && (

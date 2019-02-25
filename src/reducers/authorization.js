@@ -11,7 +11,7 @@ export default function authReducer(state = initialState.auth, action) {
         methods_auth: false,
         notify: true,
         pinCode: null,
-        isGuest: false,
+        isGuest: true,
         enableSecure: false,
         user: {}
       }

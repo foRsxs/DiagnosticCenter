@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Alert } from 'react-native';
+import { Image } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { withNavigation } from 'react-navigation';
@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as AuthActions from '../../../actions/auth';
+import * as ContentActions from '../../../actions/content';
+import { authAlert } from '../../../utils/helpers';
 
 import styles from './styles';
 import {
@@ -30,7 +32,7 @@ class FooterTabs extends Component {
 	}
 
 	render() {
-		const { t, navigation, user } = this.props;
+		const { t, navigation, isGuest } = this.props;
 		const { routeName } = navigation.state.routes[navigation.state.index];
 
 		return (
@@ -62,22 +64,11 @@ class FooterTabs extends Component {
 						transparent
 						style={styles.button}
 						onPress={() => { 
-							if (user && user.api_token) {							
-								navigation.navigate('recordingCreate');
+							if (isGuest) { 
+								this.props.setAuthMessage(t(`common:actions_text.record_text`));
+								authAlert(t, navigation);
 							} else {
-								Alert.alert(
-									t('common:actions_text.auth_text'),
-									'',
-									[
-										{
-											text: t('common:actions.cancel'),
-											onPress: () => {},
-											style: 'cancel',
-										},
-										{text: t('common:actions.ok'), onPress: () => navigation.navigate('authorization') },
-									],
-									{cancelable: false},
-								);
+								navigation.navigate('recordingCreate');
 							}
 						}}
 					>
@@ -103,22 +94,11 @@ class FooterTabs extends Component {
 						transparent
 						style={styles.button}
 						onPress={() => { 
-							if (user && user.api_token) {							
-								navigation.navigate('profile');
+							if (isGuest) { 
+								this.props.setAuthMessage(t(`common:actions_text.profile_text`));
+								authAlert(t, navigation);
 							} else {
-								Alert.alert(
-									t('common:actions_text.auth_text'),
-									'',
-									[
-										{
-											text: t('common:actions.cancel'),
-											onPress: () => {},
-											style: 'cancel',
-										},
-										{text: t('common:actions.ok'), onPress: () => navigation.navigate('authorization') },
-									],
-									{cancelable: false},
-								);
+								navigation.navigate('profile');
 							}
 						}}
 					>
@@ -137,12 +117,13 @@ class FooterTabs extends Component {
 
 function mapStateToProps(state) {
   return {
+    isGuest: state.authorization.isGuest,
     user: state.authorization.user
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({...AuthActions}, dispatch)
+  return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
 export default withNamespaces(['footer_menu', 'common'])(connect(mapStateToProps, mapDispatchToProps)(withNavigation(FooterTabs)));

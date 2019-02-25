@@ -8,7 +8,7 @@ export const initialState = {
     user: {},
     device_touch: false,
     device_face: false,
-    isGuest: false,
+    isGuest: true,
     enableSecure: false,
     language: 'ru'
   },
