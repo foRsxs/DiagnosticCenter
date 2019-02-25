@@ -23,6 +23,10 @@ export const initialState = {
       list: null,
       post: null
     },
+    listVacantion: {
+      list: null,
+      post: null
+    },
     questions: {
       often: null,
       doctors: null

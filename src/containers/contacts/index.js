@@ -37,13 +37,13 @@ class ContactsScreen extends Component {
           <View style={styles.contactItem}>
             <Text style={styles.headTxt}>{t('contacts:phones')}:</Text>
             <Text style={styles.subHeadTxt}>{t('contacts:call_centre')}</Text>
-            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:+87252390621')}>8 (7252) 39-06-21</Text>
+            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:87252390621')}>8 (7252) 39-06-21</Text>
             <Text style={styles.subHeadTxt}>{t('contacts:main_doc_office')}</Text>
-            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:+87252367184')}>8 (7252) 36-71-84</Text>
+            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:87252367184')}>8 (7252) 36-71-84</Text>
             <Text style={styles.subHeadTxt}>{t('contacts:main_doc_deputy')}</Text>
-            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:+87252367192')}>8 (7252) 36-71-92</Text>
+            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:87252367192')}>8 (7252) 36-71-92</Text>
             <Text style={styles.subHeadTxt}>{t('contacts:phone_of_trust')}</Text>
-            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:+8725395456')}>8 (7252) 39-54-56</Text>
+            <Text style={styles.linkTxt} onPress={() => Linking.openURL('tel:87252395456')}>8 (7252) 39-54-56</Text>
           </View>
           <View style={styles.contactItem}>
             <Text style={styles.headTxt}>{t('contacts:email_text')}:</Text>

@@ -143,6 +143,22 @@ export default function contentReducer(state = initialState.content, action) {
           post: action.data
         }
       }
+    case types.SET_LIST_VACANTION:
+      return {
+        ...state,
+        listVacantion: {
+          list: action.data,
+          post: state.listVacantion.post
+        }
+      }
+    case types.SET_VACANTION:
+      return {
+        ...state,
+        listVacantion: {
+          list: state.listVacantion.list,
+          post: action.data
+        }
+      }
     case types.SET_QUESTION:
       return {
         ...state,

@@ -8,6 +8,7 @@ import {
 
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
+import AuthorizationMethodsScreen from '../containers/authMethods';
 import SpecializationScreen from '../containers/specialization';
 import QuestionFormScreen from '../containers/questionForm';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
@@ -23,6 +24,8 @@ import FaqScreen from '../containers/faq';
 import SettingsScreen from '../containers/settings';
 import InfoScreen from '../containers/information';
 import InfoItemScreen from '../containers/informationItem';
+import VacantionScreen from '../containers/vacantion';
+import VacantionItemScreen from '../containers/vacantionItem';
 import WelcomeScreen from '../containers/welcome';
 import ProfileScreen from '../containers/profile';
 import FooterTabs from '../components/common/FooterTabs';
@@ -110,6 +113,28 @@ ProfileNavigator.navigationOptions = ({ navigation }) => {
   return navigationOptions;
 };
 
+const AuthMethodsNavigator = createStackNavigator(
+  {
+    authMethods: {
+      screen: AuthorizationMethodsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+  },
+);
+
+AuthMethodsNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions = {};
+  
+  if (routeName === 'authMethods') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
+
 const MainNavigator = createStackNavigator(
   {
     home: {
@@ -144,6 +169,18 @@ const MainNavigator = createStackNavigator(
     },
     informationItem: {
       screen: InfoItemScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    vacantion: {
+      screen: VacantionScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    vacantionItem: {
+      screen: VacantionItemScreen,
       navigationOptions: {
         header: null
       }
@@ -301,6 +338,7 @@ RecordNavigator.navigationOptions = ({ navigation }) => {
 const AppTabNavigator = createBottomTabNavigator(
   {
     Profile: ProfileNavigator,
+    AuthMethods: AuthMethodsNavigator,
     Main: MainNavigator,
     Doctor: DoctorNavigator,
     Service: ServiceNavigator,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { Container, View, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -12,10 +13,10 @@ import RecordingItem from '../../components/RecordingItem';
 import Popup from '../../components/common/Popup';
 import styles from './styles';
 import { ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
+import { ACCENT_BLUE } from '../../styles/constants';
 import 'moment/locale/ru';
 import 'moment/locale/kk';
 import 'moment/locale/en-gb';
-
 
 class CheckRecordScreen extends Component {
 
@@ -28,6 +29,7 @@ class CheckRecordScreen extends Component {
       preparation_text: (props.navigation.state.params) ? props.navigation.state.params.preparation_text : null,
       modalVisible: false,
       hideButton: false,
+      loading: false,
     }
     moment.locale((props.lang_key === 'kz') ? 'kk' : (props.lang_key === 'en') ? 'en-gb' : 'ru');
   }
@@ -37,7 +39,7 @@ class CheckRecordScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({ modalVisible: true });
+    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({ modalVisible: true, loading: false });
     if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
   }
 
@@ -46,6 +48,7 @@ class CheckRecordScreen extends Component {
     const { rnumb_id } = this.state;
 
     saveOrder({ rnumb_id, date: order.date, serv_id: order.servid, type: order.type });
+    this.setState({ loading: true });
   }
 
   _save = () => {
@@ -59,7 +62,7 @@ class CheckRecordScreen extends Component {
 
   render() {
     const { t, orderValues } = this.props;
-    const { price, room, modalVisible, hideButton, preparation_text } = this.state;
+    const { price, room, modalVisible, hideButton, preparation_text, loading } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
@@ -132,6 +135,7 @@ class CheckRecordScreen extends Component {
             actionButton={this._save}
           />
         </Content >
+        {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} style={{position: 'absolute', top: '75%', zIndex: 20, alignSelf: 'center'}} />}
         {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
