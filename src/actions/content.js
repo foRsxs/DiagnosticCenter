@@ -128,6 +128,39 @@ export function getPost(post_id) {
   }
 }
 
+export function getListVacantion() {
+  return (dispatch, getState) => {
+    const { authorization: {language} } = getState();
+
+    axios.post(`${APP_API_URL}/vacancy`, {
+      lang: language
+    })
+    .then((response) => {
+      dispatch(setListVacantion(response.data))
+    })
+    .catch((e)=> {
+      dispatch(setListVacantion([]))
+    })
+  }
+}
+
+export function getVacantion(post_id) {
+  return (dispatch, getState) => {
+    const { authorization } = getState();
+
+    axios.post(`${APP_API_URL}/vacancy`,{
+      post_id, 
+      lang: authorization.language
+    })
+    .then((response) => {
+      dispatch(setVacantion(response.data));
+    })
+    .catch((e)=> {
+      dispatch(setVacantion({}));
+    })
+  }
+}
+
 export function getQuestions(doc_id) {
   return (dispatch, getState) => {
     const { authorization: {token, language} } = getState();
@@ -522,6 +555,20 @@ export function setListInformation(data) {
 export function setPost(data) {
   return {
     type: types.SET_POST,
+    data: data
+  }
+}
+
+export function setListVacantion(data) {
+  return {
+    type: types.SET_LIST_VACANTION,
+    data: data
+  }
+}
+
+export function setVacantion(data) {
+  return {
+    type: types.SET_VACANTION,
     data: data
   }
 }

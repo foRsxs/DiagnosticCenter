@@ -53,7 +53,7 @@ class SettingsScreen extends Component {
       changeMethodsAuth({ methods_auth: null, confirmed: false });
       if (local_secure) {
         changeMethodsAuth({ methods_auth: null, confirmed: false });
-        return navigation.navigate('authorization');
+        return navigation.navigate('authMethods');
       } else {
         changeMethodsAuth({ methods_auth: null, confirmed: true });
         savePinCode({ code: null, confirmed: true });

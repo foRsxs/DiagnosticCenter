@@ -48,7 +48,8 @@ export const styles = StyleSheet.create({
 		fontSize: main,
 		color: ACCENT_BLUE,
 		fontFamily: FONT_LIGHT,
-		lineHeight: scale(18)
+		lineHeight: scale(18),
+		paddingRight: 60,
 	},
 	category: {
 		color: COLOR_LIGHT_BLACK,

@@ -11,9 +11,9 @@ import CatalogItem from '../../components/CatalogItem';
 import Header from '../../components/common/Header';
 import { APP_IMG_URL } from '../../config';
 import variables from '../../styles/variables';
-import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK, COLOR_NEW_GRAY } from '../../styles/constants';
+import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK, COLOR_NEW_GRAY, FONT_LIGHT } from '../../styles/constants';
 
-const { medium } = variables.fSize;
+const { medium, main } = variables.fSize;
 
 class ListDoctors extends Component {
   constructor(props) {
@@ -88,7 +88,7 @@ class ListDoctors extends Component {
               (sorted_list_Doctors.length) ? (
                 sorted_list_Doctors.map((item, index)=>(
                   <View key={index}>
-                    <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10}}>{item.category}</Text>
+                    <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10, fontFamily: FONT_LIGHT, fontSize: main}}>{item.category}</Text>
                     <View style={{width: '50%', height: 0.5, backgroundColor: COLOR_NEW_GRAY, marginBottom: 5}}/>
                     {
                     item.doctors.map((item, index, length)=>((
