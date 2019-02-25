@@ -46,7 +46,7 @@ class WelcomeScreen extends Component {
 			]
     };
 		this.renderDetail = this.renderDetail.bind(this);
-		this._checkWelcome();
+		
 	}
 
 	_checkWelcome = () => {
@@ -68,18 +68,18 @@ class WelcomeScreen extends Component {
 				{cancelable: false},
 			);
 		}
-
 		if (hideScreen && token && enableSecure) {
 			navigate('authorization');
 		} else if (hideScreen && token && !enableSecure) {
-			navigate('home');
+			navigate('App');
 		} else if (hideScreen && !token) {
-			navigate('home');
+			navigate('App');
 		}
 	};
 
 	componentDidMount() {
 		SplashScreen.hide();
+		this._checkWelcome();
 	}
 
 	renderImage(image, style) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, Alert } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, StackActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -29,6 +29,14 @@ class FooterTabs extends Component {
 		}
 	}
 
+	_navigateToWalkthrough = (root) => {
+		const { jumpTo, navigation } = this.props.props;
+		console.log(root, this.props)
+		navigation.dispatch(StackActions.popToTop());
+
+    jumpTo(root);
+  }
+
 	render() {
 		const { t, navigation, user } = this.props;
 		const { routeName } = navigation.state.routes[navigation.state.index];
@@ -39,7 +47,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('home')}>
+						onPress={() => this._navigateToWalkthrough("Main")}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -50,7 +58,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('listDoctors')}>
+						onPress={() => this._navigateToWalkthrough('Doctor')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -63,7 +71,7 @@ class FooterTabs extends Component {
 						style={styles.button}
 						onPress={() => { 
 							if (user && user.api_token) {							
-								navigation.navigate('recordingCreate');
+								this._navigateToWalkthrough('Record');
 							} else {
 								Alert.alert(
 									t('common:actions_text.auth_text'),
@@ -91,7 +99,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('services')}>
+						onPress={() => this._navigateToWalkthrough('Service')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -104,7 +112,7 @@ class FooterTabs extends Component {
 						style={styles.button}
 						onPress={() => { 
 							if (user && user.api_token) {							
-								navigation.navigate('profile');
+								this._navigateToWalkthrough("Profile");
 							} else {
 								Alert.alert(
 									t('common:actions_text.auth_text'),

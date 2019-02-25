@@ -37,14 +37,14 @@ import CardPatientDetailScreen from '../containers/cardPatientDetail';
 
 const ProfileNavigator = createStackNavigator(
   {
-    authorization: {
-      screen: AuthorizationScreen,
+    profile: {
+      screen: ProfileScreen,
       navigationOptions: {
         header: null
       }
     },
-    profile: {
-      screen: ProfileScreen,
+    authorization: {
+      screen: AuthorizationScreen,
       navigationOptions: {
         header: null
       }
@@ -92,6 +92,9 @@ const ProfileNavigator = createStackNavigator(
       }
     },
   },
+  {
+    initialRouteName: 'profile',
+  }
 );
 
 ProfileNavigator.navigationOptions = ({ navigation }) => {
@@ -146,6 +149,9 @@ const MainNavigator = createStackNavigator(
       }
     },
   },
+  {
+    initialRouteName: 'home',
+  }
 );
 
 MainNavigator.navigationOptions = ({ navigation }) => {
@@ -181,6 +187,9 @@ const DoctorNavigator = createStackNavigator(
       }
     }
   },
+  {
+    initialRouteName: 'listDoctors',
+  }
 );
 
 DoctorNavigator.navigationOptions = ({ navigation }) => {
@@ -209,6 +218,9 @@ const ServiceNavigator = createStackNavigator(
       }
     },
   },
+  {
+    initialRouteName: 'services',
+  }
 );
 
 const RecordNavigator = createStackNavigator(
@@ -268,6 +280,9 @@ const RecordNavigator = createStackNavigator(
       }
     },
   },
+  {
+    initialRouteName: 'recordingCreate',
+  }
 );
 
 RecordNavigator.navigationOptions = ({ navigation }) => {
