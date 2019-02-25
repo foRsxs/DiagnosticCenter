@@ -110,28 +110,6 @@ ProfileNavigator.navigationOptions = ({ navigation }) => {
   return navigationOptions;
 };
 
-const AuthMethodsNavigator = createStackNavigator(
-  {
-    authMethods: {
-      screen: AuthorizationMethodsScreen,
-      navigationOptions: {
-        header: null
-      }
-    },
-  },
-);
-
-AuthMethodsNavigator.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
-  let navigationOptions = {};
-  
-  if (routeName === 'authMethods') {
-    navigationOptions.tabBarVisible = false;
-  }
-
-  return navigationOptions;
-};
-
 const MainNavigator = createStackNavigator(
   {
     home: {
@@ -323,7 +301,6 @@ RecordNavigator.navigationOptions = ({ navigation }) => {
 const AppTabNavigator = createBottomTabNavigator(
   {
     Profile: ProfileNavigator,
-    AuthMethods: AuthMethodsNavigator,
     Main: MainNavigator,
     Doctor: DoctorNavigator,
     Service: ServiceNavigator,
@@ -337,6 +314,7 @@ const AppTabNavigator = createBottomTabNavigator(
 const AppNavigator = createAppContainer(createSwitchNavigator(
   {
     AuthLoading: WelcomeScreen,
+    AuthMethods: AuthorizationMethodsScreen,
     App: AppTabNavigator
   },
   {
