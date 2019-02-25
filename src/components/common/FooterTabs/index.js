@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, StackActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -31,6 +31,14 @@ class FooterTabs extends Component {
 		}
 	}
 
+	_navigateToWalkthrough = (root) => {
+		const { jumpTo, navigation } = this.props.props;
+		console.log(root, this.props)
+		navigation.dispatch(StackActions.popToTop());
+
+    jumpTo(root);
+  }
+
 	render() {
 		const { t, navigation, isGuest } = this.props;
 		const { routeName } = navigation.state.routes[navigation.state.index];
@@ -41,7 +49,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('home')}>
+						onPress={() => this._navigateToWalkthrough("Main")}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -52,7 +60,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('listDoctors')}>
+						onPress={() => this._navigateToWalkthrough('Doctor')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'
@@ -64,6 +72,7 @@ class FooterTabs extends Component {
 						transparent
 						style={styles.button}
 						onPress={() => { 
+								this._navigateToWalkthrough('Record');
 							if (isGuest) { 
 								this.props.setAuthMessage(t(`common:actions_text.record_text`));
 								authAlert(t, navigation);
@@ -82,7 +91,7 @@ class FooterTabs extends Component {
 					<Button 
 						transparent
 						style={styles.button}
-						onPress={() => navigation.navigate('services')}>
+						onPress={() => this._navigateToWalkthrough('Service')}>
 						<Image
 							style={styles.icon}
 							resizeMode='contain'

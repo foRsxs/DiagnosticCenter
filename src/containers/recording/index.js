@@ -14,33 +14,59 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 class ReceptionCreateScreen extends Component {
   constructor(props) {
     super(props);
+    console.log(props.navigation)
     this.state = {
-      activeTabOne: true,
+      initialPage: 0, 
+      activeTab: 0,
       props_data: {
         type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
         spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
         docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
+        spec_value: (props.navigation.state.params) ? props.navigation.state.params.spec_value : null,
+        serv_value: (props.navigation.state.params) ? props.navigation.state.params.serv_value : null,
+        serv_id: (props.navigation.state.params) ? props.navigation.state.params.servid : null,
       },
+      firstChangeDisabled: false
     }
   }
 
   componentDidMount() {
-    const { type, spec_id, docdep_id } = this.state.props_data;
+    const { type, spec_id, docdep_id, spec_value, serv_value, serv_id } = this.state.props_data;
     const { setOrder, cleareOrderSuccess, cleareOrderDatas, setOrderValue, doctorData } = this.props;
 
     cleareOrderSuccess();
     cleareOrderDatas();
 
-    if (type) setOrder({ type }, 'type', 'spec');
-    if (spec_id && type == 1) {
-      setOrder({ spec_id }, 'spec_id', 'doc');
-      setOrderValue({ spec: doctorData.speciality });
+    if (type !== 1 ) {
+      console.log('update', this.props.navigation.state.params.type)
+      this.setState({firstChangeDisabled: true});
+      //setTimeout(this.tabs.goToPage.bind(this.tabs, this.props.navigation.state.params.type-1));
     }
+
+    if (type) {
+      setOrder({ type }, 'type', 'spec');
+    }
+
+    if (spec_id) {
+      (type == 1) ? setOrder({ spec_id }, 'spec_id', 'doc') : setOrder({ spec_id }, 'spec_id');
+      setOrderValue({ spec: (spec_value)? spec_value: doctorData.speciality });
+      if (type === 2) {
+        setOrder({ servid: serv_id }, 'servid');
+        setOrderValue({ serv: (serv_value)? serv_value: doctorData.speciality });
+      }
+    }
+
     if (docdep_id) {
       setOrder({ docdep_id }, 'docdep_id');
       setOrderValue({ docdep: `${doctorData.lastname} ${doctorData.firstname} ${doctorData.secondname}` });
     }
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.order.type !== this.props.order.type) {
+  //     console.log(12123)
+  //   }
+  // }
 
   complete = () => {
     const { navigation, orderDatas, order } = this.props;
@@ -56,8 +82,10 @@ class ReceptionCreateScreen extends Component {
   render() {
     const { navigation, setOrder, orderValues, order } = this.props;
     const { t } = this.props;
-    const { activeTabOne } = this.state;
+    const { activeTab, initialPage, firstChangeDisabled } = this.state;
     const orderIsComplete = (order.date && order.docdep_id && order.servid && order.spec_id && order.time) ? true : false;
+    console.log(activeTab)
+
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Content>
@@ -71,7 +99,7 @@ class ReceptionCreateScreen extends Component {
               source={ICON_UPDATE}
             />
           </TouchableOpacity>
-          {(activeTabOne) ? (
+          {(activeTab === 0) ? (
             <ImageBackground
               style={styles.bgImage}
               resizeMode='cover'
@@ -85,17 +113,31 @@ class ReceptionCreateScreen extends Component {
             />
           )}
           <Tabs
-            onChangeTab={() => {
-              this.setState({ activeTabOne: !activeTabOne });
-              setOrder({ type: (activeTabOne) ? 2 : 1 }, 'type', 'spec');
+            ref={(c) => { this.tabs = c; return; }}
+            initialPage={initialPage}
+            page={activeTab}
+            onChangeTab={(event) => {
+              console.log('change', event)
+              if (firstChangeDisabled) {
+                this.setState({firstChangeDisabled: false});
+                return;
+              }
+              this.setState({ activeTab: (activeTab === 1) ? 0 : 1 });
+              setOrder({ type: (activeTab === 1) ? 1 : 2 }, 'type', 'spec');
             }}
             tabContainerStyle={styles.wrapTabs}
             tabBarUnderlineStyle={{ backgroundColor: 'transparent' }}
           >
-            <Tab tabStyle={styles.tab} activeTabStyle={styles.tabActive} textStyle={styles.tabText} activeTextStyle={styles.tabTextActive} heading={t('createrecord:form.consultation').toUpperCase()}>
+            <Tab 
+              tabStyle={styles.tab} 
+              activeTabStyle={styles.tabActive} 
+              textStyle={styles.tabText} 
+              activeTextStyle={styles.tabTextActive} 
+              heading={t('createrecord:form.consultation').toUpperCase()}
+            >
               <View style={styles.wrapper}>
                 <RecordingItem
-                  onClick={() => navigation.navigate('specialization')}
+                  onClick={() => navigation.navigate({ routeName: 'specialization', key: '1' })}
                   icon={ICON_SPEC_SMALL}
                   title={t('createrecord:form.specialty')}
                   text={orderValues.spec}
@@ -157,7 +199,9 @@ class ReceptionCreateScreen extends Component {
             >
               <View style={styles.wrapper}>
                 <RecordingItem
-                  onClick={() => navigation.navigate('specialization')}
+                  onClick={() => {
+                    navigation.navigate({ routeName: 'specialization', key: '2' })
+                  }}
                   icon={ICON_SPEC_SMALL}
                   title={t('createrecord:form.specialty')}
                   text={orderValues.spec}

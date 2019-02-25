@@ -34,11 +34,24 @@ class ServicesScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getListSpecialization(2);
+    this.props.getListSpecialization(3);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
+  }
+
+  onClick = (spec) => {
+    const { navigation } = this.props;
+    if (+spec.type === 1) {
+      navigation.navigate({
+        key: spec.spec_id,
+        routeName: 'recordingCreate',
+        params: { spec_id : spec.spec_id, type: 1, spec_value: spec.spec_name},
+      });
+    } else {
+      this.props.navigation.navigate({ routeName: 'servicesDetail', params: { spec_id: spec.spec_id, spec_value: spec.spec_name }, key: spec.spec_id })
+    }
   }
 
   render() {
@@ -59,7 +72,7 @@ class ServicesScreen extends Component {
                         sorted_list_specialization.map((item, index) => (
                           <SpecializationItem
                             key={index}
-                            onClick={() => this.props.navigation.navigate({ routeName: 'servicesDetail', params: { spec_id: item.spec_id }, key: item.spec_id })}
+                            onClick={() => this.onClick(item)}
                             headTxt={item.spec_name}
                             imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
                           />

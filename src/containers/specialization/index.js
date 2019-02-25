@@ -28,7 +28,7 @@ class SpecializationScreen extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) {
-      this.setState({ loading: false });
+      this.setState({ loading: false, specialities: this.props.orderDatas.specialities });
     }
   }
 

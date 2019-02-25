@@ -19,6 +19,7 @@ class ServicesDetailScreen extends Component {
     this.state = {
       loading: true,
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
+      spec_value: (props.navigation.state.params) ? props.navigation.state.params.spec_value : null,
       isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false,
       services: props.orderDatas.services,
     };
@@ -28,7 +29,7 @@ class ServicesDetailScreen extends Component {
     const { spec_id } = this.state;
 
     if (spec_id) {
-      this.props.getListServices(spec_id);
+      this.props.getListServices(spec_id, 2);
     }
   }
 
@@ -49,10 +50,28 @@ class ServicesDetailScreen extends Component {
     this.setState({ services: this.props.orderDatas.services.filter(findElements)});
   }
 
+  onClick = (serv) => {
+    const { isOrder, spec_value, spec_id } = this.state;
+    const { setOrderValue, setOrder, navigation } = this.props;
+
+    if (isOrder) {
+      setOrderValue({ serv: serv.text });
+      setOrder({ servid: serv.servid }, 'servid');
+      navigation.goBack()
+    } else {
+      console.log(spec_value, spec_id)
+      navigation.navigate({
+        key: serv.servid,
+        routeName: 'recordingCreate',
+        params: { spec_id, type: 2, spec_value, servid: serv.servid, serv_value: serv.text },
+      });
+    }
+  }
+
   render() {
     const { loading, isOrder, services } = this.state;
-    const { t, setOrder, navigation, setOrderValue } = this.props;
-
+    const { t } = this.props;
+ 
     return (
       <View>
         <View style={styles.mainContainer}>
@@ -67,11 +86,7 @@ class ServicesDetailScreen extends Component {
                       services.map((item, index) => (
                         <SpecializationItem
                           key={index}
-                          onClick={() => {
-                            setOrderValue({ serv: item.text });
-                            setOrder({ servid: item.servid }, 'servid');
-                            navigation.goBack()
-                          }}
+                          onClick={() => this.onClick(item)}
                           headTxt={item.text}
                           price={item.price}
                         />

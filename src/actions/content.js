@@ -6,7 +6,7 @@ import {APP_API_URL} from '../config';
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
     const { authorization } = getState();
-    
+
     axios.post(`${APP_API_URL}/specs`, {
       type: type,
       lang: authorization.language
@@ -49,12 +49,12 @@ export function getListDoctors(spec_id, servid, order = false) {
   }
 }
 
-export function getListServices(id, auto_push = false) {
+export function getListServices(id, type, auto_push = false) {
   return (dispatch, getState) => {
     const { authorization, content: {order} } = getState();
 
     axios.post(`${APP_API_URL}/services`, {
-      type: order.type,
+      type: (type) ? type: order.type,
       spec_id: id,
       lang: authorization.language
     })
@@ -243,9 +243,9 @@ export function setOrder(data, type, nameDispatch) {
       dispatch(cleareOrderSuccess('spec_id'));
       if (!order[type] || order[type] !== data[type]) {
         if (nameDispatch === 'doc') {
-          dispatch(getListServices(data[type], true));
+          dispatch(getListServices(data[type], null, true));
           dispatch(getListDoctors(data[type], null, true));
-        } else dispatch(getListServices(data[type]));
+        } else dispatch(getListServices(data[type], null) );
       }
     } else if (type === 'servid') {
       if (order.docdep_id) dispatch(cleareOrderSuccess('servid'));
