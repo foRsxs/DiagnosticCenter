@@ -2,3 +2,6 @@ Keystore: diagnosticcenter.keystore
 Alias: diagnosticcenter
 Keystore password: qaLXN95%n6
 Key password: eMnp*hJF41
+
+------
+P12 password: B1pdYILkyB9Y
