@@ -54,7 +54,7 @@ class ServicesDetailScreen extends Component {
 
   onClick = (serv) => {
     const { isOrder, spec_value, spec_id } = this.state;
-    const { t, setOrderValue, setOrder, navigation, isGuest, setAuthMessage } = this.props;
+    const { t, setOrderValue, setOrder, navigation, isGuest, setAuthMessage, setActiveTab } = this.props;
 
     if (isOrder) {
       setOrderValue({ serv: serv.text });
@@ -65,6 +65,7 @@ class ServicesDetailScreen extends Component {
         setAuthMessage(t(`common:actions_text.record_text`));
         authAlert(t, navigation);
       } else {
+        setActiveTab(1);
         navigation.navigate({
           key: serv.servid,
           routeName: 'recordingCreate',

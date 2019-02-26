@@ -4,6 +4,8 @@ import { withNamespaces } from 'react-i18next';
 import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 import Header from '../../components/common/Header';
 import MenuList from '../../components/common/MenuList';
@@ -58,11 +60,23 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getUserData();
+    const { token, navigation } = this.props;
+
+    if (token) {
+      this.props.getUserData();
+    } else {
+      navigation.navigate('authorization');
+    }
   }
 
   render() {
-    let { t, user } = this.props;
+    let { t, token, user } = this.props;
+    let userPhone= '';
+
+    if (token) {
+      const phoneNumber = parsePhoneNumberFromString(user.phone, 'KZ');
+      userPhone = phoneNumber.formatNational()
+    }
 
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
@@ -76,11 +90,11 @@ class ProfileScreen extends Component {
               </View>
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:birthDate')}</Text>
-                <Text style={styles.text}>{user.birth_date}</Text>
+                <Text style={styles.text}>{moment(user.birth_date).format('DD.MM.YYYY')}</Text>
               </View>
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:phone')}</Text>
-                <Text style={styles.text}>{user.phone}</Text>
+                <Text style={styles.text}>{userPhone}</Text>
               </View>
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:address')}</Text>
@@ -97,6 +111,7 @@ class ProfileScreen extends Component {
 
 function mapStateToProps(state) {
   return {
+    token: state.authorization.token,
     user: state.authorization.user
   }
 }

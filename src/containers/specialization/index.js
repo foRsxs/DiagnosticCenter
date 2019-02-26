@@ -42,7 +42,7 @@ class SpecializationScreen extends Component {
 
   render() {
     const { loading, specialities } = this.state;
-    const { t, order, setOrder, navigation, setOrderValue } = this.props;
+    const { t, order, setOrder, navigation, setOrderValue, setActiveTab } = this.props;
 
     return (
       <View>
@@ -63,7 +63,13 @@ class SpecializationScreen extends Component {
                             key={index}
                             onClick={() => {
                               setOrderValue({spec: item.spec_name});
-                              (order.type === 1) ? setOrder({spec_id: item.spec_id}, 'spec_id', 'doc') : setOrder({spec_id: item.spec_id}, 'spec_id');
+                              if (order.type === 1) {                                 
+                                setActiveTab(0);
+                                setOrder({spec_id: item.spec_id}, 'spec_id', 'doc'); 
+                              } else {                                
+                                setActiveTab(1);
+                                setOrder({spec_id: item.spec_id}, 'spec_id');
+                              } 
                               navigation.goBack()
                             }}
                             headTxt={item.spec_name}

@@ -37,7 +37,9 @@ class AuthorizationScreen extends Component {
 
     this.props.changeNotify(notify);
     this.props.setCurrentLang(languages_key);
-    this.props.saveUser({ api_token: token });
+    if (token) {
+      this.props.saveUser({ api_token: token });
+    }
   }
 
   componentWillReceiveProps(newProps) {

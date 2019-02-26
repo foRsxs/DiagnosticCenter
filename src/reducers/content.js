@@ -202,6 +202,11 @@ export default function contentReducer(state = initialState.content, action) {
         ...state,
         hideScreen: action.data
       }
+    case types.SET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTabIndex: action.data
+      }
     default:
       return state
   }

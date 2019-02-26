@@ -17,7 +17,7 @@ import styles from './styles';
 
 import { ACCENT_BLUE } from '../../styles/constants';
 
-class AuthorizationScreen extends Component {
+class AuthMethodScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,8 +35,9 @@ class AuthorizationScreen extends Component {
     const { notify, token, methods_auth, pinCode } = this.props;
 
     this.props.changeNotify(notify);
-    this.props.saveUser({ api_token: token });
-
+    if (token) {
+      this.props.saveUser({ api_token: token });
+    }
     this.props.changeMethodsAuth({ methods_auth: methods_auth, confirmed: false });
     this.props.savePinCode({ code: pinCode, confirmed: false });
     this._checkTouchSupport();
@@ -234,4 +235,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...AuthActions, ...ContentActions }, dispatch)
 }
 
-export default withNamespaces(['authorization', 'common'])(connect(mapStateToProps, mapDispatchToProps)(AuthorizationScreen));
+export default withNamespaces(['authorization', 'common'])(connect(mapStateToProps, mapDispatchToProps)(AuthMethodScreen));

@@ -44,13 +44,14 @@ class ServicesScreen extends Component {
   }
 
   onClick = (spec) => {
-    const { t, navigation, isGuest, setAuthMessage } = this.props;
+    const { t, navigation, isGuest, setAuthMessage, setActiveTab } = this.props;
 
     if (+spec.type === 1) {
       if (isGuest) {
         setAuthMessage(t(`common:actions_text.record_text`));
         authAlert(t, navigation);
       } else {
+        setActiveTab(0);
         navigation.navigate({
           key: spec.spec_id,
           routeName: 'recordingCreate',

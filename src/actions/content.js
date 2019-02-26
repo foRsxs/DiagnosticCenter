@@ -600,3 +600,10 @@ export function setWelcomeScreen(data) {
     data: data
   }
 }
+
+export function setActiveTab(data) {
+  return {
+    type: types.SET_ACTIVE_TAB,
+    data: data
+  }
+}

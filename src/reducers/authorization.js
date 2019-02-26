@@ -45,7 +45,8 @@ export default function authReducer(state = initialState.auth, action) {
       return {
         ...state,
         token: action.user.api_token,
-        user: action.user
+        user: action.user,
+        isGuest: false
       }
     case types.SET_METHODS_AUTH:
       return {

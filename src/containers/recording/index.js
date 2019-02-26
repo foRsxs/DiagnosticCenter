@@ -14,10 +14,8 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 class ReceptionCreateScreen extends Component {
   constructor(props) {
     super(props);
-    console.log(props.navigation)
     this.state = {
       initialPage: 0, 
-      activeTab: 0,
       props_data: {
         type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
         spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
@@ -25,8 +23,7 @@ class ReceptionCreateScreen extends Component {
         spec_value: (props.navigation.state.params) ? props.navigation.state.params.spec_value : null,
         serv_value: (props.navigation.state.params) ? props.navigation.state.params.serv_value : null,
         serv_id: (props.navigation.state.params) ? props.navigation.state.params.servid : null,
-      },
-      firstChangeDisabled: false
+      }
     }
   }
 
@@ -36,12 +33,6 @@ class ReceptionCreateScreen extends Component {
 
     cleareOrderSuccess();
     cleareOrderDatas();
-
-    if (type !== 1 ) {
-      console.log('update', this.props.navigation.state.params.type)
-      this.setState({firstChangeDisabled: true});
-      //setTimeout(this.tabs.goToPage.bind(this.tabs, this.props.navigation.state.params.type-1));
-    }
 
     if (type) {
       setOrder({ type }, 'type', 'spec');
@@ -61,12 +52,14 @@ class ReceptionCreateScreen extends Component {
       setOrderValue({ docdep: `${doctorData.lastname} ${doctorData.firstname} ${doctorData.secondname}` });
     }
   }
+  
+  componentDidUpdate(prevProps) {
+    const { setOrder, activeTab } = this.props;
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.order.type !== this.props.order.type) {
-  //     console.log(12123)
-  //   }
-  // }
+    if (prevProps.activeTab !== this.props.activeTab) {
+      setOrder({ type: (activeTab === 0) ? 1 : 2 }, 'type', 'spec');
+    }
+  }
 
   complete = () => {
     const { navigation, orderDatas, order } = this.props;
@@ -80,11 +73,9 @@ class ReceptionCreateScreen extends Component {
   }
 
   render() {
-    const { navigation, setOrder, orderValues, order } = this.props;
-    const { t } = this.props;
-    const { activeTab, initialPage, firstChangeDisabled } = this.state;
+    const { t, navigation, orderValues, order, activeTab, setActiveTab } = this.props;
+    const { initialPage } = this.state;
     const orderIsComplete = (order.date && order.docdep_id && order.servid && order.spec_id && order.time) ? true : false;
-    console.log(activeTab)
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
@@ -117,12 +108,8 @@ class ReceptionCreateScreen extends Component {
             initialPage={initialPage}
             page={activeTab}
             onChangeTab={(event) => {
-              if (firstChangeDisabled) {
-                this.setState({firstChangeDisabled: false});
-                return;
-              }
-              this.setState({ activeTab: (activeTab === 1) ? 0 : 1 });
-              setOrder({ type: (activeTab === 1) ? 1 : 2 }, 'type', 'spec');
+              console.log(event.i);
+              setActiveTab(event.i);
             }}
             tabContainerStyle={styles.wrapTabs}
             tabBarUnderlineStyle={{ backgroundColor: 'transparent' }}
@@ -270,6 +257,7 @@ function mapStateToProps(state) {
     orderValues: state.content.orderValues,
     lang_key: state.authorization.language,
     doctorData: state.content.doctorData,
+    activeTab: state.content.activeTabIndex
   }
 }
 

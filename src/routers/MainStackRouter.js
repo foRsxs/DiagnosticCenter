@@ -8,7 +8,7 @@ import {
 
 import HomeScreen from '../containers/home';
 import AuthorizationScreen from '../containers/authorization';
-import AuthorizationMethodsScreen from '../containers/authMethods';
+import AuthMethodScreen from '../containers/authMethods';
 import SpecializationScreen from '../containers/specialization';
 import QuestionFormScreen from '../containers/questionForm';
 import OftenQuestionsScreen from '../containers/oftenQuestions';
@@ -330,7 +330,7 @@ const AppTabNavigator = createBottomTabNavigator(
 const AppNavigator = createAppContainer(createSwitchNavigator(
   {
     AuthLoading: WelcomeScreen,
-    AuthMethods: AuthorizationMethodsScreen,
+    AuthMethods: AuthMethodScreen,
     App: AppTabNavigator
   },
   {
