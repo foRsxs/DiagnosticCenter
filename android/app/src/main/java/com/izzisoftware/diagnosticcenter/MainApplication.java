@@ -12,7 +12,6 @@ import com.facebook.soloader.SoLoader;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import com.RNTextInputMask.RNTextInputMaskPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -34,13 +33,12 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-            new LinearGradientPackage(),
+        new LinearGradientPackage(),
         new RNGestureHandlerPackage(),
         new RNFetchBlobPackage(),
         new ReactNativeOneSignalPackage(),
         new RNSharePackage(),
         new RNLanguagesPackage(),
-        new RNTextInputMaskPackage(),
         new FingerprintAuthPackage(),
         new SplashScreenReactPackage()
       );

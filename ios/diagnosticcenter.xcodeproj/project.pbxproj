@@ -44,9 +44,6 @@
 		CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B1D112181AAC300CD5FF7 /* libRNLanguages.a */; };
 		CE4B3F3A219AE46A002E92AA /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B3F39219AE445002E92AA /* libSplashScreen.a */; };
 		CE5EBA7F221EF52900580A27 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5EBA4C221EF52900580A27 /* JavaScriptCore.framework */; };
-		CE63E6D12225A88F00756B8E /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE63E6D02225A88F00756B8E /* InputMask.framework */; };
-		CE63E6D22225A88F00756B8E /* InputMask.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE63E6D02225A88F00756B8E /* InputMask.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CE72B9E9219F1A9A009D0A91 /* libRNTextInputMask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */; };
 		CEE1A99A221FFB7C0046A344 /* Helvetica-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC2342EE9B45499980DD546D /* Helvetica-Light.ttf */; };
 		CEE9F75F21CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEE9F76321CE8D9C006A02DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE115AA021BABA42001BFF48 /* UIKit.framework */; };
@@ -389,13 +386,6 @@
 			remoteGlobalIDString = A15C300E1CD25C330074CB35;
 			remoteInfo = RNFetchBlob;
 		};
-		CE72B9A0219F0EA3009D0A91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 00278A001F2F25CE0023E794;
-			remoteInfo = RNTextInputMask;
-		};
 		CE852CDC219C673900D11EFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 680AAE1473184A748480CF1C /* TouchID.xcodeproj */;
@@ -423,17 +413,6 @@
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 1;
-		};
-		CE72B9A5219F0EBC009D0A91 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				CE63E6D22225A88F00756B8E /* InputMask.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -496,8 +475,6 @@
 		CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLanguages.xcodeproj; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; };
 		CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CE5EBA4C221EF52900580A27 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		CE63E6D02225A88F00756B8E /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InputMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTextInputMask.xcodeproj; path = "../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask.xcodeproj"; sourceTree = "<group>"; };
 		CEE9F75721CE8D3A006A02DF /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0951F21CBD7650047B7C3 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		CEF0952021CBD7650047B7C3 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
@@ -525,14 +502,12 @@
 				CE157B1121B6E32B0010F838 /* MessageUI.framework in Frameworks */,
 				CE157B0F21B6E3190010F838 /* Social.framework in Frameworks */,
 				CE157B0D21B6E2A50010F838 /* libRNShare.a in Frameworks */,
-				CE72B9E9219F1A9A009D0A91 /* libRNTextInputMask.a in Frameworks */,
 				CE4B3F3A219AE46A002E92AA /* libSplashScreen.a in Frameworks */,
 				CE2B1D142181AAE800CD5FF7 /* libRNLanguages.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
-				CE63E6D12225A88F00756B8E /* InputMask.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				CEF0953221CBD8C20047B7C3 /* PassKit.framework in Frameworks */,
@@ -706,7 +681,6 @@
 			isa = PBXGroup;
 			children = (
 				CE157B0721B6E28D0010F838 /* RNShare.xcodeproj */,
-				CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */,
 				CE4B3F0D219AE445002E92AA /* SplashScreen.xcodeproj */,
 				CE2B1CE62181AAC300CD5FF7 /* RNLanguages.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -742,7 +716,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				CE63E6D02225A88F00756B8E /* InputMask.framework */,
 				13B07FAE1A68108700A75B9A /* diagnosticcenter */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				CEF0951E21CBD7650047B7C3 /* OneSignalNotificationServiceExtension */,
@@ -832,14 +805,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE72B99C219F0EA3009D0A91 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		CE852CB0219C672C00D11EFA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,8 +878,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				CE72B9A5219F0EBC009D0A91 /* Embed Frameworks */,
-				CE72B9DA219F0F62009D0A91 /* InputMask shell */,
 				CE115A9F21BAB982001BFF48 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -1069,10 +1032,6 @@
 				{
 					ProductGroup = CE157B0821B6E28D0010F838 /* Products */;
 					ProjectRef = CE157B0721B6E28D0010F838 /* RNShare.xcodeproj */;
-				},
-				{
-					ProductGroup = CE72B99C219F0EA3009D0A91 /* Products */;
-					ProjectRef = CE72B99B219F0EA3009D0A91 /* RNTextInputMask.xcodeproj */;
 				},
 				{
 					ProductGroup = CE4B3F0E219AE445002E92AA /* Products */;
@@ -1414,13 +1373,6 @@
 			remoteRef = CE6077DD21CE6FBD006B94CD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE72B9A1219F0EA3009D0A91 /* libRNTextInputMask.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNTextInputMask.a;
-			remoteRef = CE72B9A0219F0EA3009D0A91 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		CE852CDD219C673900D11EFA /* libTouchID.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1483,24 +1435,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		CE72B9DA219F0F62009D0A91 /* InputMask shell */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "InputMask shell";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "EXTRA_DIR=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Frameworks/InputMask.framework/Frameworks\"\n\nif [[ -d \"${EXTRA_DIR}\" ]]; then\nrm -rf \"${EXTRA_DIR}\"\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1534,7 +1468,6 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
@@ -1552,7 +1485,7 @@
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1578,7 +1511,6 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
@@ -1595,7 +1527,7 @@
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/RNTextInputMask/RNTextInputMask/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1604,6 +1536,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1731,7 +1664,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1764,7 +1697,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

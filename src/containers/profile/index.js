@@ -73,9 +73,9 @@ class ProfileScreen extends Component {
     let { t, token, user } = this.props;
     let userPhone= '';
 
-    if (token) {
+    if (token && user && user.phone) {
       const phoneNumber = parsePhoneNumberFromString(user.phone, 'KZ');
-      userPhone = phoneNumber.formatNational()
+      userPhone = phoneNumber.formatNational();
     }
 
     return (
@@ -84,22 +84,26 @@ class ProfileScreen extends Component {
         <Content>
           {(user) && (
             <View style={styles.prifileBlock}>
+              {(user.firstname && user.secondname) && (
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:name')}</Text>
                 <Text style={styles.text}>{`${user.lastname} ${user.firstname} ${user.secondname}`}</Text>
-              </View>
+              </View>)}
+              {(user.birth_date) && (
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:birthDate')}</Text>
                 <Text style={styles.text}>{moment(user.birth_date).format('DD.MM.YYYY')}</Text>
-              </View>
+              </View>)}
+              {(user.phone) && (
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:phone')}</Text>
                 <Text style={styles.text}>{userPhone}</Text>
-              </View>
+              </View>)}
+              {(user.address) && (
               <View style={styles.prifileItem}>
                 <Text style={styles.titles}>{t('profile:address')}</Text>
                 <Text style={styles.text}>{user.address}</Text>
-              </View>
+              </View>)}
             </View>
           )}
           <MenuList onPress={(value) => this.onPress(value)} fields={this.state.menuList} valueName={'value'} navigation={this.props.navigation} />

@@ -7,7 +7,7 @@ import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import TextInputMask from 'react-native-text-input-mask';
+import { TextInputMask } from 'react-native-masked-text';
 
 import Header from '../../components/common/Header';
 import CustomBtn from '../../components/common/CustomBtn';
@@ -108,7 +108,8 @@ class AuthorizationScreen extends Component {
   }
 
   authUser = () => {
-    let { number, personalId } = this.state;
+    let number = this.phoneField.getRawValue();
+    let { personalId } = this.state;
 
     if (this.checkValid(number, personalId)) {
       this.setState({ loading: true });
@@ -152,14 +153,26 @@ class AuthorizationScreen extends Component {
           <Text style={styles.authTitle}>{t('authorization:auth_title')}</Text>
           <View style={styles.wrapForm}>
             <TextInputMask
-              onChangeText={(formatted, extracted) => {
-                this.onChangeNumber(`7${extracted}`);
-                this.setState({ formattedNumber: formatted });
+              type={'cel-phone'}
+              options={{
+                maskType: 'BRL',
+                withDDD: true,
+                dddMask: '+7 (999) 999 99 99',
+                getRawValue: function(value, settings) {
+                  return value;
+                },
               }}
+              maxLength={18} 
               keyboardType='number-pad'
-              style={[styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE }]}
-              mask={"+7 ([000]) [000] [00] [00]"}
               placeholder={t('authorization:phone')}
+              value={this.state.formattedNumber}
+              style={[styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE }]}
+              onChangeText={text => {
+                this.setState({
+                  formattedNumber: text
+                })
+              }}
+              ref={(ref) => this.phoneField = ref}
             />
             <TextInput 
               style={styles.input} 
