@@ -25,7 +25,7 @@ class RecordingItem extends Component {
           resizeMode='contain'
           source={icon}
         />
-        <View>
+        <View style={styles.wrapText}>
           <Text style={styles.itemTitle}>{title}</Text>
           {
             (text) ? <Text style={styles.itemText}>{text}</Text> : <Text style={styles.itemPlaceholder}>{placeholder}</Text>

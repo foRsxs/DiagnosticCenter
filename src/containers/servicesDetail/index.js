@@ -4,6 +4,7 @@ import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {NavigationActions} from 'react-navigation';
 
 import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
@@ -66,6 +67,8 @@ class ServicesDetailScreen extends Component {
         authAlert(t, navigation);
       } else {
         setActiveTab(1);
+        //navigation.dismiss();
+        console.log(this.props)
         navigation.navigate({
           key: serv.servid,
           routeName: 'recordingCreate',

@@ -33,10 +33,13 @@ class FooterTabs extends Component {
 
 	_navigateToWalkthrough = (root) => {
 		const { jumpTo, navigation } = this.props.props;
-	
-		navigation.dispatch(StackActions.popToTop());
+		
+		if (root === 'Record') {
+			this.props.setActiveTab(0);
+		}
 
-    jumpTo(root);
+		navigation.dispatch(StackActions.popToTop());
+		jumpTo(root);		
   }
 
 	render() {

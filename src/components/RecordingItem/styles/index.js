@@ -25,6 +25,9 @@ export default StyleSheet.create({
     height: 25,
     marginRight: 10
   },
+  wrapText: {
+    flex: 1
+  }, 
   itemTitle: {
     fontSize: medium,
     color: ACCENT_BLUE,

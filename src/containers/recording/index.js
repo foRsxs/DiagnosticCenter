@@ -13,9 +13,10 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 
 class ReceptionCreateScreen extends Component {
   constructor(props) {
+    
     super(props);
     this.state = {
-      initialPage: 0, 
+      initialPage: props.activeTab-1, 
       props_data: {
         type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
         spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
@@ -30,11 +31,12 @@ class ReceptionCreateScreen extends Component {
   componentDidMount() {
     const { type, spec_id, docdep_id, spec_value, serv_value, serv_id } = this.state.props_data;
     const { setOrder, cleareOrderSuccess, cleareOrderDatas, setOrderValue, doctorData } = this.props;
-
+    
     cleareOrderSuccess();
     cleareOrderDatas();
 
     if (type) {
+      setTimeout(this.tabs.goToPage.bind(this.tabs, this.props.activeTab));
       setOrder({ type }, 'type', 'spec');
     }
 
@@ -108,7 +110,6 @@ class ReceptionCreateScreen extends Component {
             initialPage={initialPage}
             page={activeTab}
             onChangeTab={(event) => {
-              console.log(event.i);
               setActiveTab(event.i);
             }}
             tabContainerStyle={styles.wrapTabs}
@@ -163,7 +164,7 @@ class ReceptionCreateScreen extends Component {
                         if (!order.date) return;
                         navigation.navigate('timeScreen')
                       }}
-                      contentContainerStyle={{ paddingLeft: 10 }}
+                      contentContainerStyle={{ paddingLeft: 10, paddingRight: 0 }}
                       icon={ICON_TIME_SMALL}
                       title={t('createrecord:form.time')}
                       placeholder='12:00'
@@ -230,7 +231,7 @@ class ReceptionCreateScreen extends Component {
                         if (!order.date) return;
                         navigation.navigate('timeScreen');
                       }}
-                      contentContainerStyle={{ paddingLeft: 10 }}
+                      contentContainerStyle={{ paddingLeft: 10, paddingRight: 0 }}
                       icon={ICON_TIME_SMALL}
                       title={t('createrecord:form.time')}
                       text={orderValues.time}
