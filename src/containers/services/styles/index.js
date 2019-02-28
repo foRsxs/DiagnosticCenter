@@ -20,6 +20,7 @@ export default StyleSheet.create({
         paddingTop: 10,
     },
     noText: {
+        paddingTop: 10,
         textAlign: 'center',
         fontSize: medium,
         fontFamily: MAIN_FONT

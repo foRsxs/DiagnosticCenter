@@ -69,6 +69,7 @@ export const initialState = {
       current: null
     },
     hideScreen: false,
-    activeTabIndex: 0
+    activeTabIndex: 0,
+    isRequest: false
   }
 }

@@ -2,10 +2,10 @@
     "authorization": {
         "phone": "TEL",
         "inn": "IIN",
-        "get_code": "Получить код",
-        "auth_title": "Авторизация",
-        "auth_sms1": "На ваш номер телефона",
-        "auth_sms2": "отправлено СМС с кодом подтверждения",
+        "get_code": "Get the code",
+        "auth_title": "Authorization",
+        "auth_sms1": "To your phone number",
+        "auth_sms2": "SMS sent with verification code",
         "auth_text": "Log in",
         "need_auth_text": "Authorization required", 
         "login_without_auth": "Login without authorization",
@@ -33,26 +33,26 @@
         "profile": "Profile"
     },
     "welcome": {
-        "enter_app": "Как войти в приложение",
-        "enter_text": "Для полного доступа к приложению и к своим данным необходимо авторизироваться в приложении",
-        "enter_text1": "Выберите",
-        "enter_text2": "язык",
-        "enter_text3": "Введите",
-        "enter_text4": "номер мобильного телефона",
-        "enter_text5": "и",
-        "enter_text6": "ИНН",
-        "enter_text7": "для проверки ваших даних в Личном Кабинете Пациента и получения кода",
-        "enter_text8": "Если все данные введены верно, нажмите кнопку",
-        "enter_text9": "Получить код",
-        "enter_text10": "и ожидайте код",
-        "enter_text11": "Введите полученный код",
-        "enter_text12": "Нажмите кнопку",
-        "enter_text13": "Подтвердить",
-        "enter_text14": "чтобы войти в систему",
-        "enter_text15": "Теперь вы можете пользоваться полным фунционалом приложения",
+        "enter_app": "How to enter the application",
+        "enter_text": "For full access to the application and to your data you need to log in to the application.",
+        "enter_text1": "Select",
+        "enter_text2": "language",
+        "enter_text3": "Enter",
+        "enter_text4": "phone number",
+        "enter_text5": "and",
+        "enter_text6": "IIN",
+        "enter_text7": "to check your data in the Patient Account and get the code",
+        "enter_text8": "If all data is correct, click",
+        "enter_text9": "Get the code",
+        "enter_text10": "and wait for the code",
+        "enter_text11": "Enter the received code",
+        "enter_text12": "Push the button",
+        "enter_text13": "Confirm",
+        "enter_text14": "to log in",
+        "enter_text15": "Now you can use the full functionality of the application.",
         "notify": {
-            "title": "Показывать оповещения",
-            "message": "Разрешить показывать оповещения"
+            "title": "Show alerts",
+            "message": "Allow show alerts"
         }
     },
     "menu": {
@@ -83,10 +83,10 @@
             "test_results_2": "analyzes"
         },
         "menu_list": {
-            "contacts": "Контакты",
-            "information": "Информация",
-            "vacancy": "Вакансии",
-            "faq": "Частые вопросы"
+            "contacts": "Contacts",
+            "information": "Information",
+            "vacancy": "Vacancies",
+            "faq": "FAQ"
         }
     },
     "listdoctors": {
@@ -97,9 +97,9 @@
             "experience": "Work experience",
             "no_recording_text": "Appointment is not provided"
         },
-        "category": "Категория",
-        "hide_desc": "Скрыть описание",
-        "show_desc": "Посмотреть описание"
+        "category": "Category",
+        "hide_desc": "Hide description",
+        "show_desc": "View description"
     },
     "specialization": {
         "title": "Service Categories",
@@ -121,39 +121,36 @@
             "check_info": "check information",
             "make_appointment": "you make an appointment",
             "selected_service": "selected service",
-            "select_date": "Выберите дату визита",
-            "select_time": "Выберите время визита",
+            "select_date": "Choose date of visit",
+            "select_time": "Select a visit time",
             "date_time": "date and time of visit",
             "room": "cabinet",
             "success": "Medical appointment has been successfully created!",
             "cancel_recording": "post canceled",
-            "ok_recording": "запись доступна",
-            "date_select": "выбранная дата",
-            "ok_time": "свободные номерки",
-            "time_select": "выбранное время"
+            "ok_recording": "record available",
+            "date_select": "selected date",
+            "ok_time": "free numbers",
+            "time_select": "selected time"
         },
-        "info_record": "Информация о записи"
+        "info_record": "Record Information"
     },
     "createrecord": {
         "title": "Appointment",
         "form": {
-            "consultation": "Консультация",
-            "research": "Исследования",
-            "select_specialty": "Выберите специальность",
-            "select_service": "Выберите услугу",
-            "select_doctor": "Выберите врача",
-            "select_date": "Выберите дату",
-            "specialty": "Специальность",
-            "service": "Оказываемая услуга",
-            "doctor": "Врач",
-            "date": "Дата",
-            "time": "Время"
+            "consultation": "Consultation",
+            "research": "Research",
+            "select_specialty": "Choose a specialty",
+            "select_service": "Choose a service",
+            "select_doctor": "Choose a doctor",
+            "select_date": "Choose a date",
+            "specialty": "Specialty",
+            "service": "Service provided",
+            "doctor": "Doctor",
+            "date": "Date",
+            "time": "Time"
         },
-        "price": "Стоимость",
-        "room_number": "Кабинет",
-        "help_text": "Подготовка к исследованию МРТ Для большинства МРТ-исследований специальной подготовки не требуется, только 2 вида исследований требуют определенной подготовки:",
-        "help_text1": "МРТ брюной полости - рекомендуется воздерживаться от еды и питья за 5 часов до исследования.",
-        "help_text2": "МРТ органов малого таза - должен быть наполнен мочевой пузырь."
+        "price": "Cost",
+        "room_number": "Cabinet"
     },
     "analizes": {
         "title": "My analyzes",
@@ -178,6 +175,10 @@
         "sub_title": "patient information",
         "no_information_text": "No information"
     },
+    "vacantion": {
+        "title": "Jobs",
+        "no_information_text": "No vacancies"
+    },
     "questions": {
         "title": "Question to the doctor",
         "doc_no_answered": "The doctor has not answered this question yet",
@@ -191,10 +192,10 @@
     "faq": {
         "title": "FAQ",
         "no_often_questions_text": "No questions found",
-        "titleMain": "Часто задаваемые вопросы",
-        "subtitleMain": "Если у вас возникли дополнительные вопросы. Позвоните в call-центр",
-        "hide_answer": "скрыть ответ",
-        "show_answer": "посмотреть ответ"
+        "titleMain": "FAQ",
+        "subtitleMain": "If you have additional questions. Call the call center",
+        "hide_answer": "hide answer",
+        "show_answer": "see answer"
     },
     "contacts": {
         "title": "Contacts",
@@ -220,23 +221,23 @@
             "auth": "Authorization",
             "language": "Interface language",
             "push": "Push notifications",
-            "newPinCode": "Сменить пин код",
-            "secureEnable": "Включить защиту личных данных",
-            "secureDisable": "Отключить защиту личных данных"
+            "newPinCode": "Change pin code",
+            "secureEnable": "Enable privacy protection",
+            "secureDisable": "Disable privacy protection"
         }
     },
     "profile": {
-        "name": "ФИО:",
-        "birthDate": "Дата рожденя:",
-        "phone": "Телефон:",
-        "address": "Адрес:",
-        "journal": "Журнал записей на приём",
-        "logout": "Выход из учётной записи"
+        "name": "Name:",
+        "birthDate": "Date birthday:",
+        "phone": "Phone:",
+        "address": "Address:",
+        "journal": "Journal of doctor's appointment",
+        "logout": "Logout"
     },
     "patient": {
-        "title": "Карта пациента",
-        "no_patient_text": "Нет даных",
-        "protocol_vizit": "Протокол визита"
+        "title": "Patient records",
+        "no_patient_text": "No data",
+        "protocol_vizit": "Visit information"
     },
     "common": {
         "actions": {
@@ -256,14 +257,14 @@
             "appointment": "Appointment",
             "ask_question": "Ask a Question",
             "add_recording": "Add a appointment",
-            "continue": "Продолжить"
+            "continue": "continue"
         },
         "actions_text": {
             "token_not_valid_text": "You need to re-login", 
             "question_sent": "Your question has been sent successfully",
             "question_text": "To ask questions, you need to log in",
-            "profile_text": "Для того чтобы войти в профиль, Вам необходимо авторизоваться",
-            "record_text": "Для того чтобы записаться на приём, Вам необходимо авторизоваться",
+            "profile_text": "To login in profile, you need to log in",
+            "record_text": "To make an appointment, you need to log in",
             "recording_text": "In order to view the page of records, you need to log in",
             "analizes_text": "To view the analysis page, you need to log in",
             "history_text": "To view the medical history page, you need to log in",
@@ -272,15 +273,17 @@
             "select_auth_method": "Choose authorization method",
             "your_question": "Your question",
             "your_email": "Your e-mail",
-            "your_name": "Ваше имя",
+            "your_name": "Your name",
             "check_data": "Check data",
-            "auth_text": "Авторизоваться?"
+            "auth_text": "Do you want log in?"
         },
         "errors": {
             "wrong_pin_code": "Invalid PIN code",
             "wrong_phone": "Invalid phone number",
             "wrong_inn": "Incorrect IIN number",
-            "wrong_sms_code": "Invalid sms code"
+            "wrong_sms_code": "Invalid sms code",
+            "no_connection": "No internet connection",
+            "server_not_available": "Server is not available"
         },
         "files": {
             "action_title": "Save file",

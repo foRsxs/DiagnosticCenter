@@ -32,16 +32,6 @@ class AuthorizationScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    const { notify, languages_key, token } = this.props;
-
-    this.props.changeNotify(notify);
-    this.props.setCurrentLang(languages_key);
-    if (token) {
-      this.props.saveUser({ api_token: token });
-    }
-  }
-
   componentWillReceiveProps(newProps) {
     if (newProps.pinCode !== null && newProps.confirmed_auth && newProps.token) this.props.navigation.navigate('authMethods');
     if (newProps.confirmed_auth && newProps.pinCode == null && newProps.token) this.props.navigation.navigate('profile');
@@ -108,6 +98,7 @@ class AuthorizationScreen extends Component {
   }
 
   authUser = () => {
+    let { t } = this.props;
     let number = this.phoneField.getRawValue();
     let { personalId } = this.state;
 
@@ -125,7 +116,7 @@ class AuthorizationScreen extends Component {
         .catch((e) => {
           this.setState({
             showPopup: (e.code === 403) ? true : false,
-            message: e.error,
+            message: (e.error) ? e.error : t('common:errors.server_not_available'),
             loading: false
           });
         });
@@ -164,6 +155,7 @@ class AuthorizationScreen extends Component {
               }}
               maxLength={18} 
               keyboardType='number-pad'
+              returnKeyType='done'
               placeholder={t('authorization:phone')}
               value={this.state.formattedNumber}
               style={[styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE }]}
@@ -180,6 +172,7 @@ class AuthorizationScreen extends Component {
               onChangeText={(text) => this.onChangeId(text)} 
               value={personalId} 
               keyboardType='number-pad'
+              returnKeyType='done'
               maxLength={12} 
             />
           </View>
@@ -203,7 +196,7 @@ class AuthorizationScreen extends Component {
       <View style={styles.wrapAuthView}>
         <View style={styles.content}>
           <Text style={styles.smsTitle}>{t('authorization:auth_sms1')}{"\n"}{formattedNumber} {t('authorization:auth_sms2')}</Text>
-          <TextInput style={[styles.inputSMS, {marginBottom: 30}]} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} />
+          <TextInput style={[styles.inputSMS, {marginBottom: 30}]} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} returnKeyType='done' />
           <Text style={[styles.errorMessage, {marginTop: 0, marginBottom: 10}]}>{message}</Text>
           <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => this.checkSMSCode()} />
         </View>

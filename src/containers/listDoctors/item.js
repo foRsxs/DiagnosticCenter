@@ -24,7 +24,6 @@ class DoctorScreen extends Component {
       docid: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null,
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       docdep_id: (props.navigation.state.params) ? props.navigation.state.params.docdep_id : null,
-      loading: true,
       tabProfile: true,
       moreInfo: false
     };
@@ -36,12 +35,6 @@ class DoctorScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.doctor !== nextProps.doctor) {
-      this.setState({ loading: false })
-    }
   }
 
   handleBackButtonClick = () => {
@@ -69,15 +62,14 @@ class DoctorScreen extends Component {
   }
 
   renderProfile() {
-    const { doctor } = this.props;
-    const { loading } = this.state;
+    const { isRequest, doctor } = this.props;
     let description = (doctor && doctor.description) ? doctor.description.replace(new RegExp('<p', 'g'), '<span').replace(new RegExp('</p>', 'g'), '</span>') : '';
     
     return (
       <View style={styles.bottomContainer}>
         {
-          (loading) ? 
-          (<ActivityIndicator style={(loading) ? { marginTop: 100 } : {}} size="large" color={ACCENT_BLUE} />)
+          (isRequest) ? 
+          (<ActivityIndicator style={(isRequest) ? { marginTop: 100 } : {}} size="large" color={ACCENT_BLUE} />)
           : 
           (<KeyboardAwareScrollView>
             <View style={styles.mainInfo}>
@@ -98,8 +90,8 @@ class DoctorScreen extends Component {
   }
 
   renderQuestions() {
-    const { moreInfo, docid, loading } = this.state;
-    const { questions, t, navigation, isGuest, setActiveTab } = this.props;
+    const { moreInfo, docid } = this.state;
+    const { questions, t, isRequest, navigation, isGuest, setActiveTab } = this.props;
 
     return (
       <View style={styles.bottomContainer}>
@@ -121,23 +113,22 @@ class DoctorScreen extends Component {
             <Text style={styles.textBtn}>{t('common:actions.ask_question_doctor')}</Text>
           </TouchableOpacity>
         </View>
-        <KeyboardAwareScrollView contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <KeyboardAwareScrollView contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
           {
-            (loading) && (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
-          }
-          {
-            (!loading && questions.length>= 1) ?
-            questions.map((item)=>(
-              <View style={styles.mainInfo} key={item.id}>
-                <Text style={styles.textQuestion}>{item.question}</Text>
-                {
-                  (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
-                }
-                <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
-                  <Text style={styles.openInfo}>{(moreInfo) ? t('faq:hide_answer') : t('faq:show_answer')}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
-                </TouchableOpacity>
-              </View> 
-            )) : <Text style={styles.emptyData}>{t('faq:no_often_questions_text')}</Text>
+            (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
+            (questions && questions.length >= 1) ?
+              questions.map((item)=>(
+                <View style={styles.mainInfo} key={item.id}>
+                  <Text style={styles.textQuestion}>{item.question}</Text>
+                  {
+                    (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
+                  }
+                  <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
+                    <Text style={styles.openInfo}>{(moreInfo) ? t('faq:hide_answer') : t('faq:show_answer')}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
+                  </TouchableOpacity>
+                </View> 
+              )
+            ) : <Text style={styles.emptyData}>{t('faq:no_often_questions_text')}</Text>
           }
         </KeyboardAwareScrollView>
       </View>
@@ -145,7 +136,7 @@ class DoctorScreen extends Component {
   }
 
   render() {
-    const { loading, tabProfile } = this.state;
+    const { tabProfile } = this.state;
     const { t, doctor } = this.props;
 
     return (
@@ -161,7 +152,7 @@ class DoctorScreen extends Component {
           (tabProfile) &&
           <View style={styles.btnWrap}>
             {
-              (!loading && +doctor.allow === 1) && (
+              (+doctor.allow === 1) && (
                 <CustomBtn 
                   contentContainerStyle={styles.redBtn} 
                   label={t('common:actions.appointment')} 
@@ -169,7 +160,7 @@ class DoctorScreen extends Component {
                 />
               )}
             {
-              (!loading && +doctor.allow === 0) && (
+              (+doctor.allow === 0) && (
                 <Text style={{ textAlign: 'center' }}>{t('listdoctors:item.no_recording_text')}</Text>
               )}
           </View>
@@ -208,7 +199,8 @@ function mapStateToProps(state) {
     user: state.authorization.user,
     doctor: state.content.doctorData,
     questions: state.content.questions.doctors,
-    isGuest: state.authorization.isGuest
+    isGuest: state.authorization.isGuest,
+    isRequest: state.content.isRequest
   }
 }
 

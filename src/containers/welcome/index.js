@@ -78,6 +78,14 @@ class WelcomeScreen extends Component {
 	};
 
 	componentDidMount() {
+		const { notify, languages_key, token } = this.props;
+
+    this.props.changeNotify(notify);
+    this.props.setCurrentLang(languages_key);
+    if (token) {
+      this.props.saveUser({ api_token: token });
+		}
+		
 		SplashScreen.hide();
 		this._checkWelcome();
 	}
@@ -143,7 +151,10 @@ function mapStateToProps(state) {
 	return {
 		token: state.authorization.token,
 		hideScreen: state.content.hideScreen,
-		enableSecure: state.authorization.enableSecure
+		enableSecure: state.authorization.enableSecure,
+		notify: state.authorization.notify,
+    languages_key: state.authorization.language,
+    user: state.authorization.user,
 	}
 }
 

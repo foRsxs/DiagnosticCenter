@@ -25,7 +25,6 @@ class InfoDetailScreen extends Component {
       header_title: (props.navigation.state.params) ? props.navigation.state.params.header_title : '',
       content: (props.navigation.state.params) ? props.navigation.state.params.content : '',
       post_id: (props.navigation.state.params) ? props.navigation.state.params.post_id : null,
-      loading: true,
       openPopup: false
     };
 
@@ -34,15 +33,16 @@ class InfoDetailScreen extends Component {
   }
 
   componentDidMount() {
-    (this.state.post_id) ? this.props.getPost(this.state.post_id) : this.setState({ loading: false });
+    if (this.state.post_id) {
+      this.props.getPost(this.state.post_id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.post !== nextProps.post) {
       this.setState({
         image: { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` },
-        content: nextProps.post.body,
-        loading: false
+        content: nextProps.post.body
       });
     }
   }
@@ -88,26 +88,32 @@ class InfoDetailScreen extends Component {
   }
 
   dynamicContent = () => {
-    const { loading, content } = this.state;
+    const { content } = this.state;
 
     return (
       <View style={styles.textWrap}>
-        {(!loading) ? <HTMLView value={content} /> : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
+        <HTMLView value={content} />
       </View>
     )
   }
 
   render() {
-    const { call, image, header_title, post_id, loading } = this.state;
-    const { t } = this.props;
+    const { call, image, header_title, post_id } = this.state;
+    const { t, isRequest } = this.props;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={header_title} navigation={this.props.navigation}/>
-        <Content style={(image) ? { zIndex: 2 } : { marginTop: -10, zIndex: 1 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-          {(image) && this.renderImage()}
-          {!(post_id) && this.staticContent()}
-          {(post_id) && this.dynamicContent()}
+        <Content style={(image) ? { zIndex: 2 } : { marginTop: -10, zIndex: 1 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        { 
+          (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
+          ( <View>
+            {(image) && this.renderImage()}
+            {!(post_id) && this.staticContent()}
+            {(post_id) && this.dynamicContent()}
+            </View>
+          )
+        }
         </Content>
         {(call) && <LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)} />}
       </Container>
@@ -118,6 +124,7 @@ class InfoDetailScreen extends Component {
 function mapStateToProps(state) {
   return {
     post: state.content.listInformation.post,
+    isRequest: state.content.isRequest
   }
 }
 

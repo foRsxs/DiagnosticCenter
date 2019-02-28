@@ -16,8 +16,7 @@ class OftenQuestionsScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sorted_questions: props.questions,
-			loading: (props.questions) ? false : true,
+			sorted_questions: props.questions
 		};
 	}
 
@@ -26,7 +25,7 @@ class OftenQuestionsScreen extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.questions !== this.props.questions) this.setState({ loading: false, sorted_questions: this.props.questions });
+		if (prevProps.questions !== this.props.questions) this.setState({ sorted_questions: this.props.questions });
 	}
 
 	handleChange = (value) => {
@@ -38,35 +37,39 @@ class OftenQuestionsScreen extends Component {
 	}
 
 	render() {
-		const { t } = this.props;
-		const { loading, sorted_questions } = this.state;
+		const { t, isRequest } = this.props;
+		const { sorted_questions } = this.state;
 
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} textUpper={t('faq:title')} navigation={this.props.navigation} />
-				<Content style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-					{(sorted_questions && sorted_questions.length) && (
+				<Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+				{
+					(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
+					(<View>
 						<View>
-							<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
-							<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
+							{(sorted_questions && sorted_questions.length) && (
+								<View>
+									<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
+									<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
+								</View>
+							)}
 						</View>
-					)}
-					{
-						(loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-							(
-								(sorted_questions && sorted_questions.length) ? (
-									sorted_questions.map((item, index) => (
-										<OftenQuestionItem
-											key={index}
-											text={item.question}
-											textAnswer={item.answer}
-										/>
-									))
-								) : (
-										<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
-									)
-							)
-					}
+						<View>
+							{(sorted_questions && sorted_questions.length) ? (
+								sorted_questions.map((item, index) => (
+									<OftenQuestionItem
+										key={index}
+										text={item.question}
+										textAnswer={item.answer}
+									/>
+								))
+							) : (
+								<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
+							)}
+						</View>
+					</View>)
+				}
 				</Content >
 			</Container>
 		)
@@ -76,6 +79,7 @@ class OftenQuestionsScreen extends Component {
 function mapStateToProps(state) {
 	return {
 		questions: state.content.questions.often,
+    isRequest: state.content.isRequest
 	}
 }
 

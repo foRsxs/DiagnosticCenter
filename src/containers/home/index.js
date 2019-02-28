@@ -22,34 +22,23 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuList: [
-        {
-          text: props.t(`home:menu_list.contacts`),
-          icon: ICON_CONTACT,
-          value: 'contacts'
-        },
-        {
-          text: props.t(`home:menu_list.information`),
-          icon: ICON_INFO,
-          value: 'information'
-        },
-        {
-          text: props.t(`home:menu_list.vacancy`),
-          icon: ICON_VACANCY,
-          value: 'vacantion'
-        },
-        {
-          text: props.t(`home:menu_list.faq`),
-          icon: ICON_QUESTION,
-          value: 'oftenQuestions'
-        },
-      ]
+      menuList: []
     };
   }
 
   componentDidMount() {
+    const { t } = this.props;
+    this._renderMenuList(t);
     this.props.getSales();
     SplashScreen.hide();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { t, languages_key } = this.props;
+    
+    if (prevProps.languages_key !== languages_key) {
+      this._renderMenuList(t);
+    }
   }
 
   _openPage = (page, text_error) => {
@@ -62,6 +51,33 @@ class HomeScreen extends Component {
       navigation.navigate(page);
     }
   }
+  
+  _renderMenuList = (t) => {
+    this.setState({
+      menuList: [
+        {
+          text: t(`home:menu_list.contacts`),
+          icon: ICON_CONTACT,
+          value: 'contacts'
+        },
+        {
+          text: t(`home:menu_list.information`),
+          icon: ICON_INFO,
+          value: 'information'
+        },
+        {
+          text: t(`home:menu_list.vacancy`),
+          icon: ICON_VACANCY,
+          value: 'vacantion'
+        },
+        {
+          text: t(`home:menu_list.faq`),
+          icon: ICON_QUESTION,
+          value: 'oftenQuestions'
+        },
+      ]
+    })
+  }
 
   onPress = (type) => {
     const { navigation } = this.props;
@@ -70,14 +86,14 @@ class HomeScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { t, sales } = this.props;
+    const { isRequest, sales } = this.props;
 
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
         <Header isHome={true} navigation={this.props.navigation} />
         <Content>
           <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
-            {sales ? (<HomeCarousel navigate={navigate} data={sales} />) : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
+            {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
           </LinearGradient>
           <MenuList onPress={(value) => this.onPress(value)} valueName={'value'} fields={this.state.menuList} navigation={this.props.navigation} />
         </Content >
@@ -91,7 +107,9 @@ function mapStateToProps(state) {
     sales: state.content.sales,
     profile: state.authorization.user,
     token: state.authorization.token,
-    isGuest: state.authorization.isGuest
+    isGuest: state.authorization.isGuest,
+    languages_key: state.authorization.language,
+    isRequest: state.content.isRequest
   }
 }
 
@@ -99,4 +117,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...ContentActions, ...AuthActions }, dispatch);
 }
 
-export default withNamespaces('home')(connect(mapStateToProps, mapDispatchToProps)(HomeScreen));
+export default withNamespaces(['home', 'common'])(connect(mapStateToProps, mapDispatchToProps)(HomeScreen));

@@ -18,33 +18,7 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuList: [
-        {
-          text: props.t('patient:title'),
-          icon: ICON_CARD_PATIENT,
-          value: 'cardPatientScreen'
-        },
-        {
-          text: props.t('analizes:title'),
-          icon: ICON_ANALIZE,
-          value: 'analizes'
-        },
-        {
-          text: props.t('profile:journal'),
-          icon: ICON_JOURNAL_POSTS,
-          value: "recordingList"
-        },
-        {
-          text: props.t('menu:settings'),
-          icon: ICON_SETTINGS,
-          value: 'settings'
-        },
-        {
-          text: props.t('profile:logout'),
-          icon: ICON_LOGOUT,
-          value: 'LogOut'
-        },
-      ]
+      menuList: []
     };
   }
 
@@ -60,13 +34,54 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    const { token, navigation } = this.props;
+    const { t, token, navigation } = this.props;
+    this._renderMenuList(t);
 
     if (token) {
       this.props.getUserData();
     } else {
       navigation.navigate('authorization');
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { t, languages_key } = this.props;
+    
+    if (prevProps.languages_key !== languages_key) {
+      this._renderMenuList(t);
+    }
+  }
+
+  _renderMenuList = (t) => {
+    this.setState({
+      menuList: [
+        {
+          text: t('patient:title'),
+          icon: ICON_CARD_PATIENT,
+          value: 'cardPatientScreen'
+        },
+        {
+          text: t('analizes:title'),
+          icon: ICON_ANALIZE,
+          value: 'analizes'
+        },
+        {
+          text: t('profile:journal'),
+          icon: ICON_JOURNAL_POSTS,
+          value: "recordingList"
+        },
+        {
+          text: t('menu:settings'),
+          icon: ICON_SETTINGS,
+          value: 'settings'
+        },
+        {
+          text: t('profile:logout'),
+          icon: ICON_LOGOUT,
+          value: 'LogOut'
+        },
+      ]
+    });
   }
 
   render() {
@@ -116,7 +131,8 @@ class ProfileScreen extends Component {
 function mapStateToProps(state) {
   return {
     token: state.authorization.token,
-    user: state.authorization.user
+    user: state.authorization.user,
+    languages_key: state.authorization.language,
   }
 }
 

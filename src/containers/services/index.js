@@ -20,14 +20,15 @@ class ServicesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sorted_list_specialization: props.list_specialization,
-      loading: (props.list_specialization) ? false : true
+      sorted_list_specialization: props.list_specialization
     };
   }
 
   handleChange = (value) => {
     const { list_specialization } = this.props;
 
+    if (!list_specialization) return;
+    
     findElements = (item) => {
       return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
@@ -40,7 +41,7 @@ class ServicesScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization, loading: false });
+    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization });
   }
 
   onClick = (spec) => {
@@ -64,18 +65,18 @@ class ServicesScreen extends Component {
   }
 
   render() {
-    const { sorted_list_specialization, loading } = this.state;
-    const { t } = this.props;
+    const { sorted_list_specialization } = this.state;
+    const { t, isRequest } = this.props;
 
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
-            <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+            <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               <List style={styles.list}>
                 {
-                  (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                  (isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                     (
                       (sorted_list_specialization && sorted_list_specialization.length) ? (
                         sorted_list_specialization.map((item, index) => (
@@ -103,7 +104,8 @@ class ServicesScreen extends Component {
 function mapStateToProps(state) {
   return {
     list_specialization: state.content.ListSpecialization,
-    isGuest: state.authorization.isGuest
+    isGuest: state.authorization.isGuest,
+    isRequest: state.content.isRequest
   }
 }
 

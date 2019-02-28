@@ -93,18 +93,18 @@ class ReceptionInfoItemScreen extends Component {
               text={serv}
             />
             <View style={styles.datetimeWrap}>
-              <View style={{ flex: 2 }}>
+              <View style={{ flex: 3 }}>
                 <RecordingItem
                   icon={ICON_PRICE_SMALL}
                   title={t('createrecord:price')}
                   placeholder={t('createrecord:price')}
-                  text={price && <Text style={styles.txtSubname}>{`(${price}) KZT`}</Text>}
+                  text={`${price} KZT`}
                 />
               </View>
               <View style={styles.separator}></View>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 2 }}>
                 <RecordingItem
-                  contentContainerStyle={{ paddingLeft: 10 }}
+                  contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
                   icon={ICON_NUMBER_SMALL}
                   title={t('createrecord:room_number')}
                   text={room}
@@ -119,7 +119,7 @@ class ReceptionInfoItemScreen extends Component {
               text={doctor}
             />
             <View style={styles.datetimeWrap}>
-              <View style={{ flex: 2 }}>
+              <View style={{ flex: 3 }}>
                 <RecordingItem
                   icon={ICON_CALENDAR_SMALL}
                   title={t('createrecord:form.date')}
@@ -128,9 +128,9 @@ class ReceptionInfoItemScreen extends Component {
                 />
               </View>
               <View style={styles.separator}></View>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 2 }}>
                 <RecordingItem
-                  contentContainerStyle={{ paddingLeft: 10 }}
+                  contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
                   icon={ICON_TIME_SMALL}
                   title={t('createrecord:form.time')}
                   placeholder='12:00'

@@ -2,20 +2,30 @@ import axios from 'axios';
 import OneSignal from 'react-native-onesignal';
 
 import * as types from '../types/auth';
-import {APP_API_URL} from '../config';
+import {
+  APP_API_URL
+} from '../config';
 import i18n from '../i18n';
 
 export function authUser(data) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const {
+      authorization
+    } = getState();
 
-    return axios.post(`${APP_API_URL}/get_patient`, {...data, lang: authorization.language})
-    .then((response) => {
-      return Promise.resolve(response.data);
-    })
-    .catch((error) => {
-      return Promise.reject({code: error.response.data.code, error: error.response.data.message});
-    });
+    return axios.post(`${APP_API_URL}/get_patient`, {
+        ...data,
+        lang: authorization.language
+      })
+      .then((response) => {
+        return Promise.resolve(response.data);
+      })
+      .catch((error) => {
+        return Promise.reject({
+          code: error.response.data.code,
+          error: error.response.data.message
+        });
+      });
   }
 }
 
@@ -28,20 +38,23 @@ export function fullAuthUser(data) {
 
 export function getUserData() {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const {
+      authorization
+    } = getState();
 
-    return axios.post(`${APP_API_URL}/get_patient_by_token`,{
-      api_token: authorization.token,
-      lang: authorization.language
-    })
-    .then((response) => {
-      OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
-      dispatch(setUserdata(response.data));
-      return Promise.resolve(response.data);
-    })
-    .catch((error) => {
-      return Promise.reject(error);
-    });
+    return axios.post(`${APP_API_URL}/get_patient_by_token`, {
+        api_token: authorization.token,
+        lang: authorization.language
+      })
+      .then((response) => {
+        OneSignal.sendTag('user_keyid', JSON.stringify(response.data.keyid));
+        dispatch(setUserdata(response.data));
+        return Promise.resolve(response.data);
+      })
+      .catch((error) => {
+        dispatch(setUserdata({}));
+        return Promise.reject(error);
+      });
   }
 }
 

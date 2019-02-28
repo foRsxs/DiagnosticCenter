@@ -1,240 +1,402 @@
 import axios from 'axios';
 
 import * as types from '../types/content';
-import {APP_API_URL} from '../config';
+import { APP_API_URL } from '../config';
 
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { 
+      authorization: {
+        language
+      }
+    } = getState();
 
+    dispatch(setIsRequest(true));
+    
     axios.post(`${APP_API_URL}/specs`, {
-      type: type,
-      lang: authorization.language
-    })
-    .then((response) => {
-      (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
-    })
+        type: type,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListSpecializationOrder(null));
+      })
   }
 }
 
 export function getListDoctors(spec_id, servid, order = false) {
 
   return (dispatch, getState) => {
-    const { authorization, content } = getState();
+    const {
+      authorization: {
+        language
+      },
+      content
+    } = getState();
     const params = {
-      lang: authorization.language
+      lang: language
     }
 
     if (spec_id) params.spec_id = spec_id;
     if (servid) params.servid = servid;
-    if (order && content.order.type !== 1 ) params.type = content.order.type;
+    if (order && content.order.type !== 1) params.type = content.order.type;
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/doctors`, params)
-    .then((response) => {
-
-      isAllow = (value) => {
-        return +value.allow === 1;
-      }
-      if (order) {
-        if (response.data.filter(isAllow).length === 1) {
-          dispatch(setOrderSuccess({docdep_id: response.data[0].docdep}));
-          dispatch(setOrderValueSuccess({docdep: `${response.data[0].lastname} ${response.data[0].firstname} ${response.data[0].secondname}`}));
-          dispatch(getListDates({docdep_id: response.data[0].docdep}));
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        isAllow = (value) => {
+          return +value.allow === 1;
         }
-        dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
-      } else { 
-        dispatch(setListDoctors(response.data));
-      }
-    });
+
+        if (order) {
+          if (response.data.filter(isAllow).length === 1) {
+            dispatch(setOrderSuccess({
+              docdep_id: response.data[0].docdep
+            }));
+            dispatch(setOrderValueSuccess({
+              docdep: `${response.data[0].lastname} ${response.data[0].firstname} ${response.data[0].secondname}`
+            }));
+            dispatch(getListDates({
+              docdep_id: response.data[0].docdep
+            }));
+          }
+          dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
+        } else {
+          dispatch(setListDoctors(response.data));
+        }
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListDoctors([]));
+      });
   }
 }
 
 export function getListServices(id, type, auto_push = false) {
   return (dispatch, getState) => {
-    const { authorization, content: {order} } = getState();
+    const {
+      authorization: {
+        language
+      },
+      content: {
+        order
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/services`, {
-      type: (type) ? type: order.type,
-      spec_id: id,
-      lang: authorization.language
-    })
-    .then((response) => {
-      if (auto_push && response.data.length) {
-        dispatch(setOrderSuccess({servid: response.data[0].servid}));
-        dispatch(setOrderValueSuccess({serv: response.data[0].text}));
-      }
-      dispatch(setListServicesOrder(response.data));
-    })
+        type: (type) ? type : order.type,
+        spec_id: id,
+        lang: language
+      })
+      .then((response) => {
+
+        dispatch(setIsRequest(false));
+
+        if (auto_push && response.data.length) {
+          dispatch(setOrderSuccess({
+            servid: response.data[0].servid
+          }));
+          dispatch(setOrderValueSuccess({
+            serv: response.data[0].text
+          }));
+        }
+        dispatch(setListServicesOrder(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListServicesOrder(null));
+      })
   }
 }
 
 export function getDoctor(doc_id) {
   return (dispatch, getState) => {
-    const { authorization: {language} } = getState();
+    const {
+      authorization: {
+        language
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/doctor`, {
-      doc_id,
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setDoctorData(response.data));
-    })
+        doc_id,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setDoctorData(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setDoctorData(null));
+      });
   }
 }
 
 export function getSales() {
   return (dispatch, getState) => {
-    const { authorization: {language} } = getState();
+    const {
+      authorization: {
+        language
+      },
+      content: {
+        sales
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.get(`${APP_API_URL}/sales`, {
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setSales(response.data));
-    })
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setSales(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setSales(sales));
+      });
   }
 }
 
 export function getListInformation() {
   return (dispatch, getState) => {
-    const { authorization: {language} } = getState();
+    const { 
+      authorization: {
+        language
+      }, 
+      content: {
+        listInformation
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/articles`, {
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setListInformation(response.data))
-    })
-    .catch((e)=> {
-      dispatch(setListInformation([]))
-    })
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListInformation(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListInformation(listInformation.list));
+      })
   }
 }
 
 export function getPost(post_id) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { 
+      authorization: {
+        language
+      }, 
+      content: {
+        listVacantion
+      } 
+    } = getState();
 
-    axios.post(`${APP_API_URL}/articles`,{
-      post_id, 
-      lang: authorization.language
-    })
-    .then((response) => {
-      dispatch(setPost(response.data));
-    })
-    .catch((e)=> {
-      dispatch(setPost({}));
-    })
+    dispatch(setIsRequest(true));
+
+    axios.post(`${APP_API_URL}/articles`, {
+        post_id,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setPost(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setPost(listVacantion.post));
+      })
   }
 }
 
 export function getListVacantion() {
   return (dispatch, getState) => {
-    const { authorization: {language} } = getState();
+    const {
+      authorization: {
+        language
+      },
+      content: {
+        listVacantion
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/vacancy`, {
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setListVacantion(response.data))
-    })
-    .catch((e)=> {
-      dispatch(setListVacantion([]))
-    })
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListVacantion(response.data))
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListVacantion(listVacantion.list))
+      })
   }
 }
 
 export function getVacantion(post_id) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const {
+      authorization: {
+        language
+      }
+    } = getState();
 
-    axios.post(`${APP_API_URL}/vacancy`,{
-      post_id, 
-      lang: authorization.language
-    })
-    .then((response) => {
-      dispatch(setVacantion(response.data));
-    })
-    .catch((e)=> {
-      dispatch(setVacantion({}));
-    })
+    dispatch(setIsRequest(true));
+    axios.post(`${APP_API_URL}/vacancy`, {
+        post_id,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setVacantion(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setVacantion({}));
+      })
   }
 }
 
 export function getQuestions(doc_id) {
   return (dispatch, getState) => {
-    const { authorization: {token, language} } = getState();
+    const {
+      authorization: {
+        token,
+        language
+      }, 
+      content: {
+        questions
+      }
+    } = getState();
 
-    axios.post(`${APP_API_URL}/questions`,{
-      doc_id,
-      api_token: token,
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setQuestion(response.data));
-    })
-    .catch((e)=>{
-      dispatch(setQuestion([]));
-    });
+    dispatch(setIsRequest(true));
+
+    axios.post(`${APP_API_URL}/questions`, {
+        doc_id,
+        api_token: token,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setQuestion(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setQuestion(questions.doctors));
+      });
   }
 }
 
 export function getOftenQuestions() {
   return (dispatch, getState) => {
-    const { authorization: {language} } = getState();
+    const {
+      authorization: {
+        language
+      },
+      content: {
+        questions
+      }
+    } = getState();
 
-    axios.post(`${APP_API_URL}/faq`,{
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setOftenQuestion(response.data));
-    })
-    .catch((e)=> {
-      dispatch(setOftenQuestion([]));
-    })
+    dispatch(setIsRequest(true));
+
+    axios.post(`${APP_API_URL}/faq`, {
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setOftenQuestion(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setOftenQuestion(questions.often));
+      })
   }
 }
 
 export function getListDates(docdep_id) {
   return (dispatch, getState) => {
-    const { authorization: {token, language} } = getState();
+    const {
+      authorization: {
+        token,
+        language
+      }
+    } = getState();
 
-    axios.post(`${APP_API_URL}/rnumb_date`,{
-      api_token: token,
-      docdep_id,
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setListDates(response.data));
-    })
-    .catch((e)=>{
-      dispatch(setListDates([]));
-    })
+    dispatch(setIsRequest(true));
+
+    axios.post(`${APP_API_URL}/rnumb_date`, {
+        api_token: token,
+        docdep_id,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListDates(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListDates([]));
+      })
   }
 }
 
 export function getListTimes(date) {
   return (dispatch, getState) => {
-    const { authorization: {token, language}, content: {order} } = getState();
+    const {
+      authorization: {
+        token,
+        language
+      },
+      content: {
+        order,
+      }
+    } = getState();
 
-    axios.post(`${APP_API_URL}/rnumb_time`,{
-      api_token: token,
-      docdep_id: order.docdep_id,
-      date,
-      lang: language
-    })
-    .then((response) => {
-      dispatch(setListTimes(response.data));
-    })
-    .catch((e)=> {
-      dispatch(setListTimes([]));
-    })
+    dispatch(setIsRequest(true));
+
+    axios.post(`${APP_API_URL}/rnumb_time`, {
+        api_token: token,
+        docdep_id: order.docdep_id,
+        date,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListTimes(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListTimes([]));
+      })
   }
 }
 
 export function setOrder(data, type, nameDispatch) {
   return (dispatch, getState) => {
-    const { content: {order} } = getState();
+    const {
+      content: {
+        order
+      }
+    } = getState();
 
     if (type === 'type') {
       dispatch(cleareOrderSuccess());
@@ -245,159 +407,276 @@ export function setOrder(data, type, nameDispatch) {
         if (nameDispatch === 'doc') {
           dispatch(getListServices(data[type], null, true));
           dispatch(getListDoctors(data[type], null, true));
-        } else dispatch(getListServices(data[type], null) );
+        } else dispatch(getListServices(data[type], null));
       }
     } else if (type === 'servid') {
       if (order.docdep_id) dispatch(cleareOrderSuccess('servid'));
-      if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors( null, data[type], true));
+      if (!order[type] || order[type] !== data[type]) dispatch(getListDoctors(null, data[type], true));
     } else if (type === 'docdep_id') {
       if (order.date) dispatch(cleareOrderSuccess('docdep_id'));
-      if (!order[type] || order[type] !== data[type]) dispatch(getListDates( data[type], true));
+      if (!order[type] || order[type] !== data[type]) dispatch(getListDates(data[type], true));
     }
     dispatch(setOrderSuccess(data));
   }
 }
 
-export function sendQuestion({type, question, email, doc_id}) {
+export function sendQuestion({ type, question, email, doc_id }) {
   return (dispatch, getState) => {
-    dispatch(sendQuestionSuccess({loading: true, status: false}))
-    const { authorization: {token, language} } = getState();
+    dispatch(sendQuestionSuccess({
+      loading: true,
+      status: false
+    }))
+    const {
+      authorization: {
+        token,
+        language
+      }
+    } = getState();
     const params = {
       api_token: token,
-      question, 
+      question,
       email,
       lang: language
     }
-    
+
     if (doc_id) params.doc_id = doc_id;
 
     axios.post(`${APP_API_URL}/${type}`, params)
-    .then((response) => {
-      if (response.data.code === 200) dispatch(sendQuestionSuccess({loading: false, status: true}));
-    });
-    setTimeout(()=> {
-      dispatch(sendQuestionSuccess({loading: false, status: false}))
-    }, 3000)
+      .then((response) => {
+        if (response.data.code === 200) dispatch(sendQuestionSuccess({
+          loading: false,
+          status: true
+        }));
+      })
+      .catch((e) => {
+        dispatch(sendQuestionSuccess({
+          loading: false,
+          status: false
+        }))
+      });
   }
 }
 
 export function setDate(date) {
   return (dispatch, getState) => {
-    const { content: {order} } = getState();
+    const {
+      content: {
+        order
+      }
+    } = getState();
 
     if (order.time) dispatch(cleareOrderSuccess('date'));
     if (order.date !== date.date) {
       dispatch(getListTimes(date.date, true));
       dispatch(setOrderSuccess(date));
       dispatch(setOrderValueSuccess(date));
-    } else { 
-      dispatch(setOrderSuccess({date: null}));
-      dispatch(setOrderValueSuccess({date: null}));
+    } else {
+      dispatch(setOrderSuccess({
+        date: null
+      }));
+      dispatch(setOrderValueSuccess({
+        date: null
+      }));
     }
   }
 }
 
 export function setTime(time) {
   return (dispatch, getState) => {
-    const { content: {order} } = getState();
+    const {
+      content: {
+        order
+      }
+    } = getState();
 
     if (order.time !== time.time) {
       dispatch(setOrderSuccess(time));
       dispatch(setOrderValueSuccess(time));
     } else {
-      dispatch(setOrderSuccess({time: null}));
-      dispatch(setOrderValueSuccess({time: null}));
+      dispatch(setOrderSuccess({
+        time: null
+      }));
+      dispatch(setOrderValueSuccess({
+        time: null
+      }));
     }
   }
 }
 
-export function saveOrder({type, rnumb_id, date, serv_id}) {
+export function saveOrder({ type, rnumb_id, date, serv_id }) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
-    
+    const {
+      authorization: {
+        token,
+        language
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
     axios.post(`${APP_API_URL}/get_talon`, {
-      api_token: authorization.token,
-      lang: authorization.language,
-      rnumb_id, 
-      date,
-      serv_id,
-      type,
-    })
-    .then((response) => {
-      if (response.data) dispatch(setCreatingOrderSuccess(true))
-    })
+        api_token: token,
+        lang: language,
+        rnumb_id,
+        date,
+        serv_id,
+        type,
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        if (response.data) dispatch(setCreatingOrderSuccess(true));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setCreatingOrderSuccess(false));
+      })
   }
 }
 
 export function getListTalons() {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const {
+      authorization: {
+        token,
+        language
+      },
+      content: {
+        listTalons
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/talon_history`, {
-      api_token: authorization.token,
-      lang: authorization.language
-    })
-    .then((response) => {
-      dispatch(setListTalons(response.data));
-    })
+        api_token: token,
+        lang: language
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListTalons(response.data));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setListTalons(listTalons));
+      });
   }
 }
 
-export function deleteOrder({rnumb_id}) {
+export function deleteOrder({ rnumb_id }) {
   return (dispatch, getState) => {
-    const { authorization, content: {listTalons} } = getState();
+    const {
+      authorization: {
+        token,
+        language
+      },
+      content: {
+        listTalons
+      }
+    } = getState();
+
+    dispatch(setIsRequest(true));
 
     axios.post(`${APP_API_URL}/del_talon`, {
-      api_token: authorization.token,
-      lang: authorization.language,
-      rnumb_id
-    })
-    .then((response) => {
-      let array=[];
-      if (response.data[0].err_code == 0) {
-        listTalons.forEach((item)=> {if (+item.rnumb_id !== +rnumb_id) array.push(item)})
-        dispatch(setDeletedOrder(true));
-        dispatch(setListTalons(array))
-      }
-    });
-    setTimeout(()=> {
-      dispatch(setDeletedOrder(false));
-    }, 3000)
+        api_token: token,
+        lang: language,
+        rnumb_id
+      })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        let array = [];
+        if (response.data[0].err_code == 0) {
+          listTalons.forEach((item) => {
+            if (+item.rnumb_id !== +rnumb_id) array.push(item)
+          })
+          dispatch(setDeletedOrder(true));
+          dispatch(setListTalons(array))
+        }
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch(setDeletedOrder(false));
+      });
   }
 }
 
-export function getHistory({type, p_type, vis_id}) {
+export function getHistory({ type, p_type, vis_id }) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { 
+      authorization: {
+        token,
+        language
+      },
+      content: {
+        history
+      }
+    } = getState();
     let params = {
-      api_token: authorization.token,
-      lang: authorization.language
+      api_token: token,
+      lang: language
     }
 
     if (p_type) params.p_type = p_type;
     if (vis_id) params.vis_id = vis_id;
 
+    dispatch(setIsRequest(true));
+
     axios.post(`${APP_API_URL}/visit_${type}`, params)
-    .then((response) => {
-      dispatch((type == 'list') ? setHistory({ list: response.data}) : setHistory({current: response.data}));
-    })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch((type == 'list') ? setHistory({
+          list: response.data
+        }) : setHistory({
+          current: response.data
+        }));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch((type == 'list') ? setHistory({
+          list: history.list
+        }) : setHistory({
+          current: history.current
+        }));
+      })
   }
 }
 
-export function getAnalizes({type='', res_id}) {
+export function getAnalizes({ type = '', res_id }) {
   return (dispatch, getState) => {
-    const { authorization } = getState();
+    const { 
+      authorization: {
+        token,
+        language
+      },
+      content: {
+        analizes
+      }
+    } = getState();
     let params = {
-      api_token: authorization.token,
-      lang: authorization.language
+      api_token: token,
+      lang: language
     }
-    
+
     if (res_id) params.res_id = res_id;
 
+    dispatch(setIsRequest(true));
+
     axios.post(`${APP_API_URL}/lab_research${type}`, params)
-    .then((response) => {
-      dispatch((type == '_list') ? setAnalizes({ list: response.data}) : setAnalizes({current: response.data}));
-    })
+      .then((response) => {
+        dispatch(setIsRequest(false));
+        dispatch((type == '_list') ? setAnalizes({
+          list: response.data
+        }) : setAnalizes({
+          current: response.data
+        }));
+      })
+      .catch((e) => {
+        dispatch(setIsRequest(false));
+        dispatch((type == '_list') ? setAnalizes({
+          list: analizes.list
+        }) : setAnalizes({
+          current: analizes.current
+        }));
+      })
   }
 }
 
@@ -478,14 +757,18 @@ export function setOrderValueSuccess(data) {
 export function setListTimes(data) {
   return {
     type: types.UPDATE_LIST_TIMES,
-    data: {times: data}
+    data: {
+      times: data
+    }
   }
 }
 
 export function setListDates(data) {
   return {
     type: types.UPDATE_LIST_DATES,
-    data: {dates: data}
+    data: {
+      dates: data
+    }
   }
 }
 
@@ -506,21 +789,27 @@ export function setListSpecialization(data) {
 export function setListSpecializationOrder(data) {
   return {
     type: types.SET_LIST_SPECIALIZATION_ORDER,
-    data: {specialities: data}
+    data: {
+      specialities: data
+    }
   }
 }
 
 export function setListServicesOrder(data) {
   return {
     type: types.SET_LIST_SERVICES_ORDER,
-    data: {services: data}
+    data: {
+      services: data
+    }
   }
 }
 
 export function setListDoctorsOrder(data) {
   return {
     type: types.SET_LIST_DOCTORS_ORDER,
-    data: {doctors: data}
+    data: {
+      doctors: data
+    }
   }
 }
 
@@ -604,6 +893,13 @@ export function setWelcomeScreen(data) {
 export function setActiveTab(data) {
   return {
     type: types.SET_ACTIVE_TAB,
+    data: data
+  }
+}
+
+export function setIsRequest(data) {
+  return {
+    type: types.SET_IS_REQUEST,
     data: data
   }
 }

@@ -15,33 +15,23 @@ class InfoScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      loading: true,
-    };
   }
 
   componentDidMount() {
     this.props.getListInformation();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.listInformation !== this.props.listInformation) this.setState({ loading: false });
-  }
-
   render() {
     const { navigate } = this.props.navigation;
-    const { t, listInformation } = this.props;
-    const { loading } = this.state;
+    const { t, isRequest, listInformation } = this.props;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={t('information:title')} navigation={this.props.navigation} />
-        <Content style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
           <List>
-            {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} />}
-            {
-              (!loading) && (
-                (listInformation && listInformation.length) ? (
+            {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
+              : ((listInformation && listInformation.length) ? (
                   listInformation.map((item, i) => (
                     <ListItem key={i} onPress={() => navigate({ routeName: 'informationItem', params: { header_title: item.title, post_id: item.id }, key: item.id })} style={styles.questionItem}>
                       <Left>
@@ -65,6 +55,7 @@ class InfoScreen extends Component {
 function mapStateToProps(state) {
   return {
     listInformation: state.content.listInformation.list,
+    isRequest: state.content.isRequest
   }
 }
 

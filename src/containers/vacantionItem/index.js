@@ -20,12 +20,10 @@ class VacantionDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      call: (props.navigation.state.params) ? props.navigation.state.params.call : false,
-      image: (props.navigation.state.params) ? props.navigation.state.params.image : false,
       header_title: (props.navigation.state.params) ? props.navigation.state.params.header_title : '',
-      content: (props.navigation.state.params) ? props.navigation.state.params.content : '',
       post_id: (props.navigation.state.params) ? props.navigation.state.params.post_id : null,
-      loading: true,
+      image: null,
+      content: null,
       openPopup: false
     };
 
@@ -34,7 +32,11 @@ class VacantionDetailScreen extends Component {
   }
 
   componentDidMount() {
-    (this.state.post_id) ? this.props.getVacantion(this.state.post_id) : this.setState({ loading: false });
+    const { post_id } = this.state;
+
+    if (post_id) { 
+      this.props.getVacantion(post_id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,7 +44,6 @@ class VacantionDetailScreen extends Component {
       this.setState({
         image: { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` },
         content: nextProps.post.body,
-        loading: false
       });
     }
   }
@@ -77,7 +78,7 @@ class VacantionDetailScreen extends Component {
     )
   }
 
-  staticContent = () => {
+  dynamicContent = () => {
     const { content } = this.state;
 
     return (
@@ -87,27 +88,21 @@ class VacantionDetailScreen extends Component {
     )
   }
 
-  dynamicContent = () => {
-    const { loading, content } = this.state;
-
-    return (
-      <View style={styles.textWrap}>
-        {(!loading) ? <HTMLView value={content} /> : <ActivityIndicator size="large" color={ACCENT_BLUE} />}
-      </View>
-    )
-  }
-
   render() {
-    const { call, image, header_title, post_id, loading } = this.state;
-    const { t, post } = this.props;
+    const { call, image, header_title, post_id } = this.state;
+    const { t, isRequest, post } = this.props;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={header_title} navigation={this.props.navigation}/>
-        <Content style={(image) ? { zIndex: 2 } : { marginTop: -10, zIndex: 1 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-          {(post.image) && this.renderImage()}
-          {!(post_id) && this.staticContent()}
-          {(post_id) && this.dynamicContent()}
+        <Content style={(image) ? { zIndex: 2 } : { marginTop: -10, zIndex: 1 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        {
+          (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
+          (<View>
+            {(post && post.image) && this.renderImage()}
+            {(post_id) && this.dynamicContent()}
+          </View>)
+        }
         </Content>
         {(call) && <LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)} />}
       </Container>
@@ -118,6 +113,7 @@ class VacantionDetailScreen extends Component {
 function mapStateToProps(state) {
   return {
     post: state.content.listVacantion.post,
+    isRequest: state.content.isRequest
   }
 }
 

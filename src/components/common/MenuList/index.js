@@ -8,8 +8,6 @@ import styles from './styles';
 class MenuList extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-		}
 	}
 
 	render() {

@@ -20,7 +20,6 @@ class ListDoctors extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
-      loading: true,
       sorted_list_Doctors: props.list_Doctors,
       logoKey: '1'
     };
@@ -38,15 +37,14 @@ class ListDoctors extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.list_Doctors !== this.props.list_Doctors) {
       this.setState({
-        loading: false, 
         sorted_list_Doctors: this.props.list_Doctors
       });
     }
   }
 
   handleChange = (value) => {
-    const {list_Doctors} = this.props;
-    let array = []
+    const { list_Doctors } = this.props;
+    let array = [];
 
     findElements = (item) => {
       return `${item.lastname} ${item.firstname} ${item.secondname}`.toLowerCase().indexOf(value.toLowerCase()) !== -1;
@@ -74,17 +72,17 @@ class ListDoctors extends Component {
   }
 
   render() {
-    let { loading, sorted_list_Doctors } = this.state;
-    const { t } = this.props;
+    let { sorted_list_Doctors } = this.state;
+    const { t, isRequest } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
       <Container>
         <Header search={true} onChangeSearch={this.handleChange}/>
-        <KeyboardAwareScrollView style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
-          {
-            (!loading) && (
+        <KeyboardAwareScrollView style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+          { (isRequest) ? 
+            ( <ActivityIndicator size="large" color={ACCENT_BLUE} /> )
+            : (
               (sorted_list_Doctors.length) ? (
                 sorted_list_Doctors.map((item, index)=>(
                   <View key={index}>
@@ -110,7 +108,7 @@ class ListDoctors extends Component {
                     } 
                   </View>
                 ))
-              ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
+              ) : (<Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, paddingTop: 10}}>{ t('listdoctors:no_doctors_text') }</Text>)
             )
           }
           <View style={{width: '100%', height: 10}}></View>
@@ -122,7 +120,8 @@ class ListDoctors extends Component {
 
 function mapStateToProps(state) {
   return {
-    list_Doctors: state.content.sortedListDoctor
+    list_Doctors: state.content.sortedListDoctor,
+    isRequest: state.content.isRequest
   }
 }
 

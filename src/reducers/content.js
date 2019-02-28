@@ -207,6 +207,16 @@ export default function contentReducer(state = initialState.content, action) {
         ...state,
         activeTabIndex: action.data
       }
+    case types.SET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTabIndex: action.data
+      }
+    case types.SET_IS_REQUEST:
+      return {
+        ...state,
+        isRequest: action.data
+      }
     default:
       return state
   }
