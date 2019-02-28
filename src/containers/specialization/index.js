@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Linking } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { Container, Content, View, Text, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
 import SpecializationItem from '../../components/SpecializationItem';
-import Popup from '../../components/common/Popup';
-import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
+import { APP_IMG_URL } from '../../config';
 
 import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
@@ -21,14 +19,13 @@ class SpecializationScreen extends Component {
     super(props);
 
     this.state = {
-      loading: (props.orderDatas.specialities) ? false : true,
       specialities: props.orderDatas.specialities
     };
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) {
-      this.setState({ loading: false, specialities: this.props.orderDatas.specialities });
+      this.setState({ specialities: this.props.orderDatas.specialities });
     }
   }
 
@@ -41,22 +38,20 @@ class SpecializationScreen extends Component {
   }
 
   render() {
-    const { loading, specialities } = this.state;
-    const { t, order, setOrder, navigation, setOrderValue, setActiveTab } = this.props;
+    const { specialities } = this.state;
+    const { t, isRequest, order, setOrder, navigation, setOrderValue, setActiveTab } = this.props;
 
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
-            <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-              {(specialities.length > 0) && (
-                <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
-              )}
-              <List>
-                {
-                  (loading) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
-                    (
+            <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+              {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
+                <View>                  
+                  <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
+                  <List>
+                    {                    
                       (specialities && specialities.length) ? (
                         specialities.map((item, index) => (
                           <SpecializationItem
@@ -79,10 +74,11 @@ class SpecializationScreen extends Component {
                         ))
                       ) : (
                         <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
-                      )
-                    )
-                }
-              </List>
+                      )                    
+                    }
+                  </List>
+                </View>
+              )}
             </Content >
           </Container>
         </View>
@@ -94,7 +90,8 @@ class SpecializationScreen extends Component {
 function mapStateToProps(state) {
   return {
     orderDatas: state.content.orderDatas,
-    order: state.content.order
+    order: state.content.order,
+    isRequest: state.content.isRequest
   }
 }
 

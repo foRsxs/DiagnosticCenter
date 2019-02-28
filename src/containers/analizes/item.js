@@ -28,8 +28,7 @@ class AnalizesItemScreen extends Component {
         props.t('analizes:table_text_third'),
         props.t('analizes:table_text_fourth')
       ],
-      widthArr: [50, 300, 150, 150],
-      loading: true
+      widthArr: [50, 300, 150, 150]
     };
   }
 
@@ -39,26 +38,24 @@ class AnalizesItemScreen extends Component {
     this.props.getAnalizes({ res_id });
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.analizes !== this.props.analizes) this.setState({ loading: false });
-  }
-
   renderTable() {
     const { analizes, t } = this.props;
     const state = this.state;
     const tableData = [];
 
-    for (let i = 0; i < analizes.length; i += 1) {
-      const rowData = [];
-
-      for (let j = 0; j < 4; j += 1) {
-        (j === 0) ? rowData.push(`${(analizes[i].DIST) ? analizes[i].DIST : ''}`)
-          : (j === 1) ? rowData.push(`${analizes[i].MEASUR}`)
-            : (j === 2) ? rowData.push(`${analizes[i].TEXT} ${(analizes[i].UNIT) ? analizes[i].UNIT : ''}`)
-              : rowData.push(`${analizes[i].NORM}`);
+    if (analizes) {
+      for (let i = 0; i < analizes.length; i += 1) {
+        const rowData = [];
+  
+        for (let j = 0; j < 4; j += 1) {
+          (j === 0) ? rowData.push(`${(analizes[i].DIST) ? analizes[i].DIST : ''}`)
+            : (j === 1) ? rowData.push(`${analizes[i].MEASUR}`)
+              : (j === 2) ? rowData.push(`${analizes[i].TEXT} ${(analizes[i].UNIT) ? analizes[i].UNIT : ''}`)
+                : rowData.push(`${analizes[i].NORM}`);
+        }
+  
+        tableData.push(rowData);
       }
-
-      tableData.push(rowData);
     }
 
     return (
@@ -97,14 +94,14 @@ class AnalizesItemScreen extends Component {
     )
   }
   render() {
-    const { t } = this.props;
-    const { loading, pdf, headTxt, dateTxt } = this.state;
+    const { t, isRequest } = this.props;
+    const { pdf, headTxt, dateTxt } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
         <Header backButton={true} text={t('analizes:title')} navigation={this.props.navigation} />
-        <Content padder style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-          {loading ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : this.renderTable()}
+        <Content padder style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+          {(isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : this.renderTable()}
         </Content>
         <ShareLinks url={pdf} title={headTxt} text={dateTxt} />
       </Container>
@@ -115,6 +112,7 @@ class AnalizesItemScreen extends Component {
 function mapStateToProps(state) {
   return {
     analizes: state.content.analizes.current,
+    isRequest: state.content.isRequest
   }
 }
 

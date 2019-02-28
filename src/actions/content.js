@@ -18,18 +18,17 @@ export function getListSpecialization(type, order = false) {
         lang: language
       })
       .then((response) => {
+        (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data));
         dispatch(setIsRequest(false));
-        (order) ? dispatch(setListSpecializationOrder(response.data)) : dispatch(setListSpecialization(response.data))
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListSpecializationOrder(null));
+        dispatch(setIsRequest(false));
       })
   }
 }
 
 export function getListDoctors(spec_id, servid, order = false) {
-
   return (dispatch, getState) => {
     const {
       authorization: {
@@ -49,7 +48,6 @@ export function getListDoctors(spec_id, servid, order = false) {
 
     axios.post(`${APP_API_URL}/doctors`, params)
       .then((response) => {
-        dispatch(setIsRequest(false));
         isAllow = (value) => {
           return +value.allow === 1;
         }
@@ -66,14 +64,15 @@ export function getListDoctors(spec_id, servid, order = false) {
               docdep_id: response.data[0].docdep
             }));
           }
-          dispatch(setListDoctorsOrder(response.data.filter(isAllow)))
+          dispatch(setListDoctorsOrder(response.data.filter(isAllow)));
         } else {
           dispatch(setListDoctors(response.data));
         }
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListDoctors([]));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -97,9 +96,6 @@ export function getListServices(id, type, auto_push = false) {
         lang: language
       })
       .then((response) => {
-
-        dispatch(setIsRequest(false));
-
         if (auto_push && response.data.length) {
           dispatch(setOrderSuccess({
             servid: response.data[0].servid
@@ -109,11 +105,12 @@ export function getListServices(id, type, auto_push = false) {
           }));
         }
         dispatch(setListServicesOrder(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListServicesOrder(null));
-      })
+        dispatch(setIsRequest(false));
+      });
   }
 }
 
@@ -132,12 +129,12 @@ export function getDoctor(doc_id) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setDoctorData(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setDoctorData(null));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -159,12 +156,12 @@ export function getSales() {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setSales(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setSales(sales));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -186,12 +183,12 @@ export function getListInformation() {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setListInformation(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListInformation(listInformation.list));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -214,12 +211,12 @@ export function getPost(post_id) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setPost(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setPost(listVacantion.post));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -241,12 +238,12 @@ export function getListVacantion() {
         lang: language
       })
       .then((response) => {
+        dispatch(setListVacantion(response.data));
         dispatch(setIsRequest(false));
-        dispatch(setListVacantion(response.data))
       })
       .catch((e) => {
+        dispatch(setListVacantion(listVacantion.list));
         dispatch(setIsRequest(false));
-        dispatch(setListVacantion(listVacantion.list))
       })
   }
 }
@@ -265,12 +262,12 @@ export function getVacantion(post_id) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setVacantion(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setVacantion({}));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -295,12 +292,12 @@ export function getQuestions(doc_id) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setQuestion(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setQuestion(questions.doctors));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -322,12 +319,12 @@ export function getOftenQuestions() {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setOftenQuestion(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setOftenQuestion(questions.often));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -349,12 +346,12 @@ export function getListDates(docdep_id) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setListDates(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListDates([]));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -380,12 +377,12 @@ export function getListTimes(date) {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setListTimes(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListTimes([]));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -523,12 +520,12 @@ export function saveOrder({ type, rnumb_id, date, serv_id }) {
         type,
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         if (response.data) dispatch(setCreatingOrderSuccess(true));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setCreatingOrderSuccess(false));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -552,12 +549,12 @@ export function getListTalons() {
         lang: language
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch(setListTalons(response.data));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setListTalons(listTalons));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -582,19 +579,19 @@ export function deleteOrder({ rnumb_id }) {
         rnumb_id
       })
       .then((response) => {
-        dispatch(setIsRequest(false));
         let array = [];
         if (response.data[0].err_code == 0) {
           listTalons.forEach((item) => {
-            if (+item.rnumb_id !== +rnumb_id) array.push(item)
-          })
+            if (+item.rnumb_id !== +rnumb_id) array.push(item);
+          });
           dispatch(setDeletedOrder(true));
-          dispatch(setListTalons(array))
+          dispatch(setListTalons(array));
         }
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch(setDeletedOrder(false));
+        dispatch(setIsRequest(false));
       });
   }
 }
@@ -622,20 +619,20 @@ export function getHistory({ type, p_type, vis_id }) {
 
     axios.post(`${APP_API_URL}/visit_${type}`, params)
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch((type == 'list') ? setHistory({
           list: response.data
         }) : setHistory({
           current: response.data
         }));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch((type == 'list') ? setHistory({
           list: history.list
         }) : setHistory({
           current: history.current
         }));
+        dispatch(setIsRequest(false));
       })
   }
 }
@@ -662,21 +659,21 @@ export function getAnalizes({ type = '', res_id }) {
 
     axios.post(`${APP_API_URL}/lab_research${type}`, params)
       .then((response) => {
-        dispatch(setIsRequest(false));
         dispatch((type == '_list') ? setAnalizes({
           list: response.data
         }) : setAnalizes({
           current: response.data
         }));
+        dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setIsRequest(false));
         dispatch((type == '_list') ? setAnalizes({
           list: analizes.list
         }) : setAnalizes({
           current: analizes.current
         }));
-      })
+        dispatch(setIsRequest(false));
+      });
   }
 }
 

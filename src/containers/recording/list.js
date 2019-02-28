@@ -19,7 +19,6 @@ class ReceptionListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       shareLoading: false
     };
   }
@@ -33,19 +32,15 @@ class ReceptionListScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.listTalons !== this.props.listTalons) this.setState({ loading: false });
-  }
-
   handleBackButtonClick = () => {
     this.props.navigation.goBack(null);
     return true;
   }
 
   render() {
-    const { loading, shareLoading } = this.state;
+    const { shareLoading } = this.state;
     const { navigate } = this.props.navigation;
-    const { t, listTalons } = this.props;
+    const { t, listTalons, isRequest } = this.props;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
@@ -53,38 +48,39 @@ class ReceptionListScreen extends Component {
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}} padder>
-          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} />}
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
+          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
+          <View>
           {
-            (!loading) && (
-              (listTalons && listTalons.length) ? (
-                listTalons.map((item, index) => (
-                  <ReceptionListItem
-                    key={index}
-                    headTxt={item.spec}
-                    servTxt={item.serv}
-                    docTxt={item.doc}
-                    pdf={item.pdf}
-                    timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`}
-                    nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`}
-                    isLoading={(value) => this.setState({ shareLoading: value })}
-                    onPress={() => navigate('recordingItem', {
-                      rnumb_id: item.rnumb_id,
-                      dd: item.dd,
-                      room: item.room,
-                      time: item.time,
-                      doctor: item.doc,
-                      spec: item.spec,
-                      reserved: true,
-                      serv: item.serv,
-                      pdf: item.pdf,
-                      price: item.price,
-                    })
-                    } />
-                ))
-              ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('recordings:no_recordings_text')}</Text>)
-            )
+            (listTalons && listTalons.length) ? (
+              listTalons.map((item, index) => (
+                <ReceptionListItem
+                  key={index}
+                  headTxt={item.spec}
+                  servTxt={item.serv}
+                  docTxt={item.doc}
+                  pdf={item.pdf}
+                  timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`}
+                  nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`}
+                  isLoading={(value) => this.setState({ shareLoading: value })}
+                  onPress={() => navigate('recordingItem', {
+                    rnumb_id: item.rnumb_id,
+                    dd: item.dd,
+                    room: item.room,
+                    time: item.time,
+                    doctor: item.doc,
+                    spec: item.spec,
+                    reserved: true,
+                    serv: item.serv,
+                    pdf: item.pdf,
+                    price: item.price,
+                  })
+                  } 
+                />
+              ))
+            ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('recordings:no_recordings_text')}</Text>)
           }
+          </View>)}        
         </Content>
       </Container>
     )
@@ -107,6 +103,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     listTalons: state.content.listTalons,
+    isRequest: state.content.isRequest
   }
 }
 

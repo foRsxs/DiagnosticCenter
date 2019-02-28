@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Alert, View, Text, TouchableOpacity, Image, PermissionsAndroid, ActivityIndicator } from 'react-native';
+import { Platform, Alert, View, Text, TouchableOpacity, Image, PermissionsAndroid, ActivityIndicator, Linking } from 'react-native';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
@@ -46,25 +46,29 @@ class ShareLinks extends Component {
 	}
 
 	saveFile = (url, title) => {
-		const { t } = this.props;
-		const { config, fs } = RNFetchBlob;
-		const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+		if (Platform.OS === 'ios') {
+			Linking.openURL(url);
+		} else {		
+			const { t } = this.props;
+			const { config, fs } = RNFetchBlob;
+			const FileDir = (Platform.OS === 'android') ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
 
-		const configOptions = {
-			fileCache: true,
-			path: `${FileDir}/${title}.pdf`
-		};
+			const configOptions = {
+				fileCache: true,
+				path: `${FileDir}/${title}.pdf`
+			};
 
-		config(configOptions)
-			.fetch('GET', url)
-			.then(() => {
-				this.setState({ loading: false });
-				Alert.alert(t('common:files.action_success'));
-			})
-			.catch(() => {
-				this.setState({ loading: false });
-				Alert.alert(t('common:files.action_error'));
-			});
+			config(configOptions)
+				.fetch('GET', url)
+				.then(() => {
+					this.setState({ loading: false });
+					Alert.alert(t('common:files.action_success'));
+				})
+				.catch(() => {
+					this.setState({ loading: false });
+					Alert.alert(t('common:files.action_error'));
+				});
+		}
 	}
 
 	sharePDF(url, title, text) {

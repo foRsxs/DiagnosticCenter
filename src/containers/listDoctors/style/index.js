@@ -127,7 +127,7 @@ export const styles = StyleSheet.create({
     paddingLeft: scale(5)
   },
   textQuestion: {
-    fontFamily: MAIN_FONT,
+    fontFamily: FONT_LIGHT,
     fontSize: medium,
     paddingVertical: scale(8)
   },
@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
     }]
   },
   openInfo: {
-    fontFamily: MAIN_FONT,
+    fontFamily: FONT_LIGHT,
     fontSize: normal,
     color: COLOR_TEXT_GREEN
   },

@@ -113,7 +113,7 @@ class DoctorScreen extends Component {
             <Text style={styles.textBtn}>{t('common:actions.ask_question_doctor')}</Text>
           </TouchableOpacity>
         </View>
-        <KeyboardAwareScrollView contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <KeyboardAwareScrollView contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {paddingBottom: 80}}>
           {
             (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
             (questions && questions.length >= 1) ?
@@ -121,10 +121,11 @@ class DoctorScreen extends Component {
                 <View style={styles.mainInfo} key={item.id}>
                   <Text style={styles.textQuestion}>{item.question}</Text>
                   {
-                    (moreInfo) && (<Text style={styles.textQuestion}>{item.answer}</Text>) 
+                    (moreInfo) && (<Text style={[styles.textQuestion, { color: ACCENT_BLUE }]}>{item.answer}</Text>) 
                   }
                   <TouchableOpacity activeOpacity={0.9} onPress={() => this.setState({moreInfo: !moreInfo})} style={styles.more}>
-                    <Text style={styles.openInfo}>{(moreInfo) ? t('faq:hide_answer') : t('faq:show_answer')}</Text><Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
+                    <Text style={styles.openInfo}>{(moreInfo) ? t('faq:hide_answer') : t('faq:show_answer')}</Text>
+                    <Image source={ICON_BLUE_ARROW} style={(moreInfo) ? styles.arrowActive : styles.arrow}/>
                   </TouchableOpacity>
                 </View> 
               )

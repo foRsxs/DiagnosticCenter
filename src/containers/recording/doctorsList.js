@@ -20,64 +20,55 @@ class DoctorList extends Component {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
-      isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false,
-      loading: (props.orderDatas.doctors) ? false : true,
+      isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.orderDatas.doctors !== this.props.orderDatas.doctors) {
-      this.setState({
-        loading: false
-      });
-    }
-  }
-
   render() {
-    let { isOrder, loading } = this.state;
-    const { t, orderDatas, setOrderValue, setOrder, navigation } = this.props;
+    let { isOrder } = this.state;
+    const { t, isRequest, orderDatas, setOrderValue, setOrder, navigation } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
       <Container>
         <Header backButton={true} text={t('createrecord:form.select_doctor')} navigation = {this.props.navigation} /> 
-        <KeyboardAwareScrollView style={{marginTop: -10, zIndex: 1, paddingTop: 10}}>
-          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} /> }
+        <KeyboardAwareScrollView style={(isRequest) ? { flex: 1, justifyContent: 'center' } : {marginTop: -10, zIndex: 1, paddingTop: 10}}>
+          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
+          (<View>
           {
-            (!loading) && (
-              (isOrder) ? (
-                (orderDatas.doctors.length) ? (
-                  orderDatas.doctors.map((item, index)=>(
-                    <CatalogItem 
-                      key={index}  
-                      onClick={() => {
-                        setOrderValue({docdep: `${item.lastname} ${item.firstname} ${item.secondname}`});
-                        setOrder({docdep_id: item.docdep}, 'docdep_id');
-                        navigation.goBack()
-                      }}
-                      imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
-                      name={`${item.lastname} ${item.firstname} ${item.secondname}`}
-                      position={item.speciality}
-                      info={item.description_short}
-                    />
-                  ))
-                ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, margin: 15}}>{ t('listdoctors:no_doctors_text') }</Text>
-              ): (
-                (sorted_list_Doctors.length)? (
-                  sorted_list_Doctors.map((item, index)=>(
-                    <CatalogItem 
-                      key={index}  
-                      onClick={() => navigate('recordingCreate',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
-                      imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
-                      name={`${item.lastname} ${item.firstname} ${item.secondname}`}
-                      position={item.speciality}
-                      info={item.description_short}
-                    />
-                  ))
-              ): <Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT}}>{ t('listdoctors:no_doctors_text') }</Text>
-            ))
+            (isOrder) ? (
+              (orderDatas.doctors.length) ? (
+                orderDatas.doctors.map((item, index)=>(
+                  <CatalogItem 
+                    key={index}  
+                    onClick={() => {
+                      setOrderValue({docdep: `${item.lastname} ${item.firstname} ${item.secondname}`});
+                      setOrder({docdep_id: item.docdep}, 'docdep_id');
+                      navigation.goBack()
+                    }}
+                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                    position={item.speciality}
+                    info={item.description_short}
+                  />
+                ))
+              ) : (<Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, margin: 15}}>{ t('listdoctors:no_doctors_text') }</Text>)
+            ) : (
+              (sorted_list_Doctors.length) ? (
+                sorted_list_Doctors.map((item, index)=>(
+                  <CatalogItem 
+                    key={index}  
+                    onClick={() => navigate('recordingCreate',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
+                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                    position={item.speciality}
+                    info={item.description_short}
+                  />
+                ))
+              ) : (<Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, margin: 15}}>{ t('listdoctors:no_doctors_text') }</Text>)
+            )
           }
-          <View style={{width: '100%', height: 10}}/>
+          </View>)}
         </KeyboardAwareScrollView>
       </Container>
     )
@@ -88,7 +79,8 @@ function mapStateToProps(state) {
   return {
     list_Doctors: state.content.listDoctors,
     orderDatas: state.content.orderDatas,
-    orderValues: state.content.orderValues
+    orderValues: state.content.orderValues,
+    isRequest: state.content.isRequest
   }
 }
 

@@ -20,7 +20,6 @@ class ServicesDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
       spec_value: (props.navigation.state.params) ? props.navigation.state.params.spec_value : null,
       isOrder: (props.navigation.state.params && props.navigation.state.params.isOrder) ? props.navigation.state.params.isOrder : false,
@@ -39,8 +38,7 @@ class ServicesDetailScreen extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.orderDatas.services !== this.props.orderDatas.services) { 
       this.setState({
-        services: this.props.orderDatas.services,
-        loading: false,
+        services: this.props.orderDatas.services
       });
     }
   }
@@ -67,8 +65,6 @@ class ServicesDetailScreen extends Component {
         authAlert(t, navigation);
       } else {
         setActiveTab(1);
-        //navigation.dismiss();
-        console.log(this.props)
         navigation.navigate({
           key: serv.servid,
           routeName: 'recordingCreate',
@@ -79,18 +75,18 @@ class ServicesDetailScreen extends Component {
   }
 
   render() {
-    const { loading, isOrder, services } = this.state;
-    const { t } = this.props;
+    const { isOrder, services } = this.state;
+    const { t, isRequest } = this.props;
  
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
-            <Content style={styles.content} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
+            <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               { (isOrder) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
               {
-                (loading && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : ( 
+                (isRequest && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : ( 
                   <ScrollView>
                     {
                       services.map((item, index) => (
@@ -117,7 +113,8 @@ function mapStateToProps(state) {
   return {
     orderDatas: state.content.orderDatas,
     order: state.content.order,
-    isGuest: state.authorization.isGuest
+    isGuest: state.authorization.isGuest,
+    isRequest: state.content.isRequest
   }
 }
 

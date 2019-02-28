@@ -16,7 +16,6 @@ class AnalizesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       shareLoading: false
     };
   }
@@ -25,13 +24,9 @@ class AnalizesScreen extends Component {
     this.props.getAnalizes({ type: '_list' })
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.analizes_list !== this.props.analizes_list) this.setState({ loading: false });
-  }
-
   render() {
-    const { t, analizes_list } = this.props;
-    const { loading, shareLoading } = this.state;
+    const { t, isRequest, analizes_list } = this.props;
+    const { shareLoading } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
@@ -39,38 +34,36 @@ class AnalizesScreen extends Component {
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={styles.mainContent} contentContainerStyle={(loading) ? { flex: 1, justifyContent: 'center' } : {}}>
-          {(loading) && <ActivityIndicator size="large" color={ACCENT_BLUE} />}
-          <List>
+        <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
+          (<List>
             {
-              (!loading) && (
-                (analizes_list && analizes_list.length) ? (
-                  analizes_list.map((item, index) => (
-                    <AnalizesItem
-                      key={index}
-                      headTxt={item.text}
-                      dateTxt={item.dat_string}
-                      pdf={item.pdf}
-                      isLoading={(value) => this.setState({ shareLoading: value })}
-                      onPress={() => {
-                        this.props.navigation.navigate({
-                          routeName: "analizesItem",
-                          key: index,
-                          params: {
-                            res_id: item.res_id,
-                            date: item.dat_string,
-                            pdf: item.pdf,
-                            headTxt: item.text,
-                            dateTxt: item.dat_string
-                          }
-                        });
-                      }}
-                    />
-                  ))
-                ) : (<Text>{t('analizes:no_analizes_text')}</Text>)
-              )
+              (analizes_list && analizes_list.length) ? (
+                analizes_list.map((item, index) => (
+                  <AnalizesItem
+                    key={index}
+                    headTxt={item.text}
+                    dateTxt={item.dat_string}
+                    pdf={item.pdf}
+                    isLoading={(value) => this.setState({ shareLoading: value })}
+                    onPress={() => {
+                      this.props.navigation.navigate({
+                        routeName: "analizesItem",
+                        key: index,
+                        params: {
+                          res_id: item.res_id,
+                          date: item.dat_string,
+                          pdf: item.pdf,
+                          headTxt: item.text,
+                          dateTxt: item.dat_string
+                        }
+                      });
+                    }}
+                  />
+                ))
+              ) : (<Text>{t('analizes:no_analizes_text')}</Text>)
             }
-          </List>
+          </List>)}
         </Content>
       </Container>
     )
@@ -79,7 +72,8 @@ class AnalizesScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    analizes_list: state.content.analizes.list
+    analizes_list: state.content.analizes.list,
+    isRequest: state.content.isRequest
   }
 }
 
