@@ -46,29 +46,21 @@ class OftenQuestionsScreen extends Component {
 				<Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
 				{
 					(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
-					(<View>
-						<View>
-							{(sorted_questions && sorted_questions.length) && (
-								<View>
-									<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
-									<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
-								</View>
-							)}
-						</View>
-						<View>
-							{(sorted_questions && sorted_questions.length) ? (
-								sorted_questions.map((item, index) => (
+					((sorted_questions && sorted_questions.length) ? (
+							<View>
+								<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
+								<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
+								{ (sorted_questions.map((item, index) => (
 									<OftenQuestionItem
 										key={index}
 										text={item.question}
 										textAnswer={item.answer}
 									/>
-								))
-							) : (
-								<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
-							)}
-						</View>
-					</View>)
+								)))}
+							</View>
+						) : (
+							<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
+						))
 				}
 				</Content >
 			</Container>

@@ -22,7 +22,7 @@ export function getListSpecialization(type, order = false) {
         dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setListSpecializationOrder(null));
+        dispatch(setListSpecializationOrder([]));
         dispatch(setIsRequest(false));
       })
   }
@@ -108,7 +108,7 @@ export function getListServices(id, type, auto_push = false) {
         dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setListServicesOrder(null));
+        dispatch(setListServicesOrder([]));
         dispatch(setIsRequest(false));
       });
   }
@@ -133,7 +133,7 @@ export function getDoctor(doc_id) {
         dispatch(setIsRequest(false));
       })
       .catch((e) => {
-        dispatch(setDoctorData(null));
+        dispatch(setDoctorData([]));
         dispatch(setIsRequest(false));
       });
   }

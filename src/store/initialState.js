@@ -14,22 +14,22 @@ export const initialState = {
   },
   content: {
     authMessage: null,
-    ListSpecialization: null,
+    ListSpecialization: [],
     listDoctors: [],
     sortedListDoctor: [],
-    doctorData: null,
-    sales: null,
+    doctorData: [],
+    sales: [],
     listInformation: {
-      list: null,
-      post: null
+      list: [],
+      post: {}
     },
     listVacantion: {
-      list: null,
-      post: null
+      list: [],
+      post: {}
     },
     questions: {
-      often: null,
-      doctors: null
+      often: [],
+      doctors: []
     },
     newQuestion: {
       loading: false,
@@ -59,14 +59,14 @@ export const initialState = {
     },
     orderCreated: false,
     orderDeleted: false,
-    listTalons: null,
+    listTalons: [],
     history: {
-      list: null,
-      current: null
+      list: [],
+      current: []
     },
     analizes: {
-      list: null,
-      current: null
+      list: [],
+      current: []
     },
     hideScreen: false,
     activeTabIndex: 0,
