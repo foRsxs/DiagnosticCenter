@@ -14,24 +14,21 @@ class TimeScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			shortOrder: null,
 			showDates: false,
-			showTimes: false,
 			markedTimes: [],
 		};
 	}
 
 	componentDidMount() {
-		this.setTimes(this.props.orderDatas.times)
+		this.setTimes(this.props.orderDatas.times, this.props.order.time);
 	}
 
 	componentDidUpdate(prevProps) {
-    if (prevProps.orderDatas.times !== this.props.orderDatas.times) this.setTimes(this.props.orderDatas.times);
+    if (prevProps.orderDatas.times !== this.props.orderDatas.times) this.setTimes(this.props.orderDatas.times, this.props.order.time);
     if (prevProps.order.time !== this.props.order.time) this.setTimes(this.props.orderDatas.times, this.props.order.time);
   }
 
-	setTimes = (times, selectedTime) => {
-		if (!selectedTime) this.setState({ shortOrder: null });
+	setTimes = (times, selectedTime = null) => {
 		let array = [];
 		times.forEach((item, index) => {
 			array.push(item);
@@ -41,15 +38,16 @@ class TimeScreen extends Component {
 	}
 
 	updateTimes = (time) => {
-		const { setTime, order, navigation } = this.props;
+		const { markedTimes } = this.state;
+		const { setTime, navigation } = this.props;
+
 		setTime({ time: time.time });
-		this.setState({ shortOrder: time, showTimes: false });
-		if (order.time == time.time) this.setState({ shortOrder: null });
 		navigation.goBack();
 	}
 
 	render() {
 		const { markedTimes } = this.state;
+		console.log(markedTimes);
 		const { t } = this.props;
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
@@ -58,7 +56,7 @@ class TimeScreen extends Component {
 					<View style={styles.timeContainer}>
 						{markedTimes.map((item, key) => (
 							<View key={key} style={styles.timeItemWrap}>
-								<TouchableOpacity onPress={() => this.updateTimes(item)}>
+								<TouchableOpacity onPress={() => this.updateTimes(item)} style={[styles.itemBtn, (item.selected) ? styles.itemSlectedBtn : {}]}>
 									<Text style={[styles.timeItemAvaliable, (item.selected) ? styles.textTime : {}]}> {item.time} </Text>
 								</TouchableOpacity>
 							</View>

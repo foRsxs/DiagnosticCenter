@@ -941,6 +941,9 @@
 							com.apple.Wallet = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
 						};
 					};
 					CE22DF8A2226F39C0065F6FB = {
