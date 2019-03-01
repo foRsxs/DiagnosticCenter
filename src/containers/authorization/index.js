@@ -39,6 +39,7 @@ class AuthorizationScreen extends Component {
 
   changeLang = (key) => {
     if (key === this.state.language) return;
+    this.props.setAuthMessage(null);
     this.props.setLanguage(key);
   }
 
@@ -211,13 +212,13 @@ class AuthorizationScreen extends Component {
 
     return (
       <Container style={styles.container}>
+        <Header isHome={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
         <KeyboardAwareScrollView
           enableOnAndroid={true}
           keyboardShouldPersistTaps='handled'
           style={styles.wrapMain}
           contentContainerStyle={styles.contentStyleMain}
         >
-          <Header isHome={true} backButton={false} callButton={false} search={false} navigation={this.props.navigation} />
           {(!token && !showSms) && this.renderAuthView()}
           {(!token && showSms) && this.renderSmsCode()}
         </KeyboardAwareScrollView>

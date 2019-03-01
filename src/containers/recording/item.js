@@ -67,6 +67,7 @@ class ReceptionInfoItemScreen extends Component {
       this.props.saveOrder({ rnumb_id, date, serv_id, type });
     } else {
       this.props.deleteOrder({ rnumb_id });
+      this.props.navigation.goBack(null);
     }
   }
 

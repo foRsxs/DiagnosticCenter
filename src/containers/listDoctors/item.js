@@ -175,14 +175,14 @@ class DoctorScreen extends Component {
                 activeOpacity={0.9}
                 onPress={() => { this.setState({ tabProfile: true }) }}
               >
-                <Text style={[styles.textTab, { color: (tabProfile ? ACCENT_BLUE : WHITE) }]}>{t('footer_menu:profile').toUpperCase()}</Text>
+                <Text style={[styles.textTab, { color: (tabProfile ? ACCENT_BLUE : WHITE) }]}>{t('listdoctors:item.profile').toUpperCase()}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.tab, { backgroundColor: (tabProfile) ? ACCENT_BLUE : WHITE }]}
                 activeOpacity={0.9}
                 onPress={() => { this.setState({ tabProfile: false }) }}
               >
-                <Text style={[styles.textTab, { color: (tabProfile ? WHITE : ACCENT_BLUE) }]}>{t('common:actions.questions').toUpperCase()}</Text>
+                <Text style={[styles.textTab, { color: (tabProfile ? WHITE : ACCENT_BLUE) }]}>{t('listdoctors:item.questions').toUpperCase()}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -209,4 +209,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({...AuthActions, ...ContentActions}, dispatch)
 }
 
-export default withNamespaces(['listdoctors', 'common', 'footer_menu', 'faq'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));
+export default withNamespaces(['listdoctors', 'common', 'faq'])(connect(mapStateToProps, mapDispatchToProps)(DoctorScreen));

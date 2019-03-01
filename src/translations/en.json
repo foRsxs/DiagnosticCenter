@@ -95,7 +95,9 @@
         "item": {
             "title": "Card of doctor",
             "experience": "Work experience",
-            "no_recording_text": "Appointment is not provided"
+            "no_recording_text": "Appointment is not provided",            
+            "profile": "Profile",
+            "questions": "Questions"
         },
         "category": "Category",
         "hide_desc": "Hide description",
@@ -257,6 +259,7 @@
             "appointment": "Appointment",
             "ask_question": "Ask a Question",
             "add_recording": "Add a appointment",
+            "ask_question_doctor": "Ask a question to the doctor",
             "continue": "continue"
         },
         "actions_text": {

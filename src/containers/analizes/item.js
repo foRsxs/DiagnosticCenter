@@ -60,6 +60,7 @@ class AnalizesItemScreen extends Component {
 
     return (
       <View style={styles.container}>
+      { (analizes) &&
         <View style={styles.itemTopWrap}>
           <View style={styles.itemTextWrap}>
             <Text style={[styles.textTop, { color: ACCENT_BLUE }]}>{`${t('analizes:text_material')}: ${(analizes[0]) ? analizes[0].MATERIALID : ''}`}</Text>
@@ -70,6 +71,7 @@ class AnalizesItemScreen extends Component {
             <Text style={styles.textTop}>{state.date}</Text>
           </View>
         </View>
+      }
         <ScrollView horizontal={true}>
           <View>
             <Table borderStyle={{ borderColor: COLOR_BORDER }}>

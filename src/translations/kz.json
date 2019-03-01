@@ -94,7 +94,9 @@
         "item": {
             "title": "Дәрігердің картасы",
             "experience": "Жұмыс тәжірибесі",
-            "no_recording_text": "Жазылу қарастырылмаған"
+            "no_recording_text": "Жазылу қарастырылмаған",            
+            "profile": "Профиль",
+            "questions": "Сұрақтар қойды"
         },
         "category": "Санат",
         "hide_desc": "Сипаттама жасыру",
@@ -255,6 +257,7 @@
             "appointment": "Қабылдауға жазылу",
             "ask_question": "Сұрақ қою ",
             "add_recording": "Жазба қосу",
+            "ask_question_doctor": "Дәрігерге сұрақ қойыңыз",
             "continue": "Жалғастыру"
         },
         "actions_text": {

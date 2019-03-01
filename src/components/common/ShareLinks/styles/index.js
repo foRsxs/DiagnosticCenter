@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   topLink: {
     paddingVertical: 2,
-    marginTop: 10
+    marginVertical: 10,
   },
   bottomLink: {
     paddingVertical: 2,

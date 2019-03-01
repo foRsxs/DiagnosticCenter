@@ -55,12 +55,12 @@ class DateScreen extends Component {
 		this.state = {
 			markedDates: {},
 		};
+		LocaleConfig.defaultLocale = (props.lang_key === 'en') ? '': props.lang_key;
 	}
 
 	componentDidMount() {
-		const {lang_key, orderDatas} = this.props;
-		this.setDates(orderDatas.dates)
-		LocaleConfig.defaultLocale = (lang_key === 'en') ? '': lang_key;
+		const { orderDatas } = this.props;
+		this.setDates(orderDatas.dates);
 	}
 
 	componentDidUpdate(prevProps) {
