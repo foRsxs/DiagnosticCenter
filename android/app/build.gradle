@@ -101,8 +101,8 @@ android {
         applicationId "com.izzisoftware.diagnosticcenter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10002
-        versionName "1.0.2"
+        versionCode 10004
+        versionName "1.0.4"
     }
     signingConfigs {
         release {
