@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 import { ACCENT_BLUE, MAIN_FONT } from '../../../styles/constants';
 
 const { medium } = variables.fSize;
@@ -11,25 +11,25 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    height: 50,
-    fontSize: 45,
+    height: scale(50),
+    fontSize: scale(45),
     fontFamily: MAIN_FONT,
-    lineHeight: 47,
+    lineHeight: scale(47),
     padding: 0,
-    margin: 15,
-    marginTop: 10,
-    marginBottom: 10,
-    letterSpacing: 10,
+    margin: scale(15),
+    marginTop: scale(10),
+    marginBottom: scale(10),
+    letterSpacing: scale(10),
     color: ACCENT_BLUE
   },
   text: {
-    marginVertical: 10,
+    marginVertical: scale(10),
     fontSize: medium,
     fontFamily: MAIN_FONT,
     color: ACCENT_BLUE
   },
   message: {
-    marginVertical: 10,
+    marginVertical: scale(10),
     fontSize: medium,
     fontFamily: MAIN_FONT,
     color: 'red'

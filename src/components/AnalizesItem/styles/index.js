@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 import {
   MEDIUM_BLACK,
   ACCENT_BLUE,
@@ -12,9 +12,9 @@ const { normal, medium } = variables.fSize;
 export default StyleSheet.create({
   listWrap: {
     marginLeft: 0,
-    paddingLeft: 15,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: scale(15),
+    paddingTop: scale(10),
+    paddingBottom: scale(10)
   },
   txtHead: {
     color: MEDIUM_BLACK,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     textAlign: 'left'
   },
   txtDate: {
-    marginTop: 5,
+    marginTop: scale(5),
     color: ACCENT_BLUE,
     fontFamily: MAIN_FONT,
     fontSize: normal,

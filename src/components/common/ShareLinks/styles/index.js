@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../../styles/variables';
+import variables, {scale} from '../../../../styles/variables';
 import { BLACK, MAIN_FONT } from '../../../../styles/constants';
 
 const { large } = variables.fSize;
@@ -12,16 +12,16 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   actionsImg: {
-    width: 20,
-    height: 15,
-    marginRight: 10
+    width: scale(20),
+    height: scale(15),
+    marginRight: scale(10)
   },
   topLink: {
-    paddingVertical: 2,
-    marginVertical: 10,
+    paddingVertical: scale(2),
+    marginVertical: scale(10),
   },
   bottomLink: {
-    paddingVertical: 2,
+    paddingVertical: scale(2),
     marginTop: 0
   },
   linkText: {

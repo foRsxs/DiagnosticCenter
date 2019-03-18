@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import {scale} from '../../../../styles/variables';
+
 import {
   WHITE,
   ACTIVE_LIGHT_GRAY,
@@ -10,37 +12,37 @@ import {
 
 export default StyleSheet.create({
   wrapItem: {
-    width: 60,
-    height: 60,
-    margin: 5,
-    marginLeft: 15,
-    marginRight: 15
+    width: scale(60),
+    height: scale(60),
+    margin: scale(5),
+    marginLeft: scale(15),
+    marginRight: scale(15)
   },
   Item: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: scale(60),
+    height: scale(60),
+    borderRadius: scale(30),
     backgroundColor: LIGHT_GRAY,
   },
   ItemActive: {
     backgroundColor: ACTIVE_LIGHT_GRAY,
-    width: 60,
-    height: 60,
-    borderRadius: 30
+    width: scale(60),
+    height: scale(60),
+    borderRadius: scale(30)
   },
   Text: {
-    top: 7,
+    top: scale(7),
     textAlign: 'center',
-    fontSize: 38,
-    lineHeight: 47,
+    fontSize: scale(38),
+    lineHeight: scale(47),
     fontFamily: MAIN_FONT,
     color: DARK_BLUE,
   },
   TextActive: {
-    top: 7,
+    top: scale(7),
     textAlign: 'center',
-    fontSize: 38,
-    lineHeight: 47,
+    fontSize: scale(38),
+    lineHeight: scale(47),
     fontFamily: MAIN_FONT,
     color: WHITE,
   },

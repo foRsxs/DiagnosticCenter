@@ -5,15 +5,15 @@ import {
 import {
   MAIN_FONT
 } from '../../../../styles/constants';
-import variables from '../../../../styles/variables'
+import variables, {scale} from '../../../../styles/variables'
 
 export default StyleSheet.create({
   btn: {
     alignSelf: 'center',
     justifyContent: 'center',
     width: '100%',
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: scale(12),
+    paddingBottom: scale(12),
     borderRadius: 25,
   },
   textBtn: {

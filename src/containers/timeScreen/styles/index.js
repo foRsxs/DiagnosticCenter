@@ -2,7 +2,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const {
   medium
 } = variables.fSize;
@@ -30,11 +30,11 @@ export default StyleSheet.create({
   itemBtn: {
     backgroundColor: BACKGROUND_BLUE,
 		borderColor: ACCENT_BLUE,
-    borderRadius: 10,
+    borderRadius: scale(10),
 		borderWidth: 1,
-		margin: 10,
-		width: 70,
-    paddingVertical: 5,
+		margin: scale(10),
+		width: scale(70),
+    paddingVertical: scale(5),
 	},
 	itemSlectedBtn: {
 		backgroundColor: ACCENT_BLUE,
@@ -51,22 +51,22 @@ export default StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     backgroundColor: 'white',
-    paddingTop: 20
+    paddingTop: scale(20)
   },
   unSelectedItem: {
-    marginRight: 10,
+    marginRight: scale(10),
     backgroundColor: BACKGROUND_BLUE,
     borderColor: ACCENT_BLUE,
-    width: 10,
-    height: 10,
-    borderRadius: 15,
+    width: scale(10),
+    height: scale(10),
+    borderRadius: scale(15),
     borderWidth: 1
   },
   selectedItem: {
-    marginRight: 10,
+    marginRight: scale(10),
     backgroundColor: ACCENT_BLUE,
-    width: 10,
-    height: 10,
+    width: scale(10),
+    height: scale(10),
     borderRadius: 15
   },
   itemsWrap: {
@@ -80,7 +80,7 @@ export default StyleSheet.create({
     fontSize: medium
   },
   bottomWrap: {
-    paddingVertical: 10,
+    paddingVertical: scale(10),
     borderTopWidth: 1,
     borderColor: COLOR_BORDER,
     alignItems: 'center'

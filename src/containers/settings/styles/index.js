@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const { medium } = variables.fSize;
 import { MEDIUM_BLACK, MAIN_FONT, WHITE } from '../../../styles/constants';
 
@@ -11,9 +11,9 @@ export default StyleSheet.create({
     height: '100%'
   },
   mainContent: {
-    marginTop: -10, 
+    marginTop: scale(-10), 
     zIndex: 1, 
-    paddingTop: 10
+    paddingTop: scale(10)
   },
   pickerWrap: {
     width: '100%', 
@@ -36,16 +36,16 @@ export default StyleSheet.create({
   },
   pickerIcon: {
     position: 'absolute', 
-    top: 10,
-    right: 5, 
+    top: scale(10),
+    right: scale(5), 
     backgroundColor: WHITE, 
     marginLeft: 0,
-    paddingHorizontal: 5, 
+    paddingHorizontal: scale(5), 
     paddingTop: 0, 
     marginRight: 0
   }, 
   btnWrap: {
-    paddingHorizontal: 15, 
-    paddingVertical: 20
+    paddingHorizontal: scale(15), 
+    paddingVertical: scale(20)
   }
 });

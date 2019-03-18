@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const { medium } = variables.fSize;
 import { BLACK, MAIN_FONT, COLOR_BORDER, COLOR_TEXT_GREEN } from '../../../styles/constants';
 
@@ -8,9 +8,9 @@ export default StyleSheet.create({
     questionItem: {
         alignItems: "center",
         width: '100%',
-        marginBottom: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 15,
+        marginBottom: scale(10),
+        paddingHorizontal: scale(20),
+        paddingVertical: scale(15),
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderColor: COLOR_BORDER,
@@ -29,18 +29,18 @@ export default StyleSheet.create({
         color: BLACK,
         textAlign: 'left',
         width: '100%',
-        paddingTop: 5
+        paddingTop: scale(5)    
     },
     itemClick: {
         width: '100%'
     },
     icon: {
         color: COLOR_TEXT_GREEN,
-        fontSize: 20,
+        fontSize: scale(20),
         fontFamily: MAIN_FONT,
         position: 'absolute',
-        width: 20,
-        height: 20,
+        width: scale(20),
+        height: scale(20),
         top: 0,
         right: 0,
         zIndex: 1,

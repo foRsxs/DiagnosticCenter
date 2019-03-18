@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../../styles/variables';
+import variables, {scale} from '../../../../styles/variables';
 import {
   DARK_BLUE,
   MAIN_FONT
@@ -13,8 +13,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: 20,
-    marginTop: 20
+    marginBottom: scale(20),
+    marginTop: scale(20)
   },
   buttonTxt: {
     color: DARK_BLUE,

@@ -15,31 +15,31 @@ const { large, medium, main } = variables.fSize;
 export default StyleSheet.create({
   specItem: {
     marginLeft: 0,
-    paddingLeft: 15,
-    paddingTop: 8,
-    paddingBottom: 8
+    paddingLeft: scale(15),
+    paddingTop: scale(8),
+    paddingBottom: scale(8)  
   },
   specItemText: {
     fontSize: large,
     fontFamily: FONT_LIGHT,
     color: BLACK,
     textAlignVertical: 'center',
-    letterSpacing: 1,
+    letterSpacing: scale(1),
     lineHeight: scale(22)
   },
   specIcon: {
-    marginRight: 10,
-    width: 25,
-    height: 25,
+    marginRight: scale(10),
+    width: scale(25),
+    height: scale(25),
   },
   arrow: {
     color: ACCENT_BLUE,
-    fontSize: 24
+    fontSize: scale(24)
   },
   wrapArrowRed: {
-    width: 30,
-    height: 30,
-    borderRadius: 30,
+    width: scale(30),
+    height: scale(30),
+    borderRadius: scale(30),
     backgroundColor: RED,
     alignItems: 'center',
     justifyContent: 'center'
@@ -52,14 +52,14 @@ export default StyleSheet.create({
     textAlign: 'right',
     color: COLOR_TEXT_GREEN,
     fontSize: medium,
-    lineHeight: 18
+    lineHeight: scale(18)
   },
   leftAlign: {
     alignItems: 'center'
   },
   currency: {
     color: COLOR_TEXT_GREEN,
-    lineHeight: 18,
+    lineHeight: scale(18),
     fontSize: main,
   }
 });

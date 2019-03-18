@@ -8,15 +8,16 @@ const { normal } = variables.fSize;
 export default StyleSheet.create({
 	container: {
 		borderTopWidth: 1,
-		borderColor: COLOR_BORDER
+		borderColor: COLOR_BORDER,
+		height: scale(55)
 	},
 	button: {
 		alignSelf: 'center',
 		justifyContent: 'center',
 	},
 	icon: {
-		height: 25,
-		marginVertical: 5
+		height: scale(25),
+		marginVertical: scale(5)
 	},
 	buttonText: {
 		color: COLOR_BLUE,
@@ -25,7 +26,8 @@ export default StyleSheet.create({
 		paddingRight: 5,
 		fontFamily: FONT_LIGHT,
 		height: scale(15),
-		textAlign: 'center'
+		textAlign: 'center',
+		lineHeight: scale(15),
 	},
 	buttonActiveText: {
 		color: RED,
@@ -34,6 +36,7 @@ export default StyleSheet.create({
 		paddingRight: 5,
 		fontFamily: FONT_LIGHT,
 		height: scale(15),
-		textAlign: 'center'
+		textAlign: 'center',
+		lineHeight: scale(15),
 	}
 });

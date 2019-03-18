@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 import {
   MAIN_FONT,
   COLOR_PLACEHOLDER,
@@ -16,14 +16,14 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     borderBottomWidth: 1,
     borderColor: ACCENT_BLUE,
-    paddingVertical: 10,
-    paddingRight: 15,
+    paddingVertical: scale(10),
+    paddingRight: scale(15),
     width: '100%'
   },
   itemImage: {
-    width: 25,
-    height: 25,
-    marginRight: 10
+    width: scale(25),
+    height: scale(25),
+    marginRight: scale(10)
   },
   wrapText: {
     flex: 1
@@ -32,7 +32,7 @@ export default StyleSheet.create({
     fontSize: medium,
     color: ACCENT_BLUE,
     fontFamily: MAIN_FONT,
-    marginBottom: 5
+    marginBottom: scale(5)
   },
   itemPlaceholder: {
     fontSize: medium,

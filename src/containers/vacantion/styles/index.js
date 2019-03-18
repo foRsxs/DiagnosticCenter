@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const { medium } = variables.fSize;
 import { BLACK, MAIN_FONT, COLOR_TEXT_GREEN } from '../../../styles/constants';
 
 export default StyleSheet.create({
     questionItem: {
         marginLeft: 0,
-        paddingLeft: 15,
-        paddingTop: 10,
-        paddingBottom: 10
+        paddingLeft: scale(15),
+        paddingTop: scale(10),
+        paddingBottom: scale(10)
     },
     questionItemText: {
         fontSize: medium,
@@ -19,7 +19,8 @@ export default StyleSheet.create({
         width: '100%'
     },
     arrow: {
-        color: COLOR_TEXT_GREEN
+        color: COLOR_TEXT_GREEN,
+        fontSize: scale(24),
     },
     mainContainer: { 
         justifyContent: 'space-between', 
@@ -27,8 +28,8 @@ export default StyleSheet.create({
         height: '100%' 
     },
     mainContent: { 
-        marginTop: -10, 
+        marginTop: scale(-10), 
         zIndex: 1, 
-        paddingTop: 10 
+        paddingTop: scale(10) 
     }
 });

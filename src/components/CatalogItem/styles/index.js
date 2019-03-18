@@ -42,14 +42,14 @@ export const styles = StyleSheet.create({
 		fontSize: medium,
 		color: BLACK,
 		fontFamily: MAIN_FONT,
-		lineHeight: 21
+		lineHeight: scale(21)
 	},
 	special: {
 		fontSize: main,
 		color: ACCENT_BLUE,
 		fontFamily: FONT_LIGHT,
 		lineHeight: scale(18),
-		paddingRight: 60,
+		paddingRight: scale(60),
 	},
 	category: {
 		color: COLOR_LIGHT_BLACK,
@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
 	moreInfoText: {
 		color: COLOR_LIGHT_BLACK,
 		fontSize: normal,
-		paddingVertical: 5, 
+		paddingVertical: scale(5), 
 		width: scale(260)
 	},
 	arrow: {

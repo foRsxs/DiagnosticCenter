@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../../styles/variables';
+import variables, {scale} from '../../../../styles/variables';
 import {
   ACCENT_BLUE,
   BLACK,
@@ -11,7 +11,7 @@ const { medium } = variables.fSize;
 
 export default StyleSheet.create({
   inputWrap: {
-    marginBottom: 20,
+    marginBottom: scale(20),
     borderColor: ACCENT_BLUE,
     borderRadius: 10,
     backgroundColor: 'white'
@@ -19,10 +19,11 @@ export default StyleSheet.create({
   input: {
     fontFamily: MAIN_FONT,
     fontSize: medium,
-    color: BLACK
+    color: BLACK,
+    height: scale(40),
   },
   textarea: {
-    height: 250,
+    height: scale(250),
     fontSize: medium,
     fontFamily: MAIN_FONT,
     borderColor: ACCENT_BLUE,
@@ -31,14 +32,14 @@ export default StyleSheet.create({
     backgroundColor: 'white'
   },
   buttonWrap: {
-    paddingTop: 20,
-    paddingBottom: 15,
+    paddingTop: scale(20),
+    paddingBottom: scale(15),
   },
   formWrap: {
     justifyContent: 'space-between',
     flexDirection: 'column',
     flex: 1,
-    paddingTop: 15,
-    paddingHorizontal: 15
+    paddingTop: scale(15),
+    paddingHorizontal: scale(15)
   }
 });

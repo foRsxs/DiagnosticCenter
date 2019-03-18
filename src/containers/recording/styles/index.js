@@ -7,7 +7,7 @@ let {
   height
 } = Dimensions.get('window');
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const {
   medium
 } = variables.fSize;
@@ -51,10 +51,10 @@ export default StyleSheet.create({
   wrapTabs: {
     elevation: 0,
     backgroundColor: 'transparent',
-    marginTop: -10
+    marginTop: scale(-10)
   },
   wrapper: {
-    padding: 20,
+    padding: scale(20),
     flex: 1
   },
   datetimeWrap: {
@@ -64,17 +64,17 @@ export default StyleSheet.create({
   separator: {
     borderLeftWidth: 1,
     borderColor: ACCENT_BLUE,
-    height: 50
+    height: scale(50)
   },
   buttonWrap: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 15
+    paddingHorizontal: scale(20),
+    paddingTop: scale(10),
+    paddingBottom: scale(15)
   },
   btnUpdate: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: scale(20),
+    right: scale(20),
     zIndex: 10
   },
   imgUpdate: {

@@ -3,7 +3,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import variables from '../../../../styles/variables';
+import variables, {scale} from '../../../../styles/variables';
 import {
   BACKGROUND_POPUP,
   MEDIUM_BLACK
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     alignSelf: 'center',
     borderRadius: 10,
-    padding: 20,
+    padding: scale(20),
     justifyContent: 'space-between'
   },
   text: {

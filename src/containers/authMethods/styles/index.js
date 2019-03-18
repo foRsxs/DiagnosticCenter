@@ -25,13 +25,13 @@ export default StyleSheet.create({
     position: 'relative',
     zIndex: 2,
     flex: 1,
-    padding: 15,
-    paddingBottom: 20
+    padding: scale(15),
+    paddingBottom: scale(20)
   },
   confirmListItem: {
     marginRight: 0,
     marginLeft: 0,
-    paddingRight: 11
+    paddingRight: scale(11)
   },
   wrapAuthView: {
     position: 'relative',
@@ -39,8 +39,8 @@ export default StyleSheet.create({
     zIndex: 3,
     height: '100%',
     flex: 1,
-    padding: 15,
-    paddingBottom: 16
+    padding: scale(15),
+    paddingBottom: scale(16)
   },
   authTitle: {
     textAlign: 'center',
@@ -49,30 +49,30 @@ export default StyleSheet.create({
     color: BLACK
   },
   wrapForm: {
-    marginVertical: 25,
+    marginVertical: scale(25),
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderColor: ACCENT_BLUE,
-    paddingLeft: 20
+    paddingLeft: scale(20)
   },
   authMessage: {
     color: ACCENT_BLUE,
     fontFamily: MAIN_FONT,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: scale(10),
     fontSize: medium
   },
   errorMessage: {
     color: 'red',
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: scale(10),
     fontSize: normal
   },
   wrapScan: {
     position: 'relative',
     zIndex: 2,
     flex: 1,
-    paddingBottom: 20
+    paddingBottom: scale(20)
   },
   scanClick: {
     flex: 1,
@@ -86,13 +86,13 @@ export default StyleSheet.create({
     position: 'relative',
     zIndex: 2,
     flex: 1,
-    paddingBottom: 20
+    paddingBottom: scale(20)
   },
   pinContent: {
     position: 'relative',
     zIndex: 2,
     justifyContent: 'space-between',
-    padding: 15,
+    padding: scale(15),
     paddingBottom: 0,
     height: '100%'
   },
@@ -121,10 +121,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    width: width - 50,
-    height: 50,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: width - scale(50),
+    height: scale(50),
+    paddingLeft: scale(10),
+    paddingRight: scale(10),
     fontSize: large,
     fontFamily: MAIN_FONT,
     color: MEDIUM_BLACK,
@@ -134,7 +134,7 @@ export default StyleSheet.create({
     color: BLACK,
     fontFamily: MAIN_FONT,
     fontSize: large,
-    marginTop: 20,
+    marginTop: scale(20),
     zIndex: 1,
     textAlign: 'center',
     width: width
@@ -147,11 +147,11 @@ export default StyleSheet.create({
   langActiveWrap: {
     backgroundColor: COLOR_BLUE,
     borderRadius: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: scale(10),
     zIndex: 10
   },
   langWrap: {
-    paddingHorizontal: 10,
+    paddingHorizontal: scale(10),
     zIndex: 10,
   },
   langActive: {
@@ -166,19 +166,19 @@ export default StyleSheet.create({
   },
   smsTitle: {
     textAlign: 'center',
-    paddingHorizontal: 50
+    paddingHorizontal: scale(50)
   },
   inputSMS: {
-    letterSpacing: 10,
+    letterSpacing: scale(10),
     textAlign: 'center',
     borderWidth: 1,
     borderColor: COLOR_BLUE,
     borderRadius: 5,
-    marginVertical: 50,
-    width: width - 50,
-    height: 50,
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginVertical: scale(50),
+    width: width - scale(50),
+    height: scale(50),
+    paddingLeft: scale(10),
+    paddingRight: scale(10),
     fontSize: large,
     fontFamily: MAIN_FONT,
     color: MEDIUM_BLACK,

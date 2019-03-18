@@ -8,14 +8,14 @@ const { medium } = variables.fSize;
 export default StyleSheet.create({
 	listWrap: {
 		marginLeft: 0, 
-		paddingLeft: 15, 
-		paddingTop: 10, 
-		paddingBottom: 10
+		paddingLeft: scale(15), 
+		paddingTop: scale(10), 
+		paddingBottom: scale(10)
 	},
 	listIcon: {
-		height: 30, 
-		width: 30, 
-		marginRight: 15
+		height: scale(30), 
+		width: scale(30), 
+		marginRight: scale(15)
 	},
 	listText: {
 		textAlign: 'left',
@@ -23,6 +23,6 @@ export default StyleSheet.create({
 		fontSize: medium
 	},
 	arrow: {
-		fontSize: 24
+		fontSize: scale(24)
 	}
 });

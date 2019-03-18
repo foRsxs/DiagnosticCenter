@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-
+import { scale } from '../../../styles/variables';
 import {
   MAIN_FONT,
   LIGHT_GRAY
@@ -12,9 +12,9 @@ export default StyleSheet.create({
     height: '100%'
   },
   mainContent: {
-    marginTop: -10,
+    marginTop: scale(-10),
     zIndex: 1,
-    paddingTop: 10
+    paddingTop: scale(10)
   },
   loaderWrap: {
     zIndex: 10,
@@ -28,12 +28,12 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 16,
-    paddingTop: 30,
+    padding: scale(16),
+    paddingTop: scale(30),
     backgroundColor: '#fff'
   },
   header: {
-    height: 50,
+    height: scale(50),
     backgroundColor: LIGHT_GRAY
   },
   text: {
@@ -45,13 +45,13 @@ export default StyleSheet.create({
     marginTop: -1
   },
   row: {
-    height: 40,
+    height: scale(40),
     backgroundColor: '#fff'
   },
   itemTopWrap: {
     width: '100%',
     flexDirection: 'row',
-    marginBottom: 20
+    marginBottom: scale(20)
   },
   itemTextWrap: {
     width: '50%'

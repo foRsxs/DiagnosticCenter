@@ -10,7 +10,7 @@ export default StyleSheet.create({
         height: '100%'
     },
     wrapper: {
-        padding: 20,
+        padding: scale(20),
         flex: 1
     },
     datetimeWrap: {
@@ -18,7 +18,7 @@ export default StyleSheet.create({
         flex: 1
     },
     separator: {
-        marginVertical: 10,
+        marginVertical: scale(10),
         borderLeftWidth: 1,
         borderColor: ACCENT_BLUE
     },
@@ -37,8 +37,8 @@ export default StyleSheet.create({
         fontSize: normal,
         color: COLOR_LIGHT_BLACK,
         fontFamily: MAIN_FONT,
-        paddingLeft: 50,
-        paddingRight: 30,
-        marginBottom: 20
+        paddingLeft: scale(50),
+        paddingRight: scale(30),
+        marginBottom: scale(20)
     }
 });

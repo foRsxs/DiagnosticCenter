@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const { large, main } = variables.fSize;
 import { ACCENT_BLUE, DARK_GREY, BLACK, MAIN_FONT  } from '../../../styles/constants';
 
@@ -11,13 +11,13 @@ export default StyleSheet.create({
         height: '100%'
     },
     mainContent: {
-        marginTop: -10,
+        marginTop: scale(-10),
         zIndex: 1,
-        paddingTop: 10,
-        paddingHorizontal: 20
+        paddingTop: scale(10),
+        paddingHorizontal: scale(20)
     },
     contactItem: {
-        marginBottom: 15,
+        marginBottom: scale(15),
     },
     headTxt: {
         fontSize: large,
@@ -32,7 +32,7 @@ export default StyleSheet.create({
         color: DARK_GREY,
         width: '100%',
         textAlign: 'left',
-        marginVertical: 5
+        marginVertical: scale(5)
     },
     linkTxt: {
         fontSize: main,

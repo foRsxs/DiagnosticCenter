@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import variables from '../../../styles/variables';
+import variables, {scale} from '../../../styles/variables';
 const { medium } = variables.fSize;
 import { MAIN_FONT } from '../../../styles/constants';
 
@@ -15,17 +15,17 @@ export default StyleSheet.create({
         height: '100%'
     },
     content: {
-        marginTop: -10,
+        marginTop: scale(-10),
         zIndex: 1,
-        paddingTop: 10,
+        paddingTop: scale(10),
     },
     noText: {
-        paddingTop: 10,
+        paddingTop: scale(10),
         textAlign: 'center',
         fontSize: medium,
         fontFamily: MAIN_FONT
     },
     list: {
-        paddingBottom: 10
+        paddingBottom: scale(10)
     }
 });
