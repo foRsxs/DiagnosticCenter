@@ -32,6 +32,7 @@ class AuthMethodScreen extends Component {
   }
 
   componentDidMount() {
+    console.log(1);
     const { notify, token, methods_auth, pinCode } = this.props;
 
     this.props.changeNotify(notify);
@@ -44,6 +45,7 @@ class AuthMethodScreen extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log(0, newProps);
     if (newProps.confirmed_auth) this.props.navigation.navigate('profile');
   }
 
@@ -107,20 +109,20 @@ class AuthMethodScreen extends Component {
         <Content>
           <ListItem style={styles.confirmListItem} onPress={() => this.setState({ methods_auth_local: 'code' })}>
             <Left>
-              <Text>{t('authorization:auth_type.pin_code')}</Text>
+              <Text style={styles.textItem}>{t('authorization:auth_type.pin_code')}</Text>
             </Left>
             <Right>
-              <CheckBox onPress={() => this.setState({ methods_auth_local: 'code' })} checked={(methods_auth_local === 'code')} color={ACCENT_BLUE} />
+              <CheckBox style={styles.checkStyle} onPress={() => this.setState({ methods_auth_local: 'code' })} checked={(methods_auth_local === 'code')} color={ACCENT_BLUE} />
             </Right>
           </ListItem>
           {
             (isTouchId) && (
               <ListItem style={styles.confirmListItem} onPress={() => this.setState({ methods_auth_local: 'touch' })}>
                 <Left>
-                  <Text>{t('authorization:auth_type.touch_id')}</Text>
+                  <Text style={styles.textItem}>{t('authorization:auth_type.touch_id')}</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={() => this.setState({ methods_auth_local: 'touch' })} checked={(methods_auth_local === 'touch')} color={ACCENT_BLUE} />
+                  <CheckBox style={styles.checkStyle} onPress={() => this.setState({ methods_auth_local: 'touch' })} checked={(methods_auth_local === 'touch')} color={ACCENT_BLUE} />
                 </Right>
               </ListItem>
             )
@@ -129,10 +131,10 @@ class AuthMethodScreen extends Component {
             (isFaceId) && (
               <ListItem style={styles.confirmListItem} onPress={() => this.setState({ methods_auth_local: 'face' })}>
                 <Left>
-                  <Text>{t('authorization:auth_type.face_id')}</Text>
+                  <Text style={styles.textItem}>{t('authorization:auth_type.face_id')}</Text>
                 </Left>
                 <Right>
-                  <CheckBox onPress={() => this.setState({ methods_auth_local: 'face' })} checked={(methods_auth_local === 'face')} color={ACCENT_BLUE} />
+                  <CheckBox style={styles.checkStyle} onPress={() => this.setState({ methods_auth_local: 'face' })} checked={(methods_auth_local === 'face')} color={ACCENT_BLUE} />
                 </Right>
               </ListItem>
             )

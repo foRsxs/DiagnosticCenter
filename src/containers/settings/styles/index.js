@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   pickerWrap: {
     width: '100%', 
-    position: 'relative'
+    position: 'relative',
   },
   form: { 
     width: '40%' 
@@ -27,6 +27,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     alignItems: 'center',
+    paddingHorizontal: scale(15)
   },
   headTxt: {
     fontSize: medium,
@@ -47,5 +48,8 @@ export default StyleSheet.create({
   btnWrap: {
     paddingHorizontal: scale(15), 
     paddingVertical: scale(20)
-  }
+  },
+  switchStyle: { 
+    transform: [{ scaleX: scale(1) }, { scaleY: scale(1) }] 
+  },
 });

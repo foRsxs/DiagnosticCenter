@@ -10,6 +10,8 @@ import CustomBtn from '../../components/common/CustomBtn';
 import Header from '../../components/common/Header';
 
 import styles from './styles';
+import variables from '../../styles/variables';
+const { medium } = variables.fSize;
 
 class SettingsScreen extends Component {
 
@@ -20,7 +22,7 @@ class SettingsScreen extends Component {
       local_languages_key: props.languages_key,
       local_secure: props.enableSecure,
       local_notify: props.notify,
-      showButton: false
+      showButton: false,
     };
   }
 
@@ -91,6 +93,12 @@ class SettingsScreen extends Component {
               <Picker
                 mode="dropdown"
                 style={styles.pickerWrap}
+                textStyle= {{
+                  fontSize: medium
+                }}
+                itemTextStyle= {{
+                  fontSize: medium
+                }}
                 selectedValue={local_languages_key}
                 onValueChange={this.changeLang.bind(this)}
                 headerBackButtonText={t('common:actions.back')}
@@ -145,6 +153,7 @@ class SettingsScreen extends Component {
           <View style={[styles.settingItem, { marginTop: 10 }]}>
             <Text style={styles.headTxt}>{t('settings:items.push')}</Text>
             <Switch
+              style={styles.switchStyle}
               onValueChange={this.switchNotify}
               value={local_notify}
             />
@@ -152,6 +161,7 @@ class SettingsScreen extends Component {
           <View style={[styles.settingItem, { marginTop: 20 }]}>
             <Text style={styles.headTxt}>{(local_secure)? t('settings:items.secureDisable'): t('settings:items.secureEnable')}</Text>
             <Switch
+              style={styles.switchStyle}
               onValueChange={this.switchSecure}
               value={local_secure}
             />

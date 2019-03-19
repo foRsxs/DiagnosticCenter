@@ -15,7 +15,7 @@ const {
 export default StyleSheet.create({
   mainContainer: {
     opacity: 1,
-    height: '100%'
+    height: '100%',
   },
   mainContentContainer: {
     justifyContent: 'space-between',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   content: {
     marginTop: scale(-10),
     zIndex: 1,
-    paddingTop: scale(10)
+    paddingTop: scale(10),
   },
   noText: {
     textAlign: 'center',

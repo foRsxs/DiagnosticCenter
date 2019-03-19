@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
+import {scale} from '../../../styles/variables';
 
 export default class NumberItem extends Component {
 	constructor(props) {
@@ -40,7 +41,7 @@ export default class NumberItem extends Component {
 						</TouchableOpacity> :
 						<TouchableOpacity
 							activeOpacity={1}
-							style={{ width: 60, height: 60 }}
+							style={{ width: scale(60), height: scale(60) }}
 							onPress={() => this.props.onClick(value)}
 							onPressOut={this._onHideUnderlay.bind(this)}
 							onPressIn={this._onShowUnderlay.bind(this)}

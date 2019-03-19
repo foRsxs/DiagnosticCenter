@@ -9,7 +9,9 @@ import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 
 import styles from './styles';
-import { ACCENT_BLUE } from '../../styles/constants';
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+import variables from '../../styles/variables';
+const { medium } = variables.fSize;
 
 class VacantionScreen extends Component {
 
@@ -43,7 +45,7 @@ class VacantionScreen extends Component {
                       </Right>
                     </ListItem>
                   ))
-                ) : (<Text>{t('vacantion:no_information_text')}</Text>)
+                ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('vacantion:no_information_text')}</Text>)
               )
             }
           </List>

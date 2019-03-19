@@ -62,7 +62,7 @@ class Header extends Component {
 					{
 						(backButton) && (
 							<TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
-								<Icon ios='ios-arrow-back' android="ios-arrow-back" style={{ color: 'white', paddingLeft: 5, width: 30, height: 30 }} />
+								<Icon ios='ios-arrow-back' android="ios-arrow-back" style={styles.iconHeader} />
 							</TouchableOpacity>
 						)
 					}
@@ -101,7 +101,7 @@ class Header extends Component {
 						(plusButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => this.props.navigation.navigate('recordingCreate')}>
-									<Icon ios='ios-add' android="ios-add" style={{ color: 'white', paddingLeft: 5, fontSize: 36 }} />
+									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
 								</TouchableOpacity>
 							</View>
 						)

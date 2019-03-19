@@ -10,7 +10,9 @@ import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
 
 import styles from './styles.js';
-import { ACCENT_BLUE } from '../../styles/constants';
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+import variables from '../../styles/variables';
+const { medium } = variables.fSize;
 
 class AnalizesScreen extends Component {
   constructor(props) {
@@ -61,7 +63,7 @@ class AnalizesScreen extends Component {
                     }}
                   />
                 ))
-              ) : (<Text>{t('analizes:no_analizes_text')}</Text>)
+              ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('analizes:no_analizes_text')}</Text>)
             }
           </List>)}
         </Content>

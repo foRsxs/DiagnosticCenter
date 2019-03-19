@@ -9,7 +9,9 @@ import * as ContentActions from '../../actions/content';
 import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
 
-import { ACCENT_BLUE } from '../../styles/constants';
+import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
+import variables from '../../styles/variables';
+const { medium } = variables.fSize;
 
 class CardPatientScreen extends Component {
   constructor(props) {
@@ -60,7 +62,7 @@ class CardPatientScreen extends Component {
                     }}
                   />
                 ))
-                ) : (<Text>{t('history:no_histories_text')}</Text>)
+                ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('history:no_histories_text')}</Text>)
               }
             </List>)
           }

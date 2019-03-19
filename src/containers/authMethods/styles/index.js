@@ -183,5 +183,12 @@ export default StyleSheet.create({
     fontFamily: MAIN_FONT,
     color: MEDIUM_BLACK,
     backgroundColor: WHITE,
+  },
+  textItem: {
+    fontSize: main,
+    fontFamily: MAIN_FONT,
+  },
+  checkStyle: {
+    transform: [{ scaleX: scale(1) }, { scaleY: scale(1) }] 
   }
 });

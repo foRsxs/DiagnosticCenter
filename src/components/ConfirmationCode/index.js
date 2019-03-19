@@ -5,6 +5,7 @@ import NumberItem from '../common/NumberItem';
 import CustomBtn from '../common/CustomBtn';
 
 import styles from './styles';
+import {scale} from '../../styles/variables';
 
 class InputNumber extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class InputNumber extends Component {
           horizontal={false}
           vertical={true}
           numColumns={3}
-          style={{ width: 270, height: 290 }}
+          style={{ width: scale(270), height: scale(290) }}
           renderItem={({ item }) => <NumberItem onClick={this.click} value={item.value} text={item.key} />}
         />
         {(message.length) ? <Text style={styles.message}>{message}</Text> : false}

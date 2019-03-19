@@ -14,7 +14,8 @@ export default StyleSheet.create({
     width: '100%',
     paddingTop: scale(12),
     paddingBottom: scale(12),
-    borderRadius: 25,
+    borderRadius: scale(25),
+    height: scale(45)
   },
   textBtn: {
     fontFamily: MAIN_FONT,

@@ -23,7 +23,7 @@ import {
 const {
   medium,
   extralarge,
-  normal
+  normal,
 } = variables.fSize;
 
 export const styles = StyleSheet.create({
@@ -99,7 +99,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: scale(10),
     paddingHorizontal: scale(25),
-    paddingBottom: scale(120),
+    paddingBottom: scale(140),
   },
   wrapBtnQuest: {
     width: '100%',
@@ -124,7 +124,8 @@ export const styles = StyleSheet.create({
   },
   textBtn: {
     fontFamily: MAIN_FONT,
-    paddingLeft: scale(5)
+    paddingLeft: scale(5),
+    fontSize: normal
   },
   textQuestion: {
     fontFamily: FONT_LIGHT,
@@ -170,7 +171,8 @@ export const styles = StyleSheet.create({
   emptyData: {
     width: '100%',
     paddingTop: scale(20),
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: normal
   }
 });
 

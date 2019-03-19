@@ -31,7 +31,7 @@ export default StyleSheet.create({
     borderRadius: scale(30)
   },
   Text: {
-    top: scale(7),
+    top: scale(9),
     textAlign: 'center',
     fontSize: scale(38),
     lineHeight: scale(47),
@@ -39,7 +39,7 @@ export default StyleSheet.create({
     color: DARK_BLUE,
   },
   TextActive: {
-    top: scale(7),
+    top: scale(9),
     textAlign: 'center',
     fontSize: scale(38),
     lineHeight: scale(47),

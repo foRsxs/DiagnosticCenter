@@ -51,7 +51,7 @@ export default StyleSheet.create({
 		fontSize: large,
 		color: WHITE,
 		width: '100%',
-		paddingHorizontal: 30
+		paddingHorizontal: scale(30)
 	},
 	headerRight: {
 		width: scale(30),
@@ -70,7 +70,7 @@ export default StyleSheet.create({
 		zIndex: 3,
 		height: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(90) : (Platform.OS === 'ios') ? scale(75) : scale(60),
 		paddingTop: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(45) : (Platform.OS === 'ios') ? scale(30) : scale(15),
-		paddingHorizontal: 15
+		paddingHorizontal: scale(15)
 	},
 	leftContainer: {
 		flex: 3,
@@ -82,7 +82,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'center',
-		paddingHorizontal: 15,
+		paddingHorizontal: scale(15),
 	},
 	rightContainer: {
 		flex: 3,
@@ -99,7 +99,7 @@ export default StyleSheet.create({
 		height: scale(20),
 		position: 'absolute',
 		left: scale(20),
-		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(22),
+		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(18),
 		zIndex: 20,
 		justifyContent: 'flex-start',
 	},
@@ -118,7 +118,7 @@ export default StyleSheet.create({
 		lineHeight: scale(22),
 		width: '100%',
 		textAlign: 'center',
-		paddingHorizontal: 30
+		paddingHorizontal: scale(30)
 	},
 	ovalWrap: {
 		alignItems: 'center',
@@ -142,13 +142,13 @@ export default StyleSheet.create({
 	inputContainerSearch: {
 		flex: 9,
 		position: 'relative',
-		marginLeft: 40
+		marginLeft: scale(40)
 	},
 	searchIcon: {
 		position: 'absolute',
 		zIndex: 5,
-		left: 5,
-		top: 8,
+		left: scale(5),
+		top: scale(8),
 		width: scale(18),
 		height: scale(18)
 	},
@@ -156,9 +156,15 @@ export default StyleSheet.create({
 		width: '100%',
 		height: scale(35),
 		padding: 0,
-		paddingLeft: 30,
-		paddingRight: 10,
-		borderRadius: 5,
-		backgroundColor: WHITE
+		paddingLeft: scale(30),
+		paddingRight: scale(10),
+		borderRadius: scale(5),
+		backgroundColor: WHITE,
+		fontSize: normal
 	},
+	iconHeader: { 
+		color: 'white', 
+		paddingLeft: scale(5), 
+		fontSize: scale(36) 
+	}
 });

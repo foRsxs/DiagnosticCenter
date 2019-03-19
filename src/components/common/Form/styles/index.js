@@ -20,7 +20,7 @@ export default StyleSheet.create({
     fontFamily: MAIN_FONT,
     fontSize: medium,
     color: BLACK,
-    height: scale(40),
+    height: scale(45),
   },
   textarea: {
     height: scale(250),

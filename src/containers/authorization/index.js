@@ -107,6 +107,7 @@ class AuthorizationScreen extends Component {
       this.setState({ loading: true });
       this.props.authUser({ phone: number, iin: personalId })
         .then((resp) => {
+          console.log(resp);
           this.setState({
             user: resp,
             message: '',

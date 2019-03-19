@@ -50,7 +50,7 @@ class SpecializationScreen extends Component {
               {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
                 <View>                  
                   <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
-                  <List>
+                  <List style={{paddingBottom: 15}}>
                     {                    
                       (specialities && specialities.length) ? (
                         specialities.map((item, index) => (
