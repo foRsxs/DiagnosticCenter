@@ -3,19 +3,21 @@ import {
   Dimensions
 } from 'react-native';
 
-let {
-  height
-} = Dimensions.get('window');
-
 import variables, {scale} from '../../../styles/variables';
-const {
-  medium
-} = variables.fSize;
 import {
   ACCENT_BLUE,
   WHITE,
   MAIN_FONT
 } from '../../../styles/constants';
+
+
+let {
+  height
+} = Dimensions.get('window');
+
+const {
+  medium
+} = variables.fSize;
 
 export default StyleSheet.create({
   mainContainer: {
@@ -80,5 +82,20 @@ export default StyleSheet.create({
   imgUpdate: {
     width: 30,
     height: 30
+  }, 
+  mainContent: { 
+    marginTop: scale(-10),
+    zIndex: 1, 
+    paddingTop: scale(10)
+  },
+  loaderWrap: {
+    zIndex: 10,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

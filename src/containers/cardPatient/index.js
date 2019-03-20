@@ -35,7 +35,7 @@ class CardPatientScreen extends Component {
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
           {
             (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
             (<List>

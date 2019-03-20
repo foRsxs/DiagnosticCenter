@@ -1,5 +1,4 @@
 import {
-  Platform,
   Dimensions
 } from 'react-native';
 
@@ -9,7 +8,8 @@ const {
 } = Dimensions.get('window');
 
 let localWidth = (screenWidth >= screenHeight) ? screenHeight : screenWidth;
-let localHeight = (screenWidth <= screenHeight) ? screenHeight : screenWidth;
+
+localWidth = (localWidth > 375) ? 375 : localWidth;
 
 const widthCoef = localWidth / 375;
 

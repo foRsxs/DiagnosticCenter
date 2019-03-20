@@ -6,6 +6,16 @@ const { normal, medium } = variables.fSize;
 import { MEDIUM_BLACK, MAIN_FONT, BACKGROUND_BLUE, BLACK } from '../../../styles/constants';
 
 export default StyleSheet.create({
+    mainContainer: {
+        justifyContent: 'space-between', 
+        flexDirection: 'column', 
+        height: '100%'
+    },
+    mainContent: { 
+        marginTop: scale(-10),
+        zIndex: 1, 
+        paddingTop: scale(10)
+    },
     headBlock: {
         marginVertical: scale(30),
         backgroundColor: BACKGROUND_BLUE,

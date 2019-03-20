@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     height: scale(195),
     width: '100%',
     backgroundColor: BACKGROUND_BLUE,
-    marginTop: scale(-15),
+    marginTop: scale(-20),
     justifyContent: 'flex-end'
   },
   tabs: {

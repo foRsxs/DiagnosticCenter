@@ -36,7 +36,7 @@ class AnalizesScreen extends Component {
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
           {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
           (<List>
             {

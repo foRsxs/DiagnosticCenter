@@ -46,9 +46,9 @@ class CardPatientDetailScreen extends Component {
 		const { pdf, headTxt, dateTxt } = this.state;
 
 		return (
-			<Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} text={t('patient:protocol_vizit')} navigation={this.props.navigation} />
-				<Content padder contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : { marginTop: -10, zIndex: 1, paddingTop: 10, paddingHorizontal: 30 }}>
+				<Content padder contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : styles.mainContent }>
 					{(isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : (
 						<View>
 							<View style={styles.headBlock}>

@@ -57,7 +57,7 @@ export default StyleSheet.create({
 		width: scale(30),
 		height: scale(30),
 		position: 'absolute',
-		top: scale(15),
+		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(15),
 		right: scale(20),
 		alignItems: 'flex-end'
 	},
@@ -96,7 +96,7 @@ export default StyleSheet.create({
 	},
 	btnBack: {
 		width: scale(30),
-		height: scale(20),
+		height: scale(30),
 		position: 'absolute',
 		left: scale(20),
 		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(18),

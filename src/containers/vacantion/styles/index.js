@@ -28,7 +28,7 @@ export default StyleSheet.create({
         height: '100%' 
     },
     mainContent: { 
-        marginTop: scale(-10), 
+        marginTop: scale(-10),
         zIndex: 1, 
         paddingTop: scale(10) 
     }

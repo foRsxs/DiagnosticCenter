@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, StyleSheet, View } from 'react-native';
+import { BackHandler, ActivityIndicator, View } from 'react-native';
 import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -9,6 +9,7 @@ import * as ContentActions from '../../actions/content';
 import ReceptionListItem from '../../components/ReceptionListItem'
 import Header from '../../components/common/Header';
 
+import styles from './styles';
 import variables from '../../styles/variables';
 const { medium } = variables.fSize;
 
@@ -48,7 +49,7 @@ class ReceptionListScreen extends Component {
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
+        <Content style={ styles.mainContent } contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
           {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
           <View>
           {
@@ -86,19 +87,6 @@ class ReceptionListScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  loaderWrap: {
-    zIndex: 10,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
 
 function mapStateToProps(state) {
   return {
