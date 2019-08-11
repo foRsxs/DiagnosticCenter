@@ -278,7 +278,8 @@
             "your_email": "Your e-mail",
             "your_name": "Your name",
             "check_data": "Check data",
-            "auth_text": "Do you want log in?"
+            "auth_text": "Do you want log in?",
+            "resend_code": "Resend code"
         },
         "errors": {
             "wrong_pin_code": "Invalid PIN code",

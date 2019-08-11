@@ -10,16 +10,15 @@ export default StyleSheet.create({
         flexDirection: 'column', 
         height: '100%'
     },
-    prifileBlock: {
+    profileBlock: {
         paddingTop: scale(20),
-        paddingBottom: scale(40),
+        paddingBottom: scale(20),
         paddingHorizontal: scale(40),
         borderBottomWidth: 1,
         borderColor: COLOR_BORDER
     },
-    prifileItem: {
+    profileItem: {
         flexDirection: 'row',
-        marginBottom: scale(20),
         alignItems: 'center'
     },
     titles: {
@@ -29,9 +28,8 @@ export default StyleSheet.create({
         marginRight: scale(10)
     },
     text: {
-        fontSize: large,
+        fontSize: medium,
         color: DARK_GREY,
-        fontFamily: MAIN_FONT,
-        lineHeight: scale(22)
+        fontFamily: MAIN_FONT
     }
 });

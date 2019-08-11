@@ -52,6 +52,12 @@ class ProfileScreen extends Component {
     }
   }
 
+  Capitalize(str) {
+    if (!str) return;
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   _renderMenuList = (t) => {
     this.setState({
       menuList: [
@@ -98,24 +104,24 @@ class ProfileScreen extends Component {
         <Header isHome={true} navigation={this.props.navigation} />
         <Content>
           {(user) && (
-            <View style={styles.prifileBlock}>
-              {(user.firstname && user.secondname) && (
-              <View style={styles.prifileItem}>
+            <View style={styles.profileBlock}>
+              {(user.firstname || user.secondname || user.lastname) && (
+              <View style={styles.profileItem}>
                 <Text style={styles.titles}>{t('profile:name')}</Text>
-                <Text style={styles.text}>{`${user.lastname} ${user.firstname} ${user.secondname}`}</Text>
+                <Text style={styles.text}>{`${this.Capitalize(user.lastname)} ${this.Capitalize(user.firstname)} ${this.Capitalize(user.secondname)}`}</Text>
               </View>)}
               {(user.birth_date) && (
-              <View style={styles.prifileItem}>
+              <View style={styles.profileItem}>
                 <Text style={styles.titles}>{t('profile:birthDate')}</Text>
                 <Text style={styles.text}>{moment(user.birth_date).format('DD.MM.YYYY')}</Text>
               </View>)}
               {(user.phone) && (
-              <View style={styles.prifileItem}>
+              <View style={styles.profileItem}>
                 <Text style={styles.titles}>{t('profile:phone')}</Text>
                 <Text style={styles.text}>{userPhone}</Text>
               </View>)}
               {(user.address) && (
-              <View style={styles.prifileItem}>
+              <View style={styles.profileItem}>
                 <Text style={styles.titles}>{t('profile:address')}</Text>
                 <Text style={styles.text}>{user.address}</Text>
               </View>)}
