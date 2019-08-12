@@ -280,7 +280,8 @@
             "your_email": "Ваш e-mail",
             "your_name": "Ваше имя",
             "check_data": "Проверить данные",
-            "auth_text": "Авторизоваться?"
+            "auth_text": "Авторизоваться?",
+            "resend_code": "Отправить код повторно"
         },
         "errors": {
             "wrong_pin_code": "Неверный пин код",

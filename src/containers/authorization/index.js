@@ -28,7 +28,10 @@ class AuthorizationScreen extends Component {
       loading: false,
       showPopup: false,
       showSms: false,
-      user: {}
+      user: {},
+      resendCode: true,
+      codeTimer: 120,
+      codeTimeout: 120000
     };
   }
 
@@ -67,6 +70,7 @@ class AuthorizationScreen extends Component {
   checkSMSCode = () => {
     const { smsCode, user } = this.state;
     const { t, fullAuthUser, setAuthorized } = this.props;
+
     if (+smsCode !== +user.sms_code) {
       this.setState({ message: t('common:errors.wrong_sms_code') });
       return;
@@ -75,6 +79,11 @@ class AuthorizationScreen extends Component {
       fullAuthUser(user);
       setAuthorized(true);
     }
+  }
+
+  getNewSMSCode = () => {
+    const { codeTimeout } = this.state;
+    
   }
 
   clickOnPopup = () => {
@@ -158,7 +167,7 @@ class AuthorizationScreen extends Component {
               maxLength={18} 
               keyboardType='number-pad'
               returnKeyType='done'
-              placeholder={t('authorization:phone')}
+              placeholder={'+7 (777) 123-45-67'}
               value={this.state.formattedNumber}
               style={[styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE }]}
               onChangeText={text => {
@@ -191,7 +200,7 @@ class AuthorizationScreen extends Component {
   }
 
   renderSmsCode() {
-    const { formattedNumber, message } = this.state;
+    const { formattedNumber, message, resendCode } = this.state;
     const { t } = this.props;
 
     return (
@@ -201,8 +210,10 @@ class AuthorizationScreen extends Component {
           <TextInput style={[styles.inputSMS, {marginBottom: 30}]} onChangeText={(code) => this.onChangeSms(code)} keyboardType='number-pad' maxLength={4} returnKeyType='done' />
           <Text style={[styles.errorMessage, {marginTop: 0, marginBottom: 10}]}>{message}</Text>
           <CustomBtn color='blue' label={t('common:actions.confirm')} onClick={() => this.checkSMSCode()} />
-        </View>
-        
+          <TouchableOpacity style={styles.resendBtn} onPress={() => { }} disabled={resendCode}>
+            <Text style={styles.resendBtnText}>{t('common:actions_text.resend_code')}</Text>
+          </TouchableOpacity>
+        </View>        
       </View>
     )
   }

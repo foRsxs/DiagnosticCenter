@@ -184,5 +184,11 @@ export default StyleSheet.create({
     fontFamily: MAIN_FONT,
     color: MEDIUM_BLACK,
     backgroundColor: WHITE,
+  },
+  resendBtn: {
+    marginVertical: scale(15)
+  },
+  resendBtnText: {
+    color: COLOR_BLUE
   }
 });
