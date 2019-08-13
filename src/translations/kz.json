@@ -277,7 +277,8 @@
             "your_name": "Сіздің атыңыз",
             "check_data": "Деректерді тексеру",
             "auth_text": "Авторизация өтесізбе?",
-            "resend_code": "Кодты қайта жіберіңіз"
+            "resend_code": "Кодты қайта жіберіңіз",
+            "seconds": "сек"
         },
         "errors": {
             "wrong_pin_code": "Қате PIN код",

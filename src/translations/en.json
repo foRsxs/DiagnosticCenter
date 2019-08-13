@@ -279,7 +279,8 @@
             "your_name": "Your name",
             "check_data": "Check data",
             "auth_text": "Do you want log in?",
-            "resend_code": "Resend code"
+            "resend_code": "Resend code",
+            "seconds": "sec"
         },
         "errors": {
             "wrong_pin_code": "Invalid PIN code",

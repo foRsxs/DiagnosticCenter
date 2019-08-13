@@ -47,8 +47,8 @@ class TimeScreen extends Component {
 
 	render() {
 		const { markedTimes } = this.state;
-		console.log(markedTimes);
 		const { t } = this.props;
+		
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} text={t('recordings:item.select_time')} navigation={this.props.navigation} />

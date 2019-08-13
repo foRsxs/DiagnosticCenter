@@ -32,7 +32,6 @@ class AuthMethodScreen extends Component {
   }
 
   componentDidMount() {
-    console.log(1);
     const { notify, token, methods_auth, pinCode } = this.props;
 
     this.props.changeNotify(notify);
@@ -45,7 +44,6 @@ class AuthMethodScreen extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(0, newProps);
     if (newProps.confirmed_auth) this.props.navigation.navigate('profile');
   }
 
