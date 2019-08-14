@@ -90,7 +90,7 @@ class DoctorScreen extends Component {
   }
 
   renderQuestions() {
-    const { moreInfo, docid } = this.state;
+    const { moreInfo, docdep_id } = this.state;
     const { questions, t, isRequest, navigation, isGuest, setActiveTab } = this.props;
 
     return (
@@ -105,7 +105,7 @@ class DoctorScreen extends Component {
                 authAlert(t, navigation);
               } else {
                 setActiveTab(0);
-                navigation.navigate("questionForm", { doc_id: docid })
+                navigation.navigate("questionForm", { doc_id: docdep_id })
               }
             }}
           >

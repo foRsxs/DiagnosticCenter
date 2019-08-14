@@ -31,9 +31,7 @@ class QuestionFormScreen extends Component {
 
     if (this.props.status !== prevProps.status) {
       if (this.props.status) {
-        Toast.show({
-          text: t('common:actions_text.question_sent')
-        });
+        Toast.show({ text: t('common:actions_text.question_sent') });
       } else {
         Toast.hide();
         this.props.navigation.navigate('doctor', { docid: +doc_id, spec_id: specid, docdep_id: docdep })

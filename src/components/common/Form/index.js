@@ -11,7 +11,7 @@ class FormSend extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: props.email,
+      email: '',
       question: '',
       emailValid: true,
       questionValid: true
@@ -22,7 +22,10 @@ class FormSend extends Component {
     const { question, email, emailValid, questionValid } = this.state;
     this.validate(email);
     this.validateMess(question);
-    if (emailValid && questionValid && question.length) this.props.sendData({ email, question })
+
+    if (emailValid && questionValid && question.length) {
+      this.props.sendData({ email, question });
+    }
   }
 
   validate = (value) => {
@@ -38,8 +41,8 @@ class FormSend extends Component {
   }
 
   render() {
-    const { question, email, emailValid, questionValid } = this.state;
-    const { t, sendQuest = false } = this.props;
+    const { question, emailValid, questionValid } = this.state;
+    const { t, sendQuest = false, email } = this.props;
 
     return (
       <Form style={styles.formWrap}>
