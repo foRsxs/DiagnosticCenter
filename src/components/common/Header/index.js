@@ -21,8 +21,8 @@ class Header extends Component {
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, isPin = false, textUpper = false, callButton = false, plusButton = false, t } = this.props;
-
+		const { backButton = false, search = false, text, isHome = false, isPin = false, textUpper = false, callButton = false, plusButton = false, callCenterTel, t } = this.props;
+		
 		return (
 			<View style={styles.headerWrap}>
 				<StatusBar backgroundColor={BAR_COLOR} barStyle='light-content' />
@@ -40,7 +40,7 @@ class Header extends Component {
 									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
 								</View>
 								<View style={styles.rightContainer}>
-									<TouchableOpacity style={styles.headerRightBtn} onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
+									<TouchableOpacity style={styles.headerRightBtn} onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
@@ -91,7 +91,7 @@ class Header extends Component {
 					{
 						(callButton) && (
 							<View style={styles.headerRight} >
-								<TouchableOpacity onPress={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)}>
+								<TouchableOpacity onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 									<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 								</TouchableOpacity>
 							</View>
@@ -123,7 +123,8 @@ Header.propTypes = {
 	callButton: PropTypes.bool,
 	plusButton: PropTypes.bool,
 	textUpper: PropTypes.string,
-	text: PropTypes.string
+	text: PropTypes.string,
+	callCenterTel: PropTypes.string,
 };
 
 export default withNamespaces('header_links')(Header);

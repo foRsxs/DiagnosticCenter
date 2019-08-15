@@ -1,4 +1,5 @@
 export const initialState = {
+  appParamsConfig: null,
   auth: {
     token: null,
     confirmed_auth: false,

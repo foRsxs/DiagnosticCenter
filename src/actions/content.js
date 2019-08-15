@@ -3,6 +3,29 @@ import axios from "axios";
 import * as types from "../types/content";
 import { APP_API_URL } from "../config";
 
+export function getAppParamsConfig() {
+  return (dispatch, getState) => {
+    const {
+      authorization: { language }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .get(`${APP_API_URL}/param`, {
+        lang: language
+      })
+      .then(response => {
+        dispatch(setAppParamsConfig(response.data));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setAppParamsConfig([]));
+        dispatch(setIsRequest(false));
+      });
+  };
+}
+
 export function getListSpecialization(type, order = false) {
   return (dispatch, getState) => {
     const {
@@ -664,6 +687,13 @@ export function getAnalizes({ type = "", res_id }) {
         );
         dispatch(setIsRequest(false));
       });
+  };
+}
+
+export function setAppParamsConfig(data) {
+  return {
+    type: types.SET_APP_PARAMS_CONFIG,
+    data: data
   };
 }
 

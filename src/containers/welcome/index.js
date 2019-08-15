@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, View, Alert } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Timeline from 'react-native-timeline-listview'
+import Timeline from 'react-native-timeline-listview';
+import OneSignal from 'react-native-onesignal';
 
 import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
@@ -54,20 +55,13 @@ class WelcomeScreen extends Component {
 		const { navigate } = this.props.navigation;
 
 		if (!hideScreen) {
-			Alert.alert(
-				t('welcome:notify.title'),
-				t('welcome:notify.message'),
-				[
-					{
-						text: t('common:actions.cancel'),
-						onPress: () => this.props.changeNotify(false),
-						style: 'cancel',
-					},
-					{text: t('common:actions.confirm'), onPress: () => this.props.changeNotify(true)},
-				],
-				{cancelable: false},
-			);
+			OneSignal.getPermissionSubscriptionState((state) => {
+				let isTrueSet = (state.userSubscriptionEnabled == 'true'); 
+
+				this.props.changeNotify(isTrueSet);
+			});
 		}
+
 		if (hideScreen && token && enableSecure) {
 			navigate('AuthMethods');
 		} else if (hideScreen && token && !enableSecure) {
@@ -80,6 +74,7 @@ class WelcomeScreen extends Component {
 	componentDidMount() {
 		const { notify, languages_key, token } = this.props;
 
+		this.props.getAppParamsConfig();
     this.props.changeNotify(notify);
     this.props.setCurrentLang(languages_key);
     if (token) {
