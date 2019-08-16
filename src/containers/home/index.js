@@ -90,7 +90,7 @@ class HomeScreen extends Component {
 
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
-        <Header isHome={true} navigation={this.props.navigation} callCenterTel={callcenterTel.value}/>
+        <Header isHome={true} navigation={this.props.navigation} callCenterTel={callcenterTel ? callcenterTel.value : callcenterTel }/>
         <Content>
           <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
             {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
@@ -110,7 +110,7 @@ function mapStateToProps(state) {
     isGuest: state.authorization.isGuest,
     languages_key: state.authorization.language,
     isRequest: state.content.isRequest,
-    callcenterTel: state.content.appParamsConfig.find((item) => item.name == 'callcenter'),
+    callcenterTel: state.content.appParamsConfig ? state.content.appParamsConfig.find((item) => item.name == 'callcenter') : null,
   }
 }
 

@@ -3,9 +3,8 @@ import { StatusBar, View, Text, TouchableOpacity, Image, TextInput, Linking } fr
 import { Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { CALL_CENTRE_TEL } from '../../../config';
-import styles from './style';
 
+import styles from './style';
 import { BAR_COLOR } from '../../../styles/constants';
 
 import {
@@ -40,10 +39,12 @@ class Header extends Component {
 									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
 								</View>
 								<View style={styles.rightContainer}>
+									{(callCenterTel) && 
 									<TouchableOpacity style={styles.headerRightBtn} onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
 									</TouchableOpacity>
+									}
 								</View>
 							</View>
 						)
@@ -89,7 +90,7 @@ class Header extends Component {
 						)
 					}
 					{
-						(callButton) && (
+						(callButton && callCenterTel) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 									<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
