@@ -94,7 +94,11 @@ class DateScreen extends Component {
 		const { t } = this.props;
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
-				<Header backButton={true} text={t('recordings:item.select_date')} navigation={this.props.navigation} />
+				<Header 
+					backButton
+					text={t('recordings:item.select_date')} 
+					navigation={this.props.navigation} 
+				/>
 				<Content>
 					<Calendar
 						style={styles.calendar}

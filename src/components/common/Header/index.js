@@ -20,7 +20,20 @@ class Header extends Component {
 	}
 
 	render() {
-		const { backButton = false, search = false, text, isHome = false, isPin = false, textUpper = false, callButton = false, plusButton = false, callCenterTel, t } = this.props;
+		const { 
+			backButton = false, 
+			search = false, 
+			text, 
+			isHome = false, 
+			isPin = false, 
+			textUpper = false, 
+			callButton = false, 
+			plusButton = false, 
+			callCenterTel, 
+			filterButton = false, 
+			onFilterPress = () => {}, 
+			t
+		} = this.props;
 		
 		return (
 			<View style={styles.headerWrap}>
@@ -102,6 +115,15 @@ class Header extends Component {
 						(plusButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => this.props.navigation.navigate('recordingCreate')}>
+									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
+								</TouchableOpacity>
+							</View>
+						)
+					}
+					{
+						(filterButton) && (
+							<View style={styles.headerRight} >
+								<TouchableOpacity onPress={onFilterPress}>
 									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
 								</TouchableOpacity>
 							</View>

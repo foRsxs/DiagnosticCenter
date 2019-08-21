@@ -40,7 +40,7 @@ class VacantionDetailScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.post !== nextProps.post) {
+    if (this.props.post !== nextProps.post && nextProps.post) {
       this.setState({
         image: { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` },
         content: nextProps.post.body,
