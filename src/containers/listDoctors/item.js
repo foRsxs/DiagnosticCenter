@@ -71,7 +71,8 @@ class DoctorScreen extends Component {
           (isRequest) ? 
           (<ActivityIndicator style={(isRequest) ? { marginTop: 100 } : {}} size="large" color={ACCENT_BLUE} />)
           : 
-          (<KeyboardAwareScrollView>
+          (
+          (doctor) && <KeyboardAwareScrollView>
             <View style={styles.mainInfo}>
               <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
               <Text style={styles.speciality}>{doctor.speciality}</Text>
@@ -150,7 +151,7 @@ class DoctorScreen extends Component {
           />
         </View>
         {
-          (tabProfile) &&
+          (tabProfile && doctor) &&
           <View style={styles.btnWrap}>
             {
               (+doctor.allow === 1) && (

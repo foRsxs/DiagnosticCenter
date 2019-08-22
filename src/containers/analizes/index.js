@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { Container, Content, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import moment from 'moment';
 import * as ContentActions from '../../actions/content';
 import AnalizesItem from '../../components/AnalizesItem'
 import Header from '../../components/common/Header';
+import SimpleFilter from '../../components/common/SimpleFilter';
 
 import styles from './styles.js';
 import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
@@ -18,7 +20,9 @@ class AnalizesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shareLoading: false
+      shareLoading: false,
+      openModal: false,
+      filteredList: this.renderList(props.analizes_list, null)
     };
   }
 
@@ -26,13 +30,66 @@ class AnalizesScreen extends Component {
     this.props.getAnalizes({ type: '_list' })
   }
 
+  renderList = (list = [], date) => {
+    let array = [];
+
+    if (date) {
+      for (day in date) {
+        list.forEach((item) => {
+          if (item.dat_string.indexOf(moment(day).format('DD.MM.YYYY')) != -1) {
+            array.push(item);
+          }
+        })
+      }
+      
+    } else {
+      list.forEach((item) => {
+        array.push(Object.assign(item, {}))
+      })
+    }
+
+    return array;
+  }
+
+  onFilterPress = () => {
+    this.setState({ openModal: true })
+  }
+
+  onFilter = (dates) => {
+    const { analizes_list } = this.props;
+
+    this.setState({
+      filteredList: this.renderList(analizes_list, dates),
+      openModal: false,
+    })
+  }
+
+  removeFilter = () => {
+    this.setState({
+      filteredList: this.renderList(this.props.analizes_list, null),
+    })
+  }
+
   render() {
-    const { t, isRequest, analizes_list } = this.props;
-    const { shareLoading } = this.state;
+    const { t, isRequest, lang_key } = this.props;
+    const { shareLoading, openModal, filteredList } = this.state;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
-        <Header backButton={true} text={t('analizes:title')} navigation={this.props.navigation} />
+        <Header 
+          backButton
+          filterButton
+          text={t('analizes:title')} 
+          onFilterPress={this.onFilterPress}
+          navigation={this.props.navigation} 
+        />
+        <SimpleFilter
+          openModal={openModal}
+          onCancel={() => this.setState({openModal: false})}
+          onSuccess={this.onFilter}
+          onRemove={this.removeFilter}
+          lang_key={lang_key}
+        />
         {(shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
@@ -40,8 +97,8 @@ class AnalizesScreen extends Component {
           {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
           (<List>
             {
-              (analizes_list && analizes_list.length) ? (
-                analizes_list.map((item, index) => (
+              (filteredList.length) ? (
+                filteredList.map((item, index) => (
                   <AnalizesItem
                     key={index}
                     headTxt={item.text}
@@ -75,7 +132,8 @@ class AnalizesScreen extends Component {
 function mapStateToProps(state) {
   return {
     analizes_list: state.content.analizes.list,
-    isRequest: state.content.isRequest
+    isRequest: state.content.isRequest,
+    lang_key: state.authorization.language
   }
 }
 

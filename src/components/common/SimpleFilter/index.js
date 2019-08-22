@@ -23,19 +23,20 @@ LocaleConfig.locales['kz'] = {
 };
 
 class SimpleFilter extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-      startDate: null, 
-      finishDate: null
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      finishDate: null,
+      markedDates: null
     }
     LocaleConfig.defaultLocale = (props.lang_key === 'en') ? '' : props.lang_key;
   }
-  
+
   selectDate = (date) => {
-    const { startDate, finishDate } = this.state;
+    const { startDate } = this.state;
     let start = null;
-    let finish = finishDate;
+    let finish = null;
 
     if (startDate) {
       if (moment(date).isBefore(startDate)) {
@@ -55,6 +56,8 @@ class SimpleFilter extends Component {
     this.setState({
       startDate: start,
       finishDate: finish,
+      markedDates: (start && finish) ? this.getAllDatesBetween(start, finish) :
+        (start) ? { [this.getDateForCalendar(start)]: { endingDay: true, startingDay: true, color: ACCENT_BLUE, textColor: 'white' } } : null
     })
   }
 
@@ -63,7 +66,7 @@ class SimpleFilter extends Component {
   };
 
   getAllDatesBetween = (fromDate, toDate) => {
-    
+
     let curDate = new Date(fromDate.getTime());
     const datesForCalendar = {};
     datesForCalendar[this.getDateForCalendar(fromDate)] = {
@@ -76,13 +79,15 @@ class SimpleFilter extends Component {
         curDate = new Date(curDate.setDate(curDate.getDate() + 1));
         datesForCalendar[this.getDateForCalendar(curDate)] = {
           color: ACCENT_BLUE,
-          textColor: 'white'
+          textColor: 'white',
+          overflow: 'hidden'
         };
       }
       datesForCalendar[this.getDateForCalendar(toDate)] = {
         endingDay: true,
         color: ACCENT_BLUE,
-        textColor: 'white'
+        textColor: 'white',
+        overflow: 'hidden'
       };
     }
 
@@ -91,61 +96,67 @@ class SimpleFilter extends Component {
 
   onSuccess = () => {
     const { onSuccess } = this.props;
-    const { startDate, finishDate } = this.state;
+    const { markedDates } = this.state;
 
-    onSuccess((startDate && finishDate) ? this.getAllDatesBetween(startDate, finishDate) : (startDate) ? {[startDate]: { startingDay: true }} : null)
+    onSuccess(markedDates)
   }
 
-	render() {
-    const { openModal, onRemove, onCancel, t } = this.props;
-    const { startDate, finishDate } = this.state;
+  render() {
+    const { openModal, onRemove, onSuccess, onCancel, t } = this.props;
+    const { startDate, markedDates } = this.state;
 
-		return (
+    return (
       <Modal
         visible={openModal}
         transparent
       >
         <View style={styles.popupWrap}>
           <View style={styles.popup}>
-            <Text style={styles.title}>Выберите дату или интервал дат для фильтрации</Text>
+            <Text style={styles.title}>{t(`common:actions.calendar_filter_title`)}</Text>
             <Calendar
               current={(startDate) ? this.getDateForCalendar(startDate) : new Date()}
               maxDate={this.getDateForCalendar(new Date())}
               style={styles.calendar}
+              onDayPress={(day) => this.selectDate(new Date(day.timestamp))}
+              markedDates={markedDates}
+              markingType={'period'}
               theme={{
                 calendarBackground: '#fff',
+                'stylesheet.day.period': {
+                  base: {
+                    overflow: 'hidden',
+                    height: 34,
+                    alignItems: 'center',
+                    width: 38,
+                  }
+                }
               }}
-              refreshing
-              onDayPress={(day) => this.selectDate(new Date(day.timestamp))}
-              markedDates={
-                (startDate && finishDate) ? this.getAllDatesBetween(startDate, finishDate) : 
-                (startDate) ? {[this.getDateForCalendar(startDate)]: { endingDay: true, startingDay: true, color: ACCENT_BLUE, textColor: 'white' }}: null
-              }
-              markingType={'period'}
             />
-            <View >
-              <CustomBtn 
-                label={t(`common:actions.${(startDate) ? 'save' : 'cancel'}`)} 
-                onClick={(startDate) ? this.onSuccess : onCancel}
+            <View style={{marginTop: 10}}>
+              <CustomBtn
+                label={t(`common:actions.${(startDate) ? 'save' : 'cancel'}`)}
+                onClick={() => {
+                  (startDate) ? onSuccess(markedDates) : onCancel()
+                }}
               />
               {
                 (startDate) && (
-                  <CustomBtn 
-                    label={`Очистить`} 
+                  <CustomBtn
+                    label={t(`common:actions.clear`)}
                     onClick={() => {
-                      this.setState({startDate: null, finishDate: null})
+                      this.setState({ startDate: null, finishDate: null, markedDates: null })
                       onRemove();
-                    }} 
-                    contentContainerStyle={{marginTop: 10}}
+                    }}
+                    contentContainerStyle={{ marginTop: 10 }}
                   />
-                  )
+                )
               }
             </View>
           </View>
         </View>
       </Modal>
     )
-	}
+  }
 }
 
 export default withNamespaces('common')(SimpleFilter);

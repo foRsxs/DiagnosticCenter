@@ -245,6 +245,7 @@
         "actions": {
             "ok": "Ок",
             "save": "Сохранить",
+            "clear": "Очистить",
             "send": "Отправить",
             "cancel": "Отмена",
             "back": "Назад",
@@ -262,7 +263,8 @@
             "continue": "Продолжить",
             "ask_question_doctor": "Задать вопрос врачу",
             "questions": "вопросы",
-            "send_question": "отправить вопрос"
+            "send_question": "отправить вопрос",
+            "calendar_filter_title": "Выберите дату или интервал дат для фильтрации"
         },
         "actions_text": {
             "token_not_valid_text": "Вам нужно заново авторизоваться", 

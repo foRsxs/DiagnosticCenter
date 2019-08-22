@@ -54,12 +54,13 @@ export default StyleSheet.create({
 		paddingHorizontal: scale(30)
 	},
 	headerRight: {
-		width: scale(30),
-		height: scale(30),
+		width: scale(35),
+		height: scale(35),
 		position: 'absolute',
 		top: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(52) : (Platform.OS === 'ios') ? scale(37) : scale(15),
 		right: scale(20),
-		alignItems: 'flex-end'
+		alignItems: 'flex-end',
+		justifyContent: 'flex-end'
 	},
 	container: {
 		flexDirection: 'row',

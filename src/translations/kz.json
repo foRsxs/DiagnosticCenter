@@ -244,6 +244,7 @@
         "actions": {
             "ok": "Ок",
             "save": "Сақтау",
+            "clear": "Очистить",
             "send": "Жөнелту",
             "cancel": "Болдырмау",
             "back": "Артқа қайтару",
@@ -258,7 +259,8 @@
             "ask_question": "Сұрақ қою ",
             "add_recording": "Жазба қосу",
             "ask_question_doctor": "Дәрігерге сұрақ қойыңыз",
-            "continue": "Жалғастыру"
+            "continue": "Жалғастыру",
+            "calendar_filter_title": "Выберите дату или интервал дат для фильтрации"
         },
         "actions_text": {
         	"token_not_valid_text": "Сізге қайтадан авторизациядан өту қажет", 

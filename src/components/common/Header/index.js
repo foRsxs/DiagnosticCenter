@@ -13,6 +13,7 @@ import {
 	ICON_PHONE,
 	ICON_SEARCH
 } from '../../../styles/images';
+import { scale } from '../../../styles/variables';
 
 class Header extends Component {
 	constructor(props) {
@@ -124,7 +125,7 @@ class Header extends Component {
 						(filterButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={onFilterPress}>
-									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
+									<Icon ios='ios-funnel' android="ios-funnel" style={[styles.iconHeader, {fontSize: scale(28)}]} />
 								</TouchableOpacity>
 							</View>
 						)
