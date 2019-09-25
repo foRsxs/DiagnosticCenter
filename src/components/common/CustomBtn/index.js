@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Text, Button } from 'native-base';
 
-import { RED, ACCENT_BLUE } from '../../../styles/constants';
+import { RED, ACCENT_BLUE, GREEN, GRAY } from '../../../styles/constants';
 import styles from './styles';
 
 export default class CustomBtn extends Component {
 
-  colorBtn(val) {
+  colorBtn = (val) => {
+    if(val === 'greenColor') return GREEN;
+    if(val === 'grayColor') return GRAY;
     return (val === 'blue') ? ACCENT_BLUE : RED;
   }
 

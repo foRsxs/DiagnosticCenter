@@ -37,6 +37,7 @@ import TimeScreen from '../containers/timeScreen';
 import CheckRecordScreen from '../containers/checkRecord';
 import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
+import PaymentScreen from '../containers/payment';
 
 const ProfileNavigator = createStackNavigator(
   {
@@ -94,6 +95,12 @@ const ProfileNavigator = createStackNavigator(
         header: null
       }
     },
+    payment: {
+      screen: PaymentScreen,
+      navigationOptions: {
+        header: null
+      }
+    }
   },
   {
     initialRouteName: 'profile',

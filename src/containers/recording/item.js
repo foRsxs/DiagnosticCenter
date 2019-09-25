@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, BackHandler } from 'react-native';
 import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import { bindActionCreators } from 'redux';
+import { withNavigationFocus } from 'react-navigation';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
@@ -15,7 +16,7 @@ import Popup from '../../components/common/Popup';
 
 const { medium, large, main, normal } = variables.fSize;
 
-import { ACCENT_BLUE, LIGHT_GRAY, MEDIUM_BLACK, BLACK, MAIN_FONT, COLOR_LIGHT_BLACK } from '../../styles/constants';
+import { ACCENT_BLUE, LIGHT_GRAY, MEDIUM_BLACK, BLACK, MAIN_FONT, COLOR_LIGHT_BLACK, GREEN } from '../../styles/constants';
 import { ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
 
 class ReceptionInfoItemScreen extends Component {
@@ -37,6 +38,7 @@ class ReceptionInfoItemScreen extends Component {
       headTxt: (props.navigation.state.params) ? `${props.navigation.state.params.doctor}, ${props.navigation.state.params.spec}` : null,
       dateTxt: (props.navigation.state.params) ? `${props.navigation.state.params.dd} ${props.navigation.state.params.time}` : null,
       pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf : null,
+      code_serv: (props.navigation.state.params) ? props.navigation.state.params.code_serv : null,
       modalVisible: false,
       hideButton: false,
     };
@@ -51,8 +53,12 @@ class ReceptionInfoItemScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { payLink, isFocused, navigation } = this.props;
     if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({ modalVisible: true });
     if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
+    if (prevProps.payLink !== payLink && payLink && isFocused) {
+      navigation.navigate('payment');
+    }
   }
 
   handleBackButtonClick = () => {
@@ -71,6 +77,12 @@ class ReceptionInfoItemScreen extends Component {
     }
   }
 
+  _onClickPayButton = () => {
+    const { rnumb_id, code_serv } = this.state;
+    const { getLinkForPayment } = this.props;
+    getLinkForPayment(rnumb_id, code_serv);
+  }
+
   _save = () => {
     this.props.setCreatingOrderSuccess(false);
     this.props.getListTalons();
@@ -78,8 +90,41 @@ class ReceptionInfoItemScreen extends Component {
     this.props.navigation.navigate('recordingList');
   }
 
-  render() {
+  getButtonNameAndStatus = (status, paid_status) => {
     const { t } = this.props;
+    // status (1 - активен и можно оплачивать, 0 - неактивен). paid_status (1- оплачен, 0 - не оплачен)
+    const buttonObj = { text: 'Неоплачено', color: 'grayColor', showPayButton: false }
+
+    if(paid_status === 1) {
+      //paid
+      buttonObj.text = t('common:actions.paid');
+      buttonObj.color = 'grayColor';
+      buttonObj.showPayButton = true;
+    } else if (paid_status === 0) {
+        if(status === 1) {
+          //pay
+          buttonObj.text = t('common:actions.pay');
+          buttonObj.color = 'greenColor';
+          buttonObj.showPayButton = true;
+        } else if (status === 0) {
+          //not paid
+          buttonObj.text = t('common:actions.not_paid');
+          buttonObj.color = 'grayColor';
+          buttonObj.showPayButton = true;
+        }
+    }
+    return buttonObj;
+  }
+
+  
+
+  render() {
+    const { t, infoListTalonInfo } = this.props;
+    const status = infoListTalonInfo.status || null;
+    const paid_status = infoListTalonInfo.paid_status || null;
+
+    const { text: buttonPayText, color: buttonPayColor, showPayButton } = this.getButtonNameAndStatus(status, paid_status);
+
     const { reserved, modalVisible, hideButton, date, time, room, doctor, spec, serv, price, pdf, headTxt, dateTxt } = this.state;
     
     return (
@@ -145,8 +190,15 @@ class ReceptionInfoItemScreen extends Component {
           }
         </Content >
         {
+          (showPayButton) && (
+            <View style={{ paddingHorizontal: 15, paddingTop: 20, paddingBottom: 5 }}>
+              <CustomBtn color={buttonPayColor} label={buttonPayText} onClick={() => this._onClickPayButton()} />
+            </View>
+          )
+        }
+        {
           (!hideButton) && (
-            <View style={{ paddingHorizontal: 15, paddingVertical: 20 }}>
+            <View style={{ paddingHorizontal: 15, paddingBottom: 20, paddingTop: 10}}>
               <CustomBtn label={(reserved) ? t('common:actions.cancel_recording') : t('common:actions.confirm')} onClick={() => this._onClick()} />
             </View>
           )
@@ -161,6 +213,26 @@ class ReceptionInfoItemScreen extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    orderCreated: state.content.orderCreated,
+    orderDeleted: state.content.orderDeleted,
+    lang_key: state.authorization.language,
+    payLink: state.content.payLink,
+    infoListTalonInfo: state.content.infoListTalonInfo
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ContentActions, dispatch)
+}
+
+export default  compose(
+  withNavigationFocus,
+  withNamespaces(['recordings', 'common']),
+  connect(mapStateToProps, mapDispatchToProps)
+)(ReceptionInfoItemScreen)
 
 const styles = StyleSheet.create({
   itemWrap: {
@@ -229,17 +301,3 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
-
-function mapStateToProps(state) {
-  return {
-    orderCreated: state.content.orderCreated,
-    orderDeleted: state.content.orderDeleted,
-    lang_key: state.authorization.language,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
-}
-
-export default withNamespaces(['recordings', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen));

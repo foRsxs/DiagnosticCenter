@@ -568,6 +568,32 @@ export function getListTalons() {
   };
 }
 
+export function getListTalonInfo(rnumb_id) {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token, language },
+      content: { listTalons }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .post(`${APP_API_URL}/talon_history`, {
+        rnumb_id,
+        api_token: token,
+        lang: language
+      })
+      .then(response => {
+        dispatch(setInfoListTalonInfo(response.data));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setInfoListTalonInfo(listTalons));
+        dispatch(setIsRequest(false));
+      });
+  };
+}
+
 export function deleteOrder({ rnumb_id }) {
   return (dispatch, getState) => {
     const {
@@ -599,6 +625,27 @@ export function deleteOrder({ rnumb_id }) {
         dispatch(setIsRequest(false));
       });
   };
+}
+
+export function getLinkForPayment(rnumb_id, code_serv) {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token, language },
+      content: { history }
+    } = getState();
+    dispatch(setPayloadURL(''));
+
+    const params = { rnumb_id, code_serv, api_token: token };
+
+    axios
+      .post(`${APP_API_URL}/get_epay_link`, params)
+      .then(response => {
+        dispatch(setPayloadURL(response.data.link));
+      })
+      .catch(e => {
+        dispatch(setPayloadURL(''));
+      });
+  }
 }
 
 export function getHistory({ type, p_type, vis_id }) {
@@ -749,6 +796,20 @@ export function cleareOrderSuccess(type) {
     type: types.CLEARE_ORDER,
     data: type
   };
+}
+
+export function setPayloadURL(url) {
+  return {
+    type: types.SET_PAYLOAD_LINK,
+    data: url
+  }
+}
+
+export function setInfoListTalonInfo(data) {
+  return {
+    type: types.SET_INFO_LIST_TALON_INFO,
+    data
+  }
 }
 
 export function cleareOrderDatas() {

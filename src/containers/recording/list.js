@@ -41,7 +41,7 @@ class ReceptionListScreen extends Component {
   render() {
     const { shareLoading } = this.state;
     const { navigate } = this.props.navigation;
-    const { t, listTalons, isRequest } = this.props;
+    const { t, listTalons, isRequest, getListTalonInfo } = this.props;
 
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
@@ -64,8 +64,11 @@ class ReceptionListScreen extends Component {
                   timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`}
                   nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`}
                   isLoading={(value) => this.setState({ shareLoading: value })}
-                  onPress={() => navigate('recordingItem', {
+                  onPress={() => {
+                    getListTalonInfo(item.rnumb_id)
+                    navigate('recordingItem', {
                     rnumb_id: item.rnumb_id,
+                    code_serv: item.code_serv,
                     dd: item.dd,
                     room: item.room,
                     time: item.time,
@@ -76,6 +79,7 @@ class ReceptionListScreen extends Component {
                     pdf: item.pdf,
                     price: item.price,
                   })
+                    }
                   } 
                 />
               ))
