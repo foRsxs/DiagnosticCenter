@@ -5,7 +5,6 @@
 	};
 	objectVersion = 51;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -62,6 +61,7 @@
 		F4AE930F708744DB9708F609 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B8FB278C5F64BA3BED8674A /* FontAwesome5_Brands.ttf */; };
 		FAF1107C16664D52AA4B0075 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD219FDCAC0A4331A602B08A /* FontAwesome5_Regular.ttf */; };
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
+		D5F22FCBDB13478BA6EEBF40 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,6 +491,8 @@
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F71C9CBDE84240A0891B551B /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = System/Library/Frameworks/InputMask.framework; sourceTree = SDKROOT; };
+		086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -525,6 +527,7 @@
 				68C02B325BF949B9987D3C52 /* libRNFetchBlob.a in Frameworks */,
 				60DD79B42C384A849253B97C /* libRNGestureHandler.a in Frameworks */,
 				38961930673B45E18BBFFE62 /* libBVLinearGradient.a in Frameworks */,
+				D5F22FCBDB13478BA6EEBF40 /* libRNCWebView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +703,7 @@
 				B4591662DB7A42B590142A3C /* RNFetchBlob.xcodeproj */,
 				077B31C44E364AA49F267539 /* RNGestureHandler.xcodeproj */,
 				BA93C00802BB4119BA31D00C /* BVLinearGradient.xcodeproj */,
+				086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1487,6 +1491,7 @@
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1496,6 +1501,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				MARKETING_VERSION = 1.0.7;
@@ -1530,6 +1536,7 @@
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1539,6 +1546,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				MARKETING_VERSION = 1.0.7;

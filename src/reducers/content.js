@@ -222,6 +222,16 @@ export default function contentReducer(state = initialState.content, action) {
         ...state,
         isRequest: action.data
       }
+    case types.SET_PAYLOAD_LINK:
+      return {
+        ...state,
+        payLink: action.data
+      } 
+    case types.SET_INFO_LIST_TALON_INFO:
+      return {
+        ...state,
+        infoListTalonInfo: action.data
+      } 
     default:
       return state
   }

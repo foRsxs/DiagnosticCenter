@@ -3,6 +3,7 @@ package com.izzisoftware.diagnosticcenter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new RNCWebViewPackage(),
         new LinearGradientPackage(),
         new RNGestureHandlerPackage(),
         new RNFetchBlobPackage(),

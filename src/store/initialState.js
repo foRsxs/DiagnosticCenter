@@ -17,6 +17,7 @@ export const initialState = {
     authMessage: null,
     ListSpecialization: [],
     listDoctors: [],
+    payLink: '',
     sortedListDoctor: [],
     doctorData: [],
     sales: [],
@@ -61,6 +62,7 @@ export const initialState = {
     orderCreated: false,
     orderDeleted: false,
     listTalons: [],
+    infoListTalonInfo: null,
     history: {
       list: [],
       current: []
