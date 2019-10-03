@@ -5,6 +5,7 @@
 	};
 	objectVersion = 51;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -55,13 +56,13 @@
 		CEF0953521CBD9DB0047B7C3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF0953421CBD9DB0047B7C3 /* GameKit.framework */; };
 		D4F1385090E74D4BA18C1379 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1F21064206949A5B8D92CCA /* Entypo.ttf */; };
 		D52D65D47FF34970B4FD6923 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6898FCBE4FF24E8DA4F95C4E /* Zocial.ttf */; };
+		D5F22FCBDB13478BA6EEBF40 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */; };
 		DEF38DFEE969406D80599138 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCD5DACC814CFAB54DA79C /* Roboto_medium.ttf */; };
 		E1F64A2EF71C4D909129486E /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E060364484F79991575BD /* EvilIcons.ttf */; };
 		EAF023D9C2544518A3A6D0AA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */; };
 		F4AE930F708744DB9708F609 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B8FB278C5F64BA3BED8674A /* FontAwesome5_Brands.ttf */; };
 		FAF1107C16664D52AA4B0075 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD219FDCAC0A4331A602B08A /* FontAwesome5_Regular.ttf */; };
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
-		D5F22FCBDB13478BA6EEBF40 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +297,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		CE0FF4142346343B00CE13F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
+		};
 		CE115A8521BAB761001BFF48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 33B456402BEA4936A2A6E763 /* RCTOneSignal.xcodeproj */;
@@ -426,6 +434,7 @@
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		02E153B8EA2043BCB27D5E35 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
 		077B31C44E364AA49F267539 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		0B8FB278C5F64BA3BED8674A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		0BEB83855E17466E90CD937D /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		0E8809285EBB4B99B11C836E /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -440,6 +449,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2C5AB4786BD443A2B1406D6E /* InputMaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = InputMaskTests.xctest; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCWebView.a; sourceTree = "<group>"; };
 		319DE86875D543FA8242E861 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		33B456402BEA4936A2A6E763 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		3DFFDAD8F35440CE9F7AF9C9 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -491,8 +501,6 @@
 		EFB58051720F48DE952F62AB /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F3D34890810C4D019B720D46 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F71C9CBDE84240A0891B551B /* InputMask.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = System/Library/Frameworks/InputMask.framework; sourceTree = SDKROOT; };
-		086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -751,6 +759,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE0FF4112346343B00CE13F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE0FF4152346343B00CE13F5 /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CE115A8221BAB760001BFF48 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +847,7 @@
 				319DE86875D543FA8242E861 /* libBVLinearGradient.a */,
 				F71C9CBDE84240A0891B551B /* InputMask.framework */,
 				2C5AB4786BD443A2B1406D6E /* InputMaskTests.xctest */,
+				30C63917B73B4A4EAB9D5E4A /* libRNCWebView.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1023,6 +1040,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = CE0FF4112346343B00CE13F5 /* Products */;
+					ProjectRef = 086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */;
 				},
 				{
 					ProductGroup = CE6077DA21CE6FBD006B94CD /* Products */;
@@ -1289,6 +1310,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CE0FF4152346343B00CE13F5 /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = CE0FF4142346343B00CE13F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CE115A8621BAB761001BFF48 /* libRCTOneSignal.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1481,7 +1509,7 @@
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.7;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
 				HEADER_SEARCH_PATHS = (
@@ -1491,7 +1519,7 @@
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)..\node_modules\neact-native-webviewios",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1504,7 +1532,7 @@
 					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1527,7 +1555,7 @@
 				CODE_SIGN_ENTITLEMENTS = diagnosticcenter/diagnosticcenter.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.7;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEVELOPMENT_TEAM = AV2A6Q25TV;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1536,7 +1564,7 @@
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)..\node_modules\neact-native-webviewios",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1549,7 +1577,7 @@
 					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
