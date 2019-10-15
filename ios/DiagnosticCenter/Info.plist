@@ -51,8 +51,12 @@
 	<string>some string value stating the reason</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>some string value stating the reason</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Местоположение необходимо, чтобы узнать, где вы находитесь.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Местоположение необходимо, чтобы узнать, где вы находитесь.</string>
+	<key>OneSignal_app_groups_key</key>
+	<string>group.com.izzisoftware.diagnosticcenter.onesignal</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

@@ -15,9 +15,9 @@
     "moment": "^2.24.0",
     "native-base": "^2.11.0",
     "prop-types": "^15.7.1",
-    "react": "16.8.1",
+    "react": "16.8.3",
     "react-i18next": "^9.0.10",
-    "react-native": "0.58.4",
+    "react-native": "0.59.10",
     "react-native-calendars": "^1.22.0",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-htmlview": "^0.13.0",
@@ -44,11 +44,12 @@
     "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
-    "babel-jest": "24.1.0",
-    "jest": "24.1.0",
-    "metro-react-native-babel-preset": "0.51.1",
-    "react-devtools": "^3.6.0",
-    "react-test-renderer": "16.8.1"
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native"

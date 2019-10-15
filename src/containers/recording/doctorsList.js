@@ -32,7 +32,7 @@ class DoctorList extends Component {
     return (
       <Container>
         <Header backButton={true} text={t('createrecord:form.select_doctor')} navigation = {this.props.navigation} /> 
-        <KeyboardAwareScrollView style={(isRequest) ? { flex: 1, justifyContent: 'center' } : {marginTop: -10, zIndex: 1, paddingTop: 10}}>
+        <KeyboardAwareScrollView contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {marginTop: -10, zIndex: 1, paddingTop: 10}}>
           {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
           (<View>
           {

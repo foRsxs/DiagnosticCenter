@@ -125,7 +125,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		marginTop: -width + height / 35,
 		zIndex: 1,
-		backgroundColor: 'rgba(0, 0, 0, 0)'
+		backgroundColor: 'transparent'
 	},
 	oval: {
 		width: width,
