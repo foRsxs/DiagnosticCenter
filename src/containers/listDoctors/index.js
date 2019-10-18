@@ -94,9 +94,9 @@ class ListDoctors extends Component {
                         key={item.docdep}
                         contentContainerStyle={(index===length.length-1)?{borderBottomWidth: 0}:{}}
                         onClick={() => {
-                          this.props.getDoctor(item.docdep);
-                          this.props.getQuestions(item.docdep);
-                          navigate('doctor',{doc_id: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docdep}.jpg`});
+                          this.props.getDoctor(item.docid);
+                          this.props.getQuestions(item.docid);
+                          navigate('doctor', {doc_id: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`});
                         }}
                         imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
                         name={`${item.lastname} ${item.firstname} ${item.secondname}`}

@@ -141,9 +141,9 @@ class ReceptionInfoItemScreen extends Component {
 
 	render() {
     const { t, infoListTalonInfo } = this.props;
-    
-		const status = infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
-		const paid_status = infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
+	
+		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
+		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
 
 		const { text: buttonPayText, color: buttonPayColor, showPayButton } = this.getButtonNameAndStatus(
 			status,

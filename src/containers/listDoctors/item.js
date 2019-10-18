@@ -140,7 +140,7 @@ class DoctorScreen extends Component {
   render() {
     const { tabProfile } = this.state;
     const { t, doctor } = this.props;
-
+    
     return (
       <Container>
         <View style={styles.imgWrap}>

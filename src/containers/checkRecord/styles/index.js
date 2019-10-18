@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import variables, { scale } from '../../../styles/variables';
 const { normal } = variables.fSize;
@@ -25,8 +25,8 @@ export default StyleSheet.create({
     buttonWrap: {
         position: 'absolute',
         backgroundColor: '#ffffff',
-        width: '100%',
-        bottom: 0,
+        width: Dimensions.get('window').width,
+        bottom: scale(80),
         zIndex: 14,
         height: scale(70),
         paddingTop: scale(10),
@@ -40,5 +40,10 @@ export default StyleSheet.create({
         paddingLeft: scale(50),
         paddingRight: scale(30),
         marginBottom: scale(20)
+    },
+    textInfo: {
+        marginTop: scale(10),
+        height: scale(60),
+        textAlign: 'center'
     }
 });

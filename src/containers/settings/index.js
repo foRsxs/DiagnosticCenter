@@ -111,8 +111,25 @@ class SettingsScreen extends Component {
               </Picker>
             </Form>
           </View>
+          
+          <View style={[styles.settingItem, { marginTop: 10 }]}>
+            <Text style={styles.headTxt}>{t('settings:items.push')}</Text>
+            <Switch
+              style={styles.switchStyle}
+              onValueChange={this.switchNotify}
+              value={local_notify}
+            />
+          </View>
+          <View style={[styles.settingItem, { marginTop: 20 }]}>
+            <Text style={styles.headTxt}>{(local_secure)? t('settings:items.secureDisable'): t('settings:items.secureEnable')}</Text>
+            <Switch
+              style={styles.switchStyle}
+              onValueChange={this.switchSecure}
+              value={local_secure}
+            />
+          </View>
           { ((enableSecure) &&(device_touch || device_face)) && (
-            <View style={styles.settingItem}>
+            <View style={[styles.settingItem, { marginTop: 10 }]}>
               <Text style={styles.headTxt}>{t('settings:items.auth')}</Text>
               <Form style={styles.form}>
                 {(device_touch) && (
@@ -149,27 +166,10 @@ class SettingsScreen extends Component {
               </Form>
             </View>
           )}
-          
-          <View style={[styles.settingItem, { marginTop: 10 }]}>
-            <Text style={styles.headTxt}>{t('settings:items.push')}</Text>
-            <Switch
-              style={styles.switchStyle}
-              onValueChange={this.switchNotify}
-              value={local_notify}
-            />
-          </View>
-          <View style={[styles.settingItem, { marginTop: 20 }]}>
-            <Text style={styles.headTxt}>{(local_secure)? t('settings:items.secureDisable'): t('settings:items.secureEnable')}</Text>
-            <Switch
-              style={styles.switchStyle}
-              onValueChange={this.switchSecure}
-              value={local_secure}
-            />
-          </View>
           {
             (pinCode) && (
               <TouchableOpacity 
-                style={{marginTop: 25}}
+                style={{marginTop: 10}}
                 activeOpacity={0.8}
                 onPress={()=> {
                   savePinCode({ code: null, confirmed: false });

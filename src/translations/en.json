@@ -120,7 +120,7 @@
         "short_room_text": "cab.",
         "item": {
             "title": "Appointments to the doctor",
-            "check_info": "check information",
+            "check_info": "Check information",
             "make_appointment": "you make an appointment",
             "selected_service": "selected service",
             "select_date": "Choose date of visit",
@@ -134,7 +134,8 @@
             "ok_time": "free numbers",
             "time_select": "selected time"
         },
-        "info_record": "Record Information"
+        "info_record": "Record Information",
+        "info_warning_text": "After making an appointment, you must pay within 15 minutes. In case of non-payment, the entry is canceled."
     },
     "createrecord": {
         "title": "Appointment",

@@ -66,7 +66,7 @@ class CheckRecordScreen extends Component {
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
-        <Header backButton={true} text={t('recordings:item.select_time')} navigation={this.props.navigation} />
+        <Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
         <Content>
           <View style={styles.wrapper}>
             <RecordingItem
@@ -139,7 +139,8 @@ class CheckRecordScreen extends Component {
         {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
-              <CustomBtn label={t('common:actions.confirm')} onClick={() => this.createOrder()} />
+              <CustomBtn label={t('common:actions.appointment')} onClick={() => this.createOrder()} />
+              <Text style={styles.textInfo}>{t('recordings:info_warning_text')}</Text>
             </View>
           )
         }

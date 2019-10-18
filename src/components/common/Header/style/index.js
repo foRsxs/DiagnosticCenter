@@ -9,9 +9,10 @@ const { large, normal } = variables.fSize;
 
 export default StyleSheet.create({
 	headerWrap: {
-		width: '100%',
+		width: width,
 		zIndex: 2,
-		backgroundColor: 'rgba(0, 0, 0, 0)'
+		backgroundColor: 'rgba(0, 0, 0, 0)',
+		overflow: 'hidden'
 	},
 	headerHomeWrap: {
 		flex: 1,
