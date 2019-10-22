@@ -127,7 +127,7 @@ export default StyleSheet.create({
     paddingRight: scale(10),
     fontSize: large,
     fontFamily: MAIN_FONT,
-    color: MEDIUM_BLACK,
+    color: BLACK,
     backgroundColor: WHITE,
   },
   title: {

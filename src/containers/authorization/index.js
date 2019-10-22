@@ -200,7 +200,7 @@ class AuthorizationScreen extends Component {
 							maxLength={18}
 							keyboardType="number-pad"
 							returnKeyType="done"
-							placeholder={'+7 (777) 123-45-67'}
+							placeholder={'+7 (___) ___-__-__'}
 							value={this.state.formattedNumber}
 							style={[ styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE } ]}
 							onChangeText={(text) => {

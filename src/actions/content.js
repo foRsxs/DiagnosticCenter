@@ -146,7 +146,7 @@ export function getListServices(id, type, auto_push = false) {
   };
 }
 
-export function getDoctor(doc_id) {
+export function getDoctor(docdep) {
   return (dispatch, getState) => {
     const {
       authorization: { language }
@@ -156,7 +156,7 @@ export function getDoctor(doc_id) {
 
     axios
       .post(`${APP_API_URL}/doctor`, {
-        doc_id,
+        docdep,
         lang: language
       })
       .then(response => {
