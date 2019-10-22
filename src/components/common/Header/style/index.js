@@ -144,7 +144,8 @@ export default StyleSheet.create({
 	inputContainerSearch: {
 		flex: 9,
 		position: 'relative',
-		marginLeft: scale(40)
+		marginLeft: scale(40),
+		marginRight: scale(40)
 	},
 	searchIcon: {
 		position: 'absolute',
@@ -154,12 +155,24 @@ export default StyleSheet.create({
 		width: scale(18),
 		height: scale(18)
 	},
+	cancelContainer: {
+		position: 'absolute',
+		zIndex: 5,
+		right: scale(5),
+		top: scale(5),
+		width: scale(25),
+		height: scale(25)
+	},
+	cancelIcon: {
+		width: '100%',
+		height: '100%'
+	},
 	input: {
 		width: '100%',
 		height: scale(35),
 		padding: 0,
 		paddingLeft: scale(30),
-		paddingRight: scale(10),
+		paddingRight: scale(30),
 		borderRadius: scale(5),
 		backgroundColor: WHITE,
 		fontSize: normal

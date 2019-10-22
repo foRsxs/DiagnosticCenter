@@ -11,7 +11,8 @@ import {
 	ICON_OFTEN_QUESTION,
 	ICON_LOGO,
 	ICON_PHONE,
-	ICON_SEARCH
+	ICON_SEARCH,
+	ICON_CANCEL
 } from '../../../styles/images';
 import { scale } from '../../../styles/variables';
 
@@ -86,6 +87,9 @@ class Header extends Component {
 							<View style={(backButton) ? styles.inputContainerSearch : styles.inputContainer}>
 								<Image style={styles.searchIcon} resizeMode='contain' source={ICON_SEARCH} />
 								<TextInput style={[styles.input]} placeholder='' onChangeText={(text) => this.props.onChangeSearch(text)} />
+								<TouchableOpacity style={styles.cancelContainer} onPress={() =>  this.props.onClearSearch()}>
+									<Image style={styles.cancelIcon} resizeMode='contain' source={ICON_CANCEL} />
+								</TouchableOpacity>
 							</View>
 						)
 					}

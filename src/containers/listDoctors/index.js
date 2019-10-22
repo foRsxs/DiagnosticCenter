@@ -62,6 +62,12 @@ class ListDoctors extends Component {
     this.setState({ sorted_list_Doctors: array});
   }
 
+  handleClear = () => {
+    this.setState({
+      sorted_list_Doctors: this.props.list_Doctors
+    });
+  }
+
   handleBackButtonClick = () => {
     this.props.navigation.goBack(null);
     return true;
@@ -78,7 +84,7 @@ class ListDoctors extends Component {
 
     return (
       <Container>
-        <Header search={true} onChangeSearch={this.handleChange}/>
+        <Header search={true} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
         <KeyboardAwareScrollView style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
           { (isRequest) ? 
             ( <ActivityIndicator size="large" color={ACCENT_BLUE} /> )
@@ -95,7 +101,7 @@ class ListDoctors extends Component {
                         contentContainerStyle={(index===length.length-1)?{borderBottomWidth: 0}:{}}
                         onClick={() => {
                           this.props.getDoctor(item.docdep);
-                          this.props.getQuestions(item.docid);
+                          this.props.getQuestions(item.docdep);
                           navigate('doctor', {doc_id: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`});
                         }}
                         imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 

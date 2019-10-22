@@ -3,6 +3,7 @@ export const ICON_OFTEN_QUESTION = require('../../assets/img/icon-often-question
 export const ICON_LOGO = require('../../assets/img/logo.png');
 export const ICON_PHONE = require('../../assets/img/icon-phone.png');
 export const ICON_SEARCH = require('../../assets/img/search-icon.png');
+export const ICON_CANCEL = require('../../assets/img/icon-cancel.png');
 export const ICON_UPDATE = require('../../assets/img/icon-update.png');
 export const ICON_MORE = require('../../assets/img/icon-more.png');
 export const NEW_ARROW = require('../../assets/img/new_arrow.png');

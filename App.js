@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Root } from 'native-base';
 import { Alert } from 'react-native';
-import NetInfo from "@react-native-community/netinfo";
+// import NetInfo from "@react-native-community/netinfo";
 import { Provider } from 'react-redux';
 import { offlineActionTypes } from 'react-native-offline';
 import OneSignal from 'react-native-onesignal';
@@ -33,16 +33,16 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		const unsubscribe = NetInfo.addEventListener(state => {
-			this.state.store.dispatch({
-				type: offlineActionTypes.CONNECTION_CHANGE,
-				payload: state.isConnected
-			});
-		});
+		// const unsubscribe = NetInfo.addEventListener(state => {
+		// 	this.state.store.dispatch({
+		// 		type: offlineActionTypes.CONNECTION_CHANGE,
+		// 		payload: state.isConnected
+		// 	});
+		// });
 	}
 
 	componentWillUnmount = () => {
-		unsubscribe();
+		// unsubscribe();
 		OneSignal.removeEventListener('opened', this._onOpened);
 	};
 

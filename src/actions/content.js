@@ -290,7 +290,7 @@ export function getVacantion(post_id) {
   };
 }
 
-export function getQuestions(doc_id) {
+export function getQuestions(docdep) {
   return (dispatch, getState) => {
     const {
       authorization: { token, language },
@@ -301,7 +301,7 @@ export function getQuestions(doc_id) {
 
     axios
       .post(`${APP_API_URL}/questions`, {
-        doc_id,
+        docdep,
         api_token: token,
         lang: language
       })
