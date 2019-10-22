@@ -8,18 +8,20 @@ export default StyleSheet.create({
 	wrapContainer: {
         justifyContent: 'space-between', 
         flexDirection: 'column', 
-        height: '100%'
+        flex: 1
     },
     profileBlock: {
         paddingTop: scale(20),
         paddingBottom: scale(20),
         paddingHorizontal: scale(40),
         borderBottomWidth: 1,
-        borderColor: COLOR_BORDER
+        borderColor: COLOR_BORDER,
+        flex: 2
     },
     profileItem: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'flex-start',
+        marginBottom: scale(5)
     },
     titles: {
         fontSize: medium,
@@ -30,6 +32,7 @@ export default StyleSheet.create({
     text: {
         fontSize: medium,
         color: DARK_GREY,
-        fontFamily: MAIN_FONT
+        fontFamily: MAIN_FONT,
+        flexShrink: 1
     }
 });
