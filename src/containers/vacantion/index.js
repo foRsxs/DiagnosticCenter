@@ -14,56 +14,69 @@ import variables from '../../styles/variables';
 const { medium } = variables.fSize;
 
 class VacantionScreen extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-  constructor(props) {
-    super(props);
-  }
+	componentDidMount() {
+		this.props.getListVacantion();
+	}
 
-  componentDidMount() {
-    this.props.getListVacantion();
-  }
+	render() {
+		const { navigate } = this.props.navigation;
+		const { t, isRequest, listVacantion } = this.props;
 
-  render() {
-    const { navigate } = this.props.navigation;
-    const { t, isRequest, listVacantion } = this.props;
-
-    return (
-      <Container contentContainerStyle={styles.mainContainer}>
-        <Header backButton={true} text={t('vacantion:title')} navigation={this.props.navigation} />
-        <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
-          <List>
-            {
-              (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
-              ((listVacantion && listVacantion.length) ? (
-                  listVacantion.map((item, i) => (
-                    <ListItem key={i} onPress={() => navigate({ routeName: 'vacantionItem', params: { header_title: item.title, post_id: item.id }, key: item.id })} style={styles.questionItem}>
-                      <Left>
-                        <Text style={styles.questionItemText}>{item.title}</Text>
-                      </Left>
-                      <Right>
-                        <Icon style={styles.arrow} active name="ios-arrow-forward" />
-                      </Right>
-                    </ListItem>
-                  ))
-                ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('vacantion:no_information_text')}</Text>)
-              )
-            }
-          </List>
-        </Content>
-      </Container>
-    )
-  }
+		return (
+			<Container contentContainerStyle={styles.mainContainer}>
+				<Header backButton={true} text={t('vacantion:title')} navigation={this.props.navigation} />
+				<Content
+					style={styles.mainContent}
+					contentContainerStyle={isRequest ? { flex: 1, justifyContent: 'center' } : {}}
+				>
+					<List>
+						{isRequest ? (
+							<ActivityIndicator size="large" color={ACCENT_BLUE} />
+						) : listVacantion && listVacantion.length ? (
+							listVacantion.map((item, i) => (
+								<ListItem
+									key={i}
+									onPress={() =>
+										navigate({
+											routeName: 'vacantionItem',
+											params: { header_title: item.title, post_id: item.id },
+											key: item.id
+										})}
+									style={styles.questionItem}
+								>
+									<Left>
+										<Text style={styles.questionItemText}>{item.title}</Text>
+									</Left>
+									<Right>
+										<Icon style={styles.arrow} active name="ios-arrow-forward" />
+									</Right>
+								</ListItem>
+							))
+						) : (
+							<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>
+								{t('vacantion:no_information_text')}
+							</Text>
+						)}
+					</List>
+				</Content>
+			</Container>
+		);
+	}
 }
 
 function mapStateToProps(state) {
-  return {
-    listVacantion: state.content.listVacantion.list,
-    isRequest: state.content.isRequest
-  }
+	return {
+		listVacantion: state.content.listVacantion.list,
+		isRequest: state.content.isRequest
+	};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch);
+	return bindActionCreators(ContentActions, dispatch);
 }
 
 export default withNamespaces('vacantion')(connect(mapStateToProps, mapDispatchToProps)(VacantionScreen));
