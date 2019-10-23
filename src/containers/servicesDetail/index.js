@@ -51,6 +51,10 @@ class ServicesDetailScreen extends Component {
     this.setState({ services: this.props.orderDatas.services.filter(findElements)});
   }
 
+  handleClear = () => {
+    this.setState({ services: this.props.orderDatas.services });
+  }
+
   onClick = (serv) => {
     const { isOrder, spec_value, spec_id } = this.state;
     const { t, setOrderValue, setOrder, navigation, isGuest, setAuthMessage, setActiveTab } = this.props;
@@ -82,7 +86,7 @@ class ServicesDetailScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
+            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               { (isOrder) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
               {

@@ -34,7 +34,7 @@ class OftenQuestionsScreen extends Component {
 			return item.question.toLowerCase().indexOf(value.toLowerCase()) !== -1;
 		}
 		this.setState({ sorted_questions: questions.filter(findElements) });
-	}
+	};
 
 	render() {
 		const { t, isRequest } = this.props;
@@ -43,40 +43,38 @@ class OftenQuestionsScreen extends Component {
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} textUpper={t('faq:title')} navigation={this.props.navigation} />
-				<Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
-				{
-					(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
-					((sorted_questions && sorted_questions.length) ? (
-							<View>
-								<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
-								<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
-								{ (sorted_questions.map((item, index) => (
-									<OftenQuestionItem
-										key={index}
-										text={item.question}
-										textAnswer={item.answer}
-									/>
-								)))}
-							</View>
-						) : (
-							<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
-						))
-				}
-				</Content >
+				<Content
+					style={styles.mainContent}
+					contentContainerStyle={isRequest ? { flex: 1, justifyContent: 'center' } : {}}
+				>
+					{isRequest ? (
+						<ActivityIndicator size="large" color={ACCENT_BLUE} />
+					) : sorted_questions && sorted_questions.length ? (
+						<View>
+							<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
+							<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>
+							{sorted_questions.map((item, index) => (
+								<OftenQuestionItem key={index} text={item.question} textAnswer={item.answer} />
+							))}
+						</View>
+					) : (
+						<Text style={styles.noText}>{t('faq:no_often_questions_text')}</Text>
+					)}
+				</Content>
 			</Container>
-		)
+		);
 	}
 }
 
 function mapStateToProps(state) {
 	return {
 		questions: state.content.questions.often,
-    isRequest: state.content.isRequest
-	}
+		isRequest: state.content.isRequest
+	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators(ContentActions, dispatch)
+	return bindActionCreators(ContentActions, dispatch);
 }
 
-export default withNamespaces(['faq', 'common'])(connect(mapStateToProps, mapDispatchToProps)(OftenQuestionsScreen));
+export default withNamespaces([ 'faq', 'common' ])(connect(mapStateToProps, mapDispatchToProps)(OftenQuestionsScreen));

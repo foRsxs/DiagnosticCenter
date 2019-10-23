@@ -63,9 +63,7 @@ class ListDoctors extends Component {
   }
 
   handleClear = () => {
-    this.setState({
-      sorted_list_Doctors: this.props.list_Doctors
-    });
+    this.setState({ sorted_list_Doctors: this.props.list_Doctors });
   }
 
   handleBackButtonClick = () => {

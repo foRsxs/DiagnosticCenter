@@ -24,6 +24,14 @@ class ServicesScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getListSpecialization(3);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization });
+  }
+
   handleChange = (value) => {
     const { list_specialization } = this.props;
 
@@ -36,12 +44,8 @@ class ServicesScreen extends Component {
     this.setState({ sorted_list_specialization: list_specialization.filter(findElements) });
   }
 
-  componentDidMount() {
-    this.props.getListSpecialization(3);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({ sorted_list_specialization: this.props.list_specialization });
+  handleClear = () => {
+    this.setState({ sorted_list_specialization: this.props.list_specialization });
   }
 
   onClick = (spec) => {
@@ -72,7 +76,7 @@ class ServicesScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
+            <Header search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               <List style={styles.list}>
                 {

@@ -37,6 +37,10 @@ class SpecializationScreen extends Component {
     this.setState({ specialities: this.props.orderDatas.specialities.filter(findElements)});
   }
 
+  handleClear = () => {
+    this.setState({ specialities: this.props.orderDatas.specialities });
+  }
+
   render() {
     const { specialities } = this.state;
     const { t, isRequest, order, setOrder, navigation, setOrderValue, setActiveTab } = this.props;
@@ -45,7 +49,7 @@ class SpecializationScreen extends Component {
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
-            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} />
+            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
                 <View>                  

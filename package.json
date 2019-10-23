@@ -7,7 +7,8 @@
     "test": "jest",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "postinstall": "jetifier -r"
+    "postinstall": "jetifier -r",
+    "clean": "cd android && ./gradlew clean && cd ../"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",

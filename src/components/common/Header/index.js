@@ -19,6 +19,9 @@ import { scale } from '../../../styles/variables';
 class Header extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			searchText: ''
+		}
 	}
 
 	render() {
@@ -86,10 +89,27 @@ class Header extends Component {
 						(search) && (
 							<View style={(backButton) ? styles.inputContainerSearch : styles.inputContainer}>
 								<Image style={styles.searchIcon} resizeMode='contain' source={ICON_SEARCH} />
-								<TextInput style={[styles.input]} placeholder='' onChangeText={(text) => this.props.onChangeSearch(text)} />
-								<TouchableOpacity style={styles.cancelContainer} onPress={() =>  this.props.onClearSearch()}>
-									<Image style={styles.cancelIcon} resizeMode='contain' source={ICON_CANCEL} />
-								</TouchableOpacity>
+								<TextInput 
+									style={[styles.input]} 
+									placeholder=''
+									value = { this.state.searchText }
+									onChangeText={(text) => {
+										this.setState({ searchText: text });
+										this.props.onChangeSearch(text);
+									}}
+								/>
+								{ 
+									(this.state.searchText !== '') &&
+										<TouchableOpacity 
+											style={styles.cancelContainer} 
+											onPress={() =>  {
+												this.setState({ searchText: '' });
+												this.props.onClearSearch();
+											}}
+										>
+											<Image style={styles.cancelIcon} resizeMode='contain' source={ICON_CANCEL} />
+										</TouchableOpacity>
+								}
 							</View>
 						)
 					}
