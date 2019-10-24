@@ -36,20 +36,10 @@ class ScanCodeScreen extends Component {
   }
 
   onScannerSuccess = (e) => {
-    console.log(e);
     this.setState({
       showScanner: false,
       showResult: true,
-      scanData: {
-        "number": "9344032-1",
-        "date_begin": "16.08.2019",
-        "date_end" : "21.08.2019",
-        "iin": "900722401771",
-        "lastname": "Петров",
-        "firstname": "Иван",
-        "patronymic": "Александрович",
-        "org_name": "ГДЦ Шымкент - уточнить необходимое"
-      }
+      scanData: (e.data) ? JSON.parse(e.data): null
     });
   }
 
