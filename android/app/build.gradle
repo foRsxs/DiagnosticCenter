@@ -107,6 +107,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10006
         versionName "1.0.6"
+        missingDimensionStrategy 'react-native-camera', 'general'
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -149,6 +151,10 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-permissions')
+    implementation (project(':react-native-camera')){
+        exclude group: 'com.google.android.gms', module: 'play-services-vision'
+    }
     implementation project(':@react-native-community_async-storage')
     implementation project(':@react-native-community_netinfo')
     implementation project(':react-native-webview')
@@ -163,6 +169,7 @@ dependencies {
     implementation project(':react-native-share')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-touch-id')
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 // Run this once to be able to run the application with BUCK

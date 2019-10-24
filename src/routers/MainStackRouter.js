@@ -37,6 +37,7 @@ import TimeScreen from '../containers/timeScreen';
 import CheckRecordScreen from '../containers/checkRecord';
 import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
+import ScanCodeScreen from '../containers/scanCode';
 import PaymentScreen from '../containers/payment';
 
 const ProfileNavigator = createStackNavigator(
@@ -146,6 +147,12 @@ const MainNavigator = createStackNavigator(
         header: null
       }
     },
+    scanCode: {
+      screen: ScanCodeScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
     information: {
       screen: InfoScreen,
       navigationOptions: {
@@ -181,7 +188,7 @@ MainNavigator.navigationOptions = ({ navigation }) => {
   let navigationOptions = {};
   
   if (routeName === 'oftenQuestions' || routeName === 'contacts' || routeName === 'faq'
-    || routeName === 'information' || routeName === 'informationItem') {
+    || routeName === 'information' || routeName === 'informationItem' || routeName === 'scanCode') {
     navigationOptions.tabBarVisible = false;
   }
 

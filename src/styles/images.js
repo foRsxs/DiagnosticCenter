@@ -29,6 +29,7 @@ export const ICON_CONTACT = require('../../assets/img/icon-contact.png');
 export const ICON_INFO = require('../../assets/img/icon-info.png');
 export const ICON_VACANCY = require('../../assets/img/icon-vacancy.png');
 export const ICON_QUESTION = require('../../assets/img/icon-question.png');
+export const ICON_SCAN_QRCODE = require('../../assets/img/icon-scan-qrcode.png');
 export const ICON_CARD_PATIENT = require('../../assets/img/icon-card-patient.png');
 export const ICON_ANALIZE = require('../../assets/img/icon-analize.png');
 export const ICON_JOURNAL_POSTS = require('../../assets/img/icon-journal-posts.png');

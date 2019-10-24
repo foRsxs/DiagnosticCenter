@@ -15,7 +15,7 @@ import MenuList from '../../components/common/MenuList';
 import styles from './styles';
 
 import { ACCENT_BLUE, COLOR_LIGHT_GRAY, WHITE } from '../../styles/constants';
-import { ICON_CONTACT, ICON_INFO, ICON_VACANCY, ICON_QUESTION } from '../../styles/images';
+import { ICON_CONTACT, ICON_INFO, ICON_VACANCY, ICON_QUESTION, ICON_SCAN_QRCODE } from '../../styles/images';
 
 class HomeScreen extends Component {
 
@@ -74,6 +74,11 @@ class HomeScreen extends Component {
           text: t(`home:menu_list.faq`),
           icon: ICON_QUESTION,
           value: 'oftenQuestions'
+        },
+        {
+          text: t(`home:menu_list.qrcode`),
+          icon: ICON_SCAN_QRCODE,
+          value: 'scanCode'
         },
       ]
     })

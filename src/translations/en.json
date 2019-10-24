@@ -86,7 +86,22 @@
             "contacts": "Contacts",
             "information": "Information",
             "vacancy": "Vacancies",
-            "faq": "FAQ"
+            "faq": "FAQ",
+            "qrcode": "Scan QR code"
+        }
+    },
+    "scanqrcode": {
+        "title": "Verification result",
+        "item": {
+            "title": "Hospital sheet",
+            "number": "Number",
+            "date_begin": "Start date",
+            "date_end": "End date",
+            "iin": "IIN",
+            "lastname": "Last name",
+            "firstname": "Name",
+            "patronymic": "Middle name",
+            "org_name": "Medical organization"
         }
     },
     "listdoctors": {

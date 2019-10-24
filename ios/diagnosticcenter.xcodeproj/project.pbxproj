@@ -66,6 +66,8 @@
 		FB6246F014EE4ECBBC35453F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0F98FA7DF85490A9A7313E8 /* Octicons.ttf */; };
 		612DB3E053DE40518366B935 /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE125AF7ABFC4153BD861320 /* libRNCNetInfo.a */; };
 		19AF294B39F84CE69AA65A51 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B35EDDEFCB44E9BB9885F34 /* libRNCAsyncStorage.a */; };
+		5F87D752766F465DB749AB37 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7AC1051BBF474F822A9ACC /* libRNCamera.a */; };
+		61EDC167CE864BA9977FEA0D /* libRNPermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8E42C66FE94818A50907E9 /* libRNPermissions.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -519,6 +521,10 @@
 		CE125AF7ABFC4153BD861320 /* libRNCNetInfo.a */ = {isa = PBXFileReference; name = "libRNCNetInfo.a"; path = "libRNCNetInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		A2955B7595BB4A3F8A2020AA /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		5B35EDDEFCB44E9BB9885F34 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2DD9C1E17AC947D3A0D5D583 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; name = "RNCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1E7AC1051BBF474F822A9ACC /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B4953EDD112543A4BEA65238 /* RNPermissions.xcodeproj */ = {isa = PBXFileReference; name = "RNPermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ios/RNPermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2D8E42C66FE94818A50907E9 /* libRNPermissions.a */ = {isa = PBXFileReference; name = "libRNPermissions.a"; path = "libRNPermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +562,8 @@
 				D5F22FCBDB13478BA6EEBF40 /* libRNCWebView.a in Frameworks */,
 				612DB3E053DE40518366B935 /* libRNCNetInfo.a in Frameworks */,
 				19AF294B39F84CE69AA65A51 /* libRNCAsyncStorage.a in Frameworks */,
+				5F87D752766F465DB749AB37 /* libRNCamera.a in Frameworks */,
+				61EDC167CE864BA9977FEA0D /* libRNPermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +748,8 @@
 				086C5416D5D0468CAE785725 /* RNCWebView.xcodeproj */,
 				949EA893558C461F9772BE88 /* RNCNetInfo.xcodeproj */,
 				A2955B7595BB4A3F8A2020AA /* RNCAsyncStorage.xcodeproj */,
+				2DD9C1E17AC947D3A0D5D583 /* RNCamera.xcodeproj */,
+				B4953EDD112543A4BEA65238 /* RNPermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1558,6 +1568,8 @@
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/netinfo/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1604,6 +1616,8 @@
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/netinfo/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
