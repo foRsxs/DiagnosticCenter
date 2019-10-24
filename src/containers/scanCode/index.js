@@ -41,14 +41,13 @@ class ScanCodeScreen extends Component {
 
   renderScannerResult = () => {
     const { t } = this.props;
-    const { navigate } = this.props.navigation;
     const { scanData } = this.state;
 
     if (!scanData) return false;
 
     return (
       <Container contentContainerStyle={styles.сontainerResult}>
-        <Header backButton={true} text={t('scanqrcode:title')} navigation={navigate} />
+        <Header backButton={true} text={t('scanqrcode:title')} navigation={this.props.navigation} />
         <Content contentContainerStyle={styles.resultWrapper}>
           <View style={styles.itemFields}>
             <Text style={styles.itemTitle}>{t('scanqrcode:item.title')}</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View, Alert } from 'react-native';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
@@ -15,6 +15,7 @@ import styles from './styles';
 
 import { IMAGE_WELCOME_1, IMAGE_WELCOME_2, IMAGE_WELCOME_3 } from '../../styles/images';
 import { COLOR_TEXT_GREEN } from '../../styles/constants';
+import { APP_NAME } from '../../config';
 
 class WelcomeScreen extends Component {
 
@@ -45,31 +46,8 @@ class WelcomeScreen extends Component {
           imgStyle: { width: '100%', height: 280 } 
         }
 			]
-    };
-		this.renderDetail = this.renderDetail.bind(this);
-		
+    }
 	}
-
-	_checkWelcome = () => {
-		const { hideScreen, token, enableSecure, t } = this.props;
-		const { navigate } = this.props.navigation;
-
-		if (!hideScreen) {
-			OneSignal.getPermissionSubscriptionState((state) => {
-				let isTrueSet = (state.userSubscriptionEnabled == 'true'); 
-
-				this.props.changeNotify(isTrueSet);
-			});
-		}
-
-		if (hideScreen && token && enableSecure) {
-			navigate('AuthMethods');
-		} else if (hideScreen && token && !enableSecure) {
-			navigate('App');
-		} else if (hideScreen && !token) {
-			navigate('App');
-		}
-	};
 
 	componentDidMount() {
 		const { notify, languages_key, token } = this.props;
@@ -83,24 +61,39 @@ class WelcomeScreen extends Component {
 		
 		SplashScreen.hide();
 		this._checkWelcome();
+  }
+  
+	_checkWelcome = () => {
+		const { hideScreen, token, enableSecure } = this.props;
+		const { navigate } = this.props.navigation;
+
+		if (!hideScreen) {
+			OneSignal.getPermissionSubscriptionState((state) => {
+				let isTrueSet = (state.userSubscriptionEnabled == 'true'); 
+
+				this.props.changeNotify(isTrueSet);
+			});
+		}
+
+    if (hideScreen && token && enableSecure) {
+      navigate('AuthMethods');
+    } else if (hideScreen && !enableSecure) {
+      navigate('App');
+    }
 	}
 
-	renderImage(image, style) {
+	renderImage = (image, style) => {
 		return <Image style={style} resizeMode='contain' source={image} />
 	}
 
-	renderDetail(rowData) {
-		let title = <Text style={styles.darkText}>{rowData.title}<Text style={styles.textBold}> {rowData.titleBold} </Text>{rowData.title1}<Text style={styles.textBold}> {rowData.titleBold1} </Text>{rowData.title2}</Text>
-		var desc = (
-			<View>
-				{this.renderImage(rowData.image, rowData.imgStyle)}
-				{(rowData.desc) && (<Text style={styles.darkText}>{rowData.desc} <Text style={styles.textBold}>"{rowData.desc1}"</Text> {rowData.desc2}{"\n"}</Text>)}
-			</View>
-		)
+	renderDetail = (rowData) => {
 		return (
 			<View style={{ flex: 1 }}>
-				{title}
-				{desc}
+				<Text style={styles.darkText}>{rowData.title}<Text style={styles.textBold}> {rowData.titleBold} </Text>{rowData.title1}<Text style={styles.textBold}> {rowData.titleBold1} </Text>{rowData.title2}</Text>
+        <View>
+          {this.renderImage(rowData.image, rowData.imgStyle)}
+          {(rowData.desc) && (<Text style={styles.darkText}>{rowData.desc} <Text style={styles.textBold}>"{rowData.desc1}"</Text> {rowData.desc2}{"\n"}</Text>)}
+        </View>
 			</View>
 		)
 	}
@@ -150,6 +143,7 @@ function mapStateToProps(state) {
 		notify: state.authorization.notify,
     languages_key: state.authorization.language,
     user: state.authorization.user,
+    appVersion: state.content.appParamsConfig ? state.content.appParamsConfig.find((item) => item.name == 'version') : null,
 	}
 }
 
