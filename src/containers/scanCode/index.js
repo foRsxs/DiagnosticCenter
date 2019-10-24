@@ -5,11 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 import Header from '../../components/common/Header';
-
 import styles from './styles';
-import { ACCENT_BLUE, MAIN_FONT } from '../../styles/constants';
-import variables from '../../styles/variables';
-const { medium } = variables.fSize;
 
 class ScanCodeScreen extends Component {
 	constructor(props) {
@@ -39,7 +35,7 @@ class ScanCodeScreen extends Component {
     this.setState({
       showScanner: false,
       showResult: true,
-      scanData: (e.data) ? JSON.parse(e.data): null
+      scanData: (e.data) ? JSON.parse(e.data) : null
     });
   }
 

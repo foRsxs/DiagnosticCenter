@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler } from 'react-native';
+import { StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
 import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { withNavigationFocus } from 'react-navigation';
@@ -23,10 +23,8 @@ import {
 	BLACK,
 	MAIN_FONT,
 	COLOR_LIGHT_BLACK,
-	GREEN
 } from '../../styles/constants';
 import {
-	ICON_SPEC_SMALL,
 	ICON_SERVICE_SMALL,
 	ICON_DOCTOR_SMALL,
 	ICON_CALENDAR_SMALL,
@@ -38,27 +36,7 @@ import {
 class ReceptionInfoItemScreen extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
-			type: props.navigation.state.params ? props.navigation.state.params.type : null,
-			date: props.navigation.state.params ? props.navigation.state.params.dd : null,
-			rnumb_id: props.navigation.state.params ? props.navigation.state.params.rnumb_id : null,
-			room: props.navigation.state.params ? props.navigation.state.params.room : null,
-			serv_id: props.navigation.state.params ? props.navigation.state.params.serv_id : null,
-			time: props.navigation.state.params ? props.navigation.state.params.time : null,
-			reserved: props.navigation.state.params ? props.navigation.state.params.reserved : false,
-			doctor: props.navigation.state.params ? props.navigation.state.params.doctor : null,
-			spec: props.navigation.state.params ? props.navigation.state.params.spec : null,
-			serv: props.navigation.state.params ? props.navigation.state.params.serv : null,
-			price: props.navigation.state.params ? props.navigation.state.params.price : null,
-			headTxt: props.navigation.state.params
-				? `${props.navigation.state.params.doctor}, ${props.navigation.state.params.spec}`
-				: null,
-			dateTxt: props.navigation.state.params
-				? `${props.navigation.state.params.dd} ${props.navigation.state.params.time}`
-				: null,
-			pdf: props.navigation.state.params ? props.navigation.state.params.pdf : null,
-			code_serv: props.navigation.state.params ? props.navigation.state.params.code_serv : null,
 			modalVisible: false,
 			hideButton: false
 		};
@@ -74,6 +52,7 @@ class ReceptionInfoItemScreen extends Component {
 
 	componentDidUpdate(prevProps) {
 		const { payLink, isFocused, navigation } = this.props;
+
 		if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated)
 			this.setState({ modalVisible: true });
 		if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted)
@@ -88,21 +67,17 @@ class ReceptionInfoItemScreen extends Component {
 		return true;
 	};
 
-	_onClick = () => {
-		const { reserved, rnumb_id, date, serv_id, type } = this.state;
+	_onClickDelete = () => {
+		const { infoListTalonInfo } = this.props;
 
-		if (!reserved) {
-			this.props.saveOrder({ rnumb_id, date, serv_id, type });
-		} else {
-			this.props.deleteOrder({ rnumb_id });
-			this.props.navigation.goBack(null);
-		}
+		this.props.deleteOrder({ rnumb_id: infoListTalonInfo.rnumb_id });
+		this.props.navigation.goBack(null);
 	};
 
 	_onClickPayButton = () => {
-		const { rnumb_id, code_serv } = this.state;
-		const { getLinkForPayment } = this.props;
-		getLinkForPayment(rnumb_id, code_serv);
+		const { infoListTalonInfo, getLinkForPayment } = this.props;
+		
+		getLinkForPayment(infoListTalonInfo.rnumb_id, infoListTalonInfo.code_serv);
 	};
 
 	_save = () => {
@@ -140,10 +115,12 @@ class ReceptionInfoItemScreen extends Component {
 	};
 
 	render() {
-    const { t, infoListTalonInfo } = this.props;
+    const { t, infoListTalonInfo, isRequest } = this.props;
 	
 		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
 		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
+		const headTxt = `${infoListTalonInfo.doctor}, ${infoListTalonInfo.spec}`;
+		const dateTxt = `${infoListTalonInfo.dd} ${infoListTalonInfo.time}`;
 
 		const { text: buttonPayText, color: buttonPayColor, showPayButton } = this.getButtonNameAndStatus(
 			status,
@@ -151,106 +128,101 @@ class ReceptionInfoItemScreen extends Component {
 		);
 
 		const {
-			reserved,
 			modalVisible,
 			hideButton,
-			date,
-			time,
-			room,
-			doctor,
-			spec,
-			serv,
-			price,
-			pdf,
-			headTxt,
-			dateTxt
 		} = this.state;
 
 		return (
-			<Container
-				contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}
-			>
+			<Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
 				<Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
-				<Content>
-					<View style={styles.wrapper}>
-						<RecordingItem
-							icon={ICON_SERVICE_SMALL}
-							title={t('createrecord:form.service')}
-							placeholder={t('createrecord:form.select_service')}
-							text={serv}
-						/>
-						<View style={styles.datetimeWrap}>
-							<View style={{ flex: 3 }}>
-								<RecordingItem
-									icon={ICON_PRICE_SMALL}
-									title={t('createrecord:price')}
-									placeholder={t('createrecord:price')}
-									text={`${price} KZT`}
-								/>
-							</View>
-							<View style={styles.separator} />
-							<View style={{ flex: 2 }}>
-								<RecordingItem
-									contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
-									icon={ICON_NUMBER_SMALL}
-									title={t('createrecord:room_number')}
-									text={room}
-									placeholder="300"
-								/>
-							</View>
+					{ isRequest ? (
+						<View style={{ flex: 1, height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+							<ActivityIndicator size="large" color={ACCENT_BLUE} />
 						</View>
-						<RecordingItem
-							icon={ICON_DOCTOR_SMALL}
-							title={t('createrecord:form.doctor')}
-							placeholder={t('createrecord:form.select_doctor')}
-							text={doctor}
-						/>
-						<View style={styles.datetimeWrap}>
-							<View style={{ flex: 2 }}>
+					) : (
+					<View style={{ flex: 1, height: '100%'}}>
+						<Content>
+							<View style={styles.wrapper}>
 								<RecordingItem
-									icon={ICON_CALENDAR_SMALL}
-									title={t('createrecord:form.date')}
-									placeholder={t('createrecord:form.select_date')}
-									text={date}
+									icon={ICON_SERVICE_SMALL}
+									title={t('createrecord:form.service')}
+									placeholder={t('createrecord:form.select_service')}
+									text={infoListTalonInfo.serv}
+								/>
+								<View style={styles.datetimeWrap}>
+									<View style={{ flex: 3 }}>
+										<RecordingItem
+											icon={ICON_PRICE_SMALL}
+											title={t('createrecord:price')}
+											placeholder={t('createrecord:price')}
+											text={`${infoListTalonInfo.total} KZT`}
+										/>
+									</View>
+									<View style={styles.separator} />
+									<View style={{ flex: 2 }}>
+										<RecordingItem
+											contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
+											icon={ICON_NUMBER_SMALL}
+											title={t('createrecord:room_number')}
+											text={infoListTalonInfo.room}
+											placeholder="300"
+										/>
+									</View>
+								</View>
+								<RecordingItem
+									icon={ICON_DOCTOR_SMALL}
+									title={t('createrecord:form.doctor')}
+									placeholder={t('createrecord:form.select_doctor')}
+									text={infoListTalonInfo.doc}
+								/>
+								<View style={styles.datetimeWrap}>
+									<View style={{ flex: 2 }}>
+										<RecordingItem
+											icon={ICON_CALENDAR_SMALL}
+											title={t('createrecord:form.date')}
+											placeholder={t('createrecord:form.select_date')}
+											text={infoListTalonInfo.dd}
+										/>
+									</View>
+									<View style={styles.separator} />
+									<View style={{ flex: 1 }}>
+										<RecordingItem
+											contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
+											icon={ICON_TIME_SMALL}
+											title={t('createrecord:form.time')}
+											placeholder="12:00"
+											text={infoListTalonInfo.time}
+										/>
+									</View>
+								</View>
+							</View>
+							{infoListTalonInfo.pdf && <ShareLinks url={infoListTalonInfo.pdf} title={headTxt} text={dateTxt} />}
+						</Content>
+						{showPayButton && (
+							<View style={{ paddingHorizontal: 15, paddingTop: 20, paddingBottom: 5 }}>
+								<CustomBtn
+									color={buttonPayColor}
+									label={buttonPayText}
+									onClick={() => this._onClickPayButton()}
 								/>
 							</View>
-							<View style={styles.separator} />
-							<View style={{ flex: 1 }}>
-								<RecordingItem
-									contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
-									icon={ICON_TIME_SMALL}
-									title={t('createrecord:form.time')}
-									placeholder="12:00"
-									text={time}
+						)}
+						{!hideButton && (
+							<View style={{ paddingHorizontal: 15, paddingBottom: 20, paddingTop: 10 }}>
+								<CustomBtn
+									label={t('common:actions.cancel_recording')}
+									onClick={() => this._onClickDelete()}
 								/>
 							</View>
-						</View>
-					</View>
-					{reserved && pdf && <ShareLinks url={pdf} title={headTxt} text={dateTxt} />}
-				</Content>
-				{showPayButton && (
-					<View style={{ paddingHorizontal: 15, paddingTop: 20, paddingBottom: 5 }}>
-						<CustomBtn
-							color={buttonPayColor}
-							label={buttonPayText}
-							onClick={() => this._onClickPayButton()}
+						)}
+						<Popup
+							show={modalVisible}
+							firstText={t('recordings:item.success').toUpperCase()}
+							laberButton={t('common:actions.ok')}
+							actionButton={this._save}
 						/>
 					</View>
 				)}
-				{!hideButton && (
-					<View style={{ paddingHorizontal: 15, paddingBottom: 20, paddingTop: 10 }}>
-						<CustomBtn
-							label={reserved ? t('common:actions.cancel_recording') : t('common:actions.confirm')}
-							onClick={() => this._onClick()}
-						/>
-					</View>
-				)}
-				<Popup
-					show={modalVisible}
-					firstText={t('recordings:item.success').toUpperCase()}
-					laberButton={t('common:actions.ok')}
-					actionButton={this._save}
-				/>
 			</Container>
 		);
 	}
@@ -258,6 +230,7 @@ class ReceptionInfoItemScreen extends Component {
 
 function mapStateToProps(state) {
 	return {
+		isRequest: state.content.isRequest,
 		orderCreated: state.content.orderCreated,
 		orderDeleted: state.content.orderDeleted,
 		lang_key: state.authorization.language,

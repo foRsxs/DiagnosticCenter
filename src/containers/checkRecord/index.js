@@ -12,7 +12,7 @@ import CustomBtn from '../../components/common/CustomBtn';
 import RecordingItem from '../../components/RecordingItem';
 import Popup from '../../components/common/Popup';
 import styles from './styles';
-import { ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
+import { ICON_SERVICE_SMALL, ICON_DOCTOR_SMALL, ICON_CALENDAR_SMALL, ICON_TIME_SMALL, ICON_PRICE_SMALL, ICON_NUMBER_SMALL } from '../../styles/images';
 import { ACCENT_BLUE } from '../../styles/constants';
 import 'moment/locale/ru';
 import 'moment/locale/kk';
@@ -52,12 +52,15 @@ class CheckRecordScreen extends Component {
   }
 
   _save = () => {
-    const { setCreatingOrderSuccess, getListTalons, navigation, cleareOrder } = this.props;
+    const { setCreatingOrderSuccess, getListTalonInfo, cleareOrder } = this.props;
+    const { navigate } = this.props.navigation;
+    const { rnumb_id } = this.state;
+
     setCreatingOrderSuccess(false);
-    getListTalons();
     cleareOrder();
     this.setState({ modalVisible: false, hideButton: true });
-    navigation.navigate('recordingList');
+    getListTalonInfo(rnumb_id);
+    navigate('recordingItem');
   }
 
   render() {

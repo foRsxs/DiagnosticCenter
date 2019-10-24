@@ -28,7 +28,7 @@ export function authUser(data) {
 
 export function fullAuthUser(data) {
   return dispatch => {
-    OneSignal.sendTag("user_keyid", JSON.stringify(data.keyid));
+    OneSignal.sendTag("user_keyid", (typeof data.keyid === 'string') ? data.keyid : JSON.stringify(data.keyid));
     dispatch(saveUser(data));
   };
 }
@@ -43,7 +43,7 @@ export function getUserData() {
         lang: authorization.language
       })
       .then(response => {
-        OneSignal.sendTag("user_keyid", JSON.stringify(response.data.keyid));
+        OneSignal.sendTag("user_keyid", (typeof response.data.keyid === 'string') ? response.data.keyid : JSON.stringify(response.data.keyid));
         dispatch(setUserdata(response.data));
         return Promise.resolve(response.data);
       })

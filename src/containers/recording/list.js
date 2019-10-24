@@ -65,22 +65,9 @@ class ReceptionListScreen extends Component {
                   nameTxt={`${item.doc}, ${t('recordings:short_room_text')} ${item.room}`}
                   isLoading={(value) => this.setState({ shareLoading: value })}
                   onPress={() => {
-                    getListTalonInfo(item.rnumb_id)
-                    navigate('recordingItem', {
-                    rnumb_id: item.rnumb_id,
-                    code_serv: item.code_serv,
-                    dd: item.dd,
-                    room: item.room,
-                    time: item.time,
-                    doctor: item.doc,
-                    spec: item.spec,
-                    reserved: true,
-                    serv: item.serv,
-                    pdf: item.pdf,
-                    price: item.price,
-                  })
-                    }
-                  } 
+                    getListTalonInfo(item.rnumb_id);
+                    navigate('recordingItem');
+                  }} 
                 />
               ))
             ) : (<Text style={{ textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT }}>{t('recordings:no_recordings_text')}</Text>)
