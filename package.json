@@ -7,7 +7,8 @@
     "test": "jest",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "postinstall": "jetifier -r",
+    "postinstall": "jetifier -r",   
+    "npx_jetify": "npx jetify",
     "clean": "cd android && ./gradlew clean && cd ../"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "react-native-share": "^1.1.3",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-splash-screen": "^3.1.1",
+    "react-native-swipe-list-view": "^2.0.3",
     "react-native-table-component": "^1.2.0",
     "react-native-timeline-listview": "^0.2.3",
     "react-native-touch-id": "^4.3.0",

@@ -17,6 +17,7 @@ export const initialState = {
     authMessage: null,
     ListSpecialization: [],
     listDoctors: [],
+    listOfCards: [],
     payLink: '',
     sortedListDoctor: [],
     doctorData: [],

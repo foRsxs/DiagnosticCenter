@@ -61,6 +61,11 @@ export default function contentReducer(state = initialState.content, action) {
           time: null
         },
       }
+    case types.SET_SAVED_CARDS:
+      return ({
+        ...state,
+        listOfCards: action.data
+      })
     case types.UPDATE_LIST_TIMES: 
       return {
         ...state,

@@ -146,6 +146,54 @@ export function getListServices(id, type, auto_push = false) {
   };
 }
 
+export function getSavedCards() {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .get(`${APP_API_URL}/get_saved_cards`, {                
+       params: {
+          api_token: token,
+        } 
+      })
+      .then(response => {
+        dispatch(setSavedCards(response.data));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setSavedCards([]));
+        dispatch(setIsRequest(false));
+      });
+  };
+}
+
+export function deleteCard(id) {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .post(`${APP_API_URL}/delete_epay_card`, {  
+          api_token: token,
+          card_id: id
+      })
+      .then(response => {
+        dispatch(setDeleteCard(response.data));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setIsRequest(false));
+      });
+  };
+}
+
 export function getDoctor(docdep) {
   return (dispatch, getState) => {
     const {
@@ -903,6 +951,20 @@ export function setDoctorData(data) {
     type: types.SET_DOCTOR_DATA,
     data: data
   };
+}
+
+export function setSavedCards(data) {
+  return ({
+    type: types.SET_SAVED_CARDS,
+    data: data
+  });
+}
+
+export function setDeleteCard(id) {
+  return ({
+    type: types.DELETE_CARD,
+    data: { id }
+  });
 }
 
 export function setSales(data) {
