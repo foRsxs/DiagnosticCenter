@@ -115,7 +115,7 @@ function mapStateToProps(state) {
     isGuest: state.authorization.isGuest,
     languages_key: state.authorization.language,
     isRequest: state.content.isRequest,
-    appParamsConfig: state.content.appParamsConfig,
+    appParamsConfig: state.deviceInfo.appParamsConfig,
   }
 }
 

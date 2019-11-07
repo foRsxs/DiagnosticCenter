@@ -139,7 +139,7 @@ function mapStateToProps(state) {
     token: state.authorization.token,
     user: state.authorization.user,
     languages_key: state.authorization.language,
-    appParamsConfig: state.content.appParamsConfig,
+    appParamsConfig: state.deviceInfo.appParamsConfig,
   }
 }
 
