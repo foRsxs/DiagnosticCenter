@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { offlineActionTypes } from 'react-native-offline';
 import OneSignal from 'react-native-onesignal';
 
+import { getAppParamsConfig } from './src/actions/content';
 import MainStackRouter from './src/routers/MainStackRouter';
 import configureStore from './src/store/configureStore';
 import { APP_NAME, ONE_SIGNAL_KEY } from './src/config';
@@ -33,6 +34,7 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
+		this.state.store.dispatch(getAppParamsConfig());
 		// const unsubscribe = NetInfo.addEventListener(state => {
 		// 	this.state.store.dispatch({
 		// 		type: offlineActionTypes.CONNECTION_CHANGE,

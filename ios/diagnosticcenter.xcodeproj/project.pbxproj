@@ -68,6 +68,7 @@
 		19AF294B39F84CE69AA65A51 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B35EDDEFCB44E9BB9885F34 /* libRNCAsyncStorage.a */; };
 		5F87D752766F465DB749AB37 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7AC1051BBF474F822A9ACC /* libRNCamera.a */; };
 		61EDC167CE864BA9977FEA0D /* libRNPermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8E42C66FE94818A50907E9 /* libRNPermissions.a */; };
+		800DAEF14F4D4B00B91647BB /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C0D4F5819F644A2A2EE1616 /* libRNDeviceInfo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -525,6 +526,8 @@
 		1E7AC1051BBF474F822A9ACC /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		B4953EDD112543A4BEA65238 /* RNPermissions.xcodeproj */ = {isa = PBXFileReference; name = "RNPermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ios/RNPermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		2D8E42C66FE94818A50907E9 /* libRNPermissions.a */ = {isa = PBXFileReference; name = "libRNPermissions.a"; path = "libRNPermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		9EC66F16755349A690589DED /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5C0D4F5819F644A2A2EE1616 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +567,7 @@
 				19AF294B39F84CE69AA65A51 /* libRNCAsyncStorage.a in Frameworks */,
 				5F87D752766F465DB749AB37 /* libRNCamera.a in Frameworks */,
 				61EDC167CE864BA9977FEA0D /* libRNPermissions.a in Frameworks */,
+				800DAEF14F4D4B00B91647BB /* libRNDeviceInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +754,7 @@
 				A2955B7595BB4A3F8A2020AA /* RNCAsyncStorage.xcodeproj */,
 				2DD9C1E17AC947D3A0D5D583 /* RNCamera.xcodeproj */,
 				B4953EDD112543A4BEA65238 /* RNPermissions.xcodeproj */,
+				9EC66F16755349A690589DED /* RNDeviceInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1570,6 +1575,7 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\ios\RNDeviceInfo/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1579,6 +1585,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				MARKETING_VERSION = 1.0.12;
@@ -1618,6 +1625,7 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\ios\RNDeviceInfo/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/diagnosticcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1627,6 +1635,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/diagnosticcenter\"",
 					"\"$(SRCROOT)/diagnosticcenter\"",
 				);
 				MARKETING_VERSION = 1.0.12;

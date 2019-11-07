@@ -13,6 +13,9 @@ export const initialState = {
     enableSecure: false,
     language: 'ru'
   },
+  deviceInfo: {
+    appParamsConfig: null,
+  },
   content: {
     authMessage: null,
     ListSpecialization: [],

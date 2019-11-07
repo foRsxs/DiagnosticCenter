@@ -2,6 +2,10 @@
     "authorization": {
         "phone": "TEL",
         "inn": "IIN",
+        "updating": "Update",
+        "update": "Refresh",
+        "cancel": "Cancel",
+        "you_have_old_version": "You have an old version of the application, you need to update it",
         "get_code": "Get the code",
         "auth_title": "Authorization",
         "auth_sms1": "To your phone number",

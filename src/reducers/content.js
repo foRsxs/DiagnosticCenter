@@ -26,12 +26,7 @@ sortedFunc = (data) =>{
 }
   
 export default function contentReducer(state = initialState.content, action) {
-  switch (action.type) {
-    case types.SET_APP_PARAMS_CONFIG:
-      return {
-        ...state,
-        appParamsConfig: action.data,
-      }
+  switch (action.type) {    
     case types.SET_ANALIZES:
       return {
         ...state,

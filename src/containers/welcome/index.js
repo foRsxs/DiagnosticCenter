@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, View, Alert } from 'react-native';
+import { Image, ScrollView, View, Platform, Alert, BackHandler, Linking } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import { Text } from 'native-base';
 import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
@@ -12,6 +13,7 @@ import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
+import { versionCompare } from '../../utils/helpers';
 
 import { IMAGE_WELCOME_1, IMAGE_WELCOME_2, IMAGE_WELCOME_3 } from '../../styles/images';
 import { COLOR_TEXT_GREEN } from '../../styles/constants';
@@ -49,19 +51,51 @@ class WelcomeScreen extends Component {
     }
 	}
 
-	componentDidMount() {
-		const { notify, languages_key, token } = this.props;
+	componentDidUpdate(prevProps) {
+		const { appParamsConfig, t } = this.props;
 
-		this.props.getAppParamsConfig();
-    this.props.changeNotify(notify);
-    this.props.setCurrentLang(languages_key);
-    if (token) {
-      this.props.saveUser({ api_token: token });
+		if (!prevProps.appParamsConfig && appParamsConfig && appParamsConfig.version_android) {
+			const version_device = DeviceInfo.getVersion();
+			const version_android_back = appParamsConfig.version_android;
+			const compare = versionCompare(version_device, version_android_back);
+
+			if (compare === -1) {
+
+				Alert.alert(
+					t('authorization:updating'),
+					t('authorization:you_have_old_version'),					
+					[
+						{
+							text: t('authorization:cancel'),
+							style: 'cancel',
+							onPress: () => BackHandler.exitApp(),
+						},
+						{
+							text: t('authorization:update'),
+							onPress: () => {
+								Platform.OS === 'android' ? Linking.openURL('market://details?id=com.izzisoftware.diagnosticcenter') :
+								Linking.openURL('itms-apps://itunes.apple.com/ru/app/id1447261057?ign-mpt=uo=2')
+							}
+						},
+					],
+					{
+						cancelable: false,
+					},
+				);
+			} else {
+				const { notify, languages_key, token } = this.props;
+				this.props.changeNotify(notify);
+				this.props.setCurrentLang(languages_key);
+				if (token) {
+					this.props.saveUser({ api_token: token });
+				}
+
+				SplashScreen.hide();
+				this._checkWelcome();
+			}
+
 		}
-		
-		SplashScreen.hide();
-		this._checkWelcome();
-  }
+	}
   
 	_checkWelcome = () => {
 		const { hideScreen, token, enableSecure } = this.props;
@@ -143,7 +177,7 @@ function mapStateToProps(state) {
 		notify: state.authorization.notify,
     languages_key: state.authorization.language,
 		user: state.authorization.user,
-		appParamsConfig:  state.content.appParamsConfig
+		appParamsConfig:  state.deviceInfo.appParamsConfig
 	}
 }
 
@@ -151,4 +185,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ ...AuthActions, ...ContentActions }, dispatch)
 }
 
-export default withNamespaces(['welcome', 'common'])(connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen));
+export default withNamespaces(['welcome', 'common', 'authorization'])(connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen));
