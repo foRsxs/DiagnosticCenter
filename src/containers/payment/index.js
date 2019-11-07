@@ -21,7 +21,7 @@ class Payment extends Component {
 
 	onNavigationStateChange = ({ url }) => {
 		const { navigation } = this.props;
-		if (url.includes('logon')) {
+		if (url.includes('process/payment')) {
 			this.senderResp = true;
 		}
 
@@ -42,6 +42,13 @@ class Payment extends Component {
 				this.senderResp = false;
 			}
 		}
+
+		if (url.includes('hbpay/result')) {
+				setTimeout(() => {
+					navigation.navigate('recordingList');
+				}, 4000);
+		}
+
 	};
 
 	render() {
@@ -57,6 +64,7 @@ class Payment extends Component {
 					</View>
 				)}
 				<WebView
+					style={{flex: 1}}
 					onLoadEnd={() => this.setState({ showLoader: false })}
 					source={{ uri: payLink }}
 					onNavigationStateChange={this.onNavigationStateChange}

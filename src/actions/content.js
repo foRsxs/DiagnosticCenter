@@ -155,10 +155,10 @@ export function getSavedCards() {
     dispatch(setIsRequest(true));
 
     axios
-      .get(`${APP_API_URL}/get_saved_cards`, {                
+      .get(`${APP_API_URL}/get_saved_cards`, {
        params: {
           api_token: token,
-        } 
+        }
       })
       .then(response => {
         dispatch(setSavedCards(response.data));
@@ -180,15 +180,71 @@ export function deleteCard(id) {
     dispatch(setIsRequest(true));
 
     axios
-      .post(`${APP_API_URL}/delete_epay_card`, {  
+      .get(`${APP_API_URL}/delete_epay_card`, {
+        params: {
           api_token: token,
           card_id: id
+        }          
       })
       .then(response => {
-        dispatch(setDeleteCard(response.data));
+        
+        dispatch(setDeleteCard(id));
         dispatch(setIsRequest(false));
       })
       .catch(e => {
+        (setIsRequest(false));
+      });
+  };
+}
+
+export  function addCard() {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .get(`${APP_API_URL}/get_recur_auth`, {
+        params: {
+          api_token: token
+        }       
+      })
+      .then(response => {
+        dispatch(setPayloadURL(response.data.link));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setPayloadURL(''));
+        dispatch(setIsRequest(false));
+      });
+  };
+}
+
+export  function paymentBySavedCard(rnumb_id, card_id, amount) {
+  return (dispatch, getState) => {
+    const {
+      authorization: { token }
+    } = getState();
+
+    dispatch(setIsRequest(true));
+
+    axios
+      .get(`${APP_API_URL}/get_recur_pay`, {
+        params: {
+          api_token: token,
+          card_id,
+          amount,
+          rnumb_id, 
+        }       
+      })
+      .then(response => {
+        dispatch(setPayloadURL(response.data.link));
+        dispatch(setIsRequest(false));
+      })
+      .catch(e => {
+        dispatch(setPayloadURL(''));
         dispatch(setIsRequest(false));
       });
   };
@@ -675,23 +731,30 @@ export function deleteOrder({ rnumb_id }) {
   };
 }
 
-export function getLinkForPayment(rnumb_id, code_serv) {
+export function getLinkForPayment(rnumb_id, amount) {
   return (dispatch, getState) => {
     const {
-      authorization: { token, language },
+      authorization: { token },
       content: { history }
     } = getState();
     dispatch(setPayloadURL(''));
 
-    const params = { rnumb_id, code_serv, api_token: token };
+    dispatch(setIsRequest(true));
+
 
     axios
-      .post(`${APP_API_URL}/get_epay_link`, params)
+      .get(`${APP_API_URL}/get_epay_link`, {
+        params: {
+          api_token: token,  rnumb_id, amount, 
+        }
+      })
       .then(response => {
         dispatch(setPayloadURL(response.data.link));
+        dispatch(setIsRequest(false));
       })
       .catch(e => {
         dispatch(setPayloadURL(''));
+        dispatch(setIsRequest(false));
       });
   }
 }

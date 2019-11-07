@@ -75,9 +75,8 @@ class ReceptionInfoItemScreen extends Component {
 	};
 
 	_onClickPayButton = () => {
-		const { infoListTalonInfo, getLinkForPayment } = this.props;
-		
-		getLinkForPayment(infoListTalonInfo.rnumb_id, infoListTalonInfo.code_serv);
+		const { navigation } = this.props;
+		navigation.navigate('paymentCards');
 	};
 
 	_save = () => {
@@ -155,7 +154,7 @@ class ReceptionInfoItemScreen extends Component {
 											icon={ICON_PRICE_SMALL}
 											title={t('createrecord:price')}
 											placeholder={t('createrecord:price')}
-											text={`${infoListTalonInfo.total} KZT`}
+											text={`${infoListTalonInfo.price} KZT`}
 										/>
 									</View>
 									<View style={styles.separator} />

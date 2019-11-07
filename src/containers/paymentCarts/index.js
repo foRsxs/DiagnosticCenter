@@ -7,52 +7,44 @@ import { withNavigationFocus } from "react-navigation";
 import { withNamespaces } from "react-i18next";
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-import { getSavedCards, deleteCard } from '../../actions/content';
+import { getSavedCards, deleteCard, addCard, paymentBySavedCard, getLinkForPayment } from '../../actions/content';
 import { ADD_NEW_CARD, BANK_CARD, BACK_GREEN } from "../../styles/images";
 import Header from "../../components/common/Header";
 import styles from "./styles";
 
 class Payment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [{
-        icon: `https://www.google.com/imgres?imgurl=https%3A%2F%2Fimage.flaticon.com%2Ficons%2Fsvg%2F281%2F281656.svg&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fcredit-card_281656&docid=zEONkOli-GxR3M&tbnid=a0UD2CFNGplSSM%3A&vet=10ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhOKAowCg..i&w=800&h=800&bih=986&biw=2133&q=card%20icon&ved=0ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhOKAowCg&iact=mrc&uact=8`,
-        number: `400303-XX-XXXX-1494`
-      },
-      {
-        icon: `https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn3.vectorstock.com%2Fi%2F1000x1000%2F77%2F52%2Fid-card-icon-vector-22537752.jpg&imgrefurl=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fid-card-icon-vector-22537752&docid=TP5_yo2BBIi7PM&tbnid=qp99HUJa_K5odM%3A&vet=10ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhJKAcwBw..i&w=1000&h=1080&bih=986&biw=2133&q=card%20icon&ved=0ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhJKAcwBw&iact=mrc&uact=8`,
-        number: `623357-XX-XXXX-1494`
-      },
-      {
-        icon: `https://www.google.com/imgres?imgurl=https%3A%2F%2Fimage.flaticon.com%2Ficons%2Fsvg%2F281%2F281656.svg&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fcredit-card_281656&docid=zEONkOli-GxR3M&tbnid=a0UD2CFNGplSSM%3A&vet=10ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhOKAowCg..i&w=800&h=800&bih=986&biw=2133&q=card%20icon&ved=0ahUKEwi-tfuf49XlAhWCqIsKHUeJDS8QMwhOKAowCg&iact=mrc&uact=8`,
-        number: `426434-XX-XXXX-1494`
-      },
-      ]
-    };
-
-  }
 
   componentDidMount() {
     const { getSavedCards } = this.props;
     getSavedCards();
   }
 
+  componentDidUpdate(prevProps) {
+    const { payLink, isFocused, navigation } = this.props;
+    if(prevProps.payLink !== payLink && payLink && isFocused) {
+      navigation.navigate('payment');
+    }
+  }
+
   renderCards = () => {
-    const { t, listOfCards, deleteCard } = this.props;
-    
+    const { t, listOfCards, deleteCard, infoListTalonInfo, paymentBySavedCard } = this.props;
+
     return (<SwipeListView
       data={listOfCards}
       renderItem={({ item }, rowMap) =>{
 
-        const { type, card_hash } = item;
-      
+        const { type, card_hash, card_id } = item;
+
         return (
           <View style={styles.itemOfCardContainer}>
            <Image style={styles.itemOfCardImage} resizeMode='cover' source={{uri: `http://89.218.154.86:8081/payment_systems/${type}.png`}}/>
             <Text style={styles.numberOfCard}>{card_hash}</Text>
-            <TouchableOpacity style={{marginLeft: 'auto'}}>
-            <Image style={styles.arrowLogo} resizeMode='contain' source={BACK_GREEN} />           
+            <TouchableOpacity onPress={()=>{
+              paymentBySavedCard(card_id, infoListTalonInfo.rnumb_id, infoListTalonInfo.price)
+            }} 
+            style={{marginLeft: 'auto'}}
+            >
+            <Image style={styles.arrowLogo} resizeMode='contain' source={BACK_GREEN} />
             </TouchableOpacity>
           </View>
         )
@@ -71,16 +63,20 @@ class Payment extends Component {
   };
 
   addCardClick = () => {
-
+    const { addCard } = this.props;
+    addCard();
   }
 
   bankCardClick = () => {
+    const { getLinkForPayment, infoListTalonInfo } = this.props;
 
+    getLinkForPayment(infoListTalonInfo.rnumb_id, infoListTalonInfo.price)
   }
+
+
 
   render() {
     const { t, navigation } = this.props;
-
     return (
       <Container>
         <Header
@@ -126,13 +122,19 @@ class Payment extends Component {
 }
 
 const mapStateToProps = state => ({
-  listOfCards: state.content.listOfCards
+  listOfCards: state.content.listOfCards,
+  payLink: state.content.payLink,
+  infoListTalonInfo: state.content.infoListTalonInfo
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getSavedCards,
-  deleteCard
+  deleteCard,
+  addCard,
+  paymentBySavedCard,
+  getLinkForPayment
 }, dispatch);
+
 
 export default compose(
   withNamespaces("recordings"),

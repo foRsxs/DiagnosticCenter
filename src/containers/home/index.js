@@ -91,11 +91,11 @@ class HomeScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { isRequest, sales, callcenterTel } = this.props;
+    const { isRequest, sales, appParamsConfig } = this.props;
 
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
-        <Header isHome={true} navigation={this.props.navigation} callCenterTel={callcenterTel ? callcenterTel.value : callcenterTel }/>
+        <Header isHome={true} navigation={this.props.navigation} callCenterTel={(appParamsConfig && appParamsConfig.callcenter) ? appParamsConfig.callcenter : '' }/>
         <Content>
           <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
             {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
@@ -115,7 +115,7 @@ function mapStateToProps(state) {
     isGuest: state.authorization.isGuest,
     languages_key: state.authorization.language,
     isRequest: state.content.isRequest,
-    callcenterTel: state.content.appParamsConfig ? state.content.appParamsConfig.find((item) => item.name == 'callcenter') : null,
+    appParamsConfig: state.content.appParamsConfig,
   }
 }
 

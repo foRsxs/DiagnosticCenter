@@ -142,8 +142,8 @@ function mapStateToProps(state) {
 		enableSecure: state.authorization.enableSecure,
 		notify: state.authorization.notify,
     languages_key: state.authorization.language,
-    user: state.authorization.user,
-    appVersion: state.content.appParamsConfig ? state.content.appParamsConfig.find((item) => item.name == 'version') : null,
+		user: state.authorization.user,
+		appParamsConfig:  state.content.appParamsConfig
 	}
 }
 

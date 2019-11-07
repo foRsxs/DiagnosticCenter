@@ -112,7 +112,7 @@ const ProfileNavigator = createStackNavigator(
     
   },
   {
-    initialRouteName: 'paymentCards',
+    initialRouteName: 'profile',
   }
 );
 
@@ -345,7 +345,7 @@ const AppTabNavigator = createBottomTabNavigator(
   },
   {
     tabBarComponent: props => <FooterTabs props={props} />,
-    initialRouteName: 'Profile',
+    initialRouteName: 'Main',
   }
 );
 
