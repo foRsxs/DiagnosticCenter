@@ -118,8 +118,8 @@ class ReceptionInfoItemScreen extends Component {
 	
 		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
 		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
-		const headTxt = `${infoListTalonInfo.doctor}, ${infoListTalonInfo.spec}`;
-		const dateTxt = `${infoListTalonInfo.dd} ${infoListTalonInfo.time}`;
+		const headTxt = infoListTalonInfo ? (`${infoListTalonInfo.doctor}, ${infoListTalonInfo.spec}`) : null;
+		const dateTxt = infoListTalonInfo ? (`${infoListTalonInfo.dd} ${infoListTalonInfo.time}`) : null;
 
 		const { text: buttonPayText, color: buttonPayColor, showPayButton } = this.getButtonNameAndStatus(
 			status,
