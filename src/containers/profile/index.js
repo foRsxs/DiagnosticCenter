@@ -91,7 +91,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    let { t, token, user, callcenterTel } = this.props;
+    let { t, token, user, appParamsConfig } = this.props;
     let userPhone= '';
 
     if (token && user && user.phone) {
@@ -101,7 +101,7 @@ class ProfileScreen extends Component {
 
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
-        <Header isHome={true} navigation={this.props.navigation} callCenterTel={callcenterTel ? callcenterTel.value : callcenterTel } />
+        <Header isHome={true} navigation={this.props.navigation} callCenterTel={(appParamsConfig && appParamsConfig.callcenter) ? appParamsConfig.callcenter : '' } />
         <Content>
           {(user) && (
             <View style={styles.profileBlock}>
@@ -139,7 +139,7 @@ function mapStateToProps(state) {
     token: state.authorization.token,
     user: state.authorization.user,
     languages_key: state.authorization.language,
-    callcenterTel: state.content.appParamsConfig ? state.content.appParamsConfig.find((item) => item.name == 'callcenter') : null,
+    appParamsConfig: state.deviceInfo.appParamsConfig,
   }
 }
 

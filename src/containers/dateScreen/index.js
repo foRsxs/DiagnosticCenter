@@ -105,7 +105,14 @@ class DateScreen extends Component {
 						theme={{
 							calendarBackground: '#fff',
 						}}
-						onDayPress={(day) => this.selectDate(day.dateString)}
+						onDayPress={
+							(day) => {
+								this.selectDate(day.dateString)
+							}
+						}
+						onDayLongPress={(day) => {
+							this.selectDate(day.dateString)
+						} }
 						markedDates={markedDates}
 						markingType={'custom'}
 					/>

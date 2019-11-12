@@ -10,6 +10,9 @@ export const NEW_ARROW = require('../../assets/img/new_arrow.png');
 export const NEW_ARROW_BLUE = require('../../assets/img/new_arrow_blue.png');
 export const MARK_ICON = require('../../assets/img/mark-icon.png');
 export const MAIL_ICON = require('../../assets/img/mail-icon.png');
+export const ADD_NEW_CARD = require('../../assets/img/add-new-card.png');
+export const BANK_CARD = require('../../assets/img/bank-card.png');
+export const BACK_GREEN = require('../../assets/img/back-green.png');
 export const PICTURE_ICON = require('../../assets/img/picture-icon.png');
 
 //ICONS FOOTERTAB

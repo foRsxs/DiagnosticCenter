@@ -8,6 +8,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "postinstall": "jetifier -r",
+    "npx_jetify": "npx jetify",
     "clean": "cd android && ./gradlew clean && cd ../"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "react-native": "0.59.10",
     "react-native-calendars": "^1.22.0",
     "react-native-camera": "^3.8.0",
+    "react-native-device-info": "^5.2.1",
     "react-native-gesture-handler": "^1.1.3",
     "react-native-htmlview": "^0.13.0",
     "react-native-image-zoom-viewer": "^2.2.25",
@@ -38,6 +40,7 @@
     "react-native-share": "^1.1.3",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-splash-screen": "^3.1.1",
+    "react-native-swipe-list-view": "^2.0.3",
     "react-native-table-component": "^1.2.0",
     "react-native-timeline-listview": "^0.2.3",
     "react-native-touch-id": "^4.3.0",

@@ -151,6 +151,9 @@ android {
 }
 
 dependencies {
+    compile(project(':react-native-device-info')) {
+        exclude group: 'com.google.android.gms'
+    }    
     implementation project(':react-native-permissions')
     implementation (project(':react-native-camera')){
         exclude group: 'com.google.android.gms', module: 'play-services-vision'

@@ -17,6 +17,7 @@ import DoctorScreen from '../containers/listDoctors/item';
 import RecordingItemScreen from '../containers/recording/item';
 import RecordingListScreen from '../containers/recording/list';
 import RecordingCreateScreen from '../containers/recording';
+import PaymentCardsScreen from '../containers/paymentCarts';
 import AnalizesScreen from '../containers/analizes';
 import AnalizesItemScreen from '../containers/analizes/item';
 import ContactsScreen from '../containers/contacts';
@@ -96,12 +97,19 @@ const ProfileNavigator = createStackNavigator(
         header: null
       }
     },
+    paymentCards: {
+      screen: PaymentCardsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
     payment: {
       screen: PaymentScreen,
       navigationOptions: {
         header: null
       }
-    }
+    },
+    
   },
   {
     initialRouteName: 'profile',

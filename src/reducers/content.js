@@ -26,12 +26,7 @@ sortedFunc = (data) =>{
 }
   
 export default function contentReducer(state = initialState.content, action) {
-  switch (action.type) {
-    case types.SET_APP_PARAMS_CONFIG:
-      return {
-        ...state,
-        appParamsConfig: action.data,
-      }
+  switch (action.type) {    
     case types.SET_ANALIZES:
       return {
         ...state,
@@ -61,6 +56,19 @@ export default function contentReducer(state = initialState.content, action) {
           time: null
         },
       }
+    case types.SET_SAVED_CARDS:
+      return ({
+        ...state,
+        listOfCards: action.data
+      })
+    case types.DELETE_CARD: {
+      const listOfCards = state.listOfCards.filter(item => item.id !== action.data.id);
+    
+      return ({
+        ...state,
+        listOfCards
+      })
+    }
     case types.UPDATE_LIST_TIMES: 
       return {
         ...state,
