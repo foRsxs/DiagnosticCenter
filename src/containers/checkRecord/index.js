@@ -142,8 +142,8 @@ class CheckRecordScreen extends Component {
         {
           (!hideButton) && (
             <View style={styles.buttonWrap}>
-              <CustomBtn label={t('common:actions.appointment')} onClick={() => this.createOrder()} />
               <Text style={styles.textInfo}>{t('recordings:info_warning_text')}</Text>
+              <CustomBtn label={t('common:actions.appointment')} onClick={() => this.createOrder()} />
             </View>
           )
         }

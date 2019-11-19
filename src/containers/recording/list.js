@@ -57,6 +57,7 @@ class ReceptionListScreen extends Component {
               listTalons.map((item, index) => (
                 <ReceptionListItem
                   key={index}
+                  paidStatus={item.paid_status}
                   headTxt={item.spec}
                   servTxt={item.serv}
                   docTxt={item.doc}

@@ -26,7 +26,7 @@ export default StyleSheet.create({
         position: 'absolute',
         backgroundColor: '#ffffff',
         width: Dimensions.get('window').width,
-        bottom: scale(80),
+        bottom: scale(100),
         zIndex: 14,
         height: scale(70),
         paddingTop: scale(10),
@@ -43,6 +43,7 @@ export default StyleSheet.create({
     },
     textInfo: {
         marginTop: scale(10),
+        marginBottom: scale(20),
         height: scale(60),
         textAlign: 'center'
     }
