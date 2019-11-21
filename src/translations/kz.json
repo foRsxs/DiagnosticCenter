@@ -318,7 +318,8 @@
             "wrong_inn": "Қате ЖСН",
             "wrong_sms_code": "Қате sms код",
             "no_connection": "Интернет байланысы жоқ",
-            "server_not_available": "Сервер қол жетімді емес"
+            "server_not_available": "Сервер қол жетімді емес",
+            "payment_request_timeout": "Төлеу уақыты бітті"
         },
         "files": {
             "action_title": "Файлды сақтау",

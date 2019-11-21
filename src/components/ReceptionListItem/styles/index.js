@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import variables, {scale} from '../../../styles/variables';
-import { GREEN, BLACK, ACCENT_BLUE, MAIN_FONT, RED, MEDIUM_BLACK } from '../../../styles/constants';
+import { GREEN, DARK_GREY, BLACK, ACCENT_BLUE, MAIN_FONT, RED, MEDIUM_BLACK } from '../../../styles/constants';
 
 const { medium, normal, large, main } = variables.fSize;
 
@@ -41,22 +41,21 @@ export default StyleSheet.create({
     color: BLACK,
     fontSize: large
   },
-  txtHeadServ: {
-    color: BLACK,
-    fontFamily: MAIN_FONT,
-    fontSize: main,
-    paddingTop: scale(3)
-  },
   txtTime: {
     color: ACCENT_BLUE,
     fontFamily: MAIN_FONT,
     fontSize: medium,
-  
   },
-  txtPayment: {
+  txtPaymentPaid: {
     color: GREEN,
-    fontFamily: MAIN_FONT,
-    fontSize: medium
+  },
+  txtPaymentNotPaid: {
+    color: DARK_GREY
+  },
+  subHeadWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
   txtName: {
     color: MEDIUM_BLACK,

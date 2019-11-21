@@ -320,7 +320,8 @@
             "wrong_inn": "Incorrect IIN number",
             "wrong_sms_code": "Invalid sms code",
             "no_connection": "No internet connection",
-            "server_not_available": "Server is not available"
+            "server_not_available": "Server is not available",
+            "payment_request_timeout": "Payment time is out"
         },
         "files": {
             "action_title": "Save file",

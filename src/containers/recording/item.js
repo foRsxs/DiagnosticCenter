@@ -14,7 +14,7 @@ import Header from '../../components/common/Header';
 import ShareLinks from '../../components/common/ShareLinks';
 import Popup from '../../components/common/Popup';
 
-const { medium, large, main, normal } = variables.fSize;
+const { extralarge, medium, large, main, normal } = variables.fSize;
 
 import {
 	ACCENT_BLUE,
@@ -23,6 +23,7 @@ import {
 	BLACK,
 	MAIN_FONT,
 	COLOR_LIGHT_BLACK,
+	GREEN
 } from '../../styles/constants';
 import {
 	ICON_SERVICE_SMALL,
@@ -86,50 +87,15 @@ class ReceptionInfoItemScreen extends Component {
 		this.props.navigation.navigate('recordingList');
 	};
 
-	getButtonNameAndStatus = (status = 0, paid_status = 0) => {
-		const { t } = this.props;
-		// status (1 - активен и можно оплачивать, 0 - неактивен). paid_status (1- оплачен, 0 - не оплачен)
-		const buttonObj = { text: 'Неоплачено', color: 'grayColor', showPayButton: false };
-
-		if (paid_status === 1) {
-			//paid
-			buttonObj.text = t('common:actions.paid');
-			buttonObj.color = 'grayColor';
-			buttonObj.showPayButton = true;
-		} else if (paid_status === 0) {
-			if (status === 1) {
-				//pay
-				buttonObj.text = t('common:actions.pay');
-				buttonObj.color = 'greenColor';
-				buttonObj.showPayButton = true;
-			} else if (status === 0) {
-				//not paid
-				buttonObj.text = t('common:actions.not_paid');
-				buttonObj.color = 'grayColor';
-				buttonObj.showPayButton = true;
-			}
-    }
-    
-		return buttonObj;
-	};
-
 	render() {
-    const { t, infoListTalonInfo, isRequest } = this.props;
+		const { t, infoListTalonInfo, isRequest } = this.props;
+		const { modalVisible, hideButton } = this.state;
 	
+		// status (1 - активен и можно оплачивать, 0 - неактивен). paid_status (1- оплачен, 0 - не оплачен)
 		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
 		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
 		const headTxt = infoListTalonInfo ? (`${infoListTalonInfo.doctor}, ${infoListTalonInfo.spec}`) : null;
 		const dateTxt = infoListTalonInfo ? (`${infoListTalonInfo.dd} ${infoListTalonInfo.time}`) : null;
-
-		const { text: buttonPayText, color: buttonPayColor, showPayButton } = this.getButtonNameAndStatus(
-			status,
-			paid_status
-		);
-
-		const {
-			modalVisible,
-			hideButton,
-		} = this.state;
 
 		return (
 			<Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
@@ -195,19 +161,24 @@ class ReceptionInfoItemScreen extends Component {
 									</View>
 								</View>
 							</View>
+							{(paid_status === 1) && (
+								<View style={styles.textPaidWrapper}>
+									<Text style={styles.textPaid}>{t('common:actions.paid')}</Text>
+								</View>
+							)}
 							{infoListTalonInfo.pdf && <ShareLinks url={infoListTalonInfo.pdf} title={headTxt} text={dateTxt} />}
 						</Content>
-						{showPayButton && (
-							<View style={{ paddingHorizontal: 15, paddingTop: 20, paddingBottom: 5 }}>
+						{(paid_status === 0 && status === 1) && (
+							<View style={[{...styles.buttonWrap, paddingBottom: 15 }]}>
 								<CustomBtn
-									color={buttonPayColor}
-									label={buttonPayText}
+									color={'darkGreenColor'}
+									label={t('common:actions.pay')}
 									onClick={() => this._onClickPayButton()}
 								/>
 							</View>
 						)}
 						{!hideButton && (
-							<View style={{ paddingHorizontal: 15, paddingBottom: 20, paddingTop: 10 }}>
+							<View style={styles.buttonWrap}>
 								<CustomBtn
 									label={t('common:actions.cancel_recording')}
 									onClick={() => this._onClickDelete()}
@@ -313,5 +284,20 @@ const styles = StyleSheet.create({
 		paddingRight: 30,
 		marginBottom: 0,
 		marginTop: 10
+	},
+	textPaidWrapper: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingVertical: 30
+	},
+	textPaid: {
+		fontFamily: MAIN_FONT,
+		fontSize: extralarge,
+		color: GREEN,
+		textTransform: 'uppercase'
+	},
+	buttonWrap: {
+		paddingHorizontal: 15, 
+		paddingBottom: 30
 	}
 });

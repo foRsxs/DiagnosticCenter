@@ -59,7 +59,6 @@ class ReceptionListScreen extends Component {
                   key={index}
                   paidStatus={item.paid_status}
                   headTxt={item.spec}
-                  servTxt={item.serv}
                   docTxt={item.doc}
                   pdf={item.pdf}
                   timeTxt={`${item.dd}, ${t('recordings:in_text')} ${item.time}`}

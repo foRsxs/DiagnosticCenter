@@ -26,11 +26,10 @@ export default StyleSheet.create({
     paddingVertical: scale(10)
   },
   deleteText: {
-    color: BLACK,
+    color: WHITE,
     fontSize: medium
   },
   deleteContainer: {
-    // justifyContent: 'center',
     justifyContent: 'center',
     backgroundColor: COLOR_RED,
     paddingLeft: scale(10),

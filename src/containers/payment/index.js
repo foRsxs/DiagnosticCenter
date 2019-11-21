@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 
 import Header from '../../components/common/Header';
-import {scale} from '../../styles/variables';
 import { ACCENT_BLUE } from '../../styles/constants';
 
 class Payment extends Component {
@@ -21,6 +20,9 @@ class Payment extends Component {
 
 	onNavigationStateChange = ({ url }) => {
 		const { navigation } = this.props;
+
+		console.log(url);
+
 		if (url.includes('process/payment')) {
 			this.senderResp = true;
 		}
@@ -28,7 +30,7 @@ class Payment extends Component {
 		if (url.includes('err_process')) {
 			if (this.senderResp) {
 				setTimeout(() => {
-					navigation.navigate('recordingList');
+					navigation.replace('recordingList');
 				}, 2000);
 				this.senderResp = false;
 			}
@@ -37,18 +39,17 @@ class Payment extends Component {
 		if (url.includes('process/result')) {
 			if (this.senderResp) {
 				setTimeout(() => {
-					navigation.navigate('recordingList');
+					navigation.replace('recordingList');
 				}, 4000);
 				this.senderResp = false;
 			}
 		}
 
 		if (url.includes('hbpay/result')) {
-				setTimeout(() => {
-					navigation.navigate('recordingList');
-				}, 4000);
+			setTimeout(() => {
+				navigation.replace('recordingList');
+			}, 4000);
 		}
-
 	};
 
 	render() {
@@ -57,14 +58,14 @@ class Payment extends Component {
 
 		return (
 			<View style={{ flex: 1 }}>
-        <Header backButton={true} text={'Оплата'} navigation={navigation}/>
+				<Header backButton={true} text={'Оплата'} navigation={navigation} />
 				{showLoader && (
 					<View style={styles.container}>
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
 					</View>
 				)}
 				<WebView
-					style={{flex: 1}}
+					style={{ flex: 1 }}
 					onLoadEnd={() => this.setState({ showLoader: false })}
 					source={{ uri: payLink }}
 					onNavigationStateChange={this.onNavigationStateChange}
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'center'
-  }
+	}
 });
 
 const mapStateToProps = (state) => ({

@@ -14,18 +14,17 @@ class ReceptionListItem extends Component {
   }
 
   render() {
-    const { t, pdf, paidStatus, headTxt, servTxt, timeTxt, nameTxt, docTxt, disable, onPress, isLoading } = this.props;
+    const { t, pdf, paidStatus, headTxt, timeTxt, nameTxt, docTxt, disable, onPress, isLoading } = this.props;
 
     return (
       <ListItem onPress={() => onPress()} style={styles.listWrap}>
         <View style={disable ? styles.receptionItemDisable : styles.receptionItem}>
           <View style={styles.headWrap}>
             <Text style={styles.txtTime}>{timeTxt}</Text>
-            <Text style={styles.txtPayment}>{paidStatus ? t('common:actions.paid') : t('common:actions.not_paid')}</Text>
+            <Text style={paidStatus ? styles.txtPaymentPaid : styles.txtPaymentNotPaid}>{paidStatus ? t('common:actions.paid') : t('common:actions.not_paid')}</Text>
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' }}>
+          <View style={styles.subHeadWrap}>
             <Text style={styles.txtHead}>{headTxt} </Text>
-            <Text style={styles.txtHeadServ}>({servTxt})</Text>
           </View>
           <Text style={styles.txtName}>{nameTxt}</Text>
         </View>

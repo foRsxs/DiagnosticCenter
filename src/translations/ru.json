@@ -322,7 +322,8 @@
             "wrong_inn": "Некорректный номер ИИН",
             "wrong_sms_code": "Неверный sms код",
             "no_connection": "Нет подключения к Интернету",
-            "server_not_available": "Cервер недоступен"
+            "server_not_available": "Cервер недоступен",
+            "payment_request_timeout": "Время оплаты истекло"
         },
         "files": {
             "action_title": "Сохранение файла",

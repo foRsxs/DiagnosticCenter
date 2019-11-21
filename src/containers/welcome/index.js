@@ -61,7 +61,6 @@ class WelcomeScreen extends Component {
 			const compare = versionCompare(version_device, version_back);
 
 			if (compare === -1) {
-
 				Alert.alert(
 					t('authorization:updating'),
 					t('authorization:you_have_old_version'),					
@@ -91,10 +90,9 @@ class WelcomeScreen extends Component {
 					this.props.saveUser({ api_token: token });
 				}
 
-				SplashScreen.hide();
 				this._checkWelcome();
+				SplashScreen.hide();
 			}
-
 		}
 	}
   

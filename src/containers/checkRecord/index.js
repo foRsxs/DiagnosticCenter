@@ -47,6 +47,8 @@ class CheckRecordScreen extends Component {
     const { order, saveOrder } = this.props;
     const { rnumb_id } = this.state;
 
+    console.log('111')
+
     saveOrder({ rnumb_id, date: order.date, serv_id: order.servid, type: order.type });
     this.setState({ loading: true });
   }
