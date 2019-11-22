@@ -33,8 +33,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLOR_RED,
     paddingLeft: scale(10),
-    borderTopLeftRadius: scale(10),
-    borderBottomLeftRadius: scale(10),
     width: '100%',
     height: scale(60)
   },

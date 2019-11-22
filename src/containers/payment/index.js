@@ -20,17 +20,15 @@ class Payment extends Component {
 
 	onNavigationStateChange = ({ url }) => {
 		const { navigation } = this.props;
-
-		console.log(url);
-
-		if (url.includes('process/payment')) {
+		
+		if (url.includes('process')) {
 			this.senderResp = true;
 		}
 
 		if (url.includes('err_process')) {
 			if (this.senderResp) {
 				setTimeout(() => {
-					navigation.replace('recordingList');
+					navigation.navigate('recordingList');
 				}, 2000);
 				this.senderResp = false;
 			}
@@ -39,7 +37,7 @@ class Payment extends Component {
 		if (url.includes('process/result')) {
 			if (this.senderResp) {
 				setTimeout(() => {
-					navigation.replace('recordingList');
+					navigation.navigate('recordingList');
 				}, 4000);
 				this.senderResp = false;
 			}
@@ -47,9 +45,14 @@ class Payment extends Component {
 
 		if (url.includes('hbpay/result')) {
 			setTimeout(() => {
-				navigation.replace('recordingList');
+				navigation.goBack();
 			}, 4000);
 		}
+
+		if (url.includes('epay_success')) {
+			navigation.goBack();
+		}
+		
 	};
 
 	render() {
@@ -69,7 +72,7 @@ class Payment extends Component {
 					onLoadEnd={() => this.setState({ showLoader: false })}
 					source={{ uri: payLink }}
 					onNavigationStateChange={this.onNavigationStateChange}
-					scalesPageToFit={false}
+					scalesPageToFit={true}
 				/>
 			</View>
 		);

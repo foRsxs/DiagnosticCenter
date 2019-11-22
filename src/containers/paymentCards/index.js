@@ -55,7 +55,7 @@ class PaymentCards extends Component {
 							<Text style={styles.numberOfCard}>{card_hash}</Text>
 							<TouchableOpacity
 								onPress={() => {
-									paymentBySavedCard(card_id, infoListTalonInfo.rnumb_id, infoListTalonInfo.price);
+									paymentBySavedCard(+card_id, +infoListTalonInfo.rnumb_id, +infoListTalonInfo.price);
 								}}
 								style={{ marginLeft: 'auto' }}
 							>

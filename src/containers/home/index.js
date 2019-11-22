@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Container, Content } from 'native-base';
-import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -30,7 +29,6 @@ class HomeScreen extends Component {
     const { t } = this.props;
     this._renderMenuList(t);
     this.props.getSales();
-    SplashScreen.hide();
   }
 
   componentDidUpdate(prevProps) {
