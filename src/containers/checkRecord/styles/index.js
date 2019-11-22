@@ -5,19 +5,21 @@ const { normal } = variables.fSize;
 import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK } from '../../../styles/constants';
 
 export default StyleSheet.create({
-	mainContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between'
+	contentWrapper: {
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		height: '100%'
 	},
 	wrapper: {
-    padding: scale(20),
+		padding: scale(20),
+		flex: 2,
 	},
 	datetimeWrap: {
 		flexDirection: 'row',
-		flex: 1
 	},
 	separator: {
 		marginVertical: scale(10),
+		height: scale(50),
 		borderLeftWidth: 1,
 		borderColor: ACCENT_BLUE
 	},

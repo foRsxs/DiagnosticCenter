@@ -10,7 +10,6 @@ import {
   MAIN_FONT
 } from '../../../styles/constants';
 
-
 let {
   height
 } = Dimensions.get('window');
@@ -57,7 +56,7 @@ export default StyleSheet.create({
   },
   wrapper: {
     padding: scale(20),
-    flex: 1
+    height: scale(height / 2.3)
   },
   datetimeWrap: {
     flexDirection: 'row',
@@ -69,9 +68,10 @@ export default StyleSheet.create({
     height: scale(50)
   },
   buttonWrap: {
-    paddingHorizontal: scale(20),
-    paddingTop: scale(10),
-    paddingBottom: scale(15)
+    padding: scale(20),
+  },
+  sendBtn: {
+    position: 'relative'
   },
   btnUpdate: {
     position: 'absolute',

@@ -83,7 +83,7 @@ class CheckRecordScreen extends Component {
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
 					</View>
 				) : (
-					<Content>
+					<Content contentContainerStyle={styles.contentWrapper}>
 						<View style={styles.wrapper}>
 							<RecordingItem
 								icon={ICON_SERVICE_SMALL}
