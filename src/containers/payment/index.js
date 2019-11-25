@@ -49,7 +49,7 @@ class Payment extends Component {
 			}, 4000);
 		}
 
-		if (url.includes('epay_success')) {
+		if (url.includes('api/epay_success')) {
 			navigation.goBack();
 		}
 		
