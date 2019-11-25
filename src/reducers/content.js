@@ -82,7 +82,7 @@ export default function contentReducer(state = initialState.content, action) {
 				listOfCards: action.data
 			};
 		case types.DELETE_CARD: {
-			const listOfCards = state.listOfCards.filter((item) => item.id !== action.data.id);
+			const listOfCards = state.listOfCards.filter((item) => item.card_id !== action.data.card_id);
 
 			return {
 				...state,

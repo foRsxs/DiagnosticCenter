@@ -23,7 +23,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: scale(20),
     backgroundColor: WHITE,
-    paddingVertical: scale(10)
+    paddingVertical: scale(10),
   },
   deleteText: {
     color: WHITE,

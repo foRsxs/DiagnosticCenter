@@ -158,7 +158,7 @@ export function getSavedCards() {
 	};
 }
 
-export function deleteCard(id) {
+export function deleteCard(card_id) {
 	return (dispatch, getState) => {
 		const { authorization: { token } } = getState();
 
@@ -168,11 +168,11 @@ export function deleteCard(id) {
 			.get(`${APP_API_URL}/delete_epay_card`, {
 				params: {
 					api_token: token,
-					card_id: id
+					card_id: card_id
 				}
 			})
 			.then((response) => {
-				dispatch(setDeleteCard(id));
+				dispatch(setDeleteCard(card_id));
 				dispatch(setIsRequest(false));
 			})
 			.catch((e) => {
@@ -205,7 +205,7 @@ export function addCard() {
 	};
 }
 
-export function paymentBySavedCard(rnumb_id, card_id, amount) {
+export function paymentBySavedCard(card_id, rnumb_id, amount) {
 	return (dispatch, getState) => {
 		const { authorization: { token } } = getState();
 
@@ -949,10 +949,10 @@ export function setSavedCards(data) {
 	};
 }
 
-export function setDeleteCard(id) {
+export function setDeleteCard(card_id) {
 	return {
 		type: types.DELETE_CARD,
-		data: { id }
+		data: { card_id }
 	};
 }
 

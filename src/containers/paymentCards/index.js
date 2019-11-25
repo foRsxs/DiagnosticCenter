@@ -41,36 +41,36 @@ class PaymentCards extends Component {
 
 		return (
 			<SwipeListView
+				keyExtractor={item => item.card_id}
 				data={listOfCards}
 				renderItem={({ item }, rowMap) => {
 					const { type, card_hash, card_id } = item;
 
 					return (
-						<View style={styles.itemOfCardContainer}>
+						<TouchableOpacity
+							activeOpacity={1}
+							onPress={() => {
+								paymentBySavedCard(card_id, infoListTalonInfo.rnumb_id, infoListTalonInfo.price);
+							}}
+							style={styles.itemOfCardContainer}
+						>
 							<Image
 								style={styles.itemOfCardImage}
 								resizeMode="cover"
 								source={{ uri: `http://89.218.154.86:8081/payment_systems/${type}.png` }}
 							/>
 							<Text style={styles.numberOfCard}>{card_hash}</Text>
-							<TouchableOpacity
-								onPress={() => {
-									paymentBySavedCard(+card_id, +infoListTalonInfo.rnumb_id, +infoListTalonInfo.price);
-								}}
-								style={{ marginLeft: 'auto' }}
-							>
-								<Image style={styles.arrowLogo} resizeMode="contain" source={BACK_GREEN} />
-							</TouchableOpacity>
-						</View>
+							<Image style={styles.arrowLogo} resizeMode="contain" source={BACK_GREEN} />
+						</TouchableOpacity>
 					);
 				}}
 				disableLeftSwipe
 				renderHiddenItem={({ item }, rowMap) => {
+					const { card_id } = item;
+
 					return (
 						<TouchableOpacity
-							onPress={() => {
-								deleteCard(item.id);
-							}}
+							onPress={() => deleteCard(card_id)}
 							style={styles.deleteContainer}
 						>
 							<Text style={styles.deleteText}>{t('recordings:delete_card')}</Text>

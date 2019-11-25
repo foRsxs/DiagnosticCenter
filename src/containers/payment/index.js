@@ -5,6 +5,8 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 
+import { getSavedCards } from '../../actions/content';
+
 import Header from '../../components/common/Header';
 import { ACCENT_BLUE } from '../../styles/constants';
 
@@ -19,8 +21,8 @@ class Payment extends Component {
 	}
 
 	onNavigationStateChange = ({ url }) => {
-		const { navigation } = this.props;
-		
+		const { navigation, getSavedCards } = this.props;
+
 		if (url.includes('process')) {
 			this.senderResp = true;
 		}
@@ -44,6 +46,7 @@ class Payment extends Component {
 		}
 
 		if (url.includes('hbpay/result')) {
+			getSavedCards();
 			setTimeout(() => {
 				navigation.goBack();
 			}, 4000);
@@ -92,6 +95,6 @@ const mapStateToProps = (state) => ({
 	payLink: state.content.payLink
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({	getSavedCards }, dispatch);
 
 export default compose(withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(Payment);
