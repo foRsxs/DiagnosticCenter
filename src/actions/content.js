@@ -477,14 +477,8 @@ export function setOrder(data, type, nameDispatch) {
 	};
 }
 
-export function sendQuestion({ type, question, email, doc_id }) {
+export function sendQuestion({ type, question, email, docdep }) {
 	return (dispatch, getState) => {
-		dispatch(
-			sendQuestionSuccess({
-				loading: true,
-				status: false
-			})
-		);
 		const { authorization: { token, language } } = getState();
 		const params = {
 			api_token: token,
@@ -493,7 +487,14 @@ export function sendQuestion({ type, question, email, doc_id }) {
 			lang: language
 		};
 
-		if (doc_id) params.doc_id = doc_id;
+		dispatch(
+			sendQuestionSuccess({
+				loading: true,
+				status: false
+			})
+		);
+
+		if (docdep) params.docdep = docdep;
 
 		axios
 			.post(`${APP_API_URL}/${type}`, params)

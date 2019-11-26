@@ -159,7 +159,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#ffffff',
     width: '100%',
-    bottom: 0,
+    bottom: scale(20),
     zIndex: 14,
     paddingTop: scale(10),
     paddingBottom: scale(20),

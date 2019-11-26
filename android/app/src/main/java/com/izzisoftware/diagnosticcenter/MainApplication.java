@@ -39,12 +39,12 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-            new RNDeviceInfo(),
-            new RNPermissionsPackage(),
-            new RNCameraPackage(),
-            new AsyncStoragePackage(),
-            new NetInfoPackage(),
-            new RNCWebViewPackage(),
+        new RNDeviceInfo(),
+        new RNPermissionsPackage(),
+        new RNCameraPackage(),
+        new AsyncStoragePackage(),
+        new NetInfoPackage(),
+        new RNCWebViewPackage(),
         new LinearGradientPackage(),
         new RNGestureHandlerPackage(),
         new RNFetchBlobPackage(),

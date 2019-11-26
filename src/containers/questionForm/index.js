@@ -14,40 +14,40 @@ class QuestionFormScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      doc_id: (props.navigation.state.params) ? props.navigation.state.params.doc_id : null,
-      specid: (props.navigation.state.params) ? props.navigation.state.params.specid : null,
       docdep: (props.navigation.state.params) ? props.navigation.state.params.docdep : null,
     };
   }
 
   getData = (data) => {
-    const { doc_id } = this.state;
-    this.props.sendQuestion({ type: 'questions', doc_id, ...data });
+    const { docdep } = this.state;
+
+    this.props.sendQuestion({ type: 'questions', docdep, ...data });
   }
 
   componentDidUpdate(prevProps) {
-    const { t } = this.props;
-    const { doc_id, specid, docdep } = this.state;
+    const { t, navigation } = this.props;
+    const { docdep } = this.state;
 
     if (this.props.status !== prevProps.status) {
       if (this.props.status) {
         Toast.show({ text: t('common:actions_text.question_sent') });
-      } else {
+        setTimeout(()=> {
         Toast.hide();
-        this.props.navigation.navigate('doctor', { docid: +doc_id, spec_id: specid, docdep_id: docdep })
+        this.props.getQuestions(docdep);
+        navigation.goBack();
+        }, 3000);
       }
     }
   }
 
   render() {
-    const { doc_id } = this.state;
     const { t, profile, loading } = this.props;
 
     return (
       <Container>
         <Header backButton={true} text={t('questions:form.title')} navigation={this.props.navigation} />
         <KeyboardAwareScrollView enableOnAndroid={true} keyboardShouldPersistTaps='handled' contentContainerStyle={styles.mainContainer}>
-          <FormSend sendData={this.getData} email={profile.email} loading={loading} sendQuest={true} docid={doc_id} />
+          <FormSend sendData={this.getData} email={profile.email} loading={loading} sendQuest={true} />
         </KeyboardAwareScrollView>
       </Container>
     )

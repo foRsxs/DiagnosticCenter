@@ -50,14 +50,15 @@ class DoctorScreen extends Component {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       authAlert(t, navigation);
     } else {
-      (page == 'questions') ? 
+      if (page == 'questions') {
         navigation.navigate(page, { doc_id: docid, specid: spec_id, docdep: docdep_id, fio: `${doctor.lastname} ${doctor.firstname} ${doctor.secondname}` }) 
-      :
+      } else {
         navigation.navigate({
           key: docdep_id,
           routeName: page,
           params: { spec_id, docdep_id, type: doctor.type[0]},
         });
+      }
     }
   }
 
@@ -71,7 +72,6 @@ class DoctorScreen extends Component {
           (isRequest) ? 
           (<ActivityIndicator style={(isRequest) ? { marginTop: 100 } : {}} size="large" color={ACCENT_BLUE} />)
           : 
-          (
           (doctor) && <KeyboardAwareScrollView>
             <View style={styles.mainInfo}>
               <Text style={styles.name}>{`${doctor.lastname} ${doctor.firstname} ${doctor.secondname}`}</Text>
@@ -84,14 +84,14 @@ class DoctorScreen extends Component {
                 value={`<p>${description}</p>`}
               />
             </View>
-          </KeyboardAwareScrollView>)
+          </KeyboardAwareScrollView>
         } 
       </View>
     )
   }
 
   renderQuestions() {
-    const { moreInfo, docdep_id } = this.state;
+    const { moreInfo, docid, docdep_id } = this.state;
     const { questions, t, isRequest, navigation, isGuest, setActiveTab } = this.props;
 
     return (
@@ -106,7 +106,7 @@ class DoctorScreen extends Component {
                 authAlert(t, navigation);
               } else {
                 setActiveTab(0);
-                navigation.navigate("questionForm", { doc_id: docdep_id })
+                navigation.navigate("questionForm", { doc_id: docid, docdep: docdep_id })
               }
             }}
           >

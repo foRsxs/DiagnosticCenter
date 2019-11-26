@@ -32,8 +32,8 @@ export default StyleSheet.create({
     backgroundColor: 'white'
   },
   buttonWrap: {
-    paddingTop: scale(20),
-    paddingBottom: scale(15),
+    padding: scale(20),
+    paddingBottom: scale(30),
   },
   formWrap: {
     justifyContent: 'space-between',

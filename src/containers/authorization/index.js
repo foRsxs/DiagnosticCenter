@@ -14,7 +14,7 @@ import CustomBtn from '../../components/common/CustomBtn';
 import Popup from '../../components/common/Popup';
 import styles from './styles';
 
-import { ACCENT_BLUE } from '../../styles/constants';
+import { ACCENT_BLUE, COLOR_PLACEHOLDER } from '../../styles/constants';
 
 class AuthorizationScreen extends Component {
 	constructor(props) {
@@ -202,6 +202,7 @@ class AuthorizationScreen extends Component {
 							placeholder={'+7 (___) ___-__-__'}
 							value={this.state.formattedNumber}
 							style={[ styles.input, { borderBottomWidth: 1, borderColor: ACCENT_BLUE } ]}
+							placeholderTextColor = {COLOR_PLACEHOLDER}
 							onChangeText={(text) => {
 								this.setState({
 									formattedNumber: text
@@ -211,6 +212,7 @@ class AuthorizationScreen extends Component {
 						/>
 						<TextInput
 							style={styles.input}
+							placeholderTextColor = {COLOR_PLACEHOLDER}
 							placeholder={t('authorization:inn')}
 							onChangeText={(text) => this.onChangeId(text)}
 							value={personalId}
