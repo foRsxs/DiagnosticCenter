@@ -158,11 +158,11 @@ export const styles = StyleSheet.create({
   btnWrap: {
     position: 'absolute',
     backgroundColor: '#ffffff',
+    bottom: 0,
     width: '100%',
-    bottom: scale(20),
     zIndex: 14,
     paddingTop: scale(10),
-    paddingBottom: scale(20),
+    paddingBottom: scale(30),
     paddingHorizontal: scale(25)
   },
   redBtn: {

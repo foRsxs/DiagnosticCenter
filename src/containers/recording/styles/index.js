@@ -55,8 +55,7 @@ export default StyleSheet.create({
     marginTop: scale(-10)
   },
   wrapper: {
-    padding: scale(20),
-    height: scale(height / 2.3)
+    padding: scale(20)
   },
   datetimeWrap: {
     flexDirection: 'row',
@@ -68,6 +67,7 @@ export default StyleSheet.create({
     height: scale(50)
   },
   buttonWrap: {
+    position: 'relative',
     padding: scale(20),
   },
   sendBtn: {
