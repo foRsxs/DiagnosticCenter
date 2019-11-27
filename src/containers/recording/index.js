@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ImageBackground, Image, TouchableOpacity } from 'react-native';
-import { Container, View, Content, Tabs, Tab } from 'native-base';
+import { ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Container, View, Tabs, Tab } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -81,7 +81,7 @@ class ReceptionCreateScreen extends Component {
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
-        <Content>
+        <ScrollView>
           <TouchableOpacity
             onPress={() => navigation.navigate('recordingList')}
             style={styles.btnUpdate}
@@ -245,7 +245,7 @@ class ReceptionCreateScreen extends Component {
               </View>
             </Tab>
           </Tabs>
-        </Content >
+        </ScrollView>
       </Container>
     )
   }

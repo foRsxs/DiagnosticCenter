@@ -4,7 +4,7 @@ import { Root } from 'native-base';
 import { Alert } from 'react-native';
 // import NetInfo from "@react-native-community/netinfo";
 import { Provider } from 'react-redux';
-import { offlineActionTypes } from 'react-native-offline';
+// import { offlineActionTypes } from 'react-native-offline';
 import OneSignal from 'react-native-onesignal';
 
 import { getAppParamsConfig } from './src/actions/content';
@@ -48,12 +48,12 @@ export default class App extends Component {
 		OneSignal.removeEventListener('opened', this._onOpened);
 	};
 
-	_handleConnectionChange = (isConnected) => {
-		this.state.store.dispatch({
-			type: offlineActionTypes.CONNECTION_CHANGE,
-			payload: isConnected
-		});
-	};
+	// _handleConnectionChange = (isConnected) => {
+	// 	this.state.store.dispatch({
+	// 		type: offlineActionTypes.CONNECTION_CHANGE,
+	// 		payload: isConnected
+	// 	});
+	// };
 
 	_onOpened(openResult) {
 		if (!openResult.notification.isAppInFocus) {

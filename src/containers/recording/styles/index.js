@@ -10,6 +10,8 @@ import {
   MAIN_FONT
 } from '../../../styles/constants';
 
+import { isIphoneXorAbove } from '../../../utils/helpers';
+
 let {
   height
 } = Dimensions.get('window');
@@ -75,7 +77,7 @@ export default StyleSheet.create({
   },
   btnUpdate: {
     position: 'absolute',
-    top: scale(20),
+    top: isIphoneXorAbove ? scale(50) : scale(20),
     right: scale(20),
     zIndex: 10
   },
