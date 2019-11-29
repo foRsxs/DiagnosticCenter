@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, PermissionsAndroid, Platform } from 'react-native';
 import { Container, Content, Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import QRCodeScanner from 'react-native-qrcode-scanner';
+import { RNCamera } from 'react-native-camera';
 
 import Header from '../../components/common/Header';
 import styles from './styles';
@@ -11,32 +11,65 @@ class ScanCodeScreen extends Component {
 	constructor(props) {
     super(props);
     this.state = {
+      hasCameraPermission: false,
       showScanner: true,
       showResult: false,
       scanData: null
     }
-	}
+  }
+
+  async componentDidMount() {
+    (Platform.OS === 'android') ? this.requestCameraPermission() : this.setState({ hasCameraPermission: true });
+  }
+  
+  async requestCameraPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
+
+      this.setState({ hasCameraPermission: (granted === PermissionsAndroid.RESULTS.GRANTED) });
+    } catch (err) {
+      console.warn(err)
+    }
+  }
   
   renderScanner = () => {
+    const { hasCameraPermission } = this.state;
+
     return (
       <View style={styles.containerScanner}>
         <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} style={styles.closeBtn}>
           <Icon style={{ color: '#ffffff' }} name="ios-close" />
         </TouchableOpacity>
-        <QRCodeScanner
-          showMarker={true}
-          onRead={this.onScannerSuccess}
-        />
+        {
+          hasCameraPermission ? (
+            <RNCamera
+              style={styles.cameraArea}
+              type={RNCamera.Constants.Type.back}
+              onBarCodeRead={this.onScan}
+              ref={cam => this.camera = cam}
+              captureAudio={false}
+              barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+            >
+              <View style={styles.barcodeArea} />
+            </RNCamera>
+          ) : (
+            <Text style={styles.text}>
+              CAMERA NO ACCESS
+            </Text>
+          )
+        }
       </View>
     );
   }
 
-  onScannerSuccess = (e) => {
-    this.setState({
-      showScanner: false,
-      showResult: true,
-      scanData: (e.data) ? JSON.parse(e.data) : null
-    });
+  onScan = (e) => {
+    if (e.type == 'QR_CODE' || e.type == 'org.iso.QRCode') {
+      this.setState({
+        showScanner: false,
+        showResult: true,
+        scanData: (e.data) ? JSON.parse(e.data) : null
+      });
+    }
   }
 
   renderScannerResult = () => {

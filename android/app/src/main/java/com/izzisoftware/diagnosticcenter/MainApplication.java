@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -40,7 +39,6 @@ public class MainApplication extends Application implements ShareApplication, Re
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new RNDeviceInfo(),
-        new RNPermissionsPackage(),
         new RNCameraPackage(),
         new AsyncStoragePackage(),
         new NetInfoPackage(),

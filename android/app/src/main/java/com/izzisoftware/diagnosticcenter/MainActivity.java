@@ -15,6 +15,7 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "diagnosticcenter";
     }
+    
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
         return new ReactActivityDelegate(this, getMainComponentName()) {
@@ -24,6 +25,7 @@ public class MainActivity extends ReactActivity {
             }
         };
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);

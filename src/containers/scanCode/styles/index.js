@@ -3,7 +3,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { isIphoneXorAbove } from '../../../utils/helpers';
 import variables, {scale} from '../../../styles/variables';
 const { medium } = variables.fSize;
-import { MAIN_FONT } from '../../../styles/constants';
+import { MAIN_FONT, COLOR_RED, BLACK } from '../../../styles/constants';
 
 export default StyleSheet.create({
   container: {
@@ -14,6 +14,8 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   сontainerResult: {
     justifyContent: 'space-between',
@@ -38,5 +40,24 @@ export default StyleSheet.create({
     zIndex: 10,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  cameraArea: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  barcodeArea: {
+    borderWidth: 1,
+    width: scale(250),
+    height: scale(250),
+    borderColor: COLOR_RED
+  },
+  text: {
+    fontFamily: MAIN_FONT,
+    fontSize: medium,
+    lineHeight: scale(29),
+    textAlign: 'center',
+    color: BLACK
   }
 });
