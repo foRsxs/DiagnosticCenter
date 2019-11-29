@@ -96,6 +96,8 @@
     },
     "scanqrcode": {
         "title": "Verification result",
+        "wrong_code": "QR code could not be recognized",
+        "no_permissions": "Camera cannot be accessed",
         "item": {
             "title": "Hospital sheet",
             "number": "Number",

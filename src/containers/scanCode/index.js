@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, PermissionsAndroid, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, PermissionsAndroid, Platform, Alert } from 'react-native';
 import { Container, Content, Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { RNCamera } from 'react-native-camera';
 
 import Header from '../../components/common/Header';
 import styles from './styles';
+
+import { APP_NAME } from '../../config';
 
 class ScanCodeScreen extends Component {
 	constructor(props) {
@@ -34,6 +36,7 @@ class ScanCodeScreen extends Component {
   
   renderScanner = () => {
     const { hasCameraPermission } = this.state;
+    const { t } = this.props;
 
     return (
       <View style={styles.containerScanner}>
@@ -54,7 +57,7 @@ class ScanCodeScreen extends Component {
             </RNCamera>
           ) : (
             <Text style={styles.text}>
-              CAMERA NO ACCESS
+              {t('scanqrcode:no_doctor_text')}
             </Text>
           )
         }
@@ -62,15 +65,31 @@ class ScanCodeScreen extends Component {
     );
   }
 
-  onScan = (e) => {
-    if (e.type == 'QR_CODE' || e.type == 'org.iso.QRCode') {
-      this.setState({
-        showScanner: false,
-        showResult: true,
-        scanData: (e.data) ? JSON.parse(e.data) : null
-      });
+  onScan = e => {
+    const { t, navigation } = this.props;
+    let scanData = null;
+
+    try {
+      if (e.type == "QR_CODE" || e.type == "org.iso.QRCode") {
+        scanData = JSON.parse(e.data);
+      }
+    } catch (err) {
+      scanData = null;
+      Alert.alert(
+        APP_NAME, 
+        t('scanqrcode:wrong_code'),
+        [
+          {text: t('common:actions.ok'), onPress: () => navigation.goBack() },
+        ]
+      );
     }
-  }
+
+    this.setState({
+      showScanner: false,
+      showResult: true,
+      scanData: scanData
+    });
+  };
 
   renderScannerResult = () => {
     const { t } = this.props;
@@ -158,4 +177,4 @@ class ScanCodeScreen extends Component {
 	}
 }
 
-export default withNamespaces('scanqrcode')(ScanCodeScreen);
+export default withNamespaces(['common', 'scanqrcode'])(ScanCodeScreen);

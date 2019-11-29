@@ -30,7 +30,7 @@ class Payment extends Component {
 		if (url.includes('err_process')) {
 			if (this.senderResp) {
 				setTimeout(() => {
-					navigation.navigate('recordingList');
+					navigation.goBack();
 				}, 2000);
 				this.senderResp = false;
 			}
