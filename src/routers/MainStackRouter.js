@@ -40,6 +40,7 @@ import CardPatientScreen from '../containers/cardPatient';
 import CardPatientDetailScreen from '../containers/cardPatientDetail';
 import ScanCodeScreen from '../containers/scanCode';
 import PaymentScreen from '../containers/payment';
+import PaymentMethods from '../containers/paymentMethods';
 
 const ProfileNavigator = createStackNavigator(
   {
@@ -97,6 +98,12 @@ const ProfileNavigator = createStackNavigator(
         header: null
       }
     },
+    paymentMethods: {
+      screen: PaymentMethods,
+      navigationOptions: {
+        header: null
+      }
+    },
     paymentCards: {
       screen: PaymentCardsScreen,
       navigationOptions: {
@@ -109,7 +116,6 @@ const ProfileNavigator = createStackNavigator(
         header: null
       }
     },
-    
   },
   {
     initialRouteName: 'profile',

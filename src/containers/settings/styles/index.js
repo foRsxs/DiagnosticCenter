@@ -47,7 +47,7 @@ export default StyleSheet.create({
   }, 
   btnWrap: {
     paddingHorizontal: scale(15), 
-    paddingVertical: scale(20)
+    paddingVertical: scale(30)
   },
   switchStyle: { 
     transform: [{ scaleX: scale(1) }, { scaleY: scale(1) }] 

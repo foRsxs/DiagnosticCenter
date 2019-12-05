@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Text, TouchableOpacity, Image, TextInput, Linking } from 'react-native';
+import { StatusBar, View, Text, TouchableOpacity, Image, TextInput, Linking, Keyboard } from 'react-native';
 import { Icon } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -105,6 +105,7 @@ class Header extends Component {
 											onPress={() =>  {
 												this.setState({ searchText: '' });
 												this.props.onClearSearch();
+												Keyboard.dismiss();
 											}}
 										>
 											<Image style={styles.cancelIcon} resizeMode='contain' source={ICON_CANCEL} />

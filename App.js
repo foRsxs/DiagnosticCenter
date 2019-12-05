@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Root } from 'native-base';
 import { Alert } from 'react-native';
-// import NetInfo from "@react-native-community/netinfo";
 import { Provider } from 'react-redux';
-// import { offlineActionTypes } from 'react-native-offline';
+import { PersistGate } from 'redux-persist/integration/react';
 import OneSignal from 'react-native-onesignal';
 
 import { getAppParamsConfig } from './src/actions/content';
@@ -19,41 +18,25 @@ const ReloadAppOnLanguageChange = withNamespaces('common', {
 	bindStore: false
 })(WrappedStack);
 
+const { store, persistor } = configureStore();
+
 console.reportErrorsAsExceptions = false;
 console.disableYellowBox = true;
 
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			isLoading: true,
-			store: configureStore(() => this.setState({ isLoading: false }))
-		};
 		OneSignal.init(ONE_SIGNAL_KEY, { kOSSettingsKeyAutoPrompt: true });
 		OneSignal.addEventListener('opened', this._onOpened);
 	}
 
 	componentDidMount() {
-		this.state.store.dispatch(getAppParamsConfig());
-		// const unsubscribe = NetInfo.addEventListener(state => {
-		// 	this.state.store.dispatch({
-		// 		type: offlineActionTypes.CONNECTION_CHANGE,
-		// 		payload: state.isConnected
-		// 	});
-		// });
+		store.dispatch(getAppParamsConfig());
 	}
 
 	componentWillUnmount = () => {
-		// unsubscribe();
 		OneSignal.removeEventListener('opened', this._onOpened);
 	};
-
-	// _handleConnectionChange = (isConnected) => {
-	// 	this.state.store.dispatch({
-	// 		type: offlineActionTypes.CONNECTION_CHANGE,
-	// 		payload: isConnected
-	// 	});
-	// };
 
 	_onOpened(openResult) {
 		if (!openResult.notification.isAppInFocus) {
@@ -62,12 +45,12 @@ export default class App extends Component {
 	}
 
 	render() {
-		if (this.state.isLoading) return null;
-
 		return (
 			<Root>
-				<Provider store={this.state.store}>
-					<ReloadAppOnLanguageChange />
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<ReloadAppOnLanguageChange />
+					</PersistGate>
 				</Provider>
 			</Root>
 		);

@@ -110,6 +110,19 @@
             "org_name": "Medical organization"
         }
     },
+    "payment": {
+        "title": "Payment methods",
+        "payment_page_title": "Payment",
+        "add_cart_page_title": "Adding a Card",
+        "saved_card": "Saved cards",
+        "payment_by_saved_card": "Payment by saved card",
+        "add_new_card": "Adding a new card",
+        "add_card": "Add card",
+        "payment_without_saving_a_card": "Payment without saving a card",
+        "bank_card": "Bank cards",
+        "card_payment": "Card payment",
+        "delete_card": "Delete"
+    },
     "listdoctors": {
         "title": "List of doctors",
         "no_doctors_text": "No appropriate doctors",
@@ -157,13 +170,6 @@
         },
         "info_record": "Record Information",
         "info_warning_text": "After making an appointment, you must pay within 15 minutes. In case of no payment, the entry is canceled.",
-        "payment_by_saved_card": "Payment by saved card",
-        "add_new_card": "Adding a new card",
-        "add_card": "Add card",
-        "payment_without_saving_a_card": "Payment without saving a card",
-        "bank_card": "Bank cards",
-        "card_payment": "Card payment",
-        "delete_card": "Delete"
     },
     "createrecord": {
         "title": "Appointment",

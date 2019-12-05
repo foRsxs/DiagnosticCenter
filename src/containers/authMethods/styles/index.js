@@ -137,7 +137,7 @@ export default StyleSheet.create({
     marginTop: scale(20),
     zIndex: 1,
     textAlign: 'center',
-    width: width
+    width: '100%'
   },
   wrapLanguage: {
     flexDirection: 'row',
@@ -190,5 +190,8 @@ export default StyleSheet.create({
   },
   checkStyle: {
     transform: [{ scaleX: scale(1) }, { scaleY: scale(1) }] 
+  },
+  btnWrap: {
+    paddingVertical: scale(10)
   }
 });

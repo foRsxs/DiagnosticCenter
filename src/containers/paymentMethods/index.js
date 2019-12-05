@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Text, Image, TouchableOpacity } from 'react-native';
+import { Text, Image, TouchableOpacity } from 'react-native';
 import { Container, View, Content } from 'native-base';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
@@ -8,60 +8,35 @@ import { withNamespaces } from 'react-i18next';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import { getSavedCards, deleteCard, addCard, paymentBySavedCard, getLinkForPayment } from '../../actions/content';
-import { ADD_NEW_CARD, BANK_CARD, BACK_GREEN } from '../../styles/images';
+import { ADD_NEW_CARD, BACK_GREEN } from '../../styles/images';
 import Header from '../../components/common/Header';
 import styles from './styles';
 
-class PaymentCards extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			type_text: ''
-		};
-	}
-
+class PaymentMethods extends Component {
 	componentDidMount() {
 		this.props.getSavedCards();
 	}
 
 	componentDidUpdate(prevProps) {
-		const { t, payLink, payLinkTimeout, isFocused, navigation } = this.props;
-		const { type_text } = this.state;
-
-		if (prevProps.payLink !== payLink && payLink && isFocused) {
-			navigation.navigate('payment', { type: type_text });
-		}
+		const { payLink, isFocused, navigation } = this.props;
 		
-		if (prevProps.payLinkTimeout !== payLinkTimeout && payLinkTimeout && isFocused) {
-			Alert.alert(
-				t('payment:card_payment'),
-				t('common:errors.payment_request_timeout'),
-				[
-					{text: 'OK', onPress: () => navigation.replace('recordingList')},
-				],
-				{cancelable: false},
-			)
+		if (prevProps.payLink !== payLink && payLink && isFocused) {
+			navigation.navigate('payment', { type: 'add_cart' });
 		}
 	}
 
 	renderCards = () => {
-		const { t, listOfCards, deleteCard, infoListTalonInfo, paymentBySavedCard } = this.props;
+		const { t, listOfCards, deleteCard} = this.props;
 
 		return (
 			<SwipeListView
 				keyExtractor={item => item.card_id}
 				data={listOfCards}
 				renderItem={({ item }, rowMap) => {
-					const { type, card_hash, card_id } = item;
+					const { type, card_hash } = item;
 
 					return (
-						<TouchableOpacity
-							activeOpacity={1}
-							onPress={() => {
-								paymentBySavedCard(card_id, infoListTalonInfo.rnumb_id, infoListTalonInfo.price);
-							}}
-							style={styles.itemOfCardContainer}
-						>
+						<View style={styles.itemOfCardContainer}>
 							<Image
 								style={styles.itemOfCardImage}
 								resizeMode="cover"
@@ -69,7 +44,7 @@ class PaymentCards extends Component {
 							/>
 							<Text style={styles.numberOfCard}>{card_hash}</Text>
 							<Image style={styles.arrowLogo} resizeMode="contain" source={BACK_GREEN} />
-						</TouchableOpacity>
+						</View>
 					);
 				}}
 				disableLeftSwipe
@@ -92,24 +67,18 @@ class PaymentCards extends Component {
 	};
 
 	addCardClick = () => {
-		this.setState({ type_text: 'add_cart' });
 		this.props.addCard();
-	};
-
-	bankCardClick = () => {
-		const { getLinkForPayment, infoListTalonInfo } = this.props;
-
-		getLinkForPayment(infoListTalonInfo.rnumb_id, infoListTalonInfo.price);
 	};
 
 	render() {
 		const { t, navigation } = this.props;
+
 		return (
 			<Container>
-				<Header backButton={true} text={t('payment:card_payment')} navigation={navigation} />
+				<Header backButton={true} text={t('payment:title')} navigation={navigation} />
 				<Content style={styles.content}>
 					<View style={styles.itemElement}>
-						<Text style={styles.textStyle}>{t('payment:payment_by_saved_card')}</Text>
+						<Text style={styles.textStyle}>{t('payment:saved_card')}</Text>
 					</View>
 					{this.renderCards()}
 					<View style={styles.addNewCardContainer}>
@@ -119,16 +88,6 @@ class PaymentCards extends Component {
 						<TouchableOpacity style={styles.addNewCard} onPress={this.addCardClick}>
 							<Image style={styles.addCardIcon} resizeMode="contain" source={ADD_NEW_CARD} />
 							<Text style={styles.textItemStyle}>{t('payment:add_card')}</Text>
-							<Image style={styles.arrowLogo} resizeMode="contain" source={BACK_GREEN} />
-						</TouchableOpacity>
-					</View>
-					<View style={styles.bankCardContainer}>
-						<View style={styles.itemElement}>
-							<Text style={styles.textStyle}>{t('payment:payment_without_saving_a_card')}</Text>
-						</View>
-						<TouchableOpacity style={styles.bankCard} onPress={this.bankCardClick}>
-							<Image style={styles.bankCardIcon} resizeMode="contain" source={BANK_CARD} />
-							<Text style={styles.textItemStyle}>{t('payment:bank_card')}</Text>
 							<Image style={styles.arrowLogo} resizeMode="contain" source={BACK_GREEN} />
 						</TouchableOpacity>
 					</View>
@@ -157,4 +116,4 @@ const mapDispatchToProps = (dispatch) =>
 		dispatch
 	);
 
-export default compose(withNamespaces(['payment', 'common']), withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(PaymentCards);
+export default compose(withNamespaces(['payment', 'common']), withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(PaymentMethods);

@@ -83,7 +83,10 @@ class ListDoctors extends Component {
     return (
       <Container>
         <Header search={true} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
-        <KeyboardAwareScrollView style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+        <KeyboardAwareScrollView 
+          style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} 
+          contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}
+        >
           { (isRequest) ? 
             ( <ActivityIndicator size="large" color={ACCENT_BLUE} /> )
             : (

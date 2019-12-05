@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { withNamespaces } from 'react-i18next';
 import { WebView } from 'react-native-webview';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
@@ -15,9 +16,18 @@ class Payment extends Component {
 		super(props);
 		this.state = {
 			isRequest: false,
-			showLoader: true
+			showLoader: true,
+			add_cart: false
 		};
 		this.senderResp = false;
+	}
+
+	componentDidMount() {
+		const { type } = this.props.navigation.state.params;
+
+		console.log(type)
+
+		this.setState({ add_cart: (type && type === 'add_cart') ? true : false });
 	}
 
 	onNavigationStateChange = ({ url }) => {
@@ -55,16 +65,15 @@ class Payment extends Component {
 		if (url.includes('api/epay_success')) {
 			navigation.goBack();
 		}
-		
 	};
 
 	render() {
-		const { payLink, navigation } = this.props;
-		const { showLoader } = this.state;
+		const { t, payLink, navigation } = this.props;
+		const { showLoader, add_cart } = this.state;
 
 		return (
 			<View style={{ flex: 1 }}>
-				<Header backButton={true} text={'Оплата'} navigation={navigation} />
+				<Header backButton={true} text={add_cart ? t('payment:add_cart_page_title') : t('payment:payment_page_title')} navigation={navigation} />
 				{showLoader && (
 					<View style={styles.container}>
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
@@ -97,4 +106,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({	getSavedCards }, dispatch);
 
-export default compose(withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(Payment);
+export default withNamespaces(['payment'])(compose(withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(Payment));

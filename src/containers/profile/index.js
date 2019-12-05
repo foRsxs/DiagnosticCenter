@@ -11,7 +11,7 @@ import Header from '../../components/common/Header';
 import MenuList from '../../components/common/MenuList';
 import styles from './styles';
 
-import { ICON_CARD_PATIENT, ICON_ANALIZE, ICON_JOURNAL_POSTS, ICON_SETTINGS, ICON_LOGOUT } from '../../styles/images';
+import { ICON_CARD_PATIENT, ICON_ANALIZE, ICON_JOURNAL_POSTS, ICON_SETTINGS, ICON_LOGOUT, BANK_CARD } from '../../styles/images';
 
 class ProfileScreen extends Component {
 
@@ -75,6 +75,11 @@ class ProfileScreen extends Component {
           text: t('profile:journal'),
           icon: ICON_JOURNAL_POSTS,
           value: "recordingList"
+        },
+        {
+          text: t('payment:title'),
+          icon: BANK_CARD,
+          value: "paymentMethods"
         },
         {
           text: t('menu:settings'),
@@ -147,4 +152,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...AuthActions }, dispatch)
 }
 
-export default withNamespaces(['profile', 'common', 'patient', 'analizes', 'menu'])(connect(mapStateToProps, mapDispatchToProps)(ProfileScreen));
+export default withNamespaces(['profile', 'payment', 'common', 'patient', 'analizes', 'menu'])(connect(mapStateToProps, mapDispatchToProps)(ProfileScreen));

@@ -174,7 +174,7 @@ class SettingsScreen extends Component {
                 onPress={()=> {
                   savePinCode({ code: null, confirmed: false });
                   changeMethodsAuth({ methods_auth: local_auth_methods, confirmed: false });
-                  navigation.navigate('authorization');
+                  navigation.navigate('AuthMethods');
                 }}
                 >
                 <View style={[styles.settingItem]}>

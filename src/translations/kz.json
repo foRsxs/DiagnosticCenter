@@ -109,6 +109,19 @@
             "org_name": "Медициналық ұйым"
         }
     },
+    "payment": {
+        "title": "Төлем әдістері",
+        "payment_page_title": "Төлем",
+        "add_cart_page_title": "Карта қосу",
+        "saved_card": "Сақталған карталар",
+        "payment_by_saved_card": "Сақталған карта бойынша төлем",
+        "add_new_card": "Жаңа карта қосу",
+        "add_card": "Карта қосыңыз",
+        "payment_without_saving_a_card": "Картаны сақтамай төлем жасау",
+        "bank_card": "Банк карталары",
+        "card_payment": "Карточка арқылы төлеу",
+        "delete_card": "Жою"
+    },
     "listdoctors": {
         "title": "Дәрігерлер тізімдемесі",
         "no_doctors_text": "Сәйкес дәрігерлер жоқ",
@@ -156,13 +169,6 @@
         },
         "info_record": "Жазба туралы ақпарат",
         "info_warning_text": "Қабылдауға жазылғаннан кейін 15 минут ішінде төлем жүргізу қажет. Төлем жүргізілмеген жағдайда, жазба жойылады.",
-        "payment_by_saved_card": "Сақталған карта бойынша төлем",
-        "add_new_card": "Жаңа карта қосу",
-        "add_card": "Карта қосыңыз",
-        "payment_without_saving_a_card": "Картаны сақтамай төлем жасау",
-        "bank_card": "Банк карталары",
-        "card_payment": "Карточка арқылы төлеу",
-        "delete_card": "Жою"
     },
     "createrecord": {
         "title": "Қабылдауға жазылу",
