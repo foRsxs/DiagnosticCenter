@@ -30,11 +30,18 @@ export default StyleSheet.create({
     fontSize: medium
   },
   deleteContainer: {
-    justifyContent: 'center',
     backgroundColor: COLOR_RED,
-    paddingLeft: scale(10),
     width: '100%',
     height: scale(60)
+  },
+  deleteBtn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    height: '100%',
+    width: scale(100),
+    textAlign: 'center',
+    right: scale(0)
   },
   textStyle: {
     fontSize: medium,

@@ -42,10 +42,10 @@ class ReceptionCreateScreen extends Component {
 
     if (spec_id) {
       (type == 1) ? setOrder({ spec_id }, 'spec_id', 'doc') : setOrder({ spec_id }, 'spec_id');
-      setOrderValue({ spec: (spec_value)? spec_value: doctorData.speciality });
+      setOrderValue({ spec: (spec_value) ? spec_value : doctorData.speciality });
       if (type === 2) {
         setOrder({ servid: serv_id }, 'servid');
-        setOrderValue({ serv: (serv_value)? serv_value: doctorData.speciality });
+        setOrderValue({ serv: (serv_value) ? serv_value : doctorData.speciality });
       }
     }
 

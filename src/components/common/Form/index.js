@@ -11,7 +11,7 @@ class FormSend extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: '',
+			email: props.email,
 			question: '',
 			emailValid: true,
 			questionValid: true
@@ -43,8 +43,8 @@ class FormSend extends Component {
 	};
 
 	render() {
-		const { question, emailValid, questionValid } = this.state;
-		const { t, sendQuest = false, email, loading } = this.props;
+		const { question, emailValid, questionValid, email } = this.state;
+		const { t, sendQuest = false, loading } = this.props;
 
 		return (
 			<Form style={styles.formWrap}>
@@ -54,6 +54,7 @@ class FormSend extends Component {
 					</Item>
 					<Item style={[ styles.inputWrap, !emailValid ? { borderColor: RED } : {} ]} regular>
 						<Input
+							autoCapitalize={'none'}
 							style={styles.input}
 							onChangeText={(email) => this.validate(email)}
 							value={email}

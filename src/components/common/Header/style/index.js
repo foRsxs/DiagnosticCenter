@@ -66,8 +66,8 @@ export default StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		width: '100%',
 		alignItems: 'center',
+		width: '100%',
 		backgroundColor: ACCENT_BLUE,
 		zIndex: 3,
 		height: (Platform.OS === 'ios' && isIphoneXorAbove()) ? scale(90) : (Platform.OS === 'ios') ? scale(75) : scale(60),
@@ -116,10 +116,9 @@ export default StyleSheet.create({
 		color: WHITE,
 		fontFamily: MAIN_FONT,
 		fontSize: large,
-		height: scale(22),
-		lineHeight: scale(22),
 		width: '100%',
 		textAlign: 'center',
+		paddingVertical: scale(15),
 		paddingHorizontal: scale(30)
 	},
 	ovalWrap: {

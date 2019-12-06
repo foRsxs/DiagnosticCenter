@@ -72,20 +72,22 @@ class PaymentCards extends Component {
 						</TouchableOpacity>
 					);
 				}}
-				disableLeftSwipe
+				disableRightSwipe
 				renderHiddenItem={({ item }, rowMap) => {
 					const { card_id } = item;
 
 					return (
-						<TouchableOpacity
-							onPress={() => deleteCard(card_id)}
-							style={styles.deleteContainer}
-						>
-							<Text style={styles.deleteText}>{t('payment:delete_card')}</Text>
-						</TouchableOpacity>
+						<View style={styles.deleteContainer}>
+							<TouchableOpacity
+								onPress={() => deleteCard(card_id)}
+								style={styles.deleteBtn}
+							>
+								<Text style={styles.deleteText}>{t('payment:delete_card')}</Text>
+							</TouchableOpacity>
+						</View>
 					);
 				}}
-				leftOpenValue={100}
+				leftOpenValue={0}
 				rightOpenValue={-100}
 			/>
 		);

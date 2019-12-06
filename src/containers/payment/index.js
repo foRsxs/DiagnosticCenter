@@ -25,8 +25,6 @@ class Payment extends Component {
 	componentDidMount() {
 		const { type } = this.props.navigation.state.params;
 
-		console.log(type)
-
 		this.setState({ add_cart: (type && type === 'add_cart') ? true : false });
 	}
 
