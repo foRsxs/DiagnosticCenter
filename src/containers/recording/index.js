@@ -56,9 +56,10 @@ class ReceptionCreateScreen extends Component {
   }
   
   componentDidUpdate(prevProps) {
-    const { setOrder, activeTab } = this.props;
+    const { setOrder, cleareOrderDatas, activeTab } = this.props;
 
     if (prevProps.activeTab !== this.props.activeTab) {
+      cleareOrderDatas();
       setOrder({ type: (activeTab === 0) ? 1 : 2 }, 'type', 'spec');
     }
   }

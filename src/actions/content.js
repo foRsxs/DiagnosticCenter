@@ -183,10 +183,10 @@ export function deleteCard(card_id) {
 
 export function addCard() {
 	return (dispatch, getState) => {
-    const { authorization: { token } } = getState();
-    
-    dispatch(setPayloadURL('', null));
-    dispatch(setIsRequest(true));
+		const { authorization: { token } } = getState();
+
+		dispatch(setPayloadURL('', null));
+		dispatch(setIsRequest(true));
 
 		axios
 			.get(`${APP_API_URL}/get_recur_auth`, {
@@ -209,7 +209,7 @@ export function paymentBySavedCard(card_id, rnumb_id, amount) {
 	return (dispatch, getState) => {
 		const { authorization: { token } } = getState();
 
-    dispatch(setPayloadURL('', null));
+		dispatch(setPayloadURL('', null));
 		dispatch(setIsRequest(true));
 
 		axios
@@ -669,8 +669,8 @@ export function getLinkForPayment(rnumb_id, amount) {
 	return (dispatch, getState) => {
 		const { authorization: { token }, content: { history } } = getState();
 
-    dispatch(setPayloadURL('', null));
-    dispatch(setIsRequest(true));
+		dispatch(setPayloadURL('', null));
+		dispatch(setIsRequest(true));
 
 		axios
 			.get(`${APP_API_URL}/get_epay_link`, {
@@ -838,8 +838,8 @@ export function cleareOrderSuccess(type) {
 export function setPayloadURL(url, code) {
 	return {
 		type: types.SET_PAYLOAD_LINK,
-    data: url,
-    code: code
+		data: url,
+		code: code
 	};
 }
 

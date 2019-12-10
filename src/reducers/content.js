@@ -4,6 +4,7 @@ import { initialState } from '../store/initialState';
 catNameFunc = (data) => {
 	let catName = null;
 	let arr = [];
+	
 	data.forEach((item, i) => {
 		if (catName && catName === item.speciality) {
 			arr.forEach((k, y) => {
