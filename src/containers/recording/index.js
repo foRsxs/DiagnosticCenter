@@ -13,10 +13,10 @@ import { CONSULT_BG, RESEARCH_BG, ICON_SPEC_SMALL, ICON_SERVICE_SMALL, ICON_DOCT
 
 class ReceptionCreateScreen extends Component {
   constructor(props) {
-    
+
     super(props);
     this.state = {
-      initialPage: props.activeTab-1, 
+      initialPage: props.activeTab - 1,
       props_data: {
         type: (props.navigation.state.params) ? +props.navigation.state.params.type : 1,
         spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
@@ -31,7 +31,7 @@ class ReceptionCreateScreen extends Component {
   componentDidMount() {
     const { type, spec_id, docdep_id, spec_value, serv_value, serv_id } = this.state.props_data;
     const { setOrder, cleareOrderSuccess, cleareOrderDatas, setOrderValue, doctorData } = this.props;
-    
+
     cleareOrderSuccess();
     cleareOrderDatas();
 
@@ -54,7 +54,7 @@ class ReceptionCreateScreen extends Component {
       setOrderValue({ docdep: `${doctorData.lastname} ${doctorData.firstname} ${doctorData.secondname}` });
     }
   }
-  
+
   componentDidUpdate(prevProps) {
     const { setOrder, cleareOrderDatas, activeTab } = this.props;
 
@@ -100,12 +100,12 @@ class ReceptionCreateScreen extends Component {
               source={CONSULT_BG}
             />
           ) : (
-            <ImageBackground
-              style={styles.bgImage}
-              resizeMode='cover'
-              source={RESEARCH_BG}
-            />
-          )}
+              <ImageBackground
+                style={styles.bgImage}
+                resizeMode='cover'
+                source={RESEARCH_BG}
+              />
+            )}
           <Tabs
             ref={(c) => { this.tabs = c; return; }}
             initialPage={initialPage}
@@ -113,14 +113,15 @@ class ReceptionCreateScreen extends Component {
             onChangeTab={(event) => {
               setActiveTab(event.i);
             }}
+            locked
             tabContainerStyle={styles.wrapTabs}
             tabBarUnderlineStyle={{ backgroundColor: 'transparent' }}
           >
-            <Tab 
-              tabStyle={styles.tab} 
-              activeTabStyle={styles.tabActive} 
-              textStyle={styles.tabText} 
-              activeTextStyle={styles.tabTextActive} 
+            <Tab
+              tabStyle={styles.tab}
+              activeTabStyle={styles.tabActive}
+              textStyle={styles.tabText}
+              activeTextStyle={styles.tabTextActive}
               heading={t('createrecord:form.consultation').toUpperCase()}
             >
               <View style={styles.wrapper}>
@@ -178,11 +179,11 @@ class ReceptionCreateScreen extends Component {
                 <CustomBtn label={t('common:actions_text.check_data')} onClick={() => this.complete()} disabled={!orderIsComplete} />
               </View>
             </Tab>
-            <Tab 
-              tabStyle={styles.tab} 
-              activeTabStyle={styles.tabActive} 
-              textStyle={styles.tabText} 
-              activeTextStyle={styles.tabTextActive} 
+            <Tab
+              tabStyle={styles.tab}
+              activeTabStyle={styles.tabActive}
+              textStyle={styles.tabText}
+              activeTextStyle={styles.tabTextActive}
               heading={t('createrecord:form.research').toUpperCase()}
             >
               <View style={styles.wrapper}>
@@ -198,7 +199,7 @@ class ReceptionCreateScreen extends Component {
                 <RecordingItem
                   onClick={() => {
                     if (!order.spec_id) return;
-                    navigation.navigate({ routeName: 'servicesDetail',  params: { isOrder: true }, key: order.spec_id });
+                    navigation.navigate({ routeName: 'servicesDetail', params: { isOrder: true }, key: order.spec_id });
                   }}
                   icon={ICON_SERVICE_SMALL} title={t('createrecord:form.service')}
                   text={orderValues.serv}

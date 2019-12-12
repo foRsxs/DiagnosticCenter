@@ -47,73 +47,85 @@ const ProfileNavigator = createStackNavigator(
     profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     authorization: {
       screen: AuthorizationScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     analizes: {
       screen: AnalizesScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     analizesItem: {
       screen: AnalizesItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     settings: {
       screen: SettingsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     cardPatientScreen: {
       screen: CardPatientScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     cardPatientDetailScreen: {
       screen: CardPatientDetailScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     recordingList: {
       screen: RecordingListScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     recordingItem: {
       screen: RecordingItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     paymentMethods: {
       screen: PaymentMethods,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     paymentCards: {
       screen: PaymentCardsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     payment: {
       screen: PaymentScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
   },
@@ -140,55 +152,64 @@ const MainNavigator = createStackNavigator(
     home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     oftenQuestions: {
       screen: OftenQuestionsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     contacts: {
       screen: ContactsScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     faq: {
       screen: FaqScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     scanCode: {
       screen: ScanCodeScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     information: {
       screen: InfoScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     informationItem: {
       screen: InfoItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     vacantion: {
       screen: VacantionScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     vacantionItem: {
       screen: VacantionItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
   },
@@ -214,19 +235,22 @@ const DoctorNavigator = createStackNavigator(
     listDoctors: {
       screen: CatalogScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     doctor: {
       screen: DoctorScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     questionForm: {
       screen: QuestionFormScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     }
   },
@@ -251,13 +275,15 @@ const ServiceNavigator = createStackNavigator(
     services: {
       screen: ServicesScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     servicesDetail: {
       screen: ServicesDetailScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
   },
@@ -271,55 +297,64 @@ const RecordNavigator = createStackNavigator(
     recordingCreate: {
       screen: RecordingCreateScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     recordingList: {
       screen: RecordingListScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     doctorsList: {
       screen: doctorsListScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     recordingItem: {
       screen: RecordingItemScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     specialization: {
       screen: SpecializationScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     servicesDetail: {
       screen: ServicesDetailScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     dateScreen: {
       screen: DateScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     timeScreen: {
       screen: TimeScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
     checkRecordScreen: {
       screen: CheckRecordScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
       }
     },
   },

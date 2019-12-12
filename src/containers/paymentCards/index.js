@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Alert, Text, Image, TouchableOpacity } from 'react-native';
 import { Container, View, Content } from 'native-base';
 import { bindActionCreators, compose } from 'redux';
@@ -31,16 +31,14 @@ class PaymentCards extends Component {
 		if (prevProps.payLink !== payLink && payLink && isFocused) {
 			navigation.navigate('payment', { type: type_text });
 		}
-		
+
 		if (prevProps.payLinkTimeout !== payLinkTimeout && payLinkTimeout && isFocused) {
 			Alert.alert(
 				t('payment:card_payment'),
 				t('common:errors.payment_request_timeout'),
-				[
-					{text: 'OK', onPress: () => navigation.replace('recordingList')},
-				],
-				{cancelable: false},
-			)
+				[ { text: 'OK', onPress: () => navigation.replace('recordingList') } ],
+				{ cancelable: false }
+			);
 		}
 	}
 
@@ -49,7 +47,7 @@ class PaymentCards extends Component {
 
 		return (
 			<SwipeListView
-				keyExtractor={item => item.card_id}
+				keyExtractor={(item) => item.card_id}
 				data={listOfCards}
 				renderItem={({ item }, rowMap) => {
 					const { type, card_hash, card_id } = item;
@@ -78,10 +76,7 @@ class PaymentCards extends Component {
 
 					return (
 						<View style={styles.deleteContainer}>
-							<TouchableOpacity
-								onPress={() => deleteCard(card_id)}
-								style={styles.deleteBtn}
-							>
+							<TouchableOpacity onPress={() => deleteCard(card_id)} style={styles.deleteBtn}>
 								<Text style={styles.deleteText}>{t('payment:delete_card')}</Text>
 							</TouchableOpacity>
 						</View>
@@ -105,15 +100,20 @@ class PaymentCards extends Component {
 	};
 
 	render() {
-		const { t, navigation } = this.props;
+		const { t, navigation, listOfCards } = this.props;
 		return (
 			<Container>
 				<Header backButton={true} text={t('payment:card_payment')} navigation={navigation} />
 				<Content style={styles.content}>
-					<View style={styles.itemElement}>
-						<Text style={styles.textStyle}>{t('payment:payment_by_saved_card')}</Text>
-					</View>
-					{this.renderCards()}
+					{listOfCards &&
+					listOfCards.length > 0 && (
+						<Fragment>
+							<View style={styles.itemElement}>
+								<Text style={styles.textStyle}>{t('payment:payment_by_saved_card')}</Text>
+							</View>
+							{this.renderCards()}
+						</Fragment>
+					)}
 					<View style={styles.addNewCardContainer}>
 						<View style={styles.itemElement}>
 							<Text style={styles.textStyle}>{t('payment:add_new_card')}</Text>
@@ -159,4 +159,8 @@ const mapDispatchToProps = (dispatch) =>
 		dispatch
 	);
 
-export default compose(withNamespaces(['payment', 'common']), withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(PaymentCards);
+export default compose(
+	withNamespaces([ 'payment', 'common' ]),
+	withNavigationFocus,
+	connect(mapStateToProps, mapDispatchToProps)
+)(PaymentCards);
