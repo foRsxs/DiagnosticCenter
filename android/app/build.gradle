@@ -151,14 +151,9 @@ android {
 }
 
 dependencies {
-    compile(project(':react-native-device-info')) {
-        exclude group: 'com.google.android.gms'
-    }    
-    implementation (project(':react-native-camera')){
-        exclude group: 'com.google.android.gms', module: 'play-services-vision'
-    }
+    implementation project(':react-native-device-info')
+    implementation project(':react-native-camera')
     implementation project(':@react-native-community_async-storage')
-    implementation project(':@react-native-community_netinfo')
     implementation project(':react-native-webview')
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-gesture-handler')
