@@ -148,9 +148,17 @@ android {
             }
         }
     }
+    packagingOptions {
+       pickFirst '**/armeabi-v7a/libc++_shared.so'
+       pickFirst '**/x86/libc++_shared.so'
+       pickFirst '**/x86_64/libc++_shared.so'
+       pickFirst '**/arm64-v8a/libc++_shared.so'
+       pickFirst '**/libjsc.so'
+    }
 }
 
 dependencies {
+    implementation 'org.webkit:android-jsc:+'
     implementation project(':react-native-device-info')
     implementation project(':react-native-camera')
     implementation project(':@react-native-community_async-storage')
