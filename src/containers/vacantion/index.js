@@ -34,9 +34,9 @@ class VacantionScreen extends Component {
 					contentContainerStyle={isRequest ? { flex: 1, justifyContent: 'center' } : {}}
 				>
 					<List>
-						{isRequest ? (
+						{!!isRequest ? (
 							<ActivityIndicator size="large" color={ACCENT_BLUE} />
-						) : listVacantion && listVacantion.length ? (
+						) : !!listVacantion && listVacantion.length ? (
 							listVacantion.map((item, i) => (
 								<ListItem
 									key={i}

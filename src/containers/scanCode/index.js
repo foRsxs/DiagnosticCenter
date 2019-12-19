@@ -44,7 +44,7 @@ class ScanCodeScreen extends Component {
           <Icon style={{ color: '#ffffff' }} name="ios-close" />
         </TouchableOpacity>
         {
-          hasCameraPermission ? (
+          !!hasCameraPermission ? (
             <RNCamera
               style={styles.cameraArea}
               type={RNCamera.Constants.Type.back}

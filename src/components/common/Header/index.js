@@ -39,13 +39,15 @@ class Header extends Component {
 			onFilterPress = () => {}, 
 			t
 		} = this.props;
+
+		const { searchText } = this.state;
 		
 		return (
 			<View style={styles.headerWrap}>
 				<StatusBar backgroundColor={BAR_COLOR} barStyle='light-content' />
 				<View style={styles.container}>
 					{
-						(isHome) && (
+						(!!isHome) && (
 							<View style={styles.headerHomeWrap}>
 								<View style={styles.leftContainer}>
 									<TouchableOpacity style={styles.headerLeftBtn} onPress={() => this.props.navigation.navigate("oftenQuestions")}>
@@ -57,7 +59,7 @@ class Header extends Component {
 									<Image style={styles.logo} resizeMode='contain' source={ICON_LOGO} />
 								</View>
 								<View style={styles.rightContainer}>
-									{(callCenterTel) && 
+									{(!!callCenterTel) && 
 									<TouchableOpacity style={styles.headerRightBtn} onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 										<Text style={styles.headerRightText}>{t('header_links:callcenter')}</Text>
 										<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
@@ -68,7 +70,7 @@ class Header extends Component {
 						)
 					}
 					{
-						(isPin) && (
+						(!!isPin) && (
 							<View style={styles.headerHomeWrap}>
 								<View style={styles.leftContainer}></View>
 								<View style={styles.centerContainer}>
@@ -79,27 +81,27 @@ class Header extends Component {
 						)
 					}
 					{
-						(backButton) && (
+						(!!backButton) && (
 							<TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
 								<Icon ios='ios-arrow-back' android="ios-arrow-back" style={styles.iconHeader} />
 							</TouchableOpacity>
 						)
 					}
 					{
-						(search) && (
+						(!!search) && (
 							<View style={(backButton) ? styles.inputContainerSearch : styles.inputContainer}>
 								<Image style={styles.searchIcon} resizeMode='contain' source={ICON_SEARCH} />
 								<TextInput 
 									style={[styles.input]} 
 									placeholder=''
-									value = { this.state.searchText }
+									value = { searchText }
 									onChangeText={(text) => {
 										this.setState({ searchText: text });
 										this.props.onChangeSearch(text);
 									}}
 								/>
 								{ 
-									(this.state.searchText !== '') &&
+									(!!searchText) &&
 										<TouchableOpacity 
 											style={styles.cancelContainer} 
 											onPress={() =>  {
@@ -115,21 +117,21 @@ class Header extends Component {
 						)
 					}
 					{
-						(text) && (
+						(!!text) && (
 							<View style={styles.textContainer} >
 								<Text style={styles.text}>{text}</Text>
 							</View>
 						)
 					}
 					{
-						(textUpper) && (
+						(!!textUpper) && (
 							<View style={{ flex: 5 }} >
 								<Text style={styles.textUpper}>{textUpper.toUpperCase()}</Text>
 							</View>
 						)
 					}
 					{
-						(callButton && callCenterTel) && (
+						(!!callButton && !!callCenterTel) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => Linking.openURL(`tel:${callCenterTel}`)}>
 									<Image style={styles.headerIcon} resizeMode='contain' source={ICON_PHONE} />
@@ -138,7 +140,7 @@ class Header extends Component {
 						)
 					}
 					{
-						(plusButton) && (
+						(!!plusButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => this.props.navigation.navigate('recordingCreate')}>
 									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
@@ -147,7 +149,7 @@ class Header extends Component {
 						)
 					}
 					{
-						(filterButton) && (
+						(!!filterButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={onFilterPress}>
 									<Icon ios='ios-funnel' android="ios-funnel" style={[styles.iconHeader, {fontSize: scale(28)}]} />

@@ -80,7 +80,7 @@ class ServicesScreen extends Component {
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
               <List style={styles.list}>
                 {
-                  (isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
+                  (!!isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> :
                     (
                       (sorted_list_specialization && sorted_list_specialization.length) ? (
                         sorted_list_specialization.map((item, index) => (

@@ -32,11 +32,11 @@ class CatalogListItem extends Component {
             <Text style={styles.name}>
               {name}
             </Text>
-            {(position) && (<Text style={styles.special}>{position}</Text>)}
-            {(category) && (<Text style={styles.category}>{category}</Text>)}
-            {(info) && (
+            {(!!position) && (<Text style={styles.special}>{position}</Text>)}
+            {(!!category) && (<Text style={styles.category}>{category}</Text>)}
+            {(!!info) && (
               <View>
-                {(moreInfo) && (<HTMLView value={(info) ? info : ''} />)}
+                {(!!moreInfo) && (<HTMLView value={(info) ? info : ''} />)}
                 <TouchableOpacity onPress={() => this.setState({ moreInfo: !moreInfo })} style={styles.more}>
                   <Text style={styles.openInfo}>{(moreInfo) ? t('listdoctors:hide_desc') : t('listdoctors:show_desc')}</Text><Image source={NEW_ARROW_BLUE} style={(moreInfo) ? styles.arrowActive : styles.arrow} />
                 </TouchableOpacity>

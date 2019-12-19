@@ -50,50 +50,54 @@ class WelcomeScreen extends Component {
 		};
 	}
 
-	componentDidUpdate(prevProps) {
-		const { appParamsConfig, t } = this.props;
-
-		if (!prevProps.appParamsConfig && appParamsConfig && appParamsConfig.version_android) {
-			const version_device = DeviceInfo.getVersion();
-			const version_back =
-				Platform.OS === 'android' ? appParamsConfig.version_android : appParamsConfig.version_ios;
-			const compare = versionCompare(version_device, version_back);
-
-			if (compare === -1) {
-				Alert.alert(
-					t('authorization:updating'),
-					t('authorization:you_have_old_version'),
-					[
-						{
-							text: t('authorization:cancel'),
-							style: 'cancel',
-							onPress: () => BackHandler.exitApp()
-						},
-						{
-							text: t('authorization:update'),
-							onPress: () => {
-								Platform.OS === 'android'
-									? Linking.openURL('market://details?id=com.izzisoftware.diagnosticcenter')
-									: Linking.openURL('itms-apps://itunes.apple.com/ru/app/id1447261057?ign-mpt=uo=2');
-							}
-						}
-					],
-					{
-						cancelable: false
-					}
-				);
-			} else {
-				const { notify, languages_key, token } = this.props;
-
-				this.props.changeNotify(notify);
-				this.props.setCurrentLang(languages_key);
-				if (token) {
-					this.props.saveUser({ api_token: token });
-				}
-				this._checkWelcome();
-			}
-		}
+	componentDidMount() {
+		SplashScreen.hide();
 	}
+
+	// componentDidUpdate(prevProps) {
+	// 	const { appParamsConfig, t } = this.props;
+
+	// 	if (!prevProps.appParamsConfig && appParamsConfig && appParamsConfig.version_android) {
+	// 		const version_device = DeviceInfo.getVersion();
+	// 		const version_back =
+	// 			Platform.OS === 'android' ? appParamsConfig.version_android : appParamsConfig.version_ios;
+	// 		const compare = versionCompare(version_device, version_back);
+
+	// 		if (compare === -1) {
+	// 			Alert.alert(
+	// 				t('authorization:updating'),
+	// 				t('authorization:you_have_old_version'),
+	// 				[
+	// 					{
+	// 						text: t('authorization:cancel'),
+	// 						style: 'cancel',
+	// 						onPress: () => BackHandler.exitApp()
+	// 					},
+	// 					{
+	// 						text: t('authorization:update'),
+	// 						onPress: () => {
+	// 							Platform.OS === 'android'
+	// 								? Linking.openURL('market://details?id=com.izzisoftware.diagnosticcenter')
+	// 								: Linking.openURL('itms-apps://itunes.apple.com/ru/app/id1447261057?ign-mpt=uo=2');
+	// 						}
+	// 					}
+	// 				],
+	// 				{
+	// 					cancelable: false
+	// 				}
+	// 			);
+	// 		} else {
+	// 			const { notify, languages_key, token } = this.props;
+
+	// 			this.props.changeNotify(notify);
+	// 			this.props.setCurrentLang(languages_key);
+	// 			if (token) {
+	// 				this.props.saveUser({ api_token: token });
+	// 			}
+	// 			this._checkWelcome();
+	// 		}
+	// 	}
+	// }
 
 	_checkWelcome = () => {
 		const { hideScreen, token, enableSecure } = this.props;

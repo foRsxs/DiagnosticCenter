@@ -53,7 +53,7 @@ class InputNumber extends Component {
           style={{ width: scale(270), height: scale(290) }}
           renderItem={({ item }) => <NumberItem onClick={this.click} value={item.value} text={item.key} />}
         />
-        {(message.length) ? <Text style={styles.message}>{message}</Text> : false}
+        {(!!message && message.length) ? <Text style={styles.message}>{message}</Text> : false}
         {/* <Text style={styles.text}>не пришёл код?</Text> */}
         {(codeNumber.length === 4) && <CustomBtn label={t(`common:actions.${new_user ? 'save' : 'exit'}`)} onClick={() => onPress(codeNumber)} />}
       </View>

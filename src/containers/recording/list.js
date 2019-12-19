@@ -46,14 +46,14 @@ class ReceptionListScreen extends Component {
     return (
       <Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
         <Header backButton={true} plusButton={true} text={t('recordings:title')} navigation={this.props.navigation} />
-        {(shareLoading) && (<View style={styles.loaderWrap}>
+        {(!!shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content style={ styles.mainContent } contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
-          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
+          {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
           <View>
           {
-            (listTalons && listTalons.length) ? (
+            (!!listTalons && listTalons.length) ? (
               listTalons.map((item, index) => (
                 <ReceptionListItem
                   key={index}

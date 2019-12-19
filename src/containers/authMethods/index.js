@@ -122,7 +122,7 @@ class AuthMethodScreen extends Component {
 							/>
 						</Right>
 					</ListItem>
-					{isTouchId && (
+					{!!isTouchId && (
 						<ListItem
 							style={styles.confirmListItem}
 							onPress={() => this.setState({ methods_auth_local: 'touch' })}
@@ -140,7 +140,7 @@ class AuthMethodScreen extends Component {
 							</Right>
 						</ListItem>
 					)}
-					{isFaceId && (
+					{!!isFaceId && (
 						<ListItem
 							style={styles.confirmListItem}
 							onPress={() => this.setState({ methods_auth_local: 'face' })}
@@ -237,22 +237,22 @@ class AuthMethodScreen extends Component {
 						search={false}
 						navigation={this.props.navigation}
 					/>
-					{token && enableSecure && !methods_auth && this.renderConfirmCodeChoose()}
-					{token &&
-						enableSecure &&
+					{!!token && !!enableSecure && !methods_auth && this.renderConfirmCodeChoose()}
+					{!!token &&
+						!!enableSecure &&
 						methods_auth === 'code' &&
 						!confirmed_auth &&
 						!pinCode &&
 						this.renderPinCode('new')}
-					{token &&
-						enableSecure &&
+					{!!token &&
+						!!enableSecure &&
 						methods_auth === 'code' &&
 						!confirmed_auth &&
-						pinCode &&
+						!!pinCode &&
 						this.renderPinCode('confirm')}
-					{token &&
-						enableSecure &&
-						methods_auth &&
+					{!!token &&
+						!!enableSecure &&
+						!!methods_auth &&
 						methods_auth !== 'code' &&
 						!confirmed_auth &&
 						this.renderTouchFaceId()}

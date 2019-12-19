@@ -100,7 +100,7 @@ class ReceptionInfoItemScreen extends Component {
 		return (
 			<Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
 				<Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
-					{ isRequest ? (
+					{ !!isRequest ? (
 						<View style={{ flex: 1, height: '100%', justifyContent: 'center', alignItems: 'center'}}>
 							<ActivityIndicator size="large" color={ACCENT_BLUE} />
 						</View>

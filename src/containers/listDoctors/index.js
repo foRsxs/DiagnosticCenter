@@ -87,7 +87,7 @@ class ListDoctors extends Component {
           style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} 
           contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}
         >
-          { (isRequest) ? 
+          { (!!isRequest) ? 
             ( <ActivityIndicator size="large" color={ACCENT_BLUE} /> )
             : (
               (sorted_list_Doctors.length) ? (

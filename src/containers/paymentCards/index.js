@@ -105,7 +105,7 @@ class PaymentCards extends Component {
 			<Container>
 				<Header backButton={true} text={t('payment:card_payment')} navigation={navigation} />
 				<Content style={styles.content}>
-					{listOfCards &&
+					{!!listOfCards &&
 					listOfCards.length > 0 && (
 						<Fragment>
 							<View style={styles.itemElement}>

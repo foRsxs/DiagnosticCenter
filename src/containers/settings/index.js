@@ -128,7 +128,7 @@ class SettingsScreen extends Component {
               value={local_secure}
             />
           </View>
-          { ((enableSecure) &&(device_touch || device_face)) && (
+          { ((!!enableSecure) &&(!!device_touch || !!device_face)) && (
             <View style={[styles.settingItem, { marginTop: 10 }]}>
               <Text style={styles.headTxt}>{t('settings:items.auth')}</Text>
               <Form style={styles.form}>
@@ -148,7 +148,7 @@ class SettingsScreen extends Component {
                 )
                 }
                 {
-                  (device_face) && (
+                  (!!device_face) && (
                     <Picker
                       mode="dropdown"
                       style={styles.pickerWrap}
@@ -167,7 +167,7 @@ class SettingsScreen extends Component {
             </View>
           )}
           {
-            (pinCode) && (
+            (!!pinCode) && (
               <TouchableOpacity 
                 style={{marginTop: 10}}
                 activeOpacity={0.8}

@@ -90,11 +90,11 @@ class AnalizesScreen extends Component {
           onRemove={this.removeFilter}
           lang_key={lang_key}
         />
-        {(shareLoading) && (<View style={styles.loaderWrap}>
+        {(!!shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
-          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
+          {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
           (<List>
             {
               (filteredList.length) ? (

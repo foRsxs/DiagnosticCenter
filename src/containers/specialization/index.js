@@ -51,12 +51,12 @@ class SpecializationScreen extends Component {
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
-              {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
+              {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
                 <View>                  
                   <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
                   <List style={{paddingBottom: 15}}>
                     {                    
-                      (specialities && specialities.length) ? (
+                      (!!specialities && specialities.length) ? (
                         specialities.map((item, index) => (
                           <SpecializationItem
                             key={index}

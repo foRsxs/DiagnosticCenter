@@ -140,7 +140,7 @@ class SimpleFilter extends Component {
                 }}
               />
               {
-                (startDate) && (
+                (!!startDate) && (
                   <CustomBtn
                     label={t(`common:actions.clear`)}
                     onClick={() => {

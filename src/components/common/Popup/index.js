@@ -21,12 +21,12 @@ export default class Popup extends Component {
           <View style={styles.popup}>
             <View>
               <Text style={[styles.text,{ marginBottom: 10}]}>{firstText}</Text>
-              {(email) && <Text style={[styles.text, {marginBottom: 20}]} onPress={()=> Linking.openURL(`mailto:${email}`)}>{email}</Text>}
-              {(secondText) && <Text style={[styles.text, {marginBottom: 20}]}>{secondText}</Text>}
+              {(!!email) && <Text style={[styles.text, {marginBottom: 20}]} onPress={()=> Linking.openURL(`mailto:${email}`)}>{email}</Text>}
+              {(!!secondText) && <Text style={[styles.text, {marginBottom: 20}]}>{secondText}</Text>}
             </View>
             <View style={{marginTop: 10}}>
               <CustomBtn label={laberButton} contentContainerStyle={{width: 180}} onClick={()=>actionButton()}/>
-              {(labelLink)? <LinkBtn label={labelLink} onClick={() => actionLink()}/>: null}
+              {(!!labelLink)? <LinkBtn label={labelLink} onClick={() => actionLink()}/>: null}
             </View>
           </View>
         </View>

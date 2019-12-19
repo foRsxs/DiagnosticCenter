@@ -49,7 +49,7 @@ class CardPatientDetailScreen extends Component {
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} text={t('patient:protocol_vizit')} navigation={this.props.navigation} />
 				<Content padder contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : styles.mainContent }>
-					{(isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : (
+					{(!!isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : (
 						<View>
 							<View style={styles.headBlock}>
 								<Text style={styles.topText}>{headTxt}</Text>

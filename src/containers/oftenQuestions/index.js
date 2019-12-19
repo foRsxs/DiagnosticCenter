@@ -47,9 +47,9 @@ class OftenQuestionsScreen extends Component {
 					style={styles.mainContent}
 					contentContainerStyle={isRequest ? { flex: 1, justifyContent: 'center' } : {}}
 				>
-					{isRequest ? (
+					{!!isRequest ? (
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
-					) : sorted_questions && sorted_questions.length ? (
+					) : !!sorted_questions && sorted_questions.length ? (
 						<View>
 							<Text style={styles.titleMain}>{t('faq:titleMain').toUpperCase()}</Text>
 							<Text style={styles.subtitleMain}>{t('faq:subtitleMain')}</Text>

@@ -90,12 +90,12 @@ class CardPatientScreen extends Component {
           onRemove={this.removeFilter}
           lang_key={lang_key}
         />
-        {(shareLoading) && (<View style={styles.loaderWrap}>
+        {(!!shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
         <Content style={{ marginTop: -10, zIndex: 1, paddingTop: 10 }} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
           {
-            (isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
+            (!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
               (<List>
                 {(filteredList.length > 0) ? (
                   filteredList.map((item, index) => (

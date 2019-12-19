@@ -221,13 +221,13 @@ class AuthorizationScreen extends Component {
 							maxLength={12}
 						/>
 					</View>
-					{loading ? (
+					{!!loading ? (
 						<ActivityIndicator size="small" color={ACCENT_BLUE} />
 					) : (
 						<CustomBtn color="blue" label={t('authorization:get_code')} onClick={() => this.authUser()} />
 					)}
-					{authMessage && <Text style={styles.authMessage}>{authMessage}</Text>}
-					{message.length ? <Text style={styles.errorMessage}>{message}</Text> : false}
+					{!!authMessage && <Text style={styles.authMessage}>{authMessage}</Text>}
+					{!!message && message.length ? <Text style={styles.errorMessage}>{message}</Text> : false}
 				</View>
 			</View>
 		);

@@ -33,10 +33,10 @@ class DoctorList extends Component {
       <Container>
         <Header backButton={true} text={t('createrecord:form.select_doctor')} navigation = {this.props.navigation} /> 
         <KeyboardAwareScrollView contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {marginTop: -10, zIndex: 1, paddingTop: 10}}>
-          {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
+          {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : 
           (<View>
           {
-            (isOrder) ? (
+            (!!isOrder) ? (
               (orderDatas.doctors.length) ? (
                 orderDatas.doctors.map((item, index)=>(
                   <CatalogItem 
@@ -54,7 +54,7 @@ class DoctorList extends Component {
                 ))
               ) : (<Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, margin: 15}}>{ t('listdoctors:no_doctors_text') }</Text>)
             ) : (
-              (sorted_list_Doctors.length) ? (
+              (!!sorted_list_Doctors && sorted_list_Doctors.length) ? (
                 sorted_list_Doctors.map((item, index)=>(
                   <CatalogItem 
                     key={index}  

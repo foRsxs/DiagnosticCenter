@@ -22,10 +22,10 @@ class QuestionItem extends Component {
         <Text style={styles.questionItemText}>
           {text}
         </Text>
-        {(showAnswer) && (
+        {(!!showAnswer) && (
           <Text style={styles.answerItemText}>{textAnswer}</Text>
         )}
-        {(showAnswer) ? (
+        {(!!showAnswer) ? (
           <TouchableOpacity
             style={{ width: '100%' }}
             onPress={() => { this.setState({ showAnswer: false }) }} >

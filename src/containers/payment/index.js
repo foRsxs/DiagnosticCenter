@@ -72,7 +72,7 @@ class Payment extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				<Header backButton={true} text={add_cart ? t('payment:add_cart_page_title') : t('payment:payment_page_title')} navigation={navigation} />
-				{showLoader && (
+				{!!showLoader && (
 					<View style={styles.container}>
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
 					</View>

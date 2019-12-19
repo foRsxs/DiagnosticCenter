@@ -78,7 +78,7 @@ class CheckRecordScreen extends Component {
 		return (
 			<Container contentContainerStyle={styles.mainContainer}>
 				<Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
-				{loading ? (
+				{!!loading ? (
 					<View style={styles.loaderWrap}>
 						<ActivityIndicator size="large" color={ACCENT_BLUE} />
 					</View>
@@ -138,7 +138,7 @@ class CheckRecordScreen extends Component {
 								</View>
 							</View>
 						</View>
-						{preparation_text && (
+						{!!preparation_text && (
 							<View style={styles.helpText}>
 								<Text>{preparation_text}</Text>
 							</View>

@@ -30,7 +30,7 @@ class InfoScreen extends Component {
         <Header backButton={true} text={t('information:title')} navigation={this.props.navigation} />
         <Content style={styles.mainContent} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
           <List>
-            {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
+            {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />)
               : ((listInformation && listInformation.length) ? (
                   listInformation.map((item, i) => (
                     <ListItem key={i} onPress={() => navigate({ routeName: 'informationItem', params: { header_title: item.title, post_id: item.id }, key: item.id })} style={styles.questionItem}>

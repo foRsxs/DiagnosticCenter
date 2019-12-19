@@ -104,7 +104,7 @@ class ShareLinks extends Component {
 		const { loading } = this.state;
 
 		return (
-			(loading ? (
+			(!!loading ? (
 				<ActivityIndicator size="small" color={ACCENT_BLUE} style={{ marginVertical: 30 }} />
 			) : (
 					<View style={{ paddingLeft: '15%', paddingBottom: 20 }}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View, Text } from 'react-native';
 import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -91,12 +91,14 @@ class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     const { isRequest, sales, appParamsConfig } = this.props;
 
+    alert(`isRequest ${isRequest} ${JSON.stringify(sales)}`)
+
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
         <Header isHome={true} navigation={this.props.navigation} callCenterTel={(appParamsConfig && appParamsConfig.callcenter) ? appParamsConfig.callcenter : '' }/>
         <Content>
           <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
-            {(isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
+            {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
           </LinearGradient>
           <MenuList onPress={(value) => this.onPress(value)} valueName={'value'} fields={this.state.menuList} navigation={this.props.navigation} />
         </Content >

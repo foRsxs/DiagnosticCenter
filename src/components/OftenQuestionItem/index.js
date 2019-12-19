@@ -24,13 +24,13 @@ export default class OftenQuestionItem extends Component {
 					}}
 				>
 					<Text style={styles.questionItemText}>{text}</Text>
-					{showAnswer ? (
+					{!!showAnswer ? (
 						<Icon ios="ios-arrow-down" android="ios-arrow-up" style={styles.icon} />
 					) : (
 						<Icon ios="ios-arrow-down" android="ios-arrow-down" style={styles.icon} />
 					)}
 				</TouchableOpacity>
-				{showAnswer && <Text style={styles.answerItemText}>{textAnswer}</Text>}
+				{!!showAnswer && <Text style={styles.answerItemText}>{textAnswer}</Text>}
 			</View>
 		);
 	}

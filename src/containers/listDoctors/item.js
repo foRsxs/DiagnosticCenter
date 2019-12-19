@@ -151,7 +151,7 @@ class DoctorScreen extends Component {
           />
         </View>
         {
-          (tabProfile && doctor) &&
+          (!!tabProfile && !!doctor) &&
           <View style={styles.btnWrap}>
             {
               (+doctor.allow === 1) && (
@@ -162,7 +162,7 @@ class DoctorScreen extends Component {
                 />
               )}
             {
-              (+doctor.allow === 0) && (
+              (Number(doctor.allow) === 0) && (
                 <Text style={{ textAlign: 'center' }}>{t('listdoctors:item.no_recording_text')}</Text>
               )}
           </View>
@@ -188,7 +188,7 @@ class DoctorScreen extends Component {
             </View>
           </View>
           {
-            (tabProfile) ? this.renderProfile() : this.renderQuestions()
+            (!!tabProfile) ? this.renderProfile() : this.renderQuestions()
           }
         </View>
       </Container>

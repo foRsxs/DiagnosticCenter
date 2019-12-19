@@ -27,9 +27,9 @@ class SpecializationItem extends Component {
           <Text style={styles.specItemText}>{headTxt}</Text>
         </Left>
         <Right>
-          {(price) ? (
+          {(!!price) ? (
             <Text style={styles.price}>{price}{"\n"}<Text style={styles.currency}>KZT</Text></Text>
-          ) : (redArrow) ? (
+          ) : (!!redArrow) ? (
             <View style={styles.wrapArrowRed}>
               <Icon style={styles.arrowRed} active name="ios-arrow-forward" />
             </View>
