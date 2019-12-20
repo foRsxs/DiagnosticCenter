@@ -91,8 +91,6 @@ class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     const { isRequest, sales, appParamsConfig } = this.props;
 
-    alert(`isRequest ${isRequest} ${JSON.stringify(sales)}`)
-
     return (
       <Container contentContainerStyle={styles.wrapContainer}>
         <Header isHome={true} navigation={this.props.navigation} callCenterTel={(appParamsConfig && appParamsConfig.callcenter) ? appParamsConfig.callcenter : '' }/>
