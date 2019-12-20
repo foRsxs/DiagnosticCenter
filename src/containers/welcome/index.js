@@ -50,10 +50,6 @@ class WelcomeScreen extends Component {
 		};
 	}
 
-	componentDidMount() {
-		SplashScreen.hide();
-	}
-
 	componentDidUpdate(prevProps) {
 		const { appParamsConfig, t } = this.props;
 
