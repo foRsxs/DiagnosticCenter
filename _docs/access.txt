@@ -5,3 +5,6 @@ Key password: eMnp*hJF41
 
 ------
 P12 password: B1pdYILkyB9Y
+
+------
+DPS P12 password: &MZ5YdtOSy2w
