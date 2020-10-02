@@ -259,7 +259,7 @@ class AuthorizationScreen extends Component {
 						onPress={() => this.getNewSMSCode()}
 					>
 						<Text style={styles.resendBtnText}>
-							{t('common:actions_text.resend_code')} {timer} {t('common:actions_text.seconds')}{' '}
+							{t('common:actions_text.resend_code')} {timer} {t('common:actions_text.seconds')}
 						</Text>
 					</TouchableOpacity>
 				</View>

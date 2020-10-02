@@ -76,13 +76,12 @@ class PaymentMethods extends Component {
 			<Container>
 				<Header backButton={true} text={t('payment:title')} navigation={navigation} />
 				<Content style={styles.content}>
-					{listOfCards &&
-					listOfCards.length > 0 && (
+					{!!listOfCards && !!listOfCards.length > 0 && (
 						<Fragment>
 							<View style={styles.itemElement}>
 								<Text style={styles.textStyle}>{t('payment:saved_card')}</Text>
 							</View>
-							{this.renderCards()}{' '}
+							{this.renderCards()}
 						</Fragment>
 					)}
 					<View style={styles.addNewCardContainer}>

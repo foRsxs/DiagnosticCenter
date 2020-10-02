@@ -163,7 +163,9 @@ class ReceptionInfoItemScreen extends Component {
 							</View>
 							{(paid_status === 1) && (
 								<View style={styles.textPaidWrapper}>
-									<Text style={styles.textPaid}>{t('common:actions.paid')}</Text>
+									<View style={styles.textPaidBorder}>
+										<Text style={styles.textPaid}>{t('common:actions.paid')}</Text>
+									</View>
 								</View>
 							)}
 							{infoListTalonInfo.pdf && <ShareLinks url={infoListTalonInfo.pdf} title={headTxt} text={dateTxt} />}
@@ -177,7 +179,7 @@ class ReceptionInfoItemScreen extends Component {
 								/>
 							</View>
 						)}
-						{!hideButton && (
+						{(!hideButton && paid_status !== 1) && (
 							<View style={styles.buttonWrap}>
 								<CustomBtn
 									label={t('common:actions.cancel_recording')}
@@ -288,7 +290,12 @@ const styles = StyleSheet.create({
 	textPaidWrapper: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		paddingVertical: 30
+		paddingVertical: 30,
+	},
+	textPaidBorder: {
+		borderWidth: 2,
+		borderColor: GREEN,
+		padding: 10
 	},
 	textPaid: {
 		fontFamily: MAIN_FONT,

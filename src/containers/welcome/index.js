@@ -159,7 +159,8 @@ class WelcomeScreen extends Component {
 					/>
 				</View>
 				<Text style={styles.darkText}>
-					{t('welcome:enter_text12')} <Text style={styles.textBold}>"{t('welcome:enter_text13')}"</Text>{' '}
+					{t('welcome:enter_text12')}{' '}
+					<Text style={styles.textBold}>"{t('welcome:enter_text13')}"</Text>{' '}
 					{t('welcome:enter_text14')}
 				</Text>
 				<Text style={styles.blueText}>{t('welcome:enter_text15')}</Text>

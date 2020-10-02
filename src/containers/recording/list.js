@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler, ActivityIndicator, View } from 'react-native';
+import { BackHandler, ActivityIndicator, View, RefreshControl } from 'react-native';
 import { Container, Content, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -20,13 +20,23 @@ class ReceptionListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shareLoading: false
+      shareLoading: false,
+      refreshing: false,
     };
   }
 
   componentDidMount() {
     this.props.getListTalons();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {isRequest} = this.props;
+    const {refreshing} = this.state;
+
+    if (prevProps.isRequest !== isRequest && refreshing) {
+      this.setState({ refreshing: false });
+    }
   }
 
   componentWillUnmount() {
@@ -39,7 +49,7 @@ class ReceptionListScreen extends Component {
   }
 
   render() {
-    const { shareLoading } = this.state;
+    const { shareLoading, refreshing } = this.state;
     const { navigate } = this.props.navigation;
     const { t, listTalons, isRequest, getListTalonInfo } = this.props;
 
@@ -49,7 +59,20 @@ class ReceptionListScreen extends Component {
         {(!!shareLoading) && (<View style={styles.loaderWrap}>
           <ActivityIndicator size="large" color={ACCENT_BLUE} />
         </View>)}
-        <Content style={ styles.mainContent } contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} padder>
+        <Content 
+          style={ styles.mainContent } 
+          contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}} 
+          padder
+          refreshControl={
+            <RefreshControl 
+              refreshing={refreshing} 
+              onRefresh={() => {
+                this.setState({ refreshing: true });
+                this.props.getListTalons();
+              }} 
+            />
+          }
+        >
           {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
           <View>
           {
