@@ -81,16 +81,16 @@ class ServicesDetailScreen extends Component {
   render() {
     const { isOrder, services } = this.state;
     const { t, isRequest } = this.props;
- 
+    
     return (
       <View>
         <View style={styles.mainContainer}>
           <Container contentContainerStyle={styles.mainContentContainer}>
             <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
             <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
-              { (!!isOrder) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
+              { (!!isOrder && !isRequest) && (<Text style={styles.title}>{t('createrecord:form.select_service')}</Text>) }
               {
-                (!!isRequest && !isOrder) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : ( 
+                (!!isRequest) ? <ActivityIndicator size="large" color={ACCENT_BLUE} /> : ( 
                   <ScrollView>
                     {
                       services.map((item, index) => (

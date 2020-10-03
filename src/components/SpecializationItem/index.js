@@ -34,8 +34,8 @@ class SpecializationItem extends Component {
               <Icon style={styles.arrowRed} active name="ios-arrow-forward" />
             </View>
           ) : (
-                <Icon style={styles.arrow} active name="ios-arrow-forward" />
-              )
+              <Icon style={styles.arrow} active name="ios-arrow-forward" />
+            )
           }
         </Right>
       </ListItem>

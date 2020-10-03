@@ -107,8 +107,8 @@ export default StyleSheet.create({
 	},
 	textContainer: {
 		flex: 6,
-		alignItems: 'flex-start',
-		justifyContent: 'flex-end',
+		// alignItems: 'flex-start',
+		// justifyContent: 'flex-end',
 		paddingBottom: scale(3),
 		paddingRight: scale(5)
 	},

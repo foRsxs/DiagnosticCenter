@@ -94,7 +94,7 @@ class ReceptionInfoItemScreen extends Component {
 		// status (1 - активен и можно оплачивать, 0 - неактивен). paid_status (1- оплачен, 0 - не оплачен)
 		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
 		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
-		const headTxt = infoListTalonInfo ? (`${infoListTalonInfo.doctor}, ${infoListTalonInfo.spec}`) : null;
+		const headTxt = infoListTalonInfo ? (`${infoListTalonInfo.doc}, ${infoListTalonInfo.spec}`) : null;
 		const dateTxt = infoListTalonInfo ? (`${infoListTalonInfo.dd} ${infoListTalonInfo.time}`) : null;
 
 		return (

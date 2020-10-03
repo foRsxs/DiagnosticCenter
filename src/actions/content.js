@@ -105,6 +105,7 @@ export function getListServices(id, type, auto_push = false) {
 		const { authorization: { language }, content: { order } } = getState();
 
 		dispatch(setIsRequest(true));
+		dispatch(setListServicesOrder([]));
 
 		axios
 			.post(`${APP_API_URL}/services`, {

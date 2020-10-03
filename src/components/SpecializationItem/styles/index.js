@@ -22,6 +22,8 @@ export default StyleSheet.create({
   specItemText: {
     fontSize: large,
     fontFamily: FONT_LIGHT,
+    flex: 1,
+    flexWrap: 'wrap',
     color: BLACK,
     textAlignVertical: 'center',
     letterSpacing: scale(1),
