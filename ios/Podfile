@@ -17,3 +17,7 @@ target 'diagnosticcenter' do
     flipper_post_install(installer)
   end
 end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignal', '>= 2.9.3', '< 3.0'
+end
