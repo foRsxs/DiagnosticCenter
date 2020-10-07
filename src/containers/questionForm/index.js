@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Toast } from 'native-base';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

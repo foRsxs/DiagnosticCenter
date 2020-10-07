@@ -38,11 +38,13 @@ class VacantionDetailScreen extends Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.post !== nextProps.post && nextProps.post) {
+	componentDidUpdate(prevProps) {
+		const {post} = this.props;
+
+		if (post !== prevProps.post && prevProps.post) {
 			this.setState({
-				image: (nextProps.post.image) ? { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` } : null,
-				content: nextProps.post.body
+				image: (post.image) ? { uri: `${APP_IMG_URL}storage/${post.image}` } : null,
+				content: post.body
 			});
 		}
 	}
@@ -67,7 +69,7 @@ class VacantionDetailScreen extends Component {
 				</TouchableOpacity>
 				<Modal visible={openPopup} transparent={true} onRequestClose={this.closePopup}>
 					<TouchableOpacity onPress={this.closePopup} style={styles.closeBtn}>
-						<Icon style={{ color: '#ffffff' }} name="ios-close" />
+						<Icon style={{ color: '#ffffff' }} type="Fontisto" name="close-a" />
 					</TouchableOpacity>
 					<ImageViewer
 						imageUrls={[ { url: image.uri } ]}

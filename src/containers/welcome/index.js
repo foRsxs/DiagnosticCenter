@@ -6,7 +6,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Timeline from 'react-native-timeline-listview';
+import Timeline from 'react-native-timeline-flatlist';
 import OneSignal from 'react-native-onesignal';
 
 import * as AuthActions from '../../actions/auth';

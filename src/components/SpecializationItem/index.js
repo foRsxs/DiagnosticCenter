@@ -31,10 +31,10 @@ class SpecializationItem extends Component {
             <Text style={styles.price}>{price}{"\n"}<Text style={styles.currency}>KZT</Text></Text>
           ) : (!!redArrow) ? (
             <View style={styles.wrapArrowRed}>
-              <Icon style={styles.arrowRed} active name="ios-arrow-forward" />
+              <Icon style={styles.arrowRed} active type="Fontisto" name="angle-right" />
             </View>
           ) : (
-              <Icon style={styles.arrow} active name="ios-arrow-forward" />
+              <Icon style={styles.arrow} active type="Fontisto" name="angle-right" />
             )
           }
         </Right>

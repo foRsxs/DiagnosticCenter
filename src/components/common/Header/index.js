@@ -83,7 +83,7 @@ class Header extends Component {
 					{
 						(!!backButton) && (
 							<TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
-								<Icon ios='ios-arrow-back' android="ios-arrow-back" style={styles.iconHeader} />
+								<Icon type="Fontisto" name="angle-left" style={styles.iconHeader} />
 							</TouchableOpacity>
 						)
 					}
@@ -143,7 +143,7 @@ class Header extends Component {
 						(!!plusButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={() => this.props.navigation.navigate('recordingCreate')}>
-									<Icon ios='ios-add' android="ios-add" style={styles.iconHeader} />
+									<Icon type="Fontisto" name="plus-a" style={styles.iconHeader} />
 								</TouchableOpacity>
 							</View>
 						)
@@ -152,7 +152,7 @@ class Header extends Component {
 						(!!filterButton) && (
 							<View style={styles.headerRight} >
 								<TouchableOpacity onPress={onFilterPress}>
-									<Icon ios='ios-funnel' android="ios-funnel" style={[styles.iconHeader, {fontSize: scale(28)}]} />
+									<Icon type="Fontisto" name="filter" style={styles.iconHeader} />
 								</TouchableOpacity>
 							</View>
 						)

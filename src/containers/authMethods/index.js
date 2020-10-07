@@ -6,7 +6,7 @@ import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import TouchID from 'react-native-touch-id';
 
 import Header from '../../components/common/Header';
@@ -43,8 +43,10 @@ class AuthMethodScreen extends Component {
 		this._checkTouchSupport();
 	}
 
-	componentWillReceiveProps(newProps) {
-		if (newProps.confirmed_auth) this.props.navigation.navigate('profile');
+	componentDidUpdate() {
+		const {confirmed_auth} = this.props;
+
+		if (confirmed_auth) this.props.navigation.navigate('profile');
 	}
 
 	clickOnPopup = () => {

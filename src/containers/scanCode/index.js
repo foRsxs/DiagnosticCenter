@@ -41,7 +41,7 @@ class ScanCodeScreen extends Component {
     return (
       <View style={styles.containerScanner}>
         <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} style={styles.closeBtn}>
-          <Icon style={{ color: '#ffffff' }} name="ios-close" />
+          <Icon style={{ color: '#ffffff' }} type="Fontisto" name="close-a" />
         </TouchableOpacity>
         {
           !!hasCameraPermission ? (

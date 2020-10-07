@@ -5,7 +5,7 @@ import { View, Text, Container } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 
 import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';

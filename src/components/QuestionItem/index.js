@@ -30,7 +30,7 @@ class QuestionItem extends Component {
             style={{ width: '100%' }}
             onPress={() => { this.setState({ showAnswer: false }) }} >
             <Text style={styles.buttonTextClose}>
-              <Icon ios='ios-arrow-up' android="ios-arrow-up" style={styles.icon} />
+              <Icon type="Fontisto" name="angle-up" style={styles.icon} />
             </Text>
           </TouchableOpacity>
         ) : (
@@ -39,7 +39,7 @@ class QuestionItem extends Component {
               onPress={() => { this.setState({ showAnswer: true }) }} >
               <Text style={styles.buttonTextShow}>
                 {t('questions:look_answer')} {" "}
-                <Icon ios='ios-arrow-down' android="ios-arrow-down" style={styles.icon} />
+                <Icon type="Fontisto" name="angle-down" style={styles.icon} />
               </Text>
             </TouchableOpacity>
           )}

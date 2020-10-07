@@ -1,13 +1,12 @@
 import { createStore } from 'redux';
 import { persistStore, persistReducer  } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storage from '@react-native-community/async-storage';
 
 import middleware from '../middleware';
 import rootReducer from '../reducers';
 import initialState from './initialState';
 
 const persistConfig = {
-  timeout: null,
   key: 'root',
   storage,
   whitelist: ['authorization', 'content']

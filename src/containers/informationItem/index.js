@@ -38,11 +38,13 @@ class InfoDetailScreen extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.post !== nextProps.post) {
+  componentDidUpdate(prevProps) {
+    const {post} = this.props;
+
+    if (post !== prevProps.post) {
       this.setState({
-        image: { uri: `${APP_IMG_URL}storage/${nextProps.post.image}` },
-        content: nextProps.post.body
+        image: { uri: `${APP_IMG_URL}storage/${post.image}` },
+        content: post.body
       });
     }
   }
@@ -69,7 +71,7 @@ class InfoDetailScreen extends Component {
         </TouchableOpacity>
         <Modal visible={openPopup} transparent={true} onRequestClose={this.closePopup}>
           <TouchableOpacity onPress={this.closePopup} style={styles.closeBtn}>
-            <Icon style={{ color: '#ffffff' }} name='ios-close' />
+            <Icon style={{ color: '#ffffff' }} type="Fontisto" name="close-a" />
           </TouchableOpacity>
           <ImageViewer imageUrls={[{ url: image.uri }]} enableSwipeDown={true} onSwipeDown={this.closePopup} />
         </Modal>

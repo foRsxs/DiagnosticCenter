@@ -27,7 +27,7 @@ class MenuList extends Component {
 								<Text style={styles.listText}>{x.text}</Text>
 							</Left>
 							<Right>
-								<Icon style={styles.arrow} active name="ios-arrow-forward" />
+								<Icon style={styles.arrow} active type="Fontisto" name="angle-right" />
 							</Right>
 						</ListItem>
 					))

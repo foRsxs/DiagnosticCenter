@@ -6,7 +6,7 @@ import * as AuthActions from '../../actions/auth';
 import * as ContentActions from '../../actions/content';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import { TextInputMask } from 'react-native-masked-text';
 
 import Header from '../../components/common/Header';
@@ -34,6 +34,14 @@ class AuthorizationScreen extends Component {
 	}
 
 	componentDidUpdate() {
+		const {pinCode, token, confirmed_auth} = this.props;
+
+		if (pinCode !== null && confirmed_auth && token)
+			this.props.navigation.navigate('authMethods');
+
+		if (confirmed_auth && pinCode == null && token)
+			this.props.navigation.navigate('profile');
+
 		if (this.state.timer === 0) {
 			this.clearTimer();
 		}
@@ -41,13 +49,6 @@ class AuthorizationScreen extends Component {
 
 	componentWillUnmount() {
 		this.clearTimer();
-	}
-
-	componentWillReceiveProps(newProps) {
-		if (newProps.pinCode !== null && newProps.confirmed_auth && newProps.token)
-			this.props.navigation.navigate('authMethods');
-		if (newProps.confirmed_auth && newProps.pinCode == null && newProps.token)
-			this.props.navigation.navigate('profile');
 	}
 
 	runTimer = () => {

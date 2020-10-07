@@ -177,8 +177,6 @@ export default StyleSheet.create({
 		fontSize: normal
 	},
 	iconHeader: { 
-		color: 'white', 
-		paddingLeft: scale(5), 
-		fontSize: scale(36) 
+		color: 'white',
 	}
 });
