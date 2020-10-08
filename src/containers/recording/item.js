@@ -54,10 +54,14 @@ class ReceptionInfoItemScreen extends Component {
 	componentDidUpdate(prevProps) {
 		const { payLink, isFocused, navigation } = this.props;
 
-		if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated)
+		if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) {
 			this.setState({ modalVisible: true });
-		if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted)
+		}
+
+		if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) {
 			this.props.navigation.navigate('recordingList');
+		}
+
 		if (prevProps.payLink !== payLink && payLink && isFocused) {
 			navigation.navigate('payment');
 		}

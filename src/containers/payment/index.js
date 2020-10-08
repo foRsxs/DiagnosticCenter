@@ -6,7 +6,7 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 
-import { getSavedCards } from '../../actions/content';
+import { getSavedCards, getListTalonInfo } from '../../actions/content';
 
 import Header from '../../components/common/Header';
 import { ACCENT_BLUE } from '../../styles/constants';
@@ -29,7 +29,7 @@ class Payment extends Component {
 	}
 
 	onNavigationStateChange = ({ url }) => {
-		const { navigation, getSavedCards } = this.props;
+		const { navigation, getSavedCards, getListTalonInfo, infoListTalonInfo } = this.props;
 
 		if (url.includes('process')) {
 			this.senderResp = true;
@@ -60,8 +60,14 @@ class Payment extends Component {
 			}, 4000);
 		}
 
-		if (url.includes('api/epay_success')) {
-			navigation.goBack();
+		if (url.includes('epay_success') || url.includes('epay_failure')) {
+			if (this.senderResp && infoListTalonInfo?.rnumb_id) {
+				setTimeout(() => {
+					getListTalonInfo(infoListTalonInfo?.rnumb_id);
+					navigation.navigate('recordingItem');
+				}, 4000);
+				this.senderResp = false;
+			}
 		}
 	};
 
@@ -99,9 +105,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
+	infoListTalonInfo: state.content.infoListTalonInfo,
 	payLink: state.content.payLink
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({	getSavedCards }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({	getSavedCards, getListTalonInfo }, dispatch);
 
 export default withNamespaces(['payment'])(compose(withNavigationFocus, connect(mapStateToProps, mapDispatchToProps))(Payment));

@@ -26,10 +26,10 @@ class AuthorizationScreen extends Component {
 			message: '',
 			smsCode: '',
 			loading: false,
-			showPopup: false,
+			// showPopup: false,
 			showSms: false,
 			user: {},
-			timer: 120
+			timer: 60
 		};
 	}
 
@@ -107,9 +107,9 @@ class AuthorizationScreen extends Component {
     }
 	};
 
-	clickOnPopup = () => {
-		this.setState({ showPopup: false });
-	};
+	// clickOnPopup = () => {
+	// 	this.setState({ showPopup: false });
+	// };
 
 	checkValid = (number, personalId) => {
 		let { t } = this.props;
@@ -150,7 +150,7 @@ class AuthorizationScreen extends Component {
 				})
 				.catch((e) => {
 					this.setState({
-						showPopup: e.code === 403 ? true : false,
+						// showPopup: e.code === 403 ? true : false,
 						message: e.error ? e.error : t('common:errors.server_not_available'),
 						loading: false
 					});
@@ -290,13 +290,13 @@ class AuthorizationScreen extends Component {
 					{!token && !showSms && this.renderAuthView()}
 					{!token && showSms && this.renderSmsCode()}
 				</KeyboardAwareScrollView>
-				<Popup
+				{/* <Popup
 					show={showPopup}
 					firstText={t('authorization:phone_not_register')}
 					email={'info@diagnostika.kz'}
 					laberButton={t('common:actions.ok')}
 					actionButton={this.clickOnPopup}
-				/>
+				/> */}
 			</Container>
 		);
 	}
