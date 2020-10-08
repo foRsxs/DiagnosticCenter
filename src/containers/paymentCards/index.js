@@ -96,6 +96,7 @@ class PaymentCards extends Component {
 	bankCardClick = () => {
 		const { getLinkForPayment, infoListTalonInfo } = this.props;
 
+		this.setState({ type_text: '' });
 		getLinkForPayment(infoListTalonInfo.rnumb_id, infoListTalonInfo.price);
 	};
 

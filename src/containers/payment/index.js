@@ -35,7 +35,7 @@ class Payment extends Component {
 			this.senderResp = true;
 		}
 
-		if (url.includes('err_process')) {
+		if (url.includes('process/err_process') || url.includes('hbpay/err_process')) {
 			if (this.senderResp) {
 				setTimeout(() => {
 					navigation.goBack();
@@ -45,9 +45,10 @@ class Payment extends Component {
 		}
 
 		if (url.includes('process/result')) {
-			if (this.senderResp) {
+			if (this.senderResp && infoListTalonInfo?.rnumb_id) {
 				setTimeout(() => {
-					navigation.navigate('recordingList');
+					getListTalonInfo(infoListTalonInfo?.rnumb_id);
+					navigation.navigate('recordingItem');
 				}, 4000);
 				this.senderResp = false;
 			}
@@ -60,15 +61,10 @@ class Payment extends Component {
 			}, 4000);
 		}
 
-		if (url.includes('epay_success') || url.includes('epay_failure')) {
-			if (this.senderResp && infoListTalonInfo?.rnumb_id) {
-				setTimeout(() => {
-					getListTalonInfo(infoListTalonInfo?.rnumb_id);
-					navigation.navigate('recordingItem');
-				}, 4000);
-				this.senderResp = false;
-			}
+		if (url.includes('api/epay_success')) {
+			navigation.goBack();
 		}
+
 	};
 
 	render() {
