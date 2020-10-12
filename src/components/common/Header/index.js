@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar, View, Text, TouchableOpacity, Image, TextInput, Linking, Keyboard } from 'react-native';
 import { Icon } from 'native-base';
+import {NavigationActions} from 'react-navigation';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -41,7 +42,6 @@ class Header extends Component {
 		} = this.props;
 
 		const { searchText } = this.state;
-		
 		return (
 			<View style={styles.headerWrap}>
 				<StatusBar backgroundColor={BAR_COLOR} barStyle='light-content' />
@@ -82,7 +82,18 @@ class Header extends Component {
 					}
 					{
 						(!!backButton) && (
-							<TouchableOpacity onPress={() => this.props.navigation.goBack(null)} activeOpacity={0.6} style={styles.btnBack} >
+							<TouchableOpacity onPress={() => {
+								const isNavigateFromPaymentToRecordingItem = this.props.navigation?.state?.params?.isNavigateFromPaymentToRecordingItem;
+								if(isNavigateFromPaymentToRecordingItem) {
+									// fix bug with navigate from payment
+									this.props.navigation.setParams({isNavigateFromPaymentToRecordingItem: false});
+									this.props.navigation.reset([
+												NavigationActions.navigate({ routeName: 'profile' }),
+										 ], 0)
+								} else {
+									this.props.navigation.goBack(null);
+								}
+								}} activeOpacity={0.6} style={styles.btnBack} >
 								<Icon type="Fontisto" name="angle-left" style={styles.iconHeader} />
 							</TouchableOpacity>
 						)

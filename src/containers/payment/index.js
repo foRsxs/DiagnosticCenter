@@ -31,7 +31,7 @@ class Payment extends Component {
 	onNavigationStateChange = ({ url }) => {
 		const { navigation, getSavedCards, getListTalonInfo, infoListTalonInfo } = this.props;
 
-		if (url.includes('process')) {
+		if (url.includes('process') || url.includes('payment')) {
 			this.senderResp = true;
 		}
 
@@ -43,12 +43,13 @@ class Payment extends Component {
 				this.senderResp = false;
 			}
 		}
-
-		if (url.includes('process/result')) {
+		if (url.includes('process/result') || url.includes('payment/result')) {
 			if (this.senderResp && infoListTalonInfo?.rnumb_id) {
 				setTimeout(() => {
 					getListTalonInfo(infoListTalonInfo?.rnumb_id);
-					navigation.navigate('recordingItem');
+					navigation.replace('recordingItem', {
+						isNavigateFromPaymentToRecordingItem: true,
+					});
 				}, 4000);
 				this.senderResp = false;
 			}
