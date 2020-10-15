@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Container, View, Content, Text } from 'native-base';
+import { StackActions, NavigationActions } from 'react-navigation';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -61,14 +62,22 @@ class CheckRecordScreen extends Component {
 
 	_save = () => {
 		const { setCreatingOrderSuccess, getListTalonInfo, cleareOrder } = this.props;
-		const { navigate } = this.props.navigation;
+		const { dispatch } = this.props.navigation;
 		const { rnumb_id } = this.state;
+		const resetAction = StackActions.reset({
+			index: 1,
+			actions: [
+				NavigationActions.navigate({ routeName: 'recordingList' }),
+				NavigationActions.navigate({ routeName: 'recordingItem' }),
+			],
+		});
 
 		setCreatingOrderSuccess(false);
 		cleareOrder();
 		this.setState({ modalVisible: false, hideButton: true });
 		getListTalonInfo(rnumb_id);
-		navigate('recordingItem');
+
+		dispatch(resetAction);
 	};
 
 	render() {

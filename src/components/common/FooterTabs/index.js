@@ -38,7 +38,11 @@ class FooterTabs extends Component {
 			this.props.setActiveTab(0);
 		}
 
-		(root === 'Services') ? navigation.dispatch(StackActions.pop()) : navigation.dispatch(StackActions.popToTop());
+		if (root === 'Services') { 
+			navigation.dispatch(StackActions.pop()); 
+		} else {
+			navigation.dispatch(StackActions.popToTop());
+		}
 		
 		jumpTo(root);		
   }
