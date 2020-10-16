@@ -116,7 +116,7 @@ class ReceptionInfoItemScreen extends Component {
 									icon={ICON_SERVICE_SMALL}
 									title={t('createrecord:form.service')}
 									placeholder={t('createrecord:form.select_service')}
-									text={infoListTalonInfo.serv}
+									text={infoListTalonInfo?.serv ?? ""}
 								/>
 								<View style={styles.datetimeWrap}>
 									<View style={{ flex: 3 }}>
