@@ -97,7 +97,7 @@ class AnalizesScreen extends Component {
           {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) :
           (<List>
             {
-              (filteredList.length) ? (
+              (filteredList?.length) ? (
                 filteredList.map((item, index) => (
                   <AnalizesItem
                     key={index}

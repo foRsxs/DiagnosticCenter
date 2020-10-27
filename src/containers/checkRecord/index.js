@@ -65,7 +65,7 @@ class CheckRecordScreen extends Component {
 		const { dispatch } = this.props.navigation;
 		const { rnumb_id } = this.state;
 		const resetAction = StackActions.reset({
-			index: 1,
+			index: 2,
 			actions: [
 				NavigationActions.navigate({ routeName: 'recordingCreate' }),
 				NavigationActions.navigate({ routeName: 'recordingList' }),

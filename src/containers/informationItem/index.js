@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as ContentActions from '../../actions/content';
 import Header from '../../components/common/Header';
 import LinkBtn from '../../components/common/LinkBtn';
-import { APP_IMG_URL, CALL_CENTRE_TEL } from '../../config';
+import { APP_IMG_URL } from '../../config';
 
 import styles from './styles';
 import { ACCENT_BLUE } from '../../styles/constants';
@@ -101,7 +101,7 @@ class InfoDetailScreen extends Component {
 
   render() {
     const { call, image, header_title, post_id } = this.state;
-    const { t, isRequest } = this.props;
+    const { t, isRequest, appParamsConfig } = this.props;
 
     return (
       <Container contentContainerStyle={styles.mainContainer}>
@@ -117,7 +117,7 @@ class InfoDetailScreen extends Component {
           )
         }
         </Content>
-        {(call) && <LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${CALL_CENTRE_TEL}`)} />}
+        {(call) && <LinkBtn label={t('common:actions_text.call_centre_text')} onClick={() => Linking.openURL(`tel:${appParamsConfig.callcenter}`)} />}
       </Container>
     )
   }
@@ -126,6 +126,7 @@ class InfoDetailScreen extends Component {
 function mapStateToProps(state) {
   return {
     post: state.content.listInformation.post,
+    appParamsConfig: state.deviceInfo.appParamsConfig,
     isRequest: state.content.isRequest
   }
 }
