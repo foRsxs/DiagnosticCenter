@@ -1,19 +1,22 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import reducer from '../reducers'
+import { createStore } from 'redux';
+import { persistStore, persistReducer  } from 'redux-persist';
+import storage from '@react-native-community/async-storage';
 
-export default function configureStore() {
-  const store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-  )
+import middleware from '../middleware';
+import rootReducer from '../reducers';
+import initialState from './initialState';
 
-  if (module.hot) {
-    module.hot.accept(() => {
-      const nextRootReducer = require('../reducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['authorization', 'content']
+}
 
-  return store;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default function configureStore() { 
+  const store = createStore(persistedReducer, initialState, middleware);
+  const persistor = persistStore(store);
+
+  return { store, persistor }
 }

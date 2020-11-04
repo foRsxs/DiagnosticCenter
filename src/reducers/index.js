@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
+
 import authorization from './authorization';
 import content from './content';
+import deviceInfo from './deviceInfo';
 
-const rootReducer = combineReducers({
+export default combineReducers({
   authorization,
-  content
+  content,
+  deviceInfo
 });
-
-export default rootReducer;

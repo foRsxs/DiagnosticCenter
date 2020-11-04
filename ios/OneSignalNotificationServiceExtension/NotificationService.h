@@ -2,8 +2,7 @@
 //  NotificationService.h
 //  OneSignalNotificationServiceExtension
 //
-//  Created by user on 22.12.18.
-//  Copyright © 2018 IZZI software. All rights reserved.
+//  Created by iMac on 07.10.2020.
 //
 
 #import <UserNotifications/UserNotifications.h>

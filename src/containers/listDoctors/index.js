@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, BackHandler, ActivityIndicator} from 'react-native';
-import { Container, Content, Text } from 'native-base';
+import { BackHandler, ActivityIndicator, View } from 'react-native';
+import { Container, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 
 import * as ContentActions from '../../actions/content';
-import CatalogItem from '../../components/catalog/CatalogItem';
+import CatalogItem from '../../components/CatalogItem';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
+import { APP_IMG_URL } from '../../config';
 import variables from '../../styles/variables';
-import {APP_IMG_URL} from '../../config';
+import { ACCENT_BLUE, MAIN_FONT, COLOR_LIGHT_BLACK, COLOR_NEW_GRAY, FONT_LIGHT } from '../../styles/constants';
 
-const { accentBlue } = variables.colors;
-const { medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+const { medium, main } = variables.fSize;
 
-class ServicesScreen extends Component {
+class ListDoctors extends Component {
   constructor(props) {
     super(props);
     this.state = {
       spec_id: (props.navigation.state.params) ? props.navigation.state.params.spec_id : null,
-      listview: true,
-      loading: true,
       sorted_list_Doctors: props.list_Doctors,
+      logoKey: '1'
     };
   }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    this.props.getListDoctors(this.state.spec_id);
+    this.props.getListDoctors();
   }
 
   componentWillUnmount() {
@@ -39,19 +37,33 @@ class ServicesScreen extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.list_Doctors !== this.props.list_Doctors) {
       this.setState({
-        loading: false, 
         sorted_list_Doctors: this.props.list_Doctors
       });
     }
   }
 
   handleChange = (value) => {
-    const {list_Doctors} = this.props;
-    
-    function findElements(item) {
+    const { list_Doctors } = this.props;
+    let array = [];
+
+    findElements = (item) => {
       return `${item.lastname} ${item.firstname} ${item.secondname}`.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
-    this.setState({ sorted_list_Doctors: list_Doctors.filter(findElements)});
+
+    list_Doctors.forEach(element => {
+      if (element.doctors.filter(findElements).length) {
+        array.push({
+          category: element.category,
+          doctors: element.doctors.filter(findElements)
+        })
+      }
+    });
+
+    this.setState({ sorted_list_Doctors: array});
+  }
+
+  handleClear = () => {
+    this.setState({ sorted_list_Doctors: this.props.list_Doctors });
   }
 
   handleBackButtonClick = () => {
@@ -59,57 +71,64 @@ class ServicesScreen extends Component {
     return true;
   }
 
-  toggle = (value) => {
-    this.setState({listview: value});
+  funLogo = (id) =>{
+    this.setState({logoKey: id})
   }
 
   render() {
-    let { listview, loading, sorted_list_Doctors } = this.state;
-    const { t } = this.props;
+    let { sorted_list_Doctors } = this.state;
+    const { t, isRequest } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
       <Container>
-        <Header text={ t('listdoctors:title') } navigation = {this.props.navigation} />
-        <HeaderBottom katalogDoctor={true} search={true} onClick={this.change} togleClick={this.toggle} onChangeSearch={this.handleChange}/>
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} contentContainerStyle={ [(listview)? {} : styles.containerStyle, (loading) ? {flex: 1, justifyContent: 'center'}: 0] } padder>
-          {(loading) && <ActivityIndicator size="large" color={accentBlue} /> }
-          {
-            (!loading) && (
-              (sorted_list_Doctors.length)? (
+        <Header search={true} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
+        <KeyboardAwareScrollView 
+          style={{zIndex: 1, marginTop: -10, paddingTop: 10 }} 
+          contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}
+        >
+          { (!!isRequest) ? 
+            ( <ActivityIndicator size="large" color={ACCENT_BLUE} /> )
+            : (
+              (sorted_list_Doctors.length) ? (
                 sorted_list_Doctors.map((item, index)=>(
-                  <CatalogItem 
-                    key={index} 
-                    listview={listview} 
-                    onClick={() => navigate('doctor',{docid: +item.docid, spec_id: item.specid, docdep_id: item.docdep})} 
-                    imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
-                    name={`${item.lastname} ${item.firstname} ${item.secondname}`}
-                  />
+                  <View key={index}>
+                    <Text style={{color: COLOR_LIGHT_BLACK, marginTop: 10, marginLeft: 10, fontFamily: FONT_LIGHT, fontSize: main}}>{item.category}</Text>
+                    <View style={{width: '50%', height: 0.5, backgroundColor: COLOR_NEW_GRAY, marginBottom: 5}}/>
+                    {
+                    item.doctors.map((item, index, length)=>((
+                      <CatalogItem 
+                        key={item.docdep}
+                        contentContainerStyle={(index===length.length-1)?{borderBottomWidth: 0}:{}}
+                        onClick={() => {
+                          this.props.getDoctor(item.docdep);
+                          this.props.getQuestions(item.docdep);
+                          navigate('doctor', {doc_id: item.docid, spec_id: item.specid, docdep_id: item.docdep, uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`});
+                        }}
+                        imageUri={{uri: `${APP_IMG_URL}photo_doc/${item.docid}.jpg`}} 
+                        name={`${item.lastname} ${item.firstname} ${item.secondname}`}
+                        position={item.speciality}
+                        info={item.description_short}
+                        category={item.category}
+                     />
+                    )))
+                    } 
+                  </View>
                 ))
-              ) : <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{ t('listdoctors:no_doctors_text') }</Text>
+              ) : (<Text style={{textAlign: 'center', fontSize: medium, fontFamily: MAIN_FONT, paddingTop: 10}}>{ t('listdoctors:no_doctors_text') }</Text>)
             )
           }
-        </Content>
+          <View style={{width: '100%', height: 10}}></View>
+        </KeyboardAwareScrollView>
       </Container>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  containerStyle: {
-    width: '100%', 
-    flexWrap: 'wrap', 
-    flexDirection: 'row', 
-    paddingHorizontal: 5
-  },
-  wrapPopup: {
-    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 3
-  }
-});
-
 function mapStateToProps(state) {
   return {
-    list_Doctors: state.content.listDoctors,
+    list_Doctors: state.content.sortedListDoctor,
+    isRequest: state.content.isRequest
   }
 }
 
@@ -117,4 +136,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ContentActions, dispatch)
 }
 
-export default withNamespaces('listdoctors')(connect(mapStateToProps, mapDispatchToProps)(ServicesScreen));
+export default withNamespaces('listdoctors')(connect(mapStateToProps, mapDispatchToProps)(ListDoctors));

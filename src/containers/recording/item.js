@@ -1,205 +1,314 @@
-import React, {Component} from 'react';
-import {StyleSheet, BackHandler } from 'react-native';
-import {Container, Content, View, Text} from 'native-base';
+import React, { Component } from 'react';
+import { StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
+import { Container, Content, View, Text } from 'native-base';
 import { withNamespaces } from 'react-i18next';
-import { bindActionCreators } from 'redux';
+import { withNavigationFocus } from 'react-navigation';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
 import CustomBtn from '../../components/common/CustomBtn';
+import RecordingItem from '../../components/RecordingItem';
 import variables from '../../styles/variables';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
 import ShareLinks from '../../components/common/ShareLinks';
 import Popup from '../../components/common/Popup';
 
-const { accentBlue, lightGray, mediumBlack, black } = variables.colors;
-const { mainFont } = variables.fonts;
-const { medium, large, main }  = variables.fSize;
+const { extralarge, medium, large, main, normal } = variables.fSize;
+
+import {
+	ACCENT_BLUE,
+	LIGHT_GRAY,
+	MEDIUM_BLACK,
+	BLACK,
+	MAIN_FONT,
+	COLOR_LIGHT_BLACK,
+	GREEN
+} from '../../styles/constants';
+import {
+	ICON_SERVICE_SMALL,
+	ICON_DOCTOR_SMALL,
+	ICON_CALENDAR_SMALL,
+	ICON_TIME_SMALL,
+	ICON_PRICE_SMALL,
+	ICON_NUMBER_SMALL
+} from '../../styles/images';
 
 class ReceptionInfoItemScreen extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
+		this.state = {
+			modalVisible: false,
+			hideButton: false
+		};
+	}
 
-    this.state = {
-      type: (props.navigation.state.params) ? props.navigation.state.params.type: null,
-      date: (props.navigation.state.params) ? props.navigation.state.params.dd: null,
-      rnumb_id: (props.navigation.state.params) ? props.navigation.state.params.rnumb_id: null,
-      room: (props.navigation.state.params) ? props.navigation.state.params.room: null,
-      serv_id: (props.navigation.state.params) ? props.navigation.state.params.serv_id: null,
-      time: (props.navigation.state.params) ? props.navigation.state.params.time: null,
-      reserved: (props.navigation.state.params) ? props.navigation.state.params.reserved: false,
-      doctor: (props.navigation.state.params) ? props.navigation.state.params.doctor: null,
-      spec: (props.navigation.state.params) ? props.navigation.state.params.spec: null,
-      serv: (props.navigation.state.params) ? props.navigation.state.params.serv: null,
-      price: (props.navigation.state.params) ? props.navigation.state.params.price: null,
-      headTxt: (props.navigation.state.params) ? `${props.navigation.state.params.doctor}, ${props.navigation.state.params.spec}` : null, 
-      dateTxt: (props.navigation.state.params) ? `${props.navigation.state.params.dd} ${props.navigation.state.params.time}` : null,
-      pdf: (props.navigation.state.params) ? props.navigation.state.params.pdf: null,
-      modalVisible: false,
-      hideButton: false,
-    };
-  }
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+	}
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+	}
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
+	componentDidUpdate(prevProps) {
+		const { payLink, isFocused, navigation } = this.props;
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) this.setState({modalVisible: true});
-    if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) this.props.navigation.navigate('recordingList');
-  }
+		if (prevProps.orderCreated !== this.props.orderCreated && this.props.orderCreated) {
+			this.setState({ modalVisible: true });
+		}
 
-  handleBackButtonClick = () => {
-    this.props.navigation.goBack(null);
-    return true;
-  }
+		if (prevProps.orderDeleted !== this.props.orderDeleted && this.props.orderDeleted) {
+			this.props.navigation.navigate('recordingList');
+		}
 
-  _onClick = () => {
-    const {reserved, rnumb_id, date, serv_id, type} = this.state;
+		if (prevProps.payLink !== payLink && payLink && isFocused) {
+			navigation.navigate('payment');
+		}
+	}
 
-    if (!reserved) {
-      this.props.saveOrder({rnumb_id, date, serv_id, type});
-    } else {
-      this.props.deleteOrder({rnumb_id});
-    }
-  }
+	handleBackButtonClick = () => {
+		this.props.navigation.goBack(null);
+		return true;
+	};
 
-  _save = () => {
-    this.props.setCreatingOrderSuccess(false);
-    this.props.getListTalons();
-    this.setState({modalVisible: false, hideButton: true});
-    this.props.navigation.navigate('recordingList');
-  }
+	_onClickDelete = () => {
+		const { infoListTalonInfo } = this.props;
 
-  render() {
-    const { t } = this.props;
-    const { reserved, modalVisible, hideButton, date, time, room, doctor, spec, serv, price, pdf, headTxt, dateTxt } = this.state;
+		this.props.deleteOrder({ rnumb_id: infoListTalonInfo.rnumb_id });
+		this.props.navigation.goBack(null);
+	};
 
-    return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('recordings:item.title') } navigation = {this.props.navigation}/>
-        <HeaderBottom text={(reserved) ? "" : t('recordings:item.check_info')} />
-        <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder>
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.make_appointment')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{doctor}</Text>
-              <Text style={styles.txtSubname}>{spec}</Text>
-            </View>
-          </View>
-          { (serv) ? (
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{serv}</Text>
-              {price && <Text style={styles.txtSubname}>{`(${price}) KZT`}</Text>}
-            </View>
-          </View>
-          ) : (
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.selected_service')}:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{spec}</Text>
-            </View>
-          </View>
-          )}
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.date_time') }:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>{date}</Text>
-              <Text style={styles.txtSubname}>{time}</Text>
-            </View>
-          </View>
-          <View style={styles.itemWrap}>
-            <Text style={styles.txtHead}>{ t('recordings:item.room') }:</Text>
-            <View style={styles.wrapName}>
-              <Text style={styles.txtName}>№ {room}</Text>
-            </View>
-          </View>
-          {
-            (reserved && pdf) && (<ShareLinks url={pdf} title={headTxt} text={dateTxt} />)
-          }
-        </Content >
-        {
-          (!hideButton) && (
-            <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-              <CustomBtn label={(reserved) ? t('common:actions.cancel_recording') :  t('common:actions.confirm')} onClick={()=> this._onClick()}/>
-            </View>
-          )
-        }
-        <Popup 
-          show={modalVisible} 
-          firstText={ t('recordings:item.success').toUpperCase() }
-          laberButton={ t('common:actions.ok') } 
-          actionButton={this._save}
-        />
-      </Container>
-    )
-  }
+	_onClickPayButton = () => {
+		const { navigation } = this.props;
+		navigation.navigate('paymentCards');
+	};
+
+	_save = () => {
+		this.props.setCreatingOrderSuccess(false);
+		this.props.getListTalons();
+		this.setState({ modalVisible: false, hideButton: true });
+		this.props.navigation.navigate('recordingList');
+	};
+
+	render() {
+		const { t, infoListTalonInfo, isRequest } = this.props;
+		const { modalVisible, hideButton } = this.state;
+	
+		// status (1 - активен и можно оплачивать, 0 - неактивен). paid_status (1- оплачен, 0 - не оплачен)
+		const status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('status') ? infoListTalonInfo.status : null;
+		const paid_status = infoListTalonInfo && infoListTalonInfo.hasOwnProperty('paid_status') ? infoListTalonInfo.paid_status : null;
+		const headTxt = infoListTalonInfo ? (`${infoListTalonInfo.doc}, ${infoListTalonInfo.spec}`) : null;
+		const dateTxt = infoListTalonInfo ? (`${infoListTalonInfo.dd} ${infoListTalonInfo.time}`) : null;
+
+		return (
+			<Container contentContainerStyle={{ justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+				<Header backButton={true} text={t('recordings:info_record')} navigation={this.props.navigation} />
+					{ !!isRequest ? (
+						<View style={{ flex: 1, height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+							<ActivityIndicator size="large" color={ACCENT_BLUE} />
+						</View>
+					) : (
+					<View style={{ flex: 1, height: '100%'}}>
+						<Content>
+							<View style={styles.wrapper}>
+								<RecordingItem
+									icon={ICON_SERVICE_SMALL}
+									title={t('createrecord:form.service')}
+									placeholder={t('createrecord:form.select_service')}
+									text={infoListTalonInfo?.serv ?? ""}
+								/>
+								<View style={styles.datetimeWrap}>
+									<View style={{ flex: 3 }}>
+										<RecordingItem
+											icon={ICON_PRICE_SMALL}
+											title={t('createrecord:price')}
+											placeholder={t('createrecord:price')}
+											text={`${infoListTalonInfo.price} KZT`}
+										/>
+									</View>
+									<View style={styles.separator} />
+									<View style={{ flex: 2 }}>
+										<RecordingItem
+											contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
+											icon={ICON_NUMBER_SMALL}
+											title={t('createrecord:room_number')}
+											text={infoListTalonInfo.room}
+											placeholder="300"
+										/>
+									</View>
+								</View>
+								<RecordingItem
+									icon={ICON_DOCTOR_SMALL}
+									title={t('createrecord:form.doctor')}
+									placeholder={t('createrecord:form.select_doctor')}
+									text={infoListTalonInfo.doc}
+								/>
+								<View style={styles.datetimeWrap}>
+									<View style={{ flex: 2 }}>
+										<RecordingItem
+											icon={ICON_CALENDAR_SMALL}
+											title={t('createrecord:form.date')}
+											placeholder={t('createrecord:form.select_date')}
+											text={infoListTalonInfo.dd}
+										/>
+									</View>
+									<View style={styles.separator} />
+									<View style={{ flex: 1 }}>
+										<RecordingItem
+											contentContainerStyle={{ paddingRight: 0, paddingLeft: 10 }}
+											icon={ICON_TIME_SMALL}
+											title={t('createrecord:form.time')}
+											placeholder="12:00"
+											text={infoListTalonInfo.time}
+										/>
+									</View>
+								</View>
+							</View>
+							{(paid_status === 1) && (
+								<View style={styles.textPaidWrapper}>
+									<View style={styles.textPaidBorder}>
+										<Text style={styles.textPaid}>{t('common:actions.paid')}</Text>
+									</View>
+								</View>
+							)}
+							{infoListTalonInfo.pdf && <ShareLinks url={infoListTalonInfo.pdf} title={headTxt} text={dateTxt} />}
+						</Content>
+						{(paid_status === 0 && status === 1) && (
+							<View style={[{...styles.buttonWrap, paddingBottom: 15 }]}>
+								<CustomBtn
+									color={'darkGreenColor'}
+									label={t('common:actions.pay')}
+									onClick={() => this._onClickPayButton()}
+								/>
+							</View>
+						)}
+						{(!hideButton && paid_status !== 1) && (
+							<View style={styles.buttonWrap}>
+								<CustomBtn
+									label={t('common:actions.cancel_recording')}
+									onClick={() => this._onClickDelete()}
+								/>
+							</View>
+						)}
+						<Popup
+							show={modalVisible}
+							firstText={t('recordings:item.success').toUpperCase()}
+							laberButton={t('common:actions.ok')}
+							actionButton={this._save}
+						/>
+					</View>
+				)}
+			</Container>
+		);
+	}
 }
 
-const styles = StyleSheet.create({
-  itemWrap: {
-    paddingHorizontal: 20,
-    margin: 5,
-  },
-  txtHead: {
-    color: accentBlue, 
-    fontFamily: mainFont,
-    fontSize: medium, 
-    width: '100%', 
-    textAlign: 'center',
-    marginBottom: 5
-  },
-  wrapName: {
-    backgroundColor: lightGray, 
-    width: '100%', 
-    textAlign: 'center', 
-    borderRadius: 10, 
-    paddingHorizontal: 0, 
-    paddingVertical: 10
-  },
-  txtName: {
-    color: black, 
-    fontFamily: mainFont,
-    fontSize: large, 
-    width: '100%', 
-    textAlign: 'center'
-  },
-  txtSubname: {
-    color: mediumBlack, 
-    fontFamily: mainFont,
-    fontSize: main, 
-    marginTop: 5,
-    width: '100%', 
-    textAlign: 'center'
-  },
-  actionsWrap: {
-    justifyContent: 'flex-start', 
-    flexDirection: 'row', 
-    alignItems: 'center'
-  },
-  actionsImg: {
-    width: 20, 
-    height: 15, 
-    marginRight: 10
-  }
-});
-
 function mapStateToProps(state) {
-  return {
-    orderCreated: state.content.orderCreated,
-    orderDeleted: state.content.orderDeleted
-  }
+	return {
+		isRequest: state.content.isRequest,
+		orderCreated: state.content.orderCreated,
+		orderDeleted: state.content.orderDeleted,
+		lang_key: state.authorization.language,
+		payLink: state.content.payLink,
+		infoListTalonInfo: state.content.infoListTalonInfo
+	};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ContentActions, dispatch)
+	return bindActionCreators(ContentActions, dispatch);
 }
 
-export default withNamespaces(['recordings', 'common'])(connect(mapStateToProps, mapDispatchToProps)(ReceptionInfoItemScreen));
+export default compose(
+	withNavigationFocus,
+	withNamespaces([ 'recordings', 'common' ]),
+	connect(mapStateToProps, mapDispatchToProps)
+)(ReceptionInfoItemScreen);
+
+const styles = StyleSheet.create({
+	itemWrap: {
+		paddingHorizontal: 20,
+		margin: 5
+	},
+	txtHead: {
+		color: ACCENT_BLUE,
+		fontFamily: MAIN_FONT,
+		fontSize: medium,
+		width: '100%',
+		textAlign: 'center',
+		marginBottom: 5
+	},
+	wrapName: {
+		backgroundColor: LIGHT_GRAY,
+		width: '100%',
+		textAlign: 'center',
+		borderRadius: 10,
+		paddingHorizontal: 0,
+		paddingVertical: 10
+	},
+	txtName: {
+		color: BLACK,
+		fontFamily: MAIN_FONT,
+		fontSize: large,
+		width: '100%',
+		textAlign: 'center'
+	},
+	txtSubname: {
+		color: MEDIUM_BLACK,
+		fontFamily: MAIN_FONT,
+		fontSize: main,
+		marginTop: 5,
+		width: '100%',
+		textAlign: 'center'
+	},
+	actionsWrap: {
+		justifyContent: 'flex-start',
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
+	actionsImg: {
+		width: 20,
+		height: 15,
+		marginRight: 10
+	},
+	wrapper: {
+		paddingHorizontal: 20
+	},
+	datetimeWrap: {
+		flexDirection: 'row'
+	},
+	separator: {
+		marginVertical: 10,
+		borderLeftWidth: 1,
+		borderColor: ACCENT_BLUE
+	},
+	helpText: {
+		fontSize: normal,
+		color: COLOR_LIGHT_BLACK,
+		fontFamily: MAIN_FONT,
+		paddingLeft: 50,
+		paddingRight: 30,
+		marginBottom: 0,
+		marginTop: 10
+	},
+	textPaidWrapper: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingVertical: 30,
+	},
+	textPaidBorder: {
+		borderWidth: 2,
+		borderColor: GREEN,
+		padding: 10
+	},
+	textPaid: {
+		fontFamily: MAIN_FONT,
+		fontSize: extralarge,
+		color: GREEN,
+		textTransform: 'uppercase'
+	},
+	buttonWrap: {
+		paddingHorizontal: 15, 
+		paddingBottom: 30
+	}
+});

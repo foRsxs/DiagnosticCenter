@@ -1,114 +1,124 @@
-import React, {Component} from 'react';
-import {StyleSheet, Dimensions, ActivityIndicator, NetInfo, AsyncStorage} from 'react-native';
-import {Container, Content, View} from 'native-base';
-import SplashScreen from 'react-native-splash-screen';
+import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
+import { Container, Content } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import * as ContentActions from '../../actions/content';
 import * as AuthActions from '../../actions/auth';
-import HomeCarousel from '../../components/home/HomeCarousel';
-import HomeButton from '../../components/home/HomeButton';
-import LinkBtn from '../../components/common/LinkBtn';
+import HomeCarousel from '../../components/HomeCarousel';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
+import MenuList from '../../components/common/MenuList';
+import styles from './styles';
 
-import variebles from '../../styles/variables';
-
-const Height = Dimensions.get('window').height;
-const {accentBlue} = variebles.colors;
+import { ACCENT_BLUE, COLOR_LIGHT_GRAY, WHITE } from '../../styles/constants';
+import { ICON_CONTACT, ICON_INFO, ICON_VACANCY, ICON_QUESTION, ICON_SCAN_QRCODE } from '../../styles/images';
 
 class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      menuList: []
+    };
   }
 
   componentDidMount() {
-    const {user, getUserData, token, t, setAuthMessage, logOut, navigation} = this.props;  
+    const { t } = this.props;
+    this._renderMenuList(t);
+    this.props.getSales();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { t, languages_key } = this.props;
     
-    if (!user && token) {
-      getUserData().then((resp) => {
-        if (Object.keys(resp).length === 0) {
-          setAuthMessage(t(`common:actions_text.token_not_valid_text`))
-          AsyncStorage.clear();
-          logOut();
-          navigation.navigate("authorization");
-        }
-      });
+    if (prevProps.languages_key !== languages_key) {
+      this._renderMenuList(t);
     }
-    
-    SplashScreen.hide();
-    NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectionChange);
-  }
-
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectionChange);
-  }
-
-  _handleConnectionChange = (isConnected) => {
-    this.props.changeNetworkConnection(isConnected);
   }
 
   _openPage = (page, text_error) => {
-    const {t, isGuest, navigation} = this.props;
-    
+    const { t, isGuest, navigation } = this.props;
+
     if (isGuest) {
       this.props.setAuthMessage(t(`common:actions_text.${text_error}_text`));
       navigation.navigate('authorization');
-    } else { 
+    } else {
       navigation.navigate(page);
     }
+  }
+  
+  _renderMenuList = (t) => {
+    this.setState({
+      menuList: [
+        {
+          text: t(`home:menu_list.contacts`),
+          icon: ICON_CONTACT,
+          value: 'contacts'
+        },
+        {
+          text: t(`home:menu_list.information`),
+          icon: ICON_INFO,
+          value: 'information'
+        },
+        {
+          text: t(`home:menu_list.vacancy`),
+          icon: ICON_VACANCY,
+          value: 'vacantion'
+        },
+        {
+          text: t(`home:menu_list.faq`),
+          icon: ICON_QUESTION,
+          value: 'oftenQuestions'
+        },
+        {
+          text: t(`home:menu_list.qrcode`),
+          icon: ICON_SCAN_QRCODE,
+          value: 'scanCode'
+        },
+      ]
+    })
+  }
+
+  onPress = (type) => {
+    const { navigation } = this.props;
+    (type === 'LogOut') ? navigation.navigate('authorization') : navigation.navigate(type);
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    const { t, sales } = this.props;
-    
+    const { isRequest, sales, appParamsConfig } = this.props;
+
     return (
-      <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-        <Header text={ t('home:title') } navigation = {this.props.navigation} backDisabled={true} />
-        <HeaderBottom/>
-        <Content style={{marginTop: -60, zIndex: 2}}>
-          <View style={{height: Height/3, justifyContent: 'center', alignItems: 'center'}}>
-            { sales ? (<HomeCarousel navigate={navigate} data={sales}/>) : <ActivityIndicator size="large" color={accentBlue} /> }
-          </View>
-          <View style={styles.buttonContainer}>
-            <HomeButton keyNumber={0} nameBtn= { [t('home:menu.doc_list_1'), t('home:menu.doc_list_2')] } onClick={() => navigate({routeName: "listDoctors", key: 777})} imageUri={require('../../../assets/img/btn-doc-ic.png')}/>
-            <HomeButton keyNumber={1} nameBtn= { [t('home:menu.cat_services_1'), t('home:menu.cat_services_2')] } onClick={() => navigate("specialization")} imageUri={require('../../../assets/img/btn-serv-ic.png')}/>
-            <HomeButton keyNumber={2} nameBtn= { [t('home:menu.doc_appointment_1'), t('home:menu.doc_appointment_2')] } onClick={()=> this._openPage("recordingCreate", 'recording')} imageUri={require('../../../assets/img/btn-post-ic.png')}/>
-            <HomeButton keyNumber={3} nameBtn= { [t('home:menu.test_results_1'), t('home:menu.test_results_2')] } onClick={()=> this._openPage("analizes", 'analizes')} imageUri={require('../../../assets/img/btn-analize-ic.png')}/>
-          </View>
+      <Container contentContainerStyle={styles.wrapContainer}>
+        <Header isHome={true} navigation={this.props.navigation} callCenterTel={(appParamsConfig && appParamsConfig.callcenter) ? appParamsConfig.callcenter : '' }/>
+        <Content>
+          <LinearGradient colors={[WHITE, COLOR_LIGHT_GRAY]} style={styles.wrapCarousel}>
+            {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (<HomeCarousel navigate={navigate} data={sales} />)}
+          </LinearGradient>
+          <MenuList onPress={(value) => this.onPress(value)} valueName={'value'} fields={this.state.menuList} navigation={this.props.navigation} />
         </Content >
-        <LinkBtn label={ t('home:faq_text_link') } onClick={()=>navigate('oftenQuestions')}/>
       </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexWrap:'wrap', 
-    width: '100%', 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    paddingHorizontal: 10
-  }
-});
 
 function mapStateToProps(state) {
   return {
     sales: state.content.sales,
     profile: state.authorization.user,
     token: state.authorization.token,
-    isGuest: state.authorization.isGuest
+    isGuest: state.authorization.isGuest,
+    languages_key: state.authorization.language,
+    isRequest: state.content.isRequest,
+    appParamsConfig: state.deviceInfo.appParamsConfig,
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({...ContentActions, ...AuthActions}, dispatch);
+  return bindActionCreators({ ...ContentActions, ...AuthActions }, dispatch);
 }
 
-export default withNamespaces('home')(connect(mapStateToProps, mapDispatchToProps)(HomeScreen));
+export default withNamespaces(['home', 'common'])(connect(mapStateToProps, mapDispatchToProps)(HomeScreen));

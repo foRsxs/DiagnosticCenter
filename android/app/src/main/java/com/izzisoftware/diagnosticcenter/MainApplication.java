@@ -1,52 +1,40 @@
 package com.izzisoftware.diagnosticcenter;
 
 import android.app.Application;
-
+import android.content.Context;
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.RNFetchBlob.RNFetchBlobPackage;
-
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import com.RNTextInputMask.RNTextInputMaskPackage;
-import com.rnfingerprint.FingerprintAuthPackage;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import cl.json.RNSharePackage;
-import cl.json.ShareApplication;
-
-import java.util.Arrays;
+import androidx.multidex.MultiDexApplication;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-public class MainApplication extends Application implements ShareApplication, ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new RNFetchBlobPackage(),
-        new ReactNativeOneSignalPackage(),
-        new RNSharePackage(),
-        new RNLanguagesPackage(),
-        new RNTextInputMaskPackage(),
-        new FingerprintAuthPackage(),
-        new SplashScreenReactPackage()
-      );
-    }
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          return packages;
+        }
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
@@ -57,10 +45,37 @@ public class MainApplication extends Application implements ShareApplication, Re
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
-  
-  @Override
-  public String getFileProviderAuthority() {
-    return "com.izzisoftware.diagnosticcenter.provider";
+
+  /**
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+   *
+   * @param context
+   * @param reactInstanceManager
+   */
+  private static void initializeFlipper(
+      Context context, ReactInstanceManager reactInstanceManager) {
+    if (BuildConfig.DEBUG) {
+      try {
+        /*
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
+        Class<?> aClass = Class.forName("com.izzisoftware.diagnosticcenter.ReactNativeFlipper");
+        aClass
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

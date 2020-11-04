@@ -1,108 +1,89 @@
-import React, {Component} from 'react';
-import {StyleSheet, BackHandler, ActivityIndicator, Linking} from 'react-native';
-import {Container, Content, View, Text} from 'native-base';
+import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
+import { Container, Content, View, Text, List } from 'native-base';
 import { withNamespaces } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ContentActions from '../../actions/content';
-import LinkBtn from '../../components/common/LinkBtn';
 import Header from '../../components/common/Header';
-import HeaderBottom from '../../components/common/HeaderBottom';
-import SpecializationItem from '../../components/specialization/SpecializationItem';
-import Popup from '../../components/common/Popup';
-import variables from '../../styles/variables';
-import { APP_IMG_URL, CALL_CENTRE_TEL} from '../../config';
+import SpecializationItem from '../../components/SpecializationItem';
+import { APP_IMG_URL } from '../../config';
 
-const { black, accentBlue } = variables.colors;
-const { medium } = variables.fSize;
-const { mainFont } = variables.fonts;
+import styles from './styles';
+import { ACCENT_BLUE } from '../../styles/constants';
 
 class SpecializationScreen extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      modalVisible: false,
-      sorted_list_specialization: props.list_specialization,
-      loading: (props.list_specialization) ? false: true
+      specialities: props.orderDatas.specialities
     };
   }
 
-  handleChange = (value) => {
-    const {list_specialization} = this.props;
-    function findElements(item) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.orderDatas.specialities !== this.props.orderDatas.specialities ) {
+      this.setState({ specialities: this.props.orderDatas.specialities });
+    }
+  }
+
+  handleChange = (value) => {    
+    findElements = (item) => {
       return item.spec_name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
-    this.setState({ sorted_list_specialization: list_specialization.filter(findElements)});
+
+    this.setState({ specialities: this.props.orderDatas.specialities.filter(findElements)});
   }
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    if (!this.props.list_specialization) this.props.getListSpecialization(1);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.list_specialization !== this.props.list_specialization) this.setState({sorted_list_specialization: this.props.list_specialization, loading: false});
-  }
-
-  handleBackButtonClick = () => {
-    if (this.state.modalVisible) {
-      this.setState({modalVisible: false})
-    } else {
-      this.props.navigation.goBack();
-    }
-    return true;
-  }
-
-  call = () => {
-    Linking.openURL(`tel:${CALL_CENTRE_TEL}`);
-    this.setState({modalVisible: false});
+  handleClear = () => {
+    this.setState({ specialities: this.props.orderDatas.specialities });
   }
 
   render() {
-    const {modalVisible, sorted_list_specialization, loading} = this.state;
-    const { t } = this.props;
+    const { specialities } = this.state;
+    const { t, isRequest, order, setOrder, navigation, setOrderValue, setActiveTab } = this.props;
 
     return (
       <View>
-        <View style={ styles.mainContainer }>
-          <Container contentContainerStyle={{justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
-            <Header text={ t('specialization:title') } navigation = {this.props.navigation}/>
-            <HeaderBottom search={true} onChangeSearch={this.handleChange}/>
-            <Content style={{marginTop: -10, zIndex: 1, paddingTop: 10}} padder contentContainerStyle={(loading)?{flex: 1, justifyContent: 'center'}: {}}>
-              {
-                (loading) ? <ActivityIndicator size="large" color={accentBlue} />: 
-                (
-                  (sorted_list_specialization && sorted_list_specialization.length)? (
-                    sorted_list_specialization.map((item, index) => (
-                      <SpecializationItem 
-                        key={index} 
-                        onClick={() => this.props.navigation.navigate({routeName:'listDoctors', params: {spec_id: item.spec_id}, key: item.spec_id })} 
-                        headTxt={item.spec_name} 
-                        imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
-                      />
-                    ))
-                  ): (
-                    <Text style={{textAlign: 'center', fontSize: medium, fontFamily: mainFont}}>{t('specialization:no_doctor_text')}</Text>
-                  )
-                )
-              }
+        <View style={styles.mainContainer}>
+          <Container contentContainerStyle={styles.mainContentContainer}>
+            <Header backButton={true} search={true} navigation={this.props.navigation} onChangeSearch={this.handleChange} onClearSearch={this.handleClear} />
+            <Content style={styles.content} contentContainerStyle={(isRequest) ? { flex: 1, justifyContent: 'center' } : {}}>
+              {(!!isRequest) ? (<ActivityIndicator size="large" color={ACCENT_BLUE} />) : (
+                <View>                  
+                  <Text style={styles.title}>{t('createrecord:form.select_specialty')}</Text>
+                  <List style={{paddingBottom: 15}}>
+                    {                    
+                      (!!specialities && specialities.length) ? (
+                        specialities.map((item, index) => (
+                          <SpecializationItem
+                            key={index}
+                            onClick={() => {
+                              setOrderValue({spec: item.spec_name});
+                              if (order.type === 1) {                                 
+                                setActiveTab(0);
+                                setOrder({spec_id: item.spec_id}, 'spec_id', 'doc'); 
+                              } else {                                
+                                setActiveTab(1);
+                                setOrder({spec_id: item.spec_id}, 'spec_id');
+                              } 
+                              navigation.goBack()
+                            }}
+                            headTxt={item.spec_name}
+                            imageUri={`${APP_IMG_URL}/icons/${item.spec_id}.png`}
+                            redArrow={true}
+                          />
+                        ))
+                      ) : (
+                        <Text style={styles.noText}>{t('specialization:no_doctor_text')}</Text>
+                      )                    
+                    }
+                  </List>
+                </View>
+              )}
             </Content >
-            <LinkBtn label={ t('specialization:no_doctor_choose_link_text') } onClick={()=> this.setState({modalVisible: true})}/>
-            <Popup 
-              show={modalVisible}
-              firstText={ t('specialization:form.fisrt_text') }
-              secondText={ t('specialization:form.last_text') }
-              laberButton={ t('common:actions.call') }
-              actionButton={this.call}
-              labelLink={ t('common:actions.close') }
-              actionLink={ ()=> this.setState({modalVisible: false}) }
-            />
           </Container>
         </View>
       </View>
@@ -110,40 +91,11 @@ class SpecializationScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    opacity: 1,
-    height: '100%'
-  },
-  opacityContainer: {
-    opacity: 0.1,
-    height: '100%'
-  },
-  chooseWrap: {
-    position: 'absolute', 
-    top: 0, 
-    left: 0, 
-    width: '100%',
-    height: '100%', 
-    backgroundColor: 'rgba(0,0,0,0.5)'
-  },
-  chooseContent: {
-    position: 'absolute', 
-    bottom: 0, 
-    zIndex: 3, 
-    backgroundColor: 'white', 
-    width: '100%', 
-    borderRadius: 5
-  },
-  chooseText: {
-    textAlign: 'center', 
-    color: black
-  }
-});
-
 function mapStateToProps(state) {
   return {
-    list_specialization: state.content.ListSpecialization,
+    orderDatas: state.content.orderDatas,
+    order: state.content.order,
+    isRequest: state.content.isRequest
   }
 }
 

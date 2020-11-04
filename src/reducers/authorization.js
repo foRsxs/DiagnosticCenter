@@ -1,19 +1,7 @@
 import * as types from '../types/auth';
-
-const initialState = {
-  token: null,
-  confirmed_auth: false, //<--
-  methods_auth: null,
-  notify: true,
-  pinCode: null,
-  user: {},
-  device_touch: false,
-  device_face: false,
-  isGuest: false, //<--,
-  language: null
-}
+import {initialState} from '../store/initialState';
   
-export default function authReducer(state = initialState, action) {
+export default function authReducer(state = initialState.auth, action) {
   switch (action.type) {
     case types.LOG_OUT:
       return {
@@ -23,7 +11,8 @@ export default function authReducer(state = initialState, action) {
         methods_auth: false,
         notify: true,
         pinCode: null,
-        isGuest: false,
+        isGuest: true,
+        enableSecure: false,
         user: {}
       }
     case types.SET_CURRENT_LANG: 
@@ -35,6 +24,11 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         notify: action.data
+      }
+    case types.SET_SECURE:
+      return {
+        ...state,
+        enableSecure: action.data
       }
     case types.SET_USER_GUEST:
       return {
@@ -51,7 +45,8 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         token: action.user.api_token,
-        user: action.user
+        user: action.user,
+        isGuest: false
       }
     case types.SET_METHODS_AUTH:
       return {

@@ -8,3 +8,4 @@ export const SET_USER_GUEST = 'SET_USER_GUEST';
 export const SET_CURRENT_LANG = 'SET_CURRENT_LANG';
 export const SET_NOTIFY = 'SET_NOTIFY';
 export const LOG_OUT = 'LOG_OUT';
+export const SET_SECURE = 'SET_SECURE';
