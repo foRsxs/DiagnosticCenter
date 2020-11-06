@@ -46,21 +46,15 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Your message to user when the camera is accessed for the first time</string>
+	<string>Доступ к камере необходим для того, чтобы вы смогли отсканировать QR-код</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Enabling Face ID allows you quick and secure access to your account.</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>some string value stating the reason</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>some string value stating the reason</string>
+	<string>Включение Face ID обеспечивает быстрый и безопасный доступ к вашей учетной записи.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Местоположение необходимо, чтобы узнать, где вы находитесь.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Местоположение необходимо, чтобы узнать, где вы находитесь.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Your message to user when the microsphone is accessed for the first time</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Your message to user when the photo library is accessed for the first time</string>
+	<string>Доступ к библиотеке нужен для того, чтобы вы смогли сохранить файл анализов.</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>group.com.izzisoftware.diagnosticcenter.onesignal</string>
 	<key>UIAppFonts</key>
