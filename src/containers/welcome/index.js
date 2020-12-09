@@ -55,11 +55,11 @@ class WelcomeScreen extends Component {
 
 		if (!prevProps.appParamsConfig && appParamsConfig && appParamsConfig.version_android) {
 			const version_device = DeviceInfo.getVersion();
-			const version_back =
-				Platform.OS === 'android' ? appParamsConfig.version_android : appParamsConfig.version_ios;
+			const version_back = Platform.OS === 'android' ? appParamsConfig.version_android : appParamsConfig.version_ios;
 			const compare = versionCompare(version_device, version_back);
 
 			if (compare === -1) {
+				SplashScreen.hide();
 				Alert.alert(
 					t('authorization:updating'),
 					t('authorization:you_have_old_version'),
